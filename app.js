@@ -1735,16 +1735,35 @@ function deferThumb(s, ep, cell) {
 }
 
 /* ☁ miniatura de Streamtape SIN API key: leemos el HTML del embed y extraemos
-   su og:image (la portada oficial). Va por proxies CORS para esquivar el bloqueo. */
+   su og:image / poster. CARRERA de proxies en paralelo: el primero que
+   responde gana (los demás se ignoran) — mucho más rápido que en cadena. */
+const _stapeCache = new Map(); /* id → url o null, para no repetir peticiones */
 async function stapeThumbScrape(stId) {
-  try {
-    const html = await fetchTextViaProxies(`https://streamtape.com/e/${stId}`);
+  if (_stapeCache.has(stId)) return _stapeCache.get(stId);
+  const embed = `https://streamtape.com/e/${stId}`;
+  const proxies = [
+    u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+    u => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+    u => `https://api.cors.lol/?url=${encodeURIComponent(u)}`,
+  ];
+  const tryOne = async wrap => {
+    const r = await fetch(wrap(embed), { signal: AbortSignal.timeout(12000) });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const html = await r.text();
     const m = html.match(/<meta[^>]+property=["']og:image["'][^>]*content=["']([^"']+)/i)
            || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]*property=["']og:image["']/i)
-           || html.match(/(https?:\/\/[^"'\s]*(?:thumb|splash|img)[^"'\s]*\.(?:jpg|jpeg|png|webp))/i);
-    const url = m ? (m[1] || m[0]) : null;
-    return url && /^https?:\/\//i.test(url) ? url : null;
-  } catch (e) { return null; }
+           || html.match(/(?:poster|image|thumb)['"]?\s*[:=]\s*['"]([^'"]+)['"]/i)
+           || html.match(/(https?:\/\/[^"'\s]*(?:thumb|poster|splash)[^"'\s]*\.(?:jpg|jpeg|png|webp))/i);
+    if (m && m[1] && /^https?:\/\//i.test(m[1])) return m[1];
+    throw new Error('sin imagen en el HTML');
+  };
+  /* carrera: todos en paralelo, el primero que resuelva con URL gana */
+  try {
+    const url = await Promise.any(proxies.map(tryOne));
+    _stapeCache.set(stId, url);
+    return url;
+  } catch (e) { _stapeCache.set(stId, null); return null; }
 }
 
 /* ═══════════ Render: episodios ═══════════ */
@@ -1877,6 +1896,7 @@ function renderEpisodes() {
       }
     }
     const pr = ((state.progress || {})[s.id] || {})[ep.n];
+    pendingResume = (pr && !pr.done && pr.t > 15) ? { sid: s.id, ep: ep.n, t: pr.t } : null;
     const cell = document.createElement('div');
     cell.dataset.epn = ep.n;
     cell.className = 'ep' + ' ' + epSourceClass(ep.url) + (current.ep === ep.n ? ' playing' : '')
@@ -2166,7 +2186,6 @@ function loadEpisode(epN, autoplayNow = true) {
   const v = els.video;
   /* reanudar donde te quedaste */
   const pr = ((state.progress || {})[s.id] || {})[ep.n];
-  pendingResume = (pr && !pr.done && pr.t > 15) ? { sid: s.id, ep: ep.n, t: pr.t } : null;
   state.lastPlayed[s.id] = Date.now();
   save();
   if (!v.src.endsWith(ep.url)) {

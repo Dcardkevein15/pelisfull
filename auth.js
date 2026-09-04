@@ -644,6 +644,10 @@
       ['n', 't', 'url', 'sub', 'season', 'ova', 'srcOva', 'srcSeason'].forEach(k => {
         if (e[k] !== undefined && e[k] !== '' && e[k] !== null) p[k] = e[k];
       });
+      /* 📸 publica la miniatura ya extraída (si existe) para que los lectores
+         la vean al instante, sin tener que volver a pedirla ellos         */
+      const tk = s.id + ':' + e.n;
+      if (state.thumbs && state.thumbs[tk]) p.thumb = state.thumbs[tk];
       return p;
     });
     return o;
@@ -789,9 +793,11 @@
     let added = 0, updated = 0;
     for (const cs of cat.series) {
       const local = state.series.find(x => x.id === cs.id);
+      let target = local;
       if (!local) {
         state.series.push(JSON.parse(JSON.stringify(cs)));
         added++;
+        target = state.series[state.series.length - 1];
       } else {
         const fav = local.fav, rem = local.reminder;
         for (const k of Object.keys(local)) {
@@ -801,6 +807,16 @@
         if (fav !== undefined) local.fav = fav;
         if (rem !== undefined) local.reminder = rem;
         updated++;
+      }
+      /* 📸 si el admin incluyó miniaturas, se guardan tal cual para el lector */
+      if (target && Array.isArray(target.episodes)) {
+        for (const e of target.episodes) {
+          if (e.thumb) {
+            state.thumbs = state.thumbs || {};
+            const tk = cs.id + ':' + e.n;
+            if (!state.thumbs[tk]) state.thumbs[tk] = e.thumb;
+          }
+        }
       }
     }
     /* 3) limpieza: progreso/papelera de series que ya no existen */
