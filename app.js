@@ -2554,70 +2554,19 @@ function syncDownloadBtn() {
    navega sola a la descarga — eso nunca se bloquea.
    La página de espera es también el hogar natural de la publicidad.   */
 
-/* 💰 ANUNCIOS EN LA VENTANA DE ESPERA (300×250)
-   Pega aquí el código que te da tu red (p. ej. Adsterra → Dashboard →
-   Ad units → banner 300x250 → "script"). Van 2 huecos: izquierda y derecha.
-   Ojo: la API key de Adsterra es solo para estadísticas; el banner se saca
-   del panel (un <script> con su propia 'key').                            */
-const AD_300_A = '';   /* 👈 banner izquierdo */
-const AD_300_B = '';   /* 👈 banner derecho */
+/* 💰 MONETIZACIÓN: todos los enlaces pasan por acortador
+   (z.yapido.click) — una página separada con tus banners Adsterra.
+   Para cambiar los anuncios, edita esa página en su repo aparte.     */
+
 /* número de segundos de espera antes del enlace (con anuncios a la vista) */
 const WAIT_SECONDS = 3;
 
-function buildWaitPage(title, secs, targetUrl) {
-  const adA = AD_300_A || '<div style="color:#8a8aa3;font-family:monospace;font-size:10px;line-height:1.4">📢 Espacio publicitario<br>300 × 250</div>';
-  const adB = AD_300_B || '<div style="color:#8a8aa3;font-family:monospace;font-size:10px;line-height:1.4">📢 Espacio publicitario<br>300 × 250</div>';
-  const autoRedirect = targetUrl
-    ? `<script>setTimeout(function(){ location.href = ${JSON.stringify(targetUrl)}; }, ${(secs || WAIT_SECONDS) * 1000});<\/script>`
-    : '';
-  return `<!doctype html><html lang="es"><head><meta charset="utf-8">
-<title>X·STREAM — Preparando descarga</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  body{margin:0;background:#0a0a0f;color:#f2f2f7;font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:92vh;text-align:center;padding:20px}
-  .logo{width:64px;height:64px;border-radius:18px;background:#d8ff3e;color:#111;font-size:38px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-  h1{font-size:19px;margin:0 0 4px}
-  p{color:#8a8aa3;font-size:13px;margin:3px 0}
-  .spin{width:40px;height:40px;border:4px solid #23233a;border-top-color:#d8ff3e;border-radius:50%;animation:sp 1s linear infinite;margin:16px auto}
-  @keyframes sp{to{transform:rotate(360deg)}}
-  .cd{font-size:40px;font-weight:900;color:#d8ff3e;margin-top:6px;font-family:'Courier New',monospace}
-  /* 📐 los dos cuadrados 300×250 siempre abajo, visibles durante la espera */
-  .ads{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:22px;width:100%;max-width:640px}
-  .ad{width:300px;height:250px;border:1px solid #23233a;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#0d0d14;flex:none}
-  @media (max-width:660px){ .ads{flex-direction:column;align-items:center} }
-</style></head><body>
-<div class="logo">X</div>
-<h1>⏳ Preparando tu descarga…</h1>
-<p>${String(title || '').replace(/[<>&"]/g, '')}</p>
-<div class="cd" id="cd">${secs || WAIT_SECONDS}</div>
-<p>Sigue viendo esto unos segundos — el enlace aparecerá solo.</p>
-<div class="ads">
-  <div class="ad" id="adA">${adA}</div>
-  <div class="ad" id="adB">${adB}</div>
-</div>
-<script>(function(){var n=${secs || WAIT_SECONDS};var el=document.getElementById('cd');var t=setInterval(function(){n--;if(n<=0){clearInterval(t);el.textContent='➜';return;}el.textContent=n;},1000);})();<\/script>
-${autoRedirect}
-</body></html>`;
-}
-
-/* abre la pestaña DENTRO del clic (el navegador no la bloquea) */
-function openWaitTab(title, secs, targetUrl) {
-  const w = window.open('', '_blank');
-  if (!w) return null;
-  try { w.document.write(buildWaitPage(title, secs, targetUrl)); w.document.close(); } catch (e) { }
-  return w;
-}
-function waitTabTick(w, i) {
-  try { const cd = w && w.document.getElementById('cd'); if (cd) cd.textContent = i; } catch (e) { }
-}
-
 /* 💰 FLUJO ÚNICO: el clic abre directamente el ACORTADOR (z.yapido.click)
-   — que es el único dominio autorizado por Adsterra y cuenta real.
-   El usuario ve allí los anuncios + la cuenta atrás + el botón.
-   No hay pestaña intermedia en blanco. */
-async function openWithWaitTab(url, title) {
+   — es el dominio autorizado por Adsterra, así que los anuncios cuentan.
+   El usuario ve allí los banners 300×250 + la cuenta atrás + el botón.     */
+async function openWithWaitTab(url) {
   const finalUrl = monetizeUrl(url);
-  /* abre directo con el clic del usuario — nunca se bloquea como popup */
+  /* abre en pestaña nueva (gesto de usuario → nunca bloqueado como popup) */
   const w = window.open(finalUrl, '_blank', 'noopener');
   if (!w) return handLinkToUser(finalUrl, 'Descarga');
 }
