@@ -200,9 +200,12 @@ const drivePreviewUrl = id => `https://drive.google.com/file/d/${id}/preview`;
 /* miniatura oficial del archivo (funciona sin clave si el recurso es público) */
 const driveThumbUrl = (id, w = 600) => `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`;
 const isDriveMode = () => els.playerArea.classList.contains('drive-mode');
+/* intento de reproducción directa de un Drive en curso (tiene fallback al iframe) */
+let driveDirectTry = false;
 
 function exitDriveMode() {
   stopDriveTracking();
+  els.playerArea.classList.remove('drive-direct');
   if (!isDriveMode()) return;
   els.playerArea.classList.remove('drive-mode');
   els.driveFrame.src = 'about:blank'; // detiene la reproducción del iframe
@@ -463,6 +466,7 @@ els.flagConfirm.addEventListener('click', () => {
 /* AUTO: MP4 directo que falla al cargar */
 els.video.addEventListener('error', () => {
   if (isDriveMode() || els.playerArea.classList.contains('ext-mode')) return;
+  if (driveDirectTry) return; /* intento directo de Drive: tiene su propio fallback al iframe */
   if (els.video.src) markBroken('falló al cargar');
 });
 
@@ -2000,22 +2004,58 @@ function loadEpisode(epN, autoplayNow = true) {
   }
   els.noUrl.classList.add('hidden');
 
-  /* ── Enlace de Google Drive → reproductor embebido (iframe) ── */
+  /* ── Enlace de Google Drive → REPRODUCTOR PROPIO ──
+     Intentamos leer el archivo directo (uc?export=download) en nuestro
+     player nativo: mismos controles, PiP, Cast, velocidad, logo al pausar.
+     Si Drive no lo deja (archivo grande con antivirus, cuota, etc.),
+     caemos al iframe embebido de siempre.                            */
   const driveId = parseDriveId(ep.url);
   if (driveId) {
-    attachSpanishSubs(null); // Drive usa su propio sistema de subtítulos
+    attachSpanishSubs(null);
     exitExtMode();
-    startDriveTracking(s.id, ep.n); // cronómetro aproximado para progreso/stats
     const v = els.video;
-    v.pause();
-    v.removeAttribute('src');
-    v.load();
-    els.spinner.classList.add('hidden');
-    els.playerArea.classList.add('drive-mode');
-    const src = drivePreviewUrl(driveId);
-    if (!els.driveFrame.src.startsWith(src)) els.driveFrame.src = src;
-    els.nowPlaying.textContent += ' · DRIVE';
-    renderEpisodes();
+    const tryDirect = `https://drive.google.com/uc?export=download&id=${driveId}`;
+    els.spinner.classList.remove('hidden');
+    driveDirectTry = true;
+
+    let directOk = false;
+    const fallbackToIframe = () => {
+      if (directOk) return;
+      driveDirectTry = false;
+      exitDriveMode();
+      const vv = els.video;
+      vv.pause(); vv.removeAttribute('src'); vv.load();
+      startDriveTracking(s.id, ep.n);
+      els.spinner.classList.add('hidden');
+      els.playerArea.classList.add('drive-mode');
+      els.driveFrame.src = drivePreviewUrl(driveId);
+      els.nowPlaying.textContent += ' · DRIVE';
+      renderEpisodes();
+      toast('📺 Modo integrado de Drive (el enlace directo no respondió)');
+    };
+
+    /* el video carga solo metadata; si en 12s no se pudo, iframe */
+    const to = setTimeout(fallbackToIframe, 12000);
+    v.addEventListener('loadedmetadata', function onMeta() {
+      v.removeEventListener('loadedmetadata', onMeta);
+      clearTimeout(to);
+      directOk = true;
+      driveDirectTry = false;
+      els.spinner.classList.add('hidden');
+      els.playerArea.classList.add('drive-direct'); // portal para cast/mini
+      startDriveTracking(s.id, ep.n);
+      els.nowPlaying.textContent += ' · DRIVE ▶';
+      renderEpisodes();
+      v.play().catch(() => toast('Pulsa play para iniciar (Drive directo)'));
+    }, { once: true });
+    v.addEventListener('error', function onErr() {
+      v.removeEventListener('error', onErr);
+      clearTimeout(to);
+      fallbackToIframe();
+    }, { once: true });
+
+    v.src = tryDirect;
+    v.load(); // importante: fuerza a pedir el recurso ya
     return;
   }
 
@@ -2077,6 +2117,12 @@ function setPlayIcon() {
   const overlayVisible = !els.empty.classList.contains('hidden') || !els.noUrl.classList.contains('hidden');
   const showBigPlay = paused && !!els.video.src && !overlayVisible;
   els.bigPlay.classList.toggle('hidden', !showBigPlay);
+  /* 🏷 logo de la marca flotando en medio cuando está en pausa */
+  const brand = els.pauseBrand;
+  if (brand) {
+    brand.classList.toggle('hidden', !(paused && !!els.video.src && !overlayVisible
+      && !isDriveMode() && !els.playerArea.classList.contains('ext-mode')));
+  }
 }
 
 function togglePlay() {
@@ -2100,6 +2146,7 @@ els.video.addEventListener('canplay', () => els.spinner.classList.add('hidden'))
 els.video.addEventListener('playing', () => els.spinner.classList.add('hidden'));
 els.video.addEventListener('error', () => {
   els.spinner.classList.add('hidden');
+  if (driveDirectTry) return; /* intento Drive directo: su propio fallback gestiona el error */
   if (els.video.src) toast('⚠ El enlace no se pudo cargar. Verifica que sea una URL directa.', true);
 });
 
@@ -2144,6 +2191,13 @@ els.seekWrap.addEventListener('pointerup', () => { dragging = false; els.seekWra
 els.playBtn.addEventListener('click', togglePlay);
 els.bigPlay.addEventListener('click', togglePlay);
 els.video.addEventListener('click', togglePlay);
+/* tocar el logo de pausa también reanuda */
+els.pauseBrand = els.pauseBrand || $('pauseBrand');
+if (els.pauseBrand) {
+  els.pauseBrand.style.pointerEvents = 'auto';
+  els.pauseBrand.style.cursor = 'pointer';
+  els.pauseBrand.addEventListener('click', togglePlay);
+}
 
 /* prev/next */
 els.prevEp.addEventListener('click', () => { if (current.ep > 1) loadEpisode(current.ep - 1, true); });
