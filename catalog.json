@@ -1,8 +1,1 @@
-{
-  "app": "xstream",
-  "v": 1,
-  "by": "administrador",
-  "at": "",
-  "n": 0,
-  "series": []
-}
+{"app":"xstream","v":1788493897020,"by":"admin","series":[{"id":"test-auto","t":"Prueba automatica","jp":"OK","tag":"Auto","g":3,"kind":"serie","episodes":[{"n":1,"t":"Capitulo 1","url":"https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}]}],"channels":[],"tvSources":{"iptv-org/spa":{"url":"https://iptv-org.github.io/iptv/languages/spa.m3u","name":"iptv-org: Espanol","at":0}}}
