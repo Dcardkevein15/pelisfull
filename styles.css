@@ -743,22 +743,33 @@ body.light .tag-chip.on{color:#6a9000}
 }
 .foot-btn:hover{color:var(--acid);border-color:var(--acid)}
 
-/* corazón de favoritos — 3× más grande, siempre visible, con pulso */
+/* corazón de favoritos — tamaño discreto en PC (como antes), grande solo en móvil */
 .s-fav{
-  opacity:.95;position:absolute;right:-2px;bottom:-2px;
-  width:38px;height:38px;display:grid;place-items:center;border-radius:50%;z-index:5;
-  background:var(--panel);border:2px solid var(--line);color:var(--dim);
-  font-size:18px;line-height:1;cursor:pointer;
-  box-shadow:0 3px 10px rgba(0,0,0,.5);transition:transform .18s, color .18s, border-color .18s, box-shadow .18s;
+  opacity:0;position:absolute;right:-2px;bottom:-2px;
+  width:22px;height:22px;display:grid;place-items:center;border-radius:50%;z-index:5;
+  background:var(--panel);border:1.5px solid var(--line);color:var(--dim);
+  font-size:11px;line-height:1;cursor:pointer;
+  transition:transform .18s, color .18s, border-color .18s, box-shadow .18s;
 }
-.s-fav:hover{border-color:var(--hot);color:var(--hot);transform:scale(1.18)}
-.s-fav.is-fav{
-  opacity:1;color:#fff;border-color:var(--hot);background:var(--hot);
-  animation:favBeat 1.6s ease-in-out infinite;
-  box-shadow:0 0 0 3px rgba(255,46,99,.25),0 6px 16px rgba(255,46,99,.4);
+.s-fav:hover{border-color:var(--hot);color:var(--hot);transform:scale(1.15)}
+.s-item:hover .s-fav{opacity:1}
+.s-fav.is-fav{opacity:1;color:var(--hot)}
+
+/* la versión grande (3×) SOLO en pantallas táctiles: siempre visible, con pulso */
+@media (max-width:900px){
+  .s-fav{
+    opacity:.95;width:38px;height:38px;font-size:18px;
+    border-width:2px;right:-4px;bottom:-4px;
+    box-shadow:0 3px 10px rgba(0,0,0,.5);
+  }
+  .s-fav.is-fav{
+    color:#fff;border-color:var(--hot);background:var(--hot);
+    animation:favBeat 1.6s ease-in-out infinite;
+    box-shadow:0 0 0 3px rgba(255,46,99,.25),0 6px 16px rgba(255,46,99,.4);
+  }
+  .s-fav:hover{transform:scale(1)}
 }
 @keyframes favBeat{50%{transform:scale(1.12)}}
-@media (hover:none){.s-fav{opacity:.95}}
 .s-item.dragging{opacity:.4;border:1px dashed var(--acid)}
 
 /* ✎ lápiz de carátula: forzar actualización manual (aparece al pasar el ratón) */
