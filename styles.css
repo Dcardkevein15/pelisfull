@@ -211,7 +211,12 @@ input,select{font-family:inherit}
   background:linear-gradient(transparent,rgba(0,0,0,.86));
   opacity:0;transition:opacity .22s;
 }
-.player:hover .controls,.player.paused .controls,.player.show-ui .controls{opacity:1}
+.player:hover .controls,.player.show-ui .controls{opacity:1}
+/* ⏱ al pausar, la barra se muestra un momento y se DESVANECE pasados ~3s;
+   solo queda el logo X·STREAM hasta que se reanude o se toque la pantalla   */
+.big-play{transition:opacity .3s,transform .18s}
+.player:not(.show-ui):not(:hover) .big-play{opacity:0;transform:translate(-50%,-50%) scale(.92);pointer-events:none}
+.player:not(.show-ui):not(:hover) .controls{pointer-events:none}
 .seek-wrap{position:relative;height:16px;cursor:pointer;display:flex;align-items:center}
 .seek-wrap::before{content:'';position:absolute;left:0;right:0;height:4px;background:rgba(255,255,255,.18);border-radius:4px;transition:height .15s}
 .seek-wrap:hover::before{height:7px}

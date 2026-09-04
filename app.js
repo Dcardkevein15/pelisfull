@@ -2176,6 +2176,8 @@ function setPlayIcon() {
     brand.classList.toggle('hidden', !(paused && !!els.video.src && !overlayVisible
       && !isDriveMode() && !els.playerArea.classList.contains('ext-mode')));
   }
+  /* ⏱ al pausar: la UI aparece ~3.5s y luego se desvanece, dejando solo el logo */
+  if (paused && els.video.src) flashUiControls(3500);
 }
 
 function togglePlay() {
@@ -2315,11 +2317,13 @@ function popGesture(el) { el.classList.remove('pop'); void el.offsetWidth; el.cl
 
 /* ocultar controles con tiempo en fullscreen */
 let hideTimer;
-els.playerArea.addEventListener('mousemove', () => {
+function flashUiControls(ms = 2600) {
   els.playerArea.classList.add('show-ui');
   clearTimeout(hideTimer);
-  hideTimer = setTimeout(() => els.playerArea.classList.remove('show-ui'), 2600);
-});
+  hideTimer = setTimeout(() => els.playerArea.classList.remove('show-ui'), ms);
+}
+els.playerArea.addEventListener('mousemove', () => flashUiControls());
+els.playerArea.addEventListener('pointerdown', () => flashUiControls()); /* móvil: tocar la pantalla muestra la UI un momento */
 
 /* ═══════════ Teclado ═══════════ */
 document.addEventListener('keydown', ev => {
