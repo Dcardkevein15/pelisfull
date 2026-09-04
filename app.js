@@ -252,7 +252,19 @@ function openExternalMode(s, ep) {
   let host = 'fuente externa';
   try { host = new URL(ep.url).hostname; } catch (e) { }
   els.extHost.textContent = `${host} no permite incrustar el video aquí — ábrelo en pestaña nueva.`;
-  els.extOpen.onclick = () => window.open(ep.url, '_blank', 'noopener');
+  /* 💰 la fuente externa también pasa por tu acortador (publicidad ShrtFly) */
+  els.extOpen.onclick = async () => {
+    const el = els.extOpen;
+    el.disabled = true; el.textContent = '🔗 Preparando enlace…';
+    try {
+      const short = await monetizeUrl(ep.url);
+      window.open(short, '_blank', 'noopener');
+    } catch (e) {
+      window.open(ep.url, '_blank', 'noopener');   /* nunca bloqueado: el original siempre abre */
+    } finally {
+      el.disabled = false; el.textContent = '▶ Abrir en la fuente';
+    }
+  };
 }
 
 /* ═══════════ Papelera de capítulos (sesión) ═══════════ */
