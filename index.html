@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X·STREAM — Tu cine anime</title>
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Archivo+Black&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- splash -->
+<div class="splash" id="splash">
+  <div class="splash-x">X</div>
+  <div class="splash-name">STREAM</div>
+</div>
+
+<!-- ══════════ TOPBAR ══════════ -->
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-x">X</span>
+    <span class="brand-name">STREAM<em>anime</em></span>
+  </div>
+  <div class="search-box collapsed" id="searchBox">
+    <button class="search-toggle" id="searchToggle" title="Buscar ( / )" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </button>
+    <input id="searchInput" type="text" placeholder="Buscar serie… ( / )" autocomplete="off">
+  </div>
+  <div class="top-actions">
+    <div class="accent-pick collapsed" id="accentPick" title="Color de acento">
+      <button class="accent-mini" id="accentMini" title="Cambiar color de acento" aria-label="Cambiar color de acento"></button>
+    </div>
+    <button id="statsBtn" class="btn btn-ghost btn-icon" title="Estadísticas">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+    </button>
+    <button id="themeBtn" class="btn btn-ghost btn-icon" title="Cambiar tema (claro/oscuro)"></button>
+    <!-- 👤 Identidad del visitante (auth.js) — círculo + nombre, abre el perfil -->
+    <button id="userChip" class="user-chip" title="Tu perfil — cuenta automática de este dispositivo">
+      <img class="uc-ava" alt="" width="26" height="26">
+      <span class="uc-txt">
+        <b class="uc-name">…</b>
+        <i class="uc-sub">…</i>
+      </span>
+    </button>
+    <button id="cineBtn" class="btn btn-ghost" title="Buscar películas, anime y OVAs en español (Internet Archive)">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 4v16M17 4v16M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>
+      <span>Buscar cine</span>
+    </button>
+    <button id="driveFolderBtn" class="btn btn-ghost" title="Importar una carpeta completa de Google Drive como serie">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg>
+      <span>Importar carpeta Drive</span>
+    </button>
+    <button id="editModeBtn" class="btn btn-ghost" title="Pegar tus enlaces MP4">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+      <span>Editar enlaces</span>
+    </button>
+    <button id="addSeriesBtn" class="btn btn-acid">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg>
+      <span>Añadir serie</span>
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- ══════════ SIDEBAR: SERIES ══════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-tabs">
+      <button id="tabAnime" class="side-tab on" data-tab="anime" title="Series de anime (las OVAs se integran solas en su serie)">📺 Anime <b id="countAnime" class="tab-count">0</b></button>
+      <button id="tabPeliculas" class="side-tab" data-tab="peliculas" title="Películas">🎬 Películas <b id="countPelis" class="tab-count">0</b></button>
+      <button id="tabTv" class="side-tab" data-tab="tv" title="Canales de televisión en vivo">📡 TV <b id="countTv" class="tab-count">0</b></button>
+      <button id="gearBtn" class="gear-btn" title="Herramientas de la lista">⚙</button>
+    </div>
+    <div class="tv-tools hidden" id="tvTools">
+      <button class="btn btn-mini" id="tvScanBtn" title="Pega la URL de una lista M3U o su contenido: los canales nuevos entran y los caídos salen solos">📡 Lista M3U</button>
+      <button class="btn btn-mini" id="tvRescanBtn" title="Vuelve a descargar todas las listas guardadas y actualiza los canales (quita los caídos, añade los nuevos)">🔄 Actualizar</button>
+      <button class="btn btn-mini" id="tvIptvBtn" title="Fuentes oficiales de iptv-org: elige idiomas, países y categorías que se actualizan solas">🌐 iptv-org</button>
+      <button class="btn btn-mini" id="tvEpgBtn" title="Guía de programación (EPG) — qué echan ahora en cada canal">📅 Guía</button>
+    </div>
+    <div class="tv-cats hidden" id="tvCats"></div>
+    <div class="side-panel collapsed" id="sidePanel">
+      <div class="side-tools">
+        <select id="sortMode" class="sort-select" title="Orden de la lista">
+          <option value="manual">⇅ Manual (arrastrar)</option>
+          <option value="recent">🕘 Recientes</option>
+          <option value="alpha">A → Z</option>
+        </select>
+        <button id="favFilter" class="chip-filter" title="Solo favoritos">♥ Favs</button>
+        <button id="trashBtn" class="chip-filter trash2" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
+      </div>
+      <div class="side-filters" id="tagChips"></div>
+      <div class="side-foot">
+        <button id="exportBtn" class="foot-btn" title="Exportar biblioteca completa (JSON)">⬇ Exportar</button>
+        <button id="importBtn" class="foot-btn" title="Importar respaldo JSON">⬆ Importar</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+        <button id="syncBtn" class="foot-btn" title="Sync en la nube (Firebase)">☁ Sync</button>
+        <button id="brokenBtn" class="foot-btn broken" title="Historial de enlaces rotos">⚠ Rotos <b id="brokenCount" class="foot-count">0</b></button>
+      </div>
+    </div>
+    <nav id="seriesList" class="series-list"></nav>
+    <div class="broken-list collapsed" id="brokenList"></div>
+  </aside>
+
+  <!-- ══════════ CENTRO: PLAYER ══════════ -->
+  <main class="stage">
+    <div class="player-shell" id="playerShell">
+      <!-- ✨ Sigue viendo -->
+      <div class="continue-row hidden" id="continueRow"></div>
+
+      <div class="player-anchor" id="playerAnchor">
+      <div class="player" id="playerArea">
+        <video id="video" preload="auto" playsinline></video>
+        <iframe id="driveFrame" class="drive-frame" title="Google Drive"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
+        <!-- overlay estado vacío -->
+        <div class="player-empty" id="playerEmpty">
+          <div class="empty-logo">▶</div>
+          <h1>Elige un capítulo</h1>
+          <p>Selecciona una serie y su episodio. Pega enlaces MP4 directos con el modo edición.</p>
+        </div>
+
+        <!-- overlay no-url -->
+        <div class="player-nourl hidden" id="playerNoUrl">
+          <h2>Este capítulo aún no tiene enlace</h2>
+          <p>Activa <b>Editar enlaces</b> y pega la URL directa (mp4 / m3u8-directo / webm).</p>
+          <button class="btn btn-acid" id="goEditBtn">Pegar enlace ahora</button>
+        </div>
+
+        <!-- spinner -->
+        <!-- aviso modo Drive -->
+        <div class="drive-hint">▶ Google Drive — usa los controles del propio video</div>
+
+        <!-- spinner -->
+        <div class="player-spinner hidden" id="spinner"><span></span><span></span><span></span></div>
+
+        <!-- indicador modo Drive -->
+        <div class="drive-hint">DRIVE PLAYER — usa los controles internos</div>
+
+        <!-- overlay enlace externo (megaup, etc.) -->
+        <div class="player-ext" id="playerExt">
+          <div class="empty-logo" style="background:#ff2e63">⧉</div>
+          <h2 id="extTitle">Enlace externo</h2>
+          <p id="extHost">Esta fuente no permite incrustar el video. Se abre en una pestaña nueva.</p>
+          <button class="btn btn-acid" id="extOpen">▶ Abrir en la fuente</button>
+        </div>
+
+        <!-- big play -->
+        <button class="big-play hidden" id="bigPlay" aria-label="Reproducir">
+          <svg viewBox="0 0 24 24" width="38" height="38" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
+        </button>
+
+        <!-- gesto doble click -->
+        <div class="gesture left" id="gestL">⟲ 10s</div>
+        <div class="gesture right" id="gestR">10s ⟳</div>
+
+        <!-- CONTROLES -->
+        <div class="controls" id="controls">
+          <div class="seek-wrap" id="seekWrap">
+            <div class="seek-buffer" id="seekBuffer"></div>
+            <div class="seek-fill" id="seekFill"></div>
+            <div class="seek-thumb" id="seekThumb"></div>
+          </div>
+          <div class="controls-row">
+            <button class="cbtn" id="prevEp" title="Capítulo anterior (P)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 4h2v16H6zm3.5 8 8.5-7v14z"/></svg></button>
+            <button class="cbtn" id="playBtn" title="Play/Espacio">
+              <svg id="playIcon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
+            </button>
+            <button class="cbtn" id="nextEp" title="Siguiente capítulo (N)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 4h2v16h-2zM6 5l8.5 7L6 19z"/></svg></button>
+            <button class="cbtn cbtn-cc hidden" id="ccBtn" title="Subtítulos en español">CC</button>
+            <div class="vol-wrap">
+              <button class="cbtn" id="muteBtn" title="Silencio (M)">
+                <svg id="volIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+              </button>
+              <input type="range" id="volume" min="0" max="1" step="0.02" value="1">
+            </div>
+            <span class="time"><b id="tCur">00:00</b> / <span id="tDur">00:00</span></span>
+            <span class="now-playing" id="nowPlaying"></span>
+            <div class="spacer"></div>
+            <button class="cbtn cbtn-text" id="autoplayBtn" title="Autoplay próximo capítulo">AUTO</button>
+            <select class="speed" id="speed" title="Velocidad">
+              <option value="0.5">0.5×</option><option value="0.75">0.75×</option>
+              <option value="1" selected>1×</option><option value="1.25">1.25×</option>
+              <option value="1.5">1.5×</option><option value="2">2×</option>
+            </select>
+            <button class="cbtn" id="pipBtn" title="Picture in Picture"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M19 7h-8v6h8V7zm2-4H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H3V5h18v14z"/></svg></button>
+            <button class="cbtn hidden" id="castBtn" title="Enviar a Chromecast"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M1 18v3h3a3 3 0 0 0-3-3zm0-4v2a5 5 0 0 1 5 5h2a7 7 0 0 0-7-7zm0-4v2a9 9 0 0 1 9 9h2c0-6.08-4.93-11-11-11zm20-7H3c-1.1 0-2 .9-2 2v3h2V5h18v14h-7v2h7c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></button>
+            <button class="cbtn" id="fsBtn" title="Pantalla completa (F)"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+          </div>
+        </div>
+
+        <!-- botón flotante para cerrar el mini player -->
+        <button class="mini-x" id="miniX" title="Cerrar mini player">✕</button>
+        <!-- asa para arrastrar el mini player a cualquier posición -->
+        <div class="mini-grip" id="miniGrip" title="Arrastra para mover">⠿</div>
+      </div>
+      </div>
+
+      <!-- info bajo player -->
+      <div class="stage-info">
+        <div>
+          <div class="stage-title-row">
+            <h1 id="stageTitle">X·STREAM Anime</h1>
+            <div class="stage-badges" id="stageBadges"></div>
+            <button id="flagBtn" class="flag-inline hidden" title="Este capítulo no funciona o el enlace está caído">🚩 Reportar enlace roto</button>
+          </div>
+          <p id="stageSub">Tu reproductor instantáneo de enlaces directos</p>
+        </div>
+        <div class="stage-side">
+          <button class="btn btn-dl hidden" id="downloadBtn" title="Descargar el video original a tu dispositivo">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v11m0 0 4.5-4.5M12 14 7.5 9.5M4 19h16"/></svg>
+            <span id="downloadLbl">Descargar</span>
+          </button>
+          <button class="btn btn-acid hidden" id="shareBtn" title="Compartir este capítulo">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14"/></svg>
+            <span>Compartir capítulo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══════════ CAPÍTULOS ══════════ -->
+      <div class="episodes-panel" id="episodesPanel">
+        <div class="episodes-head">
+          <h2 id="episodesTitle">Capítulos</h2>
+          <div class="episodes-tools">
+            <button class="btn btn-mini hidden" id="undoBtn" title="Recuperar el último capítulo eliminado">↩ Deshacer</button>
+            <button class="btn btn-mini" id="favBtn" title="Marcar como favorito">🤍 Favorito</button>
+            <button class="btn btn-mini" id="tagBtn" title="Etiquetas de colección">🏷 Etiquetas</button>
+            <button class="btn btn-mini" id="remindBtn" title="Recordatorio (ej: sale capítulo nuevo)">🔔 Recordatorio</button>
+            <button class="btn btn-mini" id="renameBtn" title="Cambiar el título de esta serie/película">✎ Renombrar</button>
+            <button class="btn btn-mini" id="moveCatBtn" title="Mover entre categorías (Anime ↔ Película) por si quedó mal clasificada">⇄ Mover</button>
+            <button class="btn btn-mini" id="insertEpBtn" title="Insertar un capítulo en una posición concreta">⇂ Insertar</button>
+            <button class="btn btn-mini" id="addEpBtn" title="Añadir capítulo al final de la serie">+ Capítulo</button>
+            <button class="btn btn-mini danger hidden" id="delSeriesBtn">Eliminar</button>
+          </div>
+        </div>
+        <div class="episodes-grid" id="episodesGrid">
+          <div class="episodes-hint">← Selecciona una serie para ver sus capítulos</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ══════════ MODAL AÑADIR SERIE ══════════ -->
+<div class="modal-backdrop hidden" id="modalAdd">
+  <div class="modal">
+    <h3>⚡ Nueva serie en 1 clic</h3>
+    <p class="modal-sub">Se generan los capítulos automáticamente. Luego pega tus enlaces con el modo edición.</p>
+    <label>Nombre del anime
+      <input type="text" id="newTitle" placeholder="Ej: Jujutsu Kaisen" autocomplete="off">
+    </label>
+    <label>Texto japonés / inicial (opcional)
+      <input type="text" id="newJp" placeholder="呪術廻戦" maxlength="4" autocomplete="off">
+    </label>
+    <label>N.º de capítulos
+      <input type="number" id="newEps" min="1" max="1200" value="12">
+    </label>
+    <label>Color de portada</label>
+    <div class="grad-picker" id="gradPicker"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="cancelAdd">Cancelar</button>
+      <button class="btn btn-acid" id="confirmAdd">Crear serie</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL COMPARTIR ══════════ -->
+<div class="modal-backdrop hidden" id="modalShare">
+  <div class="modal">
+    <h3>📤 Compartir capítulo</h3>
+    <p class="modal-sub" id="shareTitle"></p>
+    <div class="share-grid" id="shareGrid"></div>
+    <div class="share-copy">
+      <input id="shareUrl" readonly onclick="this.select()">
+      <button class="btn btn-acid" id="copyShareUrl">Copiar</button>
+    </div>
+    <p class="modal-sub share-note">El enlace abre exactamente este capítulo — funciona aunque la otra persona nunca haya usado la app.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeShare">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL IMPORTAR CARPETA DE GOOGLE DRIVE ══════════ -->
+<div class="modal-backdrop hidden" id="modalDrive">
+  <div class="modal modal-wide">
+    <h3>📁 Importar — Drive · Streamtape · enlaces</h3>
+    <p class="modal-sub">Pega lo que tengas. La app detecta solo:<br>
+      ☁ <b>Streamtape</b> — conecta tu API abajo y carga TODA tu cuenta con un clic<br>
+      🎬 <b>Archivo suelto</b> (…/file/d/… o streamtape.com/v/…) → lo crea como película<br>
+      📺 <b>Carpeta</b> (…/folders/…) → serie o películas según su contenido<br>
+      📂 <b>Carpeta con subcarpetas</b> → recorre cada subcarpeta y crea una entrada por cada una<br>
+      🔗 <b>Mega / otros</b> → se cataloga y se reproduce desde la fuente</p>
+    <label>Tu enlace
+      <input type="text" id="driveFolderUrl" placeholder="Pega aquí un enlace de Drive, Streamtape, Mega o video directo…" autocomplete="off">
+    </label>
+    <div class="drive-status hidden" id="driveStatus"></div>
+    <div class="import-mode">
+      <span class="import-mode-label">Tratar como:</span>
+      <label><input type="radio" name="importMode" value="auto" checked> 🤖 Auto</label>
+      <label><input type="radio" name="importMode" value="serie"> 📺 Serie</label>
+      <label><input type="radio" name="importMode" value="peliculas"> 🎬 Películas</label>
+    </div>
+
+    <!-- ☁ STREAMTAPE: cuenta completa vía API -->
+    <div class="stape-box">
+      <div class="stape-head">☁ <b>Streamtape</b> — importa TODA tu cuenta automáticamente</div>
+      <div class="stape-grid">
+        <label>API Login
+          <input type="text" id="stLogin" autocomplete="off" spellcheck="false">
+        </label>
+        <label>API Key (Account Settings)
+          <input type="password" id="stKey" placeholder="Se guarda solo en tu navegador" autocomplete="off" spellcheck="false">
+        </label>
+      </div>
+      <button class="btn btn-acid stape-go" id="stImportBtn">☁ Cargar TODO mi Streamtape</button>
+      <p class="modal-sub stape-hint">Lee todas tus carpetas y crea las series/películas según el nombre de cada carpeta. Al volver a cargar se sincroniza: <b>se añaden los videos nuevos y se retiran los que ya borraste</b> de tu cuenta. Las OVAs sueltas se integran solas en su serie.</p>
+    </div>
+    <details class="drive-adv">
+      <summary>⚙ Avanzado: API key de Google Drive (opcional · más fiable)</summary>
+      <input type="text" id="driveApiKey" placeholder="AIzaSy…" autocomplete="off">
+      <p class="modal-sub">Sin clave, la carpeta se lee mediante lectores públicos. Con una <b>API key</b> gratis es instantánea, 100% fiable y NUNCA se satura. La clave se guarda solo en tu navegador.</p>
+    </details>
+    <details class="drive-adv">
+      <summary>❓ ¿Cómo consigo la API key gratis? (2 min)</summary>
+      <ol class="api-steps">
+        <li>Entra a <b>console.cloud.google.com</b> con tu cuenta de Google.</li>
+        <li>Arriba a la izquierda: crea un proyecto nuevo (nombre cualquiera, ej. "xstream").</li>
+        <li>Menú ☰ → <b>APIs y servicios → Biblioteca</b> → busca <b>"Google Drive API"</b> → <b>Habilitar</b>.</li>
+        <li>Menú ☰ → <b>APIs y servicios → Credenciales</b> → <b>+ Crear credenciales → Clave de API</b>.</li>
+        <li>Copia la clave (empieza por <code>AIza…</code>) y pégala aquí arriba. ¡Listo!</li>
+      </ol>
+    </details>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="cancelDrive">Cancelar</button>
+      <button class="btn btn-acid" id="confirmDrive">⚡ Importar serie</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL PAPELERA ══════════ -->
+<div class="modal-backdrop hidden" id="modalTrash">
+  <div class="modal">
+    <h3>🗑 Papelera</h3>
+    <p class="modal-sub">Las series y películas eliminadas se conservan <b>7 días</b>. Pasado ese plazo se borran permanentemente de forma automática.</p>
+    <div class="trash-list" id="trashList"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeTrash">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL ESTADÍSTICAS ══════════ -->
+<div class="modal-backdrop hidden" id="modalStats">
+  <div class="modal">
+    <h3>📊 Tus estadísticas</h3>
+    <div class="stats-body" id="statsBody"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeStats">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL SYNC FIREBASE ══════════ -->
+<div class="modal-backdrop hidden" id="modalSync">
+  <div class="modal">
+    <h3>☁ Sync en la nube</h3>
+    <p class="modal-sub">Sincroniza tu biblioteca (series, enlaces, progreso y papelera) entre tus dispositivos usando el Firebase del ecosistema.</p>
+    <label>Config Firebase (.json)
+      <textarea id="fbConfig" rows="6" spellcheck="false" style="font-family:'JetBrains Mono';font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--ink);resize:vertical"></textarea>
+    </label>
+    <div class="sync-status" id="syncStatus">Sin conectar</div>
+    <div class="modal-actions" style="justify-content:flex-start">
+      <button class="btn btn-ghost" id="syncConnect">Conectar</button>
+      <button class="btn btn-acid" id="syncUp">⬆ Subir mi biblioteca</button>
+      <button class="btn btn-ghost" id="syncDown">⬇ Bajar de la nube</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeSync">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL CINE — buscador de películas (Internet Archive · español) ══════════ -->
+<div class="modal-backdrop hidden" id="modalCine">
+  <div class="modal modal-wide cine-modal">
+    <h3>🎬 Cine público — películas, anime y OVAs en español</h3>
+    <p class="modal-sub">Busca en el archivo libre de internet. Todo es de dominio público/libre, con MP4 directo, y <b>un clic la publica y reproduce al instante</b> en tu lista.</p>
+    <div class="net-search">
+      <input type="text" id="cineQuery" placeholder="Ej: anime ovas, akira, dragon ball, el viaje de chihiro, película española…" autocomplete="off">
+      <button class="btn btn-acid" id="cineGo">Buscar</button>
+    </div>
+    <div class="cine-tools">
+      <label class="cine-lang"><input type="checkbox" id="cineLang" checked> 🇪🇸 Solo español</label>
+      <label class="cine-lang"><input type="checkbox" id="cineMinDur" checked> ⏱ Solo +60 min</label>
+      <div class="cine-chips" id="cineChips"></div>
+    </div>
+    <div class="net-status hidden" id="cineStatus">🔍 Buscando…</div>
+    <div class="cine-grid" id="cineResults"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeCine">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL CONFIRMAR REPORTE DE ENLACE ROTO ══════════ -->
+<div class="modal-backdrop hidden" id="modalFlag">
+  <div class="modal modal-flag">
+    <div class="flag-icon">🚩</div>
+    <h3>¿Reportar este enlace como roto?</h3>
+    <p class="modal-sub" id="flagText"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="flagCancel">Cancelar</button>
+      <button class="btn btn-solid-danger" id="flagConfirm">Sí, reportar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL UI GENÉRICO (diálogos elegantes: renombrar, etiquetas, recordatorio…) ══════════ -->
+<div class="modal-backdrop hidden" id="modalUi">
+  <div class="modal ui-modal" id="uiModalBox" role="dialog" aria-modal="true">
+    <div class="ui-icon" id="uiIcon">✨</div>
+    <h3 id="uiTitle"></h3>
+    <p class="ui-sub" id="uiSub"></p>
+    <div class="ui-fields" id="uiFields"></div>
+    <div class="modal-actions ui-actions">
+      <button class="btn btn-ghost ui-cancel" id="uiCancel">Cancelar</button>
+      <button class="btn btn-acid ui-ok" id="uiOk">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- toast -->
+<div class="toast hidden" id="toast"></div>
+
+<script src="auth.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
