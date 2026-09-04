@@ -1207,6 +1207,20 @@ body.light .drive-status.ok{color:#3aa832}
   .uc-txt{display:none}
 }
 
+/* ═══════ MÓVIL · modo TV: la lista duplicada desaparece
+   (los relacionados de abajo ya hacen ese papel mejor) ═══════ */
+@media (max-width:900px){
+  body.tab-tv .series-list{display:none}
+  body.tab-tv .sidebar{border-bottom:none}
+  body.tab-tv .tv-cats{
+    position:sticky;top:60px;z-index:10;
+    background:var(--bg); /* sólida: flota al hacer scroll */
+    border-bottom:1px solid var(--line);
+  }
+  /* la guía «qué echan ahora» en chips de canal: legible */
+  body.tab-tv .episodes-grid.rel-movies{grid-template-columns:repeat(2,1fr)}
+}
+
 /* ═══════ LOGO DE PAUSA (X·STREAM) ═══════ */
 .pause-brand{
   position:absolute;inset:0;z-index:6;pointer-events:none;

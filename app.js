@@ -614,6 +614,7 @@ function syncTabs() {
   els.tabTv.classList.toggle('on', state.tab === 'tv');
   els.tvTools.classList.toggle('hidden', state.tab !== 'tv' || !canAdmin());
   els.tvCats.classList.toggle('hidden', state.tab !== 'tv');
+  document.body.classList.toggle('tab-tv', state.tab === 'tv');
   if (state.tab !== 'tv') tvCatFilter = null;
 }
 function setTab(tab) {
@@ -849,8 +850,22 @@ function renderTvCats() {
     b.addEventListener('click', () => {
       tvCatFilter = b.dataset.cat || null;
       renderSeries(els.searchInput.value);
+      /* 📱 móvil: tocar una categoría reproduce el primer canal que responda */
+      if (window.innerWidth <= 900) playFirstOfCategory(tvCatFilter);
     });
   });
+}
+
+/* móvil: al tocar una categoría → reproduce el 1er canal que cargue;
+   si cae, intenta con el siguiente de esa categoría (máx 4 intentos) */
+let tvAutoQueue = [];
+function playFirstOfCategory(cat) {
+  const pool = (state.channels || []).filter(c =>
+    !cat || (c.group || 'Otros') === cat
+  );
+  if (!pool.length) return;
+  tvAutoQueue = pool.slice(1, 5);   /* los siguientes 4 como reserva */
+  playChannel(pool[0]);
 }
 
 function renderChannels(q) {
@@ -914,6 +929,7 @@ function renderChannels(q) {
       </span>` : ''}`;
     btn.addEventListener('click', ev => {
       if (ev.target.closest('.ch-del')) return;
+      tvAutoQueue = [];    /* selección manual: cancela la cola de auto-intentos */
       playChannel(ch);
     });
     if (canAdmin()) {
@@ -1030,9 +1046,18 @@ function startHls(ch, viaProxy) {
       setTimeout(() => startHls(ch, true), 700);
       return;
     }
-    /* agotado: en VLC seguro que funciona */
+    /* agotado: si venimos de auto-categoría, probamos el siguiente canal */
     hlsProxyIdx = 0;
     els.spinner.classList.add('hidden');
+    const nxt = tvAutoQueue && tvAutoQueue.length ? tvAutoQueue.shift() : null;
+    if (nxt && nxt.id !== ch.id) {
+      toast(`🔁 «${ch.name}» no respondió — probando «${nxt.name}»…`);
+      setTimeout(() => playChannel(nxt), 600);
+      return;
+    }
+    tvAutoQueue = [];
+    /* agotado: en VLC seguro que funciona */
+    hlsProxyIdx = 0;
     showChannelFallback(ch);
   });
 }
@@ -2009,16 +2034,61 @@ function loadEpisode(epN, autoplayNow = true) {
      player nativo: mismos controles, PiP, Cast, velocidad, logo al pausar.
      Si Drive no lo deja (archivo grande con antivirus, cuota, etc.),
      caemos al iframe embebido de siempre.                            */
+  /* ── Enlace de Google Drive → REPRODUCTOR PROPIO con reintentos ──
+     Probamos en orden 3 formas del enlace directo:
+       1) uc?export=download (clásico)
+       2) drive.usercontent.google.com (evita la página del antivirus)
+       3) el iframe embebido de siempre (último recurso)
+     Mientras el directo funcione, tienes TODOS los controles + PiP
+     + Cast a Smart TV + velocidad + logo de pausa.                */
   const driveId = parseDriveId(ep.url);
   if (driveId) {
     attachSpanishSubs(null);
     exitExtMode();
     const v = els.video;
-    const tryDirect = `https://drive.google.com/uc?export=download&id=${driveId}`;
     els.spinner.classList.remove('hidden');
     driveDirectTry = true;
 
-    let directOk = false;
+    const CANDIDATE_URLS = [
+      `https://drive.google.com/uc?export=download&confirm=1&id=${driveId}`,
+      `https://drive.usercontent.google.com/download?id=${driveId}&export=download&confirm=t`,
+      `https://drive.google.com/uc?export=download&id=${driveId}`,
+    ];
+    let urlIdx = 0, directOk = false, killTimer = null;
+
+    const cleanupListeners = () => {
+      v.removeEventListener('loadedmetadata', onMeta);
+      v.removeEventListener('error', onErr);
+      if (killTimer) { clearTimeout(killTimer); killTimer = null; }
+    };
+    const armKillTimer = () => {
+      if (killTimer) clearTimeout(killTimer);
+      killTimer = setTimeout(() => { if (!directOk) onErr(); }, 12000);
+    };
+    const tryNext = () => {
+      if (urlIdx >= CANDIDATE_URLS.length) { fallbackToIframe(); return; }
+      const u = CANDIDATE_URLS[urlIdx++];
+      v.src = u;
+      v.load();
+      armKillTimer();
+    };
+    const onMeta = () => {
+      cleanupListeners();
+      directOk = true;
+      driveDirectTry = false;
+      els.spinner.classList.add('hidden');
+      els.playerArea.classList.add('drive-direct');
+      startDriveTracking(s.id, ep.n);
+      els.nowPlaying.textContent += ' · DRIVE ▶';
+      renderEpisodes();
+      v.play().catch(() => toast('Pulsa play para iniciar (Drive directo)'));
+    };
+    const onErr = () => {
+      if (directOk) return;
+      if (killTimer) { clearTimeout(killTimer); killTimer = null; }
+      toast(`🔁 Drive opción ${Math.min(urlIdx, CANDIDATE_URLS.length)} no respondió — probando la siguiente…`);
+      tryNext();
+    };
     const fallbackToIframe = () => {
       if (directOk) return;
       driveDirectTry = false;
@@ -2029,33 +2099,13 @@ function loadEpisode(epN, autoplayNow = true) {
       els.spinner.classList.add('hidden');
       els.playerArea.classList.add('drive-mode');
       els.driveFrame.src = drivePreviewUrl(driveId);
-      els.nowPlaying.textContent += ' · DRIVE';
+      els.nowPlaying.textContent += ' · DRIVE (integrado)';
       renderEpisodes();
-      toast('📺 Modo integrado de Drive (el enlace directo no respondió)');
     };
 
-    /* el video carga solo metadata; si en 12s no se pudo, iframe */
-    const to = setTimeout(fallbackToIframe, 12000);
-    v.addEventListener('loadedmetadata', function onMeta() {
-      v.removeEventListener('loadedmetadata', onMeta);
-      clearTimeout(to);
-      directOk = true;
-      driveDirectTry = false;
-      els.spinner.classList.add('hidden');
-      els.playerArea.classList.add('drive-direct'); // portal para cast/mini
-      startDriveTracking(s.id, ep.n);
-      els.nowPlaying.textContent += ' · DRIVE ▶';
-      renderEpisodes();
-      v.play().catch(() => toast('Pulsa play para iniciar (Drive directo)'));
-    }, { once: true });
-    v.addEventListener('error', function onErr() {
-      v.removeEventListener('error', onErr);
-      clearTimeout(to);
-      fallbackToIframe();
-    }, { once: true });
-
-    v.src = tryDirect;
-    v.load(); // importante: fuerza a pedir el recurso ya
+    v.addEventListener('loadedmetadata', onMeta);
+    v.addEventListener('error', onErr);
+    tryNext();
     return;
   }
 
@@ -3913,15 +3963,23 @@ els.castBtn.addEventListener('click', () => {
   try {
     const s = getSeries(current.seriesId);
     const ep = s && s.episodes.find(e => e.n === current.ep);
-    if (!ep || !ep.url || parseDriveId(ep.url)) return toast('Cast solo funciona con MP4 directos (Drive usa su propio botón ▶⧉)', true);
+    const ch = state.currentChannel && (state.channels || []).find(c => c.id === state.currentChannel);
+    const driveDirect = els.playerArea.classList.contains('drive-direct') && els.video.currentSrc;
+    /* en modo Drive DIRECTO nuestro player ya carga una URL real reproducible → esa misma se envía al TV */
+    const castUrl = driveDirect ? els.video.currentSrc : (ch ? ch.url : (ep && ep.url));
+    if (!castUrl || (!driveDirect && parseDriveId(castUrl))) {
+      return toast('Cast funciona con MP4 directos — en Drive iframe toca el icono ▶⧉ del reproductor embebido', true);
+    }
     const ctx = cast.framework.CastContext.getInstance();
     ctx.requestSession().then(() => {
       const sess = ctx.getCurrentSession();
-      const mi = new chrome.cast.media.MediaInfo(ep.url, 'video/mp4');
+      /* canales en vivo (m3u8) → tipo HLS; mp4/drive-directo → video/mp4 */
+      const mime = /\.m3u8($|\?)/i.test(castUrl) ? 'application/x-mpegURL' : 'video/mp4';
+      const mi = new chrome.cast.media.MediaInfo(castUrl, mime);
       mi.metadata = new chrome.cast.media.GenericMediaMetadata();
-      mi.metadata.title = `${s.t} — E${ep.n}`;
+      mi.metadata.title = s ? `${s.t} — E${ep ? ep.n : ''}` : (state.currentChannel ? `📡 ${(state.channels.find(c => c.id === state.currentChannel) || {}).name || 'TV'}` : 'X·STREAM TV');
       sess.loadMedia(new chrome.cast.media.LoadRequest(mi));
-      toast('📺 Enviando a Chromecast…');
+      toast('📺 Enviando a tu Smart TV…');
     }).catch(() => { });
   } catch (e) { toast('Cast no disponible aún', true); }
 });
