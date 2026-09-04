@@ -503,6 +503,12 @@ body.light .ui-field input[type=date]{color-scheme:light}
 .s-item:hover .s-del{opacity:1}
 .s-del:hover{color:var(--hot);background:rgba(255,46,99,.12)}
 @media (hover:none){.s-item .s-del{opacity:.8}}
+/* 🔒 rol lector: todos los controles de edición DESAPARECEN del todo */
+body.ro .s-del,
+body.ro .s-refresh,
+body.ro .sh-rename,
+body.ro .sh-del,
+body.ro .sh-extract{display:none!important}
 .s-kind{
   font-size:8.5px;font-weight:700;letter-spacing:1px;padding:1px 6px;border-radius:999px;margin-right:6px;
   border:1px solid;
@@ -731,17 +737,22 @@ body.light .tag-chip.on{color:#6a9000}
 }
 .foot-btn:hover{color:var(--acid);border-color:var(--acid)}
 
-/* corazón favorito: insignia en la esquina inferior de la portada */
+/* corazón de favoritos — 3× más grande, siempre visible, con pulso */
 .s-fav{
-  opacity:0;position:absolute;right:-5px;bottom:-5px;
-  width:22px;height:22px;display:grid;place-items:center;border-radius:50%;z-index:4;transition:.16s;
-  background:var(--panel);border:1.5px solid var(--line);color:var(--dim);font-size:11px;cursor:pointer;
+  opacity:.95;position:absolute;right:-2px;bottom:-2px;
+  width:38px;height:38px;display:grid;place-items:center;border-radius:50%;z-index:5;
+  background:var(--panel);border:2px solid var(--line);color:var(--dim);
+  font-size:18px;line-height:1;cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.5);transition:transform .18s, color .18s, border-color .18s, box-shadow .18s;
 }
-.s-fav:hover{border-color:var(--hot);color:var(--hot);transform:scale(1.15)}
-.s-item:hover .s-fav{opacity:1}
-.s-fav.is-fav{opacity:1;color:var(--hot)}
-.s-fav:hover{color:var(--hot);transform:translateY(-50%) scale(1.2)}
-@media (hover:none){.s-fav{opacity:.8}}
+.s-fav:hover{border-color:var(--hot);color:var(--hot);transform:scale(1.18)}
+.s-fav.is-fav{
+  opacity:1;color:#fff;border-color:var(--hot);background:var(--hot);
+  animation:favBeat 1.6s ease-in-out infinite;
+  box-shadow:0 0 0 3px rgba(255,46,99,.25),0 6px 16px rgba(255,46,99,.4);
+}
+@keyframes favBeat{50%{transform:scale(1.12)}}
+@media (hover:none){.s-fav{opacity:.95}}
 .s-item.dragging{opacity:.4;border:1px dashed var(--acid)}
 
 /* ✎ lápiz de carátula: forzar actualización manual (aparece al pasar el ratón) */

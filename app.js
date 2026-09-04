@@ -1434,23 +1434,26 @@ function renderSeries(filter = '') {
     const btn = document.createElement('button');
     btn.className = 's-item' + (s.id === current.seriesId ? ' active' : '');
     btn.dataset.sid = s.id;
-    btn.draggable = true;
+    btn.draggable = canAdmin();       /* el lector no puede arrastrar para fusionar/reordenar */
+    const esAdmin = canAdmin();
     btn.innerHTML = `
       <span class="s-cover" style="background:${grad(s)}">
         ${coverHtml(s)}
-        <span class="s-refresh" title="Forzar actualización de carátula con el nombre actual">✎</span>
+        ${esAdmin ? '<span class="s-refresh" title="Forzar actualización de carátula con el nombre actual">✎</span>' : ''}
         <span class="s-fav${s.fav ? ' is-fav' : ''}" title="${s.fav ? 'Quitar de favoritos' : 'Añadir a favoritos'}">${s.fav ? '♥' : '♡'}</span>
       </span>
       <span class="s-meta">
         <span class="s-title">${escapeHtml(s.t)}</span>
         <span class="s-sub">${sub}</span>
       </span>
-      <span class="s-del" title="Enviar a la papelera (restaurable 7 días)">
+      ${esAdmin ? `<span class="s-del" title="Enviar a la papelera (restaurable 7 días)">
         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg>
-      </span>`;
-    btn.querySelector('.s-del').addEventListener('click', ev => { ev.stopPropagation(); confirmDeleteSeries(s); });
+      </span>` : ''}`;
+    const delBtn = btn.querySelector('.s-del');
+    if (delBtn) delBtn.addEventListener('click', ev => { ev.stopPropagation(); confirmDeleteSeries(s); });
     btn.querySelector('.s-fav').addEventListener('click', ev => { ev.stopPropagation(); s.fav = !s.fav; save(); renderSeries(els.searchInput.value); if (s.id === current.seriesId) syncFavBtn(); });
-    btn.querySelector('.s-refresh').addEventListener('click', ev => { ev.stopPropagation(); refetchPoster(s); });
+    const refBtn = btn.querySelector('.s-refresh');
+    if (refBtn) refBtn.addEventListener('click', ev => { ev.stopPropagation(); refetchPoster(s); });
     btn.addEventListener('click', ev => { if (!ev.target.closest('.s-del,.s-fav,.s-refresh')) selectSeries(s.id); });
 
     /* entrada con shimmer escalonado para lo recién importado */
