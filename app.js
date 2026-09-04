@@ -2570,44 +2570,81 @@ function syncDownloadBtn() {
    navega sola a la descarga — eso nunca se bloquea.
    La página de espera es también el hogar natural de la publicidad.   */
 
-/* 💰 PEGA AQUÍ TU CÓDIGO DE PUBLICIDAD cuando lo tengas (banner/script
-   de tu ad network). Aparecerá dentro de la pestaña de espera durante
-   la cuenta atrás; al terminar, desaparece y la descarga se abre sola. */
-const AD_SNIPPET = '';
+/* 💰 ANUNCIOS EN LA VENTANA DE ESPERA (300×250)
+   Pega aquí el código que te da tu red (p. ej. Adsterra → Dashboard →
+   Ad units → banner 300x250 → "script"). Van 2 huecos: izquierda y derecha.
+   Ojo: la API key de Adsterra es solo para estadísticas; el banner se saca
+   del panel (un <script> con su propia 'key').                            */
+const AD_300_A = '';   /* 👈 banner izquierdo */
+const AD_300_B = '';   /* 👈 banner derecho */
+/* número de segundos de espera antes del enlace (con anuncios a la vista) */
+const WAIT_SECONDS = 3;
 
-function buildWaitPage(title, secs) {
+function buildWaitPage(title, secs, targetUrl) {
+  const adA = AD_300_A || '<div style="color:#8a8aa3;font-family:monospace;font-size:10px;line-height:1.4">📢 Espacio publicitario<br>300 × 250</div>';
+  const adB = AD_300_B || '<div style="color:#8a8aa3;font-family:monospace;font-size:10px;line-height:1.4">📢 Espacio publicitario<br>300 × 250</div>';
+  const autoRedirect = targetUrl
+    ? `<script>setTimeout(function(){ location.href = ${JSON.stringify(targetUrl)}; }, ${(secs || WAIT_SECONDS) * 1000});<\/script>`
+    : '';
   return `<!doctype html><html lang="es"><head><meta charset="utf-8">
 <title>X·STREAM — Preparando descarga</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   body{margin:0;background:#0a0a0f;color:#f2f2f7;font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:92vh;text-align:center;padding:20px}
-  .logo{width:64px;height:64px;border-radius:18px;background:#d8ff3e;color:#111;font-size:38px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-  h1{font-size:20px;margin:0 0 6px}
-  p{color:#8a8aa3;font-size:14px;margin:4px 0}
-  .spin{width:42px;height:42px;border:4px solid #23233a;border-top-color:#d8ff3e;border-radius:50%;animation:sp 1s linear infinite;margin:20px auto}
+  .logo{width:64px;height:64px;border-radius:18px;background:#d8ff3e;color:#111;font-size:38px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  h1{font-size:19px;margin:0 0 4px}
+  p{color:#8a8aa3;font-size:13px;margin:3px 0}
+  .spin{width:40px;height:40px;border:4px solid #23233a;border-top-color:#d8ff3e;border-radius:50%;animation:sp 1s linear infinite;margin:16px auto}
   @keyframes sp{to{transform:rotate(360deg)}}
-  .cd{font-size:36px;font-weight:900;color:#d8ff3e;margin-top:8px;font-family:'Courier New',monospace}
-  .ad{margin:26px auto 0;max-width:728px;min-height:90px;width:92%;border:1px dashed #23233a;border-radius:12px;overflow:hidden${AD_SNIPPET ? '' : ';display:none'}}
+  .cd{font-size:40px;font-weight:900;color:#d8ff3e;margin-top:6px;font-family:'Courier New',monospace}
+  /* 📐 los dos cuadrados 300×250 siempre abajo, visibles durante la espera */
+  .ads{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:22px;width:100%;max-width:640px}
+  .ad{width:300px;height:250px;border:1px solid #23233a;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#0d0d14;flex:none}
+  @media (max-width:660px){ .ads{flex-direction:column;align-items:center} }
 </style></head><body>
 <div class="logo">X</div>
 <h1>⏳ Preparando tu descarga…</h1>
 <p>${String(title || '').replace(/[<>&"]/g, '')}</p>
-<div class="spin"></div>
-<div class="cd" id="cd">${secs || ''}</div>
-<p>El enlace se abrirá automáticamente en esta misma pestaña — no la cierres.</p>
-<div class="ad">${AD_SNIPPET}</div>
+<div class="cd" id="cd">${secs || WAIT_SECONDS}</div>
+<p>Sigue viendo esto unos segundos — el enlace aparecerá solo.</p>
+<div class="ads">
+  <div class="ad" id="adA">${adA}</div>
+  <div class="ad" id="adB">${adB}</div>
+</div>
+<script>(function(){var n=${secs || WAIT_SECONDS};var el=document.getElementById('cd');var t=setInterval(function(){n--;if(n<=0){clearInterval(t);el.textContent='➜';return;}el.textContent=n;},1000);})();<\/script>
+${autoRedirect}
 </body></html>`;
 }
 
 /* abre la pestaña DENTRO del clic (el navegador no la bloquea) */
-function openWaitTab(title, secs) {
+function openWaitTab(title, secs, targetUrl) {
   const w = window.open('', '_blank');
   if (!w) return null;
-  try { w.document.write(buildWaitPage(title, secs)); w.document.close(); } catch (e) { }
+  try { w.document.write(buildWaitPage(title, secs, targetUrl)); w.document.close(); } catch (e) { }
   return w;
 }
 function waitTabTick(w, i) {
   try { const cd = w && w.document.getElementById('cd'); if (cd) cd.textContent = i; } catch (e) { }
+}
+
+/* 💰 FLUJO UNIFICADO: ventana de espera 3s + 2 anuncios 300×250 + enlace acortado.
+   Aplica a TODAS las descargas (streamtape, Drive, mp4, fuentes externas). */
+async function openWithWaitTab(url, title) {
+  /* 1) abrir pestaña YA, con la cuenta regresiva visible (no se bloquea) */
+  const w = openWaitTab(title, WAIT_SECONDS, null);
+  /* 2) mientras se ven los anuncios, acortamos el enlace */
+  let finalUrl = url;
+  try { finalUrl = await monetizeUrl(url); } catch (e) { finalUrl = url; }
+  /* 3) esperar lo que falte de los 3s y desviar la pestaña al enlace corto */
+  const t0 = performance.now();
+  const resto = Math.max(0, WAIT_SECONDS * 1000 - (performance.now() - t0));
+  setTimeout(() => {
+    if (w && !w.closed) {
+      try { w.location.replace(finalUrl); } catch (e) { w.location.href = finalUrl; }
+    } else {
+      finishDownload(null, finalUrl, 'Descarga');
+    }
+  }, resto);
 }
 
 /* si ni siquiera la pestaña inmediata pudo abrirse, entrega el enlace a mano */
@@ -2645,48 +2682,49 @@ els.downloadBtn.addEventListener('click', async () => {
   const ep = s && s.episodes.find(e => e.n === current.ep);
   if (!s || !ep || !ep.url) return toast('Este capítulo no tiene enlace', true);
   if (dlBusy) return;
-  const url = ep.url;
+  dlBusy = true;
+  try {
+    const url = ep.url;
+    /* 💰 TODAS las descargas abren la ventana de espera (3s + anuncios 300×250) */
 
-  /* Google Drive → su URL oficial de descarga (instantánea, sin espera) */
-  const dId = parseDriveId(url);
-  if (dId) return openDownload(`https://drive.google.com/uc?export=download&id=${dId}`);
-
-  /* Streamtape → ticket oficial de la API (la API obliga a esperar ~5s) */
-  const st = parseStape(url);
-  if (st) {
-    const pub = `https://streamtape.com/v/${st.id}`;
-    if (!state.stapeKey) return openDownload(pub);
-    dlBusy = true;
-    /* pestaña abierta YA, con el clic fresco: imposible que la bloqueen */
-    const w = openWaitTab(`${s.t} · ${ep.t || 'E' + ep.n}`, null);
-    try {
-      toast('⏳ Generando enlace de descarga…');
-      const tk = await stapeApi('file/dlticket', { file: st.id });
-      const espera = Math.max(3, Math.min(15, tk.wait_time || 5));
-      for (let i = espera; i > 0; i--) {
-        toast(`⏳ Enlace listo en ${i}s…`);
-        waitTabTick(w, i);
-        await new Promise(r => setTimeout(r, 1000));
-      }
-      const dl = await stapeApi('file/dl', { file: st.id, ticket: tk.ticket });
-      if (dl && dl.url) {
-        finishDownload(w, dl.url, 'Descarga directa de Streamtape');
-        toast('⬇ Descarga abierta en la pestaña nueva');
-        return;
-      }
-      throw new Error('la API no devolvió enlace');
-    } catch (e) {
-      /* la API falló → la pestaña de espera te lleva a la página oficial */
-      if (w && !w.closed) { try { w.location.href = pub; } catch (e2) { } }
-      else openDownload(pub);
-      toast('⚠ Descarga directa no disponible — abro la página oficial del video', true);
+    /* Google Drive → su URL oficial de descarga */
+    const dId = parseDriveId(url);
+    if (dId) {
+      openWithWaitTab(`https://drive.google.com/uc?export=download&id=${dId}`, `${s.t} · ${ep.t || 'E' + ep.n}`);
+      return;
     }
-    finally { dlBusy = false; }
-    return;
-  }
 
-  /* directo (archive.org, mp4, webm…): el archivo tal cual */
-  openDownload(url);
+    /* Streamtape sin API key → su página pública /v/ */
+    const st = parseStape(url);
+    if (st) {
+      const pub = `https://streamtape.com/v/${st.id}`;
+      if (!state.stapeKey) { openWithWaitTab(pub, `${s.t} · ${ep.t || 'E' + ep.n}`); return; }
+
+      /* CON key: ticket oficial (la API exige su espera; la ventana ya está abierta) */
+      const w = openWaitTab(`${s.t} · ${ep.t || 'E' + ep.n}`, null);
+      toast('⏳ Generando enlace de descarga…');
+      try {
+        const tk = await stapeApi('file/dlticket', { file: st.id });
+        const espera = Math.max(3, Math.min(15, tk.wait_time || 5));
+        await new Promise(r => setTimeout(r, espera * 1000));
+        const dl = await stapeApi('file/dl', { file: st.id, ticket: tk.ticket });
+        if (dl && dl.url) {
+          const short = await monetizeUrl(dl.url).catch(() => dl.url);
+          if (w && !w.closed) { try { w.location.replace(short); } catch (e) { w.location.href = short; } }
+          toast('⬇ Enlace listo en la pestaña nueva');
+          return;
+        }
+        throw new Error('sin enlace');
+      } catch (e) {
+        if (w && !w.closed) { try { w.location.href = pub; } catch (e2) { } }
+        else openWithWaitTab(pub, `${s.t} · Página oficial`);
+      }
+      return;
+    }
+
+    /* directo (archive.org, mp4, webm…): el archivo tal cual, con ventana de espera */
+    openWithWaitTab(url, `${s.t} · ${ep.t || 'E' + ep.n}`);
+  } finally { dlBusy = false; }
 });
 
 /* limpia la URL (hash) cuando ya no corresponde al contenido activo */
