@@ -252,12 +252,12 @@ function openExternalMode(s, ep) {
   let host = 'fuente externa';
   try { host = new URL(ep.url).hostname; } catch (e) { }
   els.extHost.textContent = `${host} no permite incrustar el video aquí — ábrelo en pestaña nueva.`;
-  /* 💰 la fuente externa también pasa por tu acortador (publicidad ShrtFly) */
+  /* 💰 la fuente externa también pasa por tu acortador /z/ (tus anuncios) */
   els.extOpen.onclick = async () => {
     const el = els.extOpen;
     el.disabled = true; el.textContent = '🔗 Preparando enlace…';
     try {
-      const short = await monetizeUrl(ep.url);
+      const short = monetizeUrl(ep.url);
       window.open(short, '_blank', 'noopener');
     } catch (e) {
       window.open(ep.url, '_blank', 'noopener');   /* nunca bloqueado: el original siempre abre */
@@ -2522,34 +2522,17 @@ els.shareBtn.addEventListener('click', () => {
 });
 
 /* ═══════════ ⬇ Descarga directa del video original ═══════════
-   💰 MONETIZACIÓN: todos los enlaces de descarga pasan por ShrtFly
-   (tu cuenta acorta y genera ingresos por cada redirección).
-   La petición es 1 sola vez por URL gracias al caché en
-   localStorage — el usuario no nota nada tras el primer clic.    */
-const SHRTFLY_API = '3051314a9f62cb2caeca8b7ec9c60f1b';
-const SHRTFLY_EP = 'https://shrtfly.com/api';
-const _shortCache = (() => {
-  try { return JSON.parse(localStorage.getItem('xstream-shorturls') || '{}'); } catch (e) { return {}; }
-})();
-function _saveShortCache() {
-  try { localStorage.setItem('xstream-shorturls', JSON.stringify(_shortCache)); } catch (e) { }
-}
-async function monetizeUrl(u) {
-  /* si ya la tenemos cortada, la devolvemos al instante (0 red) */
-  if (_shortCache[u]) return _shortCache[u];
-  try {
-    const url = `${SHRTFLY_EP}?api=${SHRTFLY_API}&url=${encodeURIComponent(u)}`;
-    const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
-    const j = await r.json();
-    const short = (j && j.result && j.result.shorten_url) || null;
-    if (short && /^https?:\/\//i.test(short)) {
-      /* guardo en memoria y en localStorage para siempre */
-      _shortCache[u] = short;
-      _saveShortCache();
-      return short;
-    }
-  } catch (e) { /* falló ShrtFly: caemos al enlace original sin cortar */ }
-  return u;
+   💰 MONETIZACIÓN: todos los enlaces pasan por TU PROPIO acortador
+   en ./z/ (con tus banners Adsterra). La URL original viaja codificada
+   en base64url dentro del query: el destinatario nunca ve el enlace
+   feo, solo «tu-domino/z/?u=…».                                    */
+function monetizeUrl(u) {
+  /* codifica el destino de modo URL-safe (sin caracteres raros) */
+  const b64 = btoa(unescape(encodeURIComponent(u)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  /* ruta RELATIVA: funciona en local (./z/), en GitHub Pages y en tu dominio */
+  const base = location.href.split('#')[0].replace(/[^/]*$/, '');
+  return base + 'z/?u=' + b64;
 }
 
 function syncDownloadBtn() {
@@ -2634,7 +2617,7 @@ async function openWithWaitTab(url, title) {
   const w = openWaitTab(title, WAIT_SECONDS, null);
   /* 2) mientras se ven los anuncios, acortamos el enlace */
   let finalUrl = url;
-  try { finalUrl = await monetizeUrl(url); } catch (e) { finalUrl = url; }
+  try { finalUrl = monetizeUrl(url); } catch (e) { finalUrl = url; }
   /* 3) esperar lo que falte de los 3s y desviar la pestaña al enlace corto */
   const t0 = performance.now();
   const resto = Math.max(0, WAIT_SECONDS * 1000 - (performance.now() - t0));
@@ -2659,7 +2642,7 @@ async function handLinkToUser(u, label) {
 
 /* cierre del flujo: redirige la pestaña de espera o entrega el enlace */
 async function finishDownload(w, u, label) {
-  const finalUrl = await monetizeUrl(u);
+  const finalUrl = monetizeUrl(u);
   if (w && !w.closed) { try { w.location.href = finalUrl; return true; } catch (e) { } }
   handLinkToUser(finalUrl, label);
   return false;
@@ -2667,7 +2650,7 @@ async function finishDownload(w, u, label) {
 
 async function openDownload(u) {
   const a = document.createElement('a');
-  a.href = await monetizeUrl(u);
+  a.href = monetizeUrl(u);
   a.target = '_blank';
   a.rel = 'noopener';
   a.download = '';
@@ -2709,7 +2692,7 @@ els.downloadBtn.addEventListener('click', async () => {
         await new Promise(r => setTimeout(r, espera * 1000));
         const dl = await stapeApi('file/dl', { file: st.id, ticket: tk.ticket });
         if (dl && dl.url) {
-          const short = await monetizeUrl(dl.url).catch(() => dl.url);
+          const short = monetizeUrl(dl.url);
           if (w && !w.closed) { try { w.location.replace(short); } catch (e) { w.location.href = short; } }
           toast('⬇ Enlace listo en la pestaña nueva');
           return;
