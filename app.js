@@ -1684,7 +1684,15 @@ async function pumpThumbs() {
     let data = null;
     if (epSourceClass(job.ep.url) === 'src-stape') {
       const st = parseStape(job.ep.url);
-      if (st) data = await stapeApi('file/getsplash', { file: st.id });
+      if (st) {
+        /* vía 1: API oficial (si hay clave guardada) */
+        if (state.stapeKey) {
+          try { data = await stapeApi('file/getsplash', { file: st.id }); } catch (e) { data = null; }
+        }
+        /* vía 2 (sin clave): leer el og:image de la página del embed vía proxy CORS.
+           Así funciona igual en PC y en móvil, sin depender de localStorage. */
+        if (!data) data = await stapeThumbScrape(st.id);
+      }
     } else {
       data = await captureFrame(job.ep.url);
     }
@@ -1719,10 +1727,24 @@ function deferThumb(s, ep, cell) {
   if (getEpThumb(s, ep)) return;
   if (parseDriveId(ep.url)) return;   // Drive se pinta directo, sin cola
   const cls = epSourceClass(ep.url);
-  if (cls === 'src-direct' || (cls === 'src-stape' && state.stapeKey)) {
+  /* antes solo entraba Streamtape CON clave API; ahora también sin ella (og:image del embed) */
+  if (cls === 'src-direct' || cls === 'src-stape') {
     cell._thumbJob = () => enqueueThumb(s, ep);
     thumbObserver.observe(cell);
   }
+}
+
+/* ☁ miniatura de Streamtape SIN API key: leemos el HTML del embed y extraemos
+   su og:image (la portada oficial). Va por proxies CORS para esquivar el bloqueo. */
+async function stapeThumbScrape(stId) {
+  try {
+    const html = await fetchTextViaProxies(`https://streamtape.com/e/${stId}`);
+    const m = html.match(/<meta[^>]+property=["']og:image["'][^>]*content=["']([^"']+)/i)
+           || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]*property=["']og:image["']/i)
+           || html.match(/(https?:\/\/[^"'\s]*(?:thumb|splash|img)[^"'\s]*\.(?:jpg|jpeg|png|webp))/i);
+    const url = m ? (m[1] || m[0]) : null;
+    return url && /^https?:\/\//i.test(url) ? url : null;
+  } catch (e) { return null; }
 }
 
 /* ═══════════ Render: episodios ═══════════ */
