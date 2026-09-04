@@ -2611,24 +2611,15 @@ function waitTabTick(w, i) {
   try { const cd = w && w.document.getElementById('cd'); if (cd) cd.textContent = i; } catch (e) { }
 }
 
-/* 💰 FLUJO UNIFICADO: ventana de espera 3s + 2 anuncios 300×250 + enlace acortado.
-   Aplica a TODAS las descargas (streamtape, Drive, mp4, fuentes externas). */
+/* 💰 FLUJO ÚNICO: el clic abre directamente el ACORTADOR (z.yapido.click)
+   — que es el único dominio autorizado por Adsterra y cuenta real.
+   El usuario ve allí los anuncios + la cuenta atrás + el botón.
+   No hay pestaña intermedia en blanco. */
 async function openWithWaitTab(url, title) {
-  /* 1) abrir pestaña YA, con la cuenta regresiva visible (no se bloquea) */
-  const w = openWaitTab(title, WAIT_SECONDS, null);
-  /* 2) mientras se ven los anuncios, acortamos el enlace */
-  let finalUrl = url;
-  try { finalUrl = monetizeUrl(url); } catch (e) { finalUrl = url; }
-  /* 3) esperar lo que falte de los 3s y desviar la pestaña al enlace corto */
-  const t0 = performance.now();
-  const resto = Math.max(0, WAIT_SECONDS * 1000 - (performance.now() - t0));
-  setTimeout(() => {
-    if (w && !w.closed) {
-      try { w.location.replace(finalUrl); } catch (e) { w.location.href = finalUrl; }
-    } else {
-      finishDownload(null, finalUrl, 'Descarga');
-    }
-  }, resto);
+  const finalUrl = monetizeUrl(url);
+  /* abre directo con el clic del usuario — nunca se bloquea como popup */
+  const w = window.open(finalUrl, '_blank', 'noopener');
+  if (!w) return handLinkToUser(finalUrl, 'Descarga');
 }
 
 /* si ni siquiera la pestaña inmediata pudo abrirse, entrega el enlace a mano */
@@ -2684,8 +2675,11 @@ els.downloadBtn.addEventListener('click', async () => {
       const pub = `https://streamtape.com/v/${st.id}`;
       if (!state.stapeKey) { openWithWaitTab(pub, `${s.t} · ${ep.t || 'E' + ep.n}`); return; }
 
-      /* CON key: ticket oficial (la API exige su espera; la ventana ya está abierta) */
-      const w = openWaitTab(`${s.t} · ${ep.t || 'E' + ep.n}`, null);
+      /* CON key: ticket oficial (la API exige su espera).
+         Abrimos el ACORTADOR con la página pública /v/ como destino base:
+         así los anuncios cuentan desde el primer segundo. Cuando el
+         ticket madura, redirigimos esa misma pestaña al archivo directo. */
+      const w = window.open(monetizeUrl(pub), '_blank', 'noopener');
       toast('⏳ Generando enlace de descarga…');
       try {
         const tk = await stapeApi('file/dlticket', { file: st.id });
@@ -2693,15 +2687,14 @@ els.downloadBtn.addEventListener('click', async () => {
         await new Promise(r => setTimeout(r, espera * 1000));
         const dl = await stapeApi('file/dl', { file: st.id, ticket: tk.ticket });
         if (dl && dl.url) {
-          const short = monetizeUrl(dl.url);
-          if (w && !w.closed) { try { w.location.replace(short); } catch (e) { w.location.href = short; } }
-          toast('⬇ Enlace listo en la pestaña nueva');
+          /* va DIRECTO al archivo (el acortador ya cobró su vista) */
+          if (w && !w.closed) { try { w.location.replace(dl.url); } catch (e) { w.location.href = dl.url; } }
+          toast('⬇ Descarga directa en la pestaña nueva');
           return;
         }
         throw new Error('sin enlace');
       } catch (e) {
-        if (w && !w.closed) { try { w.location.href = pub; } catch (e2) { } }
-        else openWithWaitTab(pub, `${s.t} · Página oficial`);
+        /* el acortador ya llevaba al destino público: nada que hacer */
       }
       return;
     }
