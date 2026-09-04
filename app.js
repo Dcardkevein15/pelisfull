@@ -2510,9 +2510,35 @@ els.shareBtn.addEventListener('click', () => {
 });
 
 /* ═══════════ ⬇ Descarga directa del video original ═══════════
-   💰 Punto ÚNICO de monetización: cuando elijas el acortador
-   (Linkvertise, ShrinkMe, etc.), envuélvelo en monetizeUrl()  */
-function monetizeUrl(u) { return u; }
+   💰 MONETIZACIÓN: todos los enlaces de descarga pasan por ShrtFly
+   (tu cuenta acorta y genera ingresos por cada redirección).
+   La petición es 1 sola vez por URL gracias al caché en
+   localStorage — el usuario no nota nada tras el primer clic.    */
+const SHRTFLY_API = '3051314a9f62cb2caeca8b7ec9c60f1b';
+const SHRTFLY_EP = 'https://shrtfly.com/api';
+const _shortCache = (() => {
+  try { return JSON.parse(localStorage.getItem('xstream-shorturls') || '{}'); } catch (e) { return {}; }
+})();
+function _saveShortCache() {
+  try { localStorage.setItem('xstream-shorturls', JSON.stringify(_shortCache)); } catch (e) { }
+}
+async function monetizeUrl(u) {
+  /* si ya la tenemos cortada, la devolvemos al instante (0 red) */
+  if (_shortCache[u]) return _shortCache[u];
+  try {
+    const url = `${SHRTFLY_EP}?api=${SHRTFLY_API}&url=${encodeURIComponent(u)}`;
+    const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
+    const j = await r.json();
+    const short = (j && j.result && j.result.shorten_url) || null;
+    if (short && /^https?:\/\//i.test(short)) {
+      /* guardo en memoria y en localStorage para siempre */
+      _shortCache[u] = short;
+      _saveShortCache();
+      return short;
+    }
+  } catch (e) { /* falló ShrtFly: caemos al enlace original sin cortar */ }
+  return u;
+}
 
 function syncDownloadBtn() {
   const s = getSeries(current.seriesId);
@@ -2583,16 +2609,16 @@ async function handLinkToUser(u, label) {
 }
 
 /* cierre del flujo: redirige la pestaña de espera o entrega el enlace */
-function finishDownload(w, u, label) {
-  const finalUrl = monetizeUrl(u);
+async function finishDownload(w, u, label) {
+  const finalUrl = await monetizeUrl(u);
   if (w && !w.closed) { try { w.location.href = finalUrl; return true; } catch (e) { } }
   handLinkToUser(finalUrl, label);
   return false;
 }
 
-function openDownload(u) {
+async function openDownload(u) {
   const a = document.createElement('a');
-  a.href = monetizeUrl(u);
+  a.href = await monetizeUrl(u);
   a.target = '_blank';
   a.rel = 'noopener';
   a.download = '';
