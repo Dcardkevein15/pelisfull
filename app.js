@@ -2526,8 +2526,8 @@ els.shareBtn.addEventListener('click', () => {
    en ./z/ (con tus banners Adsterra). La URL original viaja codificada
    en base64url dentro del query: el destinatario nunca ve el enlace
    feo, solo «tu-domino/z/?u=…».                                    */
-/* dominio del acortador con los anuncios de Adsterra para ESE dominio */
-const ACORTADOR_BASE = 'https://dcardkevein15.github.io/acortador/';
+/* dominio del acortador (Vercel) con los anuncios de Adsterra */
+const ACORTADOR_BASE = 'https://z.yapido.click/';
 
 function monetizeUrl(u) {
   /* codifica el destino de modo URL-safe (sin caracteres raros) */
