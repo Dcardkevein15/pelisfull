@@ -2230,7 +2230,7 @@ function updateSeek() {
   } catch (e) {}
 }
 
-/* seek: click + drag */
+/* seek: click + drag (funciona en móvil: touch-action:none + preventDefault + pointercancel) */
 let dragging = false;
 function seekFromEvent(ev) {
   const rect = els.seekWrap.getBoundingClientRect();
@@ -2239,9 +2239,33 @@ function seekFromEvent(ev) {
   if (isFinite(v.duration)) v.currentTime = x * v.duration;
   if (!dragging) updateSeek();
 }
-els.seekWrap.addEventListener('pointerdown', ev => { dragging = true; els.seekWrap.classList.add('dragging'); els.seekWrap.setPointerCapture(ev.pointerId); seekFromEvent(ev); });
+els.seekWrap.addEventListener('pointerdown', ev => {
+  ev.preventDefault();   /* evita que el navegador robe el gesto como scroll */
+  try { els.seekWrap.setPointerCapture(ev.pointerId); } catch (e) { }
+  dragging = true;
+  els.seekWrap.classList.add('dragging');
+  seekFromEvent(ev);
+});
 els.seekWrap.addEventListener('pointermove', ev => { if (dragging) seekFromEvent(ev); });
 els.seekWrap.addEventListener('pointerup', () => { dragging = false; els.seekWrap.classList.remove('dragging'); });
+els.seekWrap.addEventListener('pointercancel', () => { dragging = false; els.seekWrap.classList.remove('dragging'); });
+
+/* doble-toque: −10s a la izquierda / +10s a la derecha (estilo YouTube) */
+let lastTapAt = 0, lastTapX = 0;
+els.playerArea.addEventListener('pointerup', ev => {
+  if (ev.target.closest('.controls') || ev.target.closest('.big-play') || ev.target.closest('.mini-x') || ev.target.closest('.mini-grip')) return;
+  if (isDriveMode()) return;
+  const now = Date.now();
+  const rect = els.playerArea.getBoundingClientRect();
+  const fx = (ev.clientX - rect.left) / rect.width;
+  if (now - lastTapAt < 320 && Math.abs(fx - lastTapX) < 0.3) {
+    if (fx < 0.4 && els.video.src) { els.video.currentTime = Math.max(0, els.video.currentTime - 10); popGesture(els.gestL); }
+    else if (fx > 0.6 && els.video.src) { els.video.currentTime = Math.min(els.video.duration || 0, els.video.currentTime + 10); popGesture(els.gestR); }
+    lastTapAt = 0;
+    return;
+  }
+  lastTapAt = now; lastTapX = fx;
+});
 
 els.playBtn.addEventListener('click', togglePlay);
 els.bigPlay.addEventListener('click', togglePlay);

@@ -217,7 +217,8 @@ input,select{font-family:inherit}
 .big-play{transition:opacity .3s,transform .18s}
 .player:not(.show-ui):not(:hover) .big-play{opacity:0;transform:translate(-50%,-50%) scale(.92);pointer-events:none}
 .player:not(.show-ui):not(:hover) .controls{pointer-events:none}
-.seek-wrap{position:relative;height:16px;cursor:pointer;display:flex;align-items:center}
+/* seek: zona táctil amplia + sin scroll to-the-browser durante el arrastre */
+.seek-wrap{position:relative;height:16px;cursor:pointer;display:flex;align-items:center;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none}
 .seek-wrap::before{content:'';position:absolute;left:0;right:0;height:4px;background:rgba(255,255,255,.18);border-radius:4px;transition:height .15s}
 .seek-wrap:hover::before{height:7px}
 .seek-buffer{position:absolute;left:0;height:4px;background:rgba(255,255,255,.32);border-radius:4px;width:0}
@@ -1221,6 +1222,14 @@ body.light .drive-status.ok{color:#3aa832}
   /* el chip de usuario solo avatar en móvil (nombre en el perfil) */
   .user-chip{padding:3px;max-width:none}
   .uc-txt{display:none}
+}
+
+/* ═══════ SEEK EN MÓVIL: barra más alta y fácil de tocar ═══════ */
+@media (max-width:900px){
+  .seek-wrap{height:26px}
+  .seek-thumb{width:16px;height:16px}
+  .seek-wrap::before{height:5px}
+  .seek-wrap:hover::before{height:8px}
 }
 
 /* ═══════ MÓVIL · modo TV: la lista duplicada desaparece
