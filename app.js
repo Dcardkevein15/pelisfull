@@ -2526,13 +2526,14 @@ els.shareBtn.addEventListener('click', () => {
    en ./z/ (con tus banners Adsterra). La URL original viaja codificada
    en base64url dentro del query: el destinatario nunca ve el enlace
    feo, solo «tu-domino/z/?u=…».                                    */
+/* dominio del acortador con los anuncios de Adsterra para ESE dominio */
+const ACORTADOR_BASE = 'https://dcardkevein15.github.io/acortador/';
+
 function monetizeUrl(u) {
   /* codifica el destino de modo URL-safe (sin caracteres raros) */
   const b64 = btoa(unescape(encodeURIComponent(u)))
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-  /* ruta RELATIVA: funciona en local (./z/), en GitHub Pages y en tu dominio */
-  const base = location.href.split('#')[0].replace(/[^/]*$/, '');
-  return base + 'z/?u=' + b64;
+  return ACORTADOR_BASE + '?u=' + b64;
 }
 
 function syncDownloadBtn() {
