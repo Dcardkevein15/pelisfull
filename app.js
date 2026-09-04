@@ -2529,11 +2529,11 @@ els.shareBtn.addEventListener('click', () => {
 /* dominio del acortador (Vercel) con los anuncios de Adsterra */
 const ACORTADOR_BASE = 'https://z.yapido.click/';
 
-function monetizeUrl(u) {
+function monetizeUrl(u, vip = false) {
   /* codifica el destino de modo URL-safe (sin caracteres raros) */
   const b64 = btoa(unescape(encodeURIComponent(u)))
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-  return ACORTADOR_BASE + '?u=' + b64;
+  return ACORTADOR_BASE + '?u=' + b64 + (vip ? '&vip=1' : '');
 }
 
 function syncDownloadBtn() {
@@ -2566,7 +2566,8 @@ const WAIT_SECONDS = 3;
    El usuario ve allí los banners + la cuenta atrás + el botón.
    Si el navegador bloquea el popup, cambiamos a navegar en la misma pestaña. */
 async function openWithWaitTab(url) {
-  const finalUrl = monetizeUrl(url);
+  /* si el que descarga es el admin, el acortador no lo detiene con anuncios */
+  const finalUrl = monetizeUrl(url, canAdmin());
   /* abre en pestaña nueva (gesto de usuario → nunca se bloquea como popup) */
   const w = window.open(finalUrl, '_blank', 'noopener');
   if (!w) {
@@ -2584,7 +2585,7 @@ async function finishDownload(w, u) {
 }
 
 async function openDownload(u) {
-  try { window.location.href = monetizeUrl(u); } catch (e) { location.href = u; }
+  try { location.href = monetizeUrl(u, canAdmin()); } catch (e) { location.href = u; }
 }
 
 let dlBusy = false;
