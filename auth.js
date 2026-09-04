@@ -30,6 +30,11 @@
     cacheName: 'xstream-auth-v1', cacheUrl: './xauth-identity.json',
     cookie: 'xuid', cookieDays: 3650,
     catalogUrl: 'catalog.json',
+    /* publicación directa al repo donde vive la web (GitHub Pages).
+       El token se guarda SOLO en el dispositivo del admin. */
+    ghRepo: 'Dcardkevein15/pelisfull',
+    ghBranch: 'main',
+    ghTokenKey: 'xstream-gh-token',
   };
 
   /* botones/zonas que SOLO ve el administrador (el lector ni los ve) */
@@ -649,13 +654,38 @@
     if (!API || !API.getState) return axToast('La app aún no está lista', true);
     const state = API.getState();
     const series = state.series.filter(s => !s.personal && s.via !== 'shared').map(cleanForPublish);
-    const channels = (state.channels || []).map(c => ({ id: c.id, name: c.name, logo: c.logo, group: c.group, url: c.url }));
+    /* 📡 los canales TV SIEMPRE van en el catálogo público (con fuentes iptv-org vivas) */
+    const channels = (state.channels || []).map(c => ({
+      id: c.id, name: c.name, logo: c.logo, group: c.group, url: c.url,
+      epg: c.epg || '', cc: c.cc || '', quality: c.quality || '', src: c.src,
+    }));
     const payload = {
       app: 'xstream', v: Date.now(), by: ID.name + ' ' + ID.tag,
       at: new Date().toISOString(), n: series.length + channels.length, series, channels,
+      tvSources: state.tvSources || {},
     };
+
+    /* ① PUBLICACIÓN AUTOMÁTICA A GITHUB — los lectores lo reciben solos */
+    const token = ghToken() || ghAskToken();
+    if (token) {
+      axToast('🌐 Publicando en GitHub… todos lo recibirán en ~1 minuto');
+      try {
+        await ghPublishCatalog(payload, token);
+        state.catalogMeta = { v: payload.v, at: Date.now(), n: payload.n };
+        if (API.save) API.save();
+        renderCatalogStatus();
+        axToast(`🌐 PUBLICADO para todos: ${payload.n} entradas · los visitantes lo reciben automáticamente`);
+        return;
+      } catch (e) {
+        axToast('⚠ No se pudo publicar en GitHub: ' + (e.message || e) + '. Revisa tu token.', true);
+        /* continúa al respaldo local abajo */
+      }
+    } else {
+      axToast('⚠ Sin token de GitHub: uso el respaldo con descarga', true);
+    }
+
+    /* ② respaldo: guardar el archivo y subirlo a mano (mecanismo antiguo) */
     const json = JSON.stringify(payload);
-    /* guardado DIRECTO en la carpeta de la web (Chrome/Edge en PC) */
     if (window.showSaveFilePicker) {
       try {
         const h = await window.showSaveFilePicker({
@@ -664,24 +694,66 @@
         });
         const w = await h.createWritable();
         await w.write(json); await w.close();
-        state.catalogMeta = { v: payload.v, at: Date.now(), n: series.length };
+        state.catalogMeta = { v: payload.v, at: Date.now(), n: payload.n };
         if (API.save) API.save();
         renderCatalogStatus();
-        axToast('🌐 catalog.json guardado — ya es público para todos');
+        axToast('🌐 catalog.json guardado — súbelo al repo para que se vea');
         return;
       } catch (e) { if (e && e.name === 'AbortError') return; }
     }
-    /* respaldo: descarga normal del archivo */
     const blob = new Blob([json], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = 'catalog.json';
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-    state.catalogMeta = { v: payload.v, at: Date.now(), n: series.length };
-    if (API.save) API.save();
-    renderCatalogStatus();
-    axToast('⬇ catalog.json descargado — súbelo a tu hosting junto a index.html');
+    axToast('⬇ catalog.json descargado — súbelo al repo para publicarlo');
+  }
+
+  /* ═══ Publicación directa a GitHub (el catálogo llega a TODOS solo) ═══
+     El token nunca se incluye en el catálogo ni se sube al repo:
+     vive solo en el localStorage del dispositivo del administrador. */
+  function ghToken() {
+    try { return localStorage.getItem(CONFIG.ghTokenKey) || ''; } catch (e) { return ''; }
+  }
+  function ghAskToken(force) {
+    const cur = ghToken();
+    if (cur && !force) return cur;
+    const t = window.prompt(
+      '🔑 TOKEN DE GITHUB (classic, con permiso "repo")\n\n' +
+      'Se guarda SOLO en este dispositivo — nunca se sube al repo ni va en el catálogo.\n' +
+      'GitHub → Settings → Developer settings → Tokens (classic) → Generate new token → marca el scope "repo".'
+      + (cur ? `\n\nActual: …${cur.slice(-6)} (borra el campo para eliminarlo)` : ''),
+      ''
+    );
+    if (t === null) return cur;
+    const v = t.trim();
+    if (!v) { try { localStorage.removeItem(CONFIG.ghTokenKey); } catch (e) { } return ''; }
+    try { localStorage.setItem(CONFIG.ghTokenKey, v); } catch (e) { }
+    return v;
+  }
+  async function ghPublishCatalog(payload, token) {
+    const base = `https://api.github.com/repos/${CONFIG.ghRepo}/contents/catalog.json`;
+    const headers = { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' };
+    /* necesitamos el SHA actual del archivo para poder sobreescribirlo */
+    const get = await fetch(`${base}?ref=${CONFIG.ghBranch}`, { headers });
+    let sha = null;
+    if (get.ok) { sha = (await get.json()).sha; }
+    /* UTF-8 → base64 sin romper tildes/emoji */
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 1))));
+    const res = await fetch(base, {
+      method: 'PUT', headers,
+      body: JSON.stringify({
+        message: `📡 catálogo ${new Date().toISOString()}`,
+        content, branch: CONFIG.ghBranch,
+        ...(sha ? { sha } : {}),
+      }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || ('HTTP ' + res.status));
+    }
+    return true;
   }
 
   function renderCatalogStatus() {
@@ -736,12 +808,20 @@
     if (state.progress) Object.keys(state.progress).forEach(k => { if (!alive.has(k)) delete state.progress[k]; });
     if (state.lastPlayed) Object.keys(state.lastPlayed).forEach(k => { if (!alive.has(k)) delete state.lastPlayed[k]; });
     state.trash = (state.trash || []).filter(t => t.series && alive.has(t.series.id));
-    /* 📡 canales de TV: el catálogo del admin es la lista oficial */
+    /* 📡 canales de TV: el catálogo del admin es la lista oficial.
+       Se reemplazan los canales compartidos anteriores pero se conservan
+       los que el lector haya añadido a mano (src 'manual'). */
     if (Array.isArray(cat.channels)) {
-      state.channels = cat.channels.map(c => ({ ...c, src: 'catalog', at: Date.now() }));
+      const manuales = (state.channels || []).filter(c => c.src === 'manual');
+      state.channels = cat.channels.map(c => ({ ...c, src: c.src || 'catalog', at: Date.now() })).concat(manuales);
       if (state.currentChannel && !state.channels.some(c => c.id === state.currentChannel)) {
         state.currentChannel = null;
       }
+    }
+    /* las fuentes M3U del admin quedan suscritas en el lector también,
+       así sus dispositivos pueden refrescar los enlaces sin esperar una nueva publicación */
+    if (cat.tvSources && typeof cat.tvSources === 'object') {
+      state.tvSources = Object.assign({}, state.tvSources || {}, cat.tvSources);
     }
     state.catalogMeta = { v: cat.v, at: Date.now(), n: cat.series.length + (cat.channels ? cat.channels.length : 0) };
     API.save();
@@ -750,10 +830,16 @@
     if (added || updated) axToast(`🌐 Catálogo actualizado: ${cat.series.length} títulos de ${cat.by || 'el administrador'}`);
   }
 
+  let syncing = false;
   async function syncCatalog() {
     if (isAdmin()) return;                 /* el admin nunca se pisa a sí mismo */
     if (!/^https?:$/.test(location.protocol)) return; /* file:// → sin red */
+    if (syncing) return;
+    syncing = true;
     try {
+      /* anti-caché agresivo: el mismo archivo pedido 2 veces seguidas
+         puede servirse viejo desde el CDN de GitHub Pages, así que
+         añadimos un parámetro único cada vez */
       const r = await fetch(CONFIG.catalogUrl + '?t=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) return;
       const cat = await r.json();
@@ -762,7 +848,8 @@
       const cur = (st.catalogMeta && st.catalogMeta.v) || 0;
       if (cat.v <= cur) return;            /* ya está aplicada esta versión */
       applyCatalog(cat);
-    } catch (e) { /* sin archivo todavía: la app funciona con lo local */ }
+    } catch (e) { /* sin archivo: sigue con lo local */ }
+    finally { syncing = false; }
   }
 
   /* ═══════════ ARRANQUE ═══════════ */
@@ -842,6 +929,13 @@
     renderChip();
     /* al entrar: si soy lector, descargo y aplico el catálogo del admin */
     syncCatalog().catch(() => { });
+    /* re-chequeo automático: al volver a la pestaña, al recuperar red, y cada 2 min.
+       Si no hay nada nuevo, el usuario no percibe absolutamente nada. */
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) syncCatalog().catch(() => { });
+    });
+    window.addEventListener('online', () => syncCatalog().catch(() => { }));
+    setInterval(() => syncCatalog().catch(() => { }), 2 * 60 * 1000);
   }
 
   /* ═══════════ API pública ═══════════ */

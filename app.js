@@ -1238,9 +1238,10 @@ async function iptvPicker() {
   toast(`🌐 iptv-org: +${totalAdded} nuevos · ${totalUpd} al día · ${totalRem} retirados${fallidas ? ` · ⚠ ${fallidas} fallidas` : ''}`);
 }
 
-/* ── AUTO-UPDATE: se dispara solo al entrar, máx. 1 vez al día ── */
+/* ── AUTO-UPDATE: se dispara solo al entrar, máx. 1 vez al día ──
+   Corre para TODOS (admin y lectores): las listas oficiales iptv-org
+   son públicas, y cada dispositivo las mantiene frescas por su cuenta.  */
 async function iptvAutoUpdate() {
-  if (!canAdmin()) return;                       /* el lector recibe el catálogo del admin */
   if (!/^https?:$/.test(location.protocol)) return;
   const last = state[IPTV_AUTO_KEY] || 0;
   if (Date.now() - last < 23 * 3600 * 1000) return;   /* 1 vez al día */
@@ -4311,6 +4312,12 @@ if (window.XAUTH) {
   /* el lector arranca sin modo edición aunque lo toque en consola */
   if (!canAdmin() && editing) setEditing(false);
   syncTabs(); /* asegura la visibilidad correcta de las herramientas TV según el rol */
+  /* 📡 la lista oficial en español de iptv-org queda FIJA y siempre conectada */
+  state.tvSources = state.tvSources || {};
+  if (!state.tvSources['iptv-org/spa']) {
+    state.tvSources['iptv-org/spa'] = { url: 'https://iptv-org.github.io/iptv/languages/spa.m3u', name: 'iptv-org: Español', at: 0 };
+    save();
+  }
   /* 🌐 auto-update iptv-org: al entrar, refresca las fuentes si toca (máx. 1/día) */
   if (typeof iptvAutoUpdate === 'function') setTimeout(iptvAutoUpdate, 3500);
   /* 📅 auto-refresh de la guía EPG si ya estaba configurada y lleva >6h */
