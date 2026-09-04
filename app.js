@@ -2563,41 +2563,28 @@ const WAIT_SECONDS = 3;
 
 /* 💰 FLUJO ÚNICO: el clic abre directamente el ACORTADOR (z.yapido.click)
    — es el dominio autorizado por Adsterra, así que los anuncios cuentan.
-   El usuario ve allí los banners 300×250 + la cuenta atrás + el botón.     */
+   El usuario ve allí los banners + la cuenta atrás + el botón.
+   Si el navegador bloquea el popup, cambiamos a navegar en la misma pestaña. */
 async function openWithWaitTab(url) {
   const finalUrl = monetizeUrl(url);
-  /* abre en pestaña nueva (gesto de usuario → nunca bloqueado como popup) */
+  /* abre en pestaña nueva (gesto de usuario → nunca se bloquea como popup) */
   const w = window.open(finalUrl, '_blank', 'noopener');
-  if (!w) return handLinkToUser(finalUrl, 'Descarga');
+  if (!w) {
+    /* popup bloqueado → navegamos nosotros mismos al acortador */
+    location.href = finalUrl;
+  }
 }
 
-/* si ni siquiera la pestaña inmediata pudo abrirse, entrega el enlace a mano */
-async function handLinkToUser(u, label) {
-  try { navigator.clipboard.writeText(u).catch(() => { }); } catch (e) { }
-  await uiModal({
-    icon: '⬇', title: 'Tu enlace de descarga está listo', okLabel: 'Entendido',
-    sub: `El navegador bloqueó la ventana automática, así que aquí lo tienes:<br>está <b>copiado en tu portapapeles</b> — también puedes mantener pulsado el enlace y elegir «Abrir».`,
-    fields: [{ key: 'u', label: label || 'Enlace de descarga', value: u }],
-  });
-}
-
-/* cierre del flujo: redirige la pestaña de espera o entrega el enlace */
-async function finishDownload(w, u, label) {
+/* cierre del flujo: redirige la pestaña al enlace corto (o navega esta si está bloqueada) */
+async function finishDownload(w, u) {
   const finalUrl = monetizeUrl(u);
   if (w && !w.closed) { try { w.location.href = finalUrl; return true; } catch (e) { } }
-  handLinkToUser(finalUrl, label);
+  location.href = finalUrl;   /* navega la pestaña actual — sin modal, sin texto feo */
   return false;
 }
 
 async function openDownload(u) {
-  const a = document.createElement('a');
-  a.href = monetizeUrl(u);
-  a.target = '_blank';
-  a.rel = 'noopener';
-  a.download = '';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+  try { window.location.href = monetizeUrl(u); } catch (e) { location.href = u; }
 }
 
 let dlBusy = false;
