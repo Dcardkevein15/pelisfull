@@ -432,6 +432,8 @@
     if (sb) sb.style.display = 'none';
     const chip = document.getElementById('userChip');
     if (chip) chip.classList.toggle('is-admin', admin);
+    /* 🔒 FAIL-CLOSED: solo los que SÍ verificaron la clave ven los controles */
+    document.body.classList.toggle('admin-on', admin);
     /* refresca la lista por si hay botones que dependen del rol (TV, papelera…) */
     if (API && API.onRoleChange) { try { API.onRoleChange(); } catch (e) { } }
     else if (API && API.renderSeries) { try { API.renderSeries(); } catch (e) { } }

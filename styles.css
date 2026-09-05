@@ -1352,6 +1352,12 @@ body.light .drive-status.ok{color:#3aa832}
 .ro-hide{display:none!important}
 body.ro .only-admin{display:none!important}
 
+/* 🔒 FAIL-CLOSED: los controles de administrador están OCULTOS por defecto.
+   Solo se ven si auth.js termina de arrancar y marca la clase .admin-on.
+   Así ni las lentas cargas ni fallos de red dejan botones que no tocan. */
+.admin-only{display:none!important}
+body.admin-on .admin-only{display:revert!important}
+
 /* ── Modal de perfil ── */
 .ax-backdrop{
   position:fixed;inset:0;background:rgba(4,4,10,.72);z-index:130;

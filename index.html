@@ -47,19 +47,19 @@
         <i class="uc-sub">…</i>
       </span>
     </button>
-    <button id="cineBtn" class="btn btn-ghost" title="Buscar películas, anime y OVAs en español (Internet Archive)">
+    <button id="cineBtn" class="btn btn-ghost admin-only" title="Buscar películas, anime y OVAs en español (Internet Archive)">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 4v16M17 4v16M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>
       <span>Buscar cine</span>
     </button>
-    <button id="driveFolderBtn" class="btn btn-ghost" title="Importar una carpeta completa de Google Drive como serie">
+    <button id="driveFolderBtn" class="btn btn-ghost admin-only" title="Importar una carpeta completa de Google Drive como serie">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg>
       <span>Importar carpeta Drive</span>
     </button>
-    <button id="editModeBtn" class="btn btn-ghost" title="Pegar tus enlaces MP4">
+    <button id="editModeBtn" class="btn btn-ghost admin-only" title="Pegar tus enlaces MP4">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
       <span>Editar enlaces</span>
     </button>
-    <button id="addSeriesBtn" class="btn btn-acid">
+    <button id="addSeriesBtn" class="btn btn-acid admin-only">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg>
       <span>Añadir serie</span>
     </button>
@@ -82,7 +82,7 @@
       </button>
       <button id="gearBtn" class="gear-btn" title="Herramientas de la lista">⚙</button>
     </div>
-    <div class="tv-tools hidden" id="tvTools">
+    <div class="tv-tools hidden admin-only" id="tvTools">
       <button class="btn btn-mini" id="tvScanBtn" title="Pega la URL de una lista M3U o su contenido: los canales nuevos entran y los caídos salen solos">📡 Lista M3U</button>
       <button class="btn btn-mini" id="tvRescanBtn" title="Vuelve a descargar todas las listas guardadas y actualiza los canales (quita los caídos, añade los nuevos)">🔄 Actualizar</button>
       <button class="btn btn-mini" id="tvIptvBtn" title="Fuentes oficiales de iptv-org: elige idiomas, países y categorías que se actualizan solas">🌐 iptv-org</button>
@@ -97,15 +97,15 @@
           <option value="alpha">A → Z</option>
         </select>
         <button id="favFilter" class="chip-filter" title="Solo favoritos">♥ Favs</button>
-        <button id="trashBtn" class="chip-filter trash2" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
+        <button id="trashBtn" class="chip-filter trash2 admin-only" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
       </div>
       <div class="side-filters" id="tagChips"></div>
       <div class="side-foot">
         <button id="exportBtn" class="foot-btn" title="Exportar biblioteca completa (JSON)">⬇ Exportar</button>
-        <button id="importBtn" class="foot-btn" title="Importar respaldo JSON">⬆ Importar</button>
+        <button id="importBtn" class="foot-btn admin-only" title="Importar respaldo JSON">⬆ Importar</button>
         <input type="file" id="importFile" accept=".json,application/json" hidden>
         <button id="syncBtn" class="foot-btn" title="Sync en la nube (Firebase)">☁ Sync</button>
-        <button id="brokenBtn" class="foot-btn broken" title="Historial de enlaces rotos">⚠ Rotos <b id="brokenCount" class="foot-count">0</b></button>
+        <button id="brokenBtn" class="foot-btn broken admin-only" title="Historial de enlaces rotos">⚠ Rotos <b id="brokenCount" class="foot-count">0</b></button>
       </div>
     </div>
     <nav id="seriesList" class="series-list"></nav>
@@ -135,7 +135,7 @@
         <div class="player-nourl hidden" id="playerNoUrl">
           <h2>Este capítulo aún no tiene enlace</h2>
           <p>Activa <b>Editar enlaces</b> y pega la URL directa (mp4 / m3u8-directo / webm).</p>
-          <button class="btn btn-acid" id="goEditBtn">Pegar enlace ahora</button>
+          <button class="btn btn-acid admin-only" id="goEditBtn">Pegar enlace ahora</button>
         </div>
 
         <!-- spinner -->
@@ -241,15 +241,15 @@
         <div class="episodes-head">
           <h2 id="episodesTitle">Capítulos</h2>
           <div class="episodes-tools">
-            <button class="btn btn-mini hidden" id="undoBtn" title="Recuperar el último capítulo eliminado">↩ Deshacer</button>
+            <button class="btn btn-mini hidden admin-only" id="undoBtn" title="Recuperar el último capítulo eliminado">↩ Deshacer</button>
             <button class="btn btn-mini" id="favBtn" title="Marcar como favorito">🤍 Favorito</button>
-            <button class="btn btn-mini" id="tagBtn" title="Etiquetas de colección">🏷 Etiquetas</button>
+            <button class="btn btn-mini admin-only" id="tagBtn" title="Etiquetas de colección">🏷 Etiquetas</button>
             <button class="btn btn-mini" id="remindBtn" title="Recordatorio (ej: sale capítulo nuevo)">🔔 Recordatorio</button>
-            <button class="btn btn-mini" id="renameBtn" title="Cambiar el título de esta serie/película">✎ Renombrar</button>
-            <button class="btn btn-mini" id="moveCatBtn" title="Mover entre categorías (Anime ↔ Película) por si quedó mal clasificada">⇄ Mover</button>
-            <button class="btn btn-mini" id="insertEpBtn" title="Insertar un capítulo en una posición concreta">⇂ Insertar</button>
-            <button class="btn btn-mini" id="addEpBtn" title="Añadir capítulo al final de la serie">+ Capítulo</button>
-            <button class="btn btn-mini danger hidden" id="delSeriesBtn">Eliminar</button>
+            <button class="btn btn-mini admin-only" id="renameBtn" title="Cambiar el título de esta serie/película">✎ Renombrar</button>
+            <button class="btn btn-mini admin-only" id="moveCatBtn" title="Mover entre categorías (Anime ↔ Película) por si quedó mal clasificada">⇄ Mover</button>
+            <button class="btn btn-mini admin-only" id="insertEpBtn" title="Insertar un capítulo en una posición concreta">⇂ Insertar</button>
+            <button class="btn btn-mini admin-only" id="addEpBtn" title="Añadir capítulo al final de la serie">+ Capítulo</button>
+            <button class="btn btn-mini danger hidden admin-only" id="delSeriesBtn">Eliminar</button>
           </div>
         </div>
         <div class="episodes-grid" id="episodesGrid">

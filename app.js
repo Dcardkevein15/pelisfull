@@ -511,8 +511,9 @@ function toast(msg, err = false) {
 
 /* ═══════════ 🔐 Roles (auth.js) ═══════════
    El administrador edita; el lector solo mira.
-   Si auth.js no cargó (no debería pasar), todo funciona como antes. */
-const canAdmin = () => !window.XAUTH || window.XAUTH.isAdmin();
+   FAIL-CLOSED: si auth.js no cargó o no ha arrancado, nadie es admin.
+   (Antes devolvía "true" si faltaba XAUTH — eso dejaba la web abierta.) */
+const canAdmin = () => !!(window.XAUTH && window.XAUTH.ready && window.XAUTH.isAdmin());
 function needAdmin() {
   if (canAdmin()) return true;
   toast('🔒 Solo el administrador puede hacer eso', true);
