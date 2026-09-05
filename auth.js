@@ -785,6 +785,40 @@
   function applyCatalog(cat) {
     const state = API.getState();
     const newIds = new Set(cat.series.map(s => s.id));
+    /* los stubs temporales creados al abrir un enlace compartido deben
+       DISOLVERSE dentro de la serie original cuando el catálogo llega    */
+    const slugify = t => String(t || '').toLowerCase().normalize('NFD')
+      .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+    /* match flexible: título exacto, o sufijo/subcadena de slug (el stub
+       "kimetsu-no-yaiba" coincide con "demon-slayer-kimetsu-no-yaiba") */
+    const slugMatch = (a, b) => {
+      if (a === b) return true;
+      if (a.endsWith('-' + b) || b.endsWith('-' + a)) return true;
+      const ax = ' ' + a.replace(/-/g, ' ') + ' ', bx = ' ' + b.replace(/-/g, ' ') + ' ';
+      return ax.includes(bx) || bx.includes(ax);
+    };
+    /* rescatamos el progreso del stub antes de fusionarlo */
+    const stubProgress = {};
+    state.series = state.series.filter(s => {
+      if (!s.via || s.via !== 'shared') return true;
+      const slug = slugify(s.t);
+      const real = cat.series.find(x => x.t === s.t || slugMatch(slugify(x.t), slug));
+      if (real) {
+        /* migramos el progreso del stub al real y lo borramos */
+        const stProg = (state.progress || {})[s.id] || {};
+        for (const [epN, pr] of Object.entries(stProg)) {
+          state.progress = state.progress || {};
+          state.progress[real.id] = state.progress[real.id] || {};
+          state.progress[real.id][epN] = state.progress[real.id][epN] || pr;
+        }
+        if (state.lastPlayed && state.lastPlayed[s.id]) {
+          state.lastPlayed[real.id] = Math.max(state.lastPlayed[real.id] || 0, state.lastPlayed[s.id]);
+          delete state.lastPlayed[s.id];
+        }
+        return false; /* el stub se disuelve en la serie de verdad */
+      }
+      return true; /* sin contraparte en el catálogo, se conserva */
+    });
     const keepLocal = s => s.personal || s.via === 'shared';
     /* 1) lo que no está en el catálogo del admin desaparece
           (salvo series personales o recibidas por enlace compartido) */
