@@ -1217,19 +1217,28 @@ function renderRelatedChannels(ch) {
   }
   /* los que tienen logo van primero, y dentro de eso orden alfabético */
   pool.sort((a, b) => ((b.logo ? 1 : 0) - (a.logo ? 1 : 0)) || a.name.localeCompare(b.name));
-  for (const c of pool) {
-    const cell = document.createElement('div');
-    cell.className = 'ep movie-rel has-url' + (c.id === ch.id ? ' playing' : '');
-    const nowProg = c.epg ? epgNow(c.epg) : null;
-    cell.innerHTML = `
-      ${c.logo ? `<img class="rel-bg ch-rel-bg" src="${escapeHtml(c.logo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">📡</span>`}
-      <div class="rel-body">
-        <div class="rel-t">${escapeHtml(c.name)}</div>
-        <div class="rel-c">${c.cc ? flagOf(c.cc) + ' ' : ''}${c.quality ? c.quality + ' · ' : ''}🔴 EN VIVO${nowProg ? ` · 📅 ${escapeHtml(nowProg.t.slice(0, 22))}` : ''}</div>
-      </div>`;
-    cell.addEventListener('click', () => playChannel(c));
-    els.episodesGrid.appendChild(cell);
-  }
+  /* ⚡ paginación: 20 visibles al inicio, más al hacer scroll por debajo de la zona.
+     Así una categoría de 300 canales carga al instante sin congelar la app. */
+  const items = [
+    ...pool.map(c => ({
+      el: (() => {
+        const cell = document.createElement('div');
+        cell.className = 'ep movie-rel has-url' + (c.id === ch.id ? ' playing' : '');
+        const nowProg = c.epg ? epgNow(c.epg) : null;
+        cell.innerHTML = `
+          ${c.logo ? `<img class="rel-bg ch-rel-bg" src="${escapeHtml(c.logo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">📡</span>`}
+          <div class="rel-body">
+            <div class="rel-t">${escapeHtml(c.name)}</div>
+            <div class="rel-c">${c.cc ? flagOf(c.cc) + ' ' : ''}${c.quality ? c.quality + ' · ' : ''}🔴 EN VIVO${nowProg ? ` · 📅 ${escapeHtml(nowProg.t.slice(0, 22))}` : ''}</div>
+          </div>`;
+        cell.addEventListener('click', () => playChannel(c));
+        return cell;
+      })(),
+    })),
+  ];
+  lazyRender(els.episodesGrid, items.map(i => i.el), (n) => n, 20);
+  /* etiqueta de estado con el total */
+  els.episodesTitle.textContent = `📡 ${pool.length} canales en ${ch.group || 'General'}`;
 }
 
 /* (al renombrar una serie, syncAddressBar refresca el slug al instante — ver listener renombrar) */
