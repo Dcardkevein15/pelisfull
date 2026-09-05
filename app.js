@@ -257,10 +257,10 @@ function openExternalMode(s, ep) {
     const el = els.extOpen;
     el.disabled = true; el.textContent = '🔗 Preparando enlace…';
     try {
-      const short = monetizeUrl(ep.url);
-      window.open(short, '_blank', 'noopener');
+      const short = monetizeUrl(ep.url, canAdmin());
+      window.open(short, '_blank');
     } catch (e) {
-      window.open(ep.url, '_blank', 'noopener');   /* nunca bloqueado: el original siempre abre */
+      window.open(ep.url, '_blank');
     } finally {
       el.disabled = false; el.textContent = '▶ Abrir en la fuente';
     }
@@ -2568,10 +2568,12 @@ const WAIT_SECONDS = 3;
 async function openWithWaitTab(url) {
   /* si el que descarga es el admin, el acortador no lo detiene con anuncios */
   const finalUrl = monetizeUrl(url, canAdmin());
-  /* abre en pestaña nueva (gesto de usuario → nunca se bloquea como popup) */
-  const w = window.open(finalUrl, '_blank', 'noopener');
+  /* abre la pestaña nueva.
+     OJO: sin 'noopener' — ese flag hace que window.open SIEMPRE devuelva null
+     y disparaba la doble apertura (nueva + navegación de esta misma).      */
+  const w = window.open(finalUrl, '_blank');
   if (!w) {
-    /* popup bloqueado → navegamos nosotros mismos al acortador */
+    /* solo si el popup fue de verdad bloqueado, navegamos esta pestaña */
     location.href = finalUrl;
   }
 }
@@ -2616,7 +2618,7 @@ els.downloadBtn.addEventListener('click', async () => {
          Abrimos el ACORTADOR con la página pública /v/ como destino base:
          así los anuncios cuentan desde el primer segundo. Cuando el
          ticket madura, redirigimos esa misma pestaña al archivo directo. */
-      const w = window.open(monetizeUrl(pub), '_blank', 'noopener');
+      const w = window.open(monetizeUrl(pub), '_blank');
       toast('⏳ Generando enlace de descarga…');
       try {
         const tk = await stapeApi('file/dlticket', { file: st.id });
