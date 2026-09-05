@@ -907,14 +907,14 @@ function renderChannels(q) {
     return;
   }
   let lastGroup = null;
+  const channelNodes = [];
   for (const ch of list) {
-    /* cuando se filtra por categoría los separadores de grupo sobran; si no, se conservan */
     if (!tvCatFilter && ch.group && ch.group !== lastGroup) {
       lastGroup = ch.group;
       const gh = document.createElement('div');
       gh.className = 'ch-group';
       gh.textContent = `${tvCatIcon(ch.group)} ${ch.group}`;
-      els.seriesList.appendChild(gh);
+      channelNodes.push(gh);
     }
     const btn = document.createElement('button');
     btn.className = 's-item ch-item' + (state.currentChannel === ch.id ? ' active' : '');
@@ -958,8 +958,10 @@ function renderChannels(q) {
         toast(`🗑 Canal «${ch.name}» eliminado`);
       });
     }
-    els.seriesList.appendChild(btn);
+    channelNodes.push(btn);
   }
+  /* ⚡ render perezoso de canales — los 2000+ no se agregan todos de golpe */
+  lazyRender(els.seriesList, channelNodes, (node) => node, 40);
 }
 
 /* ═══════════ Reproductor de canales en vivo ═══════════
@@ -1429,9 +1431,10 @@ function renderSeries(filter = '') {
     return;
   }
 
-  let cardIdx = 0;
-  for (const s of list) {
-    const idx = cardIdx++;
+  /* ⚡ render perezoso: solo se crean las primeras tarjetas visibles
+     y el resto se agrega automáticamente al hacer scroll.
+     (en PC el nº de series puede ser enorme; esto hace la app instantánea) */
+  lazyRender(els.seriesList, list, (s, idx) => {
     const linked = s.episodes.filter(e => e.url).length;
     const isMovie = s.kind === 'pelicula';
     const seen = watchedCount(s);
@@ -1492,11 +1495,11 @@ function renderSeries(filter = '') {
         reorderSeries(dragId, s.id);
       }
     });
-    els.seriesList.appendChild(btn);
-
     /* portada automática (anime) en segundo plano */
     queuePoster(s);
-  }
+    /* el nodo lo toma lazyRender y lo inserta solo cuando toca verlo */
+    return btn;
+  });
 }
 
 /* ═══════════ Reordenar / fundir series como temporadas ═══════════ */
@@ -1726,7 +1729,7 @@ async function pumpThumbs() {
   pumpThumbs();
 }
 
-/* solo se genera cuando la tarjeta entra en pantalla */
+/* sola se genera cuando la tarjeta entra en pantalla */
 const thumbObserver = new IntersectionObserver(entries => {
   for (const en of entries) {
     if (!en.isIntersecting) continue;
@@ -1734,6 +1737,40 @@ const thumbObserver = new IntersectionObserver(entries => {
     if (en.target._thumbJob) en.target._thumbJob();
   }
 }, { rootMargin: '200px' });
+
+/* ═══════════ ⚡ RENDER PEREZOSO: carga bajo demanda ═══════════
+   Las listas NO se pintan enteras. Solo se renderizan las tarjetas
+   que caben en la pantalla + un buffer de las siguientes ~30. En
+   cuanto el usuario se acerca al final del scroll, se inyecta el
+   siguiente bloque al instante. Solo lo necesario: carga mínima.  */
+const _lazyIO = new WeakMap();
+function lazyRender(container, items, renderItem, chunk = 30) {
+  /* si ya había una observación anterior en este contenedor, la cancelamos */
+  if (_lazyIO.has(container)) { _lazyIO.get(container).disconnect(); _lazyIO.delete(container); }
+  container.innerHTML = '';
+  let idx = 0;
+  const sentinel = document.createElement('div');
+  sentinel.style.cssText = 'contain:strict;padding:0;margin:0;height:2px;width:100%;flex-basis:100%';
+  container.appendChild(sentinel);
+  const renderMore = () => {
+    const end = Math.min(idx + chunk, items.length);
+    while (idx < end) {
+      const node = renderItem(items[idx], idx);
+      if (node) container.insertBefore(node, sentinel);
+      idx++;
+    }
+    if (idx >= items.length && sentinel.parentNode) {
+      sentinel.remove();
+      io.disconnect();
+    }
+  };
+  const io = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) renderMore();
+  }, { root: container === els.seriesList ? els.seriesList : (container.scrollHeight ? null : null), rootMargin: '300px' });
+  _lazyIO.set(container, io);
+  io.observe(sentinel);
+  renderMore(); /* primer bloque visible al instante */
+}
 
 function deferThumb(s, ep, cell) {
   if (getEpThumb(s, ep)) return;
@@ -1836,8 +1873,10 @@ function renderEpisodes() {
   els.addEpBtn.classList.remove('hidden');
   els.insertEpBtn.classList.remove('hidden');
 
-  /* cabeceras divisorias si la serie tiene varias temporadas (merge por arrastre) */
+  /* cabeceras divisorias si la serie tiene varias temporadas: se mezclan con
+     las celdas de capítulo en una única lista renderable para lazyRender */
   const hasSeasons = s.episodes.some(e => (e.season || 1) > 1);
+  const itemsToRender = [];
   let lastSeason = 0;
   for (const ep of s.episodes) {
     if (hasSeasons) {
@@ -1847,9 +1886,19 @@ function renderEpisodes() {
         const epsS = s.episodes.filter(e => (e.season || 1) === se);
         const nConLinks = epsS.filter(e => e.url).length;
         const label = (s.seasons && s.seasons[se]) || 'Temporada ' + se;
-        const head = document.createElement('div');
-        head.className = 'season-head' + (nConLinks ? '' : ' sh-empty');
-        head.innerHTML = `
+        itemsToRender.push({ __type: 'seasonHead', se, epsS, nConLinks, label });
+      }
+    }
+    itemsToRender.push(ep);
+  }
+
+  /* ⚡ render perezoso: solo se crean las celdas visibles + 30 de buffer */
+  lazyRender(els.episodesGrid, itemsToRender, (item) => {
+    if (item.__type === 'seasonHead') {
+      const { se, epsS, nConLinks, label } = item;
+      const head = document.createElement('div');
+      head.className = 'season-head' + (nConLinks ? '' : ' sh-empty');
+      head.innerHTML = `
           <b class="sh-name" title="✎ Clic para renombrar esta temporada">🍿 ${escapeHtml(label)}</b>
           <span>${epsS.length} cap${epsS.length > 1 ? 's' : ''}${nConLinks ? '' : ' · sin enlaces'}</span>
           <span class="sh-rename" title="Renombrar esta temporada">✎</span>
@@ -1904,9 +1953,10 @@ function renderEpisodes() {
           save(); renderEpisodes(); renderSeries(els.searchInput.value);
           toast(`🗑 «${label}» eliminada — quedan ${s.episodes.length} capítulos`);
         });
-        els.episodesGrid.appendChild(head);
+        return head;
       }
-    }
+      /* celdas de capítulo normales */
+      const ep = item;
     const pr = ((state.progress || {})[s.id] || {})[ep.n];
     pendingResume = (pr && !pr.done && pr.t > 15) ? { sid: s.id, ep: ep.n, t: pr.t } : null;
     const cell = document.createElement('div');
@@ -2017,8 +2067,8 @@ function renderEpisodes() {
       sh.addEventListener('click', ev => { ev.stopPropagation(); openShare(s.id, ep.n); });
       cell.appendChild(sh);
     }
-    els.episodesGrid.appendChild(cell);
-  }
+    return cell;
+  }, 30);
 }
 
 /* ═══════════ Selección de serie ═══════════ */
