@@ -20,18 +20,12 @@
 
   /* ─────────── CONFIG ─────────── */
   const CONFIG = {
-    /* Huella SHA-256 de la frase maestra del administrador.
-       La frase real NUNCA aparece en el código.
-       Para cambiarla: consola → XAUTH.sha256('mi-nueva-frase')
-       y pega aquí el resultado. */
     adminHash: 'a3ab540a338d2c6f1b9f10e89dc4c13b03cdd3b32f5679ef3ebe88472eb224dc',
     lsKey: 'xstream-auth-v1',
     idbName: 'xstream-auth', idbStore: 'identity', idbKey: 'me',
     cacheName: 'xstream-auth-v1', cacheUrl: './xauth-identity.json',
     cookie: 'xuid', cookieDays: 3650,
     catalogUrl: 'catalog.json',
-    /* publicación directa al repo donde vive la web (GitHub Pages).
-       El token se guarda SOLO en el dispositivo del admin. */
     ghRepo: 'Dcardkevein15/pelisfull',
     ghBranch: 'main',
     ghTokenKey: 'xstream-gh-token',

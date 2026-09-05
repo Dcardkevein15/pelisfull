@@ -71,7 +71,10 @@
   <!-- ══════════ SIDEBAR: SERIES ══════════ -->
   <aside class="sidebar" id="sidebar">
     <div class="side-tabs">
-      <button id="tabAnime" class="side-tab on" data-tab="anime" title="Series de anime (las OVAs se integran solas en su serie)">
+      <button id="tabHome" class="side-tab on" data-tab="home" title="Inicio — destacados y novedades">
+        <span class="tab-emoji">🏠</span><span class="tab-name">Inicio</span><b id="countHome" class="tab-count"></b>
+      </button>
+      <button id="tabAnime" class="side-tab" data-tab="anime" title="Series de anime (las OVAs se integran solas en su serie)">
         <span class="tab-emoji">📺</span><span class="tab-name">Anime</span><b id="countAnime" class="tab-count">0</b>
       </button>
       <button id="tabPeliculas" class="side-tab" data-tab="peliculas" title="Películas">
@@ -113,6 +116,8 @@
 
   <!-- ══════════ CENTRO: PLAYER ══════════ -->
   <main class="stage">
+    <!-- 🏠 Home (descubrimiento): ocupa todo el escenario cuando la pestaña Inicio está activa -->
+    <div class="home-view hidden" id="homeView"></div>
     <div class="player-shell" id="playerShell">
       <!-- 📺 Categorías de TV en vivo (con barra de desplazamiento propia) -->
       <div class="tvcats-wrap hidden" id="tvCatsWrap">

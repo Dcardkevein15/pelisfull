@@ -60,7 +60,7 @@ const SEED = [
 
 /* ─────────── Estado ─────────── */
 const LS_KEY = 'xstream-v1';
-let state = { series: [], autoplay: true };
+let state = { series: [], autoplay: true, tab: 'home' };
 let current = { seriesId: null, ep: null };
 let editing = false;
 
@@ -178,6 +178,7 @@ const els = {
   tabTv: $('tabTv'), countTv: $('countTv'), tvTools: $('tvTools'),
   tvScanBtn: $('tvScanBtn'), tvRescanBtn: $('tvRescanBtn'), moveCatBtn: $('moveCatBtn'),
   tvIptvBtn: $('tvIptvBtn'), tvEpgBtn: $('tvEpgBtn'), tvCats: $('tvCats'),
+  tabHome: $('tabHome'), countHome: $('countHome'), homeView: $('homeView'),
   modalFlag: $('modalFlag'), flagText: $('flagText'), flagCancel: $('flagCancel'), flagConfirm: $('flagConfirm'),
   modalAdd: $('modalAdd'), newTitle: $('newTitle'), newJp: $('newJp'), newEps: $('newEps'),
   gradPicker: $('gradPicker'), cancelAdd: $('cancelAdd'), confirmAdd: $('confirmAdd'),
@@ -622,6 +623,7 @@ function syncOvasToSeries(silent) {
 }
 
 function syncTabs() {
+  els.tabHome.classList.toggle('on', state.tab === 'home');
   els.tabAnime.classList.toggle('on', state.tab === 'anime');
   els.tabPeliculas.classList.toggle('on', state.tab === 'peliculas');
   els.tabTv.classList.toggle('on', state.tab === 'tv');
@@ -630,14 +632,22 @@ function syncTabs() {
   if (tvWrap) tvWrap.classList.toggle('hidden', state.tab !== 'tv');
   els.tvCats.classList.remove('hidden');
   document.body.classList.toggle('tab-tv', state.tab === 'tv');
+  document.body.classList.toggle('tab-home', state.tab === 'home');
+  const hv = els.homeView, ps = els.playerShell;
+  if (hv && ps) {
+    const isHome = state.tab === 'home';
+    hv.classList.toggle('hidden', !isHome);
+    ps.classList.toggle('hidden', isHome);
+  }
   if (state.tab !== 'tv') tvCatFilter = null;
 }
 function setTab(tab) {
   state.tab = tab;
   syncTabs();
   save();
-  renderSeries(els.searchInput.value);
+  if (tab === 'home') renderHome(); else renderSeries(els.searchInput.value);
 }
+els.tabHome.addEventListener('click', () => setTab('home'));
 els.tabAnime.addEventListener('click', () => setTab('anime'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
 els.tabTv.addEventListener('click', () => setTab('tv'));
@@ -827,6 +837,108 @@ async function fetchText(url) {
 
 els.tvScanBtn.addEventListener('click', scanTvList);
 els.tvRescanBtn.addEventListener('click', rescanAllTv);
+
+function homeCard(s) {
+  const card = document.createElement('button');
+  card.className = 'ep movie-rel hc-card' + (s.poster ? ' has-url' : '');
+  const chip = s.kind === 'pelicula' ? 'Película' : 'Serie';
+  const prog = (state.progress || {})[s.id];
+  let pct = 0;
+  if (prog) {
+    const vals = Object.values(prog);
+    const withWatched = vals.filter(p => p && (p.t > 10 || p.done)).length;
+    pct = withWatched ? Math.min(100, Math.round((withWatched / Math.max(1, s.episodes.length)) * 100)) : 0;
+  }
+  card.innerHTML = `
+    ${s.poster ? `<img class="rel-bg" src="${s.poster}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">${escapeHtml(s.jp || '🎬')}</span>`}
+    <div class="rel-body">
+      <div class="rel-t">${escapeHtml(s.t)}</div>
+      <div class="rel-c">${chip}${pct ? ' · ' + pct + '% visto' : ''}</div>
+    </div>`;
+  card.addEventListener('click', () => {
+    setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime');
+    selectSeries(s.id);
+    if (s.episodes && s.episodes.length) {
+      const first = s.episodes.find(e => e.url) || s.episodes[0];
+      if (first) loadEpisode(first.n, true);
+    }
+  });
+  return card;
+}
+function homeRow(title, items) {
+  if (!items || !items.length) return;
+  const row = document.createElement('div');
+  row.className = 'home-row';
+  row.innerHTML = `<div class="hr-head"><h3>${escapeHtml(title)}</h3></div>`;
+  const wrap = document.createElement('div');
+  wrap.className = 'home-row-list';
+  for (const it of items) wrap.appendChild(homeCard(it));
+  row.appendChild(wrap);
+  els.homeView.appendChild(row);
+}
+function renderHome() {
+  if (!els.homeView) return;
+  els.homeView.innerHTML = '';
+  const all = state.series.slice();
+  const withPoster = all.filter(s => s.poster);
+  const hero = withPoster.length ? withPoster[0] : all[0];
+  if (hero) {
+    const hv = document.createElement('div');
+    hv.className = 'home-hero';
+    hv.innerHTML = `
+      <div class="h-bg">${hero.poster ? `<img src="${hero.poster}" alt="">` : ''}</div>
+      <div class="h-shade"></div>
+      <div class="h-meta">
+        <div class="h-kind">${hero.kind === 'pelicula' ? 'Película destacada' : 'Serie destacada'}</div>
+        <h2>${escapeHtml(hero.t)}</h2>
+        <p>${escapeHtml(hero.tag || 'Tu colección publicada')}</p>
+        <button class="btn btn-acid hero-btn">Ver ahora</button>
+      </div>`;
+    hv.querySelector('.hero-btn').addEventListener('click', () => {
+      selectSeries(hero.id);
+    });
+    els.homeView.appendChild(hv);
+  }
+  const returning = [];
+  for (const s of state.series) {
+    const prog = (state.progress || {})[s.id];
+    if (!prog) continue;
+    let last = null;
+    for (const [, p] of Object.entries(prog)) {
+      if (p && !p.done && p.t > 10 && (!last || p.at > last.at)) last = p;
+    }
+    if (last) returning.push({ s, at: last.at });
+  }
+  returning.sort((a, b) => b.at - a.at);
+  homeRow('Sigue viendo', returning.slice(0, 10).map(x => x.s));
+  const nuevas = all.slice().sort((a, b) => (b.importedAt || b.at || 0) - (a.importedAt || a.at || 0));
+  homeRow('Novedades recientes', nuevas.slice(0, 12));
+  const pelis = all.filter(s => s.kind === 'pelicula' && s.episodes && s.episodes[0] && s.episodes[0].url);
+  homeRow('Películas listas', pelis.slice(0, 12));
+  const largas = all.filter(s => s.kind !== 'pelicula' && s.episodes && s.episodes.length).sort((a, b) => b.episodes.length - a.episodes.length);
+  homeRow('Maratones recomendadas', largas.slice(0, 12));
+  const canales = (state.channels || []).slice(0, 10);
+  if (canales.length) {
+    const r = document.createElement('div');
+    r.className = 'home-row';
+    r.innerHTML = `<div class="hr-head"><h3>TV en vivo</h3></div>`;
+    const wrap = document.createElement('div');
+    wrap.className = 'home-row-list';
+    for (const ch of canales) {
+      const cell = document.createElement('button');
+      cell.className = 'ep movie-rel hc-card has-url';
+      cell.innerHTML = `
+        ${ch.logo ? `<img class="rel-bg" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" onerror="this.remove()">` : '<span class="rel-emoji">📡</span>'}
+        <div class="rel-body">
+          <div class="rel-t">${escapeHtml(ch.name)}</div>
+          <div class="rel-c">En vivo${ch.group ? ' · ' + escapeHtml(ch.group) : ''}</div>
+        </div>`;
+      cell.addEventListener('click', () => { setTab('tv'); playChannel(ch); });
+      wrap.appendChild(cell);
+    }
+    els.homeView.appendChild(r);
+  }
+}
 
 /* ── render de la lista de canales (pestaña 📡 TV) ── */
 let tvCatFilter = null;
@@ -4617,11 +4729,11 @@ renderBroken();
 applyTheme(state.theme || 'dark');
 syncAutoplayBtn();
 els.sortMode.value = state.sortMode || 'manual';
-syncTabs();
-buildAccentPicker();
-applyAccent(state.accent);
-renderTagChips();
-renderSeries();
+  syncTabs();
+  buildAccentPicker();
+  applyAccent(state.accent);
+  renderTagChips();
+  if (state.tab === 'home') renderHome(); else renderSeries();
 renderEpisodes();
 renderContinue();
 syncOvasToSeries(true); // OVAs sueltas que ya tienen serie → se integran en silencio al arrancar
