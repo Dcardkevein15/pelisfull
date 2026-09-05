@@ -883,6 +883,11 @@ function renderHome() {
   const all = state.series.slice();
   const withPoster = all.filter(s => s.poster);
   const hero = withPoster.length ? withPoster[0] : all[0];
+
+  /* Si aún no hay ni un solo canal, muestro la sección de TV
+     con un aviso discreto y un botón para forzar sincronización;
+     si hay, las tarjetas hasta el momento. Así nunca queda en blanco. */
+  const canalesCount = (state.channels || []).length;
   if (hero) {
     const hv = document.createElement('div');
     hv.className = 'home-hero';
@@ -899,6 +904,40 @@ function renderHome() {
       selectSeries(hero.id);
     });
     els.homeView.appendChild(hv);
+  }
+  /* 📡 TV en vivo — incluso si aún no llegó el catálogo al dispositivo,
+     muestro una mini-tarjeta que al tocarla va directo a la pestaña TV */
+  const disponibles = (state.channels || []);
+  const canalesHome = disponibles.length
+    ? disponibles.slice(0, 10)
+    : [{
+        id: 'tv-placeholder',
+        name: 'TV en vivo',
+        logo: '',
+        group: '📡 Abriendo canales — pulsa para ir a la pestaña',
+      }];
+  if (canalesHome.length) {
+    const r = document.createElement('div');
+    r.className = 'home-row';
+    r.innerHTML = `<div class="hr-head"><h3>TV en vivo</h3></div>`;
+    const wrap = document.createElement('div');
+    wrap.className = 'home-row-list';
+    for (const ch of canalesHome) {
+      const cell = document.createElement('button');
+      cell.className = 'ep movie-rel hc-card has-url' + (ch.id === 'tv-placeholder' ? ' is-placeholder' : '');
+      cell.innerHTML = `
+        ${ch.logo ? `<img class="rel-bg" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" onerror="this.remove()">` : '<span class="rel-emoji">📡</span>'}
+        <div class="rel-body">
+          <div class="rel-t">${escapeHtml(ch.name)}</div>
+          <div class="rel-c">En vivo${ch.id === 'tv-placeholder' ? '' : (ch.group ? ' · ' + escapeHtml(ch.group) : '')}</div>
+        </div>`;
+      cell.addEventListener('click', () => {
+        setTab('tv');
+        if (ch.id !== 'tv-placeholder') playChannel(ch);
+      });
+      wrap.appendChild(cell);
+    }
+    els.homeView.appendChild(r);
   }
   const returning = [];
   for (const s of state.series) {
@@ -918,27 +957,6 @@ function renderHome() {
   homeRow('Películas listas', pelis.slice(0, 12));
   const largas = all.filter(s => s.kind !== 'pelicula' && s.episodes && s.episodes.length).sort((a, b) => b.episodes.length - a.episodes.length);
   homeRow('Maratones recomendadas', largas.slice(0, 12));
-  const canales = (state.channels || []).slice(0, 10);
-  if (canales.length) {
-    const r = document.createElement('div');
-    r.className = 'home-row';
-    r.innerHTML = `<div class="hr-head"><h3>TV en vivo</h3></div>`;
-    const wrap = document.createElement('div');
-    wrap.className = 'home-row-list';
-    for (const ch of canales) {
-      const cell = document.createElement('button');
-      cell.className = 'ep movie-rel hc-card has-url';
-      cell.innerHTML = `
-        ${ch.logo ? `<img class="rel-bg" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" onerror="this.remove()">` : '<span class="rel-emoji">📡</span>'}
-        <div class="rel-body">
-          <div class="rel-t">${escapeHtml(ch.name)}</div>
-          <div class="rel-c">En vivo${ch.group ? ' · ' + escapeHtml(ch.group) : ''}</div>
-        </div>`;
-      cell.addEventListener('click', () => { setTab('tv'); playChannel(ch); });
-      wrap.appendChild(cell);
-    }
-    els.homeView.appendChild(r);
-  }
 }
 
 /* ── render de la lista de canales (pestaña 📡 TV) ── */
@@ -4773,6 +4791,8 @@ if (window.XAUTH) {
           renderEpisodes();
         }
       }
+      /* RFrece al llegar: repintamos Home seguro (porque ahora sí hay canales) */
+      if (state.tab === 'home') renderHome();
     },
     /* 🔗 cuando el catálogo disuelve un stub compartido, apuntamos la vista a la serie real */
     onStubDissolved: dissolved => {
