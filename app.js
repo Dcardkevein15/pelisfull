@@ -901,7 +901,13 @@ function renderHome() {
         <button class="btn btn-acid hero-btn">Ver ahora</button>
       </div>`;
     hv.querySelector('.hero-btn').addEventListener('click', () => {
+      /* el botón del héroe abre la serie y entra en su pestaña de contenido */
+      if (hero.kind === 'pelicula') setTab('peliculas'); else setTab('anime');
       selectSeries(hero.id);
+      if (hero.episodes && hero.episodes.length) {
+        const first = hero.episodes.find(e => e.url) || hero.episodes[0];
+        if (first) loadEpisode(first.n, true);
+      }
     });
     els.homeView.appendChild(hv);
   }
