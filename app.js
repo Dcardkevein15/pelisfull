@@ -4535,6 +4535,19 @@ if (window.XAUTH) {
     /* cuando cambia el rol (lector ⇄ admin) hay que repintar pestañas y herramientas */
     onRoleChange: () => { syncTabs(); renderSeries(els.searchInput.value); },
     /* 🔗 cuando el catálogo disuelve un stub compartido, apuntamos la vista a la serie real */
+    onCatalogRefreshSignal: () => {
+      /* si hay un capítulo activo, lo recargamos con la URL que ya trae
+         el catálogo (transforma "sin URL" en video en vivo al instante) */
+      if (current.seriesId && current.ep != null) {
+        const s = getSeries(current.seriesId);
+        if (s) {
+          const ep = s.episodes.find(e => e.n === current.ep);
+          if (ep && ep.url) loadEpisode(current.ep, true);
+          renderEpisodes();
+        }
+      }
+    },
+    /* 🔗 cuando el catálogo disuelve un stub compartido, apuntamos la vista a la serie real */
     onStubDissolved: dissolved => {
       for (const d of dissolved) {
         if (current.seriesId === d.stubId) {

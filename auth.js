@@ -881,6 +881,12 @@
     state.catalogMeta = { v: cat.v, at: Date.now(), n: cat.series.length + (cat.channels ? cat.channels.length : 0) };
     API.save();
     API.renderSeries(); API.renderEpisodes(); API.renderContinue();
+    /* ▶ Corrección clave: si la serie ACTIVA en este momento está abierta
+       y el catálogo llegó con URLs nuevas, recargamos el capítulo que el
+       usuario está viendo para que el video ya no quede vacío. */
+    if (API.onCatalogRefreshSignal) {
+      try { API.onCatalogRefreshSignal(); } catch (e) { }
+    }
     if (API.renderTagChips) API.renderTagChips();
     if (added || updated) axToast(`🌐 Catálogo actualizado: ${cat.series.length} títulos de ${cat.by || 'el administrador'}`);
   }
