@@ -798,7 +798,7 @@
       return ax.includes(bx) || bx.includes(ax);
     };
     /* rescatamos el progreso del stub antes de fusionarlo */
-    const stubProgress = {};
+    const dissolved = []; /* [{stubId, realId}] — los avisamos a la app para que repinte */
     state.series = state.series.filter(s => {
       if (!s.via || s.via !== 'shared') return true;
       const slug = slugify(s.t);
@@ -815,10 +815,15 @@
           state.lastPlayed[real.id] = Math.max(state.lastPlayed[real.id] || 0, state.lastPlayed[s.id]);
           delete state.lastPlayed[s.id];
         }
+        dissolved.push({ stubId: s.id, realId: real.id });
         return false; /* el stub se disuelve en la serie de verdad */
       }
       return true; /* sin contraparte en el catálogo, se conserva */
     });
+    /* avisamos a la app para que repinte si el stub estaba activo */
+    if (dissolved.length && API.onStubDissolved) {
+      try { API.onStubDissolved(dissolved); } catch (e) { }
+    }
     const keepLocal = s => s.personal || s.via === 'shared';
     /* 1) lo que no está en el catálogo del admin desaparece
           (salvo series personales o recibidas por enlace compartido) */

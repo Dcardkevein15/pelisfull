@@ -4534,6 +4534,22 @@ if (window.XAUTH) {
     renderTagChips,
     /* cuando cambia el rol (lector ⇄ admin) hay que repintar pestañas y herramientas */
     onRoleChange: () => { syncTabs(); renderSeries(els.searchInput.value); },
+    /* 🔗 cuando el catálogo disuelve un stub compartido, apuntamos la vista a la serie real */
+    onStubDissolved: dissolved => {
+      for (const d of dissolved) {
+        if (current.seriesId === d.stubId) {
+          current.seriesId = d.realId;
+          /* si estábamos viendo el stub, cambiamos a la serie real y players */
+          const s = getSeries(d.realId);
+          if (s) {
+            renderEpisodes();
+            renderSeries(els.searchInput.value);
+            /* si había un capítulo activo del stub, intentamos abrirlo en la real */
+            if (current.ep != null) loadEpisode(current.ep, true);
+          }
+        }
+      }
+    },
   });
   /* el lector arranca sin modo edición aunque lo toque en consola */
   if (!canAdmin() && editing) setEditing(false);
