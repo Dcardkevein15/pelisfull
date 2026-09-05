@@ -626,7 +626,9 @@ function syncTabs() {
   els.tabPeliculas.classList.toggle('on', state.tab === 'peliculas');
   els.tabTv.classList.toggle('on', state.tab === 'tv');
   els.tvTools.classList.toggle('hidden', state.tab !== 'tv' || !canAdmin());
-  els.tvCats.classList.toggle('hidden', state.tab !== 'tv');
+  const tvWrap = $('tvCatsWrap');
+  if (tvWrap) tvWrap.classList.toggle('hidden', state.tab !== 'tv');
+  els.tvCats.classList.remove('hidden');
   document.body.classList.toggle('tab-tv', state.tab === 'tv');
   if (state.tab !== 'tv') tvCatFilter = null;
 }
@@ -859,8 +861,8 @@ function renderTvCats() {
   const cats = {};
   (state.channels || []).forEach(c => { const g = c.group || 'Otros'; cats[g] = (cats[g] || 0) + 1; });
   const entries = Object.entries(cats).sort(tvCatSort);
-  if (!entries.length) { els.tvCats.innerHTML = ''; els.tvCats.classList.add('hidden'); return; }
-  els.tvCats.classList.remove('hidden');
+  if (!entries.length) { els.tvCats.innerHTML = ''; const w0 = $('tvCatsWrap'); if (w0) w0.classList.add('hidden'); return; }
+  const w1 = $('tvCatsWrap'); if (w1) w1.classList.remove('hidden');
   /* la fila arranca con una tarjeta "Todo" y luego las categorías
      con imagen de fondo extraída del primer canal con logo del grupo */
   let html = `<button class="tv-cat-card all ${tvCatFilter === null ? ' on' : ''}" data-cat="">
@@ -1432,6 +1434,69 @@ async function epgSetup() {
 
 els.tvIptvBtn.addEventListener('click', iptvPicker);
 els.tvEpgBtn.addEventListener('click', epgSetup);
+
+/* ═══════════ Barra de desplazamiento épica para categorías TV ═══════════
+   Una pista propia debajo: cuando la mueves, el contenido se desplaza.
+   Con flechas laterales cuando hay más, y un thumb con "⟷" interno
+   para sugerir gesto de arrastre.                                           */
+(function initTvScrollBar(){
+  const wrap = document.getElementById('tvCatsWrap');
+  const track = wrap && wrap.querySelector('.sb-track');
+  const thumb = wrap && wrap.querySelector('#tvCatsThumb');
+  const scroller = wrap && wrap.querySelector('#tvCats');
+  if (!wrap || !track || !thumb || !scroller) return;
+
+  let lastClientX = null, dragging = false;
+
+  function syncThumb() {
+    const max = scroller.scrollWidth - scroller.clientWidth;
+    const pct = max > 0 ? scroller.scrollLeft / max : 0;
+    const w = Math.max(36, (scroller.clientWidth / scroller.scrollWidth) * 100) + '%';
+    thumb.style.width = w;
+    thumb.style.transform = 'translateX(' + (pct * (track.clientWidth - thumb.offsetWidth)) + 'px)';
+    wrap.classList.toggle('has-more', scroller.scrollLeft < max - 4);
+    wrap.classList.toggle('has-left', scroller.scrollLeft > 4);
+  }
+
+  scroller.addEventListener('scroll', syncThumb, { passive: true });
+  window.addEventListener('resize', syncThumb);
+
+  const onDown = ev => {
+    ev.preventDefault();
+    dragging = true;
+    lastClientX = ev.clientX;
+    thumb.setPointerCapture(ev.pointerId);
+  };
+  const onMove = ev => {
+    if (!dragging) return;
+    const dx = ev.clientX - lastClientX;
+    lastClientX = ev.clientX;
+    const max = scroller.scrollWidth - scroller.clientWidth;
+    const ratio = max / Math.max(1, track.clientWidth - thumb.offsetWidth);
+    scroller.scrollLeft += dx * ratio;
+    syncThumb();
+  };
+  const onUp = () => { dragging = false; };
+  thumb.addEventListener('pointerdown', onDown);
+  thumb.addEventListener('pointermove', onMove);
+  thumb.addEventListener('pointerup', onUp);
+  thumb.addEventListener('pointercancel', onUp);
+
+  /* clic en la pista → saltar a esa posición */
+  track.addEventListener('pointerdown', ev => {
+    if (ev.target === thumb) return;
+    const r = track.getBoundingClientRect();
+    const pct = (ev.clientX - r.left) / r.width;
+    const max = scroller.scrollWidth - scroller.clientWidth;
+    scroller.scrollLeft = pct * max;
+    syncThumb();
+  });
+
+  /* re-renderiza la posición del thumb cada vez que las tarjetas cambian */
+  const mo = new MutationObserver(syncThumb);
+  mo.observe(scroller, { childList: true, subtree: true });
+  syncThumb();
+})();
 
 /* ids recién importados → entran con animación shimmer escalonada */
 const freshIds = new Set();

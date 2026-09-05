@@ -675,10 +675,47 @@ body.light .side-tab.on{color:#6a9000}
 /* ═══ Tarjetas visuales de categoría en TV ═══ */
 #tvCats.tv-cats{
   display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;
-  padding:14px 12px 16px;scrollbar-width:thin;
+  padding:14px 12px 16px;scrollbar-width:none;
+  -ms-overflow-style:none;
+  position:relative;
 }
-#tvCats::-webkit-scrollbar{height:6px}
-#tvCats::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+/* oscontemos la barra fea por defecto; nuestra versión temática abajo */
+#tvCats::-webkit-scrollbar{display:none}
+
+/* ── indicadores de "se puede deslizar" (lados) ── */
+.tvcats-wrap{position:relative}
+.tvcats-wrap::before,.tvcats-wrap::after{
+  content:'❯';position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+  width:30px;height:30px;display:grid;place-items:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:50%;
+  color:var(--dim);font-size:13px;pointer-events:none;opacity:0;
+  transition:opacity .25s, transform .25s;
+}
+.tvcats-wrap::before{left:-4px;transform:translateY(-50%) scaleX(-1)}
+.tvcats-wrap::after{right:-4px}
+.tvcats-wrap.has-more::after{opacity:1}
+.tvcats-wrap.has-left::before{opacity:1}
+.tvcats-wrap:hover::before{opacity:1;transform:translateY(-50%) scaleX(-1) scale(1.1)}
+.tvcats-wrap:hover::after{opacity:1;transform:translateY(-50%) scale(1.1)}
+
+/* barra personalizada temática: delgada, del color ácido, y con una
+   zona de "agarre" más brillante para invitar a arrastrar            */
+#tvCats .sb-track{
+  position:sticky;left:12px;right:12px;bottom:4px;height:4px;z-index:4;
+  background:var(--line);border-radius:4px;width:calc(100% - 24px);pointer-events:auto;
+}
+#tvCats .sb-thumb{
+  height:100%;border-radius:4px;background:var(--acid);position:relative;
+  cursor:grab;min-width:36px;transition:width .12s, background .2s;
+}
+#tvCats .sb-thumb:hover{background:#eefb8a}
+#tvCats .sb-thumb:active{background:var(--hot);cursor:grabbing}
+/* mini-dedo para remarcar "puedes arrastrar" — un cursor con forma de mano */
+#tvCats .sb-thumb::after{
+  content:'⟷';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  color:#111;font-weight:900;font-size:11px;line-height:1;pointer-events:none;
+}
+.tv-cat-card{box-shadow:0 4px 14px rgba(0,0,0,.3)}
 .tv-cat-card{
   flex:0 0 auto;width:150px;border-radius:16px;overflow:hidden;
   cursor:pointer;position:relative;transition:transform .2s, box-shadow .2s;

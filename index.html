@@ -114,8 +114,13 @@
   <!-- ══════════ CENTRO: PLAYER ══════════ -->
   <main class="stage">
     <div class="player-shell" id="playerShell">
-      <!-- 📺 Categorías de TV en vivo (arriba del "Sigue viendo") -->
-      <div class="tv-cats hidden" id="tvCats"></div>
+      <!-- 📺 Categorías de TV en vivo (con barra de desplazamiento propia) -->
+      <div class="tvcats-wrap hidden" id="tvCatsWrap">
+        <div class="tv-cats" id="tvCats"></div>
+        <div class="sb-track" aria-hidden="true">
+          <div class="sb-thumb" id="tvCatsThumb" title="Arrastra para ver todas las categorías"></div>
+        </div>
+      </div>
       <!-- ✨ Sigue viendo -->
       <div class="continue-row hidden" id="continueRow"></div>
 
