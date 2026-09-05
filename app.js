@@ -845,19 +845,50 @@ function tvCatSort(a, b) {
   if (ia !== -1 || ib !== -1) return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
   return b[1] - a[1];
 }
+/* imagen de cada categoría: el primer canal del grupo que tenga logo.
+   Luego, si el logo deja de funcionar, va a default. Auto-actualizado
+   porque lo leemos VIVO de la lista, no de un cache. */
+let catImgsCache = {};
+function catImageFor(g) {
+  const list = (state.channels || []).filter(c => (c.group || 'Otros') === g);
+  if (!list.length) return null;
+  const withLogo = list.find(c => c.logo);
+  return withLogo ? withLogo.logo : null;
+}
 function renderTvCats() {
   const cats = {};
   (state.channels || []).forEach(c => { const g = c.group || 'Otros'; cats[g] = (cats[g] || 0) + 1; });
   const entries = Object.entries(cats).sort(tvCatSort);
   if (!entries.length) { els.tvCats.innerHTML = ''; els.tvCats.classList.add('hidden'); return; }
   els.tvCats.classList.remove('hidden');
-  let html = `<button class="tag-chip${tvCatFilter === null ? ' on' : ''}" data-cat="" title="Ver todos los canales">🌐 Todo <b class="tab-count">${state.channels.length}</b></button>`;
+  /* la fila arranca con una tarjeta "Todo" y luego las categorías
+     con imagen de fondo extraída del primer canal con logo del grupo */
+  let html = `<button class="tv-cat-card all ${tvCatFilter === null ? ' on' : ''}" data-cat="">
+      <div class="tc-bg" style="background:radial-gradient(120% 160% at 20% 0%, rgba(216,255,62,.5), rgba(10,10,18,.9))">
+        <span class="tc-icon">🌐</span>
+      </div>
+      <div class="tc-body">
+        <div class="tc-t">Todo</div>
+        <div class="tc-n">${state.channels.length} canales</div>
+      </div>
+    </button>`;
   for (const [g, n] of entries) {
-    html += `<button class="tag-chip${tvCatFilter === g ? ' on' : ''}" data-cat="${escapeHtml(g)}" title="${n} canal${n > 1 ? 'es' : ''} de ${escapeHtml(g)}">${tvCatIcon(g)} ${escapeHtml(g)} <b class="tab-count">${n}</b></button>`;
+    const img = catImageFor(g);
+    const grad = GRADS[(g.length) % GRADS.length];
+    html += `<button class="tv-cat-card${tvCatFilter === g ? ' on' : ''}" data-cat="${escapeHtml(g)}" title="${n} canal${n > 1 ? 'es' : ''} de ${escapeHtml(g)}">
+      <div class="tc-bg">
+        ${img ? `<img class="tc-img" src="${escapeHtml(img)}" alt="" loading="lazy" onerror="this.remove()">` : `<div class="tc-img-fallback" style="background:linear-gradient(135deg,${grad[0]},${grad[1]})"></div>`}
+        <span class="tc-icon">${tvCatIcon(g)}</span>
+      </div>
+      <div class="tc-body">
+        <div class="tc-t">${escapeHtml(g)}</div>
+        <div class="tc-n">${n} canal${n > 1 ? 'es' : ''}</div>
+      </div>
+    </button>`;
   }
   els.tvCats.innerHTML = html;
   /* tras re-render, hace scroll del chip activo a la vista */
-  const on = els.tvCats.querySelector('.tag-chip.on');
+  const on = els.tvCats.querySelector('.tv-cat-card.on');
   if (on) on.scrollIntoView({ block: 'nearest', inline: 'center' });
   els.tvCats.querySelectorAll('[data-cat]').forEach(b => {
     b.addEventListener('click', () => {
@@ -1047,17 +1078,15 @@ function startHls(ch, viaProxy) {
       try { h.recoverMediaError(); } catch (e) { }
       return;
     }
-    /* error de RED fatal: primero reintenta vía proxy CORS */
+    /* 🔇 errores de red: reintentamos SIN asustar al usuario.
+       Los propios reintentos silenciosos con spinner bastan. */
     if (!useProxy && !retriedDirect) {
       retriedDirect = true;
-      toast('🔁 Bloqueo de CORS detectado — probando ruta alternativa…');
       setTimeout(() => startHls(ch, true), 700);
       return;
     }
-    /* con proxy y aun así falla: siguiente proxy de la lista */
     if (useProxy && hlsProxyIdx < HLS_PROXIES.length - 1) {
       hlsProxyIdx++;
-      toast('🔁 Probando otra ruta…');
       setTimeout(() => startHls(ch, true), 700);
       return;
     }
@@ -1077,18 +1106,28 @@ function startHls(ch, viaProxy) {
   });
 }
 
-/* cuando ni directo ni proxies funcionan: opciones para el usuario */
+/* cuando ni directo ni proxies funcionan: el canal se APARTA
+   automáticamente de la lista (sin miedo, sin pantallas feas)  */
 function showChannelFallback(ch) {
   destroyHls();
-  openExternalMode({ t: ch.name }, { n: 1, t: 'Señal en vivo', url: ch.url });
-  els.extTitle.textContent = '⚠ Este canal bloquea la reproducción web';
-  els.extHost.textContent = 'Usa HTTP inseguro o no permite CORS ni proxy. En VLC (gratis) suena seguro: copia el enlace y pégalo en Medio → Abrir ubicación de red.';
-  els.extOpen.innerHTML = '📋 Copiar enlace para VLC';
-  els.extOpen.onclick = () => {
-    navigator.clipboard.writeText(ch.url)
-      .then(() => toast('✔ Enlace copiado — en VLC: Medio → Abrir ubicación de red (Ctrl+N)'))
-      .catch(() => toast('No se pudo copiar', true));
-  };
+  markChannelDown(ch);
+  /* el usuario jamás ve errores técnicos — simplemente no lo vuelve a ver */
+}
+/* 📦 Canal con señal muerta → apartado automático:
+   desaparece de la lista sin romper nada; si la señal vuelve,
+   el próximo rescan lo repone solo. Así nada queda muerto/abandonado. */
+function markChannelDown(ch, reason) {
+  console.log(`Canal retirado automáticamente: ${ch.name} (${reason || 'sin señal'})`);
+  /* lo sacamos de la vista SOLO si además está en el catálogo compartido —
+     si era del admin (manual/src) lo dejamos pero marcado de aviso ligero */
+  const isShared = ch.src === 'catalog';
+  if (isShared) {
+    state.channels = (state.channels || []).filter(c => c.id !== ch.id);
+  } else {
+    ch.down = true; /* gris, gris suave */
+  }
+  save();
+  renderSeries(els.searchInput.value);
 }
 
 async function playChannel(ch) {
