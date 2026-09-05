@@ -682,39 +682,68 @@ body.light .side-tab.on{color:#6a9000}
 /* oscontemos la barra fea por defecto; nuestra versión temática abajo */
 #tvCats::-webkit-scrollbar{display:none}
 
-/* ═══ Indicadores de "desliza" con brillosarti neon ═══
-   Solamente aparecen al acercarte a la sección; y cuando están,
-   hacen un pulso de brillanteza áurea ácida. Así llaman.          */
+/* ══════════════════════════════════════════════════════════
+   Que se pueda deslizar y arrastrar: INDICADORES NOBLES
+   ──────────────────────────────────────────────────────────
+   Cápsulas de cristal que deslizan hacia dentro suavemente
+   cuando hay más contenido (y desaparecen cuando no).       */
 .tvcats-wrap{position:relative}
 .tvcats-wrap::before,.tvcats-wrap::after{
-  content:'❯';position:absolute;top:50%;transform:translateY(-50%);z-index:5;
-  width:34px;height:34px;display:grid;place-items:center;
-  background:radial-gradient(circle at 30% 30%, rgba(216,255,62,.35), rgba(216,255,62,.08));
-  border:1.5px solid var(--acid);border-radius:50%;
-  color:var(--acid);font-size:13px;font-weight:900;
+  content:'';position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+  width:34px;height:44px;border-radius:12px;
+  /* vidrio molido del tema */
+  background:linear-gradient(170deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   pointer-events:none;opacity:0;
-  transition:opacity .3s, transform .3s;
-  box-shadow:0 0 14px rgba(216,255,62,.45),#d8ff3e inset 0 0 14px rgba(216,255,62,.1);
+  transition:opacity .4s cubic-bezier(.2,.8,.2,1), transform .4s cubic-bezier(.2,.8,.2,1);
 }
-.tvcats-wrap::before{left:-6px;transform:translateY(-50%) scaleX(-1)}
-.tvcats-wrap::after{right:-6px}
-.tvcats-wrap.has-more::after{opacity:.92}
-.tvcats-wrap.has-left::before{opacity:.92}
-.tvcats-wrap:hover::before{opacity:1;transform:translateY(-50%) scaleX(-1) scale(1.14)}
-.tvcats-wrap:hover::after{opacity:1;transform:translateY(-50%) scale(1.14)}
-/* el pulso luminoso permanente: enciende→apaga despacio y repite */
-.tvcats-wrap.has-more::after{animation:tvPulse 1.7s ease-in-out infinite}
-.tvcats-wrap.has-left::before{animation:tvPulse 1.7s ease-in-out infinite}
-@keyframes tvPulse{
-  0%,100%{box-shadow:0 0 8px rgba(216,255,62,.25), inset 0 0 8px rgba(216,255,62,.05)}
-  50%{box-shadow:0 0 20px rgba(216,255,62,.75), 0 0 40px rgba(216,255,62,.28), inset 0 0 14px rgba(216,255,62,.18)}
+.tvcats-wrap::before{left:0;transform:translate(-12px,-50%)}
+.tvcats-wrap::after{right:0;transform:translate(12px,-50%)}
+.tvcats-wrap.has-left::before{opacity:1;transform:translate(0,-50%)}
+.tvcats-wrap.has-more::after{opacity:1;transform:translate(0,-50%)}
+
+/* el chevron dentro de las cápsulas */
+.tvcats-wrap::before,.tvcats-wrap::after{
+  display:grid;place-items:center;
+  content:'❮';color:var(--dim);font-size:14px;
 }
-/* thumb también pisa el glow cuando está listo para arrastrar */
+.tvcats-wrap.has-more::after{content:'❮';transform:translate(0,-50%) scaleX(-1);color:var(--acid)}
+.tvcats-wrap.has-left::before{color:var(--acid)}
+.tvcats-wrap:hover::before,.tvcats-wrap:hover::after{opacity:1}
+
+/* ── THUMB de la barra: agarre con destello de luz pasando ──
+   Cuando lo tomas, se ilumina más y se marcada por un brillo. */
 #tvCats .sb-thumb{
-  box-shadow:0 0 8px rgba(216,255,62,.4), 0 0 0 1px rgba(216,255,62,.5);
-  transition:box-shadow .22s,width .12s,background .2s, transform .15s;
+  background:linear-gradient(135deg, rgba(216,255,62,.9), rgba(216,255,62,.6));
+  box-shadow:0 2px 10px rgba(216,255,62,.18), inset 0 1px 0 rgba(255,255,255,.25);
+  position:relative;
+  overflow:hidden;
+  transition:transform .15s, box-shadow .25s, background .25s;
 }
-#tvCats .sb-thumb:hover{box-shadow:0 0 16px rgba(216,255,62,.85), 0 0 0 2px rgba(216,255,62,.85);transform:translateY(-1px)}
+/* destello brillante que cruza el thumb cada pocos segundos */
+#tvCats .sb-thumb::before{
+  content:'';position:absolute;top:0;bottom:0;left:-40%;width:40%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.7), transparent);
+  animation:thumbShine 2.8s ease-in-out infinite;
+}
+@keyframes thumbShine{
+  0%{left:-40%}
+  100%{left:140%}
+}
+#tvCats .sb-thumb:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg, #eefb8a, var(--acid));
+  box-shadow:0 4px 18px rgba(216,255,62,.4), inset 0 1px 0 rgba(255,255,255,.4);
+}
+#tvCats .sb-thumb:active{
+  transform:translateY(-1px);
+  background:linear-gradient(135deg, var(--hot), #ff5c87);
+}
+#tvCats .sb-thumb::after{
+  content:'⟷';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  color:#1a1a24;font-weight:900;font-size:12px;line-height:1;pointer-events:none;
+}
 
 /* barra personalizada temática: delgada, del color ácido, y con una
    zona de "agarre" más brillante para invitar a arrastrar            */
