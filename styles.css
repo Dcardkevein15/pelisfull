@@ -752,32 +752,10 @@ body.light .side-tab.on{color:#6a9000}
 
 /* barra de categorías (chips) sobre la lista de canales — diseño mejorado: píldoras
    claras con contador, scroll horizontal suave y sticky dentro de la barra */
-.tv-cats{
-  display:flex;flex-wrap:nowrap;gap:6px;padding:10px;border-bottom:1px solid var(--line);
-  overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:var(--line) transparent;
-  background:linear-gradient(180deg,var(--bg2),var(--bg));
-  position:sticky;top:0;z-index:5;
-}
+/* Las tarjetas de categorías de TV están en otra zona (encima del "Sigue viendo").
+   Las reglas actuales de #tvCats gobiernan — este bloque queda vacío de añadidos viejos. */
 .tv-cats.hidden{display:none}
-.tv-cats::-webkit-scrollbar{height:5px}
-.tv-cats::-webkit-scrollbar-thumb{background:var(--line);border-radius:5px}
-.tv-cats .tag-chip{
-  display:inline-flex;align-items:center;gap:6px;flex:none;
-  font-size:11px;font-weight:700;letter-spacing:.2px;padding:7px 13px;border-radius:999px;
-  border:1px solid var(--line);background:var(--panel);color:var(--dim);cursor:pointer;
-  transition:transform .12s, border-color .12s, background .12s, color .12s;
-  white-space:nowrap;
-}
-.tv-cats .tag-chip:hover{transform:translateY(-1px);border-color:var(--acid);color:var(--ink)}
-.tv-cats .tag-chip.on{
-  background:var(--acid);color:#111;border-color:var(--acid);font-weight:800;
-  box-shadow:0 4px 14px rgba(216,255,62,.3);
-}
-.tv-cats .tab-count{
-  background:rgba(0,0,0,.28);color:inherit;padding:1px 7px;border-radius:999px;
-  font-family:'JetBrains Mono';font-size:9px;
-}
-.tv-cats .tag-chip.on .tab-count{background:#111;color:var(--acid)}
+
 .side-panel{
   overflow:hidden;max-height:230px;opacity:1;
   transition:max-height .28s cubic-bezier(.2,.9,.25,1),opacity .2s,padding .25s;
@@ -1321,11 +1299,7 @@ body.light .drive-status.ok{color:#3aa832}
 @media (max-width:900px){
   body.tab-tv .series-list{display:none}
   body.tab-tv .sidebar{border-bottom:none}
-  body.tab-tv .tv-cats{
-    position:sticky;top:60px;z-index:10;
-    background:var(--bg); /* sólida: flota al hacer scroll */
-    border-bottom:1px solid var(--line);
-  }
+  body.tab-tv .tv-cats{position:static;border-bottom:none}
   /* la guía «qué echan ahora» en chips de canal: legible */
   body.tab-tv .episodes-grid.rel-movies{grid-template-columns:repeat(2,1fr)}
 }

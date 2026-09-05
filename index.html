@@ -88,7 +88,6 @@
       <button class="btn btn-mini" id="tvIptvBtn" title="Fuentes oficiales de iptv-org: elige idiomas, países y categorías que se actualizan solas">🌐 iptv-org</button>
       <button class="btn btn-mini" id="tvEpgBtn" title="Guía de programación (EPG) — qué echan ahora en cada canal">📅 Guía</button>
     </div>
-    <div class="tv-cats hidden" id="tvCats"></div>
     <div class="side-panel collapsed" id="sidePanel">
       <div class="side-tools">
         <select id="sortMode" class="sort-select" title="Orden de la lista">
@@ -115,6 +114,8 @@
   <!-- ══════════ CENTRO: PLAYER ══════════ -->
   <main class="stage">
     <div class="player-shell" id="playerShell">
+      <!-- 📺 Categorías de TV en vivo (arriba del "Sigue viendo") -->
+      <div class="tv-cats hidden" id="tvCats"></div>
       <!-- ✨ Sigue viendo -->
       <div class="continue-row hidden" id="continueRow"></div>
 
