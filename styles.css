@@ -682,21 +682,39 @@ body.light .side-tab.on{color:#6a9000}
 /* oscontemos la barra fea por defecto; nuestra versión temática abajo */
 #tvCats::-webkit-scrollbar{display:none}
 
-/* ── indicadores de "se puede deslizar" (lados) ── */
+/* ═══ Indicadores de "desliza" con brillosarti neon ═══
+   Solamente aparecen al acercarte a la sección; y cuando están,
+   hacen un pulso de brillanteza áurea ácida. Así llaman.          */
 .tvcats-wrap{position:relative}
 .tvcats-wrap::before,.tvcats-wrap::after{
   content:'❯';position:absolute;top:50%;transform:translateY(-50%);z-index:5;
-  width:30px;height:30px;display:grid;place-items:center;
-  background:var(--panel);border:1px solid var(--line);border-radius:50%;
-  color:var(--dim);font-size:13px;pointer-events:none;opacity:0;
-  transition:opacity .25s, transform .25s;
+  width:34px;height:34px;display:grid;place-items:center;
+  background:radial-gradient(circle at 30% 30%, rgba(216,255,62,.35), rgba(216,255,62,.08));
+  border:1.5px solid var(--acid);border-radius:50%;
+  color:var(--acid);font-size:13px;font-weight:900;
+  pointer-events:none;opacity:0;
+  transition:opacity .3s, transform .3s;
+  box-shadow:0 0 14px rgba(216,255,62,.45),#d8ff3e inset 0 0 14px rgba(216,255,62,.1);
 }
-.tvcats-wrap::before{left:-4px;transform:translateY(-50%) scaleX(-1)}
-.tvcats-wrap::after{right:-4px}
-.tvcats-wrap.has-more::after{opacity:1}
-.tvcats-wrap.has-left::before{opacity:1}
-.tvcats-wrap:hover::before{opacity:1;transform:translateY(-50%) scaleX(-1) scale(1.1)}
-.tvcats-wrap:hover::after{opacity:1;transform:translateY(-50%) scale(1.1)}
+.tvcats-wrap::before{left:-6px;transform:translateY(-50%) scaleX(-1)}
+.tvcats-wrap::after{right:-6px}
+.tvcats-wrap.has-more::after{opacity:.92}
+.tvcats-wrap.has-left::before{opacity:.92}
+.tvcats-wrap:hover::before{opacity:1;transform:translateY(-50%) scaleX(-1) scale(1.14)}
+.tvcats-wrap:hover::after{opacity:1;transform:translateY(-50%) scale(1.14)}
+/* el pulso luminoso permanente: enciende→apaga despacio y repite */
+.tvcats-wrap.has-more::after{animation:tvPulse 1.7s ease-in-out infinite}
+.tvcats-wrap.has-left::before{animation:tvPulse 1.7s ease-in-out infinite}
+@keyframes tvPulse{
+  0%,100%{box-shadow:0 0 8px rgba(216,255,62,.25), inset 0 0 8px rgba(216,255,62,.05)}
+  50%{box-shadow:0 0 20px rgba(216,255,62,.75), 0 0 40px rgba(216,255,62,.28), inset 0 0 14px rgba(216,255,62,.18)}
+}
+/* thumb también pisa el glow cuando está listo para arrastrar */
+#tvCats .sb-thumb{
+  box-shadow:0 0 8px rgba(216,255,62,.4), 0 0 0 1px rgba(216,255,62,.5);
+  transition:box-shadow .22s,width .12s,background .2s, transform .15s;
+}
+#tvCats .sb-thumb:hover{box-shadow:0 0 16px rgba(216,255,62,.85), 0 0 0 2px rgba(216,255,62,.85);transform:translateY(-1px)}
 
 /* barra personalizada temática: delgada, del color ácido, y con una
    zona de "agarre" más brillante para invitar a arrastrar            */
