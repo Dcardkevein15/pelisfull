@@ -179,6 +179,7 @@ const els = {
   tvScanBtn: $('tvScanBtn'), tvRescanBtn: $('tvRescanBtn'), moveCatBtn: $('moveCatBtn'),
   tvIptvBtn: $('tvIptvBtn'), tvEpgBtn: $('tvEpgBtn'), tvCats: $('tvCats'),
   tabHome: $('tabHome'), countHome: $('countHome'), homeView: $('homeView'),
+  playerShell: $('playerShell'),
   modalFlag: $('modalFlag'), flagText: $('flagText'), flagCancel: $('flagCancel'), flagConfirm: $('flagConfirm'),
   modalAdd: $('modalAdd'), newTitle: $('newTitle'), newJp: $('newJp'), newEps: $('newEps'),
   gradPicker: $('gradPicker'), cancelAdd: $('cancelAdd'), confirmAdd: $('confirmAdd'),
