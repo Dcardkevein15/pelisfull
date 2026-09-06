@@ -100,8 +100,8 @@ function load() {
         state.iptvPacks = Array.isArray(state.iptvPacks) ? state.iptvPacks : null; /* paquetes iptv-org suscritos */
         state.epg = state.epg && typeof state.epg === 'object' && state.epg.map ? state.epg : { url: state.epgUrl || '', map: {}, at: 0 };
         /* migraciones categoría anime vs película (las OVAs son anime) */
-        state.tab = state.tab || 'anime';
-        if (state.tab === 'ovas') state.tab = 'peliculas'; /* pestaña OVAs retirada: ahora se integran en su serie */
+        state.tab = 'home';
+        if (state.tab === 'ovas') state.tab = 'peliculas';
         state.series.forEach(s => { if (typeof s.anime !== 'boolean') s.anime = s.kind !== 'pelicula'; });
         return;
       }
@@ -114,7 +114,7 @@ function load() {
   state.lastPlayed = {};
   state.stats = { totalSec: 0, days: {} };
   state.sortMode = 'manual';
-  state.tab = 'anime';
+  state.tab = 'home';
   state.channels = [];
   state.tvSources = {};
   state.iptvPacks = null;
@@ -651,7 +651,24 @@ function setTab(tab) {
 els.tabHome.addEventListener('click', () => setTab('home'));
 els.tabAnime.addEventListener('click', () => setTab('anime'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
-els.tabTv.addEventListener('click', () => setTab('tv'));
+els.tabTv.addEventListener('click', () => {
+  setTab('tv');
+  /* 📺 Al entrar a TV, automáticamente selecciona la categoría con más canales
+     infantiles si existe, y reproduce el primer canal de dicha categoría. */
+  setTimeout(() => {
+    const canales = state.channels || [];
+    if (!canales.length) return;
+    /* busco la primera categoría existente (prioridad: Infantil ≫ … ≫ cualquier otra) */
+    const prioridades = ['Infantil', 'General', 'Entretenimiento', 'Noticias'];
+    let primerDe = null;
+    for (const pref of prioridades) {
+      const enIt = canales.find(c => (c.group || 'Otros') === pref);
+      if (enIt) { primerDe = enIt; break; }
+    }
+    if (!primerDe) primerDe = canales[0];
+    if (primerDe) playChannel(primerDe);
+  }, 120);
+});
 
 /* ═══════════════════════════════════════════════════════════
    📡 TV EN VIVO — canales con sincronización inteligente
