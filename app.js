@@ -934,20 +934,7 @@ function homeRow(title, items) {
 }
 function renderHome() {
   if (!els.homeView) return;
-  /* 🛡 si no hay series aún, mostramos una cara amable y esperamos al catálogo */
-  if (!state.series.length) {
-    els.homeView.innerHTML = `
-      <div class="home-hero" style="min-height:50vh;justify-content:center;align-items:center;flex-direction:column;display:flex;gap:14px">
-        <div style="font-size:48px">📺</div>
-        <div style="font-weight:800;font-size:18px">Cargando tu catálogo…</div>
-        <div style="color:var(--dim);font-size:12px;font-family:monospace">Se está sincronizando con el servidor</div>
-      </div>`;
-    /* si ya NO llega nada en 25s, la casaanime puede recargarse una sola vez */
-    setTimeout(() => { if (!state.series.length && !window.__homeForceReloaded) { window.__homeForceReloaded = true; location.reload(); } }, 25000);
-    return;
-  }
-  try {
-    els.homeView.innerHTML = '';
+  els.homeView.innerHTML = '';
     const all = state.series.slice();
     const withPoster = all.filter(s => s.poster);
     const hero = withPoster.length ? withPoster[0] : all[0];
@@ -1037,17 +1024,6 @@ function renderHome() {
   homeRow('Películas listas', pelis.slice(0, 12));
   const largas = all.filter(s => s.kind !== 'pelicula' && s.episodes && s.episodes.length).sort((a, b) => b.episodes.length - a.episodes.length);
   homeRow('Maratones recomendadas', largas.slice(0, 12));
-  } catch (err) {
-    /* Fuse anti-crash: si algo truena con los datos, mostramos algo útil */
-    console.error('renderHome falló:', err);
-    els.homeView.innerHTML = `
-      <div class="home-hero" style="padding:26px">
-        <div style="font-size:22px;font-weight:800">😵 Enlace listo
-        , pero se topó con un problema pintando la portada.</div>
-        <div style="color:var(--dim);margin-top:8px;font-size:12px;font-family:monospace">${escapeHtml(String(err && err.message || err))}</div>
-        <button class="btn btn-acid" style="margin-top:14px" onclick="location.reload()">Recargar</button>
-      </div>`;
-  }
 }
 
 /* ── render de la lista de canales (pestaña 📡 TV) ── */
