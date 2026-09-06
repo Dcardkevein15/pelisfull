@@ -642,13 +642,47 @@ function syncTabs() {
   }
   if (state.tab !== 'tv') tvCatFilter = null;
 }
+let tvInfantilOnce = false;
 function setTab(tab) {
+  /* al cambiar de pestaña, si veníamos viendo algo (película/anime/canal),
+     lo detcmos — la gente no quiere sonido de fondo al navegar */
+  stopPlaybackIfLeaving(tab);
   state.tab = tab;
   syncTabs();
   save();
   if (tab === 'home') renderHome(); else renderSeries(els.searchInput.value);
+  /* 📺 al entrar a TV en vivo por primera vez: abre infantil y reproduce el primer canal */
+  if (tab === 'tv' && !tvInfantilOnce) {
+    tvInfantilOnce = true;
+    setTimeout(() => {
+      const hayInfantil = (state.channels || []).some(c => (c.group || 'Otros') === 'Infantil');
+      if (hayInfantil) {
+        tvCatFilter = 'Infantil';
+        renderSeries(els.searchInput.value);
+        playFirstOfCategory('Infantil');
+      }
+    }, 350);
+  }
 }
-els.tabHome.addEventListener('click', () => setTab('home'));
+/* si la pestaña anterior tenía video/canal y no retornaremos ahí, cortarlo */
+function stopPlaybackIfLeaving(newTab) {
+  const eraVideo = ['anime', 'peliculas'].includes(state.tab);
+  const eraTv = state.tab === 'tv';
+  const vaAhome = newTab === 'home';
+  if (!vaAhome) return;
+  if (!eraVideo && !eraTv) return;
+  /* detener el video/canal */
+  try { els.video.pause(); } catch (e) { }
+  if (state.currentChannel) {
+    state.currentChannel = null;
+    save();
+  }
+  destroyHls();
+}
+els.tabHome.addEventListener('click', () => {
+  /* el vidrio se para quisamos, reinicio el Home para una animación limpia */
+  setTab('home');
+});
 els.tabAnime.addEventListener('click', () => setTab('anime'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
 els.tabTv.addEventListener('click', () => {
@@ -874,12 +908,15 @@ function homeCard(s) {
       <div class="rel-c">${chip}${pct ? ' · ' + pct + '% visto' : ''}</div>
     </div>`;
   card.addEventListener('click', () => {
+    /* no solo la pintamos, la reproducimos de inmediato */
     setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime');
     selectSeries(s.id);
     if (s.episodes && s.episodes.length) {
       const first = s.episodes.find(e => e.url) || s.episodes[0];
       if (first) loadEpisode(first.n, true);
     }
+    /* scroll del player arriba para hacernos ver */
+    document.querySelector('.stage').scrollTo({ top: 0, behavior: 'smooth' });
   });
   return card;
 }
@@ -973,6 +1010,12 @@ function renderHome() {
     if (last) returning.push({ s, at: last.at });
   }
   returning.sort((a, b) => b.at - a.at);
+  /* 🧠 fila personalizada: recomendaciones vivas (se actualiza con tu historial) */
+  const topTags = userWatchedTags();
+  if (topTags.length) {
+    const recos = porTagsRecientes(topTags);
+    if (recos.length) homeRow('Recomendado para ti', recos);
+  }
   homeRow('Sigue viendo', returning.slice(0, 10).map(x => x.s));
   const nuevas = all.slice().sort((a, b) => (b.importedAt || b.at || 0) - (a.importedAt || a.at || 0));
   homeRow('Novedades recientes', nuevas.slice(0, 12));
