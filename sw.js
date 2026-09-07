@@ -1,5 +1,5 @@
 /* X·STREAM service worker — cachea el app shell para carga instantánea/offline */
-const CACHE = 'xstream-v2';
+const CACHE = 'xstream-v3';
 const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'icon.svg', 'manifest.json'];
 
 self.addEventListener('install', e => {
