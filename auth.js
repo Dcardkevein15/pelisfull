@@ -11,10 +11,15 @@
       IDÉNTICA en cualquier dispositivo, incluso tras desinstalar.
    3) ROLES — 👑 administrador (frase maestra) y 👁 lector.
       El lector ve TODO el catálogo pero no puede editar nada.
-   4) CATÁLOGO COMPARTIDO — el admin publica catalog.json junto
-      a index.html; cada visitante lo descarga al entrar y ve
-      EXACTAMENTE lo mismo. Cero servidores, cero baneos.
-   ═══════════════════════════════════════════════════════════ */
+    4) CATÁLOGO COMPARTIDO — el admin publica catalog.json junto
+       a index.html; cada visitante lo descarga al entrar y ve
+       EXACTAMENTE lo mismo. Cero servidores, cero baneos.
+    5) CATÁLOGO FIRMADO — el admin firma catalog.json con ECDSA
+       P-256 (WebCrypto) al publicar, sin pasos extra. Cada
+       lector valida el ESQUEMA y verifica la FIRMA con la clave
+       pública embebida (CONFIG.catalogPubKey): un archivo
+       adulterado en el hosting se rechaza entero.
+    ═══════════════════════════════════════════════════════════ */
 'use strict';
 (function () {
 
@@ -26,6 +31,12 @@
     cacheName: 'xstream-auth-v1', cacheUrl: './xauth-identity.json',
     cookie: 'xuid', cookieDays: 3650,
     catalogUrl: 'catalog.json',
+    /* 🔐 Clave pública ECDSA P-256 (base64 SPKI) que firma el catálogo.
+       Se genera sola al publicar la 1ª vez; cópiala del Perfil → «Firma del
+       catálogo» y pégala aquí UNA sola vez. Mientras esté vacía, los lectores
+       aceptan el catálogo sin firma (modo legado); con clave, RECHAZAN
+       cualquier catalog.json que no esté firmado por tu clave privada. */
+    catalogPubKey: 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEd8Ro3qWzRh/Tz2Hnj6t31SlTG6CUFcqKA6iphH1MnAIVK3DGSa2GCR5lSy5V6jQLtSGNxTj2qFw3GmWrhL9P1w==',
     ghRepo: 'Dcardkevein15/pelisfull',
     ghBranch: 'main',
     ghTokenKey: 'xstream-gh-token',
@@ -398,6 +409,213 @@
     axToastTimer = setTimeout(() => el.classList.add('hidden'), 3200);
   }
 
+  /* ═══════════ 🔐 FIRMA DEL CATÁLOGO (ECDSA P-256) ═══════════
+     El admin firma catalog.json al publicarlo (transparente: mismo
+     botón de siempre). Los lectores verifican la firma con la clave
+     pública embebida en CONFIG.catalogPubKey. La clave privada NUNCA
+     sale del dispositivo del admin: vive en IndexedDB (no va al repo,
+     ni al catálogo, ni a la red). Aunque alguien logre escribir en el
+     hosting, sin esa clave no puede fabricar un catálogo válido. */
+
+  const bytesToB64 = b => { let s = ''; for (let i = 0; i < b.length; i++) s += String.fromCharCode(b[i]); return btoa(s); };
+  function b64ToBytes(s) {
+    const bin = atob(String(s).replace(/\s+/g, ''));
+    const b = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) b[i] = bin.charCodeAt(i);
+    return b;
+  }
+
+  /* JSON canónico (claves ordenadas en todos los niveles) para que la
+     firma sea idéntica al firmar y al verificar, sin importar el motor */
+  function canonicalJson(v) {
+    if (Array.isArray(v)) return '[' + v.map(canonicalJson).join(',') + ']';
+    if (v && typeof v === 'object') {
+      return '{' + Object.keys(v).sort().map(k => JSON.stringify(k) + ':' + canonicalJson(v[k])).join(',') + '}';
+    }
+    return JSON.stringify(v === undefined ? null : v);
+  }
+
+  /* claves de la pareja de firma en el mismo almacén de la identidad */
+  async function idbGet(key) {
+    try {
+      const db = await idbOpen();
+      return await new Promise(res => {
+        const g = db.transaction(CONFIG.idbStore, 'readonly').objectStore(CONFIG.idbStore).get(key);
+        g.onsuccess = () => res(g.result === undefined ? null : g.result);
+        g.onerror = () => res(null);
+      });
+    } catch (e) { return null; }
+  }
+  async function idbSet(key, val) {
+    try {
+      const db = await idbOpen();
+      await new Promise(res => {
+        const tx = db.transaction(CONFIG.idbStore, 'readwrite');
+        tx.objectStore(CONFIG.idbStore).put(val, key);
+        tx.oncomplete = res; tx.onerror = res;
+      });
+      return true;
+    } catch (e) { return false; }
+  }
+
+  const SIG_IDB_KEY = 'catalog-signing-keys';
+  const sigKeysGet = () => idbGet(SIG_IDB_KEY); /* { jwkPriv, jwkPub, pubB64 } | null */
+
+  async function sigKeysEnsure() {
+    if (!(window.crypto && crypto.subtle && window.isSecureContext !== false)) return null;
+    let rec = await sigKeysGet();
+    if (rec && rec.jwkPriv && rec.jwkPub) return rec;
+    /* la pareja se genera una única vez; se exporta en JWK solo para
+       guardarla en IndexedDB (respaldo/cambio de dispositivo) */
+    const pair = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']);
+    const jwkPriv = await crypto.subtle.exportKey('jwk', pair.privateKey);
+    const jwkPub = await crypto.subtle.exportKey('jwk', pair.publicKey);
+    const pubB64 = bytesToB64(new Uint8Array(await crypto.subtle.exportKey('spki', pair.publicKey)));
+    rec = { jwkPriv, jwkPub, pubB64 };
+    await idbSet(SIG_IDB_KEY, rec);
+    axToast('🔐 Clave de firma creada — vive solo en este dispositivo');
+    return rec;
+  }
+
+  /* firma el payload (sin el campo sig); devuelve base64 o null */
+  async function sigSignPayload(payload) {
+    const rec = await sigKeysGet();
+    if (!rec) return null;
+    const priv = await crypto.subtle.importKey('jwk', rec.jwkPriv, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
+    const sig = await crypto.subtle.sign(
+      { name: 'ECDSA', hash: 'SHA-256' }, priv,
+      new TextEncoder().encode(canonicalJson(payload))
+    );
+    return bytesToB64(new Uint8Array(sig));
+  }
+
+  /* importar una clave privada de respaldo (formato: base64 de JSON {priv,pub}) */
+  async function sigImport(packed) {
+    try {
+      const j = JSON.parse(new TextDecoder().decode(b64ToBytes(packed)));
+      if (!j || !j.priv || !j.pub) return false;
+      const priv = await crypto.subtle.importKey('jwk', j.priv, { name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign']);
+      const pubK = await crypto.subtle.importKey('jwk', j.pub, { name: 'ECDSA', namedCurve: 'P-256' }, true, ['verify']);
+      /* prueba de coherencia: una firma de test debe verificar con la pública */
+      const probe = new TextEncoder().encode('xstream-keycheck');
+      const s = await crypto.subtle.sign({ name: 'ECDSA', hash: 'SHA-256' }, priv, probe);
+      if (!(await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, pubK, s, probe))) return false;
+      const pubB64 = bytesToB64(new Uint8Array(await crypto.subtle.exportKey('spki', pubK)));
+      await idbSet(SIG_IDB_KEY, { jwkPriv: j.priv, jwkPub: j.pub, pubB64 });
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* respaldo portátil de la clave privada (para firmar desde otro dispositivo) */
+  async function sigExportPacked() {
+    const rec = await sigKeysGet();
+    if (!rec) return '';
+    return bytesToB64(new TextEncoder().encode(JSON.stringify({ priv: rec.jwkPriv, pub: rec.jwkPub })));
+  }
+
+  /* verificación en el LECTOR:
+     'ok' firmado por la clave · 'no-key' protección aún no activada (acepta,
+     comportamiento de siempre) · 'unavailable' sin WebCrypto (contexto no
+     seguro: acepta, no bloqueamos) · 'invalid' RECHAZAR siempre */
+  async function verifyCatalog(cat) {
+    const pubB64 = CONFIG.catalogPubKey;
+    if (!pubB64) return 'no-key';
+    if (!(window.crypto && crypto.subtle && window.isSecureContext !== false)) return 'unavailable';
+    if (typeof cat.sig !== 'string' || cat.sig.length < 60 || cat.sig.length > 512) return 'invalid';
+    try {
+      const pub = await crypto.subtle.importKey('spki', b64ToBytes(pubB64), { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+      const unsigned = { ...cat };
+      delete unsigned.sig;
+      const ok = await crypto.subtle.verify(
+        { name: 'ECDSA', hash: 'SHA-256' }, pub,
+        b64ToBytes(cat.sig),
+        new TextEncoder().encode(canonicalJson(unsigned))
+      );
+      return ok ? 'ok' : 'invalid';
+    } catch (e) { return 'invalid'; }
+  }
+
+  /* ═══════════ 🛡 VALIDACIÓN DEL CATÁLOGO ═══════════
+     Antes de tocar el estado local, el catálogo debe ser exactamente
+     lo que la app espera: tipos, tamaños razonables, URLs solo http(s)
+     y cero claves peligrosas (__proto__ y cía). Un archivo raro se
+     descarta entero, nunca se aplica «a medias». */
+  function validateCatalog(cat) {
+    if (!cat || typeof cat !== 'object' || Array.isArray(cat)) return false;
+    if (typeof cat.v !== 'number' || !isFinite(cat.v) || cat.v <= 0) return false;
+    const okUrl = u => typeof u === 'string' && u.length <= 2048 && /^https?:\/\//i.test(u);
+    const okStr = (s, n) => typeof s === 'string' && s.length <= n;
+    const okThumb = u => okUrl(u) ||
+      (typeof u === 'string' && u.length <= 300000 && /^data:image\/(png|jpe?g|webp|gif|avif);base64,[a-z0-9+/=\s]+$/i.test(u));
+    const noBadKeys = o => {
+      for (const k of Object.keys(o)) if (k === '__proto__' || k === 'constructor' || k === 'prototype') return false;
+      return true;
+    };
+
+    const series = cat.series;
+    if (!Array.isArray(series) || !series.length || series.length > 5000) return false;
+    for (const s of series) {
+      if (!s || typeof s !== 'object' || Array.isArray(s) || !noBadKeys(s)) return false;
+      if (!okStr(s.id, 90) || !okStr(s.t, 300)) return false;
+      if (!Array.isArray(s.episodes) || s.episodes.length > 5000) return false;
+      if (s.poster && !okThumb(s.poster)) return false;
+      if (s.tags !== undefined &&
+        (!Array.isArray(s.tags) || s.tags.length > 30 || s.tags.some(t => !okStr(t, 60)))) return false;
+      if (s.seasons !== undefined) {
+        if (!s.seasons || typeof s.seasons !== 'object' || Array.isArray(s.seasons) || !noBadKeys(s.seasons)) return false;
+        for (const k of Object.keys(s.seasons)) {
+          if (!/^\d{1,3}$/.test(k) || !okStr(s.seasons[k], 120)) return false;
+        }
+      }
+      for (const e of s.episodes) {
+        if (!e || typeof e !== 'object' || Array.isArray(e) || !noBadKeys(e)) return false;
+        if (typeof e.n !== 'number' || !isFinite(e.n) || e.n < 0 || e.n > 100000) return false;
+        if (e.t !== undefined && e.t !== null && e.t !== '' && !okStr(e.t, 300)) return false;
+        if (e.url !== undefined && e.url !== '' && e.url !== null && !okUrl(e.url)) return false;
+        if (e.sub !== undefined && e.sub !== '' && !okUrl(e.sub)) return false;
+        if (e.thumb !== undefined && e.thumb !== '' && !okThumb(e.thumb)) return false;
+      }
+    }
+
+    if (cat.channels !== undefined) {
+      if (!Array.isArray(cat.channels) || cat.channels.length > 50000) return false;
+      for (const c of cat.channels) {
+        if (!c || typeof c !== 'object' || Array.isArray(c) || !noBadKeys(c)) return false;
+        if (!okStr(c.id, 160) || !okStr(c.name, 220) || !okUrl(c.url)) return false;
+        if (c.logo && !okUrl(c.logo)) return false;
+        if (c.group && !okStr(c.group, 120)) return false;
+        if (c.epg && !okStr(c.epg, 120)) return false;
+        if (c.cc && !okStr(c.cc, 8)) return false;
+        if (c.quality && !okStr(c.quality, 24)) return false;
+        if (c.src !== undefined && c.src !== '' && !okStr(c.src, 60)) return false;
+      }
+    }
+
+    if (cat.tvSources !== undefined) {
+      const t = cat.tvSources;
+      if (!t || typeof t !== 'object' || Array.isArray(t) || !noBadKeys(t)) return false;
+      for (const k of Object.keys(t)) {
+        if (!okStr(k, 90)) return false;
+        const v = t[k];
+        if (v === '' || v == null) continue;
+        /* forma simple: la URL directamente */
+        if (typeof v === 'string') { if (!okUrl(v)) return false; continue; }
+        /* forma real (app.js:790): { url, name, at } — la url es lo que
+           los lectores descargarán solos: DEBE ser http(s) auténtica      */
+        if (typeof v === 'object' && !Array.isArray(v) && noBadKeys(v)
+          && okUrl(v.url)
+          && (v.name === undefined || okStr(v.name, 120))
+          && (v.at === undefined || (typeof v.at === 'number' && isFinite(v.at)))) continue;
+        return false;
+      }
+    }
+
+    if (cat.by !== undefined && !okStr(cat.by, 120)) return false;
+    if (cat.at !== undefined && !okStr(cat.at, 40)) return false;
+    if (cat.sig !== undefined && (typeof cat.sig !== 'string' || cat.sig.length > 512)) return false;
+    return true;
+  }
+
   /* ═══════════ ROLES ═══════════ */
   const isAdmin = () => !!(ID && ID.admin);
   let unlockFails = 0;
@@ -491,6 +709,7 @@
           <div class="ax-catstatus" id="axCatStatus"></div>
           <div id="axPublishZone"></div>
         </div>
+        <div class="ax-sec" id="axSigZone"></div>
         <div class="modal-actions">
           <button class="btn btn-ghost" id="axClose">Cerrar</button>
         </div>
@@ -606,7 +825,7 @@
           <input id="axAdminPass" type="password" placeholder="Frase maestra" autocomplete="off">
           <button class="btn btn-acid" id="axUnlock">Desbloquear</button>
         </div>
-        <p class="ax-note">Atajo: abre la web con <b>?admin=TU-FRASE</b> al final de la URL.</p>`;
+        <p class="ax-note">Tu sesión de administrador queda guardada en este dispositivo — no hace falta volver a escribirla.</p>`;
       const go = async () => {
         const val = sec.querySelector('#axAdminPass').value;
         if (unlockFails >= 5) { await new Promise(r => setTimeout(r, 4000)); unlockFails = 0; }
@@ -665,6 +884,15 @@
       tvSources: state.tvSources || {},
     };
 
+    /* 🔐 FIRMA ECDSA — invisible: la 1ª vez crea tu clave en este
+       dispositivo y firma; después solo firma. Si no hay cripto
+       disponible (contexto no seguro), publica como siempre.     */
+    try {
+      await sigKeysEnsure();
+      const sig = await sigSignPayload(payload);
+      if (sig) payload.sig = sig;
+    } catch (e) { console.warn('[xstream] publicación sin firma:', e); }
+
     /* ① PUBLICACIÓN AUTOMÁTICA A GITHUB — los lectores lo reciben solos */
     const token = ghToken() || ghAskToken();
     if (token) {
@@ -674,7 +902,10 @@
         state.catalogMeta = { v: payload.v, at: Date.now(), n: payload.n };
         if (API.save) API.save();
         renderCatalogStatus();
-        axToast(`🌐 PUBLICADO para todos: ${payload.n} entradas · los visitantes lo reciben automáticamente`);
+        axToast(`🌐 PUBLICADO para todos: ${payload.n} entradas · los visitantes lo reciben automáticamente`
+          + (payload.sig
+            ? (CONFIG.catalogPubKey ? ' · 🔐 firmado y blindado' : ' · 🔐 firmado — falta pegar tu clave pública en auth.js para activar el blindaje')
+            : ''));
         return;
       } catch (e) {
         axToast('⚠ No se pudo publicar en GitHub: ' + (e.message || e) + '. Revisa tu token.', true);
@@ -772,9 +1003,70 @@
       zone.innerHTML = `<button class="btn btn-acid" id="axPublish">🌐 Publicar mi biblioteca para TODOS</button>
         <p class="ax-note">Genera <b>catalog.json</b> con tus series y películas (sin tus datos personales). Guárdalo junto a <b>index.html</b> y todo visitante lo recibirá automáticamente al abrir la web.</p>`;
       zone.querySelector('#axPublish').addEventListener('click', publishCatalog);
+      renderSigZone(bd).catch(() => { });
     } else {
       zone.innerHTML = '';
+      const sz = bd.querySelector('#axSigZone');
+      if (sz) sz.innerHTML = '';
     }
+  }
+
+  /* ═══ Zona 🔐 firma del catálogo (solo admin): estado, clave pública
+        para activar el blindaje y respaldo de la clave privada ═══ */
+  async function renderSigZone(bd) {
+    const zone = bd.querySelector('#axSigZone');
+    if (!zone || !isAdmin()) return;
+    const rec = await sigKeysGet();
+    if (!rec) {
+      zone.innerHTML = `<div class="ax-sec-t">🔐 Firma del catálogo</div>
+        <p class="ax-note">Pulsa <b>«Publicar»</b> una vez: tu clave de firma se crea sola en este dispositivo y el catálogo sale firmado. Vuelve aquí después.</p>`;
+      return;
+    }
+    const activo = CONFIG.catalogPubKey && CONFIG.catalogPubKey === rec.pubB64;
+    const otra = CONFIG.catalogPubKey && CONFIG.catalogPubKey !== rec.pubB64;
+    zone.innerHTML = `
+      <div class="ax-sec-t">🔐 Firma del catálogo</div>
+      ${activo
+        ? `<p class="ax-note">✅ <b>Blindaje ACTIVO.</b> Todo visitante rechaza cualquier catálogo que no esté firmado con tu clave privada. Aunque alguien escriba en el repo, no puede inyectar nada.</p>`
+        : otra
+          ? `<p class="ax-note">⚠️ La clave pública embebida en <b>auth.js</b> NO es la de este dispositivo. Si cambiaste de PC, importa tu clave privada abajo; si no, copia la pública de aquí y actualiza auth.js.</p>`
+          : `<p class="ax-note">⚠️ <b>Falta un paso (solo una vez):</b> copia tu clave pública, pégala en <b>auth.js</b> → <code>CONFIG.catalogPubKey</code> y sube auth.js. Desde ese momento los lectores rechazan cualquier catálogo que no firmes tú.</p>`}
+      <div class="ax-codebox">
+        <code id="axSigPub">${rec.pubB64}</code>
+        <button class="btn btn-mini" id="axSigPubCopy">Copiar pública</button>
+      </div>
+      <div class="ax-restore">
+        <input id="axSigPrivIn" placeholder="Clave privada de firma (solo para usar otro dispositivo)" spellcheck="false" autocomplete="off">
+        <button class="btn btn-mini" id="axSigPrivImport">Importar</button>
+      </div>
+      <div style="margin-top:6px">
+        <button class="btn btn-mini" id="axSigPrivOut">⤴ Copiar mi clave privada (respaldo / otro dispositivo)</button>
+      </div>`;
+    zone.querySelector('#axSigPubCopy').addEventListener('click', () => {
+      navigator.clipboard.writeText(rec.pubB64)
+        .then(() => axToast('🔑 Clave pública copiada — pégala en auth.js → CONFIG.catalogPubKey'))
+        .catch(() => axToast('No se pudo copiar', true));
+    });
+    zone.querySelector('#axSigPrivOut').addEventListener('click', async () => {
+      const ok = confirm(
+        'La CLAVE PRIVADA es el único secreto que firma tu catálogo.\n' +
+        'Quien la tenga puede publicar como si fuera tú.\n\n' +
+        'Úsala solo para respaldo o para firmar desde otro dispositivo.\n\n¿Copiarla al portapapeles?'
+      );
+      if (!ok) return;
+      const packed = await sigExportPacked();
+      if (!packed) return axToast('No hay clave en este dispositivo', true);
+      navigator.clipboard.writeText(packed)
+        .then(() => axToast('🗝 Clave privada copiada — guárdala en un lugar seguro'))
+        .catch(() => axToast('No se pudo copiar', true));
+    });
+    zone.querySelector('#axSigPrivImport').addEventListener('click', async () => {
+      const v = zone.querySelector('#axSigPrivIn').value.trim();
+      if (!v) return;
+      const ok = await sigImport(v);
+      if (ok) { axToast('🔐 Clave importada — este dispositivo ya publica con tu firma'); renderCatalogStatus(); }
+      else axToast('⚠ Clave inválida o incompleta', true);
+    });
   }
 
   /* aplicar el catálogo publicado (solo lectores; el admin ES la fuente) */
@@ -901,6 +1193,14 @@
       if (!r.ok) return;
       const cat = await r.json();
       if (!cat || typeof cat.v !== 'number' || !Array.isArray(cat.series) || !cat.series.length) return;
+      /* 🔒 Candado 1: esquema — si no tiene EXACTAMENTE la forma esperada,
+         se descarta entero (protege de archivos corruptos o inyectados)  */
+      if (!validateCatalog(cat)) { console.warn('[xstream] catálogo rechazado: estructura inválida'); return; }
+      /* 🔒 Candado 2: firma ECDSA — si la clave pública está activada y la
+         firma no cuadra, alguien modificó el archivo: se ignora          */
+      const firma = await verifyCatalog(cat);
+      if (firma === 'invalid') { console.warn('[xstream] catálogo rechazado: FIRMA INVÁLIDA — el archivo fue alterado'); return; }
+      if (firma === 'no-key') console.info('[xstream] catálogo aceptado sin verificación de firma (blíndalo pegando CONFIG.catalogPubKey en auth.js)');
       const st = API.getState();
       const cur = (st.catalogMeta && st.catalogMeta.v) || 0;
       if (cat.v <= cur) return;            /* ya está aplicada esta versión */
@@ -950,14 +1250,16 @@
       axToast(`♻ Bienvenido de nuevo, ${ID.name} — cuenta recuperada`);
       ID.restored = false; writeAll();
     }
-    /* entrada admin por URL: ?admin=FRASE (se borra de la barra al instante) */
+    /* 🔒 H5: la entrada admin por URL (?admin=FRASE) quedó ELIMINADA — la frase
+       viajaba a logs del hosting, historial del navegador y referers.
+       Ahora solo se desbloquea desde Perfil → zona de administrador.
+       Si alguien llega con ese parámetro, se limpia de la barra SIN usarlo. */
     try {
       const q = new URLSearchParams(location.search);
-      if (q.has('admin') && !isAdmin()) {
-        const pass = q.get('admin');
-        history.replaceState(null, '', location.pathname + (location.hash || ''));
-        const ok = await unlockAdmin(pass);
-        axToast(ok ? '👑 ¡Hola, jefe! Todos los botones son tuyos' : '🔒 Frase incorrecta', !ok);
+      if (q.has('admin')) {
+        q.delete('admin');
+        const rest = q.toString();
+        history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + (location.hash || ''));
       }
     } catch (e) { }
   }

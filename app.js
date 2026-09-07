@@ -100,9 +100,14 @@ function load() {
         state.iptvPacks = Array.isArray(state.iptvPacks) ? state.iptvPacks : null; /* paquetes iptv-org suscritos */
         state.epg = state.epg && typeof state.epg === 'object' && state.epg.map ? state.epg : { url: state.epgUrl || '', map: {}, at: 0 };
         /* migraciones categoría anime vs película (las OVAs son anime) */
-        state.tab = 'home';
-        if (state.tab === 'ovas') state.tab = 'peliculas';
+        state.tab = state.tab || 'anime';
+        if (state.tab === 'ovas') state.tab = 'peliculas'; /* pestaña OVAs retirada: ahora se integran en su serie */
         state.series.forEach(s => { if (typeof s.anime !== 'boolean') s.anime = s.kind !== 'pelicula'; });
+        /* 🔐 HIGIENE: las claves ya no viven en el estado localStorage —
+           si venían de una versión antigua (apikey/stapeKey/stapeLogin),
+           se borran aquí y viajan solo en la bóveda cifrada de auth.js */
+        delete state.apikey; delete state.stapeKey; delete state.stapeLogin;
+        delete state.fbConfig; /* Firebase Sync retirado por diseño */
         return;
       }
     }
@@ -114,7 +119,7 @@ function load() {
   state.lastPlayed = {};
   state.stats = { totalSec: 0, days: {} };
   state.sortMode = 'manual';
-  state.tab = 'home';
+  state.tab = 'anime';
   state.channels = [];
   state.tvSources = {};
   state.iptvPacks = null;
@@ -166,10 +171,8 @@ const els = {
   cineLang: $('cineLang'), cineMinDur: $('cineMinDur'), cineChips: $('cineChips'), cineStatus: $('cineStatus'),
   cineResults: $('cineResults'), closeCine: $('closeCine'),
   sortMode: $('sortMode'), favFilter: $('favFilter'), tagChips: $('tagChips'),
-  exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'), syncBtn: $('syncBtn'),
+  exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'),
   statsBtn: $('statsBtn'), modalStats: $('modalStats'), statsBody: $('statsBody'), closeStats: $('closeStats'),
-  modalSync: $('modalSync'), fbConfig: $('fbConfig'), syncStatus: $('syncStatus'),
-  syncConnect: $('syncConnect'), syncUp: $('syncUp'), syncDown: $('syncDown'), closeSync: $('closeSync'),
   miniPlayer: null, playerAnchor: $('playerAnchor'), miniX: $('miniX'), miniGrip: $('miniGrip'),
   continueRow: $('continueRow'), accentPick: $('accentPick'), accentMini: $('accentMini'),
   searchBox: $('searchBox'), searchToggle: $('searchToggle'),
@@ -419,7 +422,7 @@ function renderBroken() {
     row.className = 'broken-item';
     row.innerHTML = `
       <div class="broken-cover" style="background:${GRADS[(b.grad || 0) % GRADS.length][0]}">
-        ${b.poster ? `<img src="${b.poster}" alt="" loading="lazy">` : '⚠'}
+        ${b.poster ? `<img src="${escapeHtml(b.poster)}" alt="" loading="lazy">` : '⚠'}
       </div>
       <div class="broken-info">
         <div class="broken-t">${escapeHtml(b.serie)}</div>
@@ -549,7 +552,7 @@ function watchedCount(s) {
 
 function coverHtml(s) {
   return s.poster
-    ? `<img src="${s.poster}" alt="" loading="lazy" onerror="this.remove()">`
+    ? `<img src="${escapeHtml(s.poster)}" alt="" loading="lazy" onerror="this.remove()">`
     : escapeHtml(s.jp || s.t.slice(0, 2).toUpperCase());
 }
 
@@ -642,67 +645,16 @@ function syncTabs() {
   }
   if (state.tab !== 'tv') tvCatFilter = null;
 }
-let tvInfantilOnce = false;
 function setTab(tab) {
-  /* al cambiar de pestaña, si veníamos viendo algo (película/anime/canal),
-     lo detcmos — la gente no quiere sonido de fondo al navegar */
-  stopPlaybackIfLeaving(tab);
   state.tab = tab;
   syncTabs();
   save();
   if (tab === 'home') renderHome(); else renderSeries(els.searchInput.value);
-  /* 📺 al entrar a TV en vivo por primera vez: abre infantil y reproduce el primer canal */
-  if (tab === 'tv' && !tvInfantilOnce) {
-    tvInfantilOnce = true;
-    setTimeout(() => {
-      const hayInfantil = (state.channels || []).some(c => (c.group || 'Otros') === 'Infantil');
-      if (hayInfantil) {
-        tvCatFilter = 'Infantil';
-        renderSeries(els.searchInput.value);
-        playFirstOfCategory('Infantil');
-      }
-    }, 350);
-  }
 }
-/* si la pestaña anterior tenía video/canal y no retornaremos ahí, cortarlo */
-function stopPlaybackIfLeaving(newTab) {
-  const eraVideo = ['anime', 'peliculas'].includes(state.tab);
-  const eraTv = state.tab === 'tv';
-  const vaAhome = newTab === 'home';
-  if (!vaAhome) return;
-  if (!eraVideo && !eraTv) return;
-  /* detener el video/canal */
-  try { els.video.pause(); } catch (e) { }
-  if (state.currentChannel) {
-    state.currentChannel = null;
-    save();
-  }
-  destroyHls();
-}
-els.tabHome.addEventListener('click', () => {
-  /* el vidrio se para quisamos, reinicio el Home para una animación limpia */
-  setTab('home');
-});
+els.tabHome.addEventListener('click', () => setTab('home'));
 els.tabAnime.addEventListener('click', () => setTab('anime'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
-els.tabTv.addEventListener('click', () => {
-  setTab('tv');
-  /* 📺 Al entrar a TV, automáticamente selecciona la categoría con más canales
-     infantiles si existe, y reproduce el primer canal de dicha categoría. */
-  setTimeout(() => {
-    const canales = state.channels || [];
-    if (!canales.length) return;
-    /* busco la primera categoría existente (prioridad: Infantil ≫ … ≫ cualquier otra) */
-    const prioridades = ['Infantil', 'General', 'Entretenimiento', 'Noticias'];
-    let primerDe = null;
-    for (const pref of prioridades) {
-      const enIt = canales.find(c => (c.group || 'Otros') === pref);
-      if (enIt) { primerDe = enIt; break; }
-    }
-    if (!primerDe) primerDe = canales[0];
-    if (primerDe) playChannel(primerDe);
-  }, 120);
-});
+els.tabTv.addEventListener('click', () => setTab('tv'));
 
 /* ═══════════════════════════════════════════════════════════
    📡 TV EN VIVO — canales con sincronización inteligente
@@ -902,22 +854,18 @@ function homeCard(s) {
     pct = withWatched ? Math.min(100, Math.round((withWatched / Math.max(1, s.episodes.length)) * 100)) : 0;
   }
   card.innerHTML = `
-    ${s.poster ? `<img class="rel-bg" src="${s.poster}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">${escapeHtml(s.jp || '🎬')}</span>`}
+    ${s.poster ? `<img class="rel-bg" src="${escapeHtml(s.poster)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">${escapeHtml(s.jp || '🎬')}</span>`}
     <div class="rel-body">
       <div class="rel-t">${escapeHtml(s.t)}</div>
       <div class="rel-c">${chip}${pct ? ' · ' + pct + '% visto' : ''}</div>
     </div>`;
-  card.addEventListener('click', ev => {
-    ev.preventDefault(); ev.stopPropagation();
-    /* no solo la pintamos, la reproducimos de inmediato */
+  card.addEventListener('click', () => {
     setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime');
     selectSeries(s.id);
     if (s.episodes && s.episodes.length) {
       const first = s.episodes.find(e => e.url) || s.episodes[0];
       if (first) loadEpisode(first.n, true);
     }
-    /* scroll del player arriba para hacernos ver */
-    document.querySelector('.stage').scrollTo({ top: 0, behavior: 'smooth' });
   });
   return card;
 }
@@ -935,9 +883,9 @@ function homeRow(title, items) {
 function renderHome() {
   if (!els.homeView) return;
   els.homeView.innerHTML = '';
-    const all = state.series.slice();
-    const withPoster = all.filter(s => s.poster);
-    const hero = withPoster.length ? withPoster[0] : all[0];
+  const all = state.series.slice();
+  const withPoster = all.filter(s => s.poster);
+  const hero = withPoster.length ? withPoster[0] : all[0];
 
   /* Si aún no hay ni un solo canal, muestro la sección de TV
      con un aviso discreto y un botón para forzar sincronización;
@@ -947,7 +895,7 @@ function renderHome() {
     const hv = document.createElement('div');
     hv.className = 'home-hero';
     hv.innerHTML = `
-      <div class="h-bg">${hero.poster ? `<img src="${hero.poster}" alt="">` : ''}</div>
+      <div class="h-bg">${hero.poster ? `<img src="${escapeHtml(hero.poster)}" alt="">` : ''}</div>
       <div class="h-shade"></div>
       <div class="h-meta">
         <div class="h-kind">${hero.kind === 'pelicula' ? 'Película destacada' : 'Serie destacada'}</div>
@@ -956,13 +904,7 @@ function renderHome() {
         <button class="btn btn-acid hero-btn">Ver ahora</button>
       </div>`;
     hv.querySelector('.hero-btn').addEventListener('click', () => {
-      /* el botón del héroe abre la serie y entra en su pestaña de contenido */
-      if (hero.kind === 'pelicula') setTab('peliculas'); else setTab('anime');
       selectSeries(hero.id);
-      if (hero.episodes && hero.episodes.length) {
-        const first = hero.episodes.find(e => e.url) || hero.episodes[0];
-        if (first) loadEpisode(first.n, true);
-      }
     });
     els.homeView.appendChild(hv);
   }
@@ -1011,12 +953,6 @@ function renderHome() {
     if (last) returning.push({ s, at: last.at });
   }
   returning.sort((a, b) => b.at - a.at);
-  /* 🧠 fila personalizada: recomendaciones vivas (se actualiza con tu historial) */
-  const topTags = userWatchedTags();
-  if (topTags.length) {
-    const recos = porTagsRecientes(topTags);
-    if (recos.length) homeRow('Recomendado para ti', recos);
-  }
   homeRow('Sigue viendo', returning.slice(0, 10).map(x => x.s));
   const nuevas = all.slice().sort((a, b) => (b.importedAt || b.at || 0) - (a.importedAt || a.at || 0));
   homeRow('Novedades recientes', nuevas.slice(0, 12));
@@ -2012,8 +1948,8 @@ async function pumpThumbs() {
     if (epSourceClass(job.ep.url) === 'src-stape') {
       const st = parseStape(job.ep.url);
       if (st) {
-        /* vía 1: API oficial (si hay clave guardada) */
-        if (state.stapeKey) {
+        /* vía 1: API oficial (si hay clave en la bóveda cifrada) */
+        if (vget('stKey')) {
           try { data = await stapeApi('file/getsplash', { file: st.id }); } catch (e) { data = null; }
         }
         /* vía 2 (sin clave): leer el og:image de la página del embed vía proxy CORS.
@@ -2169,7 +2105,7 @@ function renderEpisodes() {
       cell.className = 'ep movie-rel has-url' + (img ? '' : ' fallback') + (m.id === s.id ? ' playing' : '');
       const chipTxt = isOvaEntry(m) ? '🎌 OVA' : (m.anime ? '🎬 ANIME' : '🎬 PELÍCULA');
       cell.innerHTML = `
-        ${img ? `<img class="rel-bg" src="${img}" alt="" loading="lazy">` : `<span class="rel-emoji">${isOvaEntry(m) ? '🎌' : '🎬'}</span>`}
+        ${img ? `<img class="rel-bg" src="${escapeHtml(img)}" alt="" loading="lazy">` : `<span class="rel-emoji">${isOvaEntry(m) ? '🎌' : '🎬'}</span>`}
         <div class="rel-body">
           <div class="rel-t">${escapeHtml(m.t)}</div>
           <div class="rel-c">${chipTxt}</div>
@@ -2284,7 +2220,7 @@ function renderEpisodes() {
     const q = epQuality(ep);
     const resume = pr && !pr.done && pr.t > 20
       ? `<span class="ep-resume" title="Continuar donde lo dejaste">▶ ${fmt(pr.t)}</span>` : '';
-    cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${thumbSrc}" alt="" loading="lazy" onerror="this.remove()">` : '')
+    cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
       + `<span class="ep-src" title="${srcIcon.t}">${srcIcon.g}</span>`
       + `<span class="num">${ep.n}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
       + resume
@@ -2877,6 +2813,8 @@ function copyShareLink() {
 }
 
 els.copyShareUrl.addEventListener('click', copyShareLink);
+/* el input del enlace compartido se auto-selecciona al tocarlo (sin inline handlers: CSP) */
+els.shareUrl.addEventListener('click', () => els.shareUrl.select());
 els.closeShare.addEventListener('click', () => els.modalShare.classList.add('hidden'));
 els.modalShare.addEventListener('click', ev => { if (ev.target === els.modalShare) els.modalShare.classList.add('hidden'); });
 els.shareBtn.addEventListener('click', () => {
@@ -3256,7 +3194,10 @@ async function collectDriveDeep(folderId, key, depth = 0, seen = new Set()) {
    cada video suelto = PELÍCULA. La reproducción usa el embed oficial
    (streamtape.com/e/ID) dentro del iframe del reproductor.              */
 const STAPE_BASE = 'https://api.streamtape.com';
-const STAPE_LOGIN_DEFAULT = '144642b260f55c49be41';
+/* 🔐 El login/key de Streamtape ya NO viven en el código: se guardan en la
+   bóveda cifrada de auth.js (Perfil → 🔐 Bóveda de claves). En memoria se
+   leen con vget(). Antes había un login "de fábrica" escrito aquí — se retiró. */
+const vget = k => (window.XAUTH && XAUTH.vaultGet ? (XAUTH.vaultGet(k) || '') : '');
 const STAPE_LINK_RE = /streamtape\.(?:com|to)\/([ev])\/([\w-]+)(?:\/([^?#]+))?/i;
 const stapeEmbedUrl = id => `https://streamtape.com/e/${id}`;
 
@@ -3272,8 +3213,9 @@ function parseStape(url) {
 /* cliente de la API oficial: JSON {status, msg, result}
    — si el navegador bloquea por CORS, cae a los proxies CORS de la app */
 async function stapeApi(endpoint, params = {}) {
-  const login = (state.stapeLogin || STAPE_LOGIN_DEFAULT).trim();
-  const key = (state.stapeKey || els.stKey.value || '').trim();
+  /* credenciales: primero lo escrito a mano en el modal; si no, la bóveda cifrada */
+  const login = (els.stLogin.value.trim() || vget('stLogin')).trim();
+  const key = (els.stKey.value.trim() || vget('stKey')).trim();
   if (!key) throw new Error('Falta tu API Key de Streamtape.\nLa encuentras en streamtape.com → Panel → Account Settings.');
   const qs = new URLSearchParams({ login, key, ...params });
   const url = `${STAPE_BASE}/${endpoint}?${qs}`;
@@ -3282,8 +3224,11 @@ async function stapeApi(endpoint, params = {}) {
     const r = await fetch(url);
     data = await r.json();
   } catch (e) {
-    const txt = await fetchTextViaProxies(url); // respaldo: proxies CORS (ya desenvuelven la respuesta)
-    data = JSON.parse(txt);
+    /* 🔒 H1: JAMÁS pasar esta URL por los proxies CORS de terceros —
+       lleva login+key en el query y allorigins/codetabs/cors.lol las
+       verían en sus logs. Si no hay conexión directa, falla en claro. */
+    throw new Error('Sin conexión directa con api.streamtape.com (red o CORS). ' +
+      'No se reintentó por proxies para proteger tus credenciales. Reintenta en unos segundos.');
   }
   if (!data || typeof data.status === 'undefined') throw new Error('Streamtape no respondió JSON válido');
   if (data.status !== 200) throw new Error(`Streamtape (${data.status}): ${data.msg || 'error'}`);
@@ -3313,20 +3258,19 @@ async function collectStapeDeep(folderId, depth = 0, seen = new Set(), budget = 
 /* ☁ un clic → verifica la cuenta, escanea todas las carpetas y crea todo */
 async function importStreamtapeAll() {
   if (!needAdmin()) return;
-  const login = els.stLogin.value.trim() || STAPE_LOGIN_DEFAULT;
-  const key = els.stKey.value.trim();
-  if (!key) {
-    setDriveStatus('⚠ Pega tu API Key de Streamtape.\nEstá en streamtape.com → Panel → Account Settings.', 'err');
+  const login = els.stLogin.value.trim() || vget('stLogin');
+  const key = els.stKey.value.trim() || vget('stKey');
+  if (!login || !key) {
+    setDriveStatus('⚠ Faltan tus credenciales de Streamtape.\nAñádelas UNA vez en tu Perfil → 🔐 Bóveda de claves, o pégalas aquí (Login + API Key).', 'err');
     els.stKey.focus();
     return;
   }
-  state.stapeLogin = login;
-  state.stapeKey = key;
   els.stImportBtn.disabled = true;
+  /* si la bóveda está abierta, las usadas quedan guardadas ahí (cifradas) */
+  if (window.XAUTH && XAUTH.vaultOpen && XAUTH.vaultOpen()) XAUTH.vaultSet({ stLogin: login, stKey: key });
   try {
     setDriveStatus('☁ Conectando con tu cuenta de Streamtape…');
     const info = await stapeApi('account/info');
-    save(); // login+key ya válidos → se guardan
     setDriveStatus(`✔ Cuenta: ${info.email || login}\n📂 Explorando todas tus carpetas…`, 'ok');
 
     const budget = { n: 0 };
@@ -3441,7 +3385,8 @@ function importSingleFile(videoUrl, name, tag) {
 function setDriveStatus(msg, kind = '') {
   els.driveStatus.classList.remove('hidden', 'ok', 'err');
   if (kind) els.driveStatus.classList.add(kind);
-  els.driveStatus.innerHTML = msg;
+  /* el texto puede venir de APIs remotas (Streamtape/proxies): se escapa SIEMPRE; los saltos de línea se pintan como <br> */
+  els.driveStatus.innerHTML = escapeHtml(msg).replace(/\n/g, '<br>');
 }
 
 /* ¿El nombre del archivo parece un capítulo numerado de serie? */
@@ -3557,7 +3502,8 @@ async function importFromUrl() {
     if (link.type === 'drive-file') {
       setDriveStatus('🔍 Leyendo el archivo de Drive…');
       const name = await getDriveFileName(link.id, key);
-      if (key) { state.apikey = key; save(); }
+      /* la clave ya no se guarda en el estado: va a la bóveda cifrada si está abierta */
+      if (key && window.XAUTH && XAUTH.vaultOpen && XAUTH.vaultOpen()) XAUTH.vaultSet({ driveKey: key });
       importSingleFile(`https://drive.google.com/file/d/${link.id}/view`, name, 'Google Drive · Archivo');
       els.modalDrive.classList.add('hidden');
       return;
@@ -3581,7 +3527,7 @@ async function importFromUrl() {
 
     /* ── Carpeta de Drive (con subcarpetas recursivas) ── */
     setDriveStatus('🔍 Leyendo la carpeta de Google Drive…');
-    if (key) { state.apikey = key; save(); }
+    if (key && window.XAUTH && XAUTH.vaultOpen && XAUTH.vaultOpen()) XAUTH.vaultSet({ driveKey: key });
     const groups = await collectDriveDeep(link.id, key);
 
     let firstId = null, nSeries = 0, nMovies = 0, nEmpty = 0;
@@ -3641,9 +3587,10 @@ els.driveFolderUrl.addEventListener('input', () => {
 
 els.driveFolderBtn.addEventListener('click', () => {
   els.modalDrive.classList.remove('hidden');
-  els.driveApiKey.value = state.apikey || '';
-  els.stLogin.value = state.stapeLogin || STAPE_LOGIN_DEFAULT; // login de tu cuenta
-  els.stKey.value = state.stapeKey || '';
+  /* credenciales desde la bóveda cifrada (si está abierta esta sesión) */
+  els.driveApiKey.value = vget('driveKey');
+  els.stLogin.value = vget('stLogin');
+  els.stKey.value = vget('stKey');
   setTimeout(() => els.driveFolderUrl.focus(), 60);
 });
 els.cancelDrive.addEventListener('click', () => els.modalDrive.classList.add('hidden'));
@@ -4007,7 +3954,7 @@ function renderContinue() {
     const card = document.createElement('button');
     card.className = 'cont-card';
     card.innerHTML = `
-      <span class="cont-cover" style="background:${grad(s)}">${s.poster ? `<img src="${s.poster}" alt="" loading="lazy">` : escapeHtml(s.jp || s.t.slice(0, 2).toUpperCase())}</span>
+      <span class="cont-cover" style="background:${grad(s)}">${s.poster ? `<img src="${escapeHtml(s.poster)}" alt="" loading="lazy">` : escapeHtml(s.jp || s.t.slice(0, 2).toUpperCase())}</span>
       <span class="cont-meta">
         <div class="cont-t">${escapeHtml(s.t)}</div>
         <div class="cont-p">${s.kind === 'pelicula' ? '🎬' : `E${best.ep}`} · ${fmt(best.t)}</div>
@@ -4360,7 +4307,7 @@ async function processPosterQueue() {
         save();
         /* insertar SIN borrar el corazón de favoritos */
         const el = els.seriesList.querySelector(`[data-sid="${s.id}"] .s-cover`);
-        if (el) el.insertAdjacentHTML('afterbegin', `<img src="${p}" alt="" loading="lazy" onerror="this.remove()">`);
+        if (el) el.insertAdjacentHTML('afterbegin', `<img src="${escapeHtml(p)}" alt="" loading="lazy" onerror="this.remove()">`);
       }
     } catch (e) { /* sin red: next */ }
     await new Promise(r => setTimeout(r, 450)); // respeta rate limit
@@ -4410,19 +4357,7 @@ els.castBtn.addEventListener('click', () => {
   } catch (e) { toast('Cast no disponible aún', true); }
 });
 
-/* ── Sync en la nube (Firebase del ecosistema) ── */
-const FB_DEFAULT = {
-  projectId: 'studio-4796645076-6f375',
-  appId: '1:294212274372:web:57e201d54dc62a72152191',
-  apiKey: 'AIzaSyB3UPA2BTY-BT6YripgFmf5VX_BT9XIwGo',
-  authDomain: 'studio-4796645076-6f375.firebaseapp.com',
-  messagingSenderId: '294212274372',
-};
-let fbDb = null, fbUid = null;
-function setSyncStatus(msg, kind = '') {
-  els.syncStatus.textContent = msg;
-  els.syncStatus.className = 'sync-status' + (kind ? ' ' + kind : '');
-}
+/* ── Cargador dinámico de scripts (hls.js) ── */
 function loadScript(src) {
   return new Promise((res, rej) => {
     const s = document.createElement('script');
@@ -4430,55 +4365,9 @@ function loadScript(src) {
     document.head.appendChild(s);
   });
 }
-async function connectFirebase() {
-  setSyncStatus('Cargando Firebase…');
-  if (!window.firebase) {
-    await loadScript('https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js');
-    await loadScript('https://www.gstatic.com/firebasejs/10.12.4/firebase-auth-compat.js');
-    await loadScript('https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js');
-  }
-  const cfg = Object.assign({}, FB_DEFAULT, JSON.parse(els.fbConfig.value || '{}'));
-  state.fbConfig = cfg; save();
-  if (!firebase.apps.length) firebase.initializeApp(cfg);
-  setSyncStatus('Autenticando…');
-  await firebase.auth().signInAnonymously();
-  fbUid = firebase.auth().currentUser.uid;
-  fbDb = firebase.firestore();
-  setSyncStatus(`✔ Conectado (anónimo · uid ${fbUid.slice(0, 8)}…) — usa ⬆ / ⬇`, 'ok');
-}
-els.syncBtn.addEventListener('click', () => {
-  els.fbConfig.value = JSON.stringify(state.fbConfig || FB_DEFAULT, null, 2);
-  setSyncStatus(fbDb ? '✔ Conectado' : 'Sin conectar — pulsa Conectar', fbDb ? 'ok' : '');
-  els.modalSync.classList.remove('hidden');
-});
-els.closeSync.addEventListener('click', () => els.modalSync.classList.add('hidden'));
-els.modalSync.addEventListener('click', ev => { if (ev.target === els.modalSync) els.modalSync.classList.add('hidden'); });
-els.syncConnect.addEventListener('click', () => {
-  connectFirebase().catch(e => setSyncStatus('⚠ ' + (e.message || e), 'err'));
-});
-els.syncUp.addEventListener('click', async () => {
-  try {
-    if (!fbDb) await connectFirebase();
-    setSyncStatus('Subiendo…');
-    await fbDb.collection('xstream_sync').doc(fbUid).set({ state: JSON.stringify(state), updatedAt: Date.now() });
-    setSyncStatus('✔ Subido a la nube ' + new Date().toLocaleTimeString(), 'ok');
-    toast('☁ Biblioteca subida');
-  } catch (e) { setSyncStatus('⚠ ' + (e.message || e), 'err'); }
-});
-els.syncDown.addEventListener('click', async () => {
-  try {
-    if (!fbDb) await connectFirebase();
-    setSyncStatus('Descargando…');
-    const doc = await fbDb.collection('xstream_sync').doc(fbUid).get();
-    if (!doc.exists) return setSyncStatus('⚠ No hay nada subido aún', 'err');
-    const remote = JSON.parse(doc.data().state);
-    if (!remote.series) throw new Error('datos inválidos');
-    if (!confirm(`La nube tiene ${remote.series.length} entradas (guardado: ${new Date(doc.data().updatedAt).toLocaleString()}).\n\n¿Reemplazar tu biblioteca local?`)) return;
-    state = remote;
-    save();
-    location.reload();
-  } catch (e) { setSyncStatus('⚠ ' + (e.message || e), 'err'); }
-});
+
+/* 🔥 Firebase Sync ELIMINADO por diseño: cero dependencias externas.
+   La nube del proyecto es GitHub + catalog.json cifrado (ver auth.js). */
 
 /* ── PWA: service worker (solo con hosting HTTPS) ── */
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
