@@ -3246,20 +3246,31 @@ async function stapeApi(endpoint, params = {}) {
   return data.result;
 }
 
-/* escaneo recursivo de carpetas (raíz incluida, máx 3 niveles, tope 800 videos) */
-async function collectStapeDeep(folderId, depth = 0, seen = new Set(), budget = { n: 0 }) {
+/* escaneo recursivo de carpetas (raíz incluida, máx 6 niveles, tope 4000 videos).
+   ROBUSTO: si UNA carpeta falla (red, permisos, borrada), se anota y se sigue
+   con las demás — antes un solo fallo abortaba TODO el escaneo y no se
+   importaba nada nuevo (de ahí lo de "la temporada 2 no aparece"). */
+async function collectStapeDeep(folderId, depth = 0, seen = new Set(), budget = { n: 0 }, skip = { deep: [], dead: [], full: false }) {
   const seenKey = folderId || '__root__';
-  if (seen.has(seenKey) || depth > 3 || budget.n >= 800) return [];
+  if (seen.has(seenKey)) return [];
   seen.add(seenKey);
-  const result = await stapeApi('file/listfolder', folderId ? { folder: folderId } : {});
+  let result;
+  try {
+    result = await stapeApi('file/listfolder', folderId ? { folder: folderId } : {});
+  } catch (e) {
+    skip.dead.push(folderId || '(raíz)');
+    return [];
+  }
   const files = (result.files || [])
     .filter(f => VIDEO_EXT.test(f.name || '') && f.linkid)
     .map(f => ({ name: f.name, key: f.linkid, url: stapeEmbedUrl(f.linkid) }));
   budget.n += files.length;
   const groups = [{ name: null, files, folderId: folderId || 'root' }];
   for (const sub of result.folders || []) {
+    if (depth + 1 > 6) { skip.deep.push(sub.name || sub.id); continue; }
+    if (budget.n >= 4000) { skip.full = true; break; }
     setDriveStatus(`🔍 Streamtape · carpeta: «${sub.name}»…`);
-    const subGroups = await collectStapeDeep(sub.id, depth + 1, seen, budget);
+    const subGroups = await collectStapeDeep(sub.id, depth + 1, seen, budget, skip);
     if (subGroups.length && subGroups[0].folderId === sub.id) subGroups[0].name = sub.name;
     groups.push(...subGroups);
   }
@@ -3286,10 +3297,20 @@ async function importStreamtapeAll() {
     setDriveStatus(`✔ Cuenta: ${info.email || login}\n📂 Explorando todas tus carpetas…\n🔐 Credenciales guardadas en este dispositivo`, 'ok');
 
     const budget = { n: 0 };
-    const groups = await collectStapeDeep('', 0, new Set(), budget);
+    const skip = { deep: [], dead: [], full: false };
+    const groups = await collectStapeDeep('', 0, new Set(), budget, skip);
     if (!groups.some(g => g.files.length)) {
-      throw new Error('No encontré videos en tu cuenta\n(o están a más de 3 niveles de profundidad).');
+      throw new Error(skip.dead.includes('(raíz)')
+        ? 'No pude leer tu cuenta de Streamtape — revisa que el Login y la API Key sean correctos.'
+        : 'No encontré videos en tu cuenta\n(o están a más de 6 niveles de profundidad).');
     }
+    /* diagnóstico claro de lo COMPLETO que fue el escaneo (visita consola F12) */
+    console.info('[Streamtape] carpetas leídas:',
+      groups.map(g => `${g.name || '(raíz)'} → ${g.files.length} videos`));
+    const avisos = [];
+    if (skip.dead.length) avisos.push(`⚠ ${skip.dead.length} carpeta(s) no respondieron y se saltaron: ${skip.dead.slice(0, 4).join(', ')}${skip.dead.length > 4 ? '…' : ''}`);
+    if (skip.deep.length) avisos.push(`⚠ ${skip.deep.length} carpeta(s) están a más de 6 niveles y no se leyeron: ${skip.deep.slice(0, 4).join(', ')}${skip.deep.length > 4 ? '…' : ''}`);
+    if (skip.full) avisos.push('⚠ Se llegó al tope de 4000 videos — el resto no entró');
 
     let nSeries = 0, nMovies = 0, nFolders = 0, firstId = null;
     const keepIds = new Set(); // todo lo que SÍ existe ahora en tu cuenta
@@ -3308,7 +3329,7 @@ async function importStreamtapeAll() {
     /* 🔁 Sincronización real: lo que YA NO existe en tu cuenta de Streamtape
        también desaparece de la app (series y películas importadas por la API).
        Los enlaces pegados a mano o de Drive/Mega nunca se tocan.           */
-    const scanCompleto = budget.n < 800; // si el escaneo se cortó por el tope, no se poda nada
+    const scanCompleto = !skip.full && budget.n < 4000; // solo se poda si el escaneo fue 100% completo
     const podados = scanCompleto
       ? state.series.filter(s => /^(imp|mp)-stape-/.test(s.id) && !keepIds.has(s.id))
       : [];
@@ -3334,7 +3355,13 @@ async function importStreamtapeAll() {
     syncBrokenBtn();
     syncOvasToSeries(); // las OVAs importadas que tengan serie → se integran solas
 
-    els.modalDrive.classList.add('hidden');
+    /* si hubo carpetas saltadas, NO cerramos el modal: el aviso queda
+       a la vista para que sepas exactamente qué faltó y por qué      */
+    if (avisos.length) {
+      setDriveStatus('✅ Importado lo legible, pero ojo:\n' + avisos.join('\n'), 'err');
+    } else {
+      els.modalDrive.classList.add('hidden');
+    }
     const parts = [];
     if (nSeries) parts.push(`${nSeries} serie${nSeries > 1 ? 's' : ''}`);
     if (nMovies) parts.push(`${nMovies} película${nMovies > 1 ? 's' : ''}`);
