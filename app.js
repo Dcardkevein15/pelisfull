@@ -3312,17 +3312,35 @@ async function importStreamtapeAll() {
     if (skip.deep.length) avisos.push(`⚠ ${skip.deep.length} carpeta(s) están a más de 6 niveles y no se leyeron: ${skip.deep.slice(0, 4).join(', ')}${skip.deep.length > 4 ? '…' : ''}`);
     if (skip.full) avisos.push('⚠ Se llegó al tope de 4000 videos — el resto no entró');
 
-    let nSeries = 0, nMovies = 0, nFolders = 0, firstId = null;
+    let nSeries = 0, nMovies = 0, nFolders = 0, firstId = null, nAbsorb = 0;
     const keepIds = new Set(); // todo lo que SÍ existe ahora en tu cuenta
     for (const g of groups) {
       if (!g.files.length) continue;
-      nFolders++;
       /* la raíz (sin nombre de carpeta) se trata como películas sueltas;
          una carpeta con nombre se auto-detecta: serie si sus archivos lo parecen.
          Las subcarpetas (temporadas) nacen como entrada propia; TÚ las unes
          a mano con arrastrar/soltar cuando quieras (mergeSeason intacto).   */
       const { items } = buildImportedItems(g.name, g.files, g.name ? 'auto' : 'peliculas');
-      const r = addImportedItems(items, 'stape-' + g.folderId, 'Streamtape', 3);
+
+      /* 🧠 ¿esta carpeta YA la uniste a otra serie a mano? → no resucitar:
+         los videos nuevos entran directos a su temporada en la serie madre */
+      const serieId = (items.length === 1 && items[0].kind === 'serie') ? `imp-stape-${g.folderId}` : null;
+      if (serieId) {
+        const madre = findMergeTargetBySrc(serieId);
+        if (madre) {
+          const nuevos = appendMergedSeason(madre, serieId, g.files);
+          if (nuevos) toast(`🧷 «${madre.t}»: +${nuevos} video${nuevos > 1 ? 's' : ''} entró a su temporada (sin duplicar entrada)`);
+          nAbsorb++;
+          continue;
+        }
+      }
+      /* películas sueltas ya unidas a mano a otra serie: tampoco resucitan */
+      const itemsVivos = items.filter(it => it.kind !== 'pelicula'
+        || !findMergeTargetBySrc(importedIdFor(it, 'stape-' + g.folderId)));
+      if (!itemsVivos.length) { nAbsorb++; continue; }
+
+      nFolders++;
+      const r = addImportedItems(itemsVivos, 'stape-' + g.folderId, 'Streamtape', 3);
       r.ids.forEach(id => keepIds.add(id));
       if (!firstId) firstId = r.firstId;
       nSeries += r.nSeries; nMovies += r.nMovies;
@@ -3367,6 +3385,7 @@ async function importStreamtapeAll() {
     const parts = [];
     if (nSeries) parts.push(`${nSeries} serie${nSeries > 1 ? 's' : ''}`);
     if (nMovies) parts.push(`${nMovies} película${nMovies > 1 ? 's' : ''}`);
+    if (nAbsorb) parts.push(`🧷 ${nAbsorb} carpeta${nAbsorb > 1 ? 's' : ''} ya unida${nAbsorb > 1 ? 's' : ''} a mano se actualizó en su serie`);
     if (podados.length) parts.push(`🧹 ${podados.length} retirado${podados.length > 1 ? 's' : ''} (ya borrados en Streamtape)`);
     if (!scanCompleto) parts.push('⚠ escaneo parcial: no se retiró nada');
     toast(`☁ Streamtape: ${parts.join(' + ') || 'todo al día ✓'} · ${nFolders} carpeta${nFolders !== 1 ? 's' : ''}`);
@@ -3517,6 +3536,38 @@ function mergeStapeEpisodes(s, newEps) {
       have.add(k);
       added++;
     }
+  }
+  return added;
+}
+
+/* ══ 🧠 MEMORIA DEL MERGE MANUAL ══
+   Cuando arrastras una carpeta importada ("imp-stape-<folderId>") dentro de
+   otra serie, sus capítulos quedan con srcSeason = ese id. Por eso, aunque
+   la entrada suelta se borre, la app RECUERDA dónde vive esa carpeta:
+   al sincronizar, los videos NUEVOS entran directos en su temporada y la
+   entrada suelta NUNCA resucita en la columna.                              */
+function findMergeTargetBySrc(srcId) {
+  return state.series.find(x => x.id !== srcId && x.episodes &&
+    x.episodes.some(e => e.srcSeason === srcId)) || null;
+}
+
+/* añade a la serie madre (en la temporada que ya existe) solo los videos
+   que no estén ya presentes (huella = linkid). Devuelve cuántos entraron. */
+function appendMergedSeason(target, srcId, files) {
+  const se = (target.episodes.find(e => e.srcSeason === srcId) || {}).season || 1;
+  const have = new Set(target.episodes.map(e => stapeFileKey(e.url)).filter(Boolean));
+  let next = target.episodes.reduce((m, e) => Math.max(m, e.n || 0), 0);
+  let added = 0;
+  const orden = files.slice().sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+  for (const f of orden) {
+    if (have.has(f.key)) continue;
+    target.episodes.push({
+      n: ++next,
+      t: cleanEpTitle(f.name, `Capítulo ${next}`).slice(0, 60),
+      url: f.url, season: se, srcSeason: srcId,
+    });
+    have.add(f.key);
+    added++;
   }
   return added;
 }
