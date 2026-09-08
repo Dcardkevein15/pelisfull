@@ -1675,3 +1675,12 @@ body.admin-on .admin-only{display:revert!important}
   .hm-strip{grid-auto-columns:minmax(230px,82%)}
 }
 @media (max-width:480px){.hm-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* En móvil (≤900px) el menú de Inicio colapsado va HORIZONTAL,
+   tal cual la fila de pestañas de la versión de computadora */
+@media (max-width:900px){
+  .tab-home .sidebar{width:100%;min-width:0;height:auto}
+  .tab-home .side-tabs{flex-direction:row;align-items:stretch;padding:0 8px}
+  .tab-home .side-tab{flex:1 1 0;padding:12px 2px}
+  .tab-home .gear-btn{margin:0}
+}
