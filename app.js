@@ -3493,6 +3493,32 @@ function importedIdFor(it, srcId) {
     : `mp-${srcId}-${(it.fileKey || it.t).replace(/[^\w]+/g, '-').slice(0, 40)}`;
 }
 
+/* 🔑 identidad de un video de Streamtape: su linkid — estable entre escaneos
+   aunque cambie el nombre del archivo o su posición en la carpeta          */
+function stapeFileKey(url) {
+  const m = String(url || '').match(/streamtape\.(?:com|to)\/e\/([\w-]+)/i);
+  return m ? m[1] : null;
+}
+
+/* 🧷 FUSIÓN SUAVE para series YA existentes: los capítulos que ya están
+   NO se tocan (conservan su número, título, notas, vistos y miniaturas);
+   solo se AÑADEN al final los videos nuevos de la cuenta, numerados a
+   continuación. Nada se duplica: el linkid es la huella de cada video. */
+function mergeStapeEpisodes(s, newEps) {
+  const have = new Set((s.episodes || []).map(e => stapeFileKey(e.url)).filter(Boolean));
+  let next = (s.episodes || []).reduce((m, e) => Math.max(m, typeof e.n === 'number' ? e.n : 0), 0) + 1;
+  let added = 0;
+  for (const e of newEps) {
+    const k = stapeFileKey(e.url);
+    if (k && !have.has(k)) {
+      s.episodes.push({ n: next++, t: e.t, url: e.url });
+      have.add(k);
+      added++;
+    }
+  }
+  return added;
+}
+
 /* inserta los items (o actualiza si ya existen) y LIMPIA el tipo contrario
    de la misma carpeta: si ahora es serie, borra las películas sueltas que
    se hubieran importado antes por error, y viceversa. */
@@ -3509,8 +3535,12 @@ function addImportedItems(items, srcId, srcTag, g) {
     ids.push(id);
     let s = getSeries(id);
     if (s) {
-      s.t = it.t; s.episodes = it.episodes; s.tag = srcTag; s.kind = it.kind;
+      s.t = it.t; s.tag = srcTag; s.kind = it.kind;
       if (!s.poster && it.poster) s.poster = it.poster; // miniatura nueva si no tenía
+      /* 🧷 serie ya existente → FUSIÓN: solo entran videos nuevos;
+         lo demás (películas sueltas, que son entradas de 1 solo video) se refresca */
+      if (it.kind === 'serie' && /^imp-stape-/.test(id)) mergeStapeEpisodes(s, it.episodes);
+      else s.episodes = it.episodes;
     } else {
       s = { id, t: it.t, jp: it.kind === 'pelicula' ? '🎬' : '📁', tag: srcTag, g, kind: it.kind, episodes: it.episodes, poster: it.poster || null };
       state.series.push(s);
