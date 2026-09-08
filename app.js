@@ -1,4 +1,4 @@
-/* ═══════════════════════════════════════════════════════════
+﻿/* ═══════════════════════════════════════════════════════════
    X·STREAM — Reproductor instantáneo de anime por enlaces directos
    Vanilla JS · localStorage · sin backend
    ═══════════════════════════════════════════════════════════ */
@@ -105,7 +105,7 @@ function load() {
         state.series.forEach(s => { if (typeof s.anime !== 'boolean') s.anime = s.kind !== 'pelicula'; });
         /* 🔐 HIGIENE: las claves ya no viven en el estado localStorage —
            si venían de una versión antigua (apikey/stapeKey/stapeLogin),
-           se borran aquí y viajan solo en la bóveda cifrada de auth.js */
+           se borran aquí y viajan solo a la bóveda local de auth.js (este dispositivo) */
         delete state.apikey; delete state.stapeKey; delete state.stapeLogin;
         delete state.fbConfig; /* Firebase Sync retirado por diseño */
         return;
@@ -518,10 +518,14 @@ function toast(msg, err = false) {
    El administrador edita; el lector solo mira.
    FAIL-CLOSED: si auth.js no cargó o no ha arrancado, nadie es admin.
    (Antes devolvía "true" si faltaba XAUTH — eso dejaba la web abierta.) */
-const canAdmin = () => !!(window.XAUTH && window.XAUTH.ready && window.XAUTH.isAdmin());
+/* puerta editorial: pasa el EQUIPO (👑 admin o 🛡 moderador).
+   Lo que es SOLO del admin (publicar el catálogo firmado, tokens,
+   crear pases) vive dentro de auth.js y sigue exigiendo isAdmin(). */
+const canAdmin = () => !!(window.XAUTH && window.XAUTH.ready &&
+  (window.XAUTH.isAdmin() || (window.XAUTH.isStaff && window.XAUTH.isStaff())));
 function needAdmin() {
   if (canAdmin()) return true;
-  toast('🔒 Solo el administrador puede hacer eso', true);
+  toast('🔒 Solo el equipo (admin/moderador) puede hacer eso', true);
   return false;
 }
 
@@ -1948,7 +1952,7 @@ async function pumpThumbs() {
     if (epSourceClass(job.ep.url) === 'src-stape') {
       const st = parseStape(job.ep.url);
       if (st) {
-        /* vía 1: API oficial (si hay clave en la bóveda cifrada) */
+        /* vía 1: API oficial (si hay clave en la bóveda local) */
         if (vget('stKey')) {
           try { data = await stapeApi('file/getsplash', { file: st.id }); } catch (e) { data = null; }
         }
@@ -3194,9 +3198,9 @@ async function collectDriveDeep(folderId, key, depth = 0, seen = new Set()) {
    cada video suelto = PELÍCULA. La reproducción usa el embed oficial
    (streamtape.com/e/ID) dentro del iframe del reproductor.              */
 const STAPE_BASE = 'https://api.streamtape.com';
-/* 🔐 El login/key de Streamtape ya NO viven en el código: se guardan en la
-   bóveda cifrada de auth.js (Perfil → 🔐 Bóveda de claves). En memoria se
-   leen con vget(). Antes había un login "de fábrica" escrito aquí — se retiró. */
+/* 🔐 El login/key de Streamtape ya NO viven en el código ni en el estado:
+   se guardan en la bóveda LOCAL de auth.js (localStorage de este
+   dispositivo, nunca salen de él). Aquí se leen con vget().          */
 const vget = k => (window.XAUTH && XAUTH.vaultGet ? (XAUTH.vaultGet(k) || '') : '');
 const STAPE_LINK_RE = /streamtape\.(?:com|to)\/([ev])\/([\w-]+)(?:\/([^?#]+))?/i;
 const stapeEmbedUrl = id => `https://streamtape.com/e/${id}`;
@@ -3213,22 +3217,29 @@ function parseStape(url) {
 /* cliente de la API oficial: JSON {status, msg, result}
    — si el navegador bloquea por CORS, cae a los proxies CORS de la app */
 async function stapeApi(endpoint, params = {}) {
-  /* credenciales: primero lo escrito a mano en el modal; si no, la bóveda cifrada */
+  /* credenciales: primero lo escrito a mano en el modal; si no, la bóveda local (guardada de tu último acceso) */
   const login = (els.stLogin.value.trim() || vget('stLogin')).trim();
   const key = (els.stKey.value.trim() || vget('stKey')).trim();
   if (!key) throw new Error('Falta tu API Key de Streamtape.\nLa encuentras en streamtape.com → Panel → Account Settings.');
   const qs = new URLSearchParams({ login, key, ...params });
   const url = `${STAPE_BASE}/${endpoint}?${qs}`;
-  let data = null;
-  try {
-    const r = await fetch(url);
-    data = await r.json();
-  } catch (e) {
-    /* 🔒 H1: JAMÁS pasar esta URL por los proxies CORS de terceros —
-       lleva login+key en el query y allorigins/codetabs/cors.lol las
-       verían en sus logs. Si no hay conexión directa, falla en claro. */
-    throw new Error('Sin conexión directa con api.streamtape.com (red o CORS). ' +
-      'No se reintentó por proxies para proteger tus credenciales. Reintenta en unos segundos.');
+  let data = null, lastErr = null;
+  /* 🔒 Sin proxies (llevarían tus credenciales a terceros): la API de
+     Streamtape SÍ permite CORS directo. Reintenta 3 veces por si un fallo
+     transitorio de red corta el escaneo a mitad (eso vaciaba importaciones). */
+  for (let intento = 1; intento <= 3 && !data; intento++) {
+    try {
+      const r = await fetch(url);
+      data = await r.json();
+    } catch (e) {
+      lastErr = e;
+      data = null;
+      if (intento < 3) await new Promise(s => setTimeout(s, 900 * intento));
+    }
+  }
+  if (!data) {
+    throw new Error('Sin conexión con api.streamtape.com tras 3 intentos (' +
+      (lastErr && lastErr.message || 'red') + '). Revisa tu red y reintenta.');
   }
   if (!data || typeof data.status === 'undefined') throw new Error('Streamtape no respondió JSON válido');
   if (data.status !== 200) throw new Error(`Streamtape (${data.status}): ${data.msg || 'error'}`);
@@ -3266,12 +3277,13 @@ async function importStreamtapeAll() {
     return;
   }
   els.stImportBtn.disabled = true;
-  /* si la bóveda está abierta, las usadas quedan guardadas ahí (cifradas) */
-  if (window.XAUTH && XAUTH.vaultOpen && XAUTH.vaultOpen()) XAUTH.vaultSet({ stLogin: login, stKey: key });
   try {
     setDriveStatus('☁ Conectando con tu cuenta de Streamtape…');
     const info = await stapeApi('account/info');
-    setDriveStatus(`✔ Cuenta: ${info.email || login}\n📂 Explorando todas tus carpetas…`, 'ok');
+    /* ✅ credenciales VERIFICADAS → a la bóveda local del dispositivo:
+       la próxima vez entras y pulsas actualizar sin volver a escribirlas */
+    if (window.XAUTH && XAUTH.vaultOpen && XAUTH.vaultOpen()) XAUTH.vaultSet({ stLogin: login, stKey: key });
+    setDriveStatus(`✔ Cuenta: ${info.email || login}\n📂 Explorando todas tus carpetas…\n🔐 Credenciales guardadas en este dispositivo`, 'ok');
 
     const budget = { n: 0 };
     const groups = await collectStapeDeep('', 0, new Set(), budget);
@@ -3502,7 +3514,7 @@ async function importFromUrl() {
     if (link.type === 'drive-file') {
       setDriveStatus('🔍 Leyendo el archivo de Drive…');
       const name = await getDriveFileName(link.id, key);
-      /* la clave ya no se guarda en el estado: va a la bóveda cifrada si está abierta */
+      /* la clave ya no se guarda en el estado: va a la bóveda local del dispositivo */
       if (key && window.XAUTH && XAUTH.vaultOpen && XAUTH.vaultOpen()) XAUTH.vaultSet({ driveKey: key });
       importSingleFile(`https://drive.google.com/file/d/${link.id}/view`, name, 'Google Drive · Archivo');
       els.modalDrive.classList.add('hidden');
@@ -3587,7 +3599,7 @@ els.driveFolderUrl.addEventListener('input', () => {
 
 els.driveFolderBtn.addEventListener('click', () => {
   els.modalDrive.classList.remove('hidden');
-  /* credenciales desde la bóveda cifrada (si está abierta esta sesión) */
+  /* credenciales guardadas en la bóveda local de este dispositivo */
   els.driveApiKey.value = vget('driveKey');
   els.stLogin.value = vget('stLogin');
   els.stKey.value = vget('stKey');

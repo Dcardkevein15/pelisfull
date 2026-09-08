@@ -9,8 +9,10 @@
       se borra, las demás la resucitan. Y con el 🗝 CÓDIGO DE
       IDENTIDAD la cuenta (nombre, avatar, país…) se regenera
       IDÉNTICA en cualquier dispositivo, incluso tras desinstalar.
-   3) ROLES — 👑 administrador (frase maestra) y 👁 lector.
-      El lector ve TODO el catálogo pero no puede editar nada.
+    3) ROLES — 👑 administrador (frase maestra; publica y firma),
+       🛡 moderadores (pases firmados con caducidad, ligados al
+       dispositivo: editan pero NO publican ni ven claves) y
+       👁 lectores (ven TODO el catálogo pero no editan nada).
     4) CATÁLOGO COMPARTIDO — el admin publica catalog.json junto
        a index.html; cada visitante lo descarga al entrar y ve
        EXACTAMENTE lo mismo. Cero servidores, cero baneos.
@@ -312,6 +314,10 @@
     id.createdAt = id.createdAt || Date.now();
     id.visits = id.visits || 0;
     id.admin = !!id.admin;
+    /* 🛡 rol moderador: caduca solo; un pase expirado no revive nunca */
+    id.mod = !!id.mod;
+    id.modExp = id.modExp || 0;
+    if (id.mod && id.modExp && Date.now() > id.modExp) { id.mod = false; id.modExp = 0; }
     return id;
   }
 
@@ -616,8 +622,116 @@
     return true;
   }
 
-  /* ═══════════ ROLES ═══════════ */
+  /* ═══════════ 🛡 PASES DE MODERADOR (firmados ECDSA) ═══════════
+     El admin genera un pase firmado con La MISMA clave que firma el
+     catálogo. Formato: XMOD.<payload b64url>.<firma b64url>
+     payload = { t:'mod', uid:'x-…', exp:<ms> }. El uid se deriva del
+     🗝 código de identidad de la persona: el pase SOLO funciona en su
+     dispositivo, caduca solo y nadie puede falsificarlo (necesitaría
+     tu clave privada).                                             */
+
+  const b64urlEncode = b => bytesToB64(b instanceof Uint8Array ? b : new Uint8Array(b))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  function b64urlToBytes(s) {
+    s = String(s || '').replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    return b64ToBytes(s);
+  }
+
+  /* uid de una cuenta a partir de su 🗝 código de identidad (16 letras) */
+  function uidFromIdentityCode(code) {
+    const bytes = codeToBytes(code);
+    if (bytes.length < 10) return null;
+    return 'x-' + [...bytes.slice(0, 10)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  /* solo ADMIN: crea un pase firmado para el dispositivo de ese código */
+  async function modInviteCreate(idCode, hours) {
+    if (!isAdmin()) return null;
+    if (!(window.crypto && crypto.subtle && window.isSecureContext !== false)) return null;
+    const uid = uidFromIdentityCode(idCode);
+    if (!uid) return null;
+    const rec = await sigKeysEnsure();
+    if (!rec) return null;
+    const payload = new TextEncoder().encode(
+      JSON.stringify({ t: 'mod', uid, exp: Date.now() + Math.max(1, hours || 72) * 3600e3 })
+    );
+    const priv = await crypto.subtle.importKey('jwk', rec.jwkPriv, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
+    const sig = await crypto.subtle.sign({ name: 'ECDSA', hash: 'SHA-256' }, priv, payload);
+    return 'XMOD.' + b64urlEncode(payload) + '.' + b64urlEncode(new Uint8Array(sig));
+  }
+
+  /* verifica un pase SIN aplicarlo: 'ok' | 'for-other' | 'expired' | 'invalid' */
+  async function modCodeCheck(raw) {
+    const m = String(raw || '').trim().replace(/\s+/g, '')
+      .match(/^XMOD\.([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+)$/);
+    if (!m) return 'invalid';
+    if (!CONFIG.catalogPubKey) return 'invalid';      /* sin clave pública embebida no hay cómo verificar */
+    if (!(window.crypto && crypto.subtle && window.isSecureContext !== false)) return 'invalid';
+    let payload, payloadBytes;
+    try {
+      payloadBytes = b64urlToBytes(m[1]);
+      payload = JSON.parse(new TextDecoder().decode(payloadBytes));
+    } catch (e) { return 'invalid'; }
+    if (!payload || payload.t !== 'mod' || typeof payload.uid !== 'string' || typeof payload.exp !== 'number') return 'invalid';
+    try {
+      const pub = await crypto.subtle.importKey('spki', b64ToBytes(CONFIG.catalogPubKey), { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+      const ok = await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, pub, b64urlToBytes(m[2]), payloadBytes);
+      if (!ok) return 'invalid';
+    } catch (e) { return 'invalid'; }
+    if (Date.now() > payload.exp) return 'expired';
+    if (!ID || payload.uid !== ID.uid) return 'for-other';   /* el pase es de otro dispositivo */
+    return 'ok';
+  }
+
+  /* canjear el pase: este dispositivo queda como moderador hasta su caducidad */
+  async function modRedeem(code) {
+    const r = await modCodeCheck(code);
+    if (r !== 'ok') return r;
+    const payload = JSON.parse(new TextDecoder().decode(
+      b64urlToBytes(String(code).trim().replace(/\s+/g, '').split('.')[1])
+    ));
+    ID.mod = true;
+    ID.modExp = payload.exp;
+    writeAll(); applyRole(); renderChip();
+    return 'ok';
+  }
+
+  /* ═══════════ 🔐 BÓVEDA LOCAL DE CLAVES ═══════════
+     Guarda credenciales de terceros (Streamtape login/key, API key de
+     Drive) SOLO en este navegador — mismo modelo que el token GitHub de
+     localStorage. Nunca van al repo, ni al catálogo, ni a la red:
+     solo se usan para llamar a la API correspondiente desde aquí.
+     app.js las lee con vget() → la "sesión" de Streamtape sobrevive
+     al cerrar y volver a abrir la app (eso era lo que fallaba).    */
+  const VAULT_LS = 'xstream-vault-v1';
+  let vaultMem = null;
+  function vaultRead() {
+    if (vaultMem) return vaultMem;
+    try { vaultMem = JSON.parse(localStorage.getItem(VAULT_LS) || '{}') || {}; }
+    catch (e) { vaultMem = {}; }
+    return vaultMem;
+  }
+  function vaultGet(k) { return vaultRead()[k] || ''; }
+  function vaultSet(obj) {
+    const v = vaultRead();
+    for (const k of Object.keys(obj || {})) v[k] = String(obj[k] == null ? '' : obj[k]);
+    vaultMem = v;
+    try { localStorage.setItem(VAULT_LS, JSON.stringify(v)); } catch (e) { }
+  }
+  const vaultOpen = () => true;   /* la bóveda es de este dispositivo: siempre disponible */
+
+  /* ═══════════ ROLES ═══════════
+     👑 admin  — tú: edita + publica el catálogo firmado + genera
+                 invitaciones (único con clave privada y token).
+     🛡 moderador — edita TODO lo editorial (series, enlaces, importar,
+                 TV, papelera…) en su dispositivo. NO puede publicar el
+                 catálogo global (la firma ECDSA solo la tiene tu clave),
+                 ni ver la zona de administrador, ni crear invitaciones.
+     👁 lector — solo mira.                                                */
   const isAdmin = () => !!(ID && ID.admin);
+  const isMod = () => !!(ID && ID.mod);
+  const isStaff = () => isAdmin() || isMod();
   let unlockFails = 0;
   async function unlockAdmin(pass) {
     const h = await sha256(String(pass || '').trim());
@@ -634,18 +748,22 @@
   }
   function applyRole() {
     const admin = isAdmin();
-    document.body.classList.toggle('ro', !admin);
+    const staff = isStaff();
+    /* las herramientas de edición las ven admin Y moderadores */
+    document.body.classList.toggle('ro', !staff);
     for (const id of ADMIN_ONLY_IDS) {
       const el = document.getElementById(id);
-      if (el) el.classList.toggle('ro-hide', !admin);
+      if (el) el.classList.toggle('ro-hide', !staff);
     }
     /* Firebase queda retirado: el catálogo compartido lo sustituye */
     const sb = document.getElementById('syncBtn');
     if (sb) sb.style.display = 'none';
     const chip = document.getElementById('userChip');
     if (chip) chip.classList.toggle('is-admin', admin);
+    if (chip) chip.classList.toggle('is-mod', !admin && isMod());
     /* 🔒 FAIL-CLOSED: solo los que SÍ verificaron la clave ven los controles */
     document.body.classList.toggle('admin-on', admin);
+    document.body.classList.toggle('mod-on', !admin && isMod());
     /* refresca la lista por si hay botones que dependen del rol (TV, papelera…) */
     if (API && API.onRoleChange) { try { API.onRoleChange(); } catch (e) { } }
     else if (API && API.renderSeries) { try { API.renderSeries(); } catch (e) { } }
@@ -659,7 +777,7 @@
     const nm = chip.querySelector('.uc-name');
     const sub = chip.querySelector('.uc-sub');
     if (ava) ava.src = avatarSvg(ID);
-    if (nm) nm.textContent = (ID.admin ? '👑 ' : '') + ID.name;
+    if (nm) nm.textContent = (ID.admin ? '👑 ' : (ID.mod ? '🛡 ' : '')) + ID.name;
     if (sub) sub.textContent = (ID.flag ? ID.flag + ' ' : '') + (ID.country || '') + ' · ' + ID.tag;
     /* al pasar el ratón (o en pantallas donde el texto va oculto) se muestra todo */
     chip.title = `${ID.name} ${ID.tag} · ${ID.flag} ${ID.country}\nClic para abrir tu perfil`;
@@ -710,6 +828,8 @@
           <div id="axPublishZone"></div>
         </div>
         <div class="ax-sec" id="axSigZone"></div>
+        <div class="ax-sec" id="axModZone"></div>
+        <div class="ax-sec" id="axModJoin"></div>
         <div class="modal-actions">
           <button class="btn btn-ghost" id="axClose">Cerrar</button>
         </div>
@@ -754,7 +874,9 @@
     const roleEl = bd.querySelector('#axRole');
     roleEl.innerHTML = ID.admin
       ? '<span class="ax-badge admin">👑 ADMINISTRADOR</span>'
-      : '<span class="ax-badge lector">👁 LECTOR — solo lectura</span>';
+      : (ID.mod
+        ? '<span class="ax-badge admin">🛡 MODERADOR</span>'
+        : '<span class="ax-badge lector">👁 LECTOR — solo lectura</span>');
     /* ficha de datos del dispositivo */
     const since = new Date(ID.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     bd.querySelector('#axGrid').innerHTML = `
@@ -803,6 +925,8 @@
     }
     renderAdminZone();
     renderCatalogStatus();
+    renderModZone();
+    renderModJoin();
   }
 
   function renderAdminZone() {
@@ -1069,6 +1193,95 @@
     });
   }
 
+  /* ═══ Zona 🛡 moderadores (solo ADMIN): generar pases de invitación ═══ */
+  function renderModZone() {
+    const bd = profileModalEnsure();
+    const zone = bd.querySelector('#axModZone');
+    if (!zone) return;
+    if (!isAdmin()) { zone.innerHTML = ''; return; }
+    zone.innerHTML = `
+      <div class="ax-sec-t">🛡 Moderadores — crear invitación</div>
+      <p class="ax-note">Un moderador <b>edita todo lo editorial</b> (series, enlaces, importar, TV, papelera…) en SU dispositivo, pero <b>nunca publica el catálogo ni toca tus claves</b>: eso solo lo hace tu clave de firma.<br>
+      1) La persona abre su Perfil y te envía su <b>🗝 Código de identidad</b>.<br>
+      2) Lo pegas aquí y le devuelves el pase generado — <b>solo funciona en su dispositivo</b> y caduca solo.</p>
+      <div class="ax-restore">
+        <input id="axModUid" placeholder="Código de identidad (XXXX-XXXX-…)" spellcheck="false" autocomplete="off">
+        <select id="axModHours" title="Duración del pase" style="background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:8px">
+          <option value="24">24 horas</option>
+          <option value="72" selected>3 días</option>
+          <option value="168">1 semana</option>
+          <option value="720">1 mes</option>
+        </select>
+        <button class="btn btn-acid" id="axModGen">Generar pase</button>
+      </div>
+      <div class="ax-codebox hidden" id="axModOut" style="margin-top:8px">
+        <code id="axModCode" style="word-break:break-all"></code>
+        <button class="btn btn-mini" id="axModCopy">Copiar pase</button>
+      </div>`;
+    zone.querySelector('#axModGen').addEventListener('click', async () => {
+      const code = zone.querySelector('#axModUid').value.trim();
+      const hours = parseInt(zone.querySelector('#axModHours').value, 10);
+      const inp = zone.querySelector('#axModGen');
+      inp.disabled = true;
+      try {
+        const pass = await modInviteCreate(code, hours);
+        if (!pass) { axToast('⚠ Código de identidad no válido (¿está completo?)', true); return; }
+        zone.querySelector('#axModCode').textContent = pass;
+        zone.querySelector('#axModOut').classList.remove('hidden');
+        axToast('🛡 Pase creado — cópialo y envíaselo');
+      } finally { inp.disabled = false; }
+    });
+    zone.querySelector('#axModCopy').addEventListener('click', () => {
+      navigator.clipboard.writeText(zone.querySelector('#axModCode').textContent)
+        .then(() => axToast('📋 Pase copiado — envíaselo a tu moderador'))
+        .catch(() => axToast('No se pudo copiar', true));
+    });
+  }
+
+  /* ═══ Zona 🛡 canje de pase — abajo del perfil, visible para todos ═══ */
+  function renderModJoin() {
+    const bd = profileModalEnsure();
+    const zone = bd.querySelector('#axModJoin');
+    if (!zone) return;
+    if (isAdmin()) {
+      zone.innerHTML = `<div class="ax-sec-t">🛡 Moderador</div>
+        <p class="ax-note">Tú eres el <b>administrador</b>: ya lo tienes todo. Arriba puedes crear pases para tus moderadores.</p>`;
+      return;
+    }
+    if (isMod()) {
+      zone.innerHTML = `<div class="ax-sec-t">🛡 Moderador</div>
+        <p class="ax-note">✅ <b>Pase activo.</b> Ya puedes usar todas las herramientas de edición. Tus cambios son <b>locales</b> hasta que el administrador los publique (envíale tu biblioteca con ⬇ Exportar).</p>
+        <p class="ax-note">Caduca: <b>${new Date(ID.modExp).toLocaleString()}</b></p>
+        <div class="modal-actions" style="justify-content:flex-start">
+          <button class="btn btn-ghost" id="axModLeave">Dejar de ser moderador</button>
+        </div>`;
+      zone.querySelector('#axModLeave').addEventListener('click', () => {
+        ID.mod = false; ID.modExp = 0;
+        writeAll(); applyRole(); renderChip(); renderProfile();
+        axToast('👁 Volviste a modo lector');
+      });
+      return;
+    }
+    zone.innerHTML = `
+      <div class="ax-sec-t">🛡 ¿Tienes un pase de moderador?</div>
+      <p class="ax-note">Si el administrador te dio un pase (empieza por <b>XMOD…</b>), pégalo aquí para activar las herramientas de edición. El pase solo sirve en <b>este dispositivo</b> y caduca solo.</p>
+      <div class="ax-restore">
+        <input id="axModIn" placeholder="Pega tu pase XMOD…" spellcheck="false" autocomplete="off">
+        <button class="btn btn-acid" id="axModGo">Activar</button>
+      </div>`;
+    const go = async () => {
+      const code = zone.querySelector('#axModIn').value;
+      if (!code.trim()) return;
+      const r = await modRedeem(code);
+      if (r === 'ok') { axToast('🛡 ¡Pase aceptado! Ya eres moderador — se te han abierto las herramientas de edición'); renderProfile(); }
+      else if (r === 'for-other') axToast('⚠ Ese pase es de OTRO dispositivo — pide uno hecho para tu código de identidad', true);
+      else if (r === 'expired') axToast('⚠ Ese pase ya caducó — pide uno nuevo', true);
+      else axToast('⚠ Pase no válido', true);
+    };
+    zone.querySelector('#axModGo').addEventListener('click', go);
+    zone.querySelector('#axModIn').addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
+  }
+
   /* aplicar el catálogo publicado (solo lectores; el admin ES la fuente) */
   function applyCatalog(cat) {
     const state = API.getState();
@@ -1301,6 +1514,11 @@
   window.XAUTH = {
     attach,
     isAdmin,
+    isMod,
+    isStaff,
+    vaultGet,
+    vaultSet,
+    vaultOpen,
     openProfile,
     publishCatalog,
     lockAdmin,
