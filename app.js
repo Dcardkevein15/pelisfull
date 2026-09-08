@@ -3068,6 +3068,7 @@ function openFromHash() {
       state.series.push(s);
       save();
     }
+    setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime'); /* la app arranca en Inicio: el enlace compartido elige su pestaña */
     selectSeries(s.id);
     loadEpisode(epN, true);
     renderSeries(els.searchInput.value);
@@ -3094,15 +3095,16 @@ function openFromHash() {
       jp: '▶', tag: 'Compartida contigo', g: 5, via: 'shared',
       episodes: [{ n: epN, t: `Capítulo ${epN}`, url: p.get('u') || '' }],
     };
-    state.series.push(s);
-    save();
+      state.series.push(s);
+      save();
+    }
+    setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime'); /* idem: inicio siempre, pero el enlace manda en su pestaña */
+    selectSeries(sid);
+    loadEpisode(epN, true);
+    renderSeries(els.searchInput.value);
+    toast('▶ Capítulo compartido cargado');
+    return true;
   }
-  selectSeries(sid);
-  loadEpisode(epN, true);
-  renderSeries(els.searchInput.value);
-  toast('▶ Capítulo compartido cargado');
-  return true;
-}
 window.addEventListener('hashchange', openFromHash);
 
 /* mantiene la URL del navegador siempre compartible */
@@ -4892,6 +4894,10 @@ els.cineMinDur.addEventListener('change', cineSearch);
 
 /* ═══════════ Init ═══════════ */
 load();
+/* 🏠 la app SIEMPRE abre en Inicio (independiente de la última pestaña).
+   Los enlaces compartidos (#/anime/… #/pelicula/… #/tv/…) eligen su
+   pestaña después, en openFromHash — así nada se rompe.              */
+state.tab = 'home';
 purgeTrash();          /* elimina lo que lleva +7 días en papelera */
 syncTrashBtn();
 syncBrokenBtn();
