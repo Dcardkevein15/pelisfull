@@ -3349,7 +3349,9 @@ async function importStreamtapeAll() {
     /* 🔁 Sincronización real: lo que YA NO existe en tu cuenta de Streamtape
        también desaparece de la app (series y películas importadas por la API).
        Los enlaces pegados a mano o de Drive/Mega nunca se tocan.           */
-    const scanCompleto = !skip.full && budget.n < 4000; // solo se poda si el escaneo fue 100% completo
+    const scanCompleto = !skip.full && !skip.dead.length && budget.n < 4000;
+    /* solo se poda si el escaneo fue 100% completo Y sin carpetas caídas:
+       una carpeta que no respondió NUNCA debe borrar su serie          */
     const podados = scanCompleto
       ? state.series.filter(s => /^(imp|mp)-stape-/.test(s.id) && !keepIds.has(s.id))
       : [];
