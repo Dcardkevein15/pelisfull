@@ -3326,23 +3326,61 @@ async function importStreamtapeAll() {
       meta.set(g.folderId, { items, isSerie: items.length === 1 && items[0].kind === 'serie' && !!g.name });
     }
 
+    /* 🔀 AUTO-TEMPORADAS — decide qué se pliega, aunque la madre sea
+       un CONTENEDOR sin archivos propios (Kimetsu/Temporada 1,2,3…):
+       · Caso A: la madre tiene videos y parece serie → hijos = sus temporadas.
+       · Caso B: la madre NO tiene archivos propios pero algún hijo parece
+         temporada (Temporada 2, T3, Season 1… o empieza por su nombre:
+         "Kimetsu 2") → la madre SE CREA como serie y cada hijo es temporada. */
+    const gruposById = new Map(groups.map(g => [g.folderId, g]));
+    const hijosPorPadre = new Map();
     for (const g of groups) {
-      if (!g.files.length) continue;
-      const pm = g.parentId ? meta.get(g.parentId) : null;
-      const madre = pm && pm.isSerie ? getSeries(importedIdFor(pm.items[0], 'stape-' + g.parentId)) : null;
-      /* 🔀 subcarpeta dentro de una carpeta-serie → TEMPORADA automática,
-         justo debajo de la anterior. Nunca crea entrada aparte en la columna. */
-      if (madre && g.parentId !== 'root') {
-        foldStapeSeason(madre, g);
-        nTemps++;
-        if (!firstId) firstId = madre.id;
-        continue;
-      }
+      if (!g.files.length || !g.parentId || g.parentId === 'root') continue;
+      if (!hijosPorPadre.has(g.parentId)) hijosPorPadre.set(g.parentId, []);
+      hijosPorPadre.get(g.parentId).push(g);
+    }
+    const plegadas = [];        /* { g, madreId } en orden T1→T2→T3 */
+    for (const [pid, hijos] of hijosPorPadre) {
+      const pm = meta.get(pid);
+      const pg = gruposById.get(pid);
+      if (!pg) continue;
+      const casoA = !!(pm && pm.isSerie);
+      const casoB = !pm && pg.name && hijos.some(h =>
+        stapeSeasonFromName(h.name) !== null
+        || (pg.name && normTitle(h.name).startsWith(normTitle(pg.name))));
+      if (!casoA && !casoB) continue;
+      hijos.sort((a, b) =>
+        ((stapeSeasonFromName(a.name) ?? 999) - (stapeSeasonFromName(b.name) ?? 999))
+        || a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+      for (const h of hijos) plegadas.push({ g: h, madreId: pid });
+    }
+    const absorbidos = new Set(plegadas.map(p => p.g.folderId));
+
+    /* ① lo NO plegado: series/películas normales de siempre */
+    for (const g of groups) {
+      if (!g.files.length || absorbidos.has(g.folderId)) continue;
       nFolders++;
       const r = addImportedItems(meta.get(g.folderId).items, 'stape-' + g.folderId, 'Streamtape', 3);
       r.ids.forEach(id => keepIds.add(id));
       if (!firstId) firstId = r.firstId;
       nSeries += r.nSeries; nMovies += r.nMovies;
+    }
+
+    /* ② el pliegue en orden: si la madre es contenedor puro se crea aquí */
+    for (const p of plegadas) {
+      const pid = 'imp-stape-' + p.madreId;
+      const pg = gruposById.get(p.madreId);
+      let madre = getSeries(pid);
+      if (!madre && pg && pg.name) {
+        madre = { id: pid, t: pg.name.slice(0, 80), jp: '📁', tag: 'Streamtape', g: 3, kind: 'serie', anime: true, episodes: [] };
+        state.series.push(madre);
+        freshIds.add(pid);
+      }
+      if (!madre) continue;
+      keepIds.add(pid);
+      foldStapeSeason(madre, p.g);
+      nTemps++;
+      if (!firstId) firstId = pid;
     }
 
     /* 🔁 Sincronización real: lo que YA NO existe en tu cuenta de Streamtape
@@ -3551,7 +3589,8 @@ function stapeSeasonFromName(name) {
     || s.match(/season\s*(\d{1,2})/i)
     || s.match(/(?:^|[\s._\-])t\s*0*(\d{1,2})(?!\d)/i)
     || s.match(/(?:^|[\s._\-])0*(\d{1,2})\s*[ªa]?\s*temp/i)
-    || s.match(/[\s._\-]s\s*0?(\d{1,2})(?:\s|$)/i);
+    || s.match(/[\s._\-]s\s*0?(\d{1,2})(?:\s|$)/i)
+    || s.match(/[\s._\-]0?(\d{1,2})\s*$/);   /* "…Kimetsu 2" → 2 */
   return m ? parseInt(m[1], 10) : null;
 }
 
@@ -3573,8 +3612,8 @@ function foldStapeSeason(target, group) {
   const srcId = 'imp-stape-' + group.folderId;
   /* ¿ya estaba plegada? conserva su mismo nº de temporada entre escaneos */
   const prev = target.episodes.find(e => e.srcSeason === srcId);
-  const se = (prev && prev.season) || stapeSeasonFromName(group.name)
-    || (1 + Math.max(1, ...target.episodes.map(e => e.season || 1)));
+  const maxSe = target.episodes.length ? Math.max(...target.episodes.map(e => e.season || 1)) : 0;
+  const se = (prev && prev.season) || stapeSeasonFromName(group.name) || (maxSe + 1);
   if (!target.seasons[se]) target.seasons[se] = stapeSeasonLabel(group.name, se);
 
   /* orden estable = igual que buildImportedItems (numérico por nombre) */
