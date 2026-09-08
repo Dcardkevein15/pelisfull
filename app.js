@@ -3265,16 +3265,13 @@ async function collectStapeDeep(folderId, depth = 0, seen = new Set(), budget = 
     .filter(f => VIDEO_EXT.test(f.name || '') && f.linkid)
     .map(f => ({ name: f.name, key: f.linkid, url: stapeEmbedUrl(f.linkid) }));
   budget.n += files.length;
-  const groups = [{ name: null, files, folderId: folderId || 'root', parentId: null }];
+  const groups = [{ name: null, files, folderId: folderId || 'root' }];
   for (const sub of result.folders || []) {
     if (depth + 1 > 6) { skip.deep.push(sub.name || sub.id); continue; }
     if (budget.n >= 4000) { skip.full = true; break; }
     setDriveStatus(`🔍 Streamtape · carpeta: «${sub.name}»…`);
     const subGroups = await collectStapeDeep(sub.id, depth + 1, seen, budget, skip);
-    if (subGroups.length && subGroups[0].folderId === sub.id) {
-      subGroups[0].name = sub.name;
-      subGroups[0].parentId = folderId || 'root';   /* para el auto-plegado como temporada */
-    }
+    if (subGroups.length && subGroups[0].folderId === sub.id) subGroups[0].name = sub.name;
     groups.push(...subGroups);
   }
   return groups;
@@ -3315,72 +3312,20 @@ async function importStreamtapeAll() {
     if (skip.deep.length) avisos.push(`⚠ ${skip.deep.length} carpeta(s) están a más de 6 niveles y no se leyeron: ${skip.deep.slice(0, 4).join(', ')}${skip.deep.length > 4 ? '…' : ''}`);
     if (skip.full) avisos.push('⚠ Se llegó al tope de 4000 videos — el resto no entró');
 
-    let nSeries = 0, nMovies = 0, nFolders = 0, firstId = null, nTemps = 0;
+    let nSeries = 0, nMovies = 0, nFolders = 0, firstId = null;
     const keepIds = new Set(); // todo lo que SÍ existe ahora en tu cuenta
-
-    /* detección una vez por carpeta (saber si el PADRE es serie decide el plegado) */
-    const meta = new Map(); // folderId → { items, isSerie }
     for (const g of groups) {
       if (!g.files.length) continue;
-      const { items } = buildImportedItems(g.name, g.files, g.name ? 'auto' : 'peliculas');
-      meta.set(g.folderId, { items, isSerie: items.length === 1 && items[0].kind === 'serie' && !!g.name });
-    }
-
-    /* 🔀 AUTO-TEMPORADAS — decide qué se pliega, aunque la madre sea
-       un CONTENEDOR sin archivos propios (Kimetsu/Temporada 1,2,3…):
-       · Caso A: la madre tiene videos y parece serie → hijos = sus temporadas.
-       · Caso B: la madre NO tiene archivos propios pero algún hijo parece
-         temporada (Temporada 2, T3, Season 1… o empieza por su nombre:
-         "Kimetsu 2") → la madre SE CREA como serie y cada hijo es temporada. */
-    const gruposById = new Map(groups.map(g => [g.folderId, g]));
-    const hijosPorPadre = new Map();
-    for (const g of groups) {
-      if (!g.files.length || !g.parentId || g.parentId === 'root') continue;
-      if (!hijosPorPadre.has(g.parentId)) hijosPorPadre.set(g.parentId, []);
-      hijosPorPadre.get(g.parentId).push(g);
-    }
-    const plegadas = [];        /* { g, madreId } en orden T1→T2→T3 */
-    for (const [pid, hijos] of hijosPorPadre) {
-      const pm = meta.get(pid);
-      const pg = gruposById.get(pid);
-      if (!pg) continue;
-      const casoA = !!(pm && pm.isSerie);
-      const casoB = !pm && pg.name && hijos.some(h =>
-        stapeSeasonFromName(h.name) !== null
-        || (pg.name && normTitle(h.name).startsWith(normTitle(pg.name))));
-      if (!casoA && !casoB) continue;
-      hijos.sort((a, b) =>
-        ((stapeSeasonFromName(a.name) ?? 999) - (stapeSeasonFromName(b.name) ?? 999))
-        || a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
-      for (const h of hijos) plegadas.push({ g: h, madreId: pid });
-    }
-    const absorbidos = new Set(plegadas.map(p => p.g.folderId));
-
-    /* ① lo NO plegado: series/películas normales de siempre */
-    for (const g of groups) {
-      if (!g.files.length || absorbidos.has(g.folderId)) continue;
       nFolders++;
-      const r = addImportedItems(meta.get(g.folderId).items, 'stape-' + g.folderId, 'Streamtape', 3);
+      /* la raíz (sin nombre de carpeta) se trata como películas sueltas;
+         una carpeta con nombre se auto-detecta: serie si sus archivos lo parecen.
+         Las subcarpetas (temporadas) nacen como entrada propia; TÚ las unes
+         a mano con arrastrar/soltar cuando quieras (mergeSeason intacto).   */
+      const { items } = buildImportedItems(g.name, g.files, g.name ? 'auto' : 'peliculas');
+      const r = addImportedItems(items, 'stape-' + g.folderId, 'Streamtape', 3);
       r.ids.forEach(id => keepIds.add(id));
       if (!firstId) firstId = r.firstId;
       nSeries += r.nSeries; nMovies += r.nMovies;
-    }
-
-    /* ② el pliegue en orden: si la madre es contenedor puro se crea aquí */
-    for (const p of plegadas) {
-      const pid = 'imp-stape-' + p.madreId;
-      const pg = gruposById.get(p.madreId);
-      let madre = getSeries(pid);
-      if (!madre && pg && pg.name) {
-        madre = { id: pid, t: pg.name.slice(0, 80), jp: '📁', tag: 'Streamtape', g: 3, kind: 'serie', anime: true, episodes: [] };
-        state.series.push(madre);
-        freshIds.add(pid);
-      }
-      if (!madre) continue;
-      keepIds.add(pid);
-      foldStapeSeason(madre, p.g);
-      nTemps++;
-      if (!firstId) firstId = pid;
     }
 
     /* 🔁 Sincronización real: lo que YA NO existe en tu cuenta de Streamtape
@@ -3422,7 +3367,6 @@ async function importStreamtapeAll() {
     const parts = [];
     if (nSeries) parts.push(`${nSeries} serie${nSeries > 1 ? 's' : ''}`);
     if (nMovies) parts.push(`${nMovies} película${nMovies > 1 ? 's' : ''}`);
-    if (nTemps) parts.push(`🧩 ${nTemps} temporada${nTemps > 1 ? 's' : ''} integrada${nTemps > 1 ? 's' : ''} en su serie`);
     if (podados.length) parts.push(`🧹 ${podados.length} retirado${podados.length > 1 ? 's' : ''} (ya borrados en Streamtape)`);
     if (!scanCompleto) parts.push('⚠ escaneo parcial: no se retiró nada');
     toast(`☁ Streamtape: ${parts.join(' + ') || 'todo al día ✓'} · ${nFolders} carpeta${nFolders !== 1 ? 's' : ''}`);
@@ -3573,86 +3517,6 @@ function mergeStapeEpisodes(s, newEps) {
       have.add(k);
       added++;
     }
-  }
-  return added;
-}
-
-/* ══ 🔀 AUTO-TEMPORADAS (Streamtape): una subcarpeta con videos dentro de
-      una carpeta que es serie se integra SOLA como temporada — sin arrastrar
-      ni fusionar a mano. (El merge manual con drag&drop sigue intacto.) ══ */
-
-/* número de temporada según el nombre de la subcarpeta:
-   "Temporada 2" · "Season 3" · "T2" · "2a Temp" · "S04"… → 2,3,2,2,4 */
-function stapeSeasonFromName(name) {
-  const s = String(name || '');
-  const m = s.match(/temp(?:orada)?\.?\s*(\d{1,2})/i)
-    || s.match(/season\s*(\d{1,2})/i)
-    || s.match(/(?:^|[\s._\-])t\s*0*(\d{1,2})(?!\d)/i)
-    || s.match(/(?:^|[\s._\-])0*(\d{1,2})\s*[ªa]?\s*temp/i)
-    || s.match(/[\s._\-]s\s*0?(\d{1,2})(?:\s|$)/i)
-    || s.match(/[\s._\-]0?(\d{1,2})\s*$/);   /* "…Kimetsu 2" → 2 */
-  return m ? parseInt(m[1], 10) : null;
-}
-
-/* etiqueta bonita de temporada (espejo del merge manual) */
-function stapeSeasonLabel(name, se) {
-  let n = String(name || '').replace(/^.*?[·\-:]\s*/, '').trim();
-  if (!/temporada|season/i.test(n)) n = `Temporada ${se} — ${n}`;
-  return n.slice(0, 44);
-}
-
-/* 🔀 pliega una subcarpeta DENTRO de su serie madre como temporada.
-   Fusión suave por linkid: nunca duplica, solo añade los videos nuevos.
-   Si antes salió como serie independiente (escaneos viejos), se pliega
-   conservando títulos y progreso y desaparece de la columna.         */
-function foldStapeSeason(target, group) {
-  if (!target.seasons) target.seasons = {};
-  if (!target.seasons[1]) target.seasons[1] = target.t;
-  target.episodes.forEach(e => { if (!e.season) e.season = 1; });
-  const srcId = 'imp-stape-' + group.folderId;
-  /* ¿ya estaba plegada? conserva su mismo nº de temporada entre escaneos */
-  const prev = target.episodes.find(e => e.srcSeason === srcId);
-  const maxSe = target.episodes.length ? Math.max(...target.episodes.map(e => e.season || 1)) : 0;
-  const se = (prev && prev.season) || stapeSeasonFromName(group.name) || (maxSe + 1);
-  if (!target.seasons[se]) target.seasons[se] = stapeSeasonLabel(group.name, se);
-
-  /* orden estable = igual que buildImportedItems (numérico por nombre) */
-  const files = group.files.slice().sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
-  const have = new Set(target.episodes.map(e => stapeFileKey(e.url)).filter(Boolean));
-  let next = target.episodes.reduce((m, e) => Math.max(m, e.n || 0), 0);
-  let added = 0;
-
-  /* ¿existía como serie suelta por un escaneo antiguo? → heredar y absorber */
-  const standalone = getSeries(srcId);
-  const oldByKey = new Map();
-  if (standalone) for (const e of standalone.episodes || []) {
-    const k = stapeFileKey(e.url); if (k) oldByKey.set(k, e);
-  }
-
-  for (const f of files) {
-    if (have.has(f.key)) continue;                  /* ya está: jamás duplicar */
-    const nn = ++next;
-    const viejo = oldByKey.get(f.key);
-    target.episodes.push({
-      n: nn,
-      t: (viejo && viejo.t) ? viejo.t : cleanEpTitle(f.name, `Capítulo ${nn}`).slice(0, 60),
-      url: f.url, season: se, srcSeason: srcId,
-    });
-    have.add(f.key);
-    added++;
-    /* el progreso/vistos del capítulo viejo viaja a su nueva posición */
-    if (viejo && state.progress && state.progress[srcId] && state.progress[srcId][viejo.n]) {
-      state.progress[target.id] = state.progress[target.id] || {};
-      state.progress[target.id][nn] = state.progress[srcId][viejo.n];
-    }
-  }
-
-  if (standalone) {
-    state.series = state.series.filter(x => x.id !== srcId);
-    if (state.progress) delete state.progress[srcId];
-    state.broken = (state.broken || []).filter(b => b.sid !== srcId);
-    if (state.lastPlayed) delete state.lastPlayed[srcId];
-    if (current.seriesId === srcId) current.seriesId = target.id;
   }
   return added;
 }
