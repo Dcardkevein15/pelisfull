@@ -891,10 +891,7 @@ function renderHome() {
   const withPoster = all.filter(s => s.poster);
   const hero = withPoster.length ? withPoster[0] : all[0];
 
-  /* Si aún no hay ni un solo canal, muestro la sección de TV
-     con un aviso discreto y un botón para forzar sincronización;
-     si hay, las tarjetas hasta el momento. Así nunca queda en blanco. */
-  const canalesCount = (state.channels || []).length;
+  /* ① HERO — portada principal (full-ancho: la columna va colapsada) */
   if (hero) {
     const hv = document.createElement('div');
     hv.className = 'home-hero';
@@ -908,62 +905,136 @@ function renderHome() {
         <button class="btn btn-acid hero-btn">Ver ahora</button>
       </div>`;
     hv.querySelector('.hero-btn').addEventListener('click', () => {
+      /* antes sólo seleccionaba y parecía "no hacer nada" (el player
+         se esconde bajo la vista Home): ahora entra y reproduce      */
+      setTab(hero.kind === 'pelicula' ? 'peliculas' : 'anime');
       selectSeries(hero.id);
     });
     els.homeView.appendChild(hv);
   }
-  /* 📡 TV en vivo — incluso si aún no llegó el catálogo al dispositivo,
-     muestro una mini-tarjeta que al tocarla va directo a la pestaña TV */
-  const disponibles = (state.channels || []);
-  const canalesHome = disponibles.length
-    ? disponibles.slice(0, 10)
-    : [{
-        id: 'tv-placeholder',
-        name: 'TV en vivo',
-        logo: '',
-        group: '📡 Abriendo canales — pulsa para ir a la pestaña',
-      }];
-  if (canalesHome.length) {
-    const r = document.createElement('div');
-    r.className = 'home-row';
-    r.innerHTML = `<div class="hr-head"><h3>TV en vivo</h3></div>`;
-    const wrap = document.createElement('div');
-    wrap.className = 'home-row-list';
-    for (const ch of canalesHome) {
-      const cell = document.createElement('button');
-      cell.className = 'ep movie-rel hc-card has-url' + (ch.id === 'tv-placeholder' ? ' is-placeholder' : '');
-      cell.innerHTML = `
-        ${ch.logo ? `<img class="rel-bg" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" onerror="this.remove()">` : '<span class="rel-emoji">📡</span>'}
-        <div class="rel-body">
-          <div class="rel-t">${escapeHtml(ch.name)}</div>
-          <div class="rel-c">En vivo${ch.id === 'tv-placeholder' ? '' : (ch.group ? ' · ' + escapeHtml(ch.group) : '')}</div>
-        </div>`;
-      cell.addEventListener('click', () => {
-        setTab('tv');
-        if (ch.id !== 'tv-placeholder') playChannel(ch);
-      });
-      wrap.appendChild(cell);
-    }
-    els.homeView.appendChild(r);
-  }
+
+  /* ② SIGUE VIENDO — tarjetas panorámicas con barra de progreso real */
   const returning = [];
   for (const s of state.series) {
     const prog = (state.progress || {})[s.id];
     if (!prog) continue;
-    let last = null;
-    for (const [, p] of Object.entries(prog)) {
-      if (p && !p.done && p.t > 10 && (!last || p.at > last.at)) last = p;
+    let bestKey = null, best = null;
+    for (const [epN, p] of Object.entries(prog)) {
+      if (p && !p.done && p.t > 10 && (!best || p.at > best.at)) { best = p; bestKey = epN; }
     }
-    if (last) returning.push({ s, at: last.at });
+    if (best) returning.push({ s, ep: +bestKey, p: best });
   }
-  returning.sort((a, b) => b.at - a.at);
-  homeRow('Sigue viendo', returning.slice(0, 10).map(x => x.s));
-  const nuevas = all.slice().sort((a, b) => (b.importedAt || b.at || 0) - (a.importedAt || a.at || 0));
-  homeRow('Novedades recientes', nuevas.slice(0, 12));
-  const pelis = all.filter(s => s.kind === 'pelicula' && s.episodes && s.episodes[0] && s.episodes[0].url);
-  homeRow('Películas listas', pelis.slice(0, 12));
-  const largas = all.filter(s => s.kind !== 'pelicula' && s.episodes && s.episodes.length).sort((a, b) => b.episodes.length - a.episodes.length);
-  homeRow('Maratones recomendadas', largas.slice(0, 12));
+  returning.sort((a, b) => b.p.at - a.p.at);
+  if (returning.length) {
+    const sec = document.createElement('div');
+    sec.className = 'hm-sec';
+    sec.innerHTML = `Sigue viendo <small>DONDE LO DEJASTE</small>`;
+    els.homeView.appendChild(sec);
+    const strip = document.createElement('div');
+    strip.className = 'hm-strip';
+    for (const r of returning.slice(0, 10)) {
+      const pct = r.p.d ? Math.min(100, Math.round((r.p.t / r.p.d) * 100)) : 0;
+      const card = document.createElement('button');
+      card.className = 'hm-cont';
+      card.innerHTML = `
+        <span class="hm-cont-cover" style="background:${grad(r.s)}">${r.s.poster ? `<img src="${escapeHtml(r.s.poster)}" alt="" loading="lazy" onerror="this.remove()">` : escapeHtml(r.s.jp || '🎬')}</span>
+        <span class="hm-cont-meta">
+          <span class="hm-cont-t">${escapeHtml(r.s.t)}</span>
+          <span class="hm-cont-p">${r.s.kind === 'pelicula' ? '🎬' : 'E' + r.ep} · quedan ${fmt(Math.max(0, (r.p.d || 0) - r.p.t))}</span>
+          <span class="hm-cont-bar"><i style="width:${pct}%"></i></span>
+        </span>
+        <span class="hm-cont-go">▶</span>`;
+      card.addEventListener('click', () => {
+        setTab(r.s.kind === 'pelicula' ? 'peliculas' : 'anime');
+        selectSeries(r.s.id);
+        loadEpisode(r.ep, true);
+      });
+      strip.appendChild(card);
+    }
+    els.homeView.appendChild(strip);
+  }
+
+  /* ③ LA PARED — mosaico editorial: tamaños variados, categorías mezcladas */
+  const grid = document.createElement('div');
+  grid.className = 'hm-grid';
+  const secInGrid = (title, sub) => {
+    const h = document.createElement('div');
+    h.className = 'hm-sec';
+    h.innerHTML = `${escapeHtml(title)} <small>${escapeHtml(sub)}</small>`;
+    grid.appendChild(h);
+  };
+  /* tamaño de cada tarjeta: ritmo editorial fijo + protagonistas destacados */
+  const tileSize = (i, preferBig) =>
+    (preferBig && i === 0) ? 'hm-xl'
+      : (i % 8 === 1) ? 'hm-wide'
+        : (i % 8 === 4) ? 'hm-tall'
+          : 'hm-std';
+  const tile = (s, size) => {
+    const isPeli = s.kind === 'pelicula';
+    const b = document.createElement('button');
+    b.className = 'hm-tile ' + size + (s.poster ? ' has-poster' : '');
+    const prog = (state.progress || {})[s.id];
+    const vistos = prog ? Object.values(prog).filter(p => p && (p.done || p.t > 10)).length : 0;
+    const pct = vistos ? Math.min(100, Math.round((vistos / Math.max(1, s.episodes.length)) * 100)) : 0;
+    b.innerHTML = `
+      ${s.poster
+        ? `<img class="hm-bg" src="${escapeHtml(s.poster)}" alt="" loading="lazy" onerror="this.remove()">`
+        : `<span class="hm-emoji" style="background:${grad(s)}">${escapeHtml(s.jp || '🎬')}</span>`}
+      <span class="hm-shade"></span>
+      <span class="hm-chip ${isPeli ? 'peli' : ''}">${isPeli ? '🎬 PELÍCULA' : '📺 ' + s.episodes.length + ' CAPS'}</span>
+      <span class="hm-info">
+        <span class="hm-t">${escapeHtml(s.t)}</span>
+        <span class="hm-sub">${pct ? '▣ ' + pct + '% visto' : escapeHtml(s.tag || '')}</span>
+      </span>`;
+    b.addEventListener('click', () => {
+      setTab(isPeli ? 'peliculas' : 'anime');
+      selectSeries(s.id);
+      const first = s.episodes.find(e => e.url) || s.episodes[0];
+      if (first) loadEpisode(first.n, true);
+    });
+    return b;
+  };
+
+  const nuevas = all.slice().sort((a, b) => (b.importedAt || b.at || 0) - (a.importedAt || a.at || 0)).slice(0, 9);
+  if (nuevas.length) {
+    secInGrid('Novedades recientes', 'LO QUE ACABA DE LLEGAR');
+    nuevas.forEach((s, i) => grid.appendChild(tile(s, tileSize(i, !!s.poster))));
+  }
+  const pelis = all.filter(s => s.kind === 'pelicula' && s.episodes && s.episodes[0] && s.episodes[0].url).slice(0, 8);
+  if (pelis.length) {
+    secInGrid('Películas listas', 'UNA NOCHE DE CINE');
+    pelis.forEach((s, i) => grid.appendChild(tile(s, tileSize(i, false))));
+  }
+  const largas = all.filter(s => s.kind !== 'pelicula' && s.episodes && s.episodes.some(e => e.url))
+    .sort((a, b) => b.episodes.length - a.episodes.length).slice(0, 8);
+  if (largas.length) {
+    secInGrid('Maratones recomendadas', 'PARA NO DORMIR');
+    largas.forEach((s, i) => grid.appendChild(tile(s, tileSize(i, false))));
+  }
+  if (grid.children.length) els.homeView.appendChild(grid); /* vacía → ni se asoma */
+
+  /* ④ TV EN VIVO — grilla fina de logos, directo a reproducir */
+  const canales = state.channels || [];
+  const sec = document.createElement('div');
+  sec.className = 'hm-sec';
+  sec.innerHTML = `TV en vivo <small>${canales.length ? canales.length + ' CANALES' : 'ABRIENDO…'}</small>`;
+  els.homeView.appendChild(sec);
+  const tvGrid = document.createElement('div');
+  tvGrid.className = 'hm-tvgrid';
+  const lista = canales.length ? canales.slice(0, 18) : [{ id: 'tv-placeholder', name: 'TV en vivo', logo: '', group: 'Abriendo canales…' }];
+  for (const ch of lista) {
+    const c = document.createElement('button');
+    c.className = 'hm-tv' + (ch.id === 'tv-placeholder' ? ' is-ph' : '');
+    c.innerHTML = `
+      ${ch.logo ? `<img src="${escapeHtml(ch.logo)}" alt="" loading="lazy" onerror="this.remove()">` : '<span class="hm-tv-emoji">📡</span>'}
+      <span class="hm-tv-n">${escapeHtml(ch.name)}</span>`;
+    c.addEventListener('click', () => {
+      setTab('tv');
+      if (ch.id !== 'tv-placeholder') playChannel(ch);
+    });
+    tvGrid.appendChild(c);
+  }
+  els.homeView.appendChild(tvGrid);
 }
 
 /* ── render de la lista de canales (pestaña 📡 TV) ── */

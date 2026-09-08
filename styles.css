@@ -1572,3 +1572,106 @@ body.admin-on .admin-only{display:revert!important}
   box-shadow:0 12px 34px rgba(0,0,0,.5);animation:tst .25s cubic-bezier(.2,1.4,.4,1);
 }
 .ax-toast.err{border-color:var(--hot);color:#fff;background:var(--hot)}
+
+/* ═══════════════════════════════════════════════════════════
+   HOME EDITORIAL — mosaico de tarjetas + columna colapsada
+   ═══════════════════════════════════════════════════════════ */
+
+/* ① En la pestaña Inicio la columna se contrae a un riel de botones:
+   queda el ancho completo para el home (antes: tarjetas de anime
+   repetidas y clics que no respondían). */
+.tab-home .sidebar{width:62px;min-width:62px}
+.tab-home .side-tabs{flex-direction:column;align-items:stretch;gap:6px;padding:10px 7px}
+.tab-home .side-tab{justify-content:center;padding:11px 0}
+.tab-home .side-tab .tab-name,
+.tab-home .tab-count{display:none}
+.tab-home .gear-btn{margin:2px auto 0}
+.tab-home .side-panel,
+.tab-home .series-list,
+.tab-home .tv-tools,
+.tab-home .broken-list{display:none !important}
+
+/* ② cabeceras de sección estilo editorial */
+.hm-sec{
+  display:flex;align-items:baseline;gap:10px;margin:26px 2px 12px;
+  font:900 16px 'Archivo Black';letter-spacing:.6px;color:var(--ink);
+}
+.hm-sec small{font:600 9px 'JetBrains Mono';letter-spacing:2.5px;color:var(--dim)}
+.hm-sec:first-of-type{margin-top:4px}
+
+/* ③ SIGUE VIENDO — strip panorámico con progreso */
+.hm-strip{
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(265px,330px);
+  gap:12px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;
+}
+.hm-strip::-webkit-scrollbar{display:none}
+.hm-cont{
+  display:flex;align-items:center;gap:12px;background:var(--panel);
+  border:1px solid var(--line);border-radius:16px;padding:10px 12px;
+  text-align:left;transition:.18s;position:relative;overflow:hidden;
+}
+.hm-cont:hover{border-color:var(--acid);transform:translateY(-2px)}
+.hm-cont-cover{width:56px;height:56px;min-width:56px;border-radius:12px;overflow:hidden;
+  display:grid;place-items:center;font-size:20px;position:relative}
+.hm-cont-cover img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.hm-cont-meta{flex:1;min-width:0}
+.hm-cont-t{display:block;font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hm-cont-p{display:block;font:600 10px 'JetBrains Mono';color:var(--dim);margin-top:3px}
+.hm-cont-bar{display:block;height:4px;background:var(--line);border-radius:4px;margin-top:7px;overflow:hidden}
+.hm-cont-bar i{display:block;height:100%;background:var(--acid);border-radius:4px}
+.hm-cont-go{color:var(--acid);font-size:15px;opacity:0;transition:.15s;margin-right:2px}
+.hm-cont:hover .hm-cont-go{opacity:1}
+
+/* ④ LA PARED — mosaico mixing sizes, grid denso */
+.hm-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:96px;gap:12px;grid-auto-flow:dense}
+.hm-grid .hm-sec{margin-bottom:2px}
+.hm-tile{
+  position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);
+  padding:0;text-align:left;display:flex;align-items:flex-end;transition:.18s;
+  background:var(--panel);min-width:0;
+}
+.hm-tile:hover{transform:translateY(-3px);border-color:var(--acid);box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.hm-xl{grid-column:span 2;grid-row:span 2}
+.hm-wide{grid-column:span 2}
+.hm-tall{grid-row:span 2}
+.hm-std{grid-column:span 1;grid-row:span 1}
+.hm-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.hm-tile:hover .hm-bg{transform:scale(1.06)}
+.hm-emoji{position:absolute;inset:0;display:grid;place-items:center;font-size:30px}
+.hm-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,12,.08) 30%,rgba(5,5,12,.92));pointer-events:none}
+.hm-chip{
+  position:absolute;top:8px;left:8px;z-index:2;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
+  font:800 8.5px 'JetBrains Mono';letter-spacing:1.2px;color:var(--acid);
+  padding:4px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+}
+.hm-chip.peli{color:#ff5c84}
+.hm-info{position:relative;z-index:1;padding:9px 11px;width:100%;min-width:0}
+.hm-t{display:block;font-weight:800;font-size:12.5px;line-height:1.2;max-height:2.4em;overflow:hidden;
+  text-shadow:0 2px 8px rgba(0,0,0,.7)}
+.hm-xl .hm-t{font-size:16px}
+.hm-sub{display:block;font:600 9px 'JetBrains Mono';color:var(--dim);margin-top:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hm-tile.hm-std .hm-sub{display:none}
+.hm-std .hm-t{font-size:11px}
+
+/* ⑤ TV EN VIVO — grilla fina de logos */
+.hm-tvgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.hm-tv{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 8px 10px;
+  transition:.15s;min-height:92px;
+}
+.hm-tv:hover{border-color:var(--acid);transform:translateY(-2px)}
+.hm-tv img{width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.hm-tv-emoji{font-size:26px}
+.hm-tv-n{font:600 9.5px 'JetBrains Mono';color:var(--dim);text-align:center;
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hm-tv.is-ph{opacity:.6;border-style:dashed}
+
+/* responsive */
+@media (max-width:1100px){.hm-grid{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:760px){
+  .hm-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:86px;gap:9px}
+  .hm-strip{grid-auto-columns:minmax(230px,82%)}
+}
+@media (max-width:480px){.hm-grid{grid-template-columns:repeat(2,1fr)}}
