@@ -39,6 +39,7 @@
        aceptan el catálogo sin firma (modo legado); con clave, RECHAZAN
        cualquier catalog.json que no esté firmado por tu clave privada. */
     catalogPubKey: 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEd8Ro3qWzRh/Tz2Hnj6t31SlTG6CUFcqKA6iphH1MnAIVK3DGSa2GCR5lSy5V6jQLtSGNxTj2qFw3GmWrhL9P1w==',
+    tgSite: 'https://dcardkevein15.github.io/pelisfull/',   /* tu web pública (para el botón ▶ Ver ahora) */
     ghRepo: 'Dcardkevein15/pelisfull',
     ghBranch: 'main',
     ghTokenKey: 'xstream-gh-token',
@@ -134,8 +135,11 @@
     return sha256Sync(toUtf8Bytes(str)) || '';
   }
 
-  /* ─────────── Código de identidad (base32 sin caracteres ambiguos) ─────────── */
-  const B32 = '23456789ABCDEFGHJKMNPQRSTUVWXYZ';
+  /* ─────────── Código de identidad (base32 sin ceros/unos: 0,O y 1 fuera) ───────────
+     ⚠ El alfabeto debe tener EXACTAMENTE 32 caracteres. La 'I' va AL FINAL
+     (índice 31) para no romper los códigos ya repartidos: los índices 0-30
+     quedan idénticos al alfabeto original.                                 */
+  const B32 = '23456789ABCDEFGHJKMNPQRSTUVWXYZI';
   function bytesToCode(bytes) {
     let bits = 0, val = 0, out = '';
     for (const b of bytes) {
@@ -829,6 +833,7 @@
         </div>
         <div class="ax-sec" id="axSigZone"></div>
         <div class="ax-sec" id="axModZone"></div>
+        <div class="ax-sec" id="axTgZone"></div>
         <div class="ax-sec" id="axModJoin"></div>
         <div class="modal-actions">
           <button class="btn btn-ghost" id="axClose">Cerrar</button>
@@ -855,9 +860,18 @@
       const raw = bd.querySelector('#axRestoreIn').value;
       const bytes = codeToBytes(raw);
       if (bytes.length < 10) return axToast('⚠ Código no válido', true);
+      /* 🛡 confirmación dura: restaurar REEMPLAZA tu identidad (cambia tu uid);
+         los pases ligados a la cuenta vieja dejarían de valer. Antes pasaba sin
+         avisar — una pegada errónea aquí rompía los pases de moderador        */
+      const futura = identityFromSeed(bytes);
+      if (futura.uid === ID.uid) return axToast('Ya eres esa cuenta — nada que restaurar');
+      const ok = confirm(`Vas a REEMPLAZAR tu cuenta actual (${ID.name} ${ID.tag}) por «${futura.name} ${futura.tag}».\n\nTus pases de moderador ligados a la cuenta actual dejarán de funcionar.\n\n¿Continuar?`);
+      if (!ok) return;
       const eraAdmin = ID.admin;
-      const restored = identityFromSeed(bytes);
+      const eraMod = ID.mod, eraModExp = ID.modExp;
+      const restored = futura;
       restored.admin = eraAdmin; /* si ya eras admin aquí, lo sigues siendo */
+      if (eraMod) { restored.mod = true; restored.modExp = eraModExp; } /* tu rol te sigue si era tuyo */
       ID = restored;
       writeAll(); renderChip(); applyRole(); renderProfile();
       axToast(`🗝 Cuenta restaurada: ${ID.name} ${ID.tag}`);
@@ -926,6 +940,7 @@
     renderAdminZone();
     renderCatalogStatus();
     renderModZone();
+    renderTgZone();
     renderModJoin();
   }
 
@@ -1030,6 +1045,8 @@
           + (payload.sig
             ? (CONFIG.catalogPubKey ? ' · 🔐 firmado y blindado' : ' · 🔐 firmado — falta pegar tu clave pública en auth.js para activar el blindaje')
             : ''));
+        /* 📢 Telegram: anuncia solo las novedades (nunca bloquea la publicación) */
+        telegramAnnounce(payload).catch(e => console.warn('[telegram]', e));
         return;
       } catch (e) {
         axToast('⚠ No se pudo publicar en GitHub: ' + (e.message || e) + '. Revisa tu token.', true);
@@ -1109,6 +1126,108 @@
       throw new Error(err.message || ('HTTP ' + res.status));
     }
     return true;
+  }
+
+  /* ═══════════ 📢 TELEGRAM — anuncios automáticos al publicar ═══════════
+     Sin RSS ni servidores: al publicar el catálogo se compara con la foto
+     del último anuncio y se publica SOLO lo nuevo (series y películas; la
+     TV no, es efímera). Credenciales en la bóveda local de este dispositivo. */
+  const TG_API = 'https://api.telegram.org';
+  const TG_SNAP_KEY = 'xstream-tg-snap-v1';
+  const tgSlug = t => String(t || '').toLowerCase().normalize('NFD')
+    .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+  const tgSiteUrl = () => (vaultGet('tgSite') || CONFIG.tgSite || '').trim();
+  function tgDeepLink(s) {
+    const b = tgSiteUrl();
+    if (!b) return '';
+    return b.replace(/\/?$/, '/') + '#' + (s.kind === 'pelicula' ? '/pelicula/' : '/anime/') + tgSlug(s.t);
+  }
+
+  function tgSnapLoad() { try { return JSON.parse(localStorage.getItem(TG_SNAP_KEY) || 'null'); } catch (e) { return null; } }
+  function tgSnapSave(payload) {
+    const snap = {};
+    for (const s of payload.series || []) {
+      snap[s.id] = { t: s.t, k: s.kind, n: (s.episodes || []).length, ln: (s.episodes || []).filter(e => e.url).length };
+    }
+    try { localStorage.setItem(TG_SNAP_KEY, JSON.stringify({ v: payload.v, at: Date.now(), items: snap })); } catch (e) { }
+  }
+
+  /* diff: SOLO novedades con contenido reproducible */
+  function buildTelegramEvents(payload, snapItems) {
+    const ev = [];
+    if (!snapItems) return ev;                    /* 1ª vez: solo se hace la foto */
+    for (const s of payload.series || []) {
+      const linked = (s.episodes || []).filter(e => e.url).length;
+      const prev = snapItems[s.id];
+      if (!prev) { if (linked) ev.push({ tipo: 'nuevo', s }); continue; }
+      const delta = linked - (prev.ln || 0);
+      if (delta > 0) ev.push({ tipo: 'mas', s, delta });
+    }
+    return ev;
+  }
+
+  function tgCaption(ev) {
+    const s = ev.s;
+    const linked = (s.episodes || []).filter(e => e.url).length;
+    const esP = s.kind === 'pelicula';
+    if (ev.tipo === 'nuevo') {
+      return (esP ? '🎬 <b>PELÍCULA NUEVA</b>' : '🆕 <b>SERIE NUEVA</b>')
+        + `\n\n<b>${axEsc(s.t)}</b>`
+        + (esP ? '' : `\n📺 ${linked} capítulo${linked === 1 ? '' : 's'} disponible${linked === 1 ? '' : 's'}`)
+        + '\n\n▶️ Gratis y sin registro — X·STREAM';
+    }
+    return (esP ? '🎬 <b>' : '➕ <b>NUEVOS CAPÍTULOS · ') + axEsc(s.t) + '</b>'
+      + (esP ? '' : `\nHoy: +${ev.delta} capítulo${ev.delta === 1 ? '' : 's'} de golpe (ya son ${linked})`)
+      + '\n\n▶️ Sigue la maratón en X·STREAM';
+  }
+
+  async function tgSend(token, chat, text, photo, url) {
+    const kb = url ? { inline_keyboard: [[{ text: '▶▶ Ver ahora', url }]] } : undefined;
+    const method = photo ? 'sendPhoto' : 'sendMessage';
+    const body = photo
+      ? { chat_id: chat, photo, caption: text, parse_mode: 'HTML', reply_markup: kb }
+      : { chat_id: chat, text, parse_mode: 'HTML', disable_web_page_preview: true, reply_markup: kb };
+    const r = await fetch(`${TG_API}/bot${token}/${method}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.description || ('HTTP ' + r.status));
+    return j;
+  }
+
+  /* punto de entrada tras publicar: anuncia solo el delta, con foto y botón */
+  async function telegramAnnounce(payload) {
+    const token = vaultGet('tgBotToken'), chat = vaultGet('tgChat');
+    if (!token || !chat) return;                                   /* no configurado → silencio total */
+    const prev = tgSnapLoad();
+    const events = buildTelegramEvents(payload, prev && prev.items);
+    if (!prev) {
+      tgSnapSave(payload);
+      axToast('📢 Telegram: listo — desde la próxima publicación anunciaré solo las novedades');
+      return;
+    }
+    tgSnapSave(payload);
+    if (!events.length) return;
+    let enviados = 0;
+    if (events.length <= 6) {
+      for (const ev of events) {
+        try { await tgSend(token, chat, tgCaption(ev), ev.s.poster || null, tgDeepLink(ev.s)); enviados++; }
+        catch (e) { console.warn('[telegram]', e); }
+        await new Promise(r => setTimeout(r, 1100));               /* amable con el rate limit */
+      }
+    } else {
+      /* avalancha → un solo post resumen (nadie quiere 20 mensajes seguidos) */
+      const lines = events.slice(0, 14).map(ev =>
+        '• ' + (ev.s.kind === 'pelicula' ? '🎬 ' : '📺 ') + axEsc(ev.s.t)
+        + (ev.tipo === 'mas' ? ` (+${ev.delta} caps)` : ''));
+      try {
+        await tgSend(token, chat,
+          `🌊 <b>ACTUALIZACIÓN GRANDE — ${events.length} novedades</b>\n\n${lines.join('\n')}\n\n▶️ Todo en X·STREAM`,
+          null, tgSiteUrl());
+        enviados = events.length;
+      } catch (e) { console.warn('[telegram]', e); }
+    }
+    if (enviados) axToast(`📢 Telegram: ${enviados} publicación${enviados === 1 ? '' : 'es'} enviada${enviados === 1 ? '' : 's'} a tu canal`);
   }
 
   function renderCatalogStatus() {
@@ -1211,13 +1330,27 @@
           <option value="72" selected>3 días</option>
           <option value="168">1 semana</option>
           <option value="720">1 mes</option>
+          <option value="2160">3 meses</option>
+          <option value="4320">6 meses</option>
+          <option value="8760">1 año</option>
         </select>
         <button class="btn btn-acid" id="axModGen">Generar pase</button>
       </div>
+      <div class="ax-note" id="axModPrev" style="margin-top:6px">Pega el código de la persona y aquí verás a quién pertenece antes de generar.</div>
       <div class="ax-codebox hidden" id="axModOut" style="margin-top:8px">
         <code id="axModCode" style="word-break:break-all"></code>
         <button class="btn btn-mini" id="axModCopy">Copiar pase</button>
       </div>`;
+    /* previsualización en vivo: a quién pertenece ese código (evita pases
+       generados para la persona equivocada — la causa del error)          */
+    const inp = zone.querySelector('#axModUid');
+    const prev = zone.querySelector('#axModPrev');
+    inp.addEventListener('input', () => {
+      const bytes = codeToBytes(inp.value);
+      if (bytes.length < 10) { prev.textContent = 'Pega el código completo (16 letras con guiones)…'; return; }
+      const who = identityFromSeed(bytes);
+      prev.innerHTML = `👤 Este código es de: <b>${axEsc(who.name)} ${axEsc(who.tag)}</b> — si coincide con tu moderador, genera el pase para él.`;
+    });
     zone.querySelector('#axModGen').addEventListener('click', async () => {
       const code = zone.querySelector('#axModUid').value.trim();
       const hours = parseInt(zone.querySelector('#axModHours').value, 10);
@@ -1235,6 +1368,49 @@
       navigator.clipboard.writeText(zone.querySelector('#axModCode').textContent)
         .then(() => axToast('📋 Pase copiado — envíaselo a tu moderador'))
         .catch(() => axToast('No se pudo copiar', true));
+    });
+  }
+
+  /* ═══ Zona 📢 Telegram (solo admin): conectar canal + prueba ═══ */
+  function renderTgZone() {
+    const bd = profileModalEnsure();
+    const zone = bd.querySelector('#axTgZone');
+    if (!zone) return;
+    if (!isAdmin()) { zone.innerHTML = ''; return; }
+    const hasToken = !!vaultGet('tgBotToken');
+    zone.innerHTML = `
+      <div class="ax-sec-t">📢 Telegram — publicaciones automáticas</div>
+      ${hasToken
+        ? `<p class="ax-note">✅ Conectado a <b>${axEsc(vaultGet('tgChat') || 'tu canal')}</b>. Cada vez que pulse <b>«Publicar»</b> anuncio solo lo nuevo (series y películas; la TV no, es efímera). El token vive solo en este dispositivo.</p>`
+        : `<p class="ax-note">🛠 3 pasos: 1) En Telegram habla con <b>@BotFather</b> → <code>/newbot</code> → copia el token. 2) Crea tu canal y añade el bot como <b>administrador</b> (permiso de publicar). 3) Pega aquí el token y el @nombre del canal.</p>`}
+      <div class="ax-restore" style="flex-direction:column;align-items:stretch;gap:6px">
+        <input id="axTgToken" type="password" placeholder="Token del bot (1234567:ABC…)" spellcheck="false" autocomplete="off" value="${axEsc(vaultGet('tgBotToken'))}">
+        <div style="display:flex;gap:6px">
+          <input id="axTgChat" placeholder="@tu_canal" spellcheck="false" autocomplete="off" style="flex:1" value="${axEsc(vaultGet('tgChat'))}">
+          <input id="axTgSite" placeholder="https://tu-web… (botón ▶ Ver ahora)" spellcheck="false" autocomplete="off" style="flex:1.7" value="${axEsc(vaultGet('tgSite'))}">
+        </div>
+      </div>
+      <div class="modal-actions" style="justify-content:flex-start">
+        <button class="btn btn-acid" id="axTgSave">Guardar conexión</button>
+        <button class="btn btn-ghost" id="axTgTest">Enviar prueba al canal</button>
+      </div>`;
+    zone.querySelector('#axTgSave').addEventListener('click', () => {
+      const token = zone.querySelector('#axTgToken').value.trim();
+      const chat = zone.querySelector('#axTgChat').value.trim();
+      const site = zone.querySelector('#axTgSite').value.trim();
+      vaultSet({ tgBotToken: token, tgChat: chat, tgSite: site });
+      axToast(token && chat ? '📢 Telegram guardado — se anunciarán las novedades al publicar' : '✖ Conexión de Telegram vacía (limpiada)');
+    });
+    zone.querySelector('#axTgTest').addEventListener('click', async () => {
+      const token = zone.querySelector('#axTgToken').value.trim();
+      const chat = zone.querySelector('#axTgChat').value.trim();
+      const site = zone.querySelector('#axTgSite').value.trim();
+      if (!token || !chat) return axToast('⚠ Pega token y @canal primero (y pulsa Guardar)', true);
+      axToast('📢 Enviando prueba…');
+      try {
+        await tgSend(token, chat, '✅ <b>X·STREAM conectado</b>\n\nLas novedades de tu catálogo se anunciarán aquí solas, con póster y botón ▶▶', null, site || tgSiteUrl());
+        axToast('✅ Revisa tu canal — si llegó, estás listo');
+      } catch (e) { axToast('⚠ Telegram rechazó: ' + (e.message || e), true); }
     });
   }
 
@@ -1268,13 +1444,27 @@
       <div class="ax-restore">
         <input id="axModIn" placeholder="Pega tu pase XMOD…" spellcheck="false" autocomplete="off">
         <button class="btn btn-acid" id="axModGo">Activar</button>
-      </div>`;
+      </div>
+      <div id="axModErr"></div>`;
+    const errBox = zone.querySelector('#axModErr');
     const go = async () => {
       const code = zone.querySelector('#axModIn').value;
       if (!code.trim()) return;
+      errBox.innerHTML = '';
       const r = await modRedeem(code);
       if (r === 'ok') { axToast('🛡 ¡Pase aceptado! Ya eres moderador — se te han abierto las herramientas de edición'); renderProfile(); }
-      else if (r === 'for-other') axToast('⚠ Ese pase es de OTRO dispositivo — pide uno hecho para tu código de identidad', true);
+      else if (r === 'for-other') {
+        /* el pase sigue la cuenta del código de identidad CON EL QUE SE GENERÓ.
+           Si restauraste otra cuenta entre tanto, tu uid cambió: el admin debe
+           generar el pase con tu código ACTUAL. Lo mostramos listo para copiar. */
+        errBox.innerHTML = `<div class="ax-note" style="border-left:3px solid var(--hot);padding:8px 10px;margin-top:8px">
+          ⚠ Ese pase se generó para <b>otro código de identidad</b> (quizá restauraste tu cuenta o es de otra persona).
+          Envía al administrador <b>tu código actual</b> y pide un pase nuevo:
+          <div class="ax-codebox" style="margin-top:6px"><code>${fmtCode(ID.code)}</code><button class="btn btn-mini" id="axModSendCode">Copiar mi código</button></div></div>`;
+        errBox.querySelector('#axModSendCode').addEventListener('click', () => {
+          navigator.clipboard.writeText(fmtCode(ID.code)).then(() => axToast('📋 Código copiado — envíaselo al administrador')).catch(() => { });
+        });
+      }
       else if (r === 'expired') axToast('⚠ Ese pase ya caducó — pide uno nuevo', true);
       else axToast('⚠ Pase no válido', true);
     };
