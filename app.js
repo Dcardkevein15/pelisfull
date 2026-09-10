@@ -4570,10 +4570,11 @@ new IntersectionObserver(entries => {
   else if (anchorVisible && !miniPinned) setMini(false);
 }, { threshold: 0.15 }).observe(els.playerAnchor);
 els.miniX.addEventListener('click', () => {
+  /* ❌ cerrar el mini NO mata el video: antes limpiaba el iframe de
+     Drive/Streamtape (pantalla negra al subir) o pausaba el mp4.
+     Ahora solo regresa el reproductor a su sitio — sigue intacto. */
   miniPinned = false;
   setMini(false);
-  if (isDriveMode()) els.driveFrame.src = 'about:blank';
-  else if (els.video.src) els.video.pause();
 });
 
 /* ── Portadas automáticas de anime (AniList) ── */
