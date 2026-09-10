@@ -150,7 +150,12 @@
     return out;
   }
   function codeToBytes(code) {
-    const clean = String(code || '').toUpperCase().replace(/[^A-Z2-9]/g, '');
+    /* 🩹 Reparación de códigos LEGADOS: la versión antigua del alfabeto
+       tenía 31 chars y el valor 31 se imprimía como el texto "undefined".
+       Ese valor perdido era SIEMPRE el índice 31 = 'I' → lo restauramos
+       antes de decodificar. Así reviven los códigos viejos sin pedir otros. */
+    const clean = String(code || '').toUpperCase()
+      .replace(/UNDEFINED/g, 'I').replace(/[^A-Z2-9]/g, '');
     let bits = 0, val = 0;
     const out = [];
     for (const ch of clean) {
@@ -1410,20 +1415,33 @@
         </select>
         <button class="btn btn-acid" id="axModGen">Generar pase</button>
       </div>
-      <div class="ax-note" id="axModPrev" style="margin-top:6px">Pega el código de la persona y aquí verás a quién pertenece antes de generar.</div>
+      <div class="ax-codebox hidden" id="axModPrev" style="margin-top:8px;align-items:center;gap:10px">
+        <img id="axModPrevAva" class="ax-ava" style="width:38px;height:38px;border-radius:12px" alt="">
+        <div style="flex:1;min-width:0">
+          <b id="axModPrevName"></b> <span id="axModPrevTag" class="ax-tag"></span>
+          <div class="ax-note" id="axModPrevGeo" style="margin:2px 0 0"></div>
+        </div>
+      </div>
       <div class="ax-codebox hidden" id="axModOut" style="margin-top:8px">
         <code id="axModCode" style="word-break:break-all"></code>
         <button class="btn btn-mini" id="axModCopy">Copiar pase</button>
       </div>`;
     /* previsualización en vivo: a quién pertenece ese código (evita pases
-       generados para la persona equivocada — la causa del error)          */
+       generados para la persona equivocada). Nota: el código SOLO lleva la
+       identidad automática — si esa persona se cambió el nombre a mano,
+       aquí verás el nombre automático, pero el pase funciona igual en SU
+       dispositivo (su nombre personalizado no se pierde).                 */
     const inp = zone.querySelector('#axModUid');
     const prev = zone.querySelector('#axModPrev');
     inp.addEventListener('input', () => {
       const bytes = codeToBytes(inp.value);
-      if (bytes.length < 10) { prev.textContent = 'Pega el código completo (16 letras con guiones)…'; return; }
+      if (bytes.length < 10) { prev.classList.add('hidden'); return; }
       const who = identityFromSeed(bytes);
-      prev.innerHTML = `👤 Este código es de: <b>${axEsc(who.name)} ${axEsc(who.tag)}</b> — si coincide con tu moderador, genera el pase para él.`;
+      zone.querySelector('#axModPrevAva').src = avatarSvg(who);
+      zone.querySelector('#axModPrevName').textContent = who.name;
+      zone.querySelector('#axModPrevTag').textContent = who.tag;
+      zone.querySelector('#axModPrevGeo').textContent = `${who.flag} ${who.country} · identidad automática`;
+      prev.classList.remove('hidden');
     });
     zone.querySelector('#axModGen').addEventListener('click', async () => {
       const code = zone.querySelector('#axModUid').value.trim();

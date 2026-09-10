@@ -1687,3 +1687,16 @@ body.staff-on .admin-only{display:revert!important}
   .tab-home .side-tab{flex:1 1 0;padding:12px 2px}
   .tab-home .gear-btn{margin:0}
 }
+
+/* ═══ capítulos: tarjeta doble + reordenación en modo edición ═══ */
+.ep-dbl{
+  position:absolute;top:6px;right:6px;z-index:3;background:var(--acid);color:#111;
+  font:800 8.5px 'JetBrains Mono';letter-spacing:1px;padding:2px 8px;border-radius:999px;
+}
+.ep-mv,.ep-dblbtn{
+  position:relative;z-index:4;border:1px solid var(--line);background:var(--panel2);
+  color:var(--dim);font:700 11px 'JetBrains Mono';border-radius:8px;padding:4px 7px;
+  margin-left:5px;transition:.15s;
+}
+.ep-mv:hover,.ep-dblbtn:hover{color:var(--acid);border-color:var(--acid)}
+.ep-dblbtn.on{background:var(--acid);color:#111;border-color:var(--acid)}

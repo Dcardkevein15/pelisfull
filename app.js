@@ -2196,6 +2196,9 @@ function renderEpisodes() {
   els.addEpBtn.classList.remove('hidden');
   els.insertEpBtn.classList.remove('hidden');
 
+  /* etiquetas de posición (los capítulos dobles ocupan dos números) */
+  computeEpDisplay(s);
+
   /* cabeceras divisorias si la serie tiene varias temporadas: se mezclan con
      las celdas de capítulo en una única lista renderable para lazyRender */
   const hasSeasons = s.episodes.some(e => (e.season || 1) > 1);
@@ -2295,9 +2298,12 @@ function renderEpisodes() {
     const q = epQuality(ep);
     const resume = pr && !pr.done && pr.t > 20
       ? `<span class="ep-resume" title="Continuar donde lo dejaste">▶ ${fmt(pr.t)}</span>` : '';
+    /* etiqueta de posición: una tarjeta DOBLE ocupa dos números (7–8) */
+    const dd = epDispMap.get(ep) || { a: ep.n, b: ep.n, span: 1 };
     cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
       + `<span class="ep-src" title="${srcIcon.t}">${srcIcon.g}</span>`
-      + `<span class="num">${ep.n}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
+      + `<span class="num">${dd.a}${dd.b > dd.a ? '–' + dd.b : ''}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
+      + (dd.span > 1 ? '<span class="ep-dbl" title="Capítulo doble: esta tarjeta vale por dos números">DOBLE</span>' : '')
       + resume
       + (q ? `<span class="ep-q ${q.cls}" title="Calidad detectada">${q.txt}</span>` : '')
       + (pr && !pr.done && pr.d ? `<div class="ep-progress"><i style="width:${Math.round(pr.t / pr.d * 100)}%"></i></div>` : '');
@@ -2354,7 +2360,32 @@ function renderEpisodes() {
         save(); renderEpisodes();
         toast(ep.note ? '📝 Nota guardada' : 'Nota eliminada');
       });
-      cell.append(input, noteBtn, del);
+      /* ⬆⬇ mover dentro de su temporada y marcar tarjeta DOBLE (dos números) */
+      const mvUp = document.createElement('button');
+      mvUp.className = 'ep-mv'; mvUp.textContent = '▲'; mvUp.title = 'Subir dentro de su temporada';
+      mvUp.addEventListener('click', ev => {
+        ev.stopPropagation();
+        if (moveEpWithinSeason(s, ep, 'up')) { save(); renderEpisodes(); renderSeries(els.searchInput.value); }
+        else toast('Ya es el primero de su temporada', true);
+      });
+      const mvDn = document.createElement('button');
+      mvDn.className = 'ep-mv'; mvDn.textContent = '▼'; mvDn.title = 'Bajar dentro de su temporada';
+      mvDn.addEventListener('click', ev => {
+        ev.stopPropagation();
+        if (moveEpWithinSeason(s, ep, 'down')) { save(); renderEpisodes(); renderSeries(els.searchInput.value); }
+        else toast('Ya es el último de su temporada', true);
+      });
+      const dbl = document.createElement('button');
+      dbl.className = 'ep-dblbtn' + (ep.span > 1 ? ' on' : '');
+      dbl.textContent = '2×';
+      dbl.title = ep.span > 1 ? 'Volver a tarjeta simple' : 'Capítulo DOBLE: esta tarjeta vale por dos números';
+      dbl.addEventListener('click', ev => {
+        ev.stopPropagation();
+        if (ep.span && ep.span > 1) delete ep.span; else ep.span = 2;
+        save(); renderEpisodes(); renderSeries(els.searchInput.value);
+        toast(ep.span ? '🔀 Tarjeta doble: ocupará dos números' : 'Tarjeta simple otra vez');
+      });
+      cell.append(input, noteBtn, mvUp, mvDn, dbl, del);
     } else {
       cell.addEventListener('click', () => loadEpisode(ep.n, true));
       /* doble clic → reproducir + fijar el mini-player para seguir navegando */
@@ -3602,16 +3633,21 @@ function stapeFileKey(url) {
    continuación. Nada se duplica: el linkid es la huella de cada video. */
 function mergeStapeEpisodes(s, newEps) {
   const have = new Set((s.episodes || []).map(e => stapeFileKey(e.url)).filter(Boolean));
-  let next = (s.episodes || []).reduce((m, e) => Math.max(m, typeof e.n === 'number' ? e.n : 0), 0) + 1;
   let added = 0;
   for (const e of newEps) {
     const k = stapeFileKey(e.url);
     if (k && !have.has(k)) {
-      s.episodes.push({ n: next++, t: e.t, url: e.url });
+      /* entra en su HUECO por número (no solo al final): si subiste la T4
+         con los capítulos 1 y 2 de últimos, vuelven a su sitio 1 y 2   */
+      const ep = { n: 900000 + added, t: e.t, url: e.url };
+      if (e.season) ep.season = e.season;
+      if (e.srcSeason) ep.srcSeason = e.srcSeason;
+      insertEpSmart(s, ep);
       have.add(k);
       added++;
     }
   }
+  if (added) renumberSeries(s);
   return added;
 }
 
@@ -3631,20 +3667,94 @@ function findMergeTargetBySrc(srcId) {
 function appendMergedSeason(target, srcId, files) {
   const se = (target.episodes.find(e => e.srcSeason === srcId) || {}).season || 1;
   const have = new Set(target.episodes.map(e => stapeFileKey(e.url)).filter(Boolean));
-  let next = target.episodes.reduce((m, e) => Math.max(m, e.n || 0), 0);
   let added = 0;
   const orden = files.slice().sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
   for (const f of orden) {
     if (have.has(f.key)) continue;
-    target.episodes.push({
-      n: ++next,
-      t: cleanEpTitle(f.name, `Capítulo ${next}`).slice(0, 60),
+    /* entra en su hueco por número real dentro de su temporada */
+    insertEpSmart(target, {
+      n: 900000 + added,
+      t: cleanEpTitle(f.name, 'Capítulo').slice(0, 60),
       url: f.url, season: se, srcSeason: srcId,
     });
     have.add(f.key);
     added++;
   }
+  if (added) renumberSeries(target);
   return added;
+}
+
+/* ══ 🔢 ORDEN DE CAPÍTULOS + TARJETAS DOBLES ══
+   Los números de ORDEN siguen siendo e.n (1…N, posición). La ETIQUETA
+   visible respeta el "span": una tarjeta doble ocupa dos números
+   (7–8) y la siguiente continúa en 9 — igual que la carpeta real.   */
+
+/* número de capítulo leído del nombre del archivo ("…S2E07", "E07", "Cap 12", "- 08") */
+function parseEpNumber(name) {
+  const s = String(name || '');
+  const m = s.match(/s\d{1,2}\s?[ex]\s*0*(\d{1,4})/i)                 /* S2E07 / S02x07 */
+    || s.match(/(?:^|[\s._\-])(?:episodio|ep|cap[ií]tulo|cap)\s*0*(\d{1,4})(?!\d)/i)  /* Capítulo 5 / ep 12 */
+    || s.match(/(?:^|[\s._\-])e\s*0*(\d{1,4})(?!\d)/i)              /* E07 suelto */
+    || s.match(/(?:^|[\s._\-|])(\d{1,3})(?!\d)(?=[\s._\-\)\[]|v\d|$)/i)             /* "… - 07" */
+    || s.match(/^0*(\d{1,3})[\s._\-]/);                              /* "07 - título" */
+  return m ? parseInt(m[1], 10) : null;
+}
+
+/* clave de orden: el nº del nombre si existe; si no, el n actual (nunca mueve) */
+function epSortKey(e) {
+  if (!e) return Infinity;
+  const k = parseEpNumber(e.t);
+  if (k != null) return k;
+  return typeof e.n === 'number' && isFinite(e.n) ? e.n : Infinity;
+}
+
+/* inserta un capítulo EN SU HUECO dentro de su temporada (o de la serie):
+   mira números reales; nunca reordena lo que ya estaba               */
+function insertEpSmart(s, ep) {
+  const se = ep.season || 1;
+  const kNew = epSortKey(ep);
+  let at = s.episodes.length;
+  for (let i = 0; i < s.episodes.length; i++) {
+    const cur = s.episodes[i];
+    const curSe = cur.season || 1;
+    if (curSe < se) continue;
+    if (curSe > se) { at = i; break; }              /* antes de la siguiente temporada */
+    if (epSortKey(cur) > kNew) { at = i; break; }   /* su hueco por número */
+  }
+  s.episodes.splice(at, 0, ep);
+}
+
+/* renumerar 1..N en el orden actual del array, llevándose el progreso */
+function renumberSeries(s) {
+  const prog = (state.progress || {})[s.id] || {};
+  const map = new Map();
+  s.episodes.forEach((e, i) => { map.set(e.n, i + 1); e.n = i + 1; });
+  const np = {};
+  for (const k of Object.keys(prog)) { const nk = map.get(+k); if (nk != null) np[nk] = prog[k]; }
+  state.progress[s.id] = np;
+  if (current.seriesId === s.id && current.ep != null && map.has(current.ep)) current.ep = map.get(current.ep);
+}
+
+/* mover un capítulo dentro de su MISMA temporada (nunca salta a otra) */
+function moveEpWithinSeason(s, ep, dir) {
+  const idx = s.episodes.indexOf(ep);
+  if (idx < 0) return false;
+  const j = idx + (dir === 'up' ? -1 : 1);
+  if (j < 0 || j >= s.episodes.length || (s.episodes[j].season || 1) !== (ep.season || 1)) return false;
+  const tmp = s.episodes[idx]; s.episodes[idx] = s.episodes[j]; s.episodes[j] = tmp;
+  renumberSeries(s);
+  return true;
+}
+
+/* etiqueta visible por posición respetando spans (doble = dos números) */
+const epDispMap = new WeakMap();
+function computeEpDisplay(s) {
+  let n = 0;
+  for (const e of s.episodes) {
+    const sp = e.span && e.span > 1 ? Math.min(9, Math.floor(e.span)) : 1;
+    epDispMap.set(e, { a: n + 1, b: n + sp, span: sp });
+    n += sp;
+  }
 }
 
 /* inserta los items (o actualiza si ya existen) y LIMPIA el tipo contrario
