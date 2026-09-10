@@ -2604,15 +2604,38 @@ function loadEpisode(epN, autoplayNow = true) {
   const pr = ((state.progress || {})[s.id] || {})[ep.n];
   state.lastPlayed[s.id] = Date.now();
   save();
-  if (!v.src.endsWith(ep.url)) {
-    v.src = ep.url;
-    v.load(); // carga inmediata
-  }
-  attachSpanishSubs(ep.sub); // 🇪🇸 subtítulos automáticos si la fuente los trae
-  if (autoplayNow) {
-    v.play().catch(() => toast('Pulsa play para iniciar (autoplay bloqueado)'));
-  }
+
+  /* archive.org: si el enlace es un contenedor que el navegador NO decodifica
+     (m4v DivX, avi, mkv…), archive.org suele tener su gemelo h264 en .mp4 con
+     el MISMO nombre — probamos ese primero y, si existe, queda como definitivo */
+  (async () => {
+    const url = await archiveBetterMp4(ep.url);
+    if (url !== ep.url) { ep.url = url; save(); }
+    if (!v.src.endsWith(url)) {
+      v.src = url;
+      v.load(); // carga inmediata
+    }
+    attachSpanishSubs(ep.sub); // 🇪🇸 subtítulos automáticos si la fuente los trae
+    if (autoplayNow) {
+      v.play().catch(() => toast('Pulsa play para iniciar (autoplay bloqueado)'));
+    }
+  })();
   renderEpisodes();
+}
+
+/* ¿el ítem de archive.org tiene gemelo h264 (.mp4) para este contenedor raro?
+   archive.org genera derivados MP4 con el MISMO nombre: basta cambiar la
+   extensión y hacer HEAD. Si existe, es la versión que SÍ reproduce el
+   navegador. Devuelve la URL buena o la original si no hay gemelo.      */
+async function archiveBetterMp4(url) {
+  const m = String(url || '').match(/^(https?:\/\/archive\.org\/download\/[^/]+\/.+?)\.(m4v|avi|mkv|mpg|mpeg|wmv|flv|3gp|ts)(\?[^\s]*)?$/i);
+  if (!m) return url;
+  const alt = m[1] + '.mp4' + (m[3] || '');
+  try {
+    const r = await fetch(alt, { method: 'HEAD' });
+    if (r.ok) return alt;
+  } catch (e) { /* sin red o bloqueo → se queda la original */ }
+  return url;
 }
 
 /* ═══════════ Player: UI de controles ═══════════ */
@@ -4885,20 +4908,27 @@ async function cineFetchMedia(id) {
   const mk = f => `https://archive.org/download/${id}/${f.name.split('/').map(encodeURIComponent).join('/')}`;
   const subs = all.filter(f => /\.(srt|vtt)$/i.test(f.name || '')
     && /(español|espanol|spanish|latino|castellano|\bes\b|\[es\]|_es[._-]|\.es\.)/i.test(f.name));
-  const vids = files.map(f => ({ name: f.name, url: mk(f), len: parseFloat(f.length) || 0 }));
+  const vids = files.map(f => ({ name: f.name, url: mk(f), len: parseFloat(f.length) || 0, fmt: String(f.format || '').toLowerCase() }));
   const runtime = parseRuntime(meta.metadata && meta.metadata.runtime) || Math.max(0, ...vids.map(v => v.len));
   return { vids, sub: subs.length ? mk(subs[0]) : null, runtime };
 }
 
-/* el mejor video suelto para reproducir ya (calidad razonable, formato cómodo) */
+/* el mejor video suelto para reproducir ya — lo IMPORTANTE es que el
+   navegador lo decodifique, no el peso: h264/webm siempre ganan a un
+   .m4v DivX (que da "pantalla negra" aunque el enlace responda)      */
 function cinePickBest(vids) {
   const score = v => {
     const n = v.name.toLowerCase();
-    if (/_512kb\.mp4$/.test(n)) return 2;
-    if (/\.ia\.mp4$/.test(n)) return 20;
-    if (/\.mp4$|\.m4v$/.test(n)) return 12;
-    if (/\.webm$/.test(n)) return 8;
-    return 3;
+    let s = /\._512kb\.mp4$/.test(n) ? 2
+      : /\.ia\.mp4$/.test(n) ? 22
+        : /\.mp4$/.test(n) ? 14
+          : /\.webm$/.test(n) ? 11
+            : /\.ogv$/.test(n) ? 8
+              : /\.m4v$/.test(n) ? 5
+                : 3;
+    if (/h\.?264|avc/.test(v.fmt || '')) s += 8;              /* seguro en todo navegador */
+    if (/mpeg-?4|divx|xvid/.test(v.fmt || '')) s -= 8;        /* el codec que no decodifica */
+    return s;
   };
   return vids.slice().sort((a, b) => score(b) - score(a))[0];
 }
