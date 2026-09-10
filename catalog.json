@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789062251080,
+ "v": 1789075698810,
  "by": "Dcard #2968",
- "at": "2026-09-10T17:44:11.080Z",
- "n": 5292,
+ "at": "2026-09-10T21:28:18.810Z",
+ "n": 5294,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -5184,11 +5184,47 @@
    "kind": "pelicula",
    "anime": false,
    "poster": "https://archive.org/services/img/rashomon-subtitulado-espanol",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
      "t": "Rashomon Subtitulado Espanol",
      "url": "https://archive.org/download/rashomon-subtitulado-espanol/Rashomon_subtitulado_espanol.m4v"
+    }
+   ]
+  },
+  {
+   "id": "ia-PeliculaNietzsche",
+   "t": "El día que Nietzsche lloró",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2007",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/PeliculaNietzsche",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El día que Nietzsche lloró",
+     "url": "https://archive.org/download/PeliculaNietzsche/When_Nietzsche_Wept.ogv"
+    }
+   ]
+  },
+  {
+   "id": "ia-PalomaDePapelFabrizioAguilar2003",
+   "t": "Paloma De Papel (Fabrizio Aguilar, 2003)",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2003",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/PalomaDePapelFabrizioAguilar2003",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Paloma De Papel (Fabrizio Aguilar, 2003)",
+     "url": "https://archive.org/download/PalomaDePapelFabrizioAguilar2003/Paloma%20de%20papel%20(Fabrizio%20Aguilar%2C%202003).mp4"
     }
    ]
   }
@@ -62862,5 +62898,5 @@
    "at": 1788630194628
   }
  },
- "sig": "M+7AAkqU2KYCvbA/6yPjGYRydC9Exafw4/CadiE8TiH0SVCFNTzmbJRUCn8F9wgZbpMOsBUVaOIaTM+6Alk5gQ=="
+ "sig": "j/GO5WBooa2T6WS8Mplu0JSGPIzjLR5y/qi+2y0Wr71Cu5Ynf8SlFafdrf37BC2xjkEpsYksG2XX56MVfnJNaQ=="
 }
