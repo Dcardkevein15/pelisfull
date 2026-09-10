@@ -1288,26 +1288,195 @@
     const payload = item && item.payload;
     if (!payload || !Array.isArray(payload.series)) throw new Error('propuesta vacía o corrupta');
     if (!validateCatalog(payload)) return axToast('⚠ La propuesta no supera la validación del catálogo', true);
-    /* firmas TÚ — la propuesta sale con tu sello */
-    delete payload.sig;
-    payload.v = Date.now();
-    payload.at = new Date().toISOString();
+    const state = API.getState();
+    const diff = computeProposalDiff(payload, state);
+    if (diff.sinCambios) return axToast('🤷 No trae nada nuevo respecto a tu biblioteca — descártala si quieres', true);
+
+    axToast('📥 Integrando los cambios del moderador en tu biblioteca…');
+    applyProposalDiff(diff, state);
+
+    /* publicar = tu flujo normal: FIRMA contigo + subida a GitHub */
+    const finalPayload = buildCatalogPayload(state);
     await sigKeysEnsure();
-    const sig = await sigSignPayload(payload);
-    if (sig) payload.sig = sig;
+    const sig = await sigSignPayload(finalPayload);
+    if (sig) finalPayload.sig = sig;
     const token = ghToken() || ghAskToken();
     if (!token) return;
-    axToast('🌐 Publicando la propuesta del moderador, firmada por ti…');
-    await ghPublishCatalog(payload, token);
-    /* y se aplica también en tu dispositivo: tu biblioteca la integra */
-    try { applyCatalog(payload); } catch (e) { console.warn('applyCatalog post-aprobado:', e); }
+    axToast('🌐 Publicando, firmado con tu clave…');
+    await ghPublishCatalog(finalPayload, token);
     await propBorrar(id);
-    const state = API.getState();
-    state.catalogMeta = { v: payload.v, at: Date.now(), n: payload.n };
+    state.catalogMeta = { v: finalPayload.v, at: Date.now(), n: finalPayload.n };
     if (API.save) API.save();
-    telegramAnnounce(payload).catch(() => { });
-    axToast(`✅ Propuesta de ${item.by || 'moderador'} PUBLICADA con tu firma`);
+    telegramAnnounce(finalPayload).catch(() => { });
+    axToast(`✅ Propuesta de ${item.by || 'moderador'} integrada y PUBLICADA con tu firma`);
   }
+
+  /* ═══ Modal de revisión de propuesta (el "ver" bonito) ═══ */
+  function propModalEnsure() {
+    let bd = document.getElementById('axPropView');
+    if (bd) return bd;
+    bd = document.createElement('div');
+    bd.id = 'axPropView';
+    bd.className = 'ax-backdrop hidden';
+    bd.innerHTML = `
+      <div class="modal ax-modal pv-modal">
+        <div class="ax-head">
+          <div class="ax-id">
+            <div class="ax-namerow"><b id="pvTitle">Propuesta</b></div>
+            <div class="ax-role"><span class="ax-badge admin" id="pvBadge">novedades</span></div>
+          </div>
+        </div>
+        <div id="pvBody" class="pv-body"></div>
+        <div class="pv-preview hidden" id="pvPreview">
+          <div class="pv-preview-head">
+            <b id="pvPrevTitle"></b>
+            <span class="pv-status" id="pvStatus"></span>
+            <button class="btn btn-mini" id="pvClose">✕ cerrar preview</button>
+          </div>
+          <div id="pvPlay"></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" id="pvCloseAll">Cerrar</button>
+          <button class="btn btn-acid" id="pvApprove">✅ Aprobar y publicar</button>
+        </div>
+      </div>`;
+    document.body.appendChild(bd);
+    bd.addEventListener('click', ev => { if (ev.target === bd) bd.classList.add('hidden'); });
+    bd.querySelector('#pvCloseAll').addEventListener('click', () => bd.classList.add('hidden'));
+    bd.querySelector('#pvClose').addEventListener('click', () => {
+      bd.querySelector('#pvPreview').classList.add('hidden');
+      bd.querySelector('#pvPlay').innerHTML = '';
+    });
+    bd.querySelector('#pvApprove').addEventListener('click', pvApproveClick);
+    return bd;
+  }
+
+  /* el ✅ del modal: aprueba-la-propuesta-cache (la integra y la publica firmada) */
+  async function pvApproveClick() {
+    const bd = propModalEnsure();
+    const btn = bd.querySelector('#pvApprove');
+    const id = computeProposalDiffCache && computeProposalDiffCache.id;
+    if (!id) { bd.classList.add('hidden'); return; }
+    btn.disabled = true; btn.textContent = '⏳ Publicando…';
+    try {
+      await propAprobar(id);
+      bd.classList.add('hidden');
+      renderPropZone();
+    } catch (e) { axToast('⚠ No se pudo publicar: ' + (e.message || e), true); }
+    finally { btn.disabled = false; btn.textContent = '✅ Aprobar y publicar'; }
+  }
+
+  /* previsualiza UN enlace dentro del modal y dice si responde */
+  function pvPreviewInto(url, title) {
+    const bd = propModalEnsure();
+    const box = bd.querySelector('#pvPreview');
+    const play = bd.querySelector('#pvPlay');
+    bd.querySelector('#pvPrevTitle').textContent = title;
+    box.classList.remove('hidden');
+    play.innerHTML = '';
+    const st = bd.querySelector('#pvStatus');
+    st.textContent = '⏳ comprobando…'; st.className = 'pv-status checking';
+
+    /* según el tipo de fuente: iframe oficial o reproductor nativo */
+    const dId = (url.match(/drive\.google\.com\/file\/d\/([\w-]+)/) || [])[1] || (url.match(/[?&]id=([\w-]+)/) || [])[1];
+    const stape = url.match(/streamtape\.(?:com|to)\/(?:[ev])\/([\w-]+)/i);
+    const esVideoDirecto = /\.(mp4|m4v|webm|ogv|ogg|mov)(\?|#|$)/i.test(url);
+
+    if (dId) {
+      play.innerHTML = `<iframe src="https://drive.google.com/file/d/${dId}/preview" allow="autoplay;fullscreen" allowfullscreen></iframe>`;
+      st.textContent = '📂 Google Drive (vista previa)'; st.className = 'pv-status ok';
+      return;
+    }
+    if (stape) {
+      play.innerHTML = `<iframe src="https://streamtape.com/e/${stape[1]}" allowfullscreen allowtransparency allow="autoplay"></iframe>`;
+      st.textContent = '☁ Streamtape (vista previa)'; st.className = 'pv-status ok';
+      return;
+    }
+    if (esVideoDirecto) {
+      const v = document.createElement('video');
+      v.src = url; v.controls = true; v.muted = true; v.preload = 'metadata';
+      play.appendChild(v);
+      const timer = setTimeout(() => { st.textContent = '⚠ no respondió en 8s — quizá caído'; st.className = 'pv-status err'; }, 8000);
+      v.addEventListener('loadedmetadata', () => { clearTimeout(timer); st.textContent = `✅ VIVO · video real · ${Math.round(v.duration)}s`; st.className = 'pv-status ok'; });
+      v.addEventListener('error', () => { clearTimeout(timer); st.textContent = '✗ no carga — enlace caído o con CORS estricto'; st.className = 'pv-status err'; });
+      v.load();
+      return;
+    }
+    st.textContent = 'Fuente externa — solo se puede abrir aparte:';
+    st.className = 'pv-status';
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    a.className = 'btn btn-acid'; a.textContent = '🔗 Abrir en la fuente';
+    play.appendChild(a);
+  }
+
+  /* render del modal de revisión con el DELTA (solo lo que él añade/cambia) */
+  async function propVer(id, by) {
+    const bd = propModalEnsure();
+    const body = bd.querySelector('#pvBody');
+    bd.querySelector('#pvPreview').classList.add('hidden');
+    bd.querySelector('#pvPlay').innerHTML = '';
+    bd.querySelector('#pvTitle').textContent = `Propuesta de ${by || 'moderador'}`;
+    bd.querySelector('#pvBadge').textContent = 'leyendo…';
+    body.innerHTML = '<p class="ax-note">Leyendo el buzón y comparando con tu biblioteca…</p>';
+    bd.classList.remove('hidden');
+
+    try {
+      const item = await propLeer(id);
+      const payload = item.payload;
+      const diff = computeProposalDiff(payload, API.getState());
+      computeProposalDiffCache = { id, payload, diff };
+      const tipoChip = s => s.kind === 'pelicula' ? '🎬 película' : '📺 anime/serie';
+
+      if (diff.sinCambios) {
+        bd.querySelector('#pvBadge').textContent = 'sin cambios';
+        body.innerHTML = `<p class="ax-note">🤷 Esta propuesta no añade nada nuevo respecto a tu biblioteca actual. Seguro que el moderador se basó en una versión vieja. Puedes descartarla.</p>`;
+        return;
+      }
+
+      let html = '';
+      let bits = 0;
+      if (diff.nuevas.length) {
+        bits += diff.nuevas.length;
+        html += `<div class="pv-grp"><div class="pv-grp-t">🆕 NUEVO en tu biblioteca (${diff.nuevas.length})</div>`;
+        for (const it of diff.nuevas.slice(0, 20)) {
+          const withUrl = it.eps.filter(e => e.url);
+          html += `<div class="pv-row"><div class="pv-row-t"><span class="pv-chip">${tipoChip(it.s)}</span> <b>${axEsc(it.s.t)}</b> <span class="pv-dim">· ${withUrl.length} cap${withUrl.length === 1 ? '' : 's'} con enlace</span></div><div class="pv-acts" data-ep="${withUrl.length ? withUrl[0].n : ''}"></div></div>`;
+        }
+        if (diff.nuevas.length > 20) html += `<p class="ax-note">…y ${diff.nuevas.length - 20} más.</p>`;
+        html += `</div>`;
+      }
+      if (diff.porSerie.length) {
+        bits += diff.porSerie.length;
+        html += `<div class="pv-grp"><div class="pv-grp-t">➕ CAPÍTULOS NUEVOS en series que YA tienes (${diff.porSerie.length})</div>`;
+        for (const row of diff.porSerie) {
+          html += `<div class="pv-row"><div class="pv-row-t"><b>${axEsc(row.t)}</b> <span class="pv-dim">+${row.count} capítulo${row.count > 1 ? 's' : ''}</span></div><div class="pv-list">` +
+            row.eps.slice(0, 14).map(e => `<div class="pv-ep"><span>E${e.n} · ${axEsc(e.t || '')}</span><button class="btn btn-mini pv-go" data-url="${axEsc(e.url)}" data-title="${axEsc(row.t + ' · E' + e.n)}">▶ previsualizar</button></div>`).join('') +
+            (row.eps.length > 14 ? `<p class="ax-note">…y ${row.eps.length - 14} más.</p>` : '') +
+            `</div></div>`;
+        }
+        html += `</div>`;
+      }
+      if (diff.canalesNuevos.length) {
+        bits += diff.canalesNuevos.length;
+        html += `<div class="pv-grp"><div class="pv-grp-t">📡 CANALES de TV nuevos (${diff.canalesNuevos.length})</div>` +
+          diff.canalesNuevos.slice(0, 10).map(c => `<div class="pv-ep"><span>${axEsc(c.name)}${c.group ? ' · ' + axEsc(c.group) : ''}</span></div>`).join('') +
+          (diff.canalesNuevos.length > 10 ? `<p class="ax-note">…y ${diff.canalesNuevos.length - 10} más.</p>` : '') + `</div>`;
+      }
+      body.innerHTML = html;
+      bd.querySelector('#pvBadge').textContent = bits + ' bloques nuevos';
+      /* previsualizador inline por capítulo */
+      body.querySelectorAll('.pv-go').forEach(b => b.addEventListener('click', ev => {
+        ev.preventDefault(); ev.stopPropagation();
+        pvPreviewInto(b.dataset.url, b.dataset.title);
+      }));
+    } catch (e) {
+      body.innerHTML = `<p class="ax-note">⚠ No se pudo leer: ${axEsc(e.message || String(e))}</p>`;
+    }
+  }
+  let computeProposalDiffCache = null;
+
+  /* ═══ Zona 📩 bandeja de propuestas (solo admin) ═══ */
 
   function renderCatalogStatus() {
     const bd = document.getElementById('axProfile');
@@ -1506,6 +1675,76 @@
     });
   }
 
+  /* ═══════════ 🔍 DIF y FUSIÓN de propuestas ═══════════
+     La propuesta trae la biblioteca ENTERA del moderador; al admin solo le
+     interesa lo que CAMBIÓ respecto a su propia biblioteca. Y al aprobar se
+     integra SOLO ese delta — nunca reemplazamos (si el moderador tiene una
+     versión vieja de algo, lo tuyo no se toca).                            */
+
+  function computeProposalDiff(payload, local) {
+    const diff = { nuevas: [], porSerie: [], canalesNuevos: [], sinCambios: true };
+    const localSeries = (local.series || []);
+    const localChannels = local.channels || [];
+    const chanIds = new Set(localChannels.map(c => c.id));
+
+    for (const s of payload.series || []) {
+      const localOne = localSeries.find(x => x.id === s.id);
+      const eps = s.episodes || [];
+      if (!localOne) {
+        /* serie o película completamente nueva */
+        diff.nuevas.push({ s, eps });
+        diff.sinCambios = false;
+        continue;
+      }
+      /* existe: qué capítulos trae que tú no tengas (huella = url) */
+      const haveUrls = new Set((localOne.episodes || []).map(e => e.url).filter(Boolean));
+      const nuevosEps = eps.filter(e => e.url && !haveUrls.has(e.url));
+      if (nuevosEps.length) {
+        diff.porSerie.push({ id: localOne.id, t: localOne.t, eps: nuevosEps, count: nuevosEps.length });
+        diff.sinCambios = false;
+      }
+    }
+    for (const c of payload.channels || []) {
+      if (!chanIds.has(c.id)) { diff.canalesNuevos.push(c); diff.sinCambios = false; }
+    }
+    /* mapa id→serie del payload, para heredar temporadas/etiquetas al fusionar */
+    diff.__payloadSeries = {};
+    for (const s of payload.series || []) diff.__payloadSeries[s.id] = s;
+    return diff;
+  }
+
+  /* integra el delta en TU biblioteca local (lo que vas a firmar y publicar) */
+  function applyProposalDiff(diff, state) {
+    for (const item of diff.nuevas) {
+      if (!state.series.find(x => x.id === item.s.id)) {
+        state.series.push(JSON.parse(JSON.stringify(item.s)));
+      }
+    }
+    for (const row of diff.porSerie) {
+      const target = state.series.find(x => x.id === row.id);
+      if (!target) continue;
+      for (const ep of row.eps) {
+        target.episodes.push(JSON.parse(JSON.stringify(ep)));
+      }
+      /* reordena por temporada + posición y renumera 1..N llevándose el progreso */
+      const prog = (state.progress || {})[target.id] || {};
+      const map = new Map();
+      target.episodes.forEach((e, i) => { map.set(e.n, i + 1); e.n = i + 1; });
+      const np = {};
+      for (const k of Object.keys(prog)) { const nk = map.get(+k); if (nk != null) np[nk] = prog[k]; }
+      state.progress[target.id] = np;
+      /* etiquetas de temporada que él añadió y tú no tenías */
+      const propSerie = (diff.__payloadSeries || {})[row.id];
+      if (propSerie && propSerie.seasons) {
+        target.seasons = target.seasons || {};
+        for (const k of Object.keys(propSerie.seasons)) if (!target.seasons[k]) target.seasons[k] = propSerie.seasons[k];
+      }
+    }
+    for (const c of diff.canalesNuevos) {
+      state.channels = (state.channels || []).concat([{ ...c, src: 'propuesta' }]);
+    }
+  }
+
   /* ═══ Zona 📩 bandeja de propuestas (solo admin) ═══ */
   async function renderPropZone() {
     const bd = profileModalEnsure();
@@ -1550,14 +1789,7 @@
         const bVer = document.createElement('button'); bVer.className = 'btn btn-mini'; bVer.textContent = '👁 Ver';
         const bOk = document.createElement('button'); bOk.className = 'btn btn-acid'; bOk.textContent = '✅ Aprobar y publicar';
         const bNo = document.createElement('button'); bNo.className = 'btn btn-ghost'; bNo.textContent = '🗑';
-        bVer.addEventListener('click', async () => {
-          try {
-            const full = await propLeer(it.id);
-            const s = full.payload && full.payload.series ? full.payload.series : [];
-            const conUrl = s.reduce((a, x) => a + (x.episodes || []).filter(e => e.url).length, 0);
-            alert(`Propuesta de ${it.by}\n\n• ${s.length} series/películas\n• ${full.payload.channels ? full.payload.channels.length : 0} canales TV\n• ${conUrl} enlaces reproducibles\n\nTítulos: ${s.slice(0, 8).map(x => x.t).join(' · ')}${s.length > 8 ? ' …' : ''}`);
-          } catch (e) { axToast('⚠ ' + (e.message || e), true); }
-        });
+        bVer.addEventListener('click', () => propVer(it.id, it.by));
         bOk.addEventListener('click', async () => {
           if (!confirm(`¿Aprobar y PUBLICAR la propuesta de ${it.by || 'moderador'}? Saldrá firmada con tu clave.`)) return;
           bOk.disabled = true; bOk.textContent = '⏳ Publicando…';

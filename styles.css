@@ -1700,3 +1700,36 @@ body.staff-on .admin-only{display:revert!important}
 }
 .ep-mv:hover,.ep-dblbtn:hover{color:var(--acid);border-color:var(--acid)}
 .ep-dblbtn.on{background:var(--acid);color:#111;border-color:var(--acid)}
+
+/* ═══ Modal de revisión de propuestas (delta del moderador) ═══ */
+.pv-modal{width:min(720px,94vw)}
+.pv-body{max-height:52vh;overflow-y:auto;padding-right:4px}
+.pv-grp{margin:12px 0}
+.pv-grp-t{font:800 11px 'JetBrains Mono';letter-spacing:1.5px;color:var(--acid);
+  text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.pv-row{background:var(--bg);border:1px solid var(--line);border-radius:12px;
+  padding:10px 12px;margin-bottom:8px}
+.pv-row-t{font-size:13px;line-height:1.35}
+.pv-chip{display:inline-block;background:var(--panel2);border:1px solid var(--line);
+  border-radius:999px;padding:2px 9px;font:700 9.5px 'JetBrains Mono';color:var(--acid);
+  letter-spacing:1px;margin-right:6px;text-transform:uppercase}
+.pv-dim{color:var(--dim);font-family:'JetBrains Mono';font-size:10.5px}
+.pv-list{margin-top:8px}
+.pv-ep{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:7px 10px;background:var(--panel);border:1px solid var(--line);border-radius:9px;
+  margin-bottom:6px;font-size:12px}
+.pv-ep span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv-preview{margin-top:12px;background:var(--bg);border:1px solid var(--acid);
+  border-radius:14px;padding:12px}
+.pv-preview-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.pv-preview-head b{font-size:13px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv-preview iframe,.pv-preview video{width:100%;aspect-ratio:16/9;border-radius:10px;background:#000;border:none}
+.pv-status{font:700 10px 'JetBrains Mono';letter-spacing:1px;color:var(--dim);
+  padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.pv-status.ok{color:var(--acid);border-color:var(--acid)}
+.pv-status.err{color:#ff6b81;border-color:#ff6b81}
+.pv-status.checking{color:var(--dim)}
+@media (max-width:640px){
+  .pv-modal{width:96vw}
+  .pv-body{max-height:46vh}
+}
