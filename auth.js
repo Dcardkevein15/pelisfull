@@ -1196,8 +1196,14 @@
       + '\n\n▶️ Sigue la maratón en X·STREAM';
   }
 
-  async function tgSend(token, chat, text, photo, url) {
-    const kb = url ? { inline_keyboard: [[{ text: '▶▶ Ver ahora', url }]] } : undefined;
+  async function tgSend(token, chat, text, photo, url, seriesId) {
+    /* teclado: ▶ Ver ahora + 🔔 Avísame si llegan capítulos nuevos */
+    let kb;
+    if (url) {
+      const rows = [[{ text: '▶▶ Ver ahora', url }]];
+      if (seriesId) rows.push([{ text: '🔔 Avísame si suma capítulos', callback_data: 'f:' + String(seriesId).slice(0, 60) }]);
+      kb = { inline_keyboard: rows };
+    }
     const method = photo ? 'sendPhoto' : 'sendMessage';
     const body = photo
       ? { chat_id: chat, photo, caption: text, parse_mode: 'HTML', reply_markup: kb }
@@ -1208,6 +1214,38 @@
     const j = await r.json().catch(() => ({}));
     if (!r.ok || !j.ok) throw new Error(j.description || ('HTTP ' + r.status));
     return j;
+  }
+
+  /* DMs personales: cuando una serie que alguien sigue suma capítulos,
+     el bot le escribe directo ("🆕 Tu serie trajo 2 episodios nuevos") */
+  async function tgNotifySubscribers(events) {
+    const token = vaultGet('tgBotToken');
+    if (!token) return;
+    const subs = await tgSubsRead().catch(() => null);
+    if (!subs) return;
+    /* normaliza: solo eventos con suma de capítulos y seguidores */
+    const porSerie = {};
+    for (const ev of events || []) {
+      if (ev.tipo !== 'mas' || !ev.s || !ev.s.id) continue;
+      porSerie[ev.s.id] = ev;
+    }
+    for (const [chatId, map] of Object.entries(subs)) {
+      for (const sid of Object.keys(map || {})) {
+        const ev = porSerie[sid];
+        if (!ev) continue;
+        const texto = `🆕 <b>${axEsc(ev.s.t)}</b> sumó ${ev.delta} capítulo${ev.delta === 1 ? '' : 's'}.\n\n▶️ Está listo en X·STREAM`;
+        try { await tgSend(token, chatId, texto, null, tgDeepLink(ev.s)); } catch (e) { console.warn('[tg] dm', chatId, e.message || e); }
+        await new Promise(r => setTimeout(r, 1200));
+      }
+    }
+  }
+
+  /* suscripciones guardadas en el repo (tg-subs.json) — misma caja fuerte del buzón */
+  const TG_SUBS_RAW = () => 'https://raw.githubusercontent.com/' + CONFIG.ghRepo + '/' + CONFIG.ghBranch + '/tg-subs.json';
+  async function tgSubsRead() {
+    const r = await fetch(TG_SUBS_RAW() + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) return {};
+    try { return await r.json(); } catch (e) { return {}; }
   }
 
   /* punto de entrada tras publicar: anuncia solo el delta, con foto y botón */
@@ -1226,7 +1264,7 @@
     let enviados = 0;
     if (events.length <= 6) {
       for (const ev of events) {
-        try { await tgSend(token, chat, tgCaption(ev), ev.s.poster || null, tgDeepLink(ev.s)); enviados++; }
+        try { await tgSend(token, chat, tgCaption(ev), ev.s.poster || null, tgDeepLink(ev.s), ev.s.id); enviados++; }
         catch (e) { console.warn('[telegram]', e); }
         await new Promise(r => setTimeout(r, 1100));               /* amable con el rate limit */
       }
@@ -1243,6 +1281,8 @@
       } catch (e) { console.warn('[telegram]', e); }
     }
     if (enviados) axToast(`📢 Telegram: ${enviados} publicación${enviados === 1 ? '' : 'es'} enviada${enviados === 1 ? '' : 's'} a tu canal`);
+    /* 🔔 suscriptores: DM personal a quien siga una serie que acaba de sumar */
+    try { await tgNotifySubscribers(events); } catch (e) { console.warn('[tg-subs]', e); }
   }
 
   /* ═══════════ 📩 PROPUESTAS DE MODERADORES ═══════════
@@ -1654,6 +1694,7 @@
       <div class="modal-actions" style="justify-content:flex-start">
         <button class="btn btn-acid" id="axTgSave">Guardar conexión</button>
         <button class="btn btn-ghost" id="axTgTest">Enviar prueba al canal</button>
+        <button class="btn btn-ghost" id="axTgHook" title="Conecta el bot para recibir respuestas (suscripciones 🔔 y avisos 📩)">⚡ Activar directo del bot</button>
       </div>`;
     zone.querySelector('#axTgSave').addEventListener('click', () => {
       const token = zone.querySelector('#axTgToken').value.trim();
@@ -1672,6 +1713,21 @@
         await tgSend(token, chat, '✅ <b>X·STREAM conectado</b>\n\nLas novedades de tu catálogo se anunciarán aquí solas, con póster y botón ▶▶', null, site || tgSiteUrl());
         axToast('✅ Revisa tu canal — si llegó, estás listo');
       } catch (e) { axToast('⚠ Telegram rechazó: ' + (e.message || e), true); }
+    });
+    /* ⚡ conecta el webhook del bot (una vez): activa botones 🔔 y avisos 📩 */
+    zone.querySelector('#axTgHook').addEventListener('click', async () => {
+      const token = zone.querySelector('#axTgToken').value.trim();
+      if (!token) return axToast('⚠ Pega tu token primero (y Guardar)', true);
+      if (!confirm('Conecto el bot para recibir respuestas de los botones (suscripciones 🔔 y avisos al buzón 📩). ¿Seguir?')) return;
+      try {
+        const r = await fetch(`https://api.telegram.org/bot${token}/setWebhook`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: 'https://z.yapido.click/api/tgwebhook' }),
+        });
+        const j = await r.json();
+        if (j.ok) axToast('⚡ Bot conectado — los botones de las publicaciones ya responden');
+        else axToast('⚠ Telegram: ' + (j.description || 'no conectado'), true);
+      } catch (e) { axToast('⚠ ' + (e.message || e), true); }
     });
   }
 
