@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789056692722,
+ "v": 1789062251080,
  "by": "Dcard #2968",
- "at": "2026-09-10T16:11:32.722Z",
- "n": 5291,
+ "at": "2026-09-10T17:44:11.080Z",
+ "n": 5292,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -5172,6 +5172,23 @@
      "n": 5,
      "t": "Naruto Shippuden la pelicula 5",
      "url": "https://archive.org/download/naruto-shippuden-la-pelicula-/Naruto%20Shippuden%20la%20pelicula%205.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-rashomon-subtitulado-espanol",
+   "t": "Rashomon Subtitulado Espanol",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/rashomon-subtitulado-espanol",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Rashomon Subtitulado Espanol",
+     "url": "https://archive.org/download/rashomon-subtitulado-espanol/Rashomon_subtitulado_espanol.m4v"
     }
    ]
   }
@@ -62845,5 +62862,5 @@
    "at": 1788630194628
   }
  },
- "sig": "e+GeB7BPT1qBu35/Q78zwlkQQHujOlYgx30bTDOGYkeXXqoFR1KQchYEkUimqlCVBZDTYltwChrETsCAZmyWlw=="
+ "sig": "M+7AAkqU2KYCvbA/6yPjGYRydC9Exafw4/CadiE8TiH0SVCFNTzmbJRUCn8F9wgZbpMOsBUVaOIaTM+6Alk5gQ=="
 }
