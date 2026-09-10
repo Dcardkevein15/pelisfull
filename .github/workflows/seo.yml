@@ -1,0 +1,28 @@
+name: seo
+on:
+  push:
+    paths: ['catalog.json']     # cada publicación del catálogo regenera las páginas
+  workflow_dispatch:            # …y se puede forzar a mano
+
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Generar páginas /ver + sitemap
+        run: node scripts/gen-seo.mjs
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}   # opcional: sin ella usa plantillas propias
+      - name: Publicar si cambió algo
+        run: |
+          git config user.name "xstream-seo[bot]"
+          git config user.email "seo-bot@yapido.click"
+          git add ver/ sitemap.xml sitemap-urls.json
+          git diff --cached --quiet && echo "Sin cambios" && exit 0
+          git commit -m "chore(seo): regenerado tras cambio de catálogo"
+          git push
+      - name: Avisar a buscadores (IndexNow)
+        if: always()
+        run: node scripts/indexnow.mjs
