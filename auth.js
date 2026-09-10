@@ -768,6 +768,8 @@
     /* 🔒 FAIL-CLOSED: solo los que SÍ verificaron la clave ven los controles */
     document.body.classList.toggle('admin-on', admin);
     document.body.classList.toggle('mod-on', !admin && isMod());
+    /* equipo (admin+mod): desbloquea las herramientas editoriales del CSS */
+    document.body.classList.toggle('staff-on', staff);
     /* refresca la lista por si hay botones que dependen del rol (TV, papelera…) */
     if (API && API.onRoleChange) { try { API.onRoleChange(); } catch (e) { } }
     else if (API && API.renderSeries) { try { API.renderSeries(); } catch (e) { } }
@@ -834,6 +836,7 @@
         <div class="ax-sec" id="axSigZone"></div>
         <div class="ax-sec" id="axModZone"></div>
         <div class="ax-sec" id="axTgZone"></div>
+        <div class="ax-sec" id="axPropZone"></div>
         <div class="ax-sec" id="axModJoin"></div>
         <div class="modal-actions">
           <button class="btn btn-ghost" id="axClose">Cerrar</button>
@@ -941,6 +944,7 @@
     renderCatalogStatus();
     renderModZone();
     renderTgZone();
+    renderPropZone();
     renderModJoin();
   }
 
@@ -1007,21 +1011,27 @@
     return o;
   }
 
-  async function publishCatalog() {
-    if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
-    if (!API || !API.getState) return axToast('La app aún no está lista', true);
-    const state = API.getState();
+  /* construye el payload del catálogo (lo usan el admin al publicar
+     y el moderador al enviar una propuesta al buzón) */
+  function buildCatalogPayload(state) {
     const series = state.series.filter(s => !s.personal && s.via !== 'shared').map(cleanForPublish);
     /* 📡 los canales TV SIEMPRE van en el catálogo público (con fuentes iptv-org vivas) */
     const channels = (state.channels || []).map(c => ({
       id: c.id, name: c.name, logo: c.logo, group: c.group, url: c.url,
       epg: c.epg || '', cc: c.cc || '', quality: c.quality || '', src: c.src,
     }));
-    const payload = {
+    return {
       app: 'xstream', v: Date.now(), by: ID.name + ' ' + ID.tag,
       at: new Date().toISOString(), n: series.length + channels.length, series, channels,
       tvSources: state.tvSources || {},
     };
+  }
+
+  async function publishCatalog() {
+    if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
+    if (!API || !API.getState) return axToast('La app aún no está lista', true);
+    const state = API.getState();
+    const payload = buildCatalogPayload(state);
 
     /* 🔐 FIRMA ECDSA — invisible: la 1ª vez crea tu clave en este
        dispositivo y firma; después solo firma. Si no hay cripto
@@ -1230,6 +1240,70 @@
     if (enviados) axToast(`📢 Telegram: ${enviados} publicación${enviados === 1 ? '' : 'es'} enviada${enviados === 1 ? '' : 's'} a tu canal`);
   }
 
+  /* ═══════════ 📩 PROPUESTAS DE MODERADORES ═══════════
+     El moderador envía su catálogo a un buzón del repo vía un pequeño
+     worker (acortador/api/propuestas.js, Vercel). Tú lo ves en tu panel:
+     👁 ver · ✅ aprobar (se publica FIRMADO con tu clave, igual que si
+     lo hubieras escrito tú) · 🗑 descartar. Solo viven las 10 últimas. */
+
+  const PROP_API = () => (vaultGet('propApi') || 'https://z.yapido.click/api/propuestas').replace(/\/+$/, '');
+  const propKey = () => (vaultGet('propKey') || '').trim();
+
+  async function propFetch(path, opts = {}) {
+    const r = await fetch(PROP_API() + path, {
+      ...opts,
+      headers: { 'Content-Type': 'application/json', 'x-prop-key': propKey(), ...(opts.headers || {}) },
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || j.ok === false) throw new Error(j.error || ('HTTP ' + r.status));
+    return j;
+  }
+
+  /* 🛡 lado del moderador: subir su biblioteca al buzón del admin */
+  async function propuestaEnviar() {
+    if (!isStaff()) return axToast('🔒 Solo el equipo puede enviar propuestas', true);
+    if (!propKey()) return axToast('⚠ Falta la clave de propuestas — pídela al administrador', true);
+    if (!API || !API.getState) return axToast('La app aún no está lista', true);
+    const payload = buildCatalogPayload(API.getState());
+    payload.by = ID.name + ' ' + ID.tag + ' · 🛡 moderador';
+    axToast('📤 Enviando tu propuesta al administrador…');
+    try {
+      await propFetch('', { method: 'POST', body: JSON.stringify({ by: payload.by, n: payload.n, payload }) });
+      axToast('📩 ¡Enviada! El admin la revisará en su panel y la publicará');
+    } catch (e) { axToast('⚠ No llegó al buzón: ' + (e.message || e), true); }
+  }
+
+  /* 👑 lado del admin: bandeja + aprobar firmando con su clave */
+  async function propListar() { const j = await propFetch(''); return j.items || []; }
+  async function propLeer(id) { const j = await propFetch('?id=' + encodeURIComponent(id)); return j.item; }
+  async function propBorrar(id) { await propFetch('', { method: 'DELETE', body: JSON.stringify({ id }) }); }
+
+  async function propAprobar(id) {
+    const item = await propLeer(id);
+    const payload = item && item.payload;
+    if (!payload || !Array.isArray(payload.series)) throw new Error('propuesta vacía o corrupta');
+    if (!validateCatalog(payload)) return axToast('⚠ La propuesta no supera la validación del catálogo', true);
+    /* firmas TÚ — la propuesta sale con tu sello */
+    delete payload.sig;
+    payload.v = Date.now();
+    payload.at = new Date().toISOString();
+    await sigKeysEnsure();
+    const sig = await sigSignPayload(payload);
+    if (sig) payload.sig = sig;
+    const token = ghToken() || ghAskToken();
+    if (!token) return;
+    axToast('🌐 Publicando la propuesta del moderador, firmada por ti…');
+    await ghPublishCatalog(payload, token);
+    /* y se aplica también en tu dispositivo: tu biblioteca la integra */
+    try { applyCatalog(payload); } catch (e) { console.warn('applyCatalog post-aprobado:', e); }
+    await propBorrar(id);
+    const state = API.getState();
+    state.catalogMeta = { v: payload.v, at: Date.now(), n: payload.n };
+    if (API.save) API.save();
+    telegramAnnounce(payload).catch(() => { });
+    axToast(`✅ Propuesta de ${item.by || 'moderador'} PUBLICADA con tu firma`);
+  }
+
   function renderCatalogStatus() {
     const bd = document.getElementById('axProfile');
     if (!bd) return;
@@ -1414,6 +1488,78 @@
     });
   }
 
+  /* ═══ Zona 📩 bandeja de propuestas (solo admin) ═══ */
+  async function renderPropZone() {
+    const bd = profileModalEnsure();
+    const zone = bd.querySelector('#axPropZone');
+    if (!zone) return;
+    if (!isAdmin()) { zone.innerHTML = ''; return; }
+    zone.innerHTML = `
+      <div class="ax-sec-t">📩 Propuestas de moderadores</div>
+      <p class="ax-note">Los moderadores envían aquí sus versiones sin descargas ni archivos. Tú las apruebas: se publican <b>firmadas con tu clave</b>. Máximo las últimas <b>10</b>.</p>
+      <div class="ax-restore">
+        <input id="axPropKey" type="password" placeholder="Clave de propuestas (la compartes solo con moderadores)" spellcheck="false" autocomplete="off" value="${axEsc(propKey())}">
+        <button class="btn btn-mini" id="axPropSaveKey">Guardar clave</button>
+      </div>
+      <div class="ax-catstatus" id="axPropStatus">—</div>
+      <div id="axPropList"></div>
+      <div class="modal-actions" style="justify-content:flex-start">
+        <button class="btn btn-ghost" id="axPropReload">🔄 Actualizar bandeja</button>
+      </div>`;
+    zone.querySelector('#axPropSaveKey').addEventListener('click', () => {
+      vaultSet({ propKey: zone.querySelector('#axPropKey').value.trim() });
+      axToast('🗝 Clave de propuestas guardada');
+    });
+    zone.querySelector('#axPropReload').addEventListener('click', () => renderPropZone());
+
+    /* cargar bandeja */
+    const status = zone.querySelector('#axPropStatus');
+    const list = zone.querySelector('#axPropList');
+    if (!propKey()) { status.textContent = 'Sin clave — la bandeja no se puede leer todavía.'; return; }
+    status.textContent = 'Leyendo bandeja…';
+    try {
+      const items = await propListar();
+      if (!items.length) { status.textContent = '✔ Bandeja vacía — sin propuestas pendientes.'; list.innerHTML = ''; return; }
+      status.textContent = items.length + (items.length === 1 ? ' propuesta pendiente' : ' propuestas pendientes');
+      list.innerHTML = '';
+      for (const it of items) {
+        const row = document.createElement('div');
+        row.className = 'ax-rec';
+        row.innerHTML = `<span class="ax-rec-t">📩 ${axEsc(it.by || 'moderador')}</span>
+          <span class="ax-rec-e">${it.n != null ? it.n + ' entradas · ' : ''}${it.at ? new Date(it.at).toLocaleString() : ''}</span>`;
+        const btns = document.createElement('span');
+        btns.style.cssText = 'display:flex;gap:6px;margin-top:6px';
+        const bVer = document.createElement('button'); bVer.className = 'btn btn-mini'; bVer.textContent = '👁 Ver';
+        const bOk = document.createElement('button'); bOk.className = 'btn btn-acid'; bOk.textContent = '✅ Aprobar y publicar';
+        const bNo = document.createElement('button'); bNo.className = 'btn btn-ghost'; bNo.textContent = '🗑';
+        bVer.addEventListener('click', async () => {
+          try {
+            const full = await propLeer(it.id);
+            const s = full.payload && full.payload.series ? full.payload.series : [];
+            const conUrl = s.reduce((a, x) => a + (x.episodes || []).filter(e => e.url).length, 0);
+            alert(`Propuesta de ${it.by}\n\n• ${s.length} series/películas\n• ${full.payload.channels ? full.payload.channels.length : 0} canales TV\n• ${conUrl} enlaces reproducibles\n\nTítulos: ${s.slice(0, 8).map(x => x.t).join(' · ')}${s.length > 8 ? ' …' : ''}`);
+          } catch (e) { axToast('⚠ ' + (e.message || e), true); }
+        });
+        bOk.addEventListener('click', async () => {
+          if (!confirm(`¿Aprobar y PUBLICAR la propuesta de ${it.by || 'moderador'}? Saldrá firmada con tu clave.`)) return;
+          bOk.disabled = true; bOk.textContent = '⏳ Publicando…';
+          try { await propAprobar(it.id); renderPropZone(); }
+          catch (e) { axToast('⚠ No se pudo publicar: ' + (e.message || e), true); renderPropZone(); }
+        });
+        bNo.addEventListener('click', async () => {
+          if (!confirm('¿Descartar esta propuesta? (se borra del buzón)')) return;
+          try { await propBorrar(it.id); axToast('🗑 Propuesta descartada'); renderPropZone(); }
+          catch (e) { axToast('⚠ ' + (e.message || e), true); }
+        });
+        btns.append(bVer, bOk, bNo);
+        row.appendChild(btns);
+        list.appendChild(row);
+      }
+    } catch (e) {
+      status.textContent = '⚠ ' + (e.message || e);
+    }
+  }
+
   /* ═══ Zona 🛡 canje de pase — abajo del perfil, visible para todos ═══ */
   function renderModJoin() {
     const bd = profileModalEnsure();
@@ -1426,11 +1572,23 @@
     }
     if (isMod()) {
       zone.innerHTML = `<div class="ax-sec-t">🛡 Moderador</div>
-        <p class="ax-note">✅ <b>Pase activo.</b> Ya puedes usar todas las herramientas de edición. Tus cambios son <b>locales</b> hasta que el administrador los publique (envíale tu biblioteca con ⬇ Exportar).</p>
+        <p class="ax-note">✅ <b>Pase activo.</b> Ya puedes usar todas las herramientas de edición. Cuando termines, envía tu versión directo al buzón del administrador — sin descargar nada.</p>
         <p class="ax-note">Caduca: <b>${new Date(ID.modExp).toLocaleString()}</b></p>
+        <div class="ax-restore">
+          <input id="axModKey" type="password" placeholder="Clave de propuestas (te la da el administrador)" spellcheck="false" autocomplete="off" value="${axEsc(propKey())}">
+        </div>
         <div class="modal-actions" style="justify-content:flex-start">
+          <button class="btn btn-acid" id="axModSend">📤 Enviar mi versión al administrador</button>
           <button class="btn btn-ghost" id="axModLeave">Dejar de ser moderador</button>
         </div>`;
+      zone.querySelector('#axModKey').addEventListener('change', () => {
+        vaultSet({ propKey: zone.querySelector('#axModKey').value.trim() });
+        axToast('🗝 Clave guardada en este dispositivo');
+      });
+      zone.querySelector('#axModSend').addEventListener('click', () => {
+        vaultSet({ propKey: zone.querySelector('#axModKey').value.trim() });
+        propuestaEnviar();
+      });
       zone.querySelector('#axModLeave').addEventListener('click', () => {
         ID.mod = false; ID.modExp = 0;
         writeAll(); applyRole(); renderChip(); renderProfile();

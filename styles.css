@@ -1511,6 +1511,9 @@ body.ro .only-admin{display:none!important}
    Así ni las lentas cargas ni fallos de red dejan botones que no tocan. */
 .admin-only{display:none!important}
 body.admin-on .admin-only{display:revert!important}
+/* el EQUIPO (mod incluido) ve las herramientas editoriales; lo que es SOLO
+   del admin (publicar claves/frase/propuestas) lo protege auth.js por JS */
+body.staff-on .admin-only{display:revert!important}
 
 /* ── Modal de perfil ── */
 .ax-backdrop{
