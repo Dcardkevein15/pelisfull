@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789140034076,
+ "v": 1789140308981,
  "by": "Dcard #2968",
- "at": "2026-09-11T15:20:34.076Z",
- "n": 5309,
+ "at": "2026-09-11T15:25:08.981Z",
+ "n": 5312,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -8014,6 +8014,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/dororo-capitulo-23-sub-espanol",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -8151,6 +8152,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/tpo-neon-genesis-evangelion-05-trapo-2019-universo-anime",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -8293,6 +8295,7 @@
    "kind": "pelicula",
    "anime": true,
    "poster": "https://archive.org/services/img/darling-espanol-latino-1",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -8310,6 +8313,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/yes-precure-5-subespanol-reuploaded-complete",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -8817,6 +8821,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/serial-experiments-lain-ep-12",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -8894,6 +8899,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/samurai-troopers-e-16",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -9089,6 +9095,428 @@
      "n": 39,
      "t": "Samurai Troopers E39",
      "url": "https://archive.org/download/samurai-troopers-e-16/Samurai%20Troopers%20E39.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-zombieland-saga-yumeginga-paradise",
+   "t": "Zombieland Saga (Temporadas 1 y 2 + Película) (Sub Español)",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada · 2018",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/zombieland-saga-yumeginga-paradise",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "CAPO007 Zombieland Saga 01",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2001.mp4"
+    },
+    {
+     "n": 2,
+     "t": "CAPO007 Zombieland Saga 02",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2002.mp4"
+    },
+    {
+     "n": 3,
+     "t": "CAPO007 Zombieland Saga 03",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2003.mp4"
+    },
+    {
+     "n": 4,
+     "t": "CAPO007 Zombieland Saga 04",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2004.mp4"
+    },
+    {
+     "n": 5,
+     "t": "CAPO007 Zombieland Saga 05",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2005.mp4"
+    },
+    {
+     "n": 6,
+     "t": "CAPO007 Zombieland Saga 06",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2006.mp4"
+    },
+    {
+     "n": 7,
+     "t": "CAPO007 Zombieland Saga 07",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2007.mp4"
+    },
+    {
+     "n": 8,
+     "t": "CAPO007 Zombieland Saga 08",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2008.mp4"
+    },
+    {
+     "n": 9,
+     "t": "CAPO007 Zombieland Saga 09",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2009.mp4"
+    },
+    {
+     "n": 10,
+     "t": "CAPO007 Zombieland Saga 10",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2010.mp4"
+    },
+    {
+     "n": 11,
+     "t": "CAPO007 Zombieland Saga 11",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2011.mp4"
+    },
+    {
+     "n": 12,
+     "t": "CAPO007 Zombieland Saga 12",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2012.mp4"
+    },
+    {
+     "n": 13,
+     "t": "CAPO007 Zombieland Saga 13",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2013.mp4"
+    },
+    {
+     "n": 14,
+     "t": "CAPO007 Zombieland Saga 14",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2014.mp4"
+    },
+    {
+     "n": 15,
+     "t": "CAPO007 Zombieland Saga 15",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2015.mp4"
+    },
+    {
+     "n": 16,
+     "t": "CAPO007 Zombieland Saga 16",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2016.mp4"
+    },
+    {
+     "n": 17,
+     "t": "CAPO007 Zombieland Saga 17",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2017.mp4"
+    },
+    {
+     "n": 18,
+     "t": "CAPO007 Zombieland Saga 18",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2018.mp4"
+    },
+    {
+     "n": 19,
+     "t": "CAPO007 Zombieland Saga 19",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2019.mp4"
+    },
+    {
+     "n": 20,
+     "t": "CAPO007 Zombieland Saga 20",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2020.mp4"
+    },
+    {
+     "n": 21,
+     "t": "CAPO007 Zombieland Saga 21",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2021.mp4"
+    },
+    {
+     "n": 22,
+     "t": "CAPO007 Zombieland Saga 22",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2022.mp4"
+    },
+    {
+     "n": 23,
+     "t": "CAPO007 Zombieland Saga 23",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2023.mp4"
+    },
+    {
+     "n": 24,
+     "t": "CAPO007 Zombieland Saga 24",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/CAPO007%20Zombieland%20Saga%2024.mp4"
+    },
+    {
+     "n": 25,
+     "t": "Zombieland Saga CD Drama 2",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/Zombieland%20Saga%20CD%20Drama%202.mp4"
+    },
+    {
+     "n": 26,
+     "t": "Zombieland Saga Yumeginga Paradise",
+     "url": "https://archive.org/download/zombieland-saga-yumeginga-paradise/Zombieland%20Saga%20Yumeginga%20Paradise.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-elfen-lied-en-latino",
+   "t": "Elfen Lied en Latino completo",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada · 2004",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/elfen-lied-en-latino",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 1 Latino[1]",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%201%20Latino%5B1%5D.mp4"
+    },
+    {
+     "n": 2,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 1 Latino[1]",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%201%20Latino%5B1%5D.webm"
+    },
+    {
+     "n": 3,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 2 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%202%20Latino.mp4"
+    },
+    {
+     "n": 4,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 2 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%202%20Latino.webm"
+    },
+    {
+     "n": 5,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 3 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%203%20Latino.mp4"
+    },
+    {
+     "n": 6,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 3 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%203%20Latino.webm"
+    },
+    {
+     "n": 7,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 4 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%204%20Latino.mp4"
+    },
+    {
+     "n": 8,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 4 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%204%20Latino.webm"
+    },
+    {
+     "n": 9,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 5 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%205%20Latino.mp4"
+    },
+    {
+     "n": 10,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 5 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%205%20Latino.webm"
+    },
+    {
+     "n": 11,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 6 latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%206%20latino.mp4"
+    },
+    {
+     "n": 12,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 6 latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%206%20latino.webm"
+    },
+    {
+     "n": 13,
+     "t": "ELFEN LIED(latino)/Elfen Lied capitulo 7 audio latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20capitulo%207%20audio%20latino.mp4"
+    },
+    {
+     "n": 14,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 8 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%208%20Latino.mp4"
+    },
+    {
+     "n": 15,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 8 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%208%20Latino.webm"
+    },
+    {
+     "n": 16,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 9 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%209%20Latino.mp4"
+    },
+    {
+     "n": 17,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 9 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%209%20Latino.webm"
+    },
+    {
+     "n": 18,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 10 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2010%20Latino.mp4"
+    },
+    {
+     "n": 19,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 10 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2010%20Latino.webm"
+    },
+    {
+     "n": 20,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 11 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2011%20Latino.mp4"
+    },
+    {
+     "n": 21,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 11 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2011%20Latino.webm"
+    },
+    {
+     "n": 22,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 12 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2012%20Latino.mp4"
+    },
+    {
+     "n": 23,
+     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 12 Latino",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2012%20Latino.webm"
+    },
+    {
+     "n": 24,
+     "t": "ELFEN LIED(latino)/Elfen lied capitulo 13 español latino HD",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20lied%20capitulo%2013%20espa%C3%B1ol%20latino%20HD.mp4"
+    },
+    {
+     "n": 25,
+     "t": "ELFEN LIED(latino)/Elfen lied capitulo 13 español latino HD",
+     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20lied%20capitulo%2013%20espa%C3%B1ol%20latino%20HD.webm"
+    }
+   ]
+  },
+  {
+   "id": "ia-mythical-detective-loki-lat",
+   "t": "Mythical Detective Loki Ragnarok (Latino)",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/mythical-detective-loki-lat",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "S1E1",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E1.mp4"
+    },
+    {
+     "n": 2,
+     "t": "S1E2",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E2.mp4"
+    },
+    {
+     "n": 3,
+     "t": "S1E3",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E3.mp4"
+    },
+    {
+     "n": 4,
+     "t": "S1E4",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E4.mp4"
+    },
+    {
+     "n": 5,
+     "t": "S1E5",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E5.mp4"
+    },
+    {
+     "n": 6,
+     "t": "S1E6",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E6.mp4"
+    },
+    {
+     "n": 7,
+     "t": "S1E7",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E7.mp4"
+    },
+    {
+     "n": 8,
+     "t": "S1E8",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E8.mp4"
+    },
+    {
+     "n": 9,
+     "t": "S1E9",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E9.mp4"
+    },
+    {
+     "n": 10,
+     "t": "S1E10",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E10.mp4"
+    },
+    {
+     "n": 11,
+     "t": "S1E11",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E11.mp4"
+    },
+    {
+     "n": 12,
+     "t": "S1E12",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E12.mp4"
+    },
+    {
+     "n": 13,
+     "t": "S1E13",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E13.mp4"
+    },
+    {
+     "n": 14,
+     "t": "S1E14",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E14.mp4"
+    },
+    {
+     "n": 15,
+     "t": "S1E15",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E15.mp4"
+    },
+    {
+     "n": 16,
+     "t": "S1E16",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E16.mp4"
+    },
+    {
+     "n": 17,
+     "t": "S1E17",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E17.mp4"
+    },
+    {
+     "n": 18,
+     "t": "S1E18",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E18.mp4"
+    },
+    {
+     "n": 19,
+     "t": "S1E19",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E19.mp4"
+    },
+    {
+     "n": 20,
+     "t": "S1E20",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E20.mp4"
+    },
+    {
+     "n": 21,
+     "t": "S1E21",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E21.mp4"
+    },
+    {
+     "n": 22,
+     "t": "S1E22",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E22.mp4"
+    },
+    {
+     "n": 23,
+     "t": "S1E23",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E23.mp4"
+    },
+    {
+     "n": 24,
+     "t": "S1E24",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E24.mp4"
+    },
+    {
+     "n": 25,
+     "t": "S1E25",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E25.mp4"
+    },
+    {
+     "n": 26,
+     "t": "S1E26",
+     "url": "https://archive.org/download/mythical-detective-loki-lat/S1E26.mp4"
     }
    ]
   }
@@ -66762,5 +67190,5 @@
    "at": 1788630194628
   }
  },
- "sig": "MwBZOwkVg8cBzhhC0NLKiHCQfBvtYg34TmxAcx9rxyNdJwGGkI78tyPfsRb2j9q22RZjtGh5sUsi5ubA9J50OQ=="
+ "sig": "LsL+qJ4cXAAKH6Uf7FY/gRNhV8hGvxKLoNNUooJJjyxiAm3TFjVPJ8kUaUzsZ3QX7LpZkebHoGiFRiJrmhjEEg=="
 }
