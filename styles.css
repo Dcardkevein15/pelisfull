@@ -268,7 +268,19 @@ input,select{font-family:inherit}
 .episodes-panel{margin-top:26px}
 .episodes-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
 .episodes-head h2{font-family:'Archivo Black';font-size:19px}
-.episodes-tools{display:flex;gap:8px}
+.episodes-tools{display:flex;flex-wrap:wrap;gap:8px}
+/* 📱 Herramientas de capítulos en pantallas estrechas: la hilera pasa a
+   rejilla fluida (se llena a 2-3 columnas) y los botones se reparten el
+   ancho a partes iguales — sin desbordar nunca el viewport. */
+@media (max-width:900px){
+  .episodes-head{align-items:flex-start}
+  .episodes-tools{width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .episodes-tools .btn-mini{justify-content:center;overflow:hidden;text-overflow:ellipsis}
+}
+@media (max-width:480px){
+  .episodes-tools{grid-template-columns:repeat(3,1fr)}
+  .episodes-tools .btn-mini{padding:7px 5px;font-size:10.5px;gap:4px}
+}
 .episodes-hint{
   grid-column:1/-1;text-align:center;color:var(--dim);padding:44px 20px;
   border:1.5px dashed var(--line);border-radius:var(--r);font-size:14px;

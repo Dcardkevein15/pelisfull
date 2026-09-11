@@ -2472,7 +2472,7 @@ function loadEpisode(epN, autoplayNow = true) {
 
   els.empty.classList.add('hidden');
   els.nowPlaying.textContent = `${s.t} · E${ep.n}`;
-  document.title = `E${ep.n} · ${s.t} — X·STREAM`;
+    document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
   els.shareBtn.classList.remove('hidden');
   syncDownloadBtn();
   els.flagBtn.classList.toggle('hidden', !ep.url);
@@ -4124,7 +4124,7 @@ els.renameBtn.addEventListener('click', async () => {
   save();
   renderSeries(els.searchInput.value);
   els.stageTitle.textContent = s.t;
-  document.title = `${s.t} — X·STREAM`;
+    document.title = `Ver ${s.t} online gratis en español — X·STREAM`;
   syncAddressBar();   /* 🔗 el slug de la URL se actualiza al instante */
   if (s.kind !== 'pelicula') syncOvasToSeries(); // quizá alguna OVA suelta pertenece a este nombre
   refetchPoster(s); // el nombre YA es el bueno → carátula garantizada (conserva la vieja si falla)
