@@ -30,6 +30,7 @@ jobs:
           git add ver/ sitemap.xml sitemap-urls.json seo-state.json seo-cache.json seo-new-urls.json
           git diff --cached --quiet && echo "Sin cambios" && exit 0
           git commit -m "chore(seo): regenerado (cupo diario / catálogo)"
+          git pull --rebase --autostash origin main
           git push
       - name: Avisar a buscadores (IndexNow)
         if: always()
