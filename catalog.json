@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789143585391,
+ "v": 1789144118152,
  "by": "Dcard #2968",
- "at": "2026-09-11T16:19:45.391Z",
- "n": 5313,
+ "at": "2026-09-11T16:28:38.152Z",
+ "n": 5314,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -9242,144 +9242,6 @@
    ]
   },
   {
-   "id": "ia-elfen-lied-en-latino",
-   "t": "Elfen Lied en Latino completo",
-   "jp": "🎌",
-   "tag": "Cine IA · Anime · Temporada · 2004",
-   "g": 4,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://archive.org/services/img/elfen-lied-en-latino",
-   "tags": [],
-   "episodes": [
-    {
-     "n": 1,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 1 Latino[1]",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%201%20Latino%5B1%5D.mp4"
-    },
-    {
-     "n": 2,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 1 Latino[1]",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%201%20Latino%5B1%5D.webm"
-    },
-    {
-     "n": 3,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 2 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%202%20Latino.mp4"
-    },
-    {
-     "n": 4,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 2 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%202%20Latino.webm"
-    },
-    {
-     "n": 5,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 3 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%203%20Latino.mp4"
-    },
-    {
-     "n": 6,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 3 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%203%20Latino.webm"
-    },
-    {
-     "n": 7,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 4 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%204%20Latino.mp4"
-    },
-    {
-     "n": 8,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 4 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%204%20Latino.webm"
-    },
-    {
-     "n": 9,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 5 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%205%20Latino.mp4"
-    },
-    {
-     "n": 10,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 5 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%205%20Latino.webm"
-    },
-    {
-     "n": 11,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 6 latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%206%20latino.mp4"
-    },
-    {
-     "n": 12,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 6 latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%206%20latino.webm"
-    },
-    {
-     "n": 13,
-     "t": "ELFEN LIED(latino)/Elfen Lied capitulo 7 audio latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20capitulo%207%20audio%20latino.mp4"
-    },
-    {
-     "n": 14,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 8 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%208%20Latino.mp4"
-    },
-    {
-     "n": 15,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 8 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%208%20Latino.webm"
-    },
-    {
-     "n": 16,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 9 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%209%20Latino.mp4"
-    },
-    {
-     "n": 17,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 9 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%209%20Latino.webm"
-    },
-    {
-     "n": 18,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 10 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2010%20Latino.mp4"
-    },
-    {
-     "n": 19,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 10 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2010%20Latino.webm"
-    },
-    {
-     "n": 20,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 11 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2011%20Latino.mp4"
-    },
-    {
-     "n": 21,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 11 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2011%20Latino.webm"
-    },
-    {
-     "n": 22,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 12 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2012%20Latino.mp4"
-    },
-    {
-     "n": 23,
-     "t": "ELFEN LIED(latino)/Elfen Lied Capitulo 12 Latino",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20Lied%20Capitulo%2012%20Latino.webm"
-    },
-    {
-     "n": 24,
-     "t": "ELFEN LIED(latino)/Elfen lied capitulo 13 español latino HD",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20lied%20capitulo%2013%20espa%C3%B1ol%20latino%20HD.mp4"
-    },
-    {
-     "n": 25,
-     "t": "ELFEN LIED(latino)/Elfen lied capitulo 13 español latino HD",
-     "url": "https://archive.org/download/elfen-lied-en-latino/ELFEN%20LIED(latino)/Elfen%20lied%20capitulo%2013%20espa%C3%B1ol%20latino%20HD.webm"
-    }
-   ]
-  },
-  {
    "id": "ia-mythical-detective-loki-lat",
    "t": "Mythical Detective Loki Ragnarok (Latino)",
    "jp": "🎌",
@@ -9537,6 +9399,675 @@
      "n": 1,
      "t": "El Regreso de La Llorona (2021)",
      "url": "https://archive.org/download/el_regreso_de_la_llorona/El%20Regreso%20de%20La%20Llorona%20(2021)%20720p%20Webrip.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-elfen-lied-latino_202510",
+   "t": "Elfen Lied Latino",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://archive.org/services/img/elfen-lied-latino_202510",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Temporada 0/S00E01 - ELF-10 5 Ova ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%200/S00E01%20-%20ELF-10.5_Ova_.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Temporada 1/Elfen Lied - S01E01 - El Encuentro ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E01%20-%20El%20Encuentro.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Temporada 1/Elfen Lied - S01E02 - Exterminio ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E02%20-%20Exterminio.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Temporada 1/Elfen Lied - S01E03 - Dentro del Corazón ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E03%20-%20Dentro%20del%20Coraz%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Temporada 1/Elfen Lied - S01E04 - Colisión ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E04%20-%20Colisi%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Temporada 1/Elfen Lied - S01E05 - La Recepción ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E05%20-%20La%20Recepci%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Temporada 1/Elfen Lied - S01E06 - Corazones en Llamas ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E06%20-%20Corazones%20en%20Llamas.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Temporada 1/Elfen Lied - S01E07 - Confrontación ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E07%20-%20Confrontaci%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Temporada 1/Elfen Lied - S01E08 - El Principio",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E08%20-%20El%20Principio.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Temporada 1/Elfen Lied - S01E09 - Reminiscencia ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E09%20-%20Reminiscencia.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Temporada 1/Elfen Lied - S01E10 - El Bebé ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E10%20-%20El%20Beb%C3%A9.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Temporada 1/Elfen Lied - S01E11 - Confusión",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E11%20-%20Confusi%C3%B3n.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Temporada 1/Elfen Lied - S01E12 - El Descenso ia",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E12%20-%20El%20Descenso.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Temporada 1/Elfen Lied - S01E13 - La Luz",
+     "url": "https://archive.org/download/elfen-lied-latino_202510/Temporada%201/Elfen%20Lied%20-%20S01E13%20-%20La%20Luz.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-candy-candy_202109",
+   "t": "Candy Candy (1972)",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada · 1972",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/candy.candy_202109",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Capitulo 001  Una niña hábil que no renuncia",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20001.%20Una%20ni%C3%B1a%20h%C3%A1bil%20que%20no%20renuncia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Capitulo 002   ¡Viaje! Aventuras juntas",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20002%20.%20%C2%A1Viaje!%20Aventuras%20juntas.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Capitulo 003   El carruaje que transporta un adiós",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20003%20.%20El%20carruaje%20que%20transporta%20un%20adi%C3%B3s.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Capitulo 004   ¡Estás preciosa cuando sonríes!",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20004%20.%20%C2%A1Est%C3%A1s%20preciosa%20cuando%20sonr%C3%ADes!.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Capitulo 005   Desde hoy soy una princesa",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20005%20.%20Desde%20hoy%20soy%20una%20princesa.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Capitulo 006   La persona que encontré en la verja de las ro",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20006%20.%20La%20persona%20que%20encontr%C3%A9%20en%20la%20verja%20de%20las%20rosas.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Capitulo 007   ¿Estoy elegante",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20007%20.%20%C2%BFEstoy%20elegante.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Capitulo 008   Invitación a la felicidad",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20008%20.%20Invitaci%C3%B3n%20a%20la%20felicidad.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Capitulo 009   El baile en el que encontré a aquella persona",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20009%20.%20El%20baile%20en%20el%20que%20encontr%C3%A9%20a%20aquella%20persona.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Capitulo 010   Una dama en el establo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20010%20.%20Una%20dama%20en%20el%20establo.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Capitulo 011   Una pequeña cinta amarra los corazones",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20011%20.%20Una%20peque%C3%B1a%20cinta%20amarra%20los%20corazones.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Capitulo 012   Cumpleaños con olor a rosas",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20012%20.%20Cumplea%C3%B1os%20con%20olor%20a%20rosas.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Capitulo 013   Los tres solitarios",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20013%20.%20Los%20tres%20solitarios.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Capitulo 014   El gran árbol lleno de brisa primaveral",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20014%20.%20El%20gran%20%C3%A1rbol%20lleno%20de%20brisa%20primaveral.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Capitulo 015   La decisión que arrebata la felicidad",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20015%20.%20La%20decisi%C3%B3n%20que%20arrebata%20la%20felicidad.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Capitulo 016   Viaje a un país desconocido",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20016%20.%20Viaje%20a%20un%20pa%C3%ADs%20desconocido%20.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Capitulo 017   En un lejano y sediento desierto",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20017%20.%20En%20un%20lejano%20y%20sediento%20desierto.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Capitulo 018   El crucifijo que conduce al destino",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20018%20.%20El%20crucifijo%20que%20conduce%20al%20destino.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Capitulo 019   El fin de un viaje de sufrimientos",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20019%20.%20El%20fin%20de%20un%20viaje%20de%20sufrimientos.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Capitulo 020   Soy tan feliz como en mis sueños",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20020%20.%20Soy%20tan%20feliz%20como%20en%20mis%20sue%C3%B1os.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Capitulo 021   La paloma que transporta la amistad",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20021%20.%20La%20paloma%20que%20transporta%20la%20amistad.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Capitulo 022   !No te rindas Anthony!",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20022%20.%20!No%20te%20rindas%20Anthony!.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Capitulo 023   La primera cita",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20023%20.%20La%20primera%20cita.mp4"
+    },
+    {
+     "n": 24,
+     "t": "Capitulo 024   Mi Anthony",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20024%20.%20Mi%20Anthony.mp4"
+    },
+    {
+     "n": 25,
+     "t": "Capitulo 025   Avanzanda al mañana y supera tu tristeza",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20025%20.%20Avanzanda%20al%20ma%C3%B1ana%20y%20supera%20tu%20tristeza.mp4"
+    },
+    {
+     "n": 26,
+     "t": "Capitulo 026   El padre árbol lo sabe todo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20026%20.%20El%20padre%20%C3%A1rbol%20lo%20sabe%20todo.mp4"
+    },
+    {
+     "n": 27,
+     "t": "Capitulo 027   El regalo de un ángel",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20027%20.%20El%20regalo%20de%20un%20%C3%A1ngel.mp4"
+    },
+    {
+     "n": 28,
+     "t": "Capitulo 028   Cicatrices muy en el fondo de mi corazón",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20028%20.%20Cicatrices%20muy%20en%20el%20fondo%20de%20mi%20coraz%C3%B3n.mp4"
+    },
+    {
+     "n": 29,
+     "t": "Capitulo 029   Partida hacia la esperanza",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20029%20.%20Partida%20hacia%20la%20esperanza.mp4"
+    },
+    {
+     "n": 30,
+     "t": "Capitulo 030   El amor supera los torbellinos",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20030%20.%20El%20amor%20supera%20los%20torbellinos.mp4"
+    },
+    {
+     "n": 31,
+     "t": "Capitulo 031   Un nuevo día en una vieja ciudad",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20031%20.%20Un%20nuevo%20d%C3%ADa%20en%20una%20vieja%20ciudad.mp4"
+    },
+    {
+     "n": 32,
+     "t": "Capitulo 032   La colina de Pony dentro de una prisión",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20032%20.%20La%20colina%20de%20Pony%20dentro%20de%20una%20prisi%C3%B3n.mp4"
+    },
+    {
+     "n": 33,
+     "t": "Capitulo 033   La nueva estudiante tiene arrugas",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20033%20.%20La%20nueva%20estudiante%20tiene%20arrugas.mp4"
+    },
+    {
+     "n": 34,
+     "t": "Capitulo 034   El reverso del sobre lacrado",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20034%20.%20El%20reverso%20del%20sobre%20lacrado.mp4"
+    },
+    {
+     "n": 35,
+     "t": "Capitulo 035   Un maravilloso domingo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20035%20.%20Un%20maravilloso%20domingo.mp4"
+    },
+    {
+     "n": 36,
+     "t": "Capitulo 036   La sonrisa ha vuelto",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20036%20.%20La%20sonrisa%20ha%20vuelto.mp4"
+    },
+    {
+     "n": 37,
+     "t": "Capitulo 037   Un encuentro maravilloso",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20037%20.%20Un%20encuentro%20maravilloso.mp4"
+    },
+    {
+     "n": 38,
+     "t": "Capitulo 038   El secreto de Terry",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20038%20.%20El%20secreto%20de%20Terry.mp4"
+    },
+    {
+     "n": 39,
+     "t": "Capitulo 039   El tesoro que desata la ira",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20039%20.%20El%20tesoro%20que%20desata%20la%20ira.mp4"
+    },
+    {
+     "n": 40,
+     "t": "Capitulo 040   Reflexiones que entran y salen con libertad",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20040%20.%20Reflexiones%20que%20entran%20y%20salen%20con%20libertad.mp4"
+    },
+    {
+     "n": 41,
+     "t": "Capitulo 041   Un hada en el festival del colegio",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20041%20.%20Un%20hada%20en%20el%20festival%20del%20colegio.mp4"
+    },
+    {
+     "n": 42,
+     "t": "Capitulo 042   El pícnic de medianoche",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20042%20.%20El%20p%C3%ADcnic%20de%20medianoche.mp4"
+    },
+    {
+     "n": 43,
+     "t": "Capitulo 043   El colegio de Verano en el lago",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20043%20.%20El%20colegio%20de%20Verano%20en%20el%20lago.mp4"
+    },
+    {
+     "n": 44,
+     "t": "Capitulo 044   Lazos entre madre e hijo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20044%20.%20Lazos%20entre%20madre%20e%20hijo.mp4"
+    },
+    {
+     "n": 45,
+     "t": "Capitulo 045   Fiesta blanca para dos",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20045%20.%20Fiesta%20blanca%20para%20dos.mp4"
+    },
+    {
+     "n": 46,
+     "t": "Capitulo 046   Emoción al final del verano",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20046%20.%20Emoci%C3%B3n%20al%20final%20del%20verano.mp4"
+    },
+    {
+     "n": 47,
+     "t": "Capitulo 047   La oscura trampa de Eliza",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20047%20.%20La%20oscura%20trampa%20de%20Eliza.mp4"
+    },
+    {
+     "n": 48,
+     "t": "Capitulo 048   Entre paredes frías y gruesas",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20048%20.%20Entre%20paredes%20fr%C3%ADas%20y%20gruesas.mp4"
+    },
+    {
+     "n": 49,
+     "t": "Capitulo 049   La decisión de Terry",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20049%20.%20La%20decisi%C3%B3n%20de%20Terry.mp4"
+    },
+    {
+     "n": 50,
+     "t": "Capitulo 050   Viaje entre la niebla matutina",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20050%20.%20Viaje%20entre%20la%20niebla%20matutina.mp4"
+    },
+    {
+     "n": 51,
+     "t": "Capitulo 051   El largo camino hacia el puerto",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20051%20.%20El%20largo%20camino%20hacia%20el%20puerto.mp4"
+    },
+    {
+     "n": 52,
+     "t": "Capitulo 052   Estrellas que se ven en el establo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20052%20.%20Estrellas%20que%20se%20ven%20en%20el%20establo.mp4"
+    },
+    {
+     "n": 53,
+     "t": "Capitulo 053   El amanercer en el Monte Rodoni",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20053%20.%20El%20amanercer%20en%20el%20Monte%20Rodoni.mp4"
+    },
+    {
+     "n": 54,
+     "t": "Capitulo 054   El puerto Southampton en la niebla nocturna",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20054%20.%20El%20puerto%20Southampton%20en%20la%20niebla%20nocturna.mp4"
+    },
+    {
+     "n": 55,
+     "t": "Capitulo 055   Los dos polizones",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20055%20.%20Los%20dos%20polizones.mp4"
+    },
+    {
+     "n": 56,
+     "t": "Capitulo 056   Más allá del mar de las tormentas",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20056%20.%20M%C3%A1s%20all%C3%A1%20del%20mar%20de%20las%20tormentas.mp4"
+    },
+    {
+     "n": 57,
+     "t": "Capitulo 057   Una ventana donde se ve el puerto",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20057%20.%20Una%20ventana%20donde%20se%20ve%20el%20puerto.mp4"
+    },
+    {
+     "n": 58,
+     "t": "Capitulo 058   Mi tierra natal con un paisaje nevado",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20058%20.%20Mi%20tierra%20natal%20con%20un%20paisaje%20nevado.mp4"
+    },
+    {
+     "n": 59,
+     "t": "Capitulo 059   Profesora marimacho por un día",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20059%20.%20Profesora%20marimacho%20por%20un%20d%C3%ADa.mp4"
+    },
+    {
+     "n": 60,
+     "t": "Capitulo 060   El sonido de unas pisadas retumban con fuerza",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20060%20.%20El%20sonido%20de%20unas%20pisadas%20retumban%20con%20fuerza%20en%20mi%20coraz%C3%B3n.mp4"
+    },
+    {
+     "n": 61,
+     "t": "Capitulo 061   El primer llanto de un niño hace eco en las m",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20061%20.%20El%20primer%20llanto%20de%20un%20ni%C3%B1o%20hace%20eco%20en%20las%20monta%C3%B1as%20plateadas.mp4"
+    },
+    {
+     "n": 62,
+     "t": "Capitulo 062   El silbido de vapor que nos lleva a un nuevo ",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20062%20.%20El%20silbido%20de%20vapor%20que%20nos%20lleva%20a%20un%20nuevo%20camino.mp4"
+    },
+    {
+     "n": 63,
+     "t": "Capitulo 063   Encuentro con la abuelita en la ciudad",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20063%20.%20Encuentro%20con%20la%20abuelita%20en%20la%20ciudad.mp4"
+    },
+    {
+     "n": 64,
+     "t": "Capitulo 064   El ángel vestido de blanco es torpísimo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20064%20.%20El%20%C3%A1ngel%20vestido%20de%20blanco%20es%20torp%C3%ADsimo.mp4"
+    },
+    {
+     "n": 65,
+     "t": "Capitulo 065   Tratamiento con una sonrisa",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20065%20.%20Tratamiento%20con%20una%20sonrisa.mp4"
+    },
+    {
+     "n": 66,
+     "t": "Capitulo 066   El gran bisabuelo de los sueños",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20066%20.%20El%20gran%20bisabuelo%20de%20los%20sue%C3%B1os.mp4"
+    },
+    {
+     "n": 67,
+     "t": "Capitulo 067   ¿Dónde está esa persona",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20067%20.%20%C2%BFD%C3%B3nde%20est%C3%A1%20esa%20persona.mp4"
+    },
+    {
+     "n": 68,
+     "t": "Capitulo 068   Flores que caen en Primavera",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20068%20.%20Flores%20que%20caen%20en%20Primavera.mp4"
+    },
+    {
+     "n": 69,
+     "t": "Capitulo 069   La rosa blanca de los recuerdos",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20069%20.%20La%20rosa%20blanca%20de%20los%20recuerdos.mp4"
+    },
+    {
+     "n": 70,
+     "t": "Capitulo 070   Una novia preciosa",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20070%20.%20Una%20novia%20preciosa.mp4"
+    },
+    {
+     "n": 71,
+     "t": "Capitulo 071   Un marinero en la colina",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20071%20.%20Un%20marinero%20en%20la%20colina.mp4"
+    },
+    {
+     "n": 72,
+     "t": "Capitulo 072   Una chica en una suite de lujo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20072%20.%20Una%20chica%20en%20una%20suite%20de%20lujo.mp4"
+    },
+    {
+     "n": 73,
+     "t": "Capitulo 073   El rumor de Terry",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20073%20.%20El%20rumor%20de%20Terry.mp4"
+    },
+    {
+     "n": 74,
+     "t": "Capitulo 074   Hacia el hospital de la gran ciudad",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20074%20.%20Hacia%20el%20hospital%20de%20la%20gran%20ciudad.mp4"
+    },
+    {
+     "n": 75,
+     "t": "Capitulo 075   La residencia del bisabuelo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20075%20.%20La%20residencia%20del%20bisabuelo.mp4"
+    },
+    {
+     "n": 76,
+     "t": "Capitulo 076   La pequeña casa trae recuerdos",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20076%20.%20La%20peque%C3%B1a%20casa%20trae%20recuerdos.mp4"
+    },
+    {
+     "n": 77,
+     "t": "Capitulo 077   La peligrosa fiesta del jardín",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20077%20.%20La%20peligrosa%20fiesta%20del%20jard%C3%ADn.mp4"
+    },
+    {
+     "n": 78,
+     "t": "Capitulo 078   La melodía de Terry",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20078%20.%20La%20melod%C3%ADa%20de%20Terry.mp4"
+    },
+    {
+     "n": 79,
+     "t": "Capitulo 079   Bajo las sombra de los candiles",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20079%20.%20Bajo%20las%20sombra%20de%20los%20candiles.mp4"
+    },
+    {
+     "n": 80,
+     "t": "Capitulo 080   Encuentro breve",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20080%20.%20Encuentro%20breve.mp4"
+    },
+    {
+     "n": 81,
+     "t": "Capitulo 081   Terry sin rostro",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20081%20.%20Terry%20sin%20rostro.mp4"
+    },
+    {
+     "n": 82,
+     "t": "Capitulo 082   Flores que florecen en el corazón",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20082%20.%20Flores%20que%20florecen%20en%20el%20coraz%C3%B3n.mp4"
+    },
+    {
+     "n": 83,
+     "t": "Capitulo 083   El fantasma que juega a las cartas",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20083%20.%20El%20fantasma%20que%20juega%20a%20las%20cartas.mp4"
+    },
+    {
+     "n": 84,
+     "t": "Capitulo 084   La sombra de la guerra se aproxima vestida de",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20084%20.%20La%20sombra%20de%20la%20guerra%20se%20aproxima%20vestida%20de%20blanco.mp4"
+    },
+    {
+     "n": 85,
+     "t": "Capitulo 085   La familia y el odio",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20085%20.%20La%20familia%20y%20el%20odio.mp4"
+    },
+    {
+     "n": 86,
+     "t": "Capitulo 086   El hombre que olvidó su pasado",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20086%20.%20El%20hombre%20que%20olvid%C3%B3%20su%20pasado.mp4"
+    },
+    {
+     "n": 87,
+     "t": "Capitulo 087   El examen de los dos",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20087%20.%20El%20examen%20de%20los%20dos.mp4"
+    },
+    {
+     "n": 88,
+     "t": "Capitulo 088   El día en que vuelas por el firmamento",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20088%20.%20El%20d%C3%ADa%20en%20que%20vuelas%20por%20el%20firmamento.mp4"
+    },
+    {
+     "n": 89,
+     "t": "Capitulo 089   El Sr  Alberto ha desaparecido",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20089%20.%20El%20Sr.%20Alberto%20ha%20desaparecido.mp4"
+    },
+    {
+     "n": 90,
+     "t": "Capitulo 090   El pequeño castillo de las afueras",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20090%20.%20El%20peque%C3%B1o%20castillo%20de%20las%20afueras.mp4"
+    },
+    {
+     "n": 91,
+     "t": "Capitulo 091   Dos personas cercanas y distantes",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20091%20.%20Dos%20personas%20cercanas%20y%20distantes.mp4"
+    },
+    {
+     "n": 92,
+     "t": "Capitulo 092   Terapia con shock de amor",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20092%20.%20Terapia%20con%20shock%20de%20amor.mp4"
+    },
+    {
+     "n": 93,
+     "t": "Capitulo 093   Un cupido con arrugas",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20093%20.%20Un%20cupido%20con%20arrugas.mp4"
+    },
+    {
+     "n": 94,
+     "t": "Capitulo 094   El corto camino del viaje",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20094%20.%20El%20corto%20camino%20del%20viaje.mp4"
+    },
+    {
+     "n": 95,
+     "t": "Capitulo 095   Rivales preciosos",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20095%20.%20Rivales%20preciosos.mp4"
+    },
+    {
+     "n": 96,
+     "t": "Capitulo 096   Invitación con pasaje de ida",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20096%20.%20Invitaci%C3%B3n%20con%20pasaje%20de%20ida.mp4"
+    },
+    {
+     "n": 97,
+     "t": "Capitulo 097   Reunión hasta en los sueños",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20097%20.%20Reuni%C3%B3n%20hasta%20en%20los%20sue%C3%B1os.mp4"
+    },
+    {
+     "n": 98,
+     "t": "Capitulo 098   Las campanas de un encuentro repican mi coraz",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20098%20.%20Las%20campanas%20de%20un%20encuentro%20repican%20mi%20coraz%C3%B3n.mp4"
+    },
+    {
+     "n": 99,
+     "t": "Capitulo 099   Separación en un día de nieve",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20099%20.%20Separaci%C3%B3n%20en%20un%20d%C3%ADa%20de%20nieve.mp4"
+    },
+    {
+     "n": 100,
+     "t": "Capitulo 100   La plataforma de la tristeza",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20100%20.%20La%20plataforma%20de%20la%20tristeza.mp4"
+    },
+    {
+     "n": 101,
+     "t": "Capitulo 101   Una hebra de recuerdos tenues",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20101%20.%20Una%20hebra%20de%20recuerdos%20tenues.mp4"
+    },
+    {
+     "n": 102,
+     "t": "Capitulo 102   El crucifijo de la colina de Pony",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20102%20.%20El%20crucifijo%20de%20la%20colina%20de%20Pony.mp4"
+    },
+    {
+     "n": 103,
+     "t": "Capitulo 103   Un largo viaje arriesgando la vida",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20103%20.%20Un%20largo%20viaje%20arriesgando%20la%20vida.mp4"
+    },
+    {
+     "n": 104,
+     "t": "Capitulo 104   Una clínica sin necesidad de ángeles",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20104%20.%20Una%20cl%C3%ADnica%20sin%20necesidad%20de%20%C3%A1ngeles.mp4"
+    },
+    {
+     "n": 105,
+     "t": "Capitulo 105   Un tierno fugitivo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20105%20.%20Un%20tierno%20fugitivo.mp4"
+    },
+    {
+     "n": 106,
+     "t": "Capitulo 106   El otro asesino",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20106%20.%20El%20otro%20asesino.mp4"
+    },
+    {
+     "n": 107,
+     "t": "Capitulo 107   El menú especial de 100 comensales",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20107%20.%20El%20men%C3%BA%20especial%20de%20100%20comensales.mp4"
+    },
+    {
+     "n": 108,
+     "t": "Capitulo 108   La ovación que resuena en el valle",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20108%20.%20La%20ovaci%C3%B3n%20que%20resuena%20en%20el%20valle.mp4"
+    },
+    {
+     "n": 109,
+     "t": "Capitulo 109   Las lágrimas de un pequeño vaquero",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20109%20.%20Las%20l%C3%A1grimas%20de%20un%20peque%C3%B1o%20vaquero.mp4"
+    },
+    {
+     "n": 110,
+     "t": "Capitulo 110   Un amor molesto",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20110%20.%20Un%20amor%20molesto.mp4"
+    },
+    {
+     "n": 111,
+     "t": "Capitulo 111   Los largos días han regresado",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20111%20.%20Los%20largos%20d%C3%ADas%20han%20regresado.mp4"
+    },
+    {
+     "n": 112,
+     "t": "Capitulo 112   La huida del amor de cada uno",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20112%20.%20La%20huida%20del%20amor%20de%20cada%20uno.mp4"
+    },
+    {
+     "n": 113,
+     "t": "Capitulo 113   Personas que vienen y se van",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20113%20.%20Personas%20que%20vienen%20y%20se%20van.mp4"
+    },
+    {
+     "n": 114,
+     "t": "Capitulo 114   El día de encuentro con el bisabuelo",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20114%20.%20El%20d%C3%ADa%20de%20encuentro%20con%20el%20bisabuelo.mp4"
+    },
+    {
+     "n": 115,
+     "t": "Capitulo 115   Florecen las flores en la colina de Pony",
+     "url": "https://archive.org/download/candy.candy_202109/Capitulo%20115%20.%20Florecen%20las%20flores%20en%20la%20colina%20de%20Pony.mp4"
     }
    ]
   }
@@ -67210,5 +67741,5 @@
    "at": 1788630194628
   }
  },
- "sig": "Gf60q/ewOg+4afbcN6YH6c7hR+hR+r0b1BTX7DMOPZi4Nq502SyPZXi3e54++KBw8RkPrbx6lBnz0KplMmgB9Q=="
+ "sig": "w8sufXy2YEjsD6osIiU21oZhapYTsWnp8vIwJLtO66GyEqyQ1mcwudkQZbjK3CDFDM4Q+JYImDS6BZD+HPfw6A=="
 }
