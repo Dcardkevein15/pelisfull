@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789140308981,
+ "v": 1789143585391,
  "by": "Dcard #2968",
- "at": "2026-09-11T15:25:08.981Z",
- "n": 5312,
+ "at": "2026-09-11T16:19:45.391Z",
+ "n": 5313,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -9250,6 +9250,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/elfen-lied-en-latino",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -9387,6 +9388,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/mythical-detective-loki-lat",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -9517,6 +9519,24 @@
      "n": 26,
      "t": "S1E26",
      "url": "https://archive.org/download/mythical-detective-loki-lat/S1E26.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-el_regreso_de_la_llorona",
+   "t": "El Regreso de La Llorona (2021)",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2021",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/el_regreso_de_la_llorona",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El Regreso de La Llorona (2021)",
+     "url": "https://archive.org/download/el_regreso_de_la_llorona/El%20Regreso%20de%20La%20Llorona%20(2021)%20720p%20Webrip.mp4"
     }
    ]
   }
@@ -67190,5 +67210,5 @@
    "at": 1788630194628
   }
  },
- "sig": "LsL+qJ4cXAAKH6Uf7FY/gRNhV8hGvxKLoNNUooJJjyxiAm3TFjVPJ8kUaUzsZ3QX7LpZkebHoGiFRiJrmhjEEg=="
+ "sig": "Gf60q/ewOg+4afbcN6YH6c7hR+hR+r0b1BTX7DMOPZi4Nq502SyPZXi3e54++KBw8RkPrbx6lBnz0KplMmgB9Q=="
 }
