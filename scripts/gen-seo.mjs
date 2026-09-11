@@ -178,7 +178,7 @@ function relHtml(s) {
 
   const urls = [];
   const vFecha = new Date(cat.v || Date.now()).toISOString().slice(0, 10);
-  let n = 0;
+  let n = 0, nEpis = 0;
   for (const s of series) {
     let slug = slugify(s.t);
     if (!slug) continue;
@@ -189,6 +189,75 @@ function relHtml(s) {
     fs.writeFileSync(path.join(dir, 'index.html'), pageHtml(s, tmdb), 'utf8');
     urls.push(`${SITE}/ver/${slug}/`);
     n++;
+
+    /* 📄 páginas por capítulo (solo series — una película ya tiene la suya):
+       cada episodio con enlace → ver/<slug>/capitulo-<n>/            */
+    if (s.kind !== 'pelicula') {
+      const eps = (s.episodes || []).filter(e => e.url);
+      for (let i = 0; i < eps.length; i++) {
+        const ep = eps[i];
+        const epDir = path.join(dir, 'capitulo-' + ep.n);
+        fs.mkdirSync(epDir, { recursive: true });
+        fs.writeFileSync(path.join(epDir, 'index.html'), epPageHtml(s, ep, eps[i - 1] || null, eps[i + 1] || null), 'utf8');
+        urls.push(`${SITE}/ver/${slug}/capitulo-${ep.n}/`);
+        nEpis++;
+      }
+    }
+  }
+
+  /* ── páginas por CAPÍTULO (long-tail: "ver X capítulo N online") ── */
+  function epPageHtml(s, ep, prev, next) {
+    const slug = slugify(s.t);
+    const title = `Ver ${esc(s.t)} capítulo ${ep.n} online gratis en español — X·STREAM`;
+    const desc = `Mira ${s.t} capítulo ${ep.n}${ep.t ? ` ("${ep.t}")` : ''} online gratis en español y HD en X·STREAM. Sin registro.`;
+    const verUrl = `${SITE}/#/anime/${slug}/${ep.n}`;
+    const serieUrl = `${SITE}/ver/${slug}/`;
+    const ld = {
+      '@context': 'https://schema.org', '@type': 'TVEpisode',
+      name: ep.t || `${s.t} — capítulo ${ep.n}`,
+      episodeNumber: ep.n,
+      partOfSeries: { '@type': 'TVSeries', name: s.t },
+    };
+    return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<meta name="description" content="${esc(desc)}">
+<link rel="canonical" href="${SITE}/ver/${slug}/capitulo-${ep.n}/">
+<meta property="og:type" content="video.episode">
+<meta property="og:title" content="${esc(`Ver ${s.t} capítulo ${ep.n} — X·STREAM`)}">
+<meta property="og:description" content="${esc(desc)}">
+<script type="application/ld+json">${JSON.stringify(ld)}</script>
+<style>
+body{margin:0;background:#07070d;color:#f4f4fb;font-family:system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:40px 20px 60px}
+nav{font-size:12px;color:#9a9ab2;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+nav a{color:#d8ff3e;text-decoration:none}
+h1{font-size:clamp(22px,5vw,30px);letter-spacing:-.4px;line-height:1.15}
+.chips{margin:10px 0}
+.chip{display:inline-block;background:#181826;border:1px solid #20202f;border-radius:999px;padding:4px 10px;font-size:11px;color:#9a9ab2;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.cta{display:inline-block;margin-top:18px;background:#d8ff3e;color:#0a0a0a;font-weight:900;padding:14px 22px;border-radius:14px;text-decoration:none;box-shadow:0 12px 30px rgba(216,255,62,.28)}
+.pn{display:flex;gap:10px;margin-top:22px}
+.pn a{flex:1;background:#101018;border:1px solid #20202f;border-radius:12px;padding:12px;color:#f4f4fb;text-decoration:none;font-size:13px;text-align:center}
+.pn a:hover{border-color:#d8ff3e}
+footer{margin-top:44px;color:#55556e;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a href="${SITE}/">X·STREAM</a> › <a href="${serieUrl}">${esc(s.t)}</a> › Capítulo ${ep.n}</nav>
+  <h1>Ver ${esc(s.t)} capítulo ${ep.n} online gratis</h1>
+  <div class="chips"><span class="chip">📺 Capítulo ${ep.n}</span>${ep.t ? `<span class="chip">${esc(ep.t.slice(0, 40))}</span>` : ''}</div>
+  <a class="cta" href="${verUrl}">▶ Ver ahora — gratis y sin registro</a>
+  <div class="pn">
+    ${prev ? `<a href="${SITE}/ver/${slug}/capitulo-${prev.n}/">← Capítulo ${prev.n}</a>` : ''}
+    ${next ? `<a href="${SITE}/ver/${slug}/capitulo-${next.n}/">Capítulo ${next.n} →</a>` : ''}
+  </div>
+</div>
+</body>
+</html>`;
   }
 
   /* sitemap.xml */
@@ -199,6 +268,6 @@ ${urls.map(u => `  <url><loc>${u}</loc><lastmod>${vFecha}</lastmod><priority>0.7
 </urlset>
 `;
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sm, 'utf8');
-  console.log(`✅ SEO generado: ${n} páginas en ver/ + sitemap.xml (${urls.length + 1} urls)`);
+  console.log(`✅ SEO: ${n} páginas de título + ${nEpis} páginas de capítulo (sitemap: ${urls.length + 1} urls)`);
   fs.writeFileSync(path.join(ROOT, 'sitemap-urls.json'), JSON.stringify(urls), 'utf8');
 })().catch(e => { console.error(e); process.exit(1); });
