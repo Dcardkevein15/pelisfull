@@ -1,5 +1,10 @@
 name: seo
 
+# El bot del workflow necesita ESCRIBIR en el repo (commit + push de las
+# páginas generadas). Sin esto el paso "Publicar" falla con 403.
+permissions:
+  contents: write
+
 on:
   push:
     paths: ['catalog.json']     # cada publicación del catálogo regenera las páginas
