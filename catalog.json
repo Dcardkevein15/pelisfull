@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789184762658,
+ "v": 1789189047404,
  "by": "Dcard #2968",
- "at": "2026-09-12T03:46:02.658Z",
- "n": 5322,
+ "at": "2026-09-12T04:57:27.404Z",
+ "n": 5321,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -14,6 +14,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/naruto-completo",
+   "tags": [],
    "order": 1,
    "episodes": [
     {
@@ -9563,6 +9564,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/dragon-ball-zvideoplaytv",
+   "tags": [],
    "order": 6,
    "episodes": [
     {
@@ -11435,122 +11437,146 @@
     {
      "n": 1,
      "t": "DBS 002 Vacaciones en un resort! ¿Vegeta irá a un viaje fami",
-     "url": "https://streamtape.com/e/rgGB813dB1UbqzJ"
+     "url": "https://streamtape.com/e/rgGB813dB1UbqzJ",
+     "thumb": "https://thumb.tapecontent.net/thumb/rgGB813dB1UbqzJ/6PVR4Ra7zbcpgZ.jpg"
     },
     {
      "n": 2,
      "t": "DBS 003 En dónde está la otra mitad del sueño ¡Buscando al S",
-     "url": "https://streamtape.com/e/793Q1qOq6PiAgOV"
+     "url": "https://streamtape.com/e/793Q1qOq6PiAgOV",
+     "thumb": "https://thumb.tapecontent.net/thumb/793Q1qOq6PiAgOV/0LZ3vyA2zASbPxp.jpg"
     },
     {
      "n": 3,
      "t": "DBS 004 Vamos por las Esferas del Dragón! ¡La pandilla de Pi",
-     "url": "https://streamtape.com/e/yj678rBgVQI1WPO"
+     "url": "https://streamtape.com/e/yj678rBgVQI1WPO",
+     "thumb": "https://thumb.tapecontent.net/thumb/yj678rBgVQI1WPO/74wv27yJ3JhArr9.jpg"
     },
     {
      "n": 4,
      "t": "DBS 005 La pelea decisiva en el planeta Kaio sama! ¡Gokú con",
-     "url": "https://streamtape.com/e/0JDlZY87qdfb9RR"
+     "url": "https://streamtape.com/e/0JDlZY87qdfb9RR",
+     "thumb": "https://thumb.tapecontent.net/thumb/0JDlZY87qdfb9RR/VdpMkaVRyxhzo6.jpg"
     },
     {
      "n": 5,
      "t": "DBS 006 No enfurezcan al Dios de la Destrucción! ¡Una divert",
-     "url": "https://streamtape.com/e/46JDz30q0biKqwK"
+     "url": "https://streamtape.com/e/46JDz30q0biKqwK",
+     "thumb": "https://thumb.tapecontent.net/thumb/46JDz30q0biKqwK/4zGOgekgvmIKK36.jpg"
     },
     {
      "n": 6,
      "t": "DBS 007 Cómo te atreves a tocar a mi Bulma ¡El repentino ata",
-     "url": "https://streamtape.com/e/mDXYLo2AKDTbray"
+     "url": "https://streamtape.com/e/mDXYLo2AKDTbray",
+     "thumb": "https://thumb.tapecontent.net/thumb/mDXYLo2AKDTbray/qO9aoLrBBVuwDo.jpg"
     },
     {
      "n": 7,
      "t": "DBS 008 Gokú regresa! ¿La última oportunidad otorgada por el",
-     "url": "https://streamtape.com/e/ePJqAX23YXUYP16"
+     "url": "https://streamtape.com/e/ePJqAX23YXUYP16",
+     "thumb": "https://thumb.tapecontent.net/thumb/ePJqAX23YXUYP16/aj0yAQaRbXCx1mM.jpg"
     },
     {
      "n": 8,
      "t": "DBS 009 Lamento la espera, Señor Bills! ¡El Super Saiyajin F",
-     "url": "https://streamtape.com/e/MPajXLRwk7FmO1Z"
+     "url": "https://streamtape.com/e/MPajXLRwk7FmO1Z",
+     "thumb": "https://thumb.tapecontent.net/thumb/MPajXLRwk7FmO1Z/P9AWLVarYqU0pkz.jpg"
     },
     {
      "n": 9,
      "t": "DBS 010 Desata tu poder Gokú! ¡El poder del Super Saiyajin F",
-     "url": "https://streamtape.com/e/YWbo7wwpBAiLyB"
+     "url": "https://streamtape.com/e/YWbo7wwpBAiLyB",
+     "thumb": "https://thumb.tapecontent.net/thumb/YWbo7wwpBAiLyB/GAoyl2O2eqs131x.jpg"
     },
     {
      "n": 10,
      "t": "DBS 011 Continuemos Señor Bills! ¡Una pelea entre Dioses!»",
-     "url": "https://streamtape.com/e/AlWlj2VrZWhGb4"
+     "url": "https://streamtape.com/e/AlWlj2VrZWhGb4",
+     "thumb": "https://thumb.tapecontent.net/thumb/AlWlj2VrZWhGb4/vgLddL8oWrF4kKm.jpg"
     },
     {
      "n": 11,
      "t": "DBS 012 El Universo se derrumba! ¡Colisión entre el Dios de ",
-     "url": "https://streamtape.com/e/wy06zllkyYcJKja"
+     "url": "https://streamtape.com/e/wy06zllkyYcJKja",
+     "thumb": "https://thumb.tapecontent.net/thumb/wy06zllkyYcJKja/XYMY89r14bUPOD.jpg"
     },
     {
      "n": 12,
      "t": "DBS 013 Vamos Gokú! ¡Sobrepasa el Super Saiyajin Fase Dios!»",
-     "url": "https://streamtape.com/e/LQ3vyDgPAgSW4k"
+     "url": "https://streamtape.com/e/LQ3vyDgPAgSW4k",
+     "thumb": "https://thumb.tapecontent.net/thumb/LQ3vyDgPAgSW4k/J38kgWyR3jIjlPW.jpg"
     },
     {
      "n": 13,
      "t": "DBS 014 Este es todo el poder que me queda! ¡El desenlace de",
-     "url": "https://streamtape.com/e/yVLRdDaRyKUOVY"
+     "url": "https://streamtape.com/e/yVLRdDaRyKUOVY",
+     "thumb": "https://thumb.tapecontent.net/thumb/yVLRdDaRyKUOVY/gLWyYMoYOaSqDwK.jpg"
     },
     {
      "n": 14,
      "t": "DBS 015 Satán el Héroe, crea un milagro! ¡Un desafío fuera d",
-     "url": "https://streamtape.com/e/DM89yQ2kD0Ck9a0"
+     "url": "https://streamtape.com/e/DM89yQ2kD0Ck9a0",
+     "thumb": "https://thumb.tapecontent.net/thumb/DM89yQ2kD0Ck9a0/GblPzjBzAAi1X6j.jpg"
     },
     {
      "n": 15,
      "t": "DBS 016 Vegeta se vuelve un discípulo! ¡A convencer a Whis!»",
-     "url": "https://streamtape.com/e/9BZWkLAD3ziawgq"
+     "url": "https://streamtape.com/e/9BZWkLAD3ziawgq",
+     "thumb": "https://thumb.tapecontent.net/thumb/9BZWkLAD3ziawgq/yoGel39Zpxh1rbP.jpg"
     },
     {
      "n": 16,
      "t": "DBS 017 Pan ha nacido! ¿Gokú se va a entrenar»",
-     "url": "https://streamtape.com/e/9000aj1rMjFaaYl"
+     "url": "https://streamtape.com/e/9000aj1rMjFaaYl",
+     "thumb": "https://thumb.tapecontent.net/thumb/9000aj1rMjFaaYl/Mx4yoYmYGMI1dR.jpg"
     },
     {
      "n": 17,
      "t": "DBS 018 Ya llegué! ¡Que comience el entrenamiento en el plan",
-     "url": "https://streamtape.com/e/goQxRQGyKBhqjZW"
+     "url": "https://streamtape.com/e/goQxRQGyKBhqjZW",
+     "thumb": "https://thumb.tapecontent.net/thumb/goQxRQGyKBhqjZW/03oXrwMK16ibxdj.jpg"
     },
     {
      "n": 18,
      "t": "DBS 019 La angustia regresa! ¡El emperador del mal, la resur",
-     "url": "https://streamtape.com/e/QbLKbVzJwbT0eyV"
+     "url": "https://streamtape.com/e/QbLKbVzJwbT0eyV",
+     "thumb": "https://thumb.tapecontent.net/thumb/QbLKbVzJwbT0eyV/PvryQeXLxxC02L2.jpg"
     },
     {
      "n": 19,
      "t": "DBS 020 La advertencia de Jacko! ¡Freezer y sus 1000 soldado",
-     "url": "https://streamtape.com/e/6ekjby4RGYT9RbA"
+     "url": "https://streamtape.com/e/6ekjby4RGYT9RbA",
+     "thumb": "https://thumb.tapecontent.net/thumb/6ekjby4RGYT9RbA/GjZBgl9BMzS18kj.jpg"
     },
     {
      "n": 20,
      "t": "DBS 021 Que comience la venganza! ¡El ejército maligno de Fr",
-     "url": "https://streamtape.com/e/QXVgBmm8K1uya4"
+     "url": "https://streamtape.com/e/QXVgBmm8K1uya4",
+     "thumb": "https://thumb.tapecontent.net/thumb/QXVgBmm8K1uya4/3AzLwqr269fd76M.jpg"
     },
     {
      "n": 21,
      "t": "DBS 022 Cambio! ¡Un inesperado regreso y su nombre es Ginyu!",
-     "url": "https://streamtape.com/e/dPJJvK6z1MUkppp"
+     "url": "https://streamtape.com/e/dPJJvK6z1MUkppp",
+     "thumb": "https://thumb.tapecontent.net/thumb/dPJJvK6z1MUkppp/qWpgkKdm3Dhzb2B.jpg"
     },
     {
      "n": 22,
      "t": "DBS 023 La Tierra!, ¡Gohan! ¡Corren peligro! ¡Date prisa y r",
-     "url": "https://streamtape.com/e/R4aD36OBw3iZw3"
+     "url": "https://streamtape.com/e/R4aD36OBw3iZw3",
+     "thumb": "https://thumb.tapecontent.net/thumb/R4aD36OBw3iZw3/4Pd8ZxvQL2FKAqQ.jpg"
     },
     {
      "n": 23,
      "t": "DBS 024 El enfrentamiento entre Freezer y Gokú! ¡Este es el ",
-     "url": "https://streamtape.com/e/W9YKRoKm33ibO6Y"
+     "url": "https://streamtape.com/e/W9YKRoKm33ibO6Y",
+     "thumb": "https://thumb.tapecontent.net/thumb/W9YKRoKm33ibO6Y/wkl00g3RzMTjR1.jpg"
     },
     {
      "n": 24,
      "t": "DBS 025 Una batalla a muerte! ¡La venganza de Golden Freezer",
-     "url": "https://streamtape.com/e/4dG4xXLGVLFGKb"
+     "url": "https://streamtape.com/e/4dG4xXLGVLFGKb",
+     "thumb": "https://thumb.tapecontent.net/thumb/4dG4xXLGVLFGKb/M6DqJ7oG0Vt0kR.jpg"
     },
     {
      "n": 25,
@@ -16886,7 +16912,7 @@
   },
   {
    "id": "ia-apocalypto-2006-online-latino-castellano-y-subtitulada",
-   "t": "Apocalypto ( 2006) Online Latino, Castellano Y Subtitulada",
+   "t": "Apocalypto ( 2006)",
    "jp": "🎬",
    "tag": "Cine IA · Español",
    "g": 1,
@@ -17019,7 +17045,7 @@
   },
   {
    "id": "ia-rio-2_202205",
-   "t": "Rio 2 Peliculas completas en espanol latino HD",
+   "t": "Rio 2",
    "jp": "🎌",
    "tag": "Cine IA · Película · 2014",
    "g": 4,
@@ -17038,7 +17064,7 @@
   },
   {
    "id": "ia-el-abrazo-de-la-serpiente-subs-espanol-rincon-cinefilo-com",
-   "t": "El Abrazo De La Serpiente [ Subs Español]",
+   "t": "El Abrazo De La Serpiente",
    "jp": "🎌",
    "tag": "Cine IA · Anime/OVA",
    "g": 4,
@@ -17076,7 +17102,7 @@
   },
   {
    "id": "ia-ver-mision-de-rescate-extraction-2020-online-latino-hd-pelisplus",
-   "t": "Misión De Rescate ( 2020) Latino",
+   "t": "Misión De Rescate ( 2020)",
    "jp": "🎬",
    "tag": "Cine IA · Español · 2020",
    "g": 1,
@@ -17233,7 +17259,7 @@
   },
   {
    "id": "ia-darsag2",
-   "t": "Ese es mi hijo - Pelicula español latino",
+   "t": "Ese es mi hijo",
    "jp": "🎬",
    "tag": "Cine IA · Película",
    "g": 1,
@@ -17271,7 +17297,7 @@
   },
   {
    "id": "ia-momentum-2015---peliculas-en-espanol",
-   "t": "Momentum ( 2015) · Películas En Español",
+   "t": "Momentum ( 2015)",
    "jp": "🎬",
    "tag": "Cine IA · Película",
    "g": 1,
@@ -17328,7 +17354,7 @@
   },
   {
    "id": "ia-la-era-de-hielo-4_202207",
-   "t": "La Era De Hielo 4 Peliculas completas espanol HD",
+   "t": "La Era De Hielo 4",
    "jp": "🎌",
    "tag": "Cine IA · Película · 2012",
    "g": 4,
@@ -17347,7 +17373,7 @@
   },
   {
    "id": "ia-el-fin-del-mundo-peliculas-de-accion-suspenso-y-terror-completas-en-espanol",
-   "t": "El Fin Del Mundo Películas De Acción Suspenso Y Terror Completas En Español",
+   "t": "El Fin Del Mundo",
    "jp": "🎌",
    "tag": "Cine IA · Película · 2020",
    "g": 4,
@@ -17385,7 +17411,7 @@
   },
   {
    "id": "ia-huerfanos-peliculas-completas",
-   "t": "( Huérfanos) Peliculas Completas En Español Latino 2019 HD 2019( 720 P HD)",
+   "t": "(Huérfanos) 2019",
    "jp": "🎌",
    "tag": "Cine IA · Película · 2020",
    "g": 4,
@@ -17404,7 +17430,7 @@
   },
   {
    "id": "ia-DisneyClubTv_venganza-de-un-tirador",
-   "t": "VENGANZA DE UN TIRADOR Peliculas Completas En Español Mejor Peliculas De Accion ",
+   "t": "Venganza de un tirador",
    "jp": "🎌",
    "tag": "Cine IA · Película",
    "g": 4,
@@ -17423,7 +17449,7 @@
   },
   {
    "id": "ia-tecnotv_201804",
-   "t": "La Puerta De Al Lado 2017 Peliculas Completas En Español Latino HD 1080 P. 136",
+   "t": "La Puerta De Al Lado (2017)",
    "jp": "🎌",
    "tag": "Cine IA · Película",
    "g": 4,
@@ -17442,7 +17468,7 @@
   },
   {
    "id": "ia-kimi-no-na-wa-your-name-espanol-latino",
-   "t": "Kimi No Na Wa ( Your Name) Español Latino",
+   "t": "Kimi No Na Wa ( Your Name)",
    "jp": "🎬",
    "tag": "Cine IA · Película · 2020",
    "g": 1,
@@ -17499,7 +17525,7 @@
   },
   {
    "id": "ia-ElRegalo-2015-DVDrip-XviD-LatinoPeliculas1linkmega-com",
-   "t": "El Regalo. 2015. DVDrip. Xvi D. Latino Peliculas 1linkmega.com",
+   "t": "El Regalo (2015)",
    "jp": "🎬",
    "tag": "Cine IA · Película",
    "g": 1,
@@ -17513,25 +17539,6 @@
      "n": 1,
      "t": "El Regalo. 2015. DVDrip. Xvi D. Latino Peliculas 1linkmega.c",
      "url": "https://archive.org/download/ElRegalo.2015.DVDrip.XviD.LatinoPeliculas1linkmega.com/El%20Regalo.2015.DVDrip.XviD.Latino%20peliculas1linkmega.com.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-las-leyendas-el-origen-2022",
-   "t": "Las Leyendas El Origen ( 2022)",
-   "jp": "🎬",
-   "tag": "Cine IA · Película · 2022",
-   "g": 1,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://archive.org/services/img/las-leyendas-el-origen-2022",
-   "tags": [],
-   "order": 44,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Las Leyendas El Origen ( 2022)",
-     "url": "https://archive.org/download/las-leyendas-el-origen-2022/Las%20Leyendas_El%20Origen%20(2022).mp4"
     }
    ]
   },
@@ -17556,7 +17563,7 @@
   },
   {
    "id": "ia-tierra-de-osos-2-2006-720p-audio-latino",
-   "t": "Tierra De Osos 2 (2006) 720p Audio Latino",
+   "t": "Tierra De Osos 2 (2006)",
    "jp": "🎬",
    "tag": "Cine IA · Película",
    "g": 1,
@@ -18605,7 +18612,7 @@
   },
   {
    "id": "ia-rashomon-subtitulado-espanol",
-   "t": "Rashomon Subtitulado Espanol",
+   "t": "Rashomon",
    "jp": "🎬",
    "tag": "Cine IA · Película",
    "g": 1,
@@ -18700,7 +18707,7 @@
   },
   {
    "id": "ia-1-5098444725191443505",
-   "t": "Kamui no Ken sub esp",
+   "t": "Kamui no Ken",
    "jp": "🎬",
    "tag": "Cine IA · Español · 1985",
    "g": 1,
@@ -18719,7 +18726,7 @@
   },
   {
    "id": "ia-doraemon-nobita-y-los-siete-magos-2007-espanol-latino",
-   "t": "Doraemon Nobita Y Los Siete Magos ( 2007) Español Latino",
+   "t": "Doraemon Nobita Y Los Siete Magos ( 2007)",
    "jp": "🎌",
    "tag": "Cine IA · Anime/OVA",
    "g": 4,
@@ -18738,7 +18745,7 @@
   },
   {
    "id": "ia-the-end-of-evangelion-movie-1999-espanol-latino-netflix-2019",
-   "t": "The End Of Evangelion Movie 1999 Español Latino Netflix 2019",
+   "t": "The End Of Evangelion Movie (1999)",
    "jp": "🎌",
    "tag": "Cine IA · Anime/OVA",
    "g": 4,
@@ -18776,7 +18783,7 @@
   },
   {
    "id": "ia-pokemon-el-regreso-de-mewtwo-pelicula-completa-en-espanol-latino",
-   "t": "Pokémon El Regreso De Mewtwo Película Completa En Español Latino",
+   "t": "Pokémon El Regreso De Mewtwo",
    "jp": "🎌",
    "tag": "Cine IA · Película anime · 2002",
    "g": 4,
@@ -18814,7 +18821,7 @@
   },
   {
    "id": "ia-dragon-ball-super-la-batalla-de-los-dioses-hd-en-espanol-latino-dragonball-1080-p-hd",
-   "t": "Dragón Ball Super La Batalla De Los Dioses - Latino Dragonball",
+   "t": "Dragón Ball Super La Batalla De Los Dioses",
    "jp": "🎌",
    "tag": "Cine IA · Película anime",
    "g": 4,
@@ -18833,7 +18840,7 @@
   },
   {
    "id": "ia-dbz-el-poder-invencible",
-   "t": "Dragon Ball Z (Película) - El poder invencible [TVN][TV RIP]",
+   "t": "Dragon Ball Z - El poder invencible",
    "jp": "🎌",
    "tag": "Cine IA · Película anime · 1993",
    "g": 4,
@@ -18852,7 +18859,7 @@
   },
   {
    "id": "ia-dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd",
-   "t": "Dragon Ball Heroes Capítulos 1 Al 20 En Español Completos Full HD",
+   "t": "Dragon Ball Heroes  (1 Al 20)",
    "jp": "🎬",
    "tag": "Cine IA · Español",
    "g": 1,
@@ -18871,7 +18878,7 @@
   },
   {
    "id": "ia-DBZ--vhs-devuelvanme-a-mi-gohan-la-republica-1998-peru",
-   "t": "Dragon Ball Z - Devuélvanme A Mi Gohan  [1998]  [VHS-RIP]",
+   "t": "Dragon Ball Z - Devuélvanme A Mi Gohan  [1998]",
    "jp": "🎌",
    "tag": "Cine IA · Película anime · 1998",
    "g": 4,
@@ -18890,7 +18897,7 @@
   },
   {
    "id": "ia-dbz-el-hombre-mas-fuerte-de-este-mundo",
-   "t": "Dragon Ball Z - El Hombre mas fuerte de este mundo [TV RI",
+   "t": "Dragon Ball Z - El Hombre mas fuerte de este mundo",
    "jp": "🎌",
    "tag": "Cine IA · Película anime",
    "g": 4,
@@ -21007,7 +21014,7 @@
   },
   {
    "id": "ia-dragon-ball-z-fusion-1995-720p",
-   "t": "Dragon Ball Z: ¡Fusión! 720p",
+   "t": "Dragon Ball Z: ¡Fusión!",
    "jp": "🎌",
    "tag": "Cine IA · Película anime · 1995",
    "g": 4,
@@ -21309,7 +21316,7 @@
   },
   {
    "id": "ia-darling-espanol-latino-1",
-   "t": "Darling Español Latino",
+   "t": "Darling",
    "jp": "🎌",
    "tag": "Cine IA · Película anime",
    "g": 4,
@@ -82301,5 +82308,5 @@
    "at": 1788630194628
   }
  },
- "sig": "KCORZZQjhvR+Z6nqpD4XonLlOZpqJwBawWLlYFlDxpN5SKnGyranxkrpbKCIYo6smaf/z5hHHM1bDJjY0brc6w=="
+ "sig": "H3jGyMuodTsTAJy6D5FlrERH4Lq6eN09TEzFekJ78km8pZJqKReG76UiNQB3seW0G1ztLcO8OrmfGLa3UOVS0Q=="
 }
