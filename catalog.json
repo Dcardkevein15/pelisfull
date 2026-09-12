@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789246166277,
+ "v": 1789246709911,
  "by": "Dcard #2968",
- "at": "2026-09-12T20:49:26.277Z",
- "n": 5324,
+ "at": "2026-09-12T20:58:29.911Z",
+ "n": 5325,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -8489,6 +8489,325 @@
    ]
   },
   {
+   "id": "ia-one-piece-latino-264",
+   "t": "One Piece",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/one-piece-latino-264",
+   "tags": [],
+   "order": 9,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "One piece Latino 264",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20264.mp4"
+    },
+    {
+     "n": 2,
+     "t": "One piece Latino 265",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20265.mp4"
+    },
+    {
+     "n": 3,
+     "t": "One piece Latino 266",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20266.mp4"
+    },
+    {
+     "n": 4,
+     "t": "One piece Latino 267",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20267.mp4"
+    },
+    {
+     "n": 5,
+     "t": "One piece Latino 268",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20268.mp4"
+    },
+    {
+     "n": 6,
+     "t": "One piece Latino 269",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20269.mp4"
+    },
+    {
+     "n": 7,
+     "t": "One piece Latino 270",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20270.mp4"
+    },
+    {
+     "n": 8,
+     "t": "One piece Latino 271",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20271.mp4"
+    },
+    {
+     "n": 9,
+     "t": "One piece Latino 272",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20272.mp4"
+    },
+    {
+     "n": 10,
+     "t": "One piece Latino 273",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20273.mp4"
+    },
+    {
+     "n": 11,
+     "t": "One piece Latino 274",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20274.mp4"
+    },
+    {
+     "n": 12,
+     "t": "One piece Latino 275",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20275.mp4"
+    },
+    {
+     "n": 13,
+     "t": "One piece Latino 276",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20276.mp4"
+    },
+    {
+     "n": 14,
+     "t": "One piece Latino 277",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20277.mp4"
+    },
+    {
+     "n": 15,
+     "t": "One piece Latino 278",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20278.mp4"
+    },
+    {
+     "n": 16,
+     "t": "One piece Latino 279",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20279.mp4"
+    },
+    {
+     "n": 17,
+     "t": "One piece Latino 280",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20280.mp4"
+    },
+    {
+     "n": 18,
+     "t": "One piece Latino 281",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20281.mp4"
+    },
+    {
+     "n": 19,
+     "t": "One piece Latino 282",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20282.mp4"
+    },
+    {
+     "n": 20,
+     "t": "One piece Latino 283",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20283.mp4"
+    },
+    {
+     "n": 21,
+     "t": "One piece Latino 284",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20284.mp4"
+    },
+    {
+     "n": 22,
+     "t": "One piece Latino 285",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20285.mp4"
+    },
+    {
+     "n": 23,
+     "t": "One piece Latino 286",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20286.mp4"
+    },
+    {
+     "n": 24,
+     "t": "One piece Latino 287",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20287.mp4"
+    },
+    {
+     "n": 25,
+     "t": "One piece Latino 288",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20288.mp4"
+    },
+    {
+     "n": 26,
+     "t": "One piece Latino 289",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20289.mp4"
+    },
+    {
+     "n": 27,
+     "t": "One piece Latino 290",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20290.mp4"
+    },
+    {
+     "n": 28,
+     "t": "One piece Latino 291",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20291.mp4"
+    },
+    {
+     "n": 29,
+     "t": "One piece Latino 292",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20292.mp4"
+    },
+    {
+     "n": 30,
+     "t": "One piece Latino 293",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20293.mp4"
+    },
+    {
+     "n": 31,
+     "t": "One piece Latino 294",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20294.mp4"
+    },
+    {
+     "n": 32,
+     "t": "One piece Latino 295",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20295.mp4"
+    },
+    {
+     "n": 33,
+     "t": "One piece Latino 296",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20296.mp4"
+    },
+    {
+     "n": 34,
+     "t": "One piece Latino 297",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20297.mp4"
+    },
+    {
+     "n": 35,
+     "t": "One piece Latino 298",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20298.mp4"
+    },
+    {
+     "n": 36,
+     "t": "One piece Latino 299",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20299.mp4"
+    },
+    {
+     "n": 37,
+     "t": "One piece Latino 300",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20300.mp4"
+    },
+    {
+     "n": 38,
+     "t": "One piece Latino 301",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20301.mp4"
+    },
+    {
+     "n": 39,
+     "t": "One piece Latino 302",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20302.mp4"
+    },
+    {
+     "n": 40,
+     "t": "One piece Latino 303",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20303.mp4"
+    },
+    {
+     "n": 41,
+     "t": "One piece Latino 304",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20304.mp4"
+    },
+    {
+     "n": 42,
+     "t": "One piece Latino 305",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20305.mp4"
+    },
+    {
+     "n": 43,
+     "t": "One piece Latino 306",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20306.mp4"
+    },
+    {
+     "n": 44,
+     "t": "One piece Latino 307",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20307.mp4"
+    },
+    {
+     "n": 45,
+     "t": "One piece Latino 308",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20308.mp4"
+    },
+    {
+     "n": 46,
+     "t": "One piece Latino 309",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20309.mp4"
+    },
+    {
+     "n": 47,
+     "t": "One piece Latino 310",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20310.mp4"
+    },
+    {
+     "n": 48,
+     "t": "One piece Latino 311",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20311.mp4"
+    },
+    {
+     "n": 49,
+     "t": "One piece Latino 312",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20312.mp4"
+    },
+    {
+     "n": 50,
+     "t": "One piece Latino 313",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20313.mp4"
+    },
+    {
+     "n": 51,
+     "t": "One piece Latino 314",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20314.mp4"
+    },
+    {
+     "n": 52,
+     "t": "One piece Latino 315",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20315.mp4"
+    },
+    {
+     "n": 53,
+     "t": "One piece Latino 316",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20316.mp4"
+    },
+    {
+     "n": 54,
+     "t": "One piece Latino 317",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20317.mp4"
+    },
+    {
+     "n": 55,
+     "t": "One piece Latino 318",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20318.mp4"
+    },
+    {
+     "n": 56,
+     "t": "One piece Latino 319",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20319.mp4"
+    },
+    {
+     "n": 57,
+     "t": "One piece Latino 320",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20320.mp4"
+    },
+    {
+     "n": 58,
+     "t": "One piece Latino 321",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20321.mp4"
+    },
+    {
+     "n": 59,
+     "t": "One piece Latino 323",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20323.mp4"
+    },
+    {
+     "n": 60,
+     "t": "One piece Latino 324",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20324.mp4"
+    },
+    {
+     "n": 61,
+     "t": "One piece Latino 325",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20325.mp4"
+    }
+   ]
+  },
+  {
    "id": "imp-stape-EKU_qLh1PGs",
    "t": "Dragon ball super",
    "jp": "📁",
@@ -8498,7 +8817,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21175-EH06qlfF8TnB.jpg",
    "tags": [],
-   "order": 9,
+   "order": 10,
    "episodes": [
     {
      "n": 1,
@@ -9195,7 +9514,7 @@
     "1": "3 Temporada",
     "2": "4 Temporada"
    },
-   "order": 10,
+   "order": 11,
    "clsManual": true,
    "episodes": [
     {
@@ -9505,7 +9824,7 @@
     "1": "Temporada 1 - Bleach",
     "2": "Temporada 2 — Bleach latino"
    },
-   "order": 11,
+   "order": 12,
    "episodes": [
     {
      "n": 1,
@@ -11356,7 +11675,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/voltron-defensor-legendario-temporada-1-a-8-espanol-latino",
    "tags": [],
-   "order": 12,
+   "order": 13,
    "episodes": [
     {
      "n": 1,
@@ -11750,7 +12069,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx45-DEFgZRCxiGmF.png",
    "tags": [],
-   "order": 13,
+   "order": 14,
    "episodes": [
     {
      "n": 1,
@@ -12264,7 +12583,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/re.-zero-temporada-2-latino",
    "tags": [],
-   "order": 14,
+   "order": 15,
    "clsManual": true,
    "episodes": [
     {
@@ -12404,7 +12723,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
    "tags": [],
-   "order": 15,
+   "order": 16,
    "episodes": [
     {
      "n": 1,
@@ -12489,7 +12808,7 @@
     "4": "TEMPORADA 3",
     "5": "TEMPORADA 4"
    },
-   "order": 16,
+   "order": 17,
    "episodes": [
     {
      "n": 1,
@@ -12839,7 +13158,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/apocalypto-2006-online-latino-castellano-y-subtitulada",
    "tags": [],
-   "order": 17,
+   "order": 18,
    "episodes": [
     {
      "n": 1,
@@ -12858,7 +13177,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/amores-perros-2000_202510",
    "tags": [],
-   "order": 18,
+   "order": 19,
    "episodes": [
     {
      "n": 1,
@@ -12877,7 +13196,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/1080pLaVendedoraDeRosas1998PeliculaColombianaCompletaEnFULLHD",
    "tags": [],
-   "order": 19,
+   "order": 20,
    "episodes": [
     {
      "n": 1,
@@ -12896,7 +13215,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/Rambo1",
    "tags": [],
-   "order": 20,
+   "order": 21,
    "episodes": [
     {
      "n": 1,
@@ -12915,7 +13234,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ElDespertarDelDiablo2006",
    "tags": [],
-   "order": 21,
+   "order": 22,
    "episodes": [
     {
      "n": 1,
@@ -12934,7 +13253,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-libro-de-la-vida_202205",
    "tags": [],
-   "order": 22,
+   "order": 23,
    "episodes": [
     {
      "n": 1,
@@ -12953,7 +13272,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/rio_20220511_202205",
    "tags": [],
-   "order": 23,
+   "order": 24,
    "episodes": [
     {
      "n": 1,
@@ -12972,7 +13291,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/rio-2_202205",
    "tags": [],
-   "order": 24,
+   "order": 25,
    "episodes": [
     {
      "n": 1,
@@ -12991,7 +13310,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/el-abrazo-de-la-serpiente-subs-espanol-rincon-cinefilo.com",
    "tags": [],
-   "order": 25,
+   "order": 26,
    "episodes": [
     {
      "n": 1,
@@ -13010,7 +13329,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/ole-el-viaje-de-ferdinand_202205",
    "tags": [],
-   "order": 26,
+   "order": 27,
    "episodes": [
     {
      "n": 1,
@@ -13029,7 +13348,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ver-mision-de-rescate-extraction-2020-online-latino-hd-pelisplus",
    "tags": [],
-   "order": 27,
+   "order": 28,
    "episodes": [
     {
      "n": 1,
@@ -13048,7 +13367,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/jurassic.world.fallen.kingdom.-2018.1080p-dual-lat-cinecalidad.to_202105",
    "tags": [],
-   "order": 28,
+   "order": 29,
    "episodes": [
     {
      "n": 1,
@@ -13122,7 +13441,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/it-eso-2017-parte-2-hd-1080p-latino",
    "tags": [],
-   "order": 29,
+   "order": 30,
    "episodes": [
     {
      "n": 1,
@@ -13151,7 +13470,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/darsag2",
    "tags": [],
-   "order": 30,
+   "order": 31,
    "episodes": [
     {
      "n": 1,
@@ -13170,7 +13489,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/la-pasion-de-cristo_202108",
    "tags": [],
-   "order": 31,
+   "order": 32,
    "episodes": [
     {
      "n": 1,
@@ -13189,7 +13508,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/momentum-2015-.-peliculas-en-espanol",
    "tags": [],
-   "order": 32,
+   "order": 33,
    "episodes": [
     {
      "n": 1,
@@ -13208,7 +13527,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/Urotsukidoji",
    "tags": [],
-   "order": 33,
+   "order": 34,
    "episodes": [
     {
      "n": 1,
@@ -13227,7 +13546,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/la-era-de-hielo-2_202205",
    "tags": [],
-   "order": 34,
+   "order": 35,
    "episodes": [
     {
      "n": 1,
@@ -13246,7 +13565,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/la-era-de-hielo-4_202207",
    "tags": [],
-   "order": 35,
+   "order": 36,
    "episodes": [
     {
      "n": 1,
@@ -13265,7 +13584,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/el-fin-del-mundo-peliculas-de-accion-suspenso-y-terror-completas-en-espanol",
    "tags": [],
-   "order": 36,
+   "order": 37,
    "episodes": [
     {
      "n": 1,
@@ -13284,7 +13603,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/epic-el-reino-secreto",
    "tags": [],
-   "order": 37,
+   "order": 38,
    "episodes": [
     {
      "n": 1,
@@ -13303,7 +13622,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/huerfanos-peliculas-completas",
    "tags": [],
-   "order": 38,
+   "order": 39,
    "episodes": [
     {
      "n": 1,
@@ -13322,7 +13641,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/DisneyClubTv_venganza-de-un-tirador",
    "tags": [],
-   "order": 39,
+   "order": 40,
    "episodes": [
     {
      "n": 1,
@@ -13341,7 +13660,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/tecnotv_201804",
    "tags": [],
-   "order": 40,
+   "order": 41,
    "episodes": [
     {
      "n": 1,
@@ -13360,7 +13679,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/kimi-no-na-wa-your-name-espanol-latino",
    "tags": [],
-   "order": 41,
+   "order": 42,
    "episodes": [
     {
      "n": 1,
@@ -13379,7 +13698,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/scott-pilgrim-vs-the-world_202312",
    "tags": [],
-   "order": 42,
+   "order": 43,
    "episodes": [
     {
      "n": 1,
@@ -13398,7 +13717,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el.gigante.de.hierro.dvdrip.www.divxtotal.com.leoparis",
    "tags": [],
-   "order": 43,
+   "order": 44,
    "episodes": [
     {
      "n": 1,
@@ -13417,7 +13736,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ElRegalo.2015.DVDrip.XviD.LatinoPeliculas1linkmega.com",
    "tags": [],
-   "order": 44,
+   "order": 45,
    "episodes": [
     {
      "n": 1,
@@ -13436,7 +13755,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-naavegante-buster-keaton-vose",
    "tags": [],
-   "order": 45,
+   "order": 46,
    "episodes": [
     {
      "n": 1,
@@ -13455,7 +13774,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/tierra-de-osos-2-2006-720p-audio-latino",
    "tags": [],
-   "order": 46,
+   "order": 47,
    "episodes": [
     {
      "n": 1,
@@ -13474,7 +13793,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/blues-de-madrastra-e-hijastra-gibo-to-musume-no-blues-espanol-latino",
    "tags": [],
-   "order": 47,
+   "order": 48,
    "clsManual": true,
    "episodes": [
     {
@@ -13551,7 +13870,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/la-hija-de-lupin-lupin-no-musume-espanol-latino",
    "tags": [],
-   "order": 48,
+   "order": 49,
    "clsManual": true,
    "episodes": [
     {
@@ -13621,7 +13940,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/dram_20240713",
    "tags": [],
-   "order": 49,
+   "order": 50,
    "episodes": [
     {
      "n": 1,
@@ -13755,7 +14074,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/13-asesinos_202511",
    "tags": [],
-   "order": 50,
+   "order": 51,
    "episodes": [
     {
      "n": 1,
@@ -13774,7 +14093,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-angel-2018",
    "tags": [],
-   "order": 51,
+   "order": 52,
    "episodes": [
     {
      "n": 1,
@@ -13793,7 +14112,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/how-to-train-your-dragon-dreamworks-dragons",
    "tags": [],
-   "order": 52,
+   "order": 53,
    "episodes": [
     {
      "n": 1,
@@ -14442,7 +14761,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/naruto-shippuden-la-pelicula-",
    "tags": [],
-   "order": 53,
+   "order": 54,
    "episodes": [
     {
      "n": 1,
@@ -14481,7 +14800,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/rashomon-subtitulado-espanol",
    "tags": [],
-   "order": 54,
+   "order": 55,
    "episodes": [
     {
      "n": 1,
@@ -14500,7 +14819,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/PeliculaNietzsche",
    "tags": [],
-   "order": 55,
+   "order": 56,
    "episodes": [
     {
      "n": 1,
@@ -14519,7 +14838,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/PalomaDePapelFabrizioAguilar2003",
    "tags": [],
-   "order": 56,
+   "order": 57,
    "episodes": [
     {
      "n": 1,
@@ -14538,7 +14857,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/los-caballeros-del-zodiaco-la-leyenda-del-santuario-edicion-argentina-dvd-rip",
    "tags": [],
-   "order": 57,
+   "order": 58,
    "episodes": [
     {
      "n": 1,
@@ -14557,7 +14876,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/chainsaw-man-the-movie-reze-arc-catch-up-watch-party",
    "tags": [],
-   "order": 58,
+   "order": 59,
    "episodes": [
     {
      "n": 1,
@@ -14576,7 +14895,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/1-5098444725191443505",
    "tags": [],
-   "order": 59,
+   "order": 60,
    "episodes": [
     {
      "n": 1,
@@ -14595,7 +14914,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/doraemon-nobita-y-los-siete-magos-2007-espanol-latino",
    "tags": [],
-   "order": 60,
+   "order": 61,
    "episodes": [
     {
      "n": 1,
@@ -14614,7 +14933,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/the-end-of-evangelion-movie-1999-espanol-latino-netflix-2019",
    "tags": [],
-   "order": 61,
+   "order": 62,
    "episodes": [
     {
      "n": 1,
@@ -14641,7 +14960,7 @@
     "5": "Parte 5 — Devuélvanme A Mi Gohan  [1998]",
     "6": "Parte 6 — ¡Fusión!"
    },
-   "order": 62,
+   "order": 63,
    "episodes": [
     {
      "n": 1,
@@ -14690,7 +15009,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/pokemon-el-regreso-de-mewtwo-pelicula-completa-en-espanol-latino",
    "tags": [],
-   "order": 63,
+   "order": 64,
    "episodes": [
     {
      "n": 1,
@@ -14709,7 +15028,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd",
    "tags": [],
-   "order": 64,
+   "order": 65,
    "episodes": [
     {
      "n": 1,
@@ -14728,7 +15047,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/sakura-card-captor-en-espanol-latino",
    "tags": [],
-   "order": 65,
+   "order": 66,
    "clsManual": true,
    "episodes": [
     {
@@ -15093,7 +15412,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/BITBBHLatinSpanish",
    "tags": [],
-   "order": 66,
+   "order": 67,
    "episodes": [
     {
      "n": 1,
@@ -15371,7 +15690,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/20230516_20230516_2048",
    "tags": [],
-   "order": 67,
+   "order": 68,
    "episodes": [
     {
      "n": 1,
@@ -15450,7 +15769,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/como-me-converti-en-superheroe",
    "tags": [],
-   "order": 68,
+   "order": 69,
    "episodes": [
     {
      "n": 1,
@@ -16244,7 +16563,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dororo-capitulo-23-sub-espanol",
    "tags": [],
-   "order": 69,
+   "order": 70,
    "episodes": [
     {
      "n": 1,
@@ -16378,7 +16697,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/tpo-neon-genesis-evangelion-05-trapo-2019-universo-anime",
    "tags": [],
-   "order": 70,
+   "order": 71,
    "episodes": [
     {
      "n": 1,
@@ -16522,7 +16841,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/darling-espanol-latino-1",
    "tags": [],
-   "order": 71,
+   "order": 72,
    "episodes": [
     {
      "n": 1,
@@ -16541,7 +16860,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/yes-precure-5-subespanol-reuploaded-complete",
    "tags": [],
-   "order": 72,
+   "order": 73,
    "episodes": [
     {
      "n": 1,
@@ -16805,7 +17124,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/serial-experiments-lain-ep-12",
    "tags": [],
-   "order": 73,
+   "order": 74,
    "episodes": [
     {
      "n": 1,
@@ -16884,7 +17203,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/samurai-troopers-e-16",
    "tags": [],
-   "order": 74,
+   "order": 75,
    "episodes": [
     {
      "n": 1,
@@ -17093,7 +17412,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/zombieland-saga-yumeginga-paradise",
    "tags": [],
-   "order": 75,
+   "order": 76,
    "episodes": [
     {
      "n": 1,
@@ -17237,7 +17556,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/mythical-detective-loki-lat",
    "tags": [],
-   "order": 76,
+   "order": 77,
    "episodes": [
     {
      "n": 1,
@@ -17381,7 +17700,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el_regreso_de_la_llorona",
    "tags": [],
-   "order": 77,
+   "order": 78,
    "episodes": [
     {
      "n": 1,
@@ -17400,7 +17719,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/elfen-lied-latino_202510",
    "tags": [],
-   "order": 78,
+   "order": 79,
    "episodes": [
     {
      "n": 1,
@@ -17484,7 +17803,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/candy.candy_202109",
    "tags": [],
-   "order": 79,
+   "order": 80,
    "episodes": [
     {
      "n": 1,
@@ -18073,7 +18392,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/ranma-nibunnoichi-espanol-latino-y-japones",
    "tags": [],
-   "order": 80,
+   "order": 81,
    "episodes": [
     {
      "n": 1,
@@ -18892,7 +19211,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/RebeldeWay",
    "tags": [],
-   "order": 81,
+   "order": 82,
    "episodes": [
     {
      "n": 1,
@@ -19605,7 +19924,7 @@
     "1": "One Piece Latino",
     "2": "Temporada 2 — One Piece Latino 264"
    },
-   "order": 82,
+   "order": 83,
    "episodes": [
     {
      "n": 1,
@@ -20298,7 +20617,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/shingeki-chuugakkou-castellano-12",
    "tags": [],
-   "order": 83,
+   "order": 84,
    "episodes": [
     {
      "n": 1,
@@ -20432,7 +20751,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ver-avatar-online-gratis-cuevana-3",
    "tags": [],
-   "order": 84,
+   "order": 85,
    "episodes": [
     {
      "n": 1,
@@ -20451,7 +20770,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dragon-ball-super-broly-480pto2160p-mulsubndub",
    "tags": [],
-   "order": 85,
+   "order": 86,
    "episodes": [
     {
      "n": 1,
@@ -20474,7 +20793,7 @@
    "kind": "serie",
    "anime": true,
    "tags": [],
-   "order": 86,
+   "order": 87,
    "episodes": [
     {
      "n": 1,
@@ -20492,6 +20811,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/donnie-darko-2001-full-movie-the-directors-cut",
    "tags": [],
+   "order": 88,
    "episodes": [
     {
      "n": 1,
@@ -20511,6 +20831,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/blod_20240826",
    "tags": [],
+   "order": 89,
    "episodes": [
     {
      "n": 1,
@@ -20529,6 +20850,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/aik_20250304",
    "tags": [],
+   "order": 90,
    "episodes": [
     {
      "n": 1,
@@ -78209,5 +78531,5 @@
  },
  "links": {},
  "linksDom": "https://x.yapido.click",
- "sig": "eafeDh/09TE8T2zdOEulymKNBTpAOVJL+xY1S7j/LVT60ZyUv4ob5re9nDZBAkTkBmB4Yw9OybsxxW3oKk5zGg=="
+ "sig": "zQjtQY9EsMFxjlJ7bEZe8MxN1Pv3Sc9iCl8BETpK+HNISwP4tdEQgrabj+qGOFqZHNdmHTi62/TbJutYQ9+lgA=="
 }
