@@ -561,6 +561,11 @@ ${urls.map(([u, at]) => `  <url><loc>${u}</loc><lastmod>${at || today}</lastmod>
 `;
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sm, 'utf8');
   fs.writeFileSync(path.join(ROOT, 'feed.xml'), feedXml([...feedItems].sort((a, b) => String(b.at).localeCompare(String(a.at))).slice(0, 50)), 'utf8');
+
+  /* 🔗 acortador: el mapa viaja firmado dentro del catálogo → se materializa en b/links.json */
+  fs.mkdirSync(path.join(ROOT, 'b'), { recursive: true });
+  fs.writeFileSync(path.join(ROOT, 'b', 'links.json'),
+    JSON.stringify({ dominio: cat.linksDom || SITE, links: cat.links || {} }), 'utf8');
   fs.writeFileSync(path.join(ROOT, 'sitemap-urls.json'), JSON.stringify(urls.map(x => x[0])), 'utf8');
   fs.writeFileSync(path.join(ROOT, 'seo-new-urls.json'), JSON.stringify(newUrls), 'utf8');
   fs.writeFileSync(stateFile, JSON.stringify(state), 'utf8');

@@ -103,6 +103,9 @@ function load() {
         state.tab = state.tab || 'anime';
         if (state.tab === 'ovas') state.tab = 'peliculas'; /* pestaña OVAs retirada: ahora se integran en su serie */
         state.series.forEach(s => { if (typeof s.anime !== 'boolean') s.anime = s.kind !== 'pelicula'; });
+        /* 🔗 acortador de enlaces (códigos de 6) — viaja firmado en catalog.json */
+        state.links = state.links && !Array.isArray(state.links) ? state.links : {};
+        state.linksDom = state.linksDom || 'https://x.yapido.click';
         /* 🧹 Limpieza retroactiva: capítulos gemelos heredados del viejo importador
            de archive.org (el mismo video vía .mp4 + .ia.mp4/_512kb entraba 2 veces).
            Clave conservadora: mismo archivo archive.org (nombre base) o misma URL exacta. */
@@ -207,7 +210,7 @@ const els = {
   cineBtn: $('cineBtn'), modalCine: $('modalCine'), cineQuery: $('cineQuery'), cineGo: $('cineGo'),
   cineLang: $('cineLang'), cineMinDur: $('cineMinDur'), cineChips: $('cineChips'), cineStatus: $('cineStatus'),
   cineResults: $('cineResults'), closeCine: $('closeCine'),
-  sortMode: $('sortMode'), favFilter: $('favFilter'), tagChips: $('tagChips'), trendsBtn: $('trendsBtn'),
+  sortMode: $('sortMode'), favFilter: $('favFilter'), tagChips: $('tagChips'), trendsBtn: $('trendsBtn'), linksBtn: $('linksBtn'),
   exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'),
   statsBtn: $('statsBtn'), modalStats: $('modalStats'), statsBody: $('statsBody'), closeStats: $('closeStats'),
   miniPlayer: null, playerAnchor: $('playerAnchor'), miniX: $('miniX'), miniGrip: $('miniGrip'),
@@ -4360,6 +4363,151 @@ function openTrends() {
 }
 
 if (els.trendsBtn) els.trendsBtn.addEventListener('click', () => { if (needAdmin()) openTrends(); });
+
+/* ═══════════ 🔗 ACORTADOR b.yapido.click (admin) ═══════════
+   Códigos de 6 caracteres que redirigen al instante. Los datos viajan
+   FIRMADOS dentro de catalog.json (el canal seguro ya existente: mismo
+   sync a los 3 proyectos) y el bot materializa b/links.json. Cambiar el
+   "dominio destino" reubica TODOS los enlaces sin tocar nada más.      */
+let linksBox = null;
+const lnkSeoCache = { at: 0, items: null };
+async function lnkSeoState() {
+  if (lnkSeoCache.items && Date.now() - lnkSeoCache.at < 3600e3) return lnkSeoCache.items;
+  try {
+    const j = await (await fetch('seo-state.json', { cache: 'no-store' })).json();
+    lnkSeoCache.items = j.items || {};
+    lnkSeoCache.at = Date.now();
+  } catch (e) { lnkSeoCache.items = {}; }
+  return lnkSeoCache.items;
+}
+const newLinkCode = () => {
+  const abc = 'abcdefghjkmnpqrstuvwxyz23456789';   /* sin caracteres ambiguos (0/o, 1/l) */
+  let c = '';
+  do { c = Array.from({ length: 6 }, () => abc[Math.floor(Math.random() * abc.length)]).join(''); }
+  while (state.links[c]);
+  return c;
+};
+const lnkDestFinal = e => /^https?:\/\//i.test(e.dest || '')
+  ? e.dest
+  : (state.linksDom || 'https://x.yapido.click').replace(/\/+$/, '') + e.dest;
+
+/* destino sugerido según lo que tengo en pantalla: la página SEO /ver si
+   está publicada (rica y con CTA); si no, el enlace profundo del reproductor */
+async function lnkDestActual() {
+  const s = getSeries(current.seriesId);
+  if (!s) return '/';
+  const items = await lnkSeoState();
+  const pub = items[s.id] && items[s.id].slug;
+  if (pub) return `/ver/${pub}/` + (s.kind !== 'pelicula' && current.ep ? `capitulo-${current.ep}/` : '');
+  return `#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${slugify(s.t)}${s.kind !== 'pelicula' && current.ep ? '/' + current.ep : ''}`;
+}
+
+function renderLinksList() {
+  const list = linksBox.querySelector('#lnkList');
+  const entries = Object.entries(state.links || {}).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
+  if (!entries.length) {
+    list.innerHTML = '<div class="tr-loading">Aún no hay enlaces — crea el primero arriba.</div>';
+    return;
+  }
+  list.innerHTML = entries.map(([code, e]) => {
+    const full = lnkDestFinal(e);
+    return `<div class="lnk-row" data-code="${code}">
+      <code class="lnk-code">${code}</code>
+      <span class="lnk-dest" title="${escapeHtml(full)}">${escapeHtml(full.length > 46 ? full.slice(0, 45) + '…' : full)}</span>
+      <span class="lnk-t">${escapeHtml(e.t || '')}</span>
+      <button class="lnk-b" data-a="copy" title="Copiar https://b.yapido.click/${code}">📋</button>
+      <button class="lnk-b" data-a="open" title="Probar destino">↗</button>
+      <button class="lnk-b" data-a="edit" title="Editar destino / título">✎</button>
+      <button class="lnk-b danger" data-a="del" title="Eliminar este enlace">🗑</button>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('[data-a]').forEach(b => b.addEventListener('click', async () => {
+    const code = b.closest('.lnk-row').dataset.code;
+    const e = state.links[code];
+    if (!e) return;
+    if (b.dataset.a === 'copy') { if (navigator.clipboard) navigator.clipboard.writeText(`https://b.yapido.click/${code}`); toast(`📋 b.yapido.click/${code} copiado`); }
+    else if (b.dataset.a === 'open') window.open(lnkDestFinal(e), '_blank', 'noopener');
+    else if (b.dataset.a === 'edit') {
+      const r = await uiModal({
+        icon: '✎', title: `Editar enlace ${code}`, okLabel: 'Guardar',
+        fields: [
+          { key: 't', label: 'Título (opcional)', value: e.t || '', maxlength: 120 },
+          { key: 'dest', label: 'Destino (relativo /ver/…, #/anime/… o https://…)', value: e.dest, maxlength: 2048 },
+        ],
+      });
+      if (!r) return;
+      const d = String(r.dest || '').trim();
+      if (!d || !/^(https?:\/\/|\/|#)/.test(d)) return toast('Destino no válido', true);
+      e.dest = d; e.t = String(r.t || '').trim();
+      save(); renderLinksList();
+      toast('✏️ Enlace actualizado');
+    }
+    else if (b.dataset.a === 'del') {
+      if (!confirm(`¿Eliminar el enlace ${code}?`)) return;
+      delete state.links[code];
+      save(); renderLinksList();
+      toast('🗑 Enlace eliminado');
+    }
+  }));
+}
+
+function openLinks() {
+  if (!linksBox) {
+    linksBox = document.createElement('div');
+    linksBox.className = 'modal-backdrop hidden links-modal';
+    linksBox.innerHTML = `
+      <div class="modal lnk-panel">
+        <div class="tr-head">
+          <h3>🔗 Acortador de enlaces</h3>
+          <button class="tr-x" title="Cerrar">✕</button>
+        </div>
+        <div class="lnk-dom">
+          <span>🌍 Dominio destino — si cambian el dominio, TODOS los enlaces saltan al nuevo:</span>
+          <input id="lnkDom" class="lnk-inp" placeholder="https://x.yapido.click">
+          <button class="lnk-b" id="lnkDomSave" title="Guardar dominio">Guardar</button>
+        </div>
+        <div class="lnk-new">
+          <input id="lnkTitle" class="lnk-inp" placeholder="Título (opcional, ej: Bleach capítulo 12)">
+          <input id="lnkDest" class="lnk-inp" placeholder="Destino — se autorrellena con lo que estás viendo">
+          <button id="lnkCreate" class="tr-new">➕ Crear enlace corto</button>
+        </div>
+        <div id="lnkList" class="lnk-list"></div>
+        <p class="tr-note">Los enlaces viajan firmados dentro del catálogo y el bot publica <code>b/links.json</code> solo.
+        Código de 6 caracteres. URL corta: <code>b.yapido.click/&lt;código&gt;</code>
+        (mientras el subdominio no esté activo también funciona <code>x.yapido.click/b/#&lt;código&gt;</code>).</p>
+      </div>`;
+    document.body.appendChild(linksBox);
+    linksBox.querySelector('.tr-x').addEventListener('click', () => linksBox.classList.add('hidden'));
+    linksBox.addEventListener('click', ev => { if (ev.target === linksBox) linksBox.classList.add('hidden'); });
+    linksBox.querySelector('#lnkDomSave').addEventListener('click', () => {
+      const v = linksBox.querySelector('#lnkDom').value.trim().replace(/\/+$/, '');
+      if (!/^https?:\/\/[\w.-]+/i.test(v)) return toast('El dominio debe ser https://…', true);
+      state.linksDom = v;
+      save(); renderLinksList();
+      toast(`🌍 Dominio destino: ${v} — TODOS los enlaces apuntarán allí tras publicar`);
+    });
+    linksBox.querySelector('#lnkCreate').addEventListener('click', async () => {
+      let dest = linksBox.querySelector('#lnkDest').value.trim();
+      if (!dest) dest = await lnkDestActual();
+      if (!/^(https?:\/\/|\/|#)/.test(dest)) dest = '/' + dest;
+      const code = newLinkCode();
+      const t = linksBox.querySelector('#lnkTitle').value.trim();
+      state.links[code] = { dest, t, at: Date.now() };
+      linksBox.querySelector('#lnkDest').value = '';
+      linksBox.querySelector('#lnkTitle').value = '';
+      save(); renderLinksList();
+      toast(`🔗 Listo: b.yapido.click/${code} — publica el catálogo para activarlo en la web`);
+    });
+    window.addEventListener('links-changed', renderLinksList);
+  }
+  linksBox.classList.remove('hidden');
+  linksBox.querySelector('#lnkDom').value = state.linksDom || 'https://x.yapido.click';
+  renderLinksList();
+  const inp = linksBox.querySelector('#lnkDest');
+  if (!inp.value && getSeries(current.seriesId)) lnkDestActual().then(d => { if (!inp.value) inp.value = d; });
+}
+
+if (els.linksBtn) els.linksBtn.addEventListener('click', () => { if (needAdmin()) openLinks(); });
 
 /* ── Renombrar serie/película → SIEMPRE re-lanza la carátula con el nombre nuevo ── */
 els.renameBtn.addEventListener('click', async () => {

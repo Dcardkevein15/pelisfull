@@ -626,6 +626,21 @@
     }
 
     if (cat.by !== undefined && !okStr(cat.by, 120)) return false;
+    /* 🔗 acortador: mapa de códigos → destinos (relativos del dominio o http(s)) */
+    if (cat.links !== undefined) {
+      if (!cat.links || typeof cat.links !== 'object' || Array.isArray(cat.links) || !noBadKeys(cat.links)) return false;
+      const ks = Object.keys(cat.links);
+      if (ks.length > 20000) return false;
+      for (const k of ks) {
+        if (!/^[a-z0-9][a-z0-9-]{1,14}$/i.test(k)) return false;
+        const l = cat.links[k];
+        if (!l || typeof l !== 'object' || Array.isArray(l) || !noBadKeys(l)) return false;
+        if (typeof l.dest !== 'string' || !l.dest || l.dest.length > 2048) return false;
+        if (!(/^https?:\/\//i.test(l.dest) || l.dest.startsWith('/') || l.dest.startsWith('#'))) return false;
+        if (l.t !== undefined && !okStr(l.t, 200)) return false;
+      }
+    }
+    if (cat.linksDom !== undefined && !okUrl(cat.linksDom)) return false;
     if (cat.at !== undefined && !okStr(cat.at, 40)) return false;
     if (cat.sig !== undefined && (typeof cat.sig !== 'string' || cat.sig.length > 512)) return false;
     return true;
@@ -1029,6 +1044,8 @@
       app: 'xstream', v: Date.now(), by: ID.name + ' ' + ID.tag,
       at: new Date().toISOString(), n: series.length + channels.length, series, channels,
       tvSources: state.tvSources || {},
+      links: state.links || {},                     /* 🔗 acortador b.yapido.click */
+      linksDom: state.linksDom || 'https://x.yapido.click',
     };
   }
 
@@ -2032,6 +2049,12 @@
        así sus dispositivos pueden refrescar los enlaces sin esperar una nueva publicación */
     if (cat.tvSources && typeof cat.tvSources === 'object') {
       state.tvSources = Object.assign({}, state.tvSources || {}, cat.tvSources);
+    }
+    /* 🔗 acortador: el mapa de enlaces viaja firmado dentro del catálogo */
+    if (cat.links && typeof cat.links === 'object' && !Array.isArray(cat.links)) {
+      state.links = cat.links;
+      if (typeof cat.linksDom === 'string' && cat.linksDom) state.linksDom = cat.linksDom;
+      try { window.dispatchEvent(new CustomEvent('links-changed')); } catch (e) { }
     }
     state.catalogMeta = { v: cat.v, at: Date.now(), n: cat.series.length + (cat.channels ? cat.channels.length : 0) };
     API.save();
