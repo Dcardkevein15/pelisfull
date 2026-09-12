@@ -148,7 +148,15 @@ input,select{font-family:inherit}
   overflow:hidden;border:1px solid var(--line);
   box-shadow:0 24px 70px rgba(0,0,0,.55);
 }
-.player.fullscreen{border-radius:0;border:none}
+.player.fullscreen{
+  border-radius:0;border:none;
+  /* 🖥 anti-parpadeo en PC: la sombra difusa enorme + bordes/transiciones se
+     recalculan al entrar a fullscreen y parpadea; se neutralizan aquí */
+  box-shadow:none;transition:none;
+  left:0!important;top:0!important;right:0!important;bottom:0!important;
+  width:100%!important;height:100%!important;max-width:none!important;margin:0;
+}
+.player.fullscreen *{transition:none!important}
 .player video{width:100%;height:100%;object-fit:contain;background:#000}
 /* iframe de Google Drive ocupa todo el player y sustituye al video */
 .drive-frame{display:none;position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;z-index:3}
@@ -636,9 +644,10 @@ body.light .import-mode label:has(input:checked){color:#6a9000}
 .side-tabs{
   display:flex;gap:0;align-items:stretch;padding:0 8px;
   border-bottom:1px solid var(--line);
+  flex-wrap:wrap;row-gap:2px;   /* 5 categorías: se reparten en filas limpias */
 }
 .side-tab{
-  flex:1 1 0;min-width:0;position:relative;
+  flex:1 1 30%;min-width:0;position:relative;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
   background:transparent;border:none;border-radius:0;
   color:var(--dim);font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:1px;font-weight:900;
@@ -652,7 +661,9 @@ body.light .import-mode label:has(input:checked){color:#6a9000}
 }
 .side-tab:hover{color:var(--ink)}
 .side-tab .tab-emoji{font-size:16px;line-height:1;filter:grayscale(.35)}
-.side-tab .tab-name{font-size:11px;font-weight:800;letter-spacing:.8px}
+.side-tab .tab-name{font-size:10px;font-weight:800;letter-spacing:.4px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* en vista Home las pestañas van verticales: que mi rejilla no las deforme */
+.tab-home .side-tab{flex:0 0 auto}
 .side-tab:hover .tab-emoji,.side-tab.on .tab-emoji{filter:none}
 .side-tab:active .tab-emoji{transform:scale(.86)}
 /* línea indicadora ácida bajo la pestaña activa */

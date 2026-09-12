@@ -103,6 +103,9 @@ function load() {
         state.tab = state.tab || 'anime';
         if (state.tab === 'ovas') state.tab = 'peliculas'; /* pestaña OVAs retirada: ahora se integran en su serie */
         state.series.forEach(s => { if (typeof s.anime !== 'boolean') s.anime = s.kind !== 'pelicula'; });
+        /* 📼 una pasada tras el arranque: clasifica series no-anime a la pestaña Series
+           (usa los géneros TMDB cacheados; lo movido a mano se respeta siempre) */
+        setTimeout(autoClasificarSeries, 2500);
         /* 🔐 HIGIENE: las claves ya no viven en el estado localStorage —
            si venían de una versión antigua (apikey/stapeKey/stapeLogin),
            se borran aquí y viajan solo a la bóveda local de auth.js (este dispositivo) */
@@ -148,7 +151,7 @@ const els = {
   speed: $('speed'), pipBtn: $('pipBtn'), fsBtn: $('fsBtn'), autoplayBtn: $('autoplayBtn'),
   nowPlaying: $('nowPlaying'), stageTitle: $('stageTitle'), stageSub: $('stageSub'),
   stageBadges: $('stageBadges'), seriesList: $('seriesList'),
-  countAnime: $('countAnime'), countPelis: $('countPelis'), gearBtn: $('gearBtn'), sidePanel: $('sidePanel'),
+  countAnime: $('countAnime'), countSeries: $('countSeries'), countPelis: $('countPelis'), gearBtn: $('gearBtn'), sidePanel: $('sidePanel'),
   ccBtn: $('ccBtn'), brokenBtn: $('brokenBtn'), brokenCount: $('brokenCount'),
   brokenList: $('brokenList'), flagBtn: $('flagBtn'),
   episodesGrid: $('episodesGrid'), episodesTitle: $('episodesTitle'), searchInput: $('searchInput'),
@@ -177,7 +180,7 @@ const els = {
   continueRow: $('continueRow'), accentPick: $('accentPick'), accentMini: $('accentMini'),
   searchBox: $('searchBox'), searchToggle: $('searchToggle'),
   favBtn: $('favBtn'),   tagBtn: $('tagBtn'), remindBtn: $('remindBtn'), castBtn: $('castBtn'),
-  tabAnime: $('tabAnime'), tabPeliculas: $('tabPeliculas'),
+  tabAnime: $('tabAnime'), tabSeries: $('tabSeries'), tabPeliculas: $('tabPeliculas'),
   tabTv: $('tabTv'), countTv: $('countTv'), tvTools: $('tvTools'),
   tvScanBtn: $('tvScanBtn'), tvRescanBtn: $('tvRescanBtn'), moveCatBtn: $('moveCatBtn'),
   tvIptvBtn: $('tvIptvBtn'), tvEpgBtn: $('tvEpgBtn'), tvCats: $('tvCats'),
@@ -633,6 +636,7 @@ function syncOvasToSeries(silent) {
 function syncTabs() {
   els.tabHome.classList.toggle('on', state.tab === 'home');
   els.tabAnime.classList.toggle('on', state.tab === 'anime');
+  els.tabSeries.classList.toggle('on', state.tab === 'series');
   els.tabPeliculas.classList.toggle('on', state.tab === 'peliculas');
   els.tabTv.classList.toggle('on', state.tab === 'tv');
   els.tvTools.classList.toggle('hidden', state.tab !== 'tv' || !canAdmin());
@@ -657,6 +661,7 @@ function setTab(tab) {
 }
 els.tabHome.addEventListener('click', () => setTab('home'));
 els.tabAnime.addEventListener('click', () => setTab('anime'));
+els.tabSeries.addEventListener('click', () => setTab('series'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
 els.tabTv.addEventListener('click', () => setTab('tv'));
 
@@ -864,7 +869,7 @@ function homeCard(s) {
       <div class="rel-c">${chip}${pct ? ' · ' + pct + '% visto' : ''}</div>
     </div>`;
   card.addEventListener('click', () => {
-    setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime');
+    setTab(s.kind === 'pelicula' ? 'peliculas' : (s.anime === false ? 'series' : 'anime'));
     selectSeries(s.id);
     if (s.episodes && s.episodes.length) {
       const first = s.episodes.find(e => e.url) || s.episodes[0];
@@ -907,7 +912,7 @@ function renderHome() {
     hv.querySelector('.hero-btn').addEventListener('click', () => {
       /* antes sólo seleccionaba y parecía "no hacer nada" (el player
          se esconde bajo la vista Home): ahora entra y reproduce      */
-      setTab(hero.kind === 'pelicula' ? 'peliculas' : 'anime');
+      setTab(hero.kind === 'pelicula' ? 'peliculas' : (hero.anime === false ? 'series' : 'anime'));
       selectSeries(hero.id);
     });
     els.homeView.appendChild(hv);
@@ -945,7 +950,7 @@ function renderHome() {
         </span>
         <span class="hm-cont-go">▶</span>`;
       card.addEventListener('click', () => {
-        setTab(r.s.kind === 'pelicula' ? 'peliculas' : 'anime');
+        setTab(r.s.kind === 'pelicula' ? 'peliculas' : (r.s.anime === false ? 'series' : 'anime'));
         selectSeries(r.s.id);
         loadEpisode(r.ep, true);
       });
@@ -987,7 +992,7 @@ function renderHome() {
         <span class="hm-sub">${pct ? '▣ ' + pct + '% visto' : escapeHtml(s.tag || '')}</span>
       </span>`;
     b.addEventListener('click', () => {
-      setTab(isPeli ? 'peliculas' : 'anime');
+      setTab(isPeli ? 'peliculas' : (s.anime === false ? 'series' : 'anime'));
       selectSeries(s.id);
       const first = s.episodes.find(e => e.url) || s.episodes[0];
       if (first) loadEpisode(first.n, true);
@@ -1723,15 +1728,17 @@ function renderSeries(filter = '') {
   const q = filter.trim().toLowerCase();
   els.seriesList.innerHTML = '';
   /* contadores por pestaña (siempre actualizados) */
-  els.countAnime.textContent = state.series.filter(s => s.kind !== 'pelicula').length;
+  els.countAnime.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime !== false).length;
+  els.countSeries.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime === false).length;
   els.countPelis.textContent = state.series.filter(s => s.kind === 'pelicula').length;
   els.countTv.textContent = (state.channels || []).length;
   /* 📡 pestaña TV: lista de canales, no series */
   if (state.tab === 'tv') return renderChannels(q);
   let list = state.series.slice();
-  /* pestaña activa: Anime(series) · Películas (las OVAs sueltas viven aquí hasta integrarse en su serie) */
+  /* pestaña activa: Anime · Series (no anime) · Películas (las OVAs sueltas viven en Películas hasta integrarse) */
   if (state.tab === 'peliculas') list = list.filter(s => s.kind === 'pelicula');
-  else list = list.filter(s => s.kind !== 'pelicula');
+  else if (state.tab === 'series') list = list.filter(s => s.kind !== 'pelicula' && s.anime === false);
+  else list = list.filter(s => s.kind !== 'pelicula' && s.anime !== false);
 
   /* orden */
   const m = state.sortMode || 'manual';
@@ -1765,9 +1772,11 @@ function renderSeries(filter = '') {
       ? (isOvaEntry(s)
           ? '<span class="s-kind pelicula">OVA</span>'
           : (s.anime ? '<span class="s-kind pelicula">PELÍCULA ANIME</span>' : '<span class="s-kind pelicula">PELÍCULA</span>'))
-      : '<span class="s-kind serie">ANIME</span>';
+      : `<span class="s-kind serie">${s.anime === false ? 'SERIE' : 'ANIME'}</span>`;
     const sub = isMovie
-      ? `${chip}${linked ? '<span class="s-linked">con enlace</span>' : 'sin enlace'}`
+      ? (s.episodes.length > 1
+          ? `${chip}<span class="s-linked">${s.episodes.length} partes</span>`
+          : `${chip}${linked ? '<span class="s-linked">con enlace</span>' : 'sin enlace'}`)
       : `${chip}${s.episodes.length} caps${seen ? ` · <span class="s-linked">${seen} vistos</span>` : ''}`;
     const btn = document.createElement('button');
     btn.className = 's-item' + (s.id === current.seriesId ? ' active' : '');
@@ -1812,8 +1821,9 @@ function renderSeries(filter = '') {
       if (!needAdmin()) return;
       if (!dragId || dragId === s.id) return;
       const dragged = getSeries(dragId);
-      if (dragged && dragged.kind !== 'pelicula' && s.kind !== 'pelicula') {
-        showDropChooser(btn, dragged, s); // serie sobre serie → elegir: mover o fundir
+      if (dragged && dragged.kind === s.kind) {
+        /* mismo tipo → elegir: serie↔serie = temporada · peli↔peli = parte de la saga */
+        showDropChooser(btn, dragged, s);
       } else {
         reorderSeries(dragId, s.id);
       }
@@ -1859,9 +1869,11 @@ function mergeSeason(dragged, target) {
       state.progress[target.id][nn] = pr;
     }
   });
-  /* nombre legible para la cabecera de la temporada */
+  /* nombre legible para la cabecera: temporada (series) o parte (sagas de películas) */
+  const esSaga = target.kind === 'pelicula';
   let nombreT = dragged.t.replace(/^.*?[·\-:]\s*/, '').trim();
-  if (!/temporada|season/i.test(nombreT)) nombreT = `Temporada ${nextSeason} — ${nombreT}`.slice(0, 44);
+  const reLabel = esSaga ? /parte|saga|secuela|^II+$|^I{2,}$|\bIV\b/i : /temporada|season/i;
+  if (!reLabel.test(nombreT)) nombreT = `${esSaga ? 'Parte' : 'Temporada'} ${nextSeason} — ${nombreT}`.slice(0, 44);
   target.seasons[nextSeason] = nombreT.slice(0, 44);
 
   state.series.splice(state.series.indexOf(dragged), 1);
@@ -1872,7 +1884,9 @@ function mergeSeason(dragged, target) {
   renderSeries(els.searchInput.value);
   renderEpisodes();
   selectSeries(target.id);
-  toast(`🧩 «${dragged.t}» ahora es la Temporada ${nextSeason} de «${target.t}»`);
+  toast(esSaga
+    ? `🎬 «${dragged.t}» ahora es la Parte ${nextSeason} de la saga «${target.t}»`
+    : `🧩 «${dragged.t}» ahora es la Temporada ${nextSeason} de «${target.t}»`);
 }
 
 /* panelito flotante al soltar una serie sobre otra: Mover o Unir como temporada */
@@ -1883,9 +1897,10 @@ function showDropChooser(anchor, dragged, target) {
   box.className = 'drop-chooser';
   box.style.left = Math.min(r.left, window.innerWidth - 240) + 'px';
   box.style.top = Math.min(r.bottom + 6, window.innerHeight - 120) + 'px';
+  const esSaga = target.kind === 'pelicula';
   box.innerHTML = `
     <div class="dc-hint">Soltaste «${escapeHtml(dragged.t.slice(0, 24))}» sobre «${escapeHtml(target.t.slice(0, 24))}»</div>
-    <button class="dc-btn" data-a="season">🧩 Unir como temporada de «${escapeHtml(target.t.slice(0, 18))}»</button>
+    <button class="dc-btn" data-a="season">${esSaga ? '🎬 Unir como parte de la saga' : '🧩 Unir como temporada de'} «${escapeHtml(target.t.slice(0, 18))}»</button>
     <button class="dc-btn" data-a="move">⇅ Solo reordenar la lista</button>`;
   box.querySelector('[data-a="season"]').addEventListener('click', () => { box.remove(); mergeSeason(dragged, target); });
   box.querySelector('[data-a="move"]').addEventListener('click', () => { box.remove(); reorderSeries(dragged.id, target.id); });
@@ -1903,10 +1918,10 @@ function unmergeSeason(s, se, epsS, label) {
   const newId = (srcId && !getSeries(srcId)) ? srcId : 'ext-' + Date.now();
   const nueva = {
     id: newId,
-    t: (label || `Temporada ${se}`).slice(0, 80),
-    jp: '📺',
-    tag: 'Serie restaurada',
-    g: s.g, kind: 'serie', anime: s.anime, poster: s.poster || null,
+    t: (label || (s.kind === 'pelicula' ? `Parte ${se}` : `Temporada ${se}`)).slice(0, 80),
+    jp: s.kind === 'pelicula' ? '🎬' : '📺',
+    tag: s.kind === 'pelicula' ? 'Película restaurada' : 'Serie restaurada',
+    g: s.g, kind: s.kind, anime: s.anime, poster: s.poster || null,
     episodes: epsS.map(e => ({ n: 0, t: e.t, url: e.url, sub: e.sub || null, note: e.note })),
   };
   /* progreso: migra del número viejo (dentro de s) al nuevo 1..N */
@@ -2150,9 +2165,10 @@ function renderEpisodes() {
     els.insertEpBtn.classList.add('hidden');
     return;
   }
-  /* ── Vista PELÍCULA: en lugar de capítulos, relacionadas de la misma categoría ── */
+  /* ── Vista PELÍCULA suelta: relacionadas… — pero una SAGA muestra sus partes ── */
   els.episodesGrid.classList.remove('rel-movies');
-  if (s.kind === 'pelicula') {
+  const esSagaPeli = s.kind === 'pelicula' && (s.episodes.length > 1 || (s.seasons && Object.keys(s.seasons).length > 0));
+  if (s.kind === 'pelicula' && !esSagaPeli) {
     const esOva = isOvaEntry(s);
     els.episodesTitle.textContent = esOva ? '🎌 OVAs relacionadas' : '🎬 Películas relacionadas';
     els.delSeriesBtn.classList.remove('hidden');
@@ -2191,7 +2207,9 @@ function renderEpisodes() {
     return;
   }
 
-  els.episodesTitle.textContent = `${s.t} — ${s.episodes.length} capítulos`;
+  els.episodesTitle.textContent = s.kind === 'pelicula'
+    ? `${s.t} — saga · ${s.episodes.length} parte${s.episodes.length === 1 ? '' : 's'}`
+    : `${s.t} — ${s.episodes.length} capítulos`;
   els.delSeriesBtn.classList.remove('hidden');
   els.addEpBtn.classList.remove('hidden');
   els.insertEpBtn.classList.remove('hidden');
@@ -2211,7 +2229,7 @@ function renderEpisodes() {
         lastSeason = se;
         const epsS = s.episodes.filter(e => (e.season || 1) === se);
         const nConLinks = epsS.filter(e => e.url).length;
-        const label = (s.seasons && s.seasons[se]) || 'Temporada ' + se;
+        const label = (s.seasons && s.seasons[se]) || (s.kind === 'pelicula' ? 'Parte ' + se : 'Temporada ' + se);
         itemsToRender.push({ __type: 'seasonHead', se, epsS, nConLinks, label });
       }
     }
@@ -2466,6 +2484,7 @@ function loadEpisode(epN, autoplayNow = true) {
   const ep = s.episodes.find(e => e.n === epN);
   if (!ep) return;
   current.ep = epN;
+  scrollToPlayerInstant();   /* 📈 al elegir capítulo desde abajo: el reproductor sube al instante, centrado */
   /* salir de cualquier directo 📡 o flujo HLS anterior */
   if (state.currentChannel) { state.currentChannel = null; save(); }
   destroyHls();
@@ -2808,6 +2827,16 @@ document.addEventListener('fullscreenchange', () => {
   els.playerArea.classList.toggle('fullscreen', !!document.fullscreenElement);
 });
 
+/* 📈 al elegir capítulo desde el fondo de una lista larga, el reproductor
+   aparece al instante y queda centrado a la altura de los ojos */
+function scrollToPlayerInstant() {
+  const el = els.playerAnchor || els.playerArea;
+  if (!el) return;
+  const r = el.getBoundingClientRect();
+  const visible = r.top >= 62 && r.bottom <= window.innerHeight - 8;
+  if (!visible) el.scrollIntoView({ behavior: 'instant', block: 'center' });
+}
+
 /* doble click / tap zonal: rewind-forward + fullscreen */
 els.playerArea.addEventListener('dblclick', ev => {
   if (ev.target.closest('.controls') || ev.target.closest('.big-play')) return;
@@ -3122,7 +3151,7 @@ function openFromHash() {
       state.series.push(s);
       save();
     }
-    setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime'); /* la app arranca en Inicio: el enlace compartido elige su pestaña */
+    setTab(s.kind === 'pelicula' ? 'peliculas' : (s.anime === false ? 'series' : 'anime')); /* la app arranca en Inicio: el enlace compartido elige su pestaña */
     selectSeries(s.id);
     loadEpisode(epN, true);
     renderSeries(els.searchInput.value);
@@ -3152,7 +3181,7 @@ function openFromHash() {
       state.series.push(s);
       save();
     }
-    setTab(s.kind === 'pelicula' ? 'peliculas' : 'anime'); /* idem: inicio siempre, pero el enlace manda en su pestaña */
+    setTab(s.kind === 'pelicula' ? 'peliculas' : (s.anime === false ? 'series' : 'anime')); /* idem: inicio siempre, pero el enlace manda en su pestaña */
     selectSeries(sid);
     loadEpisode(epN, true);
     renderSeries(els.searchInput.value);
@@ -4072,41 +4101,86 @@ els.delSeriesBtn.addEventListener('click', () => {
   if (s) confirmDeleteSeries(s); // → papelera con restauración de 7 días
 });
 
-/* ═══════════ ⇄ Mover entre categorías (Anime ↔ Película) ═══════════
-   Por si una entrada quedó mal clasificada: convierte la entrada al
-   formato de la categoría destino conservando enlaces y progreso.     */
-els.moveCatBtn.addEventListener('click', async () => {
+/* ═══════════ ⇄ Mover entre categorías (Anime · Series · Películas) ═══════════
+   El catálogo a veces importa una entrada a la columna equivocada: aquí se
+   mueve en CUALQUIER dirección conservando enlaces, temporadas y progreso.
+   Lo movido a mano queda marcado (clsManual) y el auto-clasificador jamás
+   lo vuelve a tocar.                                                   */
+const catOf = s => s.kind === 'pelicula' ? 'peliculas' : (s.anime === false ? 'series' : 'anime');
+const CAT_LABEL = { anime: '📺 Anime', series: '📼 Series', peliculas: '🎬 Películas' };
+
+els.moveCatBtn.addEventListener('click', () => {
   if (!needAdmin()) return;
   const s = getSeries(current.seriesId);
   if (!s) return toast('Selecciona primero una serie o película', true);
-  const esPeli = s.kind === 'pelicula';
-  const destino = esPeli ? 'Anime (serie)' : 'Película';
-  const r = await uiModal({
-    icon: '⇄', title: 'Mover de categoría', okLabel: `Mover a ${destino}`,
-    sub: `«<b>${escapeHtml(s.t)}</b>» está en <b>${esPeli ? '🎬 Películas' : '📺 Anime'}</b>.<br>
-      Al moverla a <b>${destino}</b>, ${esPeli
-        ? 'sus videos sueltos pasan a ser capítulos numerados.'
-        : 'se muestra con vista de película (sus capítulos se conservan por dentro).'}`,
-  });
-  if (!r) return;
-  if (esPeli) {
-    /* 🎬 → 📺 : los videos se convierten en capítulos E1, E2… */
+  showCatChooser(els.moveCatBtn, s);
+});
+
+function showCatChooser(anchor, s) {
+  document.querySelectorAll('.drop-chooser').forEach(el => el.remove());
+  const actual = catOf(s);
+  const box = document.createElement('div');
+  box.className = 'drop-chooser';
+  const r = anchor.getBoundingClientRect();
+  box.style.left = Math.min(r.left, window.innerWidth - 260) + 'px';
+  box.style.top = Math.min(r.bottom + 6, window.innerHeight - 170) + 'px';
+  box.innerHTML = `<div class="dc-hint">«${escapeHtml(s.t.slice(0, 26))}» está en <b>${CAT_LABEL[actual]}</b></div>` +
+    Object.entries(CAT_LABEL)
+      .filter(([k]) => k !== actual)
+      .map(([k, lbl]) => `<button class="dc-btn" data-cat="${k}">→ ${lbl}</button>`)
+      .join('');
+  box.querySelectorAll('[data-cat]').forEach(b =>
+    b.addEventListener('click', () => { box.remove(); moverACategoria(s, b.dataset.cat); }));
+  document.body.appendChild(box);
+  const close = ev => { if (!box.contains(ev.target)) { box.remove(); document.removeEventListener('pointerdown', close, true); } };
+  setTimeout(() => document.addEventListener('pointerdown', close, true), 10);
+}
+
+function moverACategoria(s, cat) {
+  const antes = catOf(s);
+  if (cat === antes) return;
+  if (cat === 'peliculas') {
+    s.kind = 'pelicula';                 /* sus episodios/partes se conservan por dentro */
+  } else {
     s.kind = 'serie';
-    s.anime = true;
+    s.anime = cat === 'anime';
     if (!s.episodes || !s.episodes.length) s.episodes = [{ n: 1, t: 'Capítulo 1', url: '' }];
     s.episodes.forEach((e, i) => { e.n = i + 1; if (!e.t) e.t = `Capítulo ${i + 1}`; });
-    toast(`🎬➡📺 «${s.t}» ahora es una serie de Anime`);
-  } else {
-    /* 📺 → 🎬 : pasa a película (los capítulos quedan guardados) */
-    s.kind = 'pelicula';
-    s.anime = true; /* sigue siendo contenido anime */
-    toast(`📺➡🎬 «${s.t}» movida a Películas`);
   }
+  s.clsManual = true;
   save();
   renderSeries(els.searchInput.value);
   renderEpisodes();
   selectSeries(s.id);
-});
+  toast(`⇄ «${s.t}» movida a ${CAT_LABEL[cat]}`);
+}
+
+/* 🧭 Auto-clasificador Anime ↔ Series (una sola pasada por dispositivo):
+   lee los géneros TMDB que el generador SEO dejó cacheados en seo-cache.json
+   (servido en la propia web). Lo movido a mano nunca se toca.            */
+async function autoClasificarSeries() {
+  if (state.clsAt) return;
+  try {
+    const r = await fetch('seo-cache.json', { cache: 'no-store' });
+    if (!r.ok) return;
+    const cache = await r.json();
+    let n = 0;
+    for (const s of state.series) {
+      if (s.kind === 'pelicula' || s.clsManual) continue;
+      const hit = cache[slugify(s.t)];
+      const gs = hit && hit.data && hit.data.genres;
+      if (!gs || !gs.length) continue;
+      const esAnime = gs.some(g => /animaci/i.test(g));
+      if ((s.anime !== false) !== esAnime) { s.anime = esAnime; n++; }
+    }
+    state.clsAt = Date.now();
+    save();
+    if (n) {
+      renderSeries(els.searchInput.value);
+      toast(`📼 ${n} serie${n === 1 ? '' : 's'} reorganizada${n === 1 ? '' : 's'} a su columna correcta`);
+    }
+  } catch (e) { /* sin caché disponible → otra vez será */ }
+}
 
 /* ── Renombrar serie/película → SIEMPRE re-lanza la carátula con el nombre nuevo ── */
 els.renameBtn.addEventListener('click', async () => {
