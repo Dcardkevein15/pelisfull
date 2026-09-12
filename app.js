@@ -103,6 +103,40 @@ function load() {
         state.tab = state.tab || 'anime';
         if (state.tab === 'ovas') state.tab = 'peliculas'; /* pestaña OVAs retirada: ahora se integran en su serie */
         state.series.forEach(s => { if (typeof s.anime !== 'boolean') s.anime = s.kind !== 'pelicula'; });
+        /* 🧹 Limpieza retroactiva: capítulos gemelos heredados del viejo importador
+           de archive.org (el mismo video vía .mp4 + .ia.mp4/_512kb entraba 2 veces).
+           Clave conservadora: mismo archivo archive.org (nombre base) o misma URL exacta. */
+        const arcKey = e => {
+          const u = e.url || '';
+          const m = u.match(/archive\.org\/download\/[^/]+\/(.+)$/i);
+          if (m) {
+            try {
+              return 'ia:' + decodeURIComponent(m[1]).replace(/\.(mp4|m4v|webm|ogv)$/i, '')
+                .replace(/\.ia$/i, '').replace(/_512kb$/i, '').toLowerCase();
+            } catch (err) { return 'u:' + u; }
+          }
+          return u ? 'u:' + u : 't:' + String(e.t || '').toLowerCase();
+        };
+        let dupsElim = 0;
+        state.series.forEach(s => {
+          const vistos = new Set();
+          const limpios = [];
+          (s.episodes || []).forEach(e => {
+            const k = arcKey(e);
+            if (vistos.has(k)) { dupsElim++; return; }
+            vistos.add(k); limpios.push(e);
+          });
+          if (limpios.length !== (s.episodes || []).length) {
+            const prog = (state.progress || {})[s.id] || {};
+            const progNuevo = {};
+            limpios.forEach((e, i) => { if (prog[e.n]) progNuevo[i + 1] = prog[e.n]; e.n = i + 1; });
+            state.progress[s.id] = progNuevo;
+            s.episodes = limpios;
+            if (current.seriesId === s.id && current.ep != null && !limpios.some(e => e.n === current.ep)) current.ep = null;
+            delete s.thumbDup;
+          }
+        });
+        if (dupsElim) { save(); console.log(`🧹 limpiados ${dupsElim} capítulos duplicados del catálogo`); }
         /* 📼 una pasada tras el arranque: clasifica series no-anime a la pestaña Series
            (usa los géneros TMDB cacheados; lo movido a mano se respeta siempre) */
         setTimeout(autoClasificarSeries, 2500);
@@ -5122,7 +5156,21 @@ async function cineFetchMedia(id) {
   if (!res.ok) throw new Error('meta');
   const meta = await res.json();
   const all = meta.files || [];
-  const files = all.filter(f => /\.(mp4|m4v|webm|ogv)$/i.test(f.name || ''));
+  /* 🧹 archive.org genera DERIVADOS del mismo video (video.mp4 → video.ia.mp4,
+     video_512kb.mp4…). Sin este filtro, cada derivado entraba como capítulo
+     aparte → series con la lista repetida. Un solo archivo por contenido. */
+  const grupos = new Map();
+  for (const f of all.filter(f => /\.(mp4|m4v|webm|ogv)$/i.test(f.name || ''))) {
+    const k = (f.name || '').replace(/\.(mp4|m4v|webm|ogv)$/i, '')
+      .replace(/\.ia$/i, '').replace(/_512kb$/i, '').toLowerCase();
+    if (!grupos.has(k)) grupos.set(k, []);
+    grupos.get(k).push(f);
+  }
+  const files = [...grupos.values()].map(g => {
+    if (g.length === 1) return g[0];
+    const best = cinePickBest(g.map(f => ({ name: f.name, fmt: String(f.format || '').toLowerCase() })));
+    return g.find(f => f.name === best.name) || g[0];
+  });
   if (!files.length) return null;
   const mk = f => `https://archive.org/download/${id}/${f.name.split('/').map(encodeURIComponent).join('/')}`;
   const subs = all.filter(f => /\.(srt|vtt)$/i.test(f.name || '')
