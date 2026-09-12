@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789189478947,
+ "v": 1789193092648,
  "by": "Dcard #2968",
- "at": "2026-09-12T05:04:38.947Z",
- "n": 5320,
+ "at": "2026-09-12T06:04:52.648Z",
+ "n": 5322,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -11195,13 +11195,14 @@
   },
   {
    "id": "ia-Dragon-Ball-GT-Latino-JP",
-   "t": "Dragon Ball GT - Latino/JP",
+   "t": "Dragon Ball GT",
    "jp": "🎌",
    "tag": "Cine IA · Anime · Temporada",
    "g": 4,
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/Dragon-Ball-GT-Latino-JP",
+   "tags": [],
    "order": 8,
    "episodes": [
     {
@@ -22222,7 +22223,7 @@
   },
   {
    "id": "ia-zombieland-saga-yumeginga-paradise",
-   "t": "Zombieland Saga",
+   "t": "Zombieland",
    "jp": "🎌",
    "tag": "Cine IA · Anime · Temporada · 2018",
    "g": 4,
@@ -24725,6 +24726,853 @@
      "n": 139,
      "t": "Rebelde Way S01 E139",
      "url": "https://archive.org/download/RebeldeWay/Rebelde.Way.S01.E139.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-one-piece-latino-0152",
+   "t": "One Piece",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada · 2023",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/one-piece-latino-0152",
+   "tags": [],
+   "seasons": {
+    "1": "One Piece Latino",
+    "2": "Temporada 2 — One Piece Latino 264"
+   },
+   "episodes": [
+    {
+     "n": 1,
+     "t": "One Piece Latino 0151",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200151.mp4",
+     "season": 1
+    },
+    {
+     "n": 2,
+     "t": "One Piece Latino 0152",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200152.mp4",
+     "season": 1
+    },
+    {
+     "n": 3,
+     "t": "One Piece Latino 0153",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200153.mp4",
+     "season": 1
+    },
+    {
+     "n": 4,
+     "t": "One Piece Latino 0154",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200154.mp4",
+     "season": 1
+    },
+    {
+     "n": 5,
+     "t": "One Piece Latino 0155",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200155.mp4",
+     "season": 1
+    },
+    {
+     "n": 6,
+     "t": "One Piece Latino 0156",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200156.mp4",
+     "season": 1
+    },
+    {
+     "n": 7,
+     "t": "One Piece Latino 0157",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200157.mp4",
+     "season": 1
+    },
+    {
+     "n": 8,
+     "t": "One Piece Latino 0158",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200158.mp4",
+     "season": 1
+    },
+    {
+     "n": 9,
+     "t": "One Piece Latino 0159",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200159.mp4",
+     "season": 1
+    },
+    {
+     "n": 10,
+     "t": "One Piece Latino 0160",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200160.mp4",
+     "season": 1
+    },
+    {
+     "n": 11,
+     "t": "One Piece Latino 0161",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200161.mp4",
+     "season": 1
+    },
+    {
+     "n": 12,
+     "t": "One Piece Latino 0162",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200162.mp4",
+     "season": 1
+    },
+    {
+     "n": 13,
+     "t": "One Piece Latino 0163",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200163.mp4",
+     "season": 1
+    },
+    {
+     "n": 14,
+     "t": "One Piece Latino 0164",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200164.mp4",
+     "season": 1
+    },
+    {
+     "n": 15,
+     "t": "One Piece Latino 0165",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200165.mp4",
+     "season": 1
+    },
+    {
+     "n": 16,
+     "t": "One Piece Latino 0166",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200166.mp4",
+     "season": 1
+    },
+    {
+     "n": 17,
+     "t": "One Piece Latino 0167",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200167.mp4",
+     "season": 1
+    },
+    {
+     "n": 18,
+     "t": "One Piece Latino 0168",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200168.mp4",
+     "season": 1
+    },
+    {
+     "n": 19,
+     "t": "One Piece Latino 0169",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200169.mp4",
+     "season": 1
+    },
+    {
+     "n": 20,
+     "t": "One Piece Latino 0170",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200170.mp4",
+     "season": 1
+    },
+    {
+     "n": 21,
+     "t": "One Piece Latino 0171",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200171.mp4",
+     "season": 1
+    },
+    {
+     "n": 22,
+     "t": "One Piece Latino 0172",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200172.mp4",
+     "season": 1
+    },
+    {
+     "n": 23,
+     "t": "One Piece Latino 0173",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200173.mp4",
+     "season": 1
+    },
+    {
+     "n": 24,
+     "t": "One Piece Latino 0174",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200174.mp4",
+     "season": 1
+    },
+    {
+     "n": 25,
+     "t": "One Piece Latino 0175",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200175.mp4",
+     "season": 1
+    },
+    {
+     "n": 26,
+     "t": "One Piece Latino 0176",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200176.mp4",
+     "season": 1
+    },
+    {
+     "n": 27,
+     "t": "One Piece Latino 0177",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200177.mp4",
+     "season": 1
+    },
+    {
+     "n": 28,
+     "t": "One Piece Latino 0178",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200178.mp4",
+     "season": 1
+    },
+    {
+     "n": 29,
+     "t": "One Piece Latino 0179",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200179.mp4",
+     "season": 1
+    },
+    {
+     "n": 30,
+     "t": "One Piece Latino 0180 ia",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200180.ia.mp4",
+     "season": 1
+    },
+    {
+     "n": 31,
+     "t": "One Piece Latino 0180",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200180.mp4",
+     "season": 1
+    },
+    {
+     "n": 32,
+     "t": "One Piece Latino 0181 ia",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200181.ia.mp4",
+     "season": 1
+    },
+    {
+     "n": 33,
+     "t": "One Piece Latino 0181",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200181.mp4",
+     "season": 1
+    },
+    {
+     "n": 34,
+     "t": "One Piece Latino 0182",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200182.mp4",
+     "season": 1
+    },
+    {
+     "n": 35,
+     "t": "One Piece Latino 0183",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200183.mp4",
+     "season": 1
+    },
+    {
+     "n": 36,
+     "t": "One Piece Latino 0184",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200184.mp4",
+     "season": 1
+    },
+    {
+     "n": 37,
+     "t": "One Piece Latino 0185",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200185.mp4",
+     "season": 1
+    },
+    {
+     "n": 38,
+     "t": "One Piece Latino 0186",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200186.mp4",
+     "season": 1
+    },
+    {
+     "n": 39,
+     "t": "One Piece Latino 0187",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200187.mp4",
+     "season": 1
+    },
+    {
+     "n": 40,
+     "t": "One Piece Latino 0188",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200188.mp4",
+     "season": 1
+    },
+    {
+     "n": 41,
+     "t": "One Piece Latino 0189 ia",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200189.ia.mp4",
+     "season": 1
+    },
+    {
+     "n": 42,
+     "t": "One Piece Latino 0189",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200189.mp4",
+     "season": 1
+    },
+    {
+     "n": 43,
+     "t": "One Piece Latino 0190",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200190.mp4",
+     "season": 1
+    },
+    {
+     "n": 44,
+     "t": "One Piece Latino 0191",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200191.mp4",
+     "season": 1
+    },
+    {
+     "n": 45,
+     "t": "One Piece Latino 0192",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200192.mp4",
+     "season": 1
+    },
+    {
+     "n": 46,
+     "t": "One piece Latino 264",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20264.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 47,
+     "t": "One piece Latino 265",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20265.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 48,
+     "t": "One piece Latino 266",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20266.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 49,
+     "t": "One piece Latino 267",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20267.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 50,
+     "t": "One piece Latino 268",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20268.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 51,
+     "t": "One piece Latino 269",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20269.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 52,
+     "t": "One piece Latino 270",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20270.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 53,
+     "t": "One piece Latino 271",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20271.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 54,
+     "t": "One piece Latino 272",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20272.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 55,
+     "t": "One piece Latino 273",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20273.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 56,
+     "t": "One piece Latino 274",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20274.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 57,
+     "t": "One piece Latino 275",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20275.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 58,
+     "t": "One piece Latino 276",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20276.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 59,
+     "t": "One piece Latino 277",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20277.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 60,
+     "t": "One piece Latino 278",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20278.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 61,
+     "t": "One piece Latino 279",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20279.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 62,
+     "t": "One piece Latino 280",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20280.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 63,
+     "t": "One piece Latino 281",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20281.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 64,
+     "t": "One piece Latino 282",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20282.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 65,
+     "t": "One piece Latino 283",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20283.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 66,
+     "t": "One piece Latino 284",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20284.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 67,
+     "t": "One piece Latino 285",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20285.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 68,
+     "t": "One piece Latino 286",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20286.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 69,
+     "t": "One piece Latino 287",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20287.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 70,
+     "t": "One piece Latino 288",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20288.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 71,
+     "t": "One piece Latino 289",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20289.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 72,
+     "t": "One piece Latino 290",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20290.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 73,
+     "t": "One piece Latino 291",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20291.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 74,
+     "t": "One piece Latino 292",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20292.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 75,
+     "t": "One piece Latino 293",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20293.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 76,
+     "t": "One piece Latino 294",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20294.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 77,
+     "t": "One piece Latino 295",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20295.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 78,
+     "t": "One piece Latino 296",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20296.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 79,
+     "t": "One piece Latino 297",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20297.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 80,
+     "t": "One piece Latino 298",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20298.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 81,
+     "t": "One piece Latino 299",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20299.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 82,
+     "t": "One piece Latino 300",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20300.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 83,
+     "t": "One piece Latino 301",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20301.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 84,
+     "t": "One piece Latino 302",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20302.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 85,
+     "t": "One piece Latino 303",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20303.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 86,
+     "t": "One piece Latino 304",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20304.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 87,
+     "t": "One piece Latino 305",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20305.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 88,
+     "t": "One piece Latino 306",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20306.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 89,
+     "t": "One piece Latino 307",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20307.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 90,
+     "t": "One piece Latino 308",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20308.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 91,
+     "t": "One piece Latino 309",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20309.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 92,
+     "t": "One piece Latino 310",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20310.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 93,
+     "t": "One piece Latino 311",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20311.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 94,
+     "t": "One piece Latino 312",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20312.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 95,
+     "t": "One piece Latino 313",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20313.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 96,
+     "t": "One piece Latino 314",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20314.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 97,
+     "t": "One piece Latino 315",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20315.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 98,
+     "t": "One piece Latino 316",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20316.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 99,
+     "t": "One piece Latino 317",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20317.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 100,
+     "t": "One piece Latino 318",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20318.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 101,
+     "t": "One piece Latino 319",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20319.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 102,
+     "t": "One piece Latino 320",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20320.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 103,
+     "t": "One piece Latino 321",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20321.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 104,
+     "t": "One piece Latino 323",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20323.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 105,
+     "t": "One piece Latino 324",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20324.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 106,
+     "t": "One piece Latino 325",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20325.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    }
+   ]
+  },
+  {
+   "id": "ia-shingeki-chuugakkou-castellano-12",
+   "t": "Attack On Titan: Junior High (Castellano)",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2015",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://archive.org/services/img/shingeki-chuugakkou-castellano-12",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "G4T0NJUN10R 1 1",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.1.mp4"
+    },
+    {
+     "n": 2,
+     "t": "G4T0NJUN10R 1 2",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.2.mp4"
+    },
+    {
+     "n": 3,
+     "t": "G4T0NJUN10R 1 3",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.3.mp4"
+    },
+    {
+     "n": 4,
+     "t": "G4T0NJUN10R 1 4",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.4.mp4"
+    },
+    {
+     "n": 5,
+     "t": "G4T0NJUN10R 1 5",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.5.mp4"
+    },
+    {
+     "n": 6,
+     "t": "G4T0NJUN10R 1 6",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.6.mp4"
+    },
+    {
+     "n": 7,
+     "t": "G4T0NJUN10R 1 7",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.7.mp4"
+    },
+    {
+     "n": 8,
+     "t": "G4T0NJUN10R 1 8",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.8.mp4"
+    },
+    {
+     "n": 9,
+     "t": "G4T0NJUN10R 1 9",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.9.mp4"
+    },
+    {
+     "n": 10,
+     "t": "G4T0NJUN10R 1 10",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.10.mp4"
+    },
+    {
+     "n": 11,
+     "t": "G4T0NJUN10R 1 11",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.11.mp4"
+    },
+    {
+     "n": 12,
+     "t": "G4T0NJUN10R 1 12",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/G4T0NJUN10R%201.12.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Shingeki! Chuugakkou Castellano 01",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2001.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Shingeki! Chuugakkou Castellano 02",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2002.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Shingeki! Chuugakkou Castellano 03",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2003.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Shingeki! Chuugakkou Castellano 04",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2004.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Shingeki! Chuugakkou Castellano 05",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2005.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Shingeki! Chuugakkou Castellano 06",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2006.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Shingeki! Chuugakkou Castellano 07",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2007.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Shingeki! Chuugakkou Castellano 08",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2008.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Shingeki! Chuugakkou Castellano 09",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2009.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Shingeki! Chuugakkou Castellano 10",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2010.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Shingeki! Chuugakkou Castellano 11",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2011.mp4"
+    },
+    {
+     "n": 24,
+     "t": "Shingeki! Chuugakkou Castellano 12",
+     "url": "https://archive.org/download/shingeki-chuugakkou-castellano-12/Shingeki!%20Chuugakkou%20Castellano%2012.mp4"
     }
    ]
   }
@@ -82398,5 +83246,5 @@
    "at": 1788630194628
   }
  },
- "sig": "+KpRHEN4St6Z1ACl1fqxPrviEpUAwmyORbuUeVPdWsx6tdqP6HI9CczQJafKK235volcKK9/YhRUksZ6RutElQ=="
+ "sig": "AA6bDzjPwMC7UvQLan0Teg905hsul9ATuWWq7NLCZ3VSJzvgmoV3gPvZXNVYY8gONgJcmIrcJZgKiNCYbKtg0Q=="
 }
