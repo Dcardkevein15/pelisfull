@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789189047404,
+ "v": 1789189329052,
  "by": "Dcard #2968",
- "at": "2026-09-12T04:57:27.404Z",
- "n": 5321,
+ "at": "2026-09-12T05:02:09.052Z",
+ "n": 5320,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -17121,7 +17121,7 @@
   },
   {
    "id": "ia-jurassic-world-fallen-kingdom--2018-1080p-dual-lat-cinecalidad-to_202105",
-   "t": "Jurassic.world.fallen.kingdom. 2018.1080p Dual Lat Cinecalidad.to",
+   "t": "Jurassic world fallen kingdom (2018)",
    "jp": "📺",
    "tag": "Cine IA · Temporada · 2016",
    "g": 5,
@@ -18801,25 +18801,6 @@
    ]
   },
   {
-   "id": "ia-dragon-ball-super-broly-480pto2160p-mulsubndub",
-   "t": "Dragon Ball Super: Broly [480p, 720p, 1080p, 2160p][Mul-Sub&Dub]",
-   "jp": "🎌",
-   "tag": "Cine IA · Anime/OVA · 2018",
-   "g": 4,
-   "kind": "pelicula",
-   "anime": true,
-   "poster": "https://archive.org/services/img/dragon-ball-super-broly-480pto2160p-mulsubndub",
-   "tags": [],
-   "order": 64,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Dragon Ball Super: Broly [480p, 720p, 1080p, 2160p][Mul-Sub&",
-     "url": "https://archive.org/download/dragon-ball-super-broly-480pto2160p-mulsubndub/Dragon%20Ball%20Super-%20Broly%20%5BEng%5D%5B1080P%20H264%5D.ia.mp4"
-    }
-   ]
-  },
-  {
    "id": "ia-dragon-ball-super-la-batalla-de-los-dioses-hd-en-espanol-latino-dragonball-1080-p-hd",
    "t": "Dragón Ball Super La Batalla De Los Dioses",
    "jp": "🎌",
@@ -19625,7 +19606,7 @@
   },
   {
    "id": "ia-BITBBHLatinSpanish",
-   "t": "Bear in the Big Blue House/Bear en la Gran Casa Azul Episodes (Latin American Sp",
+   "t": "Bear in the Big Blue House/Bear en la Gran Casa Azul Episodes",
    "jp": "📺",
    "tag": "Cine IA · Temporada",
    "g": 5,
@@ -21844,7 +21825,7 @@
   },
   {
    "id": "ia-serial-experiments-lain-ep-12",
-   "t": "Serial Experiments Lain Sub Español",
+   "t": "Serial Experiments",
    "jp": "🎌",
    "tag": "Cine IA · Anime · Temporada · 1998",
    "g": 4,
@@ -21923,7 +21904,7 @@
   },
   {
    "id": "ia-samurai-troopers-e-16",
-   "t": "Samurai Troopers Anime audio Latino",
+   "t": "Samurai Troopers",
    "jp": "🎌",
    "tag": "Cine IA · Anime · Temporada · 1988",
    "g": 4,
@@ -22132,7 +22113,7 @@
   },
   {
    "id": "ia-zombieland-saga-yumeginga-paradise",
-   "t": "Zombieland Saga (Temporadas 1 y 2 + Película) (Sub Español)",
+   "t": "Zombieland Saga",
    "jp": "🎌",
    "tag": "Cine IA · Anime · Temporada · 2018",
    "g": 4,
@@ -22276,7 +22257,7 @@
   },
   {
    "id": "ia-mythical-detective-loki-lat",
-   "t": "Mythical Detective Loki Ragnarok (Latino)",
+   "t": "Mythical Detective Loki Ragnarok",
    "jp": "🎌",
    "tag": "Cine IA · Anime · Temporada",
    "g": 4,
@@ -82308,5 +82289,5 @@
    "at": 1788630194628
   }
  },
- "sig": "H3jGyMuodTsTAJy6D5FlrERH4Lq6eN09TEzFekJ78km8pZJqKReG76UiNQB3seW0G1ztLcO8OrmfGLa3UOVS0Q=="
+ "sig": "EzMGR6ppyg5NC8/gCiCOhjw3J3+vH9sv3Q2qGXpQhNntGfqyBeBQfTLCUOxAuEEk+KsR+olHeH8VZUP4wUZlVg=="
 }
