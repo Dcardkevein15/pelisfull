@@ -102,6 +102,26 @@
 
   <!-- ══════════ SIDEBAR: SERIES ══════════ -->
   <aside class="sidebar" id="sidebar">
+    <div class="side-panel collapsed" id="sidePanel">
+      <div class="side-tools">
+        <select id="sortMode" class="sort-select" title="Orden de la lista">
+          <option value="manual">⇅ Manual (arrastrar)</option>
+          <option value="recent">🕘 Recientes</option>
+          <option value="alpha">A → Z</option>
+        </select>
+        <button id="favFilter" class="chip-filter" title="Solo favoritos">♥ Favs</button>
+        <button id="trashBtn" class="chip-filter trash2 admin-only" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
+      </div>
+      <div class="side-filters" id="tagChips"></div>
+      <div class="side-foot">
+        <button id="exportBtn" class="foot-btn" title="Exportar biblioteca completa (JSON)">⬇ Exportar</button>
+        <button id="importBtn" class="foot-btn admin-only" title="Importar respaldo JSON">⬆ Importar</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+        <button id="syncBtn" class="foot-btn" title="Sync en la nube (Firebase)">☁ Sync</button>
+        <button id="brokenBtn" class="foot-btn broken admin-only" title="Historial de enlaces rotos">⚠ Rotos <b id="brokenCount" class="foot-count">0</b></button>
+      </div>
+    </div>
+    <div class="side-scroll" id="sideScroll">
     <div class="side-tabs">
       <button id="tabHome" class="side-tab on" data-tab="home" title="Inicio — destacados y novedades">
         <span class="tab-emoji">🏠</span><span class="tab-name">Inicio</span><b id="countHome" class="tab-count"></b>
@@ -126,26 +146,8 @@
       <button class="btn btn-mini" id="tvIptvBtn" title="Fuentes oficiales de iptv-org: elige idiomas, países y categorías que se actualizan solas">🌐 iptv-org</button>
       <button class="btn btn-mini" id="tvEpgBtn" title="Guía de programación (EPG) — qué echan ahora en cada canal">📅 Guía</button>
     </div>
-    <div class="side-panel collapsed" id="sidePanel">
-      <div class="side-tools">
-        <select id="sortMode" class="sort-select" title="Orden de la lista">
-          <option value="manual">⇅ Manual (arrastrar)</option>
-          <option value="recent">🕘 Recientes</option>
-          <option value="alpha">A → Z</option>
-        </select>
-        <button id="favFilter" class="chip-filter" title="Solo favoritos">♥ Favs</button>
-        <button id="trashBtn" class="chip-filter trash2 admin-only" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
-      </div>
-      <div class="side-filters" id="tagChips"></div>
-      <div class="side-foot">
-        <button id="exportBtn" class="foot-btn" title="Exportar biblioteca completa (JSON)">⬇ Exportar</button>
-        <button id="importBtn" class="foot-btn admin-only" title="Importar respaldo JSON">⬆ Importar</button>
-        <input type="file" id="importFile" accept=".json,application/json" hidden>
-        <button id="syncBtn" class="foot-btn" title="Sync en la nube (Firebase)">☁ Sync</button>
-        <button id="brokenBtn" class="foot-btn broken admin-only" title="Historial de enlaces rotos">⚠ Rotos <b id="brokenCount" class="foot-count">0</b></button>
-      </div>
-    </div>
     <nav id="seriesList" class="series-list"></nav>
+    </div><!-- /side-scroll: pestañas + herramientas + lista ruedan juntas -->
     <div class="broken-list collapsed" id="brokenList"></div>
   </aside>
 

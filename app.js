@@ -151,7 +151,7 @@ const els = {
   speed: $('speed'), pipBtn: $('pipBtn'), fsBtn: $('fsBtn'), autoplayBtn: $('autoplayBtn'),
   nowPlaying: $('nowPlaying'), stageTitle: $('stageTitle'), stageSub: $('stageSub'),
   stageBadges: $('stageBadges'), seriesList: $('seriesList'),
-  countAnime: $('countAnime'), countSeries: $('countSeries'), countPelis: $('countPelis'), gearBtn: $('gearBtn'), sidePanel: $('sidePanel'),
+  countAnime: $('countAnime'), countSeries: $('countSeries'), countPelis: $('countPelis'), gearBtn: $('gearBtn'), sidePanel: $('sidePanel'), sideScroll: $('sideScroll'),
   ccBtn: $('ccBtn'), brokenBtn: $('brokenBtn'), brokenCount: $('brokenCount'),
   brokenList: $('brokenList'), flagBtn: $('flagBtn'),
   episodesGrid: $('episodesGrid'), episodesTitle: $('episodesTitle'), searchInput: $('searchInput'),
@@ -2104,7 +2104,7 @@ function lazyRender(container, items, renderItem, chunk = 30) {
   };
   const io = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) renderMore();
-  }, { root: container === els.seriesList ? els.seriesList : (container.scrollHeight ? null : null), rootMargin: '300px' });
+  }, { root: container === els.seriesList ? (els.sideScroll || els.seriesList) : null, rootMargin: '300px' });
   _lazyIO.set(container, io);
   io.observe(sentinel);
   renderMore(); /* primer bloque visible al instante */

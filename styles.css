@@ -111,7 +111,9 @@ input,select{font-family:inherit}
 }
 .side-head h2{font-size:11px;letter-spacing:3px;color:var(--dim);font-weight:700}
 .pill{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 9px;font-size:10.5px;color:var(--dim);font-family:'JetBrains Mono'}
-.series-list{flex:1;overflow-y:auto;padding:6px 10px 20px}
+/* 📜 el scroll lo lleva side-scroll: pestañas + herramientas + tarjetas viajan juntas */
+.side-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}
+.series-list{padding:6px 10px 20px}
 
 .s-item{
   display:flex;align-items:center;gap:12px;width:100%;
@@ -653,6 +655,11 @@ body.light .import-mode label:has(input:checked){color:#6a9000}
   color:var(--dim);font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:1px;font-weight:900;
   padding:14px 2px 13px;cursor:pointer;text-transform:uppercase;
   transition:color .18s;
+}
+/* 🖥 solo escritorio: pestañas a mitad de altura (móvil se queda como está) */
+@media (min-width:901px){
+  .side-tab{padding:6px 2px 5px;gap:2px}
+  .side-tab .tab-emoji{font-size:14px}
 }
 /* divisor suave entre pestañas (no son cajas: solo un hilo vertical tenue) */
 .side-tab + .side-tab::before{
@@ -1359,6 +1366,8 @@ body.light .drive-status.ok{color:#3aa832}
     -webkit-overflow-scrolling:touch;
   }
   .series-list::-webkit-scrollbar{height:4px}
+  /* en móvil el scroll vertical es de la página completa, no de un carril interno */
+  .side-scroll{overflow:visible;flex:none;min-height:0}
 
   /* ══ tarjetas grandes, claras, sin desbordes ══ */
   .s-item{
@@ -1608,7 +1617,7 @@ body.staff-on .admin-only{display:revert!important}
    repetidas y clics que no respondían). */
 .tab-home .sidebar{width:62px;min-width:62px}
 .tab-home .side-tabs{flex-direction:column;align-items:stretch;gap:6px;padding:10px 7px}
-.tab-home .side-tab{justify-content:center;padding:11px 0}
+.tab-home .side-tab{justify-content:center;padding:8px 0}
 .tab-home .side-tab .tab-name,
 .tab-home .tab-count{display:none}
 .tab-home .gear-btn{margin:2px auto 0}
