@@ -173,7 +173,7 @@ const els = {
   cineBtn: $('cineBtn'), modalCine: $('modalCine'), cineQuery: $('cineQuery'), cineGo: $('cineGo'),
   cineLang: $('cineLang'), cineMinDur: $('cineMinDur'), cineChips: $('cineChips'), cineStatus: $('cineStatus'),
   cineResults: $('cineResults'), closeCine: $('closeCine'),
-  sortMode: $('sortMode'), favFilter: $('favFilter'), tagChips: $('tagChips'),
+  sortMode: $('sortMode'), favFilter: $('favFilter'), tagChips: $('tagChips'), trendsBtn: $('trendsBtn'),
   exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'),
   statsBtn: $('statsBtn'), modalStats: $('modalStats'), statsBody: $('statsBody'), closeStats: $('closeStats'),
   miniPlayer: null, playerAnchor: $('playerAnchor'), miniX: $('miniX'), miniGrip: $('miniGrip'),
@@ -4181,6 +4181,151 @@ async function autoClasificarSeries() {
     }
   } catch (e) { /* sin caché disponible → otra vez será */ }
 }
+
+/* ═══════════ 🚀 TENDENCIAS · qué publicar hoy (admin) ═══════════
+   Fuentes: TMDB trending (día/semana) + AniList (anime del momento).
+   Cada tarjeta marca si el título ya está publicado (✅), va en cola SEO (⏳)
+   o falta por crear (➕), y abre las conversaciones reales (Reddit/𝕏) donde
+   la gente lo está pidiendo ahora mismo — para responder a mano.       */
+const TMDB_KEY_APP = '03e66e3a69ab27b33648570df1c843df';
+let trendBox = null;
+const trendCache = new Map();
+
+function trendEstado(t, pubSlugs) {
+  const slugBase = slugify(t);
+  const toks = slugBase.split('-').filter(w => w.length >= 3);
+  for (const s of state.series) {
+    const sl = slugify(s.t);
+    if (sl === slugBase || (toks.length && toks.every(w => sl.includes(w)))) {
+      return pubSlugs.has(sl) ? 'online' : 'cola';
+    }
+  }
+  return 'falta';
+}
+
+async function fetchTmdbTrends(win) {
+  const key = 'tmdb-' + win;
+  if (trendCache.has(key)) return trendCache.get(key);
+  const q = m => fetch(`https://api.themoviedb.org/3/trending/${m}/${win}?api_key=${TMDB_KEY_APP}&language=es-ES`).then(r => r.json());
+  const [mv, tv] = await Promise.all([q('movie'), q('tv')]);
+  const map = (arr, kind) => (arr.results || []).map(x => ({
+    t: x.title || x.name, kind,
+    year: (x.release_date || x.first_air_date || '').slice(0, 4),
+    rating: x.vote_average ? x.vote_average.toFixed(1) : null,
+    poster: x.poster_path ? `https://image.tmdb.org/t/p/w185${x.poster_path}` : null,
+  }));
+  const a = map(mv, 'pelicula'), b = map(tv, 'serie');
+  const out = []; const n = Math.max(a.length, b.length);
+  for (let i = 0; i < n; i++) { if (b[i]) out.push(b[i]); if (a[i]) out.push(a[i]); }
+  const res = out.slice(0, 24);
+  trendCache.set(key, res);
+  return res;
+}
+
+async function fetchAnimeTrends() {
+  if (trendCache.has('ani')) return trendCache.get('ani');
+  const query = '{Page(page:1,perPage:20){media(sort:TRENDING_DESC,type:ANIME){title{romaji english} coverImage{large} seasonYear meanScore}}}';
+  const r = await fetch('https://graphql.anilist.co', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+  });
+  const j = await r.json();
+  const res = ((j.data && j.data.Page && j.data.Page.media) || []).map(m => ({
+    t: (m.title && (m.title.romaji || m.title.english)) || '',
+    kind: 'serie', anime: true,
+    year: m.seasonYear || '',
+    rating: m.meanScore ? (m.meanScore / 10).toFixed(1) : null,
+    poster: (m.coverImage && m.coverImage.large) || null,
+  }));
+  trendCache.set('ani', res);
+  return res;
+}
+
+function trendCard(x, i, pubSlugs) {
+  const est = trendEstado(x.t, pubSlugs);
+  const kind = x.anime ? '🎌 anime' : (x.kind === 'pelicula' ? '🎬 película' : '📼 serie');
+  const badge = est === 'online' ? '<span class="tr-st ok">✅ En la web</span>'
+    : est === 'cola' ? '<span class="tr-st mid">⏳ En cola SEO</span>'
+    : '<span class="tr-st no">➕ Falta por añadir</span>';
+  const q = encodeURIComponent(`"${x.t}" online español gratis`);
+  return `<div class="tr-card">
+    ${x.poster ? `<img src="${x.poster}" loading="lazy" alt="">` : '<div class="tr-noposter">🎞</div>'}
+    <div class="tr-b">
+      <div class="tr-t"><span class="tr-rank">#${i + 1}</span> ${escapeHtml(x.t)}${x.year ? ` <small>${x.year}</small>` : ''}</div>
+      <div class="tr-m">${kind}${x.rating ? ` · ★ ${x.rating}` : ''}</div>
+      ${badge}
+      <div class="tr-a">
+        <button data-tr="copy" data-t="${escapeHtml(x.t)}" title="Copiar el título limpio">📋 Título</button>
+        ${est === 'falta' ? `<button data-tr="new" data-t="${escapeHtml(x.t)}" class="tr-new" title="Crear esta entrada en el catálogo ahora">➕ Crear</button>` : ''}
+        <a href="https://www.reddit.com/search/?q=${q}&sort=new" target="_blank" rel="noopener" title="Quién lo está pidiendo en Reddit ahora">🔴 Reddit</a>
+        <a href="https://x.com/search?q=${q}&f=live" target="_blank" rel="noopener" title="Conversaciones en vivo en X">𝕏</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+async function loadTrends(win) {
+  const grid = trendBox.querySelector('#trGrid');
+  grid.innerHTML = '<div class="tr-loading">Descargando tendencias…</div>';
+  try {
+    const items = win === 'anime' ? await fetchAnimeTrends() : await fetchTmdbTrends(win);
+    let pubSlugs = new Set();
+    try {
+      const st = await (await fetch('seo-state.json', { cache: 'no-store' })).json();
+      pubSlugs = new Set(Object.values(st.items || {}).map(v => v.slug));
+    } catch (e) { /* sin state → todo catálogo en cola */ }
+    if (!items.length) throw new Error('vacío');
+    grid.innerHTML = items.map((x, i) => trendCard(x, i, pubSlugs)).join('');
+    grid.querySelectorAll('[data-tr="copy"]').forEach(b => b.addEventListener('click', () => {
+      if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.t);
+      toast(`📋 «${b.dataset.t}» copiado`);
+    }));
+    grid.querySelectorAll('[data-tr="new"]').forEach(b => b.addEventListener('click', () => {
+      els.modalAdd.classList.remove('hidden');
+      els.newTitle.value = b.dataset.t;
+      els.newTitle.focus();
+      trendBox.classList.add('hidden');
+      toast(`➕ Crea «${b.dataset.t}» y luego le pegas los enlaces`);
+    }));
+  } catch (e) {
+    grid.innerHTML = '<div class="tr-loading">😶 No se pudieron cargar las tendencias ahora — reintenta en un minuto.</div>';
+  }
+}
+
+function openTrends() {
+  if (!trendBox) {
+    trendBox = document.createElement('div');
+    trendBox.className = 'modal-backdrop hidden trends-modal';
+    trendBox.innerHTML = `
+      <div class="modal tr-panel">
+        <div class="tr-head">
+          <h3>🚀 Tendencias — qué publicar hoy</h3>
+          <div class="tr-tabs">
+            <button data-w="day" class="on">Hoy</button>
+            <button data-w="week">Semana</button>
+            <button data-w="anime">🎌 Anime</button>
+          </div>
+          <button class="tr-x" title="Cerrar">✕</button>
+        </div>
+        <div class="tr-grid" id="trGrid"></div>
+        <p class="tr-note">✅ ya tiene página en la web · ⏳ está en el catálogo (su página sale con el cupo diario) · ➕ falta por añadir.
+        Los botones 🔴/𝕏 abren las conversaciones reales donde la gente está pidiendo ese título — entra y responde a mano, como persona.</p>
+      </div>`;
+    document.body.appendChild(trendBox);
+    trendBox.querySelector('.tr-x').addEventListener('click', () => trendBox.classList.add('hidden'));
+    trendBox.addEventListener('click', ev => { if (ev.target === trendBox) trendBox.classList.add('hidden'); });
+    trendBox.querySelectorAll('.tr-tabs button').forEach(b =>
+      b.addEventListener('click', () => {
+        trendBox.querySelectorAll('.tr-tabs button').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        loadTrends(b.dataset.w);
+      }));
+  }
+  trendBox.classList.remove('hidden');
+  loadTrends('day');
+}
+
+if (els.trendsBtn) els.trendsBtn.addEventListener('click', () => { if (needAdmin()) openTrends(); });
 
 /* ── Renombrar serie/película → SIEMPRE re-lanza la carátula con el nombre nuevo ── */
 els.renameBtn.addEventListener('click', async () => {

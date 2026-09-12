@@ -159,6 +159,37 @@ input,select{font-family:inherit}
   width:100%!important;height:100%!important;max-width:none!important;margin:0;
 }
 .player.fullscreen *{transition:none!important}
+
+/* ═══════ 🚀 Panel Tendencias (solo admin) ═══════ */
+.tr-panel{width:min(940px,96vw)!important;max-height:88vh;overflow-y:auto;text-align:left;padding:18px}
+.tr-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.tr-head h3{margin:0;font-size:17px;flex:1;min-width:200px}
+.tr-tabs{display:flex;gap:6px}
+.tr-tabs button{background:var(--panel2);border:1px solid var(--line);color:var(--dim);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
+.tr-tabs button:hover{color:var(--ink)}
+.tr-tabs button.on{color:var(--acid);border-color:var(--acid)}
+.tr-x{background:none;border:none;color:var(--dim);font-size:17px;cursor:pointer;padding:4px 8px}
+.tr-x:hover{color:var(--hot)}
+.tr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.tr-card{background:var(--card);border:1px solid var(--line);border-radius:14px;display:flex;gap:10px;padding:10px;align-items:flex-start;transition:border-color .15s}
+.tr-card:hover{border-color:#35354a}
+.tr-card img{width:64px;aspect-ratio:2/3;object-fit:cover;border-radius:8px;flex:none}
+.tr-noposter{width:64px;aspect-ratio:2/3;background:#15151f;border-radius:8px;display:grid;place-items:center;font-size:22px;flex:none}
+.tr-b{min-width:0;display:flex;flex-direction:column;gap:4px}
+.tr-t{font-size:13px;font-weight:800;line-height:1.25}
+.tr-t .tr-rank{color:var(--acid);font-family:'JetBrains Mono';font-size:11px}
+.tr-t small{color:var(--dim);font-weight:600}
+.tr-m{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.tr-st{font-size:10.5px;font-weight:800}
+.tr-st.ok{color:#5adc5a}.tr-st.mid{color:#ffd257}.tr-st.no{color:var(--acid)}
+.tr-a{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.tr-a button,.tr-a a{background:#181826;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:4px 8px;font-size:10.5px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.tr-a button:hover,.tr-a a:hover{border-color:var(--acid);color:var(--acid)}
+.tr-a .tr-new{color:#111;background:var(--acid);border-color:var(--acid)}
+.tr-a .tr-new:hover{filter:brightness(1.08)}
+.tr-loading{padding:30px;text-align:center;color:var(--dim);grid-column:1/-1}
+.tr-note{margin:12px 0 0;color:var(--dim);font-size:11px;line-height:1.5}
+@media (max-width:560px){.tr-grid{grid-template-columns:1fr}.tr-head h3{min-width:0}}
 .player video{width:100%;height:100%;object-fit:contain;background:#000}
 /* iframe de Google Drive ocupa todo el player y sustituye al video */
 .drive-frame{display:none;position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;z-index:3}
