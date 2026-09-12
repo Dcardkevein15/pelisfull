@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789234055086,
+ "v": 1789246166277,
  "by": "Dcard #2968",
- "at": "2026-09-12T17:27:35.086Z",
- "n": 5321,
+ "at": "2026-09-12T20:49:26.277Z",
+ "n": 5324,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -9182,6 +9182,316 @@
    ]
   },
   {
+   "id": "ia-nanatsu-no-taizai-temporada-3-latino",
+   "t": "NANATSU NO TAIZAI",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154197-yJZMgNynqQtW.jpg",
+   "tags": [],
+   "seasons": {
+    "1": "3 Temporada",
+    "2": "4 Temporada"
+   },
+   "order": 10,
+   "clsManual": true,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "NNT T3-01 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-01%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 2,
+     "t": "NNT T3-02 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-02%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 3,
+     "t": "NNT T3-03 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-03%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 4,
+     "t": "NNT T3-04 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-04%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 5,
+     "t": "NNT T3-05 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-05%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 6,
+     "t": "NNT T3-06 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-06%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 7,
+     "t": "NNT T3-07 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-07%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 8,
+     "t": "NNT T3-08 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-08%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 9,
+     "t": "NNT T3-09 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-09%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 10,
+     "t": "NNT T3-10 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-10%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 11,
+     "t": "NNT T3-11 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-11%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 12,
+     "t": "NNT T3-12 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-12%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 13,
+     "t": "NNT T3-13 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-13%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 14,
+     "t": "NNT T3-14 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-14%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 15,
+     "t": "NNT T3-15 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-15%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 16,
+     "t": "NNT T3-16 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-16%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 17,
+     "t": "NNT T3-17 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-17%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 18,
+     "t": "NNT T3-18 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-18%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 19,
+     "t": "NNT T3-19 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-19%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 20,
+     "t": "NNT T3-20 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-20%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 21,
+     "t": "NNT T3-21 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-21%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 22,
+     "t": "NNT T3-22 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-22%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 23,
+     "t": "NNT T3-23 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-23%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 24,
+     "t": "NNT T3-24 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-24%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 25,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 1 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%201.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 26,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 2 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%202.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 27,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 3 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%203.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 28,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 4 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%204.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 29,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 5 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%205.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 30,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 6 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%206.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 31,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 7 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%207.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 32,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 8 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%208.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 33,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 9 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%209.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 34,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 10 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2010.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 35,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 11 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2011.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 36,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 12 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2012.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 37,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 13 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2013.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 38,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 14 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2014.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 39,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 15 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2015.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 40,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 16 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2016.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 41,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 17 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2017.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 42,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 18 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2018.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 43,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 19 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2019.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 44,
+     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 20 Sub Es",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2020%20Sub%20Espa%C3%B1ol%20Completo%20(SUBFIX%20).mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 45,
+     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 21 en Sub",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2021%20en%20Sub-Espa%C3%B1ol%20%20Recuerden%20esta%20trasmisi%C3%B3n%20esta%20patrocinada%20por%20Andr%C3%A9%20Molina%202%20vayan%20a%20suscribirse%20https-__www.youtube.com_channel_UC12sn2kPlNJktdsqsQtuF1g-2.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    }
+   ]
+  },
+  {
    "id": "ia-bleach001_20190808",
    "t": "Bleach",
    "jp": "🎌",
@@ -9195,7 +9505,7 @@
     "1": "Temporada 1 - Bleach",
     "2": "Temporada 2 — Bleach latino"
    },
-   "order": 10,
+   "order": 11,
    "episodes": [
     {
      "n": 1,
@@ -11046,7 +11356,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/voltron-defensor-legendario-temporada-1-a-8-espanol-latino",
    "tags": [],
-   "order": 11,
+   "order": 12,
    "episodes": [
     {
      "n": 1,
@@ -11440,7 +11750,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx45-DEFgZRCxiGmF.png",
    "tags": [],
-   "order": 12,
+   "order": 13,
    "episodes": [
     {
      "n": 1,
@@ -11954,7 +12264,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/re.-zero-temporada-2-latino",
    "tags": [],
-   "order": 13,
+   "order": 14,
    "clsManual": true,
    "episodes": [
     {
@@ -12094,7 +12404,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
    "tags": [],
-   "order": 14,
+   "order": 15,
    "episodes": [
     {
      "n": 1,
@@ -12179,7 +12489,7 @@
     "4": "TEMPORADA 3",
     "5": "TEMPORADA 4"
    },
-   "order": 15,
+   "order": 16,
    "episodes": [
     {
      "n": 1,
@@ -12529,7 +12839,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/apocalypto-2006-online-latino-castellano-y-subtitulada",
    "tags": [],
-   "order": 16,
+   "order": 17,
    "episodes": [
     {
      "n": 1,
@@ -12548,7 +12858,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/amores-perros-2000_202510",
    "tags": [],
-   "order": 17,
+   "order": 18,
    "episodes": [
     {
      "n": 1,
@@ -12567,7 +12877,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/1080pLaVendedoraDeRosas1998PeliculaColombianaCompletaEnFULLHD",
    "tags": [],
-   "order": 18,
+   "order": 19,
    "episodes": [
     {
      "n": 1,
@@ -12586,7 +12896,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/Rambo1",
    "tags": [],
-   "order": 19,
+   "order": 20,
    "episodes": [
     {
      "n": 1,
@@ -12605,7 +12915,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ElDespertarDelDiablo2006",
    "tags": [],
-   "order": 20,
+   "order": 21,
    "episodes": [
     {
      "n": 1,
@@ -12624,7 +12934,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-libro-de-la-vida_202205",
    "tags": [],
-   "order": 21,
+   "order": 22,
    "episodes": [
     {
      "n": 1,
@@ -12643,7 +12953,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/rio_20220511_202205",
    "tags": [],
-   "order": 22,
+   "order": 23,
    "episodes": [
     {
      "n": 1,
@@ -12662,7 +12972,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/rio-2_202205",
    "tags": [],
-   "order": 23,
+   "order": 24,
    "episodes": [
     {
      "n": 1,
@@ -12681,7 +12991,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/el-abrazo-de-la-serpiente-subs-espanol-rincon-cinefilo.com",
    "tags": [],
-   "order": 24,
+   "order": 25,
    "episodes": [
     {
      "n": 1,
@@ -12700,7 +13010,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/ole-el-viaje-de-ferdinand_202205",
    "tags": [],
-   "order": 25,
+   "order": 26,
    "episodes": [
     {
      "n": 1,
@@ -12719,7 +13029,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ver-mision-de-rescate-extraction-2020-online-latino-hd-pelisplus",
    "tags": [],
-   "order": 26,
+   "order": 27,
    "episodes": [
     {
      "n": 1,
@@ -12738,7 +13048,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/jurassic.world.fallen.kingdom.-2018.1080p-dual-lat-cinecalidad.to_202105",
    "tags": [],
-   "order": 27,
+   "order": 28,
    "episodes": [
     {
      "n": 1,
@@ -12812,7 +13122,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/it-eso-2017-parte-2-hd-1080p-latino",
    "tags": [],
-   "order": 28,
+   "order": 29,
    "episodes": [
     {
      "n": 1,
@@ -12841,7 +13151,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/darsag2",
    "tags": [],
-   "order": 29,
+   "order": 30,
    "episodes": [
     {
      "n": 1,
@@ -12860,7 +13170,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/la-pasion-de-cristo_202108",
    "tags": [],
-   "order": 30,
+   "order": 31,
    "episodes": [
     {
      "n": 1,
@@ -12879,7 +13189,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/momentum-2015-.-peliculas-en-espanol",
    "tags": [],
-   "order": 31,
+   "order": 32,
    "episodes": [
     {
      "n": 1,
@@ -12898,7 +13208,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/Urotsukidoji",
    "tags": [],
-   "order": 32,
+   "order": 33,
    "episodes": [
     {
      "n": 1,
@@ -12917,7 +13227,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/la-era-de-hielo-2_202205",
    "tags": [],
-   "order": 33,
+   "order": 34,
    "episodes": [
     {
      "n": 1,
@@ -12936,7 +13246,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/la-era-de-hielo-4_202207",
    "tags": [],
-   "order": 34,
+   "order": 35,
    "episodes": [
     {
      "n": 1,
@@ -12955,7 +13265,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/el-fin-del-mundo-peliculas-de-accion-suspenso-y-terror-completas-en-espanol",
    "tags": [],
-   "order": 35,
+   "order": 36,
    "episodes": [
     {
      "n": 1,
@@ -12974,7 +13284,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/epic-el-reino-secreto",
    "tags": [],
-   "order": 36,
+   "order": 37,
    "episodes": [
     {
      "n": 1,
@@ -12993,7 +13303,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/huerfanos-peliculas-completas",
    "tags": [],
-   "order": 37,
+   "order": 38,
    "episodes": [
     {
      "n": 1,
@@ -13012,7 +13322,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/DisneyClubTv_venganza-de-un-tirador",
    "tags": [],
-   "order": 38,
+   "order": 39,
    "episodes": [
     {
      "n": 1,
@@ -13031,7 +13341,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/tecnotv_201804",
    "tags": [],
-   "order": 39,
+   "order": 40,
    "episodes": [
     {
      "n": 1,
@@ -13050,7 +13360,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/kimi-no-na-wa-your-name-espanol-latino",
    "tags": [],
-   "order": 40,
+   "order": 41,
    "episodes": [
     {
      "n": 1,
@@ -13069,7 +13379,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/scott-pilgrim-vs-the-world_202312",
    "tags": [],
-   "order": 41,
+   "order": 42,
    "episodes": [
     {
      "n": 1,
@@ -13088,7 +13398,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el.gigante.de.hierro.dvdrip.www.divxtotal.com.leoparis",
    "tags": [],
-   "order": 42,
+   "order": 43,
    "episodes": [
     {
      "n": 1,
@@ -13107,7 +13417,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ElRegalo.2015.DVDrip.XviD.LatinoPeliculas1linkmega.com",
    "tags": [],
-   "order": 43,
+   "order": 44,
    "episodes": [
     {
      "n": 1,
@@ -13126,7 +13436,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-naavegante-buster-keaton-vose",
    "tags": [],
-   "order": 44,
+   "order": 45,
    "episodes": [
     {
      "n": 1,
@@ -13145,7 +13455,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/tierra-de-osos-2-2006-720p-audio-latino",
    "tags": [],
-   "order": 45,
+   "order": 46,
    "episodes": [
     {
      "n": 1,
@@ -13164,7 +13474,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/blues-de-madrastra-e-hijastra-gibo-to-musume-no-blues-espanol-latino",
    "tags": [],
-   "order": 46,
+   "order": 47,
    "clsManual": true,
    "episodes": [
     {
@@ -13241,7 +13551,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/la-hija-de-lupin-lupin-no-musume-espanol-latino",
    "tags": [],
-   "order": 47,
+   "order": 48,
    "clsManual": true,
    "episodes": [
     {
@@ -13311,7 +13621,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/dram_20240713",
    "tags": [],
-   "order": 48,
+   "order": 49,
    "episodes": [
     {
      "n": 1,
@@ -13445,7 +13755,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/13-asesinos_202511",
    "tags": [],
-   "order": 49,
+   "order": 50,
    "episodes": [
     {
      "n": 1,
@@ -13464,7 +13774,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-angel-2018",
    "tags": [],
-   "order": 50,
+   "order": 51,
    "episodes": [
     {
      "n": 1,
@@ -13483,7 +13793,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/how-to-train-your-dragon-dreamworks-dragons",
    "tags": [],
-   "order": 51,
+   "order": 52,
    "episodes": [
     {
      "n": 1,
@@ -14132,7 +14442,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/naruto-shippuden-la-pelicula-",
    "tags": [],
-   "order": 52,
+   "order": 53,
    "episodes": [
     {
      "n": 1,
@@ -14171,7 +14481,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/rashomon-subtitulado-espanol",
    "tags": [],
-   "order": 53,
+   "order": 54,
    "episodes": [
     {
      "n": 1,
@@ -14190,7 +14500,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/PeliculaNietzsche",
    "tags": [],
-   "order": 54,
+   "order": 55,
    "episodes": [
     {
      "n": 1,
@@ -14209,7 +14519,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/PalomaDePapelFabrizioAguilar2003",
    "tags": [],
-   "order": 55,
+   "order": 56,
    "episodes": [
     {
      "n": 1,
@@ -14228,7 +14538,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/los-caballeros-del-zodiaco-la-leyenda-del-santuario-edicion-argentina-dvd-rip",
    "tags": [],
-   "order": 56,
+   "order": 57,
    "episodes": [
     {
      "n": 1,
@@ -14247,7 +14557,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/chainsaw-man-the-movie-reze-arc-catch-up-watch-party",
    "tags": [],
-   "order": 57,
+   "order": 58,
    "episodes": [
     {
      "n": 1,
@@ -14266,7 +14576,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/1-5098444725191443505",
    "tags": [],
-   "order": 58,
+   "order": 59,
    "episodes": [
     {
      "n": 1,
@@ -14285,7 +14595,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/doraemon-nobita-y-los-siete-magos-2007-espanol-latino",
    "tags": [],
-   "order": 59,
+   "order": 60,
    "episodes": [
     {
      "n": 1,
@@ -14304,7 +14614,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/the-end-of-evangelion-movie-1999-espanol-latino-netflix-2019",
    "tags": [],
-   "order": 60,
+   "order": 61,
    "episodes": [
     {
      "n": 1,
@@ -14331,7 +14641,7 @@
     "5": "Parte 5 — Devuélvanme A Mi Gohan  [1998]",
     "6": "Parte 6 — ¡Fusión!"
    },
-   "order": 61,
+   "order": 62,
    "episodes": [
     {
      "n": 1,
@@ -14380,7 +14690,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/pokemon-el-regreso-de-mewtwo-pelicula-completa-en-espanol-latino",
    "tags": [],
-   "order": 62,
+   "order": 63,
    "episodes": [
     {
      "n": 1,
@@ -14399,7 +14709,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd",
    "tags": [],
-   "order": 65,
+   "order": 64,
    "episodes": [
     {
      "n": 1,
@@ -14418,7 +14728,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/sakura-card-captor-en-espanol-latino",
    "tags": [],
-   "order": 68,
+   "order": 65,
    "clsManual": true,
    "episodes": [
     {
@@ -14783,7 +15093,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/BITBBHLatinSpanish",
    "tags": [],
-   "order": 69,
+   "order": 66,
    "episodes": [
     {
      "n": 1,
@@ -15061,7 +15371,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/20230516_20230516_2048",
    "tags": [],
-   "order": 70,
+   "order": 67,
    "episodes": [
     {
      "n": 1,
@@ -15140,7 +15450,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/como-me-converti-en-superheroe",
    "tags": [],
-   "order": 71,
+   "order": 68,
    "episodes": [
     {
      "n": 1,
@@ -15934,7 +16244,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dororo-capitulo-23-sub-espanol",
    "tags": [],
-   "order": 73,
+   "order": 69,
    "episodes": [
     {
      "n": 1,
@@ -16068,7 +16378,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/tpo-neon-genesis-evangelion-05-trapo-2019-universo-anime",
    "tags": [],
-   "order": 74,
+   "order": 70,
    "episodes": [
     {
      "n": 1,
@@ -16212,7 +16522,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/darling-espanol-latino-1",
    "tags": [],
-   "order": 75,
+   "order": 71,
    "episodes": [
     {
      "n": 1,
@@ -16231,7 +16541,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/yes-precure-5-subespanol-reuploaded-complete",
    "tags": [],
-   "order": 76,
+   "order": 72,
    "episodes": [
     {
      "n": 1,
@@ -16495,7 +16805,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/serial-experiments-lain-ep-12",
    "tags": [],
-   "order": 77,
+   "order": 73,
    "episodes": [
     {
      "n": 1,
@@ -16574,7 +16884,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/samurai-troopers-e-16",
    "tags": [],
-   "order": 78,
+   "order": 74,
    "episodes": [
     {
      "n": 1,
@@ -16783,7 +17093,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/zombieland-saga-yumeginga-paradise",
    "tags": [],
-   "order": 79,
+   "order": 75,
    "episodes": [
     {
      "n": 1,
@@ -16927,7 +17237,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/mythical-detective-loki-lat",
    "tags": [],
-   "order": 80,
+   "order": 76,
    "episodes": [
     {
      "n": 1,
@@ -17071,7 +17381,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el_regreso_de_la_llorona",
    "tags": [],
-   "order": 81,
+   "order": 77,
    "episodes": [
     {
      "n": 1,
@@ -17090,7 +17400,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/elfen-lied-latino_202510",
    "tags": [],
-   "order": 82,
+   "order": 78,
    "episodes": [
     {
      "n": 1,
@@ -17174,7 +17484,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/candy.candy_202109",
    "tags": [],
-   "order": 83,
+   "order": 79,
    "episodes": [
     {
      "n": 1,
@@ -17763,7 +18073,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/ranma-nibunnoichi-espanol-latino-y-japones",
    "tags": [],
-   "order": 84,
+   "order": 80,
    "episodes": [
     {
      "n": 1,
@@ -18582,7 +18892,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/RebeldeWay",
    "tags": [],
-   "order": 85,
+   "order": 81,
    "episodes": [
     {
      "n": 1,
@@ -19295,6 +19605,7 @@
     "1": "One Piece Latino",
     "2": "Temporada 2 — One Piece Latino 264"
    },
+   "order": 82,
    "episodes": [
     {
      "n": 1,
@@ -19987,6 +20298,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/shingeki-chuugakkou-castellano-12",
    "tags": [],
+   "order": 83,
    "episodes": [
     {
      "n": 1,
@@ -20120,6 +20432,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/ver-avatar-online-gratis-cuevana-3",
    "tags": [],
+   "order": 84,
    "episodes": [
     {
      "n": 1,
@@ -20138,6 +20451,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dragon-ball-super-broly-480pto2160p-mulsubndub",
    "tags": [],
+   "order": 85,
    "episodes": [
     {
      "n": 1,
@@ -20152,315 +20466,6 @@
    ]
   },
   {
-   "id": "ia-nanatsu-no-taizai-temporada-3-latino",
-   "t": "NANATSU NO TAIZAI",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada",
-   "g": 5,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154197-yJZMgNynqQtW.jpg",
-   "tags": [],
-   "seasons": {
-    "1": "NANATSU NO TAIZAI",
-    "2": "Nanatsu No Taizai Temporada 4 Capitulo 20 Su"
-   },
-   "clsManual": true,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "NNT T3-01 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-01%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 2,
-     "t": "NNT T3-02 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-02%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 3,
-     "t": "NNT T3-03 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-03%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 4,
-     "t": "NNT T3-04 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-04%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 5,
-     "t": "NNT T3-05 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-05%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 6,
-     "t": "NNT T3-06 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-06%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 7,
-     "t": "NNT T3-07 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-07%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 8,
-     "t": "NNT T3-08 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-08%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 9,
-     "t": "NNT T3-09 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-09%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 10,
-     "t": "NNT T3-10 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-10%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 11,
-     "t": "NNT T3-11 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-11%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 12,
-     "t": "NNT T3-12 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-12%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 13,
-     "t": "NNT T3-13 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-13%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 14,
-     "t": "NNT T3-14 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-14%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 15,
-     "t": "NNT T3-15 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-15%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 16,
-     "t": "NNT T3-16 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-16%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 17,
-     "t": "NNT T3-17 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-17%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 18,
-     "t": "NNT T3-18 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-18%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 19,
-     "t": "NNT T3-19 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-19%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 20,
-     "t": "NNT T3-20 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-20%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 21,
-     "t": "NNT T3-21 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-21%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 22,
-     "t": "NNT T3-22 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-22%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 23,
-     "t": "NNT T3-23 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-23%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 24,
-     "t": "NNT T3-24 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-24%20BY%20PerezosoPro.mp4",
-     "season": 1
-    },
-    {
-     "n": 25,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 1 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%201.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 26,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 2 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%202.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 27,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 3 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%203.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 28,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 4 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%204.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 29,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 5 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%205.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 30,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 6 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%206.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 31,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 7 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%207.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 32,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 8 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%208.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 33,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 9 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%209.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 34,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 10 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2010.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 35,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 11 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2011.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 36,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 12 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2012.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 37,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 13 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2013.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 38,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 14 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2014.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 39,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 15 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2015.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 40,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 16 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2016.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 41,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 17 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2017.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 42,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 18 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2018.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 43,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 19 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2019.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 44,
-     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 20 Sub Es",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2020%20Sub%20Espa%C3%B1ol%20Completo%20(SUBFIX%20).mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    },
-    {
-     "n": 45,
-     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 21 en Sub",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2021%20en%20Sub-Espa%C3%B1ol%20%20Recuerden%20esta%20trasmisi%C3%B3n%20esta%20patrocinada%20por%20Andr%C3%A9%20Molina%202%20vayan%20a%20suscribirse%20https-__www.youtube.com_channel_UC12sn2kPlNJktdsqsQtuF1g-2.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
-    }
-   ]
-  },
-  {
    "id": "custom-1789226295437",
    "t": "Vaiana",
    "jp": "VA",
@@ -20469,10 +20474,66 @@
    "kind": "serie",
    "anime": true,
    "tags": [],
+   "order": 86,
    "episodes": [
     {
      "n": 1,
      "t": "Capítulo 1"
+    }
+   ]
+  },
+  {
+   "id": "ia-donnie-darko-2001-full-movie-the-directors-cut",
+   "t": "Donnie Darko (2001)",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/donnie-darko-2001-full-movie-the-directors-cut",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Donnie Darko( 2001) Full Movie The Director's Cut (English, ",
+     "url": "https://archive.org/download/donnie-darko-2001-full-movie-the-directors-cut/Donnie%20Darko(2001)_Full%20Movie%20-%20The%20Director's%20Cut.mp4",
+     "sub": "https://archive.org/download/donnie-darko-2001-full-movie-the-directors-cut/Donnie.Darko.Spanish-WWW.MY-SUBS.CO.srt"
+    }
+   ]
+  },
+  {
+   "id": "ia-blod_20240826",
+   "t": "Vampire Hunter D Bloodlust 2000",
+   "jp": "🎌",
+   "tag": "Cine IA · OVA",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/blod_20240826",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Vampire Hunter D Bloodlust 2000 - japones subtitulado españo",
+     "url": "https://archive.org/download/blod_20240826/blod.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-aik_20250304",
+   "t": "Aika zero OVAS 1, 2 y 3",
+   "jp": "🎌",
+   "tag": "Cine IA · OVA",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/aik_20250304",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Aika zero OVAS 1, 2 y 3 full - japones subs español",
+     "url": "https://archive.org/download/aik_20250304/aik.ia.mp4"
     }
    ]
   }
@@ -78146,5 +78207,7 @@
    "at": 1788630194628
   }
  },
- "sig": "WoRyhXoeWtI9xvepr1gFPjIyKEd7xYjkuasPUy7LvDxXTE8DDNKWaS/Z1ypaTEYS/1Nd9V1HC4m+sW9LTG7JXg=="
+ "links": {},
+ "linksDom": "https://x.yapido.click",
+ "sig": "eafeDh/09TE8T2zdOEulymKNBTpAOVJL+xY1S7j/LVT60ZyUv4ob5re9nDZBAkTkBmB4Yw9OybsxxW3oKk5zGg=="
 }
