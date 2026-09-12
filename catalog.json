@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1789189329052,
+ "v": 1789189478947,
  "by": "Dcard #2968",
- "at": "2026-09-12T05:02:09.052Z",
+ "at": "2026-09-12T05:04:38.947Z",
  "n": 5320,
  "series": [
   {
@@ -11194,231 +11194,340 @@
    ]
   },
   {
-   "id": "ia-a-c-dragon-ball-gt-01-dvdrip-480p",
-   "t": "Dragon Ball GT",
+   "id": "ia-Dragon-Ball-GT-Latino-JP",
+   "t": "Dragon Ball GT - Latino/JP",
    "jp": "🎌",
-   "tag": "Cine IA · Anime · Temporada · 2022",
+   "tag": "Cine IA · Anime · Temporada",
    "g": 4,
    "kind": "serie",
    "anime": true,
-   "poster": "https://archive.org/services/img/a-c-dragon-ball-gt-01-dvdrip-480p",
-   "tags": [],
+   "poster": "https://archive.org/services/img/Dragon-Ball-GT-Latino-JP",
    "order": 8,
    "episodes": [
     {
      "n": 1,
-     "t": "[A&C] Dragon Ball GT - 01 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2001%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/01 Unas misteriosas esferas del dragó",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/01.Unas%20misteriosas%20esferas%20del%20drag%C3%B3n%20aparecen.mp4"
     },
     {
      "n": 2,
-     "t": "[A&C] Dragon Ball GT - 02 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2002%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/02 Pan viaja en la nave espacial",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/02.Pan%20viaja%20en%20la%20nave%20espacial.mp4"
     },
     {
      "n": 3,
-     "t": "[A&C] Dragon Ball GT - 03 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2003%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/03 Los comerciantes del planeta Imega",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/03.Los%20comerciantes%20del%20planeta%20Imega.mp4"
     },
     {
      "n": 4,
-     "t": "[A&C] Dragon Ball GT - 04 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2004%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/04 Goku y los demás se convierten en ",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/04.Goku%20y%20los%20dem%C3%A1s%20se%20convierten%20en%20criminales.mp4"
     },
     {
      "n": 5,
-     "t": "[A&C] Dragon Ball GT - 05 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2005%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/05 El poderoso Lezick",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/05.El%20poderoso%20Lezick.mp4"
     },
     {
      "n": 6,
-     "t": "[A&C] Dragon Ball GT - 06 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2006%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/06 El dentista Goku",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/06.El%20dentista%20Goku.mp4"
     },
     {
      "n": 7,
-     "t": "[A&C] Dragon Ball GT - 07 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2007%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/07 Trunks se viste de novia",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/07.Trunks%20se%20viste%20de%20novia.mp4"
     },
     {
      "n": 8,
-     "t": "[A&C] Dragon Ball GT - 08 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2008%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/08 Los bigotes de Zunama",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/08.Los%20bigotes%20de%20Zunama.mp4"
     },
     {
      "n": 9,
-     "t": "[A&C] Dragon Ball GT - 09 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2009%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/09 El planeta peligroso",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/09.El%20planeta%20peligroso.mp4"
     },
     {
      "n": 10,
-     "t": "[A&C] Dragon Ball GT - 10 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2010%20%5BDVDrip%20480p%5D..mp4"
+     "t": "1 - Saga El Gran Viaje/10 El baile Bonpappá",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/10.El%20baile%20Bonpapp%C3%A1.mp4"
     },
     {
      "n": 11,
-     "t": "[A&C] Dragon Ball GT - 11 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2011%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/11 Pan es convertida en muñeca",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/11.Pan%20es%20convertida%20en%20mu%C3%B1eca.mp4"
     },
     {
      "n": 12,
-     "t": "[A&C] Dragon Ball GT - 12 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2012%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/12 El despertar de Rudo",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/12.El%20despertar%20de%20Rudo.mp4"
     },
     {
      "n": 13,
-     "t": "[A&C] Dragon Ball GT - 13 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2013%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/13 El misterioso científico llamado M",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/13.El%20misterioso%20cient%C3%ADfico%20llamado%20Myu.mp4"
     },
     {
      "n": 14,
-     "t": "[A&C] Dragon Ball GT - 14 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2014%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/14 La destrucción de Rudo",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/14.La%20destrucci%C3%B3n%20de%20Rudo.mp4"
     },
     {
      "n": 15,
-     "t": "[A&C] Dragon Ball GT - 15 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2015%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/15 Pan se escapa",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/15.Pan%20se%20escapa.mp4"
     },
     {
      "n": 16,
-     "t": "[A&C] Dragon Ball GT - 16 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2016%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/16 El planeta de las máquinas M2",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/16.El%20planeta%20de%20las%20m%C3%A1quinas%20M2.mp4"
     },
     {
      "n": 17,
-     "t": "[A&C] Dragon Ball GT - 17 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2017%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/17 El plan de Pan",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/17.El%20plan%20de%20Pan.mp4"
     },
     {
      "n": 18,
-     "t": "[A&C] Dragon Ball GT - 18 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2018%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/18 La furia de Goku",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/18.La%20furia%20de%20Goku.mp4"
     },
     {
      "n": 19,
-     "t": "[A&C] Dragon Ball GT - 19 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2019%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/19 El poderoso mutante Rildo",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/19.El%20poderoso%20mutante%20Rildo.mp4"
     },
     {
      "n": 20,
-     "t": "[A&C] Dragon Ball GT - 20 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2020%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/20 Goku es atacado por una tsunami he",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/20.Goku%20es%20atacado%20por%20una%20tsunami%20hecha%20de%20metal.mp4"
     },
     {
      "n": 21,
-     "t": "[A&C] Dragon Ball GT - 21 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2021%20%5BDVDrip%20480p%5D.mp4"
+     "t": "1 - Saga El Gran Viaje/21 Goku queda atrapado en una placa d",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/1%20-%20Saga%20El%20Gran%20Viaje/21.Goku%20queda%20atrapado%20en%20una%20placa%20de%20metal.mp4"
     },
     {
      "n": 22,
-     "t": "[A&C] Dragon Ball GT - 22 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2022%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/22 El maligno Baby",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/22.El%20maligno%20Baby.mp4"
     },
     {
      "n": 23,
-     "t": "[A&C] Dragon Ball GT - 23 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2023%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/23 El joven misterioso de la nave naufragada",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/23.El%20joven%20misterioso%20de%20la%20nave%20naufragada.mp4"
     },
     {
      "n": 24,
-     "t": "[A&C] Dragon Ball GT - 24 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2024%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/24 El ataque de Baby",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/24.El%20ataque%20de%20Baby.mp4"
     },
     {
      "n": 25,
-     "t": "[A&C] Dragon Ball GT - 25 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2025%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/25 Baby llega a la Tierra",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/25.Baby%20llega%20a%20la%20Tierra.mp4"
     },
     {
      "n": 26,
-     "t": "[A&C] Dragon Ball GT - 26 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2026%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/26 Una pelea entre hermanos",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/26.Una%20pelea%20entre%20hermanos.mp4"
     },
     {
      "n": 27,
-     "t": "[A&C] Dragon Ball GT - 27 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2027%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/27 Vegeta es posesionado por Baby",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/27.Vegeta%20es%20posesionado%20por%20Baby.mp4"
     },
     {
      "n": 28,
-     "t": "[A&C] Dragon Ball GT - 28 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2028%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/28 Todos son mis enemigos",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/28.Todos%20son%20mis%20enemigos.mp4"
     },
     {
      "n": 29,
-     "t": "[A&C] Dragon Ball GT - 29 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2029%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/29 El poder del super saiyajin 3 es derrotado",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/29.El%20poder%20del%20super%20saiyajin%203%20es%20derrotado.mp4"
     },
     {
      "n": 30,
-     "t": "[A&C] Dragon Ball GT - 30 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2030%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/30 Goku es eliminado",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/30.Goku%20es%20eliminado.mp4"
     },
     {
      "n": 31,
-     "t": "[A&C] Dragon Ball GT - 31 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2031%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/31 La destrucción de la dimensión de la Oca",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/31.La%20destrucci%C3%B3n%20de%20la%20dimensi%C3%B3n%20de%20la%20Oca.mp4"
     },
     {
      "n": 32,
-     "t": "[A&C] Dragon Ball GT - 32 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2032%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/32 La furia del guerrero Oob",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/32.La%20furia%20del%20guerrero%20Oob.mp4"
     },
     {
      "n": 33,
-     "t": "[A&C] Dragon Ball GT - 33 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2033%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/33 El poder del nuevo Oob",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/33.El%20poder%20del%20nuevo%20Oob.mp4"
     },
     {
      "n": 34,
-     "t": "[A&C] Dragon Ball GT - 34 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2034%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/34 Goku fracasa en su transformación",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/34.Goku%20fracasa%20en%20su%20transformaci%C3%B3n.mp4"
     },
     {
      "n": 35,
-     "t": "[A&C] Dragon Ball GT - 35 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2035%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/35 Goku se convierte en super saiyajin 4",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/35.Goku%20se%20convierte%20en%20super%20saiyajin%204.mp4"
     },
     {
      "n": 36,
-     "t": "[A&C] Dragon Ball GT - 36 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2036%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/36 El gigantesco mono Baby",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/36.El%20gigantesco%20mono%20Baby.mp4"
     },
     {
      "n": 37,
-     "t": "[A&C] Dragon Ball GT - 37 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2037%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/37 Doble K O",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/37.Doble%20K.O..mp4"
     },
     {
      "n": 38,
-     "t": "[A&C] Dragon Ball GT - 38 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2038%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/38 Goku recupera sus poderes",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/38.Goku%20recupera%20sus%20poderes.mp4"
     },
     {
      "n": 39,
-     "t": "[A&C] Dragon Ball GT - 39 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2039%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/39 Baby muere",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/39.Baby%20muere.mp4"
     },
     {
      "n": 40,
-     "t": "[A&C] Dragon Ball GT - 40 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2040%20%5BDVDrip%20480p%5D.mp4"
+     "t": "2 - Saga Baby/40 La importante decisión de Pikoro",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/2%20-%20Saga%20Baby/40.La%20importante%20decisi%C3%B3n%20de%20Pikoro.mp4"
     },
     {
      "n": 41,
-     "t": "[A&C] Dragon Ball GT - 41 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2041%20%5BDVDrip%20480p%5D.mp4"
+     "t": "3 - Saga Super N°17/41 Quién será el sucesor de Satán",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/3%20-%20Saga%20Super%20N%C2%B017/41.Qui%C3%A9n%20ser%C3%A1%20el%20sucesor%20de%20Sat%C3%A1n.mp4"
     },
     {
      "n": 42,
-     "t": "[A&C] Dragon Ball GT - 42 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2042%20%5BDVDrip%20480p%5D.mp4"
+     "t": "3 - Saga Super N°17/42 Goku se enfrenta con enemigos poderos",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/3%20-%20Saga%20Super%20N%C2%B017/42.Goku%20se%20enfrenta%20con%20enemigos%20poderosos%20del%20infierno.mp4"
     },
     {
      "n": 43,
-     "t": "[A&C] Dragon Ball GT - 43 [DVDrip 480p]",
-     "url": "https://archive.org/download/a-c-dragon-ball-gt-01-dvdrip-480p/%5BA%26C%5D%20Dragon%20Ball%20GT%20-%2043%20%5BDVDrip%20480p%5D.mp4"
+     "t": "3 - Saga Super N°17/43 Cell y Freezer regresan",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/3%20-%20Saga%20Super%20N%C2%B017/43.Cell%20y%20Freezer%20regresan.mp4"
+    },
+    {
+     "n": 44,
+     "t": "3 - Saga Super N°17/44 El androide más poderoso",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/3%20-%20Saga%20Super%20N%C2%B017/44.El%20androide%20m%C3%A1s%20poderoso.mp4"
+    },
+    {
+     "n": 45,
+     "t": "3 - Saga Super N°17/45 Goku escapa del infierno",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/3%20-%20Saga%20Super%20N%C2%B017/45.Goku%20escapa%20del%20infierno.mp4"
+    },
+    {
+     "n": 46,
+     "t": "3 - Saga Super N°17/46 El super saiyajin 4 vs super número 1",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/3%20-%20Saga%20Super%20N%C2%B017/46.El%20super%20saiyajin%204%20vs%20super%20n%C3%BAmero%2017.mp4"
+    },
+    {
+     "n": 47,
+     "t": "3 - Saga Super N°17/47 Goku y N° 18 pelean juntos",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/3%20-%20Saga%20Super%20N%C2%B017/47.Goku%20y%20N%C2%B0%2018%20pelean%20juntos.mp4"
+    },
+    {
+     "n": 48,
+     "t": "4 - Saga Dragones Malignos/48 Shen-long es nuestro enemigo",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/48.Shen-long%20es%20nuestro%20enemigo.mp4"
+    },
+    {
+     "n": 49,
+     "t": "4 - Saga Dragones Malignos/49 El dragón que pelea de una man",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/49.El%20drag%C3%B3n%20que%20pelea%20de%20una%20manera%20diferente.mp4"
+    },
+    {
+     "n": 50,
+     "t": "4 - Saga Dragones Malignos/50 El dragón eléctrico",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/50.El%20drag%C3%B3n%20el%C3%A9ctrico.mp4"
+    },
+    {
+     "n": 51,
+     "t": "4 - Saga Dragones Malignos/51 El ataque del torbellino",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/51.El%20ataque%20del%20torbellino.mp4"
+    },
+    {
+     "n": 52,
+     "t": "4 - Saga Dragones Malignos/52 La técnica secreta del dragón ",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/52.La%20t%C3%A9cnica%20secreta%20del%20drag%C3%B3n%20de%20siete%20estrellas.mp4"
+    },
+    {
+     "n": 53,
+     "t": "4 - Saga Dragones Malignos/53 Pan desaparece",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/53.Pan%20desaparece.mp4"
+    },
+    {
+     "n": 54,
+     "t": "4 - Saga Dragones Malignos/54 El guerrero del Sol",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/54.El%20guerrero%20del%20Sol.mp4"
+    },
+    {
+     "n": 55,
+     "t": "4 - Saga Dragones Malignos/55 El plan de Vegeta y Bulma",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/55.El%20plan%20de%20Vegeta%20y%20Bulma.mp4"
+    },
+    {
+     "n": 56,
+     "t": "4 - Saga Dragones Malignos/56 Los hermanos del fuego y del h",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/56.Los%20hermanos%20del%20fuego%20y%20del%20hielo.mp4"
+    },
+    {
+     "n": 57,
+     "t": "4 - Saga Dragones Malignos/57 El dragón más poderoso",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/57.El%20drag%C3%B3n%20m%C3%A1s%20poderoso.mp4"
+    },
+    {
+     "n": 58,
+     "t": "4 - Saga Dragones Malignos/58 Goku supera los poderes del Su",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/58.Goku%20supera%20los%20poderes%20del%20Super%20Saiyajin%204.mp4"
+    },
+    {
+     "n": 59,
+     "t": "4 - Saga Dragones Malignos/59 Vegeta se convierte en un mono",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/59.Vegeta%20se%20convierte%20en%20un%20mono%20gigante.mp4"
+    },
+    {
+     "n": 60,
+     "t": "4 - Saga Dragones Malignos/60 Súper Gogeta",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/60.S%C3%BAper%20Gogeta.mp4"
+    },
+    {
+     "n": 61,
+     "t": "4 - Saga Dragones Malignos/61 Goku se come la esfera de cuat",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/61.Goku%20se%20come%20la%20esfera%20de%20cuatro%20estrellas.mp4"
+    },
+    {
+     "n": 62,
+     "t": "4 - Saga Dragones Malignos/62 Cuatro Estrellas salva a Goku",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/62.Cuatro%20Estrellas%20salva%20a%20Goku.mp4"
+    },
+    {
+     "n": 63,
+     "t": "4 - Saga Dragones Malignos/63 Goku salva el universo",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/63.Goku%20salva%20el%20universo.mp4"
+    },
+    {
+     "n": 64,
+     "t": "4 - Saga Dragones Malignos/64 ¡Adiós Goku!",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/4%20-%20Saga%20Dragones%20Malignos/64.%C2%A1Adi%C3%B3s%20Goku!.mp4"
+    },
+    {
+     "n": 65,
+     "t": "Especial/100 Años Después (Con Introducción) [960p]",
+     "url": "https://archive.org/download/Dragon-Ball-GT-Latino-JP/Especial/100%20A%C3%B1os%20Despu%C3%A9s%20(Con%20Introducci%C3%B3n)%20%5B960p%5D.mp4"
     }
    ]
   },
@@ -17552,7 +17661,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-naavegante-buster-keaton-vose",
    "tags": [],
-   "order": 45,
+   "order": 44,
    "episodes": [
     {
      "n": 1,
@@ -17571,7 +17680,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/tierra-de-osos-2-2006-720p-audio-latino",
    "tags": [],
-   "order": 46,
+   "order": 45,
    "episodes": [
     {
      "n": 1,
@@ -17590,7 +17699,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/blues-de-madrastra-e-hijastra-gibo-to-musume-no-blues-espanol-latino",
    "tags": [],
-   "order": 47,
+   "order": 46,
    "episodes": [
     {
      "n": 1,
@@ -17666,7 +17775,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/la-hija-de-lupin-lupin-no-musume-espanol-latino",
    "tags": [],
-   "order": 48,
+   "order": 47,
    "episodes": [
     {
      "n": 1,
@@ -17735,7 +17844,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/dram_20240713",
    "tags": [],
-   "order": 49,
+   "order": 48,
    "episodes": [
     {
      "n": 1,
@@ -17894,7 +18003,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/13-asesinos_202511",
    "tags": [],
-   "order": 50,
+   "order": 49,
    "episodes": [
     {
      "n": 1,
@@ -17913,7 +18022,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el-angel-2018",
    "tags": [],
-   "order": 51,
+   "order": 50,
    "episodes": [
     {
      "n": 1,
@@ -17932,7 +18041,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/how-to-train-your-dragon-dreamworks-dragons",
    "tags": [],
-   "order": 52,
+   "order": 51,
    "episodes": [
     {
      "n": 1,
@@ -18581,7 +18690,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/naruto-shippuden-la-pelicula-",
    "tags": [],
-   "order": 53,
+   "order": 52,
    "episodes": [
     {
      "n": 1,
@@ -18620,7 +18729,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/rashomon-subtitulado-espanol",
    "tags": [],
-   "order": 54,
+   "order": 53,
    "episodes": [
     {
      "n": 1,
@@ -18639,7 +18748,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/PeliculaNietzsche",
    "tags": [],
-   "order": 55,
+   "order": 54,
    "episodes": [
     {
      "n": 1,
@@ -18658,7 +18767,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/PalomaDePapelFabrizioAguilar2003",
    "tags": [],
-   "order": 56,
+   "order": 55,
    "episodes": [
     {
      "n": 1,
@@ -18677,7 +18786,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/los-caballeros-del-zodiaco-la-leyenda-del-santuario-edicion-argentina-dvd-rip",
    "tags": [],
-   "order": 57,
+   "order": 56,
    "episodes": [
     {
      "n": 1,
@@ -18696,7 +18805,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/chainsaw-man-the-movie-reze-arc-catch-up-watch-party",
    "tags": [],
-   "order": 58,
+   "order": 57,
    "episodes": [
     {
      "n": 1,
@@ -18715,7 +18824,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/1-5098444725191443505",
    "tags": [],
-   "order": 59,
+   "order": 58,
    "episodes": [
     {
      "n": 1,
@@ -18734,7 +18843,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/doraemon-nobita-y-los-siete-magos-2007-espanol-latino",
    "tags": [],
-   "order": 60,
+   "order": 59,
    "episodes": [
     {
      "n": 1,
@@ -18753,7 +18862,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/the-end-of-evangelion-movie-1999-espanol-latino-netflix-2019",
    "tags": [],
-   "order": 61,
+   "order": 60,
    "episodes": [
     {
      "n": 1,
@@ -18772,7 +18881,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/in-shot-20260202-035147629",
    "tags": [],
-   "order": 62,
+   "order": 61,
    "episodes": [
     {
      "n": 1,
@@ -18791,7 +18900,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/pokemon-el-regreso-de-mewtwo-pelicula-completa-en-espanol-latino",
    "tags": [],
-   "order": 63,
+   "order": 62,
    "episodes": [
     {
      "n": 1,
@@ -18810,7 +18919,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dragon-ball-super-la-batalla-de-los-dioses-hd-en-espanol-latino-dragonball-1080-p-hd",
    "tags": [],
-   "order": 65,
+   "order": 63,
    "episodes": [
     {
      "n": 1,
@@ -18829,7 +18938,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dbz-el-poder-invencible",
    "tags": [],
-   "order": 66,
+   "order": 64,
    "episodes": [
     {
      "n": 1,
@@ -18848,7 +18957,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd",
    "tags": [],
-   "order": 67,
+   "order": 65,
    "episodes": [
     {
      "n": 1,
@@ -18867,7 +18976,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/DBZ.-vhs-devuelvanme-a-mi-gohan-la-republica-1998-peru",
    "tags": [],
-   "order": 68,
+   "order": 66,
    "episodes": [
     {
      "n": 1,
@@ -18886,7 +18995,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dbz-el-hombre-mas-fuerte-de-este-mundo",
    "tags": [],
-   "order": 69,
+   "order": 67,
    "episodes": [
     {
      "n": 1,
@@ -18905,7 +19014,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/sakura-card-captor-en-espanol-latino",
    "tags": [],
-   "order": 70,
+   "order": 68,
    "episodes": [
     {
      "n": 1,
@@ -19614,7 +19723,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/BITBBHLatinSpanish",
    "tags": [],
-   "order": 71,
+   "order": 69,
    "episodes": [
     {
      "n": 1,
@@ -19910,7 +20019,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/20230516_20230516_2048",
    "tags": [],
-   "order": 72,
+   "order": 70,
    "episodes": [
     {
      "n": 1,
@@ -19989,7 +20098,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/como-me-converti-en-superheroe",
    "tags": [],
-   "order": 73,
+   "order": 71,
    "episodes": [
     {
      "n": 1,
@@ -21003,7 +21112,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dragon-ball-z-fusion-1995-720p",
    "tags": [],
-   "order": 74,
+   "order": 72,
    "episodes": [
     {
      "n": 1,
@@ -21022,7 +21131,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dororo-capitulo-23-sub-espanol",
    "tags": [],
-   "order": 75,
+   "order": 73,
    "episodes": [
     {
      "n": 1,
@@ -21161,7 +21270,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/tpo-neon-genesis-evangelion-05-trapo-2019-universo-anime",
    "tags": [],
-   "order": 76,
+   "order": 74,
    "episodes": [
     {
      "n": 1,
@@ -21305,7 +21414,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/darling-espanol-latino-1",
    "tags": [],
-   "order": 77,
+   "order": 75,
    "episodes": [
     {
      "n": 1,
@@ -21324,7 +21433,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/yes-precure-5-subespanol-reuploaded-complete",
    "tags": [],
-   "order": 78,
+   "order": 76,
    "episodes": [
     {
      "n": 1,
@@ -21833,7 +21942,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/serial-experiments-lain-ep-12",
    "tags": [],
-   "order": 79,
+   "order": 77,
    "episodes": [
     {
      "n": 1,
@@ -21912,7 +22021,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/samurai-troopers-e-16",
    "tags": [],
-   "order": 80,
+   "order": 78,
    "episodes": [
     {
      "n": 1,
@@ -22121,7 +22230,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/zombieland-saga-yumeginga-paradise",
    "tags": [],
-   "order": 81,
+   "order": 79,
    "episodes": [
     {
      "n": 1,
@@ -22265,7 +22374,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/mythical-detective-loki-lat",
    "tags": [],
-   "order": 82,
+   "order": 80,
    "episodes": [
     {
      "n": 1,
@@ -22409,7 +22518,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/el_regreso_de_la_llorona",
    "tags": [],
-   "order": 83,
+   "order": 81,
    "episodes": [
     {
      "n": 1,
@@ -22428,7 +22537,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/elfen-lied-latino_202510",
    "tags": [],
-   "order": 84,
+   "order": 82,
    "episodes": [
     {
      "n": 1,
@@ -22512,7 +22621,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/candy.candy_202109",
    "tags": [],
-   "order": 85,
+   "order": 83,
    "episodes": [
     {
      "n": 1,
@@ -23101,7 +23210,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/ranma-nibunnoichi-espanol-latino-y-japones",
    "tags": [],
-   "order": 86,
+   "order": 84,
    "episodes": [
     {
      "n": 1,
@@ -23920,7 +24029,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/RebeldeWay",
    "tags": [],
-   "order": 87,
+   "order": 85,
    "episodes": [
     {
      "n": 1,
@@ -82289,5 +82398,5 @@
    "at": 1788630194628
   }
  },
- "sig": "EzMGR6ppyg5NC8/gCiCOhjw3J3+vH9sv3Q2qGXpQhNntGfqyBeBQfTLCUOxAuEEk+KsR+olHeH8VZUP4wUZlVg=="
+ "sig": "+KpRHEN4St6Z1ACl1fqxPrviEpUAwmyORbuUeVPdWsx6tdqP6HI9CczQJafKK235volcKK9/YhRUksZ6RutElQ=="
 }
