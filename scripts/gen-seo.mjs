@@ -442,6 +442,41 @@ footer{margin-top:44px;color:#55556e;font-size:11px;letter-spacing:1.5px;text-tr
 </html>`;
 }
 
+/* ── feed RSS (lectores, agregadores, auto-difusión) ──
+   Cada item: título · imagen · pequeño resumen · enlace a seguir viendo.
+   Se publican los títulos ya online, los más recientes primero. */
+function feedXml(items) {
+  const escCdata = s => String(s || '').replace(/]]>/g, ']]]]><![CDATA[>');
+  const rssDate = d => new Date((d || new Date().toISOString().slice(0, 10)) + 'T12:00:00Z').toUTCString();
+  const body = items.map(it => `  <item>
+    <title>${esc(it.t)}</title>
+    <link>${SITE}/ver/${it.slug}/</link>
+    <guid isPermaLink="true">${SITE}/ver/${it.slug}/</guid>
+    <pubDate>${rssDate(it.at)}</pubDate>
+    ${it.poster ? `<media:content url="${esc(it.poster)}" medium="image"/>` : ''}
+    <description><![CDATA[
+      ${it.poster ? `<p><img src="${it.poster}" alt="${esc(it.t)}" style="max-width:220px;border-radius:10px"></p>` : ''}
+      <p>${escCdata(it.resumen)}</p>
+      <p><a href="${SITE}/ver/${it.slug}/">▶ Continuar viendo: ${esc(it.t)}</a></p>
+    ]]></description>
+  </item>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>X·STREAM — estrenos y catálogo</title>
+  <link>${SITE}/</link>
+  <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Anime, series y películas completas en español, gratis y en HD.</description>
+  <language>es</language>
+  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+${body}
+</channel>
+</rss>
+`;
+}
+
+/* __NEXT_FEED__ */
+
 /* ── orquestador ── */
 (async () => {
   const series = (cat.series || []).filter(s => s && s.t && slugify(s.t));
@@ -487,10 +522,16 @@ footer{margin-top:44px;color:#55556e;font-size:11px;letter-spacing:1.5px;text-tr
 
   const urls = [];
   const newUrls = [];
+  const feedItems = [];
   let nEpis = 0;
   for (const s of publicados) {
     const { slug, at } = state.items[s.id];
     const d = await tmdbFor(s);
+    feedItems.push({
+      t: s.t, slug, at,
+      poster: (d && d.poster) || s.poster || '',
+      resumen: clip((d && d.overview) || `${s.t} disponible completa y en español en X·STREAM${s.kind === 'pelicula' ? '' : ` (${(s.episodes || []).length} capítulos)`}.`, 300),
+    });
     const dir = path.join(outRoot, slug);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), pageHtml(s, d, slug), 'utf8');
@@ -519,6 +560,7 @@ ${urls.map(([u, at]) => `  <url><loc>${u}</loc><lastmod>${at || today}</lastmod>
 </urlset>
 `;
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sm, 'utf8');
+  fs.writeFileSync(path.join(ROOT, 'feed.xml'), feedXml([...feedItems].sort((a, b) => String(b.at).localeCompare(String(a.at))).slice(0, 50)), 'utf8');
   fs.writeFileSync(path.join(ROOT, 'sitemap-urls.json'), JSON.stringify(urls.map(x => x[0])), 'utf8');
   fs.writeFileSync(path.join(ROOT, 'seo-new-urls.json'), JSON.stringify(newUrls), 'utf8');
   fs.writeFileSync(stateFile, JSON.stringify(state), 'utf8');

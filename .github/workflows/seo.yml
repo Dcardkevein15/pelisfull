@@ -27,7 +27,7 @@ jobs:
         run: |
           git config user.name "xstream-seo[bot]"
           git config user.email "seo-bot@yapido.click"
-          git add ver/ sitemap.xml sitemap-urls.json seo-state.json seo-cache.json seo-new-urls.json
+          git add ver/ sitemap.xml sitemap-urls.json seo-state.json seo-cache.json seo-new-urls.json feed.xml
           git diff --cached --quiet && echo "Sin cambios" && exit 0
           git commit -m "chore(seo): regenerado (cupo diario / catálogo)"
           git pull --rebase --autostash origin main
