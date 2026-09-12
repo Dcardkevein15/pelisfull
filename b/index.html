@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Abriendo… · X·STREAM</title>
+<style>
+*{margin:0;box-sizing:border-box}
+body{min-height:100vh;display:grid;place-items:center;background:#07070d;color:#f4f4fb;font-family:system-ui,sans-serif}
+.box{text-align:center;padding:24px;max-width:420px}
+.logo{width:56px;height:56px;margin:0 auto 14px;background:#d8ff3e;color:#111;border-radius:14px;display:grid;place-items:center;font-size:30px;font-weight:900}
+.spin{width:34px;height:34px;margin:4px auto 14px;border:3px solid #20202f;border-top-color:#d8ff3e;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+p{color:#9a9ab2;font-size:14px;line-height:1.55}
+a{color:#d8ff3e}
+.err .spin{display:none}
+small{display:block;margin-top:14px;color:#55556e;font-size:10.5px;letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="box" id="box">
+  <div class="logo">X</div>
+  <div class="spin"></div>
+  <p id="msg">Abriendo enlace…</p>
+  <small>X·STREAM · enlaces cortos</small>
+</div>
+<script>
+(async () => {
+  const box = document.getElementById('box');
+  const setMsg = m => { document.getElementById('msg').innerHTML = m; };
+  const fail = m => { box.classList.add('err'); setMsg(m); };
+  try {
+    /* código desde la ruta (/657432), la query (?657432) o el hash (#657432) —
+       así funciona igual en b.yapido.click (con rewrites) que en x.yapido.click/b/ */
+    let code = (location.pathname.split('/').filter(Boolean).pop() || '');
+    if (/^b$/i.test(code)) code = '';
+    code = code || location.search.replace(/^\?/, '').split('&')[0] || (location.hash || '').replace(/^#\/?/, '');
+    code = decodeURIComponent(code).trim().toLowerCase();
+
+    const data = await (await fetch('links.json', { cache: 'no-store' })).json();
+    const dom = String(data.dominio || 'https://x.yapido.click').replace(/\/+$/, '');
+
+    if (!code) {
+      fail(`Abre tu enlace con el código: <code>…/${'{'}código{'}'}</code><br>o entra directo a <a href="${dom}/">X·STREAM</a>`);
+      return;
+    }
+    const e = data.links && data.links[code];
+    if (!e) {
+      fail(`Este enlace <b>${code}</b> ya no existe o fue retirado.<br><a href="${dom}/">Ir a X·STREAM</a>`);
+      return;
+    }
+    const dest = /^https?:\/\//i.test(e.dest || '') ? e.dest
+      : e.dest.charAt(0) === '#' ? dom + '/' + e.dest
+      : dom + e.dest;
+    setMsg(`Abriendo <b>${(e.t || code).replace(/</g, '&lt;')}</b>…`);
+    location.replace(dest);
+    setTimeout(() => { location.href = dest; }, 1200); /* red de seguridad */
+  } catch (err) {
+    fail('No se pudo abrir el enlace. <a href="https://x.yapido.click/">Ir a X·STREAM</a>');
+  }
+})();
+</script>
+</body>
+</html>
