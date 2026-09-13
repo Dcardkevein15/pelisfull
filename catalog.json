@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1789246709911,
+ "v": 1789284846178,
  "by": "Dcard #2968",
- "at": "2026-09-12T20:58:29.911Z",
+ "at": "2026-09-13T07:34:06.178Z",
  "n": 5325,
  "series": [
   {
@@ -14104,7 +14104,7 @@
   },
   {
    "id": "ia-how-to-train-your-dragon-dreamworks-dragons",
-   "t": "How To Train Your Dragon - DreamWorks Dragons: The Complete Series (Seasons 1-8 ",
+   "t": "How To Train Your Dragon - DreamWorks Dragons",
    "jp": "📺",
    "tag": "Cine IA · Temporada · 2012",
    "g": 5,
@@ -78529,7 +78529,23 @@
    "at": 1788630194628
   }
  },
- "links": {},
+ "links": {
+  "cyvw96": {
+   "dest": "#/anime/elfen-lied/1",
+   "t": "",
+   "at": 1789274786851
+  },
+  "vr4sxh": {
+   "dest": "#/anime/elfen-lied/1",
+   "t": "",
+   "at": 1789279626592
+  },
+  "aaf6hu": {
+   "dest": "#/anime/elfen-lied/1",
+   "t": "",
+   "at": 1789284830765
+  }
+ },
  "linksDom": "https://x.yapido.click",
- "sig": "zQjtQY9EsMFxjlJ7bEZe8MxN1Pv3Sc9iCl8BETpK+HNISwP4tdEQgrabj+qGOFqZHNdmHTi62/TbJutYQ9+lgA=="
+ "sig": "Wo3ldQ5x33oOSrDjsLZZlgw+CwU6HpAcBpXOC3nU2ibLMyQ4ZKLapkBb3XYThwq6EW91D1kzuKAT75M2sDpoUg=="
 }
