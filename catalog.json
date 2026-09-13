@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1789284846178,
+ "v": 1789315016821,
  "by": "Dcard #2968",
- "at": "2026-09-13T07:34:06.178Z",
+ "at": "2026-09-13T15:56:56.821Z",
  "n": 5325,
  "series": [
   {
@@ -78544,8 +78544,18 @@
    "dest": "#/anime/elfen-lied/1",
    "t": "",
    "at": 1789284830765
+  },
+  "3ztv78": {
+   "dest": "#/anime/elfen-lied/1",
+   "t": "",
+   "at": 1789314994125
+  },
+  "rmd7q8": {
+   "dest": "#/anime/voltron/1",
+   "t": "",
+   "at": 1789315007108
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "Wo3ldQ5x33oOSrDjsLZZlgw+CwU6HpAcBpXOC3nU2ibLMyQ4ZKLapkBb3XYThwq6EW91D1kzuKAT75M2sDpoUg=="
+ "sig": "VlwMeCNlq8SAYkq/7AiuCUQj3qUPjDGhKbiocPQWHRaOfUwKn0KpvvgkRC21BfLfBTpWs9kBK9r+9V3HsPc+eg=="
 }
