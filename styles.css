@@ -973,7 +973,11 @@ body.light .side-tab.on{color:#6a9000}
   border-bottom:1px solid var(--line);
 }
 .side-panel.collapsed{max-height:0;opacity:0;border-bottom:none;pointer-events:none}
-.side-tools{display:flex;gap:6px;padding:10px 10px 8px;align-items:center}
+.side-tools{display:flex;gap:6px;padding:10px 10px 8px;align-items:center;flex-wrap:wrap}
+/* la barra de herramientas no se desborda: el ordenador va en su fila
+   y los chips se reparten el ancho a partes iguales en la siguiente */
+.side-tools .sort-select{flex:1 1 100%;min-width:0}
+.side-tools .chip-filter{flex:1 1 auto;justify-content:center;text-align:center;padding:6px 8px;font-size:10.5px}
 .trash2{color:var(--dim)}
 .trash2:hover{color:var(--hot);border-color:var(--hot)}
 .trash2 b{font-family:'JetBrains Mono';font-size:9.5px}
