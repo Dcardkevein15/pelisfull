@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1789315016821,
+ "v": 1789316634367,
  "by": "Dcard #2968",
- "at": "2026-09-13T15:56:56.821Z",
+ "at": "2026-09-13T16:23:54.367Z",
  "n": 5325,
  "series": [
   {
@@ -78557,5 +78557,5 @@
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "VlwMeCNlq8SAYkq/7AiuCUQj3qUPjDGhKbiocPQWHRaOfUwKn0KpvvgkRC21BfLfBTpWs9kBK9r+9V3HsPc+eg=="
+ "sig": "Z9K7i5sG8F5/0m73SfDRAlrYFLP+p4oBLo+CVOEFBqjv4y9Xt8zdQrs9Flqi7gMINRAx2+h+m2Y07zVZdqJmBQ=="
 }
