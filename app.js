@@ -4550,7 +4550,11 @@ async function refetchPoster(s) {
   s.posterTried = false;
   for (const q of posterTitleCandidates(s.t)) {
     try {
-      const p = await fetchAniListPoster(q);
+      /* películas y series no‑anime preguntan primero a TMDB; anime sigue con AniList */
+      let p = (s.kind === 'pelicula' || s.anime === false)
+        ? await fetchTmdbPoster({ kind: s.kind, t: q })
+        : null;
+      if (!p) p = await fetchAniListPoster(q);
       if (p) {
         s.poster = p; s.posterTried = true;
         save();
@@ -5006,7 +5010,7 @@ const posterQueue = [];
 let posterBusy = false;
 function queuePoster(s, force = false) {
   if (s.poster) return;
-  if (!force && (s.posterTried || s.kind === 'pelicula' || s.id.startsWith('file-'))) return;
+  if (!force && (s.posterTried || s.id.startsWith('file-'))) return;
   if (posterQueue.includes(s)) return;
   s.posterTried = true;
   if (force) posterQueue.unshift(s);   // los forzados (renombrados por ti) van primero
@@ -5027,13 +5031,30 @@ async function fetchAniListPoster(title) {
   const j = await res.json();
   return (j.data && j.data.Media && j.data.Media.coverImage && j.data.Media.coverImage.large) || null;
 }
+/* ── Portadas TMDB para películas y series no‑anime ──
+   (antes solo AniList: el cine importado se quedaba sin carátula) */
+async function fetchTmdbPoster(s) {
+  const tipo = s.kind === 'pelicula' ? 'movie' : 'tv';
+  const q = String(s.t || '')
+    .replace(/[:\-–—·]/g, ' ').replace(/\b(19|20)\d{2}\b/g, '')
+    .replace(/\b(latino|español|espanol|castellano|subtitulada|subtitulado|subs?|vose|hd|4k|uhd|720p|1080p|480p|2160p|completas?|completos?|peliculas?|online|gratis|dual|audio|mega|1link|tv|rip|xvid|dvdrip|brrip|bdrip|hdrip|webrip|x264|h264|movie|film)\b/gi, '')
+    .replace(/\s{2,}/g, ' ').trim().slice(0, 80);
+  if (!q) return null;
+  const r = await fetch(`https://api.themoviedb.org/3/search/${tipo}?api_key=${TMDB_KEY_APP}&language=es-ES&query=${encodeURIComponent(q)}&page=1`);
+  if (!r.ok) return null;
+  const j = await r.json();
+  const top = (j.results || [])[0];
+  return top && top.poster_path ? `https://image.tmdb.org/t/p/w500${top.poster_path}` : null;
+}
 async function processPosterQueue() {
   if (posterBusy) return;
   posterBusy = true;
   while (posterQueue.length) {
     const s = posterQueue.shift();
     try {
-      const p = await fetchAniListPoster(s.t);
+      const p = s.kind === 'pelicula' || s.anime === false
+        ? await fetchTmdbPoster(s)          /* cine/series → TMDB */
+        : await fetchAniListPoster(s.t);    /* anime → AniList */
       if (p) {
         s.poster = p;
         save();
