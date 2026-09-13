@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789317575949,
+ "v": 1789339132399,
  "by": "Dcard #2968",
- "at": "2026-09-13T16:39:35.949Z",
- "n": 5325,
+ "at": "2026-09-13T22:38:52.399Z",
+ "n": 5326,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -20856,6 +20856,43 @@
      "n": 1,
      "t": "Aika zero OVAS 1, 2 y 3 full - japones subs español",
      "url": "https://archive.org/download/aik_20250304/aik.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-hhh-triple-ecchi-sub-spanish",
+   "t": "HHH Triple Ecchi Sub Spanish",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/hhh-triple-ecchi-sub-spanish",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "HHH Triple Ecchi 01 Sub Spanish",
+     "url": "https://archive.org/download/hhh-triple-ecchi-sub-spanish/HHH%20Triple%20Ecchi%2001%20Sub%20Spanish.mp4"
+    },
+    {
+     "n": 2,
+     "t": "HHH Triple Ecchi 02 Sub Spanish",
+     "url": "https://archive.org/download/hhh-triple-ecchi-sub-spanish/HHH%20Triple%20Ecchi%2002%20Sub%20Spanish.mp4"
+    },
+    {
+     "n": 3,
+     "t": "HHH Triple Ecchi 03 Sub Spanish",
+     "url": "https://archive.org/download/hhh-triple-ecchi-sub-spanish/HHH%20Triple%20Ecchi%2003%20Sub%20Spanish.mp4"
+    },
+    {
+     "n": 4,
+     "t": "HHH Triple Ecchi 04 Sub Spanish",
+     "url": "https://archive.org/download/hhh-triple-ecchi-sub-spanish/HHH%20Triple%20Ecchi%2004%20Sub%20Spanish.mp4"
+    },
+    {
+     "n": 5,
+     "t": "HHH Triple Ecchi Bonus Sub Spanish",
+     "url": "https://archive.org/download/hhh-triple-ecchi-sub-spanish/HHH%20Triple%20Ecchi%20Bonus%20Sub%20Spanish.mp4"
     }
    ]
   }
@@ -78557,5 +78594,5 @@
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "Hf2oc7LT1Y/esHnWpA7sGSGyilsa2fEZifugHKxR+4+opzzz0Aex02vAa1/Ip2t3TfOdujv73qTpTh8Uti43uw=="
+ "sig": "j51rxneW27aFYTyRCZn9+xr8BlJ14FUUIF/++pjAnML9EBrA/bhz9rE4aVgQ6v0ZzsnkGlKFmzP03K9scCsYGA=="
 }
