@@ -34,8 +34,15 @@ small{display:block;margin-top:14px;color:#55556e;font-size:10.5px;letter-spacin
     /* código desde la ruta (/657432), la query (?657432) o el hash (#657432) —
        así funciona igual en b.yapido.click (con rewrites) que en x.yapido.click/b/ */
     const segs = location.pathname.split('/').filter(Boolean).map(x => { try { return decodeURIComponent(x); } catch (e) { return x; } });
-    const data = await (await fetch('links.json', { cache: 'no-store' })).json();
-    const dom = String(data.dominio || 'https://x.yapido.click').replace(/\/+$/, '');
+    /* 🚀 velocidad: esperamos links.json máximo 400 ms; si tarda, salimos ya
+       con el dominio por defecto (la redirección estática de cada código
+       cubre casi todo; esto es solo el resolutor de respaldo) */
+    const DOM_DEF = 'https://x.yapido.click';
+    const data = (await Promise.any([
+      fetch('links.json', { cache: 'no-store' }).then(r => r.json()),
+      new Promise(res => setTimeout(() => res(null), 400)),
+    ])) || { dominio: DOM_DEF, links: {} };
+    const dom = String(data.dominio || DOM_DEF).replace(/\/+$/, '');
 
     /* 🅰️ modo vínculo de contenido: /v/<slug>[/<capítulo>]
        El destino se calcula en el momento: NO hace falta publicar nada. */

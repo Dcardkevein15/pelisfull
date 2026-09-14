@@ -553,6 +553,60 @@ ${body}
     }
   }
 
+  /* 🔗 ACORTADOR b/ — redirección INSTANTÁNEA por páginas estáticas:
+     · el bot crea un código de 6 para CADA título publicado (persistido en seo-state.json)
+     · se materializa b/<código>/index.html con meta-refresh (0 ms de espera)
+     · y b/links.json combina catálogo (firmado) + estado (bot)            */
+  state.links = state.links && !Array.isArray(state.links) ? state.links : {};
+  const ldom = (cat.linksDom || SITE).replace(/\/+$/, '');
+  const ABC = 'abcdefghjkmnpqrstuvwxyz23456789';
+  const taked = new Set([...Object.keys(cat.links || {}), ...Object.keys(state.links)]);
+  const mint = () => {
+    let c = '';
+    do { c = Array.from({ length: 6 }, () => ABC[Math.floor(Math.random() * ABC.length)]).join(''); }
+    while (taked.has(c));
+    taked.add(c);
+    return c;
+  };
+  const destToCode = new Map();
+  for (const [c, e] of Object.entries(cat.links || {})) destToCode.set(e.dest, c);
+  for (const [c, e] of Object.entries(state.links)) if (!destToCode.has(e.dest)) destToCode.set(e.dest, c);
+  let minted = 0;
+  for (const s of publicados) {
+    const { slug, at } = state.items[s.id];
+    const dest = `/ver/${slug}/`;
+    if (!destToCode.has(dest)) {
+      const c = mint();
+      state.links[c] = { dest, t: s.t, at };
+      destToCode.set(dest, c);
+      minted++;
+    }
+  }
+  /* mapa combinado: el catálogo firmado manda, el bot solo añade lo nuevo */
+  const linksAll = Object.assign({}, cat.links || {});
+  for (const [c, e] of Object.entries(state.links)) if (!linksAll[c]) linksAll[c] = e;
+  const bDir = path.join(ROOT, 'b');
+  fs.mkdirSync(bDir, { recursive: true });
+  fs.writeFileSync(path.join(bDir, 'links.json'), JSON.stringify({ dominio: ldom, links: linksAll }), 'utf8');
+  /* una página física por código: el navegador salta al parsearla, sin espera */
+  const redirectHtml = (dest, t) => `<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<meta http-equiv="refresh" content="0;url=${esc(dest)}">
+<link rel="canonical" href="${esc(dest)}">
+<title>Abriendo ${esc(t || '…')} · X·STREAM</title>
+<script>location.replace(${JSON.stringify(dest)});</script>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#07070d;color:#9a9ab2;font-family:system-ui}a{color:#d8ff3e}</style>
+</head><body><div>Abriendo <b>${esc(t || 'enlace')}</b>… <a href="${esc(dest)}">continuar</a></div></body></html>
+`;
+  for (const [c, e] of Object.entries(linksAll)) {
+    const dest = /^https?:\/\//i.test(e.dest || '')
+      ? e.dest
+      : ldom + (String(e.dest).startsWith('#') ? '/' + e.dest : e.dest);
+    const dir = path.join(bDir, c);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), redirectHtml(dest, e.t), 'utf8');
+  }
+
   const sm = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE}/</loc><lastmod>${today}</lastmod><priority>1.0</priority></url>
@@ -562,15 +616,10 @@ ${urls.map(([u, at]) => `  <url><loc>${u}</loc><lastmod>${at || today}</lastmod>
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sm, 'utf8');
   fs.writeFileSync(path.join(ROOT, 'feed.xml'), feedXml([...feedItems].sort((a, b) => String(b.at).localeCompare(String(a.at))).slice(0, 50)), 'utf8');
 
-  /* 🔗 acortador: el mapa viaja firmado dentro del catálogo → se materializa en b/links.json */
-  fs.mkdirSync(path.join(ROOT, 'b'), { recursive: true });
-  fs.writeFileSync(path.join(ROOT, 'b', 'links.json'),
-    JSON.stringify({ dominio: cat.linksDom || SITE, links: cat.links || {} }), 'utf8');
-  fs.writeFileSync(path.join(ROOT, 'sitemap-urls.json'), JSON.stringify(urls.map(x => x[0])), 'utf8');
-  fs.writeFileSync(path.join(ROOT, 'seo-new-urls.json'), JSON.stringify(newUrls), 'utf8');
+  /* (el acortador b/ ya se generó arriba: links.json + páginas de redirección instantánea) */
   fs.writeFileSync(stateFile, JSON.stringify(state), 'utf8');
   fs.writeFileSync(cacheFile, JSON.stringify(cache), 'utf8');
 
   const quedan = pendientes.length - nuevos.length;
-  console.log(`✅ SEO v2: +${nuevos.length} títulos hoy (cupo ${DAILY_LIMIT}/día${FORCE ? ', forzado' : ''}) · publicados ${publicados.length}/${series.length} · ${nEpis} páginas de capítulo · sitemap ${urls.length + 1} urls · en cola: ${quedan}`);
+  console.log(`✅ SEO v2: +${nuevos.length} títulos hoy (cupo ${DAILY_LIMIT}/día${FORCE ? ', forzado' : ''}) · publicados ${publicados.length}/${series.length} · ${nEpis} páginas de capítulo · ${minted} códigos cortos nuevos · sitemap ${urls.length + 1} urls · en cola: ${quedan}`);
 })().catch(e => { console.error(e); process.exit(1); });
