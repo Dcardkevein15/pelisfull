@@ -2601,7 +2601,8 @@ function loadEpisode(epN, autoplayNow = true) {
       ? `Número real en la fuente: ${realVal} — clic: saltar a su tarjeta`
       : 'Clic: saltar a su tarjeta en la lista';
     pill.addEventListener('click', () => scrollToEpCard(ep.n));
-    els.stageBadges.appendChild(pill);
+    /* justo DESPUÉS del título, antes de los chips ANIME/episodios… */
+    els.stageBadges.parentElement.insertBefore(pill, els.stageBadges);
   }
     document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
   els.shareBtn.classList.remove('hidden');
