@@ -581,10 +581,23 @@ ${body}
       destToCode.set(dest, c);
       minted++;
     }
+    /* …y un código propio por CADA capítulo publicado de la serie */
+    if (s.kind !== 'pelicula') {
+      for (const ep of (s.episodes || []).filter(e => e.url)) {
+        const destEp = `${dest}capitulo-${ep.n}/`;
+        if (!destToCode.has(destEp)) {
+          const c = mint();
+          state.links[c] = { dest: destEp, t: `${s.t} · E${ep.n}`, at };
+          destToCode.set(destEp, c);
+          minted++;
+        }
+      }
+    }
   }
   /* mapa combinado: el catálogo firmado manda, el bot solo añade lo nuevo */
   const linksAll = Object.assign({}, cat.links || {});
   for (const [c, e] of Object.entries(state.links)) if (!linksAll[c]) linksAll[c] = e;
+  /* 🚀 alias legible NO se genera: solo existen códigos de 6 caracteres */
   const bDir = path.join(ROOT, 'b');
   fs.mkdirSync(bDir, { recursive: true });
   fs.writeFileSync(path.join(bDir, 'links.json'), JSON.stringify({ dominio: ldom, links: linksAll }), 'utf8');
@@ -606,13 +619,7 @@ ${body}
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), redirectHtml(dest, e.t), 'utf8');
   }
-  /* 🚀 alias legible de compartir: /v/<slug>/ también redirige SIN resolutor */
-  for (const s of publicados) {
-    const { slug } = state.items[s.id];
-    const dir = path.join(bDir, 'v', slug);
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), redirectHtml(`${ldom}/ver/${slug}/`, s.t), 'utf8');
-  }
+
 
   const sm = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

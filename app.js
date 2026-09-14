@@ -2962,19 +2962,17 @@ function openShare(seriesId, epN) {
   const s = getSeries(seriesId);
   const ep = s && s.episodes.find(e => e.n === epN);
   if (!s || !ep) return;
-  /* 🔗 compartir = enlace corto b.yapido.click (auto-descifrable, sin publicar) */
-  const url = buildShareShortUrl(s, ep);
-  shareCtx = { s, ep, url, msg: `▶ ${s.t} — Capítulo ${ep.n} · míralo en X·STREAM` };
+  /* 🔗 compartir = códigos de 6 caracteres de b.yapido.click, creados automáticamente */
+  shareCtx = { s, ep, url: buildShareUrl(s, ep), msg: `▶ ${s.t} — Capítulo ${ep.n} · míralo en X·STREAM` };
 
   els.shareTitle.textContent = `${s.t} · Capítulo ${ep.n}`;
-  els.shareUrl.value = url;
+  els.shareUrl.value = '…';
 
-  /* 👑 admin: además fija un código de 6 caracteres en el acortador */
-  mintAdminShareLink(s, ep).then(code => {
-    if (code && shareCtx) {
-      shareCtx.url = `${SHORT_HOST}/${code}`;
-      els.shareUrl.value = shareCtx.url;
-    }
+  shareCodeFor(s, ep).then(async code => {
+    let final = code;
+    if (!final) final = await mintAdminShareLink(s, ep);   /* contenido aún no publicado → el admin lo fija */
+    if (final) { shareCtx.url = final; els.shareUrl.value = final; }
+    else els.shareUrl.value = shareCtx.url;                /* último caso: enlace largo de la app */
   });
 
   /* botones de redes */
@@ -3018,29 +3016,34 @@ function copyShareLink() {
 
 els.copyShareUrl.addEventListener('click', copyShareLink);
 
-/* ═══════════ 🔗 Compartir con enlace corto b.yapido.click ═══════════
-   · Todo el mundo: b.yapido.click/v/<slug>/<cap> — el resolutor lo
-     descifra solo, sin publicar nada, al instante.
-   · Admin compartiendo: además se crea (una sola vez) el código de 6
-     caracteres en el acortador real — viaja con la próxima publicación. */
+/* ═══════════ 🔗 Compartir = código corto de 6 (b.yapido.click) ═══════════
+   El bot ya minteo un código por título y por capítulo publicado.
+   Aquí solo se BUSCA ese código; si el contenido aún no está publicado,
+   el admin lo crea manual. Nunca se genera ningún otro formato. */
 const SHORT_HOST = 'https://b.yapido.click';
-function buildShareShortUrl(s, ep) {
-  return `${SHORT_HOST}/v/${slugify(s.t)}` + (s.kind === 'pelicula' || !ep ? '' : `/${ep.n}`);
+async function shareCodeFor(s, ep) {
+  const st = await lnkSeoState() || {};
+  const pub = st.items && st.items[s.id];
+  if (!pub) return null;
+  const dest = `/ver/${pub.slug}/` + (s.kind !== 'pelicula' && ep ? `capitulo-${ep.n}/` : '');
+  const hit = Object.entries(st.links || {}).find(([, e]) => e.dest === dest);
+  return hit ? `${SHORT_HOST}/${hit[0]}` : null;
 }
 async function mintAdminShareLink(s, ep) {
   if (!canAdmin()) return null;
-  const items = await lnkSeoState();
-  const pub = items[s.id] && items[s.id].slug;
+  const st = await lnkSeoState() || {};
+  const items = st.items || {};
+  const pub = items[s.id];
   const dest = pub
-    ? `/ver/${pub}/` + (s.kind !== 'pelicula' && ep ? `capitulo-${ep.n}/` : '')
+    ? `/ver/${pub.slug}/` + (s.kind !== 'pelicula' && ep ? `capitulo-${ep.n}/` : '')
     : `#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${slugify(s.t)}${s.kind !== 'pelicula' && ep ? '/' + ep.n : ''}`;
   const existente = Object.entries(state.links || {}).find(([, e]) => e.dest === dest);
-  if (existente) return existente[0];
+  if (existente) return `${SHORT_HOST}/${existente[0]}`;
   const code = newLinkCode();
   state.links[code] = { dest, t: `${s.t}${s.kind !== 'pelicula' && ep ? ' · E' + ep.n : ''}`, at: Date.now() };
   save();
-  setTimeout(() => toast(`🔗 Código corto listo: b.yapido.click/${code} · se activa al publicar el catálogo`), 500);
-  return code;
+  setTimeout(() => toast(`🔗 Código ${code} creado — se activa al publicar el catálogo`), 500);
+  return `${SHORT_HOST}/${code}`;
 }
 /* el input del enlace compartido se auto-selecciona al tocarlo (sin inline handlers: CSP) */
 els.shareUrl.addEventListener('click', () => els.shareUrl.select());
@@ -4404,21 +4407,21 @@ if (els.trendsBtn) els.trendsBtn.addEventListener('click', () => { if (needAdmin
    sync a los 3 proyectos) y el bot materializa b/links.json. Cambiar el
    "dominio destino" reubica TODOS los enlaces sin tocar nada más.      */
 let linksBox = null;
-const lnkSeoCache = { at: 0, items: null };
+const lnkSeoCache = { at: 0, data: null };
 async function lnkSeoState() {
-  if (lnkSeoCache.items && Date.now() - lnkSeoCache.at < 3600e3) return lnkSeoCache.items;
+  if (lnkSeoCache.data && Date.now() - lnkSeoCache.at < 3600e3) return lnkSeoCache.data;
   try {
     const j = await (await fetch('seo-state.json', { cache: 'no-store' })).json();
-    lnkSeoCache.items = j.items || {};
+    lnkSeoCache.data = { items: j.items || {}, links: j.links || {} };
     lnkSeoCache.at = Date.now();
-  } catch (e) { lnkSeoCache.items = {}; }
-  return lnkSeoCache.items;
+  } catch (e) { lnkSeoCache.data = { items: {}, links: {} }; }
+  return lnkSeoCache.data;
 }
 const newLinkCode = () => {
   const abc = 'abcdefghjkmnpqrstuvwxyz23456789';   /* sin caracteres ambiguos (0/o, 1/l) */
   let c = '';
   do { c = Array.from({ length: 6 }, () => abc[Math.floor(Math.random() * abc.length)]).join(''); }
-  while (state.links[c]);
+  while (state.links[c] || (lnkSeoCache.data && lnkSeoCache.data.links[c]));
   return c;
 };
 const lnkDestFinal = e => /^https?:\/\//i.test(e.dest || '')
@@ -4430,34 +4433,46 @@ const lnkDestFinal = e => /^https?:\/\//i.test(e.dest || '')
 async function lnkDestActual() {
   const s = getSeries(current.seriesId);
   if (!s) return '/';
-  const items = await lnkSeoState();
-  const pub = items[s.id] && items[s.id].slug;
+  const st = await lnkSeoState();
+  const pub = (st.items || {})[s.id] && st.items[s.id].slug;
   if (pub) return `/ver/${pub}/` + (s.kind !== 'pelicula' && current.ep ? `capitulo-${current.ep}/` : '');
   return `#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${slugify(s.t)}${s.kind !== 'pelicula' && current.ep ? '/' + current.ep : ''}`;
 }
 
-function renderLinksList() {
+async function renderLinksList() {
   const list = linksBox.querySelector('#lnkList');
-  const entries = Object.entries(state.links || {}).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
-  if (!entries.length) {
+  const st = await lnkSeoState();
+  const auto = st.links || {};
+  const propios = Object.entries(state.links || {});
+  const extras = Object.entries(auto).filter(([c]) => !(state.links || {})[c]);
+  const all = [...propios.map(([c, e]) => [c, e, true]), ...extras.map(([c, e]) => [c, e, false])]
+    .sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
+  if (!all.length) {
     list.innerHTML = '<div class="tr-loading">Aún no hay enlaces — crea el primero arriba.</div>';
     return;
   }
-  list.innerHTML = entries.map(([code, e]) => {
+  list.innerHTML = `<div class="tr-note" style="margin:2px 0 8px">${all.length} enlaces activos · ${propios.length} creados por ti · ${extras.length} automáticos</div>` + all.map(([code, e, propio]) => {
     const full = lnkDestFinal(e);
-    return `<div class="lnk-row" data-code="${code}">
+    return `<div class="lnk-row" data-code="${code}" data-own="${propio ? 1 : 0}">
       <code class="lnk-code">${code}</code>
       <span class="lnk-dest" title="${escapeHtml(full)}">${escapeHtml(full.length > 46 ? full.slice(0, 45) + '…' : full)}</span>
       <span class="lnk-t">${escapeHtml(e.t || '')}</span>
+      ${propio ? '' : '<span class="lnk-auto" title="Creado automáticamente por el sistema">🤖</span>'}
       <button class="lnk-b" data-a="copy" title="Copiar https://b.yapido.click/${code}">📋</button>
       <button class="lnk-b" data-a="open" title="Probar destino">↗</button>
-      <button class="lnk-b" data-a="edit" title="Editar destino / título">✎</button>
-      <button class="lnk-b danger" data-a="del" title="Eliminar este enlace">🗑</button>
+      <button class="lnk-b" data-a="edit" title="${propio ? 'Editar destino / título' : 'Adoptar y editar (los automáticos pasan a tu control)'}">✎</button>
+      ${propio ? '<button class="lnk-b danger" data-a="del" title="Eliminar este enlace">🗑</button>' : ''}
     </div>`;
   }).join('');
   list.querySelectorAll('[data-a]').forEach(b => b.addEventListener('click', async () => {
-    const code = b.closest('.lnk-row').dataset.code;
-    const e = state.links[code];
+    const row = b.closest('.lnk-row');
+    const code = row.dataset.code;
+    const auto0 = (lnkSeoCache.data && lnkSeoCache.data.links) || {};
+    if (b.dataset.a === 'edit' && !state.links[code] && auto0[code]) {
+      state.links[code] = { ...auto0[code] };   /* adoptar: pasa a tu control */
+      save();
+    }
+    const e = state.links[code] || auto0[code];
     if (!e) return;
     if (b.dataset.a === 'copy') { if (navigator.clipboard) navigator.clipboard.writeText(`https://b.yapido.click/${code}`); toast(`📋 b.yapido.click/${code} copiado`); }
     else if (b.dataset.a === 'open') window.open(lnkDestFinal(e), '_blank', 'noopener');
@@ -4472,7 +4487,8 @@ function renderLinksList() {
       if (!r) return;
       const d = String(r.dest || '').trim();
       if (!d || !/^(https?:\/\/|\/|#)/.test(d)) return toast('Destino no válido', true);
-      e.dest = d; e.t = String(r.t || '').trim();
+      const prop = state.links[code];
+      prop.dest = d; prop.t = String(r.t || '').trim();
       save(); renderLinksList();
       toast('✏️ Enlace actualizado');
     }
