@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789421014246,
+ "v": 1789421124555,
  "by": "Dcard #2968",
- "at": "2026-09-14T21:23:34.246Z",
- "n": 5328,
+ "at": "2026-09-14T21:25:24.555Z",
+ "n": 5352,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -21170,6 +21170,7 @@
    "kind": "pelicula",
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/aWwGofN99kd8g1MUza39sI72upj.jpg",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -21187,6 +21188,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9893-vqhj2M6aR3Bv.jpg",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -21442,6 +21444,434 @@
      "n": 51,
      "t": "Suite PreCure MOVIE Sub Español",
      "url": "https://archive.org/download/suite-precure-sub-espanol/Suite%20PreCure%20MOVIE%20Sub%20Espa%C3%B1ol.mp4"
+    }
+   ]
+  },
+  {
+   "id": "custom-1789226295437",
+   "t": "Vaiana",
+   "jp": "VA",
+   "tag": "Personalizada",
+   "g": 0,
+   "kind": "serie",
+   "anime": true,
+   "tags": [],
+   "order": 87,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Capítulo 1"
+    }
+   ]
+  },
+  {
+   "id": "ia-1994-pompoko-la-guerra-de-los-mapaches-de-pompoko",
+   "t": "1994 Pompoko( La Guerra De Los Mapaches De Pompoko )",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 1994",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/1994-pompoko-la-guerra-de-los-mapaches-de-pompoko",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "1994 Pompoko( La Guerra De Los Mapaches De Pompoko )",
+     "url": "https://archive.org/download/1994-pompoko-la-guerra-de-los-mapaches-de-pompoko/1994_Pompoko(%20La%20guerra%20de%20los%20mapaches%20de%20Pompoko%20).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-12--mis-vecinos-los-yamada",
+   "t": "12. Mis Vecinos Los Yamada",
+   "jp": "🎌",
+   "tag": "Cine IA · Película",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/12.-mis-vecinos-los-yamada",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "12. Mis Vecinos Los Yamada",
+     "url": "https://archive.org/download/12.-mis-vecinos-los-yamada/12.%20Mis%20vecinos%20los%20yamada.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ok-el-castillo-ambulante-2004",
+   "t": "El Castillo Ambulante",
+   "jp": "🎌",
+   "tag": "Cine IA · Película",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/ok-el-castillo-ambulante-2004",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El Castillo Ambulante",
+     "url": "https://archive.org/download/ok-el-castillo-ambulante-2004/OK%20El%20Castillo%20Ambulante%20(2004).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-sphinxanimecuentosdeterramar",
+   "t": "[ Sphinxanime] Cuentos De Terramar",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/sphinxanimecuentosdeterramar",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "[ Sphinxanime] Cuentos De Terramar",
+     "url": "https://archive.org/download/sphinxanimecuentosdeterramar/%5BSphinxanime%5DCuentos%20de%20Terramar.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-2010-karigurashi-no-arietti-arrietty-y-el-mundo-de-los-diminutos",
+   "t": "2010 Karigurashi No Arietti ( Arrietty Y El Mundo De Los Diminutos)",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 2010",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/2010-karigurashi-no-arietti-arrietty-y-el-mundo-de-los-diminutos",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "2010 Karigurashi No Arietti ( Arrietty Y El Mundo De Los Dim",
+     "url": "https://archive.org/download/2010-karigurashi-no-arietti-arrietty-y-el-mundo-de-los-diminutos/2010_Karigurashi_no%20Arietti_(Arrietty_y_el_mundo_de_los_diminutos).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-2013-kaguya-hime-no-monogatari-el-cuento-de-la-princesa-kaguya",
+   "t": "2013 Kaguya Hime No Monogatari ( El Cuento De La Princesa Kaguya)",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 2013",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/2013-kaguya-hime-no-monogatari-el-cuento-de-la-princesa-kaguya",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "2013 Kaguya Hime No Monogatari ( El Cuento De La Princesa Ka",
+     "url": "https://archive.org/download/2013-kaguya-hime-no-monogatari-el-cuento-de-la-princesa-kaguya/2013_Kaguya-hime_no_Monogatari_(El_cuento_de_la_princesa_Kaguya).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-22--el-recuerdo-de-marnie",
+   "t": "22. El Recuerdo De Marnie",
+   "jp": "🎌",
+   "tag": "Cine IA · Película",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/22.-el-recuerdo-de-marnie",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "22. El Recuerdo De Marnie",
+     "url": "https://archive.org/download/22.-el-recuerdo-de-marnie/22.%20El%20recuerdo%20de%20Marnie.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-2020-aya-to-majo-earwig-y-la-bruja",
+   "t": "2020 Aya To Majo ( Earwig Y La Bruja)",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 2020",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/2020-aya-to-majo-earwig-y-la-bruja",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "2020 Aya To Majo ( Earwig Y La Bruja)",
+     "url": "https://archive.org/download/2020-aya-to-majo-earwig-y-la-bruja/2020_Aya_to_Majo_(Earwig%20y%20la%20bruja).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-271353-c-8a-96984-2768-457c-94aa-acc-6fb-06ebfe-mxui-2375428-1fichier",
+   "t": "El niño y la garza",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/271353-c-8a-96984-2768-457c-94aa-acc-6fb-06ebfe-mxui-2375428-1fichier",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El niño y la garza",
+     "url": "https://archive.org/download/271353-c-8a-96984-2768-457c-94aa-acc-6fb-06ebfe-mxui-2375428-1fichier/271353--c8a96984-2768-457c-94aa-acc6fb06ebfe--mxui--2375428-1fichier.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-your-name-hd-599-79-mb",
+   "t": "Your Name/Kimi no na wa Sub español /Audio japones",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime · 2016",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/your-name-hd-599-79-mb",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Your Name/Kimi no na wa Sub español /Audio japones",
+     "url": "https://archive.org/download/your-name-hd-599-79-mb/Your%20Name%20HD%20599%2C79%20MB.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-suzume_202311",
+   "t": "Suzume Pelicula Audio Latino",
+   "jp": "🎌",
+   "tag": "Cine IA · Película",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/suzume_202311",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Suzume Pelicula Audio Latino",
+     "url": "https://archive.org/download/suzume_202311/Suzume%20.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-koe-no-katachi-una-voz-silenciosa-pelicula",
+   "t": "Koe No Katachi (una Voz Silenciosa) Pelicula",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/koe-no-katachi-una-voz-silenciosa-pelicula",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Koe No Katachi (una Voz Silenciosa) Pelicula",
+     "url": "https://archive.org/download/koe-no-katachi-una-voz-silenciosa-pelicula/Koe%20no%20katachi%20(una%20voz%20silenciosa)%20pelicula.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ghostintheshell1995a",
+   "t": "ghostintheshell1995 Audio Remasterizado",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 2000",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/ghostintheshell1995a",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "ghostintheshell1995 Audio Remasterizado",
+     "url": "https://archive.org/download/ghostintheshell1995a/ghostintheshell19955.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-dredd-2012-pelicula-completa-en-espanol",
+   "t": "Dredd (2012) 🎬 Pelicula En Español",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 2012",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/dredd-2012-pelicula-completa-en-espanol",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Dredd (2012) 🎬 Pelicula En Español",
+     "url": "https://archive.org/download/dredd-2012-pelicula-completa-en-espanol/Dredd%20(2012)%20%F0%9F%8E%AC%20Pelicula%20Completa%20en%20espa%C3%B1ol.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-jujutsu-kaisen-0-pelicula_202606",
+   "t": "Jujutsu Kaisen 0 Pelicula",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/jujutsu-kaisen-0-pelicula_202606",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Jujutsu Kaisen 0 Pelicula",
+     "url": "https://archive.org/download/jujutsu-kaisen-0-pelicula_202606/Jujutsu%20Kaisen%200%20Pelicula.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-tokyo-godfathers-tv-rip-animax-latino",
+   "t": "Tokyo Godfathers TV Rip Animax Latinoamérica",
+   "jp": "🎌",
+   "tag": "Cine IA · Película",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/tokyo-godfathers-tv-rip-animax-latino",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Tokyo Godfathers TV Rip Animax Latinoamérica",
+     "url": "https://archive.org/download/tokyo-godfathers-tv-rip-animax-latino/Tokyo%20Godfathers%20Latino%20by%20basaki.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-my--hero--academia--heroes--rising",
+   "t": "My. Hero. Academia. Heroes. Rising",
+   "jp": "🎌",
+   "tag": "Cine IA · Película",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/my.-hero.-academia.-heroes.-rising",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "My. Hero. Academia. Heroes. Rising",
+     "url": "https://archive.org/download/my.-hero.-academia.-heroes.-rising/My.Hero.Academia.Heroes.Rising.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-poxitron-paprika-bd-720p-ff-226-acf",
+   "t": "[poxitron] Paprika Lat [BD 720p] MP4",
+   "jp": "🎌",
+   "tag": "Cine IA · Película",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/poxitron-paprika-bd-720p-ff-226-acf",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "[poxitron] Paprika Lat [BD 720p] MP4",
+     "url": "https://archive.org/download/poxitron-paprika-bd-720p-ff-226-acf/%5Bpoxitron%5D%20Paprika%20%5BBD%20720p%5D%20%5BFF226ACF%5D.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-jujutsu-kaisen-hidden-inventory-premature-death--e-2025-online-gratis-en-e",
+   "t": "Ver Jujutsu Kaisen Hidden Inventory Premature Death – ...e ( 2025) Online Gratis",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime · 2025",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/ver-jujutsu-kaisen-hidden-inventory-premature-death-...e-2025-online-gratis-en-e",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Jujutsu Kaisen Hidden Inventory Premature Death – ...e (",
+     "url": "https://archive.org/download/ver-jujutsu-kaisen-hidden-inventory-premature-death-...e-2025-online-gratis-en-e/Ver_Jujutsu_Kaisen__Hidden_Inventory___Premature_Death_%E2%80%93_...e_(2025)_Online_Gratis_en_Espa%C3%B1ol_-_VerPeliculasUltra.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mad-max-1_202407",
+   "t": "Mad Max 1",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 1980",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/mad-max-1_202407",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Mad Max 1",
+     "url": "https://archive.org/download/mad-max-1_202407/Mad%20Max%201%20.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-volver-al-futuro-1_202509",
+   "t": "Volver Al Futuro 1",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1985",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/volver-al-futuro-1_202509",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Volver Al Futuro 1",
+     "url": "https://archive.org/download/volver-al-futuro-1_202509/Volver%20al%20futuro%201.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-volver-al-futuro-3-1990_202510",
+   "t": "Volver Al Futuro 3 ( 1990)",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1990",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/volver-al-futuro-3-1990_202510",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Volver Al Futuro 3 ( 1990)",
+     "url": "https://archive.org/download/volver-al-futuro-3-1990_202510/Volver%20al%20Futuro%203%20(1990).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus",
+   "t": "Ver Regreso Al Futuro II ( 1989) Online Latino HD Pelisplus",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Regreso Al Futuro II ( 1989) Online Latino HD Pelisplus",
+     "url": "https://archive.org/download/ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus/Ver%20Regreso%20al%20futuro%20II%20(1989)%20Online%20Latino%20HD%20-%20Pelisplus.mp4"
     }
    ]
   }
@@ -79158,5 +79588,5 @@
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "YxGDayQin9ipsKQVhHUCQcVLCDm51TVWL5mo+Ga9NKLdE/KdE/nGGuxO/Z2+wRRX3dbFY+4ies5myC/L+uhDFQ=="
+ "sig": "s7o2LbO+krdINDZ5hJse2HQdbRm34KU298DEt+vkXf5YgPZRphfnqnKQglD4AJ1oiAkdwxvLDCnTsLoGDOSRRw=="
 }
