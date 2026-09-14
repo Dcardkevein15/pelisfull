@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1789339132399,
+ "v": 1789359458481,
  "by": "Dcard #2968",
- "at": "2026-09-13T22:38:52.399Z",
+ "at": "2026-09-14T04:17:38.481Z",
  "n": 5326,
  "series": [
   {
@@ -20785,23 +20785,6 @@
    ]
   },
   {
-   "id": "custom-1789226295437",
-   "t": "Vaiana",
-   "jp": "VA",
-   "tag": "Personalizada",
-   "g": 0,
-   "kind": "serie",
-   "anime": true,
-   "tags": [],
-   "order": 87,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Capítulo 1"
-    }
-   ]
-  },
-  {
    "id": "ia-donnie-darko-2001-full-movie-the-directors-cut",
    "t": "Donnie Darko (2001)",
    "jp": "🎬",
@@ -20868,6 +20851,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://archive.org/services/img/hhh-triple-ecchi-sub-spanish",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -20893,6 +20877,279 @@
      "n": 5,
      "t": "HHH Triple Ecchi Bonus Sub Spanish",
      "url": "https://archive.org/download/hhh-triple-ecchi-sub-spanish/HHH%20Triple%20Ecchi%20Bonus%20Sub%20Spanish.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-fresh-precure-sub-espanol",
+   "t": "Fresh Pretty Cure!",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada · 2009",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5684-jrSyAbr10ALo.jpg",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "06  Fresh Precure!/Fresh Precure (1)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(1).mp4"
+    },
+    {
+     "n": 2,
+     "t": "06  Fresh Precure!/Fresh Precure (2)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(2).mp4"
+    },
+    {
+     "n": 3,
+     "t": "06  Fresh Precure!/Fresh Precure (3)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(3).mp4"
+    },
+    {
+     "n": 4,
+     "t": "06  Fresh Precure!/Fresh Precure (4)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(4).mp4"
+    },
+    {
+     "n": 5,
+     "t": "06  Fresh Precure!/Fresh Precure (5)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(5).mp4"
+    },
+    {
+     "n": 6,
+     "t": "06  Fresh Precure!/Fresh Precure (6)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(6).mp4"
+    },
+    {
+     "n": 7,
+     "t": "06  Fresh Precure!/Fresh Precure (7)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(7).mp4"
+    },
+    {
+     "n": 8,
+     "t": "06  Fresh Precure!/Fresh Precure (8)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(8).mp4"
+    },
+    {
+     "n": 9,
+     "t": "06  Fresh Precure!/Fresh Precure (9)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(9).mp4"
+    },
+    {
+     "n": 10,
+     "t": "06  Fresh Precure!/Fresh Precure (10)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(10).mp4"
+    },
+    {
+     "n": 11,
+     "t": "06  Fresh Precure!/Fresh Precure (11)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(11).mp4"
+    },
+    {
+     "n": 12,
+     "t": "06  Fresh Precure!/Fresh Precure (12)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(12).mp4"
+    },
+    {
+     "n": 13,
+     "t": "06  Fresh Precure!/Fresh Precure (13)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(13).mp4"
+    },
+    {
+     "n": 14,
+     "t": "06  Fresh Precure!/Fresh Precure (14)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(14).mp4"
+    },
+    {
+     "n": 15,
+     "t": "06  Fresh Precure!/Fresh Precure (15)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(15).mp4"
+    },
+    {
+     "n": 16,
+     "t": "06  Fresh Precure!/Fresh Precure (16)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(16).mp4"
+    },
+    {
+     "n": 17,
+     "t": "06  Fresh Precure!/Fresh Precure (17)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(17).mp4"
+    },
+    {
+     "n": 18,
+     "t": "06  Fresh Precure!/Fresh Precure (18)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(18).mp4"
+    },
+    {
+     "n": 19,
+     "t": "06  Fresh Precure!/Fresh Precure (19)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(19).mp4"
+    },
+    {
+     "n": 20,
+     "t": "06  Fresh Precure!/Fresh Precure (20)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(20).mp4"
+    },
+    {
+     "n": 21,
+     "t": "06  Fresh Precure!/Fresh Precure (21)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(21).mp4"
+    },
+    {
+     "n": 22,
+     "t": "06  Fresh Precure!/Fresh Precure (22)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(22).mp4"
+    },
+    {
+     "n": 23,
+     "t": "06  Fresh Precure!/Fresh Precure (23)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(23).mp4"
+    },
+    {
+     "n": 24,
+     "t": "06  Fresh Precure!/Fresh Precure (24)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(24).mp4"
+    },
+    {
+     "n": 25,
+     "t": "06  Fresh Precure!/Fresh Precure (25)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(25).mp4"
+    },
+    {
+     "n": 26,
+     "t": "06  Fresh Precure!/Fresh Precure (26)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(26).mp4"
+    },
+    {
+     "n": 27,
+     "t": "06  Fresh Precure!/Fresh Precure (27)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(27).mp4"
+    },
+    {
+     "n": 28,
+     "t": "06  Fresh Precure!/Fresh Precure (28)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(28).mp4"
+    },
+    {
+     "n": 29,
+     "t": "06  Fresh Precure!/Fresh Precure (29)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(29).mp4"
+    },
+    {
+     "n": 30,
+     "t": "06  Fresh Precure!/Fresh Precure (30)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(30).mp4"
+    },
+    {
+     "n": 31,
+     "t": "06  Fresh Precure!/Fresh Precure (31)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(31).mp4"
+    },
+    {
+     "n": 32,
+     "t": "06  Fresh Precure!/Fresh Precure (32)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(32).mp4"
+    },
+    {
+     "n": 33,
+     "t": "06  Fresh Precure!/Fresh Precure (33)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(33).mp4"
+    },
+    {
+     "n": 34,
+     "t": "06  Fresh Precure!/Fresh Precure (34)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(34).mp4"
+    },
+    {
+     "n": 35,
+     "t": "06  Fresh Precure!/Fresh Precure (35)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(35).mp4"
+    },
+    {
+     "n": 36,
+     "t": "06  Fresh Precure!/Fresh Precure (36)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(36).mp4"
+    },
+    {
+     "n": 37,
+     "t": "06  Fresh Precure!/Fresh Precure (37)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(37).mp4"
+    },
+    {
+     "n": 38,
+     "t": "06  Fresh Precure!/Fresh Precure (38)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(38).mp4"
+    },
+    {
+     "n": 39,
+     "t": "06  Fresh Precure!/Fresh Precure (39)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(39).mp4"
+    },
+    {
+     "n": 40,
+     "t": "06  Fresh Precure!/Fresh Precure (40)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(40).mp4"
+    },
+    {
+     "n": 41,
+     "t": "06  Fresh Precure!/Fresh Precure (41)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(41).mp4"
+    },
+    {
+     "n": 42,
+     "t": "06  Fresh Precure!/Fresh Precure (42)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(42).mp4"
+    },
+    {
+     "n": 43,
+     "t": "06  Fresh Precure!/Fresh Precure (43)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(43).mp4"
+    },
+    {
+     "n": 44,
+     "t": "06  Fresh Precure!/Fresh Precure (44)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(44).mp4"
+    },
+    {
+     "n": 45,
+     "t": "06  Fresh Precure!/Fresh Precure (45)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(45).mp4"
+    },
+    {
+     "n": 46,
+     "t": "06  Fresh Precure!/Fresh Precure (46)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(46).mp4"
+    },
+    {
+     "n": 47,
+     "t": "06  Fresh Precure!/Fresh Precure (47)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(47).mp4"
+    },
+    {
+     "n": 48,
+     "t": "06  Fresh Precure!/Fresh Precure (48)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(48).mp4"
+    },
+    {
+     "n": 49,
+     "t": "06  Fresh Precure!/Fresh Precure (49)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(49).mp4"
+    },
+    {
+     "n": 50,
+     "t": "06  Fresh Precure!/Fresh Precure (50)",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20Precure%20(50).mp4"
+    },
+    {
+     "n": 51,
+     "t": "06  Fresh Precure!/Fresh PreCure MOVIE Sub Español",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/Fresh%20PreCure%20MOVIE%20Sub%20Espa%C3%B1ol.mp4"
+    },
+    {
+     "n": 52,
+     "t": "06  Fresh Precure!/PreCure All Star 01 [Fresh PreCure]",
+     "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/PreCure%20All%20Star%2001%20%5BFresh%20PreCure%5D.mp4"
     }
    ]
   }
@@ -78591,8 +78848,18 @@
    "dest": "#/anime/voltron/1",
    "t": "",
    "at": 1789315007108
+  },
+  "nebn24": {
+   "dest": "#/anime/one-piece/1",
+   "t": "One Piece · E1",
+   "at": 1789357324276
+  },
+  "2ug9zt": {
+   "dest": "#/anime/one-piece/2",
+   "t": "One Piece · E2",
+   "at": 1789359346016
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "j51rxneW27aFYTyRCZn9+xr8BlJ14FUUIF/++pjAnML9EBrA/bhz9rE4aVgQ6v0ZzsnkGlKFmzP03K9scCsYGA=="
+ "sig": "9NwGdaEKHQmxi2Lyom0XWS12Lg6Pss6NBImYVS+uw6iaNeyShzALsu7Ty69+Agi5hPQUGmcpEpc4AkpFmZtiXA=="
 }
