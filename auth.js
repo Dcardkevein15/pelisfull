@@ -2052,7 +2052,9 @@
     }
     /* 🔗 acortador: el mapa de enlaces viaja firmado dentro del catálogo */
     if (cat.links && typeof cat.links === 'object' && !Array.isArray(cat.links)) {
-      state.links = cat.links;
+      /* fusión: manda el catálogo publicado, pero conserva los enlaces
+         creados localmente después (nunca se pisan los tuyos) */
+      state.links = Object.assign({}, cat.links, state.links || {});
       if (typeof cat.linksDom === 'string' && cat.linksDom) state.linksDom = cat.linksDom;
       try { window.dispatchEvent(new CustomEvent('links-changed')); } catch (e) { }
     }

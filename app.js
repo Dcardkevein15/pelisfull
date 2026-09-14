@@ -143,6 +143,8 @@ function load() {
         /* 📼 una pasada tras el arranque: clasifica series no-anime a la pestaña Series
            (usa los géneros TMDB cacheados; lo movido a mano se respeta siempre) */
         setTimeout(autoClasificarSeries, 2500);
+        /* 🔗 enlaces cortos: se las asigno al contenido en el acto (sin esperar a publicar) */
+        setTimeout(autoMintLinks, 3200);
         /* 🔐 HIGIENE: las claves ya no viven en el estado localStorage —
            si venían de una versión antigua (apikey/stapeKey/stapeLogin),
            se borran aquí y viajan solo a la bóveda local de auth.js (este dispositivo) */
@@ -4645,6 +4647,29 @@ function openLinks() {
 }
 
 if (els.linksBtn) els.linksBtn.addEventListener('click', () => { if (needAdmin()) openLinks(); });
+
+/* 🏭 Códigos cortos AUTOMÁTICOS: nacen en el acto, al crear el contenido.
+   Idempotente (si el destino ya tiene código, no toca nada) y solo admin.
+   Se llama al arrancar, al crear una serie y tras cada importación.    */
+function autoMintLinks() {
+  if (!canAdmin()) return;
+  let hizo = 0;
+  const ya = new Set(Object.values(state.links || {}).map(e => e.dest));
+  for (const s of state.series) {
+    for (const ep of s.episodes) {
+      const d = lnkDestOf(s, s.kind === 'pelicula' ? null : ep);
+      if (ya.has(d)) continue;
+      state.links[newLinkCode()] = {
+        dest: d,
+        t: `${s.t}${s.kind !== 'pelicula' ? ' · E' + ep.n : ''}`,
+        at: Date.now(),
+      };
+      ya.add(d);
+      hizo++;
+    }
+  }
+  if (hizo) { save(); console.log(`🔗 ${hizo} enlaces cortos nuevos (se activan al publicar, como siempre)`); }
+}
 
 /* ── Renombrar serie/película → SIEMPRE re-lanza la carátula con el nombre nuevo ── */
 els.renameBtn.addEventListener('click', async () => {

@@ -598,6 +598,30 @@ ${body}
       }
     }
   }
+
+  /* …y el BOT también mintea lo pendiente de publicar (funciona en la web
+     apuntando al reproductor, antes incluso de salir su página SEO) */
+  for (const s of pendientes) {
+    const slug = slugify(s.t);
+    const dest = hashDest(slug, s.kind, s.kind === 'pelicula' ? null : 1);
+    if (!destToCode.has(dest)) {
+      const c = mint();
+      state.links[c] = { dest, t: s.t, at: today };
+      destToCode.set(dest, c);
+      minted++;
+    }
+    if (s.kind !== 'pelicula') {
+      for (const ep of (s.episodes || []).filter(e => e.url)) {
+        const destEp = hashDest(slug, s.kind, ep.n);
+        if (!destToCode.has(destEp)) {
+          const c = mint();
+          state.links[c] = { dest: destEp, t: `${s.t} · E${ep.n}`, at: today };
+          destToCode.set(destEp, c);
+          minted++;
+        }
+      }
+    }
+  }
   /* mapa combinado: el catálogo firmado manda, el bot solo añade lo nuevo */
   /* 🔗 migración: cualquier enlace viejo con /ver/… pasa al reproductor directo */
   for (const [, e] of Object.entries(state.links)) {
