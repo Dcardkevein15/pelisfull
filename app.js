@@ -3017,26 +3017,22 @@ function copyShareLink() {
 els.copyShareUrl.addEventListener('click', copyShareLink);
 
 /* ═══════════ 🔗 Compartir = código corto de 6 (b.yapido.click) ═══════════
-   El bot ya minteo un código por título y por capítulo publicado.
-   Aquí solo se BUSCA ese código; si el contenido aún no está publicado,
-   el admin lo crea manual. Nunca se genera ningún otro formato. */
+   El destino SIEMPRE es el reproductor: #/anime/<slug>/<cap> o
+   #/pelicula/<slug>. El bot crea un código por título y por capítulo. */
 const SHORT_HOST = 'https://b.yapido.click';
+function lnkDestOf(s, ep) {
+  return `#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${slugify(s.t)}${s.kind !== 'pelicula' && ep ? '/' + ep.n : ''}`;
+}
 async function shareCodeFor(s, ep) {
   const st = await lnkSeoState() || {};
-  const pub = st.items && st.items[s.id];
-  if (!pub) return null;
-  const dest = `/ver/${pub.slug}/` + (s.kind !== 'pelicula' && ep ? `capitulo-${ep.n}/` : '');
-  const hit = Object.entries(st.links || {}).find(([, e]) => e.dest === dest);
+  const dest = lnkDestOf(s, ep);
+  let hit = Object.entries(st.links || {}).find(([, e]) => e.dest === dest);
+  if (!hit && state.links) hit = Object.entries(state.links).find(([, e]) => e.dest === dest);
   return hit ? `${SHORT_HOST}/${hit[0]}` : null;
 }
 async function mintAdminShareLink(s, ep) {
   if (!canAdmin()) return null;
-  const st = await lnkSeoState() || {};
-  const items = st.items || {};
-  const pub = items[s.id];
-  const dest = pub
-    ? `/ver/${pub.slug}/` + (s.kind !== 'pelicula' && ep ? `capitulo-${ep.n}/` : '')
-    : `#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${slugify(s.t)}${s.kind !== 'pelicula' && ep ? '/' + ep.n : ''}`;
+  const dest = lnkDestOf(s, ep);
   const existente = Object.entries(state.links || {}).find(([, e]) => e.dest === dest);
   if (existente) return `${SHORT_HOST}/${existente[0]}`;
   const code = newLinkCode();
@@ -4433,10 +4429,7 @@ const lnkDestFinal = e => /^https?:\/\//i.test(e.dest || '')
 async function lnkDestActual() {
   const s = getSeries(current.seriesId);
   if (!s) return '/';
-  const st = await lnkSeoState();
-  const pub = (st.items || {})[s.id] && st.items[s.id].slug;
-  if (pub) return `/ver/${pub}/` + (s.kind !== 'pelicula' && current.ep ? `capitulo-${current.ep}/` : '');
-  return `#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${slugify(s.t)}${s.kind !== 'pelicula' && current.ep ? '/' + current.ep : ''}`;
+  return lnkDestOf(s, s.kind === 'pelicula' ? null : (current.ep || null));
 }
 
 async function renderLinksList() {

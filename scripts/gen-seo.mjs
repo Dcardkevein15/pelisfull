@@ -571,10 +571,14 @@ ${body}
   const destToCode = new Map();
   for (const [c, e] of Object.entries(cat.links || {})) destToCode.set(e.dest, c);
   for (const [c, e] of Object.entries(state.links)) if (!destToCode.has(e.dest)) destToCode.set(e.dest, c);
+  /* 🔗 destinos del acortador = SIEMPRE el reproductor directo (#/anime|pelicula/<slug>[/<n>]) */
+  const slugToKind = new Map();
+  for (const s of series) if (state.items[s.id]) slugToKind.set(state.items[s.id].slug, s.kind);
+  const hashDest = (slug, kind, n) => `#/${kind === 'pelicula' ? 'pelicula' : 'anime'}/${slug}${kind === 'pelicula' || !n ? '' : '/' + n}`;
   let minted = 0;
   for (const s of publicados) {
     const { slug, at } = state.items[s.id];
-    const dest = `/ver/${slug}/`;
+    const dest = hashDest(slug, s.kind, s.kind === 'pelicula' ? null : 1);
     if (!destToCode.has(dest)) {
       const c = mint();
       state.links[c] = { dest, t: s.t, at };
@@ -584,7 +588,7 @@ ${body}
     /* …y un código propio por CADA capítulo publicado de la serie */
     if (s.kind !== 'pelicula') {
       for (const ep of (s.episodes || []).filter(e => e.url)) {
-        const destEp = `${dest}capitulo-${ep.n}/`;
+        const destEp = hashDest(slug, s.kind, ep.n);
         if (!destToCode.has(destEp)) {
           const c = mint();
           state.links[c] = { dest: destEp, t: `${s.t} · E${ep.n}`, at };
@@ -595,6 +599,12 @@ ${body}
     }
   }
   /* mapa combinado: el catálogo firmado manda, el bot solo añade lo nuevo */
+  /* 🔗 migración: cualquier enlace viejo con /ver/… pasa al reproductor directo */
+  for (const [, e] of Object.entries(state.links)) {
+    const m = String(e.dest || '').match(/^\/ver\/([a-z0-9-]+)\/(?:capitulo-(\d+)\/)?$/);
+    if (m) e.dest = hashDest(m[1], slugToKind.get(m[1]) || 'anime', m[2] ? +m[2] : null);
+  }
+
   const linksAll = Object.assign({}, cat.links || {});
   for (const [c, e] of Object.entries(state.links)) if (!linksAll[c]) linksAll[c] = e;
   /* 🚀 alias legible NO se genera: solo existen códigos de 6 caracteres */
