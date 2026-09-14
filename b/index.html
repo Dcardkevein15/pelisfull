@@ -37,11 +37,20 @@ small{display:block;margin-top:14px;color:#55556e;font-size:10.5px;letter-spacin
     /* 🚀 velocidad: esperamos links.json máximo 400 ms; si tarda, salimos ya
        con el dominio por defecto (la redirección estática de cada código
        cubre casi todo; esto es solo el resolutor de respaldo) */
+    /* 🔎 links.json puede vivir en /links.json (subdominio b) o /b/links.json
+       (dominio x). Se prueban ambas — y nunca bloqueamos más de 250 ms. */
     const DOM_DEF = 'https://x.yapido.click';
-    const data = (await Promise.any([
-      fetch('links.json', { cache: 'no-store' }).then(r => r.json()),
-      new Promise(res => setTimeout(() => res(null), 400)),
-    ])) || { dominio: DOM_DEF, links: {} };
+    async function fetchLinks() {
+      for (const p of ['/links.json', '/b/links.json', 'links.json']) {
+        try {
+          const r = await fetch(p, { cache: 'no-store' });
+          if (r.ok) return await r.json();
+        } catch (e) { /* siguiente candidato */ }
+      }
+      return null;
+    }
+    const data = (await Promise.race([fetchLinks(), new Promise(res => setTimeout(() => res(null), 250))]))
+      || { dominio: DOM_DEF, links: {} };
     const dom = String(data.dominio || DOM_DEF).replace(/\/+$/, '');
 
     /* 🅰️ modo vínculo de contenido: /v/<slug>[/<capítulo>]

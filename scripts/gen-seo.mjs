@@ -606,6 +606,13 @@ ${body}
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), redirectHtml(dest, e.t), 'utf8');
   }
+  /* 🚀 alias legible de compartir: /v/<slug>/ también redirige SIN resolutor */
+  for (const s of publicados) {
+    const { slug } = state.items[s.id];
+    const dir = path.join(bDir, 'v', slug);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), redirectHtml(`${ldom}/ver/${slug}/`, s.t), 'utf8');
+  }
 
   const sm = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
