@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789407962593,
+ "v": 1789420763725,
  "by": "Dcard #2968",
- "at": "2026-09-14T17:46:02.593Z",
- "n": 5326,
+ "at": "2026-09-14T21:19:23.725Z",
+ "n": 5328,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -13857,6 +13857,13 @@
      "url": "https://archive.org/download/aik_20250304/aik.ia.mp4",
      "ova": true,
      "srcOva": "ia-aik_20250304"
+    },
+    {
+     "n": 13,
+     "t": "🎌 OVA — Mazinkaiser SKL 2010 OVAS 1 al 3 - japones subs esp",
+     "url": "https://archive.org/download/mazin-3/mazin%202.mp4",
+     "ova": true,
+     "srcOva": "ia-mazin-3"
     }
    ]
   },
@@ -20844,13 +20851,13 @@
   },
   {
    "id": "ia-hhh-triple-ecchi-sub-spanish",
-   "t": "HHH Triple Ecchi Sub Spanish",
+   "t": "HHH Triple Ecchi",
    "jp": "🎌",
    "tag": "Cine IA · Anime · Temporada",
    "g": 4,
    "kind": "serie",
    "anime": true,
-   "poster": "https://archive.org/services/img/hhh-triple-ecchi-sub-spanish",
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9322-9drT21TnFgjm.jpg",
    "tags": [],
    "episodes": [
     {
@@ -21150,6 +21157,290 @@
      "n": 52,
      "t": "06  Fresh Precure!/PreCure All Star 01 [Fresh PreCure]",
      "url": "https://archive.org/download/fresh-precure-sub-espanol/06.%20Fresh%20Precure!/PreCure%20All%20Star%2001%20%5BFresh%20PreCure%5D.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-viaje-a-agartha-2011-720-p-hd",
+   "t": "Viaje A Agartha",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime · 2023",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/aWwGofN99kd8g1MUza39sI72upj.jpg",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Viaje A Agartha 2011( 720 P HD)",
+     "url": "https://archive.org/download/viaje-a-agartha-2011-720-p-hd/Viaje%20a%20Agartha%202011(720P_HD).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-suite-precure-sub-espanol",
+   "t": "Suite Pretty Cure♪",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada · 2011",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9893-vqhj2M6aR3Bv.jpg",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "PreCure All Star 03 [Suite PreCure",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/PreCure%20All%20Star%2003%20%5BSuite%20PreCure.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Pretty Cure All Stars DX Teatro 3D ia",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/Pretty%20Cure%20All%20Stars%20DX%20Teatro%203D.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "suite precure (1)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(1).mp4"
+    },
+    {
+     "n": 4,
+     "t": "suite precure (2)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(2).mp4"
+    },
+    {
+     "n": 5,
+     "t": "suite precure (3)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(3).mp4"
+    },
+    {
+     "n": 6,
+     "t": "suite precure (4)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(4).mp4"
+    },
+    {
+     "n": 7,
+     "t": "suite precure (5)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(5).mp4"
+    },
+    {
+     "n": 8,
+     "t": "suite precure (6)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(6).mp4"
+    },
+    {
+     "n": 9,
+     "t": "suite precure (7)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(7).mp4"
+    },
+    {
+     "n": 10,
+     "t": "suite precure (8)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(8).mp4"
+    },
+    {
+     "n": 11,
+     "t": "suite precure (9)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(9).mp4"
+    },
+    {
+     "n": 12,
+     "t": "suite precure (10)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(10).mp4"
+    },
+    {
+     "n": 13,
+     "t": "suite precure (11)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(11).mp4"
+    },
+    {
+     "n": 14,
+     "t": "suite precure (12)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(12).mp4"
+    },
+    {
+     "n": 15,
+     "t": "suite precure (13)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(13).mp4"
+    },
+    {
+     "n": 16,
+     "t": "suite precure (14)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(14).mp4"
+    },
+    {
+     "n": 17,
+     "t": "suite precure (15)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(15).mp4"
+    },
+    {
+     "n": 18,
+     "t": "suite precure (16)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(16).mp4"
+    },
+    {
+     "n": 19,
+     "t": "suite precure (17)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(17).mp4"
+    },
+    {
+     "n": 20,
+     "t": "suite precure (18)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(18).mp4"
+    },
+    {
+     "n": 21,
+     "t": "suite precure (19)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(19).mp4"
+    },
+    {
+     "n": 22,
+     "t": "suite precure (20)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(20).mp4"
+    },
+    {
+     "n": 23,
+     "t": "suite precure (21)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(21).mp4"
+    },
+    {
+     "n": 24,
+     "t": "suite precure (22)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(22).mp4"
+    },
+    {
+     "n": 25,
+     "t": "suite precure (23)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(23).mp4"
+    },
+    {
+     "n": 26,
+     "t": "suite precure (24)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(24).mp4"
+    },
+    {
+     "n": 27,
+     "t": "suite precure (25)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(25).mp4"
+    },
+    {
+     "n": 28,
+     "t": "suite precure (26)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(26).mp4"
+    },
+    {
+     "n": 29,
+     "t": "suite precure (27)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(27).mp4"
+    },
+    {
+     "n": 30,
+     "t": "suite precure (28)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(28).mp4"
+    },
+    {
+     "n": 31,
+     "t": "suite precure (29)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(29).mp4"
+    },
+    {
+     "n": 32,
+     "t": "suite precure (30)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(30).mp4"
+    },
+    {
+     "n": 33,
+     "t": "suite precure (31)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(31).mp4"
+    },
+    {
+     "n": 34,
+     "t": "suite precure (32)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(32).mp4"
+    },
+    {
+     "n": 35,
+     "t": "suite precure (33)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(33).mp4"
+    },
+    {
+     "n": 36,
+     "t": "suite precure (34)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(34).mp4"
+    },
+    {
+     "n": 37,
+     "t": "suite precure (35)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(35).mp4"
+    },
+    {
+     "n": 38,
+     "t": "suite precure (36)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(36).mp4"
+    },
+    {
+     "n": 39,
+     "t": "suite precure (37)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(37).mp4"
+    },
+    {
+     "n": 40,
+     "t": "suite precure (38)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(38).mp4"
+    },
+    {
+     "n": 41,
+     "t": "suite precure (39)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(39).mp4"
+    },
+    {
+     "n": 42,
+     "t": "suite precure (40)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(40).mp4"
+    },
+    {
+     "n": 43,
+     "t": "suite precure (41)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(41).mp4"
+    },
+    {
+     "n": 44,
+     "t": "suite precure (42)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(42).mp4"
+    },
+    {
+     "n": 45,
+     "t": "suite precure (43)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(43).mp4"
+    },
+    {
+     "n": 46,
+     "t": "suite precure (44)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(44).mp4"
+    },
+    {
+     "n": 47,
+     "t": "suite precure (45)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(45).mp4"
+    },
+    {
+     "n": 48,
+     "t": "suite precure (46)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(46).mp4"
+    },
+    {
+     "n": 49,
+     "t": "suite precure (47)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(47).mp4"
+    },
+    {
+     "n": 50,
+     "t": "suite precure (48)",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/suite%20precure%20(48).mp4"
+    },
+    {
+     "n": 51,
+     "t": "Suite PreCure MOVIE Sub Español",
+     "url": "https://archive.org/download/suite-precure-sub-espanol/Suite%20PreCure%20MOVIE%20Sub%20Espa%C3%B1ol.mp4"
     }
    ]
   }
@@ -78858,8 +79149,13 @@
    "dest": "#/anime/one-piece/2",
    "t": "One Piece · E2",
    "at": 1789359346016
+  },
+  "uee8bs": {
+   "dest": "#/anime/naruto-completo/80",
+   "t": "Naruto - Completo · E80",
+   "at": 1789419859135
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "wdpCJQsYyjRG1QG6h4pcHWVWOIGF8eftuzadTucDyLOVdpHV2p9hFhCqm5myYkRGlhFugKWIDL7dduAN2Wc//g=="
+ "sig": "srk6z/GCD4HU8whitXt8dd5rO16jwplO/SxzoEhjEABGGjLHYxDC07Cz9b7Hsn661YHX1zy3gmN3xpVQtMjJrA=="
 }
