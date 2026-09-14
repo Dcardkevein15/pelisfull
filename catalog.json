@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789421124555,
+ "v": 1789422748718,
  "by": "Dcard #2968",
- "at": "2026-09-14T21:25:24.555Z",
- "n": 5352,
+ "at": "2026-09-14T21:52:28.718Z",
+ "n": 5356,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -16848,7 +16848,9 @@
    "kind": "pelicula",
    "anime": true,
    "poster": "https://archive.org/services/img/darling-espanol-latino-1",
-   "tags": [],
+   "tags": [
+    "hentai"
+   ],
    "order": 72,
    "episodes": [
     {
@@ -21833,6 +21835,7 @@
    "kind": "pelicula",
    "anime": false,
    "poster": "https://archive.org/services/img/volver-al-futuro-1_202509",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -21850,6 +21853,7 @@
    "kind": "pelicula",
    "anime": false,
    "poster": "https://archive.org/services/img/volver-al-futuro-3-1990_202510",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
@@ -21867,11 +21871,191 @@
    "kind": "pelicula",
    "anime": false,
    "poster": "https://archive.org/services/img/ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus",
+   "tags": [],
    "episodes": [
     {
      "n": 1,
      "t": "Ver Regreso Al Futuro II ( 1989) Online Latino HD Pelisplus",
      "url": "https://archive.org/download/ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus/Ver%20Regreso%20al%20futuro%20II%20(1989)%20Online%20Latino%20HD%20-%20Pelisplus.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-milk-money-02",
+   "t": "Milk Money 02",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://archive.org/services/img/milk-money-02",
+   "tags": [
+    "hentai"
+   ],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Milk Money 02",
+     "url": "https://archive.org/download/milk-money-02/Milk%20Money%2002%20.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd",
+   "t": "Spy X Family",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx140960-Kb6R5nYQfjmP.jpg",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Spy x Family Capítulo 1 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%201%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Ver Spy x Family Capítulo 2 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%202%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Ver Spy x Family Capítulo 3 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%203%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Ver Spy x Family Capítulo 4 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%204%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Ver Spy x Family Capítulo 5 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%205%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Ver Spy x Family Capítulo 6 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%206%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Ver Spy x Family Capítulo 7 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%207%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Ver Spy x Family Capítulo 8 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%208%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Ver Spy x Family Capítulo 9 Sub Español Latino en HD Online ",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%209%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Ver Spy x Family Capítulo 10 Sub Español Latino en HD Online",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%2010%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Ver Spy x Family Capítulo 11 Sub Español Latino en HD Online",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%2011%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Ver Spy x Family Capítulo 12 Sub Español Latino en HD Online",
+     "url": "https://archive.org/download/ver-spy-x-family-capitulo-8-sub-espanol-latino-en-hd-online-o-anime-lhd/Ver%20Spy%20x%20Family%20Cap%C3%ADtulo%2012%20Sub%20Espa%C3%B1ol%20Latino%20en%20HD%20Online%20%E2%80%A2%20AnimeLHD.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-chizuru-chan-kaihatsu-nikki-episodio-1-hentai-la-ver-hentai-en-espanol-hentai-la",
+   "t": "Chizuru Chan Kaihatsu Nikki",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx136049-Oxe8oKTEgNPT.jpg",
+   "tags": [
+    "hentai"
+   ],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Chizuru-chan Kaihatsu Nikki Episodio 1 HentaiLA - Ver Hentai",
+     "url": "https://archive.org/download/chizuru-chan-kaihatsu-nikki-episodio-1-hentai-la-ver-hentai-en-espanol-hentai-la/Chizuru-chan%20Kaihatsu%20Nikki%20Episodio%201%20HentaiLA%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol%20-%20HentaiLA.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Chizuru-chan Kaihatsu Nikki Episodio 2 HentaiLA - Ver Hentai",
+     "url": "https://archive.org/download/chizuru-chan-kaihatsu-nikki-episodio-1-hentai-la-ver-hentai-en-espanol-hentai-la/Chizuru-chan%20Kaihatsu%20Nikki%20Episodio%202%20HentaiLA%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol%20-%20HentaiLA.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Chizuru-chan Kaihatsu Nikki Episodio 3 HentaiLA - Ver Hentai",
+     "url": "https://archive.org/download/chizuru-chan-kaihatsu-nikki-episodio-1-hentai-la-ver-hentai-en-espanol-hentai-la/Chizuru-chan%20Kaihatsu%20Nikki%20Episodio%203%20HentaiLA%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol%20-%20HentaiLA.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Chizuru-chan Kaihatsu Nikki Episodio 4 HentaiLA - Ver Hentai",
+     "url": "https://archive.org/download/chizuru-chan-kaihatsu-nikki-episodio-1-hentai-la-ver-hentai-en-espanol-hentai-la/Chizuru-chan%20Kaihatsu%20Nikki%20Episodio%204%20HentaiLA%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol%20-%20HentaiLA.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Chizuru-chan Kaihatsu Nikki Episodio 5 HentaiLA - Ver Hentai",
+     "url": "https://archive.org/download/chizuru-chan-kaihatsu-nikki-episodio-1-hentai-la-ver-hentai-en-espanol-hentai-la/Chizuru-chan%20Kaihatsu%20Nikki%20Episodio%205%20HentaiLA%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol%20-%20HentaiLA.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Chizuru-chan Kaihatsu Nikki Episodio 6 HentaiLA - Ver Hentai",
+     "url": "https://archive.org/download/chizuru-chan-kaihatsu-nikki-episodio-1-hentai-la-ver-hentai-en-espanol-hentai-la/Chizuru-chan%20Kaihatsu%20Nikki%20Episodio%206%20HentaiLA%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol%20-%20HentaiLA.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-saimin-seishidou-episodio-2-hentaila-ver-hentai-en-espanol",
+   "t": "Saimin Seishidou",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx104451-voSuczUrX6kk.jpg",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Saimin Seishidou Episodio 1 - Hentaila - Ver Hentai en Españ",
+     "url": "https://archive.org/download/saimin-seishidou-episodio-2-hentaila-ver-hentai-en-espanol/Saimin%20Seishidou%20Episodio%201%20-%20Hentaila%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol_2.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Saimin Seishidou Episodio 2 - Hentaila - Ver Hentai en Españ",
+     "url": "https://archive.org/download/saimin-seishidou-episodio-2-hentaila-ver-hentai-en-espanol/Saimin%20Seishidou%20Episodio%202%20-%20Hentaila%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Saimin Seishidou Episodio 3 - Hentaila - Ver Hentai en Españ",
+     "url": "https://archive.org/download/saimin-seishidou-episodio-2-hentaila-ver-hentai-en-espanol/Saimin%20Seishidou%20Episodio%203%20-%20Hentaila%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Saimin Seishidou Episodio 4 - Hentaila - Ver Hentai en Españ",
+     "url": "https://archive.org/download/saimin-seishidou-episodio-2-hentaila-ver-hentai-en-espanol/Saimin%20Seishidou%20Episodio%204%20-%20Hentaila%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Saimin Seishidou Episodio 5 - Hentaila - Ver Hentai en Españ",
+     "url": "https://archive.org/download/saimin-seishidou-episodio-2-hentaila-ver-hentai-en-espanol/Saimin%20Seishidou%20Episodio%205%20-%20Hentaila%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Saimin Seishidou Episodio 6 - Hentaila - Ver Hentai en Españ",
+     "url": "https://archive.org/download/saimin-seishidou-episodio-2-hentaila-ver-hentai-en-espanol/Saimin%20Seishidou%20Episodio%206%20-%20Hentaila%20-%20Ver%20Hentai%20en%20Espa%C3%B1ol.mp4"
     }
    ]
   }
@@ -79585,8 +79769,23 @@
    "dest": "#/anime/naruto-completo/80",
    "t": "Naruto - Completo · E80",
    "at": 1789419859135
+  },
+  "u3t5ft": {
+   "dest": "#/pelicula/ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus",
+   "t": "Ver Regreso Al Futuro II ( 1989) Online Latino HD Pelisplus",
+   "at": 1789421182122
+  },
+  "rt2x53": {
+   "dest": "#/anime/saimin-seishidou/1",
+   "t": "Saimin Seishidou · E1",
+   "at": 1789422725727
+  },
+  "j8f3uq": {
+   "dest": "#/anime/saimin-seishidou/2",
+   "t": "Saimin Seishidou · E2",
+   "at": 1789422737004
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "s7o2LbO+krdINDZ5hJse2HQdbRm34KU298DEt+vkXf5YgPZRphfnqnKQglD4AJ1oiAkdwxvLDCnTsLoGDOSRRw=="
+ "sig": "6HlZOB7rB9ZsXui09bLbDIvoT3+ox3jAUaxpx+vQLYOcy/bBwpNoLbP0tAruKNvuYMpZKtGnaVVBgahlBxgKog=="
 }
