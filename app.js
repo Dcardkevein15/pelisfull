@@ -2098,6 +2098,18 @@ async function pumpThumbs() {
         cell.prepend(img);
         cell.classList.add('has-thumb');
       }
+    } else {
+      /* la fuente no deja capturar (CORS / códec no reproducible por el
+         navegador): la tarjeta usa la carátula de la serie — nunca vacía */
+      const cell0 = els.episodesGrid.querySelector(`[data-epn="${job.ep.n}"]`);
+      if (cell0 && !cell0.querySelector('.ep-thumb') && job.s.poster) {
+        const img = document.createElement('img');
+        img.className = 'ep-thumb lq'; img.alt = ''; img.loading = 'lazy';
+        img.onerror = () => img.remove();
+        img.src = job.s.poster;
+        cell0.prepend(img);
+        cell0.classList.add('has-thumb');
+      }
     }
   } catch (e) { /* sin miniatura: la tarjeta sigue igual de bonita */ }
   thumbActive--;

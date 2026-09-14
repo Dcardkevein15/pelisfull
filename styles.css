@@ -367,6 +367,8 @@ input,select{font-family:inherit}
 /* destello al saltar a una tarjeta */
 .ep-flash{outline:2px solid var(--acid);outline-offset:-2px;
   box-shadow:0 0 0 6px rgba(216,255,62,.22)!important;transition:none}
+/* miniatura de respaldo (carátula de la serie cuando la fuente no deja capturar) */
+.ep-thumb.lq{opacity:.88;filter:saturate(.95)}
 /* velo de brillo superior — da profundidad sin ensuciar */
 .ep::before{
   content:'';position:absolute;inset:0;pointer-events:none;
