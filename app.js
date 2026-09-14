@@ -2962,11 +2962,20 @@ function openShare(seriesId, epN) {
   const s = getSeries(seriesId);
   const ep = s && s.episodes.find(e => e.n === epN);
   if (!s || !ep) return;
-  const url = buildShareUrl(s, ep);
+  /* 🔗 compartir = enlace corto b.yapido.click (auto-descifrable, sin publicar) */
+  const url = buildShareShortUrl(s, ep);
   shareCtx = { s, ep, url, msg: `▶ ${s.t} — Capítulo ${ep.n} · míralo en X·STREAM` };
 
   els.shareTitle.textContent = `${s.t} · Capítulo ${ep.n}`;
   els.shareUrl.value = url;
+
+  /* 👑 admin: además fija un código de 6 caracteres en el acortador */
+  mintAdminShareLink(s, ep).then(code => {
+    if (code && shareCtx) {
+      shareCtx.url = `${SHORT_HOST}/${code}`;
+      els.shareUrl.value = shareCtx.url;
+    }
+  });
 
   /* botones de redes */
   els.shareGrid.innerHTML = '';
@@ -3008,6 +3017,31 @@ function copyShareLink() {
 }
 
 els.copyShareUrl.addEventListener('click', copyShareLink);
+
+/* ═══════════ 🔗 Compartir con enlace corto b.yapido.click ═══════════
+   · Todo el mundo: b.yapido.click/v/<slug>/<cap> — el resolutor lo
+     descifra solo, sin publicar nada, al instante.
+   · Admin compartiendo: además se crea (una sola vez) el código de 6
+     caracteres en el acortador real — viaja con la próxima publicación. */
+const SHORT_HOST = 'https://b.yapido.click';
+function buildShareShortUrl(s, ep) {
+  return `${SHORT_HOST}/v/${slugify(s.t)}` + (s.kind === 'pelicula' || !ep ? '' : `/${ep.n}`);
+}
+async function mintAdminShareLink(s, ep) {
+  if (!canAdmin()) return null;
+  const items = await lnkSeoState();
+  const pub = items[s.id] && items[s.id].slug;
+  const dest = pub
+    ? `/ver/${pub}/` + (s.kind !== 'pelicula' && ep ? `capitulo-${ep.n}/` : '')
+    : `#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${slugify(s.t)}${s.kind !== 'pelicula' && ep ? '/' + ep.n : ''}`;
+  const existente = Object.entries(state.links || {}).find(([, e]) => e.dest === dest);
+  if (existente) return existente[0];
+  const code = newLinkCode();
+  state.links[code] = { dest, t: `${s.t}${s.kind !== 'pelicula' && ep ? ' · E' + ep.n : ''}`, at: Date.now() };
+  save();
+  setTimeout(() => toast(`🔗 Código corto listo: b.yapido.click/${code} · se activa al publicar el catálogo`), 500);
+  return code;
+}
 /* el input del enlace compartido se auto-selecciona al tocarlo (sin inline handlers: CSP) */
 els.shareUrl.addEventListener('click', () => els.shareUrl.select());
 els.closeShare.addEventListener('click', () => els.modalShare.classList.add('hidden'));

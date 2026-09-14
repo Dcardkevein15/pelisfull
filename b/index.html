@@ -33,16 +33,32 @@ small{display:block;margin-top:14px;color:#55556e;font-size:10.5px;letter-spacin
   try {
     /* código desde la ruta (/657432), la query (?657432) o el hash (#657432) —
        así funciona igual en b.yapido.click (con rewrites) que en x.yapido.click/b/ */
-    let code = (location.pathname.split('/').filter(Boolean).pop() || '');
-    if (/^b$/i.test(code)) code = '';
+    const segs = location.pathname.split('/').filter(Boolean).map(x => { try { return decodeURIComponent(x); } catch (e) { return x; } });
+    const data = await (await fetch('links.json', { cache: 'no-store' })).json();
+    const dom = String(data.dominio || 'https://x.yapido.click').replace(/\/+$/, '');
+
+    /* 🅰️ modo vínculo de contenido: /v/<slug>[/<capítulo>]
+       El destino se calcula en el momento: NO hace falta publicar nada. */
+    if (String(segs[0] || '').toLowerCase() === 'v' && segs[1]) {
+      const slug = String(segs[1]).toLowerCase().replace(/[^a-z0-9-]/g, '');
+      const ep = segs[2] ? Math.max(1, parseInt(segs[2], 10) || 0) : 0;
+      const dest = `${dom}/ver/${slug}/` + (ep ? `capitulo-${ep}/` : '');
+      setMsg('Abriendo…');
+      location.replace(dest);
+      setTimeout(() => { location.href = dest; }, 1200);
+      return;
+    }
+
+    /* 🅱️ modo código clásico: ruta, query (?657432) o hash (#657432) */
+    let code = segs.length && !/^b$/i.test(segs[0]) ? segs.pop() : '';
     code = code || location.search.replace(/^\?/, '').split('&')[0] || (location.hash || '').replace(/^#\/?/, '');
-    code = decodeURIComponent(code).trim().toLowerCase();
+    code = String(code).trim().toLowerCase();
 
     const data = await (await fetch('links.json', { cache: 'no-store' })).json();
     const dom = String(data.dominio || 'https://x.yapido.click').replace(/\/+$/, '');
 
     if (!code) {
-      fail(`Abre tu enlace con el código: <code>…/${'{'}código{'}'}</code><br>o entra directo a <a href="${dom}/">X·STREAM</a>`);
+      fail(`Abre tu enlace con el código: <code>…/${'{'}código{'}'}</code> — o un vínculo de contenido <code>…/v/titulo</code><br>o entra directo a <a href="${dom}/">X·STREAM</a>`);
       return;
     }
     const e = data.links && data.links[code];
