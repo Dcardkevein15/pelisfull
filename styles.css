@@ -355,6 +355,17 @@ input,select{font-family:inherit}
   padding:9px 10px 10px 12px;transition:transform .18s,border-color .18s,box-shadow .18s;
   text-align:left;min-width:0; /* evita desbordes en grid */
 }
+/* 💊 píldora del capítulo actual (clic → salto instantáneo a su tarjeta) */
+.ep-now{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--acid);
+  font-weight:800;padding:3px 11px;font-size:12px;cursor:pointer;font-family:inherit;line-height:1.4}
+.ep-now:hover{border-color:var(--acid);box-shadow:0 0 0 3px rgba(216,255,62,.15)}
+/* chip del número real (fuente) en la tarjeta de capítulo */
+.ep-real{position:absolute;top:5px;right:6px;background:rgba(0,0,0,.72);color:var(--acid);
+  border:1px solid rgba(216,255,62,.35);border-radius:999px;padding:1px 7px;
+  font-size:10px;font-weight:800;pointer-events:none}
+/* destello al saltar a una tarjeta */
+.ep-flash{outline:2px solid var(--acid);outline-offset:-2px;
+  box-shadow:0 0 0 6px rgba(216,255,62,.22)!important;transition:none}
 /* velo de brillo superior — da profundidad sin ensuciar */
 .ep::before{
   content:'';position:absolute;inset:0;pointer-events:none;

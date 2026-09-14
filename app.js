@@ -2355,9 +2355,14 @@ function renderEpisodes() {
       ? `<span class="ep-resume" title="Continuar donde lo dejaste">▶ ${fmt(pr.t)}</span>` : '';
     /* etiqueta de posición: una tarjeta DOBLE ocupa dos números (7–8) */
     const dd = epDispMap.get(ep) || { a: ep.n, b: ep.n, span: 1 };
+    /* chip del número REAL si la fuente lo trae y difiere de la posición */
+    const realN = epRealNum(ep);
+    const realChip = realN && realN !== dd.a
+      ? `<span class="ep-real" title="Número real en la fuente original">#${realN}</span>` : '';
     cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
       + `<span class="ep-src" title="${srcIcon.t}">${srcIcon.g}</span>`
       + `<span class="num">${dd.a}${dd.b > dd.a ? '–' + dd.b : ''}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
+      + realChip
       + (dd.span > 1 ? '<span class="ep-dbl" title="Capítulo doble: esta tarjeta vale por dos números">DOBLE</span>' : '')
       + resume
       + (q ? `<span class="ep-q ${q.cls}" title="Calidad detectada">${q.txt}</span>` : '')
@@ -2515,6 +2520,61 @@ function selectSeries(id) {
 }
 
 /* ═══════════ Carga instantánea de un capítulo ═══════════ */
+/* ═══════════ 🔢 Número REAL del capítulo + salto instantáneo ═══════════
+   La numeración de tarjeta es por posición; el número REAL sale del título
+   de la fuente ("One Piece 247", "Capítulo 12", "#85"…). Importa cuando el
+   catálogo no es consecutivo (p. ej. tienes caps 1-100 y luego 200-400).   */
+function epRealNum(ep) {
+  const t = String(ep.t || '');
+  let m = t.match(/(?:episodio|epis|cap[ií]tulo|cap\.?|ep\.?|chapter|parte)\s*#?\s*(\d{1,4})/i);
+  if (m) return parseInt(m[1], 10);
+  m = t.match(/#\s*(\d{1,4})/);
+  if (m) return parseInt(m[1], 10);
+  const sueltos = (t.match(/\b\d{1,4}\b/g) || [])
+    .map(n => parseInt(n, 10))
+    .filter(n => ![144, 240, 360, 480, 720, 1080, 2160].includes(n));
+  return sueltos.length ? sueltos[0] : null;
+}
+
+/* Clic sobre el número que suena → vas directo a su tarjeta (incluso con
+   render perezoso, estimando posición y reintentando brevemente) */
+function scrollToEpCard(n) {
+  const grid = els.episodesGrid;
+  if (!grid) return;
+  const stage = grid.closest('.stage') || document.scrollingElement;
+  const flash = el => {
+    el.scrollIntoView({ block: 'center', behavior: 'auto' });
+    el.classList.add('ep-flash');
+    setTimeout(() => el.classList.remove('ep-flash'), 1500);
+  };
+  const directo = grid.querySelector(`[data-epn="${n}"]`);
+  if (directo) return flash(directo);
+  const s = getSeries(current.seriesId);
+  const idx = s ? s.episodes.findIndex(e => e.n === n) : -1;
+  if (idx < 0) return;
+  const primera = grid.querySelector('.ep');
+  const alto = (primera && primera.offsetHeight) || 120;
+  const gap = 10;
+  const cols = Math.max(1, Math.floor(grid.clientWidth / 128));
+  const fila = Math.floor(idx / cols);
+  const vh = stage === document.scrollingElement ? window.innerHeight : stage.clientHeight;
+  const y = Math.max(0, grid.offsetTop + fila * (alto + gap) - vh / 2);
+  const mueve = () => {
+    if (stage === document.scrollingElement) window.scrollTo({ top: y, behavior: 'auto' });
+    else stage.scrollTop = y;
+  };
+  mueve();
+  let intentos = 0;
+  const buscar = () => {
+    const el = grid.querySelector(`[data-epn="${n}"]`);
+    if (el) return flash(el);
+    if (++intentos > 30) return;
+    mueve();
+    setTimeout(buscar, 60);
+  };
+  buscar();
+}
+
 function loadEpisode(epN, autoplayNow = true) {
   const s = getSeries(current.seriesId);
   if (!s) return;
@@ -2528,6 +2588,21 @@ function loadEpisode(epN, autoplayNow = true) {
 
   els.empty.classList.add('hidden');
   els.nowPlaying.textContent = `${s.t} · E${ep.n}`;
+  /* 💊 píldora clickable: número REAL (si el título lo trae) → salto a su tarjeta */
+  {
+    const viejo = document.getElementById('epNowBtn');
+    if (viejo) viejo.remove();
+    const pill = document.createElement('button');
+    pill.id = 'epNowBtn';
+    pill.className = 'ep-now';
+    const realVal = epRealNum(ep);
+    pill.textContent = realVal && realVal !== ep.n ? `E${ep.n} · cap ${realVal}` : `E${ep.n}`;
+    pill.title = realVal && realVal !== ep.n
+      ? `Número real en la fuente: ${realVal} — clic: saltar a su tarjeta`
+      : 'Clic: saltar a su tarjeta en la lista';
+    pill.addEventListener('click', () => scrollToEpCard(ep.n));
+    els.stageBadges.appendChild(pill);
+  }
     document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
   els.shareBtn.classList.remove('hidden');
   syncDownloadBtn();
