@@ -2948,8 +2948,16 @@ function toggleFullscreen() {
   if (document.fullscreenElement) document.exitFullscreen();
   else els.playerArea.requestFullscreen?.();
 }
+/* fullscreen — aplicamos la clase tras dos frames para no competir
+   con el repintado de entrada (esa microcarrera era el parpadeo) */
+let fsRaf = 0;
 document.addEventListener('fullscreenchange', () => {
-  els.playerArea.classList.toggle('fullscreen', !!document.fullscreenElement);
+  const on = !!document.fullscreenElement;
+  cancelAnimationFrame(fsRaf);
+  fsRaf = requestAnimationFrame(() => fsRaf = requestAnimationFrame(() => {
+    els.playerArea.classList.toggle('fullscreen', on);
+    document.body.classList.toggle('is-fs', on);
+  }));
 });
 
 /* 📈 al elegir capítulo desde el fondo de una lista larga, el reproductor
@@ -3050,18 +3058,16 @@ function openShare(seriesId, epN) {
   const s = getSeries(seriesId);
   const ep = s && s.episodes.find(e => e.n === epN);
   if (!s || !ep) return;
-  /* 🔗 compartir = códigos de 6 caracteres de b.yapido.click, creados automáticamente */
-  shareCtx = { s, ep, url: buildShareUrl(s, ep), msg: `▶ ${s.t} — Capítulo ${ep.n} · míralo en X·STREAM` };
-
-  els.shareTitle.textContent = `${s.t} · Capítulo ${ep.n}`;
-  els.shareUrl.value = '…';
-
-  shareCodeFor(s, ep).then(async code => {
-    let final = code;
-    if (!final) final = await mintAdminShareLink(s, ep);   /* contenido aún no publicado → el admin lo fija */
-    if (final) { shareCtx.url = final; els.shareUrl.value = final; }
-    else els.shareUrl.value = shareCtx.url;                /* último caso: enlace largo de la app */
-  });
+  /* 🔗 el código corto se resuelve ANTES de enseñar el modal:
+     si se copiaba en el primer instante salía el enlace largo (causa del fallo) */
+  (async () => {
+    let url = await shareCodeFor(s, ep);
+    if (!url) url = await mintAdminShareLink(s, ep);
+    if (!url) url = buildShareUrl(s, ep);   /* contenido aún sin página → enlace de la app */
+    shareCtx = { s, ep, url, msg: `▶ ${s.t} — Capítulo ${ep.n} · míralo en X·STREAM` };
+    els.shareTitle.textContent = `${s.t} · Capítulo ${ep.n}`;
+    els.shareUrl.value = url;
+  })();
 
   /* botones de redes */
   els.shareGrid.innerHTML = '';

@@ -152,13 +152,13 @@ input,select{font-family:inherit}
 }
 .player.fullscreen{
   border-radius:0;border:none;
-  /* 🖥 anti-parpadeo en PC: la sombra difusa enorme + bordes/transiciones se
-     recalculan al entrar a fullscreen y parpadea; se neutralizan aquí */
-  box-shadow:none;transition:none;
+  /* 🖥 anti-parpadeo en PC: sin clip, sin sombra, sin transiciones al entrar */
+  box-shadow:none;transition:none;overflow:visible!important;
   left:0!important;top:0!important;right:0!important;bottom:0!important;
   width:100%!important;height:100%!important;max-width:none!important;margin:0;
 }
 .player.fullscreen *{transition:none!important}
+body.is-fs .topbar{transition:none}
 
 /* ═══════ 🚀 Panel Tendencias (solo admin) ═══════ */
 .tr-panel{width:min(940px,96vw)!important;max-height:88vh;overflow-y:auto;text-align:left;padding:18px}
