@@ -210,17 +210,11 @@
           <button class="btn btn-acid" id="extOpen">▶ Abrir en la fuente</button>
         </div>
 
-        <!-- big play -->
+        <!-- big play: el círculo central lleva la marca dentro (aparecen/desaparecen juntos) -->
         <button class="big-play hidden" id="bigPlay" aria-label="Reproducir">
-          <svg viewBox="0 0 24 24" width="38" height="38" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
+          <span class="bp-x">X</span>
+          <span class="bp-name">STREAM</span>
         </button>
-
-        <!-- logo de marca cuando el video está en pausa -->
-        <div class="pause-brand hidden" id="pauseBrand" title="En pausa — toca para continuar">
-          <div class="pb-logo">X</div>
-          <div class="pb-name">STREAM</div>
-          <div class="pb-hint">EN PAUSA — toca para continuar</div>
-        </div>
 
         <!-- gesto doble click -->
         <div class="gesture left" id="gestL">⟲ 10s</div>

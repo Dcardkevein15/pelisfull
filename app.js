@@ -726,19 +726,19 @@ els.tabSeries.addEventListener('click', () => setTab('series'));
 els.tabHentai.addEventListener('click', () => setTab('hentai'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
 
-/* 💗 lluvia suave de corazones (solo mientras la pestaña 💗 está activa) */
+/* 💗 lluvia suave de corazones (solo mientras la pestaña 💗 está activa):
+   corazoncitos puros como al principio — pasan CONTINUAMENTE por la app
+   y por DEBAJO del video (ver z-index en styles.css) */
 let hxLayer = null;
 function hxHearts() {
   if (hxLayer || document.getElementById('hxHearts')) return;
   hxLayer = document.createElement('div');
   hxLayer.id = 'hxHearts';
-  const SYMS = ['💗', '💖', '💘', '💕', '🌸'];
+  const SYMS = ['💗', '💖', '💘', '💕'];
   let html = '';
   for (let i = 0; i < 14; i++) {
     html += `<span style="left:${(i * 67) % 100}%;animation-delay:-${(i * 1.9) % 16}s;animation-duration:${13 + (i * 37) % 12}s;font-size:${13 + (i * 11) % 20}px">${SYMS[i % SYMS.length]}</span>`;
   }
-  /* capa de resplandor rosa detrás (se mueve lentamente) */
-  html += '<div id="hxGlow"></div>';
   hxLayer.innerHTML = html;
   document.body.appendChild(hxLayer);
 }
@@ -2839,13 +2839,8 @@ function setPlayIcon() {
   const overlayVisible = !els.empty.classList.contains('hidden') || !els.noUrl.classList.contains('hidden');
   const showBigPlay = paused && !!els.video.src && !overlayVisible;
   els.bigPlay.classList.toggle('hidden', !showBigPlay);
-  /* 🏷 logo de la marca flotando en medio cuando está en pausa */
-  const brand = els.pauseBrand;
-  if (brand) {
-    brand.classList.toggle('hidden', !(paused && !!els.video.src && !overlayVisible
-      && !isDriveMode() && !els.playerArea.classList.contains('ext-mode')));
-  }
-  /* ⏱ al pausar: la UI aparece ~3.5s y luego se desvanece, dejando solo el logo */
+  /* ⏱ al pausar: la UI aparece ~3.5s y luego se desvanece, dejando solo
+     el círculo central con la marca X·STREAM dentro */
   if (paused && els.video.src) flashUiControls(3500);
 }
 
@@ -2939,13 +2934,6 @@ els.playerArea.addEventListener('pointerup', ev => {
 els.playBtn.addEventListener('click', togglePlay);
 els.bigPlay.addEventListener('click', togglePlay);
 els.video.addEventListener('click', togglePlay);
-/* tocar el logo de pausa también reanuda */
-els.pauseBrand = els.pauseBrand || $('pauseBrand');
-if (els.pauseBrand) {
-  els.pauseBrand.style.pointerEvents = 'auto';
-  els.pauseBrand.style.cursor = 'pointer';
-  els.pauseBrand.addEventListener('click', togglePlay);
-}
 
 /* prev/next */
 els.prevEp.addEventListener('click', () => { if (current.ep > 1) loadEpisode(current.ep - 1, true); });
