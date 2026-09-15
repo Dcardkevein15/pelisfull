@@ -740,9 +740,9 @@ function hxHearts() {
   const pick = arr => arr[Math.floor(Math.random() * arr.length)];
   /* lejano (lento, pequeño, tenue) · medio · cercano (rápido, grande, brillante) */
   const PLANES = [
-    { n: 9, d: [26, 36], fs: [11, 17], o: .4, s: [8, 16], syms: ['💗', '💖', '🌸', '🌺', '😍'] },
-    { n: 8, d: [18, 25], fs: [17, 25], o: .65, s: [12, 24], syms: ['💗', '💖', '💘', '🌸', '🌺', '🥰', '😍'] },
-    { n: 6, d: [13, 18], fs: [26, 38], o: .9, s: [18, 34], syms: ['💗', '💘', '💕', '🌸', '🌷', '😍', '🥰', '😘'] },
+    { n: 9, d: [26, 36], fs: [11, 17], o: .4, s: [8, 16], syms: ['💗', '💖', '🌸', '🌺', '😍', '🤤'] },
+    { n: 8, d: [18, 25], fs: [17, 25], o: .65, s: [12, 24], syms: ['💗', '💖', '💘', '🌸', '🌺', '🥰', '😍', '🤤'] },
+    { n: 6, d: [13, 18], fs: [26, 38], o: .9, s: [18, 34], syms: ['💗', '💘', '💕', '🌸', '🌷', '😍', '🥰', '😘', '🤤'] },
   ];
   let html = '';
   for (const p of PLANES) for (let i = 0; i < p.n; i++) {
