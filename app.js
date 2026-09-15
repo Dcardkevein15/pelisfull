@@ -726,18 +726,36 @@ els.tabSeries.addEventListener('click', () => setTab('series'));
 els.tabHentai.addEventListener('click', () => setTab('hentai'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
 
-/* 💗 lluvia suave de corazones (solo mientras la pestaña 💗 está activa):
-   corazoncitos puros como al principio — pasan CONTINUAMENTE por la app
-   y por DEBAJO del video (ver z-index en styles.css) */
+/* 💗 Ballet de enamorados (solo mientras la pestaña 💗 está activa):
+   corazones + flores + caritas enamoradas en 3 planos de profundidad,
+   más destellos que laten. Todo transform/opacity (GPU) ⇒ sedoso, y con
+   delays negativos ⇒ la escena YA está poblada al instante de entrar.
+   Pasan por DEBAJO del video (z-index en styles.css). */
 let hxLayer = null;
 function hxHearts() {
   if (hxLayer || document.getElementById('hxHearts')) return;
   hxLayer = document.createElement('div');
   hxLayer.id = 'hxHearts';
-  const SYMS = ['💗', '💖', '💘', '💕'];
+  const R = (a, b) => a + Math.random() * (b - a);
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  /* lejano (lento, pequeño, tenue) · medio · cercano (rápido, grande, brillante) */
+  const PLANES = [
+    { n: 9, d: [26, 36], fs: [11, 17], o: .4, s: [8, 16], syms: ['💗', '💖', '🌸', '🌺', '😍'] },
+    { n: 8, d: [18, 25], fs: [17, 25], o: .65, s: [12, 24], syms: ['💗', '💖', '💘', '🌸', '🌺', '🥰', '😍'] },
+    { n: 6, d: [13, 18], fs: [26, 38], o: .9, s: [18, 34], syms: ['💗', '💘', '💕', '🌸', '🌷', '😍', '🥰', '😘'] },
+  ];
   let html = '';
-  for (let i = 0; i < 14; i++) {
-    html += `<span style="left:${(i * 67) % 100}%;animation-delay:-${(i * 1.9) % 16}s;animation-duration:${13 + (i * 37) % 12}s;font-size:${13 + (i * 11) % 20}px">${SYMS[i % SYMS.length]}</span>`;
+  for (const p of PLANES) for (let i = 0; i < p.n; i++) {
+    const d = R(p.d[0], p.d[1]);
+    html += `<span class="hx" style="--x:${R(2, 96).toFixed(1)}%;--d:${d.toFixed(1)}s;--dl:-${R(0, d).toFixed(1)}s;--o:${p.o};`
+      + `font-size:${R(p.fs[0], p.fs[1]).toFixed(0)}px;--s:${R(p.s[0], p.s[1]).toFixed(0)}px;--r:${R(6, 16).toFixed(0)}deg;`
+      + `--sd:${R(2.6, 4.6).toFixed(1)}s;--sdl:-${R(0, 4).toFixed(1)}s"><i>${pick(p.syms)}</i></span>`;
+  }
+  /* ✨ destellos que laten entre el ballet */
+  for (let i = 0; i < 5; i++) {
+    const d = R(12, 20);
+    html += `<span class="hx hx-tw" style="--x:${R(4, 94).toFixed(1)}%;--d:${d.toFixed(1)}s;--dl:-${R(0, d).toFixed(1)}s;--o:.85;`
+      + `font-size:${R(10, 16).toFixed(0)}px;--sd:${R(1.8, 3).toFixed(1)}s;--sdl:-${R(0, 2).toFixed(1)}s"><i>✨</i></span>`;
   }
   hxLayer.innerHTML = html;
   document.body.appendChild(hxLayer);

@@ -219,21 +219,34 @@ body.tab-hentai .topbar{background:linear-gradient(90deg,#180a14,#0d0a12)}
 body.tab-hentai .player{box-shadow:0 24px 70px rgba(255,77,141,.22)}
 body.tab-hentai .btn-acid{color:#221114}
 body.tab-hentai .side-tab.on{color:var(--acid)}
-/* lluvia decorativa de corazones (no captura clics):
-   VISIBLES sobre la app como al principio, pero el reproductor siempre
-   queda por ENCIMA: al cruzar el video pasan justo por debajo */
+/* 💗 Ballet de enamorados (no captura clics): corazones, flores y caritas
+   enamoradas en 3 planos de profundidad. Solo transform+opacity (GPU pura)
+   ⇒ movimiento sedoso; delays negativos ⇒ la pantalla ya viene poblada.
+   El reproductor queda por ENCIMA: al cruzar el video pasan por debajo. */
 #hxHearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1;display:none}
 body.tab-hentai #hxHearts{display:block}
-/* el video tapa los corazones al pasar (sin crear contexto en .layout) */
+/* el video tapa los corazoncitos al pasar (sin crear contexto en .layout) */
 .player{z-index:2}
 .topbar{position:relative;z-index:30}
-#hxHearts span{position:absolute;bottom:-8%;opacity:0;animation:hxRise linear infinite;
-  filter:drop-shadow(0 0 6px rgba(255,134,184,.45))}
+.hx{position:absolute;bottom:-12%;left:var(--x);opacity:0;will-change:transform;
+  animation:hxRise var(--d) linear var(--dl) infinite}
+.hx i{display:inline-block;font-style:normal;will-change:transform;
+  filter:drop-shadow(0 0 7px rgba(255,134,184,.55));
+  animation:hxSway var(--sd,3.6s) ease-in-out var(--sdl,0s) infinite alternate}
 @keyframes hxRise{
-  0%{transform:translateY(0) rotate(-8deg);opacity:0}
-  8%{opacity:.75}
-  85%{opacity:.45}
-  100%{transform:translateY(-115vh) rotate(14deg);opacity:0}
+  0%{transform:translate3d(0,0,0);opacity:0}
+  7%{opacity:var(--o,.8)}
+  85%{opacity:var(--o,.8)}
+  100%{transform:translate3d(0,-118vh,0);opacity:0}
+}
+@keyframes hxSway{
+  from{transform:translate3d(calc(var(--s,14px) * -1),0,0) rotate(calc(var(--r,8deg) * -1))}
+  to{transform:translate3d(var(--s,14px),0,0) rotate(var(--r,8deg))}
+}
+.hx-tw i{animation:hxTwinkle var(--sd,3s) ease-in-out var(--sdl,0s) infinite}
+@keyframes hxTwinkle{
+  0%,100%{transform:scale(.55) rotate(0deg);opacity:.12}
+  50%{transform:scale(1.25) rotate(18deg);opacity:.95}
 }
 .player video{width:100%;height:100%;object-fit:contain;background:#000}
 /* iframe de Google Drive ocupa todo el player y sustituye al video */
