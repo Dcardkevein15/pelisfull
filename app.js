@@ -171,15 +171,28 @@ function load() {
   state.epg = { url: '', map: {}, at: 0 };
 }
 function save() {
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify(state));
-  } catch (e) {
-    /* cuota llena (miniaturas): purga la mitad más antigua y reintenta una vez */
-    if (state.thumbs) {
-      const ks = Object.keys(state.thumbs);
-      ks.slice(0, Math.ceil(ks.length / 2)).forEach(k => delete state.thumbs[k]);
-      try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e2) { }
-    }
+  const write = () => localStorage.setItem(LS_KEY, JSON.stringify(state));
+  try { write(); return; } catch (e) { /* cuota llena → recortar lo regenerable */ }
+  /* En móviles la cuota de localStorage es ~5 MB y el estado con catálogo
+     grande (miles de canales TV + enlaces) la desborda. Antes el fallo era
+     SILENCIOSO: nada se guardaba y al reabrir la app arrancaba SIEMPRE del
+     estado viejo (parecía que "no se actualizaba"). Ahora se adelgaza en
+     cascada, solo datos que se regeneran o vuelven con la próxima sync: */
+  /* 1) miniaturas: caché visual (vuelven del catálogo o al reproducir) */
+  if (state.thumbs && Object.keys(state.thumbs).length) {
+    state.thumbs = {};
+    try { write(); console.info('[xstream] guardado sin miniaturas (cuota)'); return; } catch (e) { }
+  }
+  /* 2) canales TV traídos del catálogo/listas (reaparecen solos al sincronizar);
+        se conservan siempre los añadidos a mano */
+  if (Array.isArray(state.channels) && state.channels.length) {
+    state.channels = state.channels.filter(c => c && c.src === 'manual');
+    try { write(); console.info('[xstream] guardado sin canales de catálogo (cuota)'); return; } catch (e) { }
+  }
+  /* 3) guía EPG: caché que se vuelve a descargar sola */
+  if (state.epg && state.epg.map && Object.keys(state.epg.map).length) {
+    state.epg = { url: state.epg.url || '', map: {}, at: 0 };
+    try { write(); console.info('[xstream] guardado sin EPG (cuota)'); return; } catch (e) { }
   }
 }
 

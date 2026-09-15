@@ -34,11 +34,12 @@
     cookie: 'xuid', cookieDays: 3650,
     catalogUrl: 'catalog.json',
     /* 🔐 Clave pública ECDSA P-256 (base64 SPKI) que firma el catálogo.
-       Se genera sola al publicar la 1ª vez; cópiala del Perfil → «Firma del
-       catálogo» y pégala aquí UNA sola vez. Mientras esté vacía, los lectores
-       aceptan el catálogo sin firma (modo legado); con clave, RECHAZAN
-       cualquier catalog.json que no esté firmado por tu clave privada. */
-    catalogPubKey: 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEd8Ro3qWzRh/Tz2Hnj6t31SlTG6CUFcqKA6iphH1MnAIVK3DGSa2GCR5lSy5V6jQLtSGNxTj2qFw3GmWrhL9P1w==',
+       Es la del dispositivo que publica HOY (verificada contra el catálogo
+       en vivo el 15-sep-2026). Si algún día publicas desde OTRO dispositivo:
+       importa allí tu clave privada (Perfil → «🔐 Firma del catálogo») o
+       actualiza esta pública — publishCatalog autoverifica y BLOQUEA con un
+       aviso grande cualquier publicación cuya firma no cuadre. */
+    catalogPubKey: 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkO2b+Vm4MNlm+97FaZdXilRkF8KCr0XfqjhtQ00wc8SCsUAz6zA60rxYqnHuRIY7fNJCL6rCYDP5W5DOaNnorA==',
     tgSite: 'https://dcardkevein15.github.io/pelisfull/',   /* tu web pública (para el botón ▶ Ver ahora) */
     ghRepo: 'Dcardkevein15/pelisfull',
     ghBranch: 'main',
@@ -1061,7 +1062,17 @@
     try {
       await sigKeysEnsure();
       const sig = await sigSignPayload(payload);
-      if (sig) payload.sig = sig;
+      if (sig) {
+        payload.sig = sig;
+        /* 🩺 AUTOCOMPROBACIÓN ANTI-APAGÓN: si hay clave pública embebida en
+           auth.js, la firma recién creada DEBE verificar con ella. Si no
+           cuadra (clave regenerada en otro PC/móvil), publicar así haría que
+           TODOS los lectores rechacen el catálogo — bloqueamos y explicamos. */
+        if (CONFIG.catalogPubKey && (await verifyCatalog({ ...payload })) !== 'ok') {
+          axToast('🚨 Publicación BLOQUEADA: tu clave de firma de este dispositivo NO coincide con la clave pública de auth.js — si saliera así, ningún visitante recibiría el catálogo. Entra a Perfil → «🔐 Firma del catálogo»: importa tu clave privada original, o copia la pública de aquí y pégala en auth.js (o deja CONFIG.catalogPubKey vacío para publicar sin blindaje).', true);
+          return;
+        }
+      }
     } catch (e) { console.warn('[xstream] publicación sin firma:', e); }
 
     /* ① PUBLICACIÓN AUTOMÁTICA A GITHUB — los lectores lo reciben solos */
@@ -1075,7 +1086,7 @@
         renderCatalogStatus();
         axToast(`🌐 PUBLICADO para todos: ${payload.n} entradas · los visitantes lo reciben automáticamente`
           + (payload.sig
-            ? (CONFIG.catalogPubKey ? ' · 🔐 firmado y blindado' : ' · 🔐 firmado — falta pegar tu clave pública en auth.js para activar el blindaje')
+            ? (CONFIG.catalogPubKey ? ' · 🔐 firmado y blindado' : ' · firmado ✓ (blindaje opcional: activa CONFIG.catalogPubKey con tu clave de Perfil → 🔐 Firma)')
             : ''));
         /* 📢 Telegram: anuncia solo las novedades (nunca bloquea la publicación) */
         telegramAnnounce(payload).catch(e => console.warn('[telegram]', e));
@@ -2073,7 +2084,13 @@
 
   let syncing = false;
   async function syncCatalog() {
-    if (isAdmin()) return;                 /* el admin nunca se pisa a sí mismo */
+    /* 👑 El dispositivo QUE PUBLICA ya tiene la última versión en su estado
+       (su catalogMeta.v coincide y el chequeo de abajo lo salta solo). Pero
+       OTROS dispositivos del mismo admin (p. ej. su móvil) SÍ deben ponerse
+       al día: antes se saltaban siempre y se quedaban viendo un catálogo
+       viejo para siempre sin entender por qué. Única excepción: si el admin
+       está EDITANDO ahora mismo, no pisamos su trabajo en curso. */
+    if (isAdmin() && document.body.classList.contains('editing')) return;
     if (!/^https?:$/.test(location.protocol)) return; /* file:// → sin red */
     if (syncing) return;
     syncing = true;
@@ -2091,7 +2108,16 @@
       /* 🔒 Candado 2: firma ECDSA — si la clave pública está activada y la
          firma no cuadra, alguien modificó el archivo: se ignora          */
       const firma = await verifyCatalog(cat);
-      if (firma === 'invalid') { console.warn('[xstream] catálogo rechazado: FIRMA INVÁLIDA — el archivo fue alterado'); return; }
+      if (firma === 'invalid') {
+        console.warn('[xstream] catálogo rechazado: FIRMA INVÁLIDA — el archivo fue alterado o se firmó con otra clave');
+        /* aviso visible (una vez por sesión): antes fallaba en SILENCIO y el
+           visitante se quedaba para siempre con su catálogo viejo          */
+        if (!syncCatalog.warned) {
+          syncCatalog.warned = true;
+          axToast('⚠ El catálogo publicado no pasa la verificación de firma. Si eres el admin: revisa Perfil → «🔐 Firma del catálogo» y CONFIG.catalogPubKey en auth.js', true);
+        }
+        return;
+      }
       if (firma === 'no-key') console.info('[xstream] catálogo aceptado sin verificación de firma (blíndalo pegando CONFIG.catalogPubKey en auth.js)');
       const st = API.getState();
       const cur = (st.catalogMeta && st.catalogMeta.v) || 0;
