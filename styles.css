@@ -208,6 +208,27 @@ body.is-fs .topbar{transition:none}
 .lnk-b:hover{border-color:var(--acid)}
 .lnk-b.danger:hover{border-color:var(--hot);color:var(--hot)}
 .lnk-auto{font-size:10px;opacity:.7}
+
+/* ═══════ 💗 Tema categoría Hentai (activo solo con su pestaña) ═══════
+   Rosa suave/aéreo: paleta acid→rosa, fondos rosáceos y una lluvia suave
+   de corazones decorativos (sin imágenes explícitas, todo abstracto). */
+body.tab-hentai{--acid:#ff86b8;--hot:#ff4d8d;
+  background:linear-gradient(160deg,#170a13,#0a0710)}
+body.tab-hentai .sidebar{background:linear-gradient(180deg,#1a0c16,#0f0810)}
+body.tab-hentai .topbar{background:linear-gradient(90deg,#180a14,#0d0a12)}
+body.tab-hentai .player{box-shadow:0 24px 70px rgba(255,77,141,.22)}
+body.tab-hentai .btn-acid{color:#221114}
+body.tab-hentai .side-tab.on{color:var(--acid)}
+/* lluvia decorativa de corazones (non-blocking, no captura clics) */
+#hxHearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+#hxHearts span{position:absolute;bottom:-8%;opacity:0;animation:hxRise linear infinite;
+  filter:drop-shadow(0 0 6px rgba(255,134,184,.45))}
+@keyframes hxRise{
+  0%{transform:translateY(0) rotate(-8deg);opacity:0}
+  8%{opacity:.75}
+  85%{opacity:.45}
+  100%{transform:translateY(-115vh) rotate(14deg);opacity:0}
+}
 .player video{width:100%;height:100%;object-fit:contain;background:#000}
 /* iframe de Google Drive ocupa todo el player y sustituye al video */
 .drive-frame{display:none;position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;z-index:3}

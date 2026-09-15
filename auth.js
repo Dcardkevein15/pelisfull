@@ -1014,7 +1014,7 @@
      un archivo estático servido por el propio hosting. */
   function cleanForPublish(s) {
     const o = {};
-    ['id', 't', 'jp', 'tag', 'g', 'kind', 'anime', 'poster', 'tags', 'seasons', 'order', 'clsManual'].forEach(k => {
+    ['id', 't', 'jp', 'tag', 'g', 'kind', 'anime', 'poster', 'tags', 'seasons', 'order', 'clsManual', 'hentai'].forEach(k => {
       if (s[k] !== undefined) o[k] = s[k];
     });
     o.episodes = (s.episodes || []).map(e => {

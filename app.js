@@ -103,7 +103,10 @@ function load() {
         state.tab = state.tab || 'anime';
         if (state.tab === 'ovas') state.tab = 'peliculas'; /* pestaña OVAs retirada: ahora se integran en su serie */
         state.series.forEach(s => { if (typeof s.anime !== 'boolean') s.anime = s.kind !== 'pelicula'; });
-        /* 🔗 acortador de enlaces (códigos de 6) — viaja firmado en catalog.json */
+        /* 💗 categoría hentai: reconocimiento automático por título (una vez) */
+        state.series.forEach(s => {
+          if (!s.hentai && /\bhentai\b/i.test(String(s.t || ''))) s.hentai = true;
+        });
         state.links = state.links && !Array.isArray(state.links) ? state.links : {};
         state.linksDom = state.linksDom || 'https://x.yapido.click';
         /* 🧹 Limpieza retroactiva: capítulos gemelos heredados del viejo importador
@@ -190,7 +193,7 @@ const els = {
   speed: $('speed'), pipBtn: $('pipBtn'), fsBtn: $('fsBtn'), autoplayBtn: $('autoplayBtn'),
   nowPlaying: $('nowPlaying'), stageTitle: $('stageTitle'), stageSub: $('stageSub'),
   stageBadges: $('stageBadges'), seriesList: $('seriesList'),
-  countAnime: $('countAnime'), countSeries: $('countSeries'), countPelis: $('countPelis'), gearBtn: $('gearBtn'), sidePanel: $('sidePanel'), sideScroll: $('sideScroll'),
+  countAnime: $('countAnime'), countSeries: $('countSeries'), countHentai: $('countHentai'), countPelis: $('countPelis'), gearBtn: $('gearBtn'), sidePanel: $('sidePanel'), sideScroll: $('sideScroll'),
   ccBtn: $('ccBtn'), brokenBtn: $('brokenBtn'), brokenCount: $('brokenCount'),
   brokenList: $('brokenList'), flagBtn: $('flagBtn'),
   episodesGrid: $('episodesGrid'), episodesTitle: $('episodesTitle'), searchInput: $('searchInput'),
@@ -219,7 +222,7 @@ const els = {
   continueRow: $('continueRow'), accentPick: $('accentPick'), accentMini: $('accentMini'),
   searchBox: $('searchBox'), searchToggle: $('searchToggle'),
   favBtn: $('favBtn'),   tagBtn: $('tagBtn'), remindBtn: $('remindBtn'), castBtn: $('castBtn'),
-  tabAnime: $('tabAnime'), tabSeries: $('tabSeries'), tabPeliculas: $('tabPeliculas'),
+  tabAnime: $('tabAnime'), tabSeries: $('tabSeries'), tabHentai: $('tabHentai'), tabPeliculas: $('tabPeliculas'),
   tabTv: $('tabTv'), countTv: $('countTv'), tvTools: $('tvTools'),
   tvScanBtn: $('tvScanBtn'), tvRescanBtn: $('tvRescanBtn'), moveCatBtn: $('moveCatBtn'),
   tvIptvBtn: $('tvIptvBtn'), tvEpgBtn: $('tvEpgBtn'), tvCats: $('tvCats'),
@@ -676,6 +679,7 @@ function syncTabs() {
   els.tabHome.classList.toggle('on', state.tab === 'home');
   els.tabAnime.classList.toggle('on', state.tab === 'anime');
   els.tabSeries.classList.toggle('on', state.tab === 'series');
+  els.tabHentai.classList.toggle('on', state.tab === 'hentai');
   els.tabPeliculas.classList.toggle('on', state.tab === 'peliculas');
   els.tabTv.classList.toggle('on', state.tab === 'tv');
   els.tvTools.classList.toggle('hidden', state.tab !== 'tv' || !canAdmin());
@@ -684,6 +688,8 @@ function syncTabs() {
   els.tvCats.classList.remove('hidden');
   document.body.classList.toggle('tab-tv', state.tab === 'tv');
   document.body.classList.toggle('tab-home', state.tab === 'home');
+  document.body.classList.toggle('tab-hentai', state.tab === 'hentai');
+  if (state.tab === 'hentai') hxHearts();
   const hv = els.homeView, ps = els.playerShell;
   if (hv && ps) {
     const isHome = state.tab === 'home';
@@ -701,7 +707,23 @@ function setTab(tab) {
 els.tabHome.addEventListener('click', () => setTab('home'));
 els.tabAnime.addEventListener('click', () => setTab('anime'));
 els.tabSeries.addEventListener('click', () => setTab('series'));
+els.tabHentai.addEventListener('click', () => setTab('hentai'));
 els.tabPeliculas.addEventListener('click', () => setTab('peliculas'));
+
+/* 💗 lluvia suave de corazones (solo mientras la pestaña 💗 está activa) */
+let hxLayer = null;
+function hxHearts() {
+  if (hxLayer || document.getElementById('hxHearts')) return;
+  hxLayer = document.createElement('div');
+  hxLayer.id = 'hxHearts';
+  const SYMS = ['💗', '💖', '💘', '💕', '🌸'];
+  let html = '';
+  for (let i = 0; i < 14; i++) {
+    html += `<span style="left:${(i * 67) % 100}%;animation-delay:-${(i * 1.9) % 16}s;animation-duration:${13 + (i * 37) % 12}s;font-size:${13 + (i * 11) % 20}px">${SYMS[i % SYMS.length]}</span>`;
+  }
+  hxLayer.innerHTML = html;
+  document.body.appendChild(hxLayer);
+}
 els.tabTv.addEventListener('click', () => setTab('tv'));
 
 /* ═══════════════════════════════════════════════════════════
@@ -1767,17 +1789,20 @@ function renderSeries(filter = '') {
   const q = filter.trim().toLowerCase();
   els.seriesList.innerHTML = '';
   /* contadores por pestaña (siempre actualizados) */
-  els.countAnime.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime !== false).length;
-  els.countSeries.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime === false).length;
-  els.countPelis.textContent = state.series.filter(s => s.kind === 'pelicula').length;
+  els.countAnime.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime !== false && !s.hentai).length;
+  els.countSeries.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime === false && !s.hentai).length;
+  els.countHentai.textContent = state.series.filter(s => s.hentai === true).length;
+  els.countPelis.textContent = state.series.filter(s => s.kind === 'pelicula' && !s.hentai).length;
   els.countTv.textContent = (state.channels || []).length;
   /* 📡 pestaña TV: lista de canales, no series */
   if (state.tab === 'tv') return renderChannels(q);
   let list = state.series.slice();
   /* pestaña activa: Anime · Series (no anime) · Películas (las OVAs sueltas viven en Películas hasta integrarse) */
-  if (state.tab === 'peliculas') list = list.filter(s => s.kind === 'pelicula');
-  else if (state.tab === 'series') list = list.filter(s => s.kind !== 'pelicula' && s.anime === false);
-  else list = list.filter(s => s.kind !== 'pelicula' && s.anime !== false);
+  /* pestaña activa: Anime · Series (no anime) · Hentai · Películas */
+  if (state.tab === 'peliculas') list = list.filter(s => s.kind === 'pelicula' && !s.hentai);
+  else if (state.tab === 'hentai') list = list.filter(s => s.hentai === true);
+  else if (state.tab === 'series') list = list.filter(s => s.kind !== 'pelicula' && s.anime === false && !s.hentai);
+  else list = list.filter(s => s.kind !== 'pelicula' && s.anime !== false && !s.hentai);
 
   /* orden */
   const m = state.sortMode || 'manual';
@@ -1811,7 +1836,7 @@ function renderSeries(filter = '') {
       ? (isOvaEntry(s)
           ? '<span class="s-kind pelicula">OVA</span>'
           : (s.anime ? '<span class="s-kind pelicula">PELÍCULA ANIME</span>' : '<span class="s-kind pelicula">PELÍCULA</span>'))
-      : `<span class="s-kind serie">${s.anime === false ? 'SERIE' : 'ANIME'}</span>`;
+      : `<span class="s-kind serie">${s.hentai ? '💗 HENTAI' : (s.anime === false ? 'SERIE' : 'ANIME')}</span>`;
     const sub = isMovie
       ? (s.episodes.length > 1
           ? `${chip}<span class="s-linked">${s.episodes.length} partes</span>`
@@ -4272,8 +4297,8 @@ els.delSeriesBtn.addEventListener('click', () => {
    mueve en CUALQUIER dirección conservando enlaces, temporadas y progreso.
    Lo movido a mano queda marcado (clsManual) y el auto-clasificador jamás
    lo vuelve a tocar.                                                   */
-const catOf = s => s.kind === 'pelicula' ? 'peliculas' : (s.anime === false ? 'series' : 'anime');
-const CAT_LABEL = { anime: '📺 Anime', series: '📼 Series', peliculas: '🎬 Películas' };
+const catOf = s => s.hentai ? 'hentai' : (s.kind === 'pelicula' ? 'peliculas' : (s.anime === false ? 'series' : 'anime'));
+const CAT_LABEL = { anime: '📺 Anime', series: '📼 Series', peliculas: '🎬 Películas', hentai: '💗 Hentai' };
 
 els.moveCatBtn.addEventListener('click', () => {
   if (!needAdmin()) return;
@@ -4313,6 +4338,7 @@ function moverACategoria(s, cat) {
     if (!s.episodes || !s.episodes.length) s.episodes = [{ n: 1, t: 'Capítulo 1', url: '' }];
     s.episodes.forEach((e, i) => { e.n = i + 1; if (!e.t) e.t = `Capítulo ${i + 1}`; });
   }
+  s.hentai = cat === 'hentai';           /* 💗 la puerta de la categoría rosa */
   s.clsManual = true;
   save();
   renderSeries(els.searchInput.value);
