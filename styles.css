@@ -220,9 +220,25 @@ body.tab-hentai .player{box-shadow:0 24px 70px rgba(255,77,141,.22)}
 body.tab-hentai .btn-acid{color:#221114}
 body.tab-hentai .side-tab.on{color:var(--acid)}
 /* lluvia decorativa de corazones (non-blocking, no captura clics) */
-#hxHearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+/* lluvia decorativa de corazones (no captura clics) */
+#hxHearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;display:none}
+body.tab-hentai #hxHearts{display:block}
+/* contenido siempre por ENCIMA de la decoración */
+.layout{position:relative;z-index:2}
+.topbar{position:relative;z-index:30}
 #hxHearts span{position:absolute;bottom:-8%;opacity:0;animation:hxRise linear infinite;
-  filter:drop-shadow(0 0 6px rgba(255,134,184,.45))}
+  filter:drop-shadow(0 0 6px rgba(255,134,184,.45));
+  animation-play-state:running}
+#hxHearts span:nth-child(3n){filter:blur(1.2px) drop-shadow(0 0 10px rgba(255,134,184,.5));font-size:26px}
+#hxHearts span:nth-child(4n){filter:blur(2.6px);opacity:.6}
+/* resplandor ambiental rosa-púrpura que respira lentamente detrás */
+#hxGlow{position:absolute;inset:-20%;z-index:0;
+  background:
+    radial-gradient(45% 40% at 20% 30%, rgba(255,77,141,.16), transparent 60%),
+    radial-gradient(40% 45% at 80% 70%, rgba(180,90,220,.14), transparent 60%),
+    radial-gradient(50% 30% at 50% 100%, rgba(255,134,184,.12), transparent 60%);
+  animation:hxBreathe 9s ease-in-out infinite alternate}
+@keyframes hxBreathe{from{transform:translateY(-2%) scale(1);opacity:.7}to{transform:translateY(2%) scale(1.06);opacity:1}}
 @keyframes hxRise{
   0%{transform:translateY(0) rotate(-8deg);opacity:0}
   8%{opacity:.75}

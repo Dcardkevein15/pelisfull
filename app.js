@@ -689,7 +689,10 @@ function syncTabs() {
   document.body.classList.toggle('tab-tv', state.tab === 'tv');
   document.body.classList.toggle('tab-home', state.tab === 'home');
   document.body.classList.toggle('tab-hentai', state.tab === 'hentai');
+  /* 💗 la decoración existe solo con la pestaña activa: fuera → desaparece del todo */
   if (state.tab === 'hentai') hxHearts();
+  const hx = document.getElementById('hxHearts');
+  if (hx) hx.style.display = state.tab === 'hentai' ? '' : 'none';
   const hv = els.homeView, ps = els.playerShell;
   if (hv && ps) {
     const isHome = state.tab === 'home';
@@ -721,6 +724,8 @@ function hxHearts() {
   for (let i = 0; i < 14; i++) {
     html += `<span style="left:${(i * 67) % 100}%;animation-delay:-${(i * 1.9) % 16}s;animation-duration:${13 + (i * 37) % 12}s;font-size:${13 + (i * 11) % 20}px">${SYMS[i % SYMS.length]}</span>`;
   }
+  /* capa de resplandor rosa detrás (se mueve lentamente) */
+  html += '<div id="hxGlow"></div>';
   hxLayer.innerHTML = html;
   document.body.appendChild(hxLayer);
 }
