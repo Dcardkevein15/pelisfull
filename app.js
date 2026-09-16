@@ -5401,7 +5401,7 @@ function renderMigration() {
     if (!eps.length) continue;
     const ok = eps.filter(e => migDoneCount(e.url)).length;
     const fail = eps.filter(e => migMap && migMap[e.url] === 'FAIL').length;
-    groups.push({ s, eps, ok, fail });
+    groups.push({ s, eps, ok, fail, temporada: eps.length === 1 && s.kind !== 'pelicula' });
   }
   const total = groups.reduce((a, g) => a + g.eps.length, 0);
   const okAll = groups.reduce((a, g) => a + g.ok, 0);
@@ -5417,7 +5417,8 @@ function renderMigration() {
     row.innerHTML = `
       <div class="mig-t">${escapeHtml(g.s.t)}</div>
       <div class="mig-meta">
-        <span>${g.eps.length} episodios</span>
+        <span>${g.s.kind === 'pelicula' ? '🎬 película' : g.temporada ? '📦 temporada empaquetada (1 video)' : `📺 serie · ${g.eps.length} episodios`}</span>
+        <span class="mig-badge">1 ítem en archive.org</span>
         <span class="mig-badge ok">${g.ok} migrados</span>
         ${g.fail ? `<span class="mig-badge fail">${g.fail} fallidos</span>` : ''}
         ${g.ok === g.eps.length ? '<span class="mig-badge ok">✅ terminada</span>' : ''}
@@ -5455,10 +5456,9 @@ async function openMigration() {
   await migRefreshMap();
   renderMigration();
   migRefreshRuns();
-  /* precarga las claves guardadas */
-  const a = $('migIaAccess'), s = $('migIaSecret');
-  if (a && !a.value) a.value = vget('iaAccess') || '';
-  if (s && !s.value) s.value = vget('iaSecret') || '';
+  /* precarga las 4 claves guardadas (cambia de cuenta cuando quieras) */
+  const fil = [['migIaAccess', 'iaAccess'], ['migIaSecret', 'iaSecret'], ['migStapeLogin', 'stLogin'], ['migStapeKey', 'stKey']];
+  for (const [el, k] of fil) { const n = $(el); if (n && !n.value) n.value = vget(k) || ''; }
 }
 
 $('migrateBtn').addEventListener('click', openMigration);
@@ -5467,15 +5467,22 @@ $('closeMigrate').addEventListener('click', () => $('modalMigrate').classList.ad
 $('migRunBtn').addEventListener('click', async () => {
   const token = (() => { try { return localStorage.getItem('xstream-gh-token') || ''; } catch (e) { return ''; } })();
   if (!token) return toast('⚠ Falta tu token de GitHub (el que usas para Publicar)', true);
-  if (vget('stLogin') === '' || vget('stKey') === '')
-    return toast('⚠ Faltan tus claves de Streamtape: guárdalas en Importar carpeta Drive → Streamtape', true);
-  /* claves de archive.org: pedir una vez, guardar en la bóveda local */
-  const iaA = $('migIaAccess').value.trim(), iaS = $('migIaSecret').value.trim();
-  if (iaA && iaS && window.XAUTH && XAUTH.vaultSet) XAUTH.vaultSet({ iaAccess: iaA, iaSecret: iaS });
-  const iaAccess = iaA || vget('iaAccess'), iaSecret = iaS || vget('iaSecret');
-  if (!iaAccess || !iaSecret) {
+  /* las 4 claves son editables siempre: lo que escribas se guarda y se usa */
+  const nStL = $('migStapeLogin').value.trim(), nStK = $('migStapeKey').value.trim();
+  const nIaA = $('migIaAccess').value.trim(), nIaS = $('migIaSecret').value.trim();
+  if (window.XAUTH && XAUTH.vaultSet) {
+    const patch = {};
+    if (nStL) patch.stLogin = nStL;
+    if (nStK) patch.stKey = nStK;
+    if (nIaA) patch.iaAccess = nIaA;
+    if (nIaS) patch.iaSecret = nIaS;
+    if (Object.keys(patch).length) XAUTH.vaultSet(patch);
+  }
+  const stLogin = nStL || vget('stLogin'), stKey = nStK || vget('stKey');
+  const iaAccess = nIaA || vget('iaAccess'), iaSecret = nIaS || vget('iaSecret');
+  if (!stLogin || !stKey || !iaAccess || !iaSecret) {
     $('migCredsBox').setAttribute('open', '');
-    return toast('🔑 Pega tus claves S3 de archive.org (archive.org/account/s3.php)', true);
+    return toast('🔑 Faltan credenciales — rellena las 4 casillas (Streamtape + archive.org)', true);
   }
   try {
     const r = await fetch(`https://api.github.com/repos/${MIG_REPO}/actions/workflows/${MIG_WORKFLOW}/dispatches`, {
@@ -5483,7 +5490,7 @@ $('migRunBtn').addEventListener('click', async () => {
       headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
       body: JSON.stringify({
         ref: 'main',
-        inputs: { stape_login: vget('stLogin'), stape_key: vget('stKey'), ia_access: iaAccess, ia_secret: iaSecret, lote: '15' },
+        inputs: { stape_login: stLogin, stape_key: stKey, ia_access: iaAccess, ia_secret: iaSecret, lote: '15' },
       }),
     });
     if (!r.ok) throw new Error('HTTP ' + r.status);

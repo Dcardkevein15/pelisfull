@@ -52,7 +52,8 @@ const stapeApi = async (ep, params) => {
 const stapeId = u => (String(u || '').match(/streamtape\.(?:com|to)\/e\/([\w-]+)/i)
   || String(u || '').match(/streamtape\.(?:com|to)\/v\/([\w-]+)/i) || [])[1] || null;
 
-/* item archive.org por serie (nombre estable y corto) */
+/* item archive.org por entrada (1 solo por serie/película — TODO queda
+   agrupado en él; nunca se parte una serie en varios ítems) */
 const iaItem = s => 'xmig-' + String(s.id).toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
 
 /* sube un archivo de disco a archive.org (S3-compatible) */
@@ -126,9 +127,17 @@ async function main() {
       const mb = fs.statSync(fp).size / 1048576;
       console.log(`   ⬇ descargado ${mb.toFixed(1)} MB`);
       if (mb < 1) throw new Error('archivo sospechosamente pequeño');
-      /* 4) subir a archive.org */
-      const fileName = `${String(e.n).padStart(3, '0')} - ${String(dlName).replace(/\.[^.]+$/, '').replace(/[\\/:*?"<>|]/g, ' ').trim().slice(0, 70)}.mp4`;
-      const newUrl = await iaUpload(iaItem(s), fileName, fp, `${s.t} · ${e.t || 'Episodio ' + e.n}`);
+      /* 4) subir a archive.org — el NOMBRE respeta la forma de la entrada:
+         · serie con varios capítulos  → "E### - nombre.mp4" (ordenados solos)
+         · serie de UN solo video (temporada empaquetada) o película
+           → "<título>.mp4" a pelo, dentro de su propio ítem            */
+      const esSolo = (s.episodes || []).length === 1;
+      const baseName = String(esSolo ? (s.t || dlName) : (e.t || dlName))
+        .replace(/\.[^.]+$/, '').replace(/[\\/:*?"<>|]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 70);
+      const fileName = esSolo
+        ? `${baseName || 'video'}.mp4`
+        : `E${String(e.n).padStart(3, '0')} - ${baseName || ('Capitulo ' + e.n)}.mp4`;
+      const newUrl = await iaUpload(iaItem(s), fileName, fp, `${s.t}${esSolo ? '' : ' · ' + (e.t || 'Episodio ' + e.n)}`);
       fs.rmSync(fp, { force: true });
       await sleep(4000);
       /* 5) verificar que ya responde */

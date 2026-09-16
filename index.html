@@ -502,16 +502,18 @@
 <div class="modal-backdrop hidden" id="modalMigrate">
   <div class="modal modal-wide">
     <h3>🚚 Migración Streamtape → archive.org</h3>
-    <p class="modal-sub">Streamtape pone anuncios dentro de su reproductor y no se pueden quitar sin romperlo. El robot migra los videos a archive.org (reproductor propio, cero anuncios) en lotes automáticos desde GitHub: tú lo lanzas, él trabaja, y al final integras el resultado y publicas como siempre.</p>
+    <p class="modal-sub">Streamtape pone anuncios dentro de su reproductor y no se pueden quitar sin romperlo. El robot migra los videos a archive.org (reproductor propio, cero anuncios) en lotes automáticos desde GitHub. <b>Todo queda agrupado: los capítulos de una serie van a UN solo ítem</b> (incluidas las temporadas empaquetadas en un solo video) y las películas a su propio ítem — la app los sigue mostrando igual de agrupados al reproducir.</p>
     <div class="mig-status" id="migStatus">Comprobando…</div>
     <div class="mig-list" id="migList"></div>
     <details class="drive-adv" id="migCredsBox">
-      <summary>🔑 Credenciales la primera vez (se guardan solo en tu navegador)</summary>
+      <summary>🔑 Cuentas de origen y destino — cámbialas cuando quieras (se guardan solo en tu navegador)</summary>
       <div class="mig-creds">
+        <input type="text" id="migStapeLogin" placeholder="Streamtape API login" autocomplete="off" spellcheck="false">
+        <input type="password" id="migStapeKey" placeholder="Streamtape API key" autocomplete="off" spellcheck="false">
         <input type="text" id="migIaAccess" placeholder="archive.org access key" autocomplete="off" spellcheck="false">
         <input type="password" id="migIaSecret" placeholder="archive.org secret key" autocomplete="off" spellcheck="false">
       </div>
-      <p class="modal-sub">Gratis en <b>archive.org/account/s3.php</b> (crea cuenta si no tienes). Las de Streamtape ya las conoce tu perfil (Importar carpeta Drive → Streamtape).</p>
+      <p class="modal-sub">Pega aquí otra cuenta cuando la necesites (otra Streamtape u otro archive.org) y el robot la usará en el próximo lote. archive.org gratis en <b>archive.org/account/s3.php</b>.</p>
     </details>
     <div class="modal-actions">
       <button class="btn btn-ghost" id="closeMigrate">Cerrar</button>
