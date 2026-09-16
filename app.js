@@ -2881,14 +2881,49 @@ els.video.addEventListener('ended', () => {
 els.video.addEventListener('waiting', () => els.spinner.classList.remove('hidden'));
 els.video.addEventListener('canplay', () => els.spinner.classList.add('hidden'));
 els.video.addEventListener('playing', () => els.spinner.classList.add('hidden'));
+
+/* 🛟 Autocuración archive.org: a veces entrega un derivado que el navegador
+   no traga (contenedor raro) o su nodo regional falla un rato. Antes de dar
+   el enlace por muerto, probamos sus GEMELOS (mismo video que archive.org
+   genera en otro contenedor/calidad: .mp4 → .ia.mp4 → _512kb.mp4) usando el
+   propio <video>, porque archive.org no da cabeceras CORS para sondear con
+   fetch. Solo si TODOS fallan se avisa, con la causa real. */
+let iaFallback = null; /* { key, pendientes: [] } */
+function iaCandidates(src) {
+  const m = src.match(/^(https?:\/\/[^/]*archive\.org\/download\/[^/]+\/)(.+?)\.(mp4|m4v|webm|ogv|avi|mkv|mpg|mpeg|wmv|flv|3gp|ts)(\?[^\s]*)?$/i);
+  if (!m) return [];
+  const base = m[1] + m[2], ext = m[3].toLowerCase();
+  const cands = [];
+  if (ext !== 'mp4') cands.push(base + '.mp4');        /* el gemelo h264 existe casi siempre */
+  cands.push(base + '.ia.mp4', base + '_512kb.mp4');    /* derivados universales de archive.org */
+  return cands.filter(u => u !== src);
+}
 els.video.addEventListener('error', () => {
   els.spinner.classList.add('hidden');
   if (driveDirectTry) return; /* intento Drive directo: su propio fallback gestiona el error */
-  if (els.video.src) toast('⚠ El enlace no se pudo cargar. Verifica que sea una URL directa.', true);
+  const src = els.video.src;
+  if (!src) return;
+  if (/archive\.org\/download\//.test(src)) {
+    const key = current.seriesId + ':' + current.ep;
+    if (!iaFallback || iaFallback.key !== key) iaFallback = { key, pendientes: iaCandidates(src) };
+    const alt = iaFallback.pendientes.shift();
+    if (alt) {
+      toast('🔁 archive.org: probando otra copia del mismo video…');
+      els.video.src = alt;
+      els.video.load();
+      els.video.play().catch(() => { });
+      return;
+    }
+    iaFallback = null;
+    toast('⚠ archive.org no responde desde tu conexión ahora mismo — reintenta en unos minutos (o cambia de red: datos ↔ Wi-Fi).', true);
+    return;
+  }
+  toast('⚠ El enlace no se pudo cargar. Verifica que sea una URL directa.', true);
 });
 
 els.video.addEventListener('timeupdate', () => { updateSeek(); trackPlayback(); });
 els.video.addEventListener('loadedmetadata', () => {
+  iaFallback = null; /* cargó bien: cierra la ronda de autocuración */
   els.tDur.textContent = fmt(els.video.duration);
   updateSeek();
   /* reanudación pendiente */
