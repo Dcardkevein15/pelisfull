@@ -1467,7 +1467,8 @@
       return;
     }
     if (stape) {
-      play.innerHTML = `<iframe src="https://streamtape.com/e/${stape[1]}" allowfullscreen allowtransparency allow="autoplay"></iframe>`;
+      /* sandbox: el preview de Streamtape también va sin sus anuncios/popups */
+      play.innerHTML = `<iframe src="https://streamtape.com/e/${stape[1]}" sandbox="allow-scripts allow-same-origin" allowfullscreen allowtransparency allow="autoplay"></iframe>`;
       st.textContent = '☁ Streamtape (vista previa)'; st.className = 'pv-status ok';
       return;
     }
