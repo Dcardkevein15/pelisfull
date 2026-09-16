@@ -5637,7 +5637,9 @@ function cinePickBest(vids) {
    · resto → película normal                                                          */
 function cineImport(doc, title, media, year) {
   if (!needAdmin()) return;
-  const id = 'ia-' + doc.identifier.replace(/[^\w-]+/g, '-');
+  /* ids acotados: un identificador de archive.org demasiado largo superaba el
+     límite del validador de lectores y TUMBAba el catálogo entero para todos */
+  const id = ('ia-' + doc.identifier.replace(/[^\w-]+/g, '-')).slice(0, 60);
   const tipo = cineDetectType(doc, media.vids.length);
   const esAnime = ANIME_RE.test(`${cineChipActivo || ''} ${els.cineQuery.value} ${title}`)
     || tipo.key === 'ova' || tipo.key === 'anime';

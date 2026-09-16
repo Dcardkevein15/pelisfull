@@ -572,7 +572,7 @@
     if (!Array.isArray(series) || !series.length || series.length > 5000) return false;
     for (const s of series) {
       if (!s || typeof s !== 'object' || Array.isArray(s) || !noBadKeys(s)) return false;
-      if (!okStr(s.id, 90) || !okStr(s.t, 300)) return false;
+      if (!okStr(s.id, 160) || !okStr(s.t, 300)) return false;
       if (!Array.isArray(s.episodes) || s.episodes.length > 5000) return false;
       if (s.poster && !okThumb(s.poster)) return false;
       if (s.tags !== undefined &&
@@ -1055,6 +1055,17 @@
     if (!API || !API.getState) return axToast('La app aún no está lista', true);
     const state = API.getState();
     const payload = buildCatalogPayload(state);
+
+    /* 🧯 Candado anti-apagón: valida el payload EXACTAMENTE como haría un
+       lector. Un solo registro inválido (p. ej. un id demasiado largo) hace
+       que TODOS los visitantes descarten el catálogo entero en silencio —
+       bloqueamos aquí y señalamos el registro culpable. */
+    if (!validateCatalog(payload)) {
+      const mal = payload.series.find(s => String(s.id).length > 160 || String(s.t || '').length > 300)
+        || payload.series[0];
+      axToast(`🚨 Publicación BLOQUEADA: «${String(mal.t || mal.id).slice(0, 50)}» tiene un dato inválido (id/título demasiado largo). Si saliera así, todos los visitantes rechazarían el catálogo completo. Corrige ese registro y vuelve a publicar.`, true);
+      return;
+    }
 
     /* 🔐 FIRMA ECDSA — invisible: la 1ª vez crea tu clave en este
        dispositivo y firma; después solo firma. Si no hay cripto
