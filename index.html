@@ -113,6 +113,7 @@
         <button id="favFilter" class="chip-filter" title="Solo favoritos">♥ Favs</button>
         <button id="trendsBtn" class="chip-filter admin-only" title="Tendencias del momento (TMDB + anime): qué publicar hoy y dónde lo están pidiendo">🚀 Tendencias</button>
         <button id="linksBtn" class="chip-filter admin-only" title="Acortador de enlaces: crea códigos cortos b.yapido.click que abren al instante">🔗 Acortador</button>
+        <button id="migrateBtn" class="chip-filter admin-only" title="Migrar videos de Streamtape a archive.org: sin anuncios, para siempre">🚚 Migrar</button>
         <button id="trashBtn" class="chip-filter trash2 admin-only" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
       </div>
       <div class="side-filters" id="tagChips"></div>
@@ -493,6 +494,29 @@
     <div class="modal-actions ui-actions">
       <button class="btn btn-ghost ui-cancel" id="uiCancel">Cancelar</button>
       <button class="btn btn-acid ui-ok" id="uiOk">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL MIGRACIÓN STREAMTAPE ══════════ -->
+<div class="modal-backdrop hidden" id="modalMigrate">
+  <div class="modal modal-wide">
+    <h3>🚚 Migración Streamtape → archive.org</h3>
+    <p class="modal-sub">Streamtape pone anuncios dentro de su reproductor y no se pueden quitar sin romperlo. El robot migra los videos a archive.org (reproductor propio, cero anuncios) en lotes automáticos desde GitHub: tú lo lanzas, él trabaja, y al final integras el resultado y publicas como siempre.</p>
+    <div class="mig-status" id="migStatus">Comprobando…</div>
+    <div class="mig-list" id="migList"></div>
+    <details class="drive-adv" id="migCredsBox">
+      <summary>🔑 Credenciales la primera vez (se guardan solo en tu navegador)</summary>
+      <div class="mig-creds">
+        <input type="text" id="migIaAccess" placeholder="archive.org access key" autocomplete="off" spellcheck="false">
+        <input type="password" id="migIaSecret" placeholder="archive.org secret key" autocomplete="off" spellcheck="false">
+      </div>
+      <p class="modal-sub">Gratis en <b>archive.org/account/s3.php</b> (crea cuenta si no tienes). Las de Streamtape ya las conoce tu perfil (Importar carpeta Drive → Streamtape).</p>
+    </details>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeMigrate">Cerrar</button>
+      <button class="btn btn-acid" id="migRunBtn">🚀 Lanzar robot (lote de 15)</button>
+      <button class="btn btn-acid hidden" id="migApplyBtn">📥 Integrar migrados y preparar publicación</button>
     </div>
   </div>
 </div>

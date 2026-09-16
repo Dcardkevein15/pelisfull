@@ -51,7 +51,7 @@
     'cineBtn', 'driveFolderBtn', 'editModeBtn', 'addSeriesBtn',
     'trashBtn', 'brokenBtn', 'renameBtn', 'insertEpBtn', 'addEpBtn',
     'delSeriesBtn', 'tagBtn', 'undoBtn', 'goEditBtn', 'importBtn',
-    'moveCatBtn', 'tvTools',
+    'moveCatBtn', 'tvTools', 'migrateBtn',
   ];
 
   /* ─────────── Utilidades base ─────────── */

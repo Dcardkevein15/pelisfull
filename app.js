@@ -5367,6 +5367,149 @@ function loadScript(src) {
   });
 }
 
+/* ═══════════ 🚚 MIGRACIÓN STREAMTAPE → archive.org ═══════════
+   Streamtape mete anuncios dentro de su reproductor y los detecta contra
+   cualquier bloqueo (sandbox → "Client blocked"). Solución de verdad:
+   sacar los videos de ahí. Flujo:
+     1) este panel lista lo que vive en Streamtape y su progreso
+     2) "🚀 Lanzar robot" dispara el workflow de GitHub (.github/workflows/
+        migrar-stape.yml), que descarga cada episodio con la API oficial del
+        admin (dlticket→dl) y lo sube a archive.org, guardando el mapa
+        viejo-url → nueva-url en migration-map.json del repo
+     3) "📥 Integrar" aplica ese mapa al estado local y queda listo para el
+        Publicar de siempre (firmado, como todo lo demás)                  */
+const MIG_REPO = 'Dcardkevein15/pelisfull';
+const MIG_WORKFLOW = 'migrar-stape.yml';
+let migMap = null;
+const migTotal = () => state.series.reduce((a, s) => a + s.episodes.filter(e => parseStape(e.url)).length, 0);
+const migDoneCount = url => migMap && typeof migMap[url] === 'string' && migMap[url].startsWith('http');
+
+async function migRefreshMap() {
+  try {
+    const r = await fetch('migration-map.json?t=' + Date.now(), { cache: 'no-store' });
+    migMap = r.ok ? await r.json() : {};
+  } catch (e) { migMap = migMap || {}; }
+}
+
+function renderMigration() {
+  const stEl = $('migStatus');
+  const list = $('migList');
+  if (!stEl || !list) return;
+  const groups = [];
+  for (const s of state.series) {
+    const eps = s.episodes.filter(e => parseStape(e.url));
+    if (!eps.length) continue;
+    const ok = eps.filter(e => migDoneCount(e.url)).length;
+    const fail = eps.filter(e => migMap && migMap[e.url] === 'FAIL').length;
+    groups.push({ s, eps, ok, fail });
+  }
+  const total = groups.reduce((a, g) => a + g.eps.length, 0);
+  const okAll = groups.reduce((a, g) => a + g.ok, 0);
+  const failAll = groups.reduce((a, g) => a + g.fail, 0);
+  stEl.textContent = total
+    ? `${total} episodios viven en Streamtape · ${okAll} ya migrados · ${failAll} fallidos (reintentables)`
+    : '✅ Ningún episodio queda en Streamtape — catálogo 100% libre de anuncios';
+  list.innerHTML = '';
+  for (const g of groups) {
+    const row = document.createElement('div');
+    row.className = 'mig-row';
+    const pct = Math.round(g.ok / g.eps.length * 100);
+    row.innerHTML = `
+      <div class="mig-t">${escapeHtml(g.s.t)}</div>
+      <div class="mig-meta">
+        <span>${g.eps.length} episodios</span>
+        <span class="mig-badge ok">${g.ok} migrados</span>
+        ${g.fail ? `<span class="mig-badge fail">${g.fail} fallidos</span>` : ''}
+        ${g.ok === g.eps.length ? '<span class="mig-badge ok">✅ terminada</span>' : ''}
+      </div>
+      <div class="mig-bar"><i style="width:${pct}%"></i></div>`;
+    list.appendChild(row);
+  }
+  const btn = $('migApplyBtn');
+  if (btn) btn.classList.toggle('hidden', !okAll);
+}
+
+/* estado del último robot (GitHub Actions) */
+async function migRefreshRuns() {
+  const el = $('migStatus');
+  const token = (() => { try { return localStorage.getItem('xstream-gh-token') || ''; } catch (e) { return ''; } })();
+  if (!token || !el) return;
+  try {
+    const r = await fetch(`https://api.github.com/repos/${MIG_REPO}/actions/workflows/${MIG_WORKFLOW}/runs?per_page=1`,
+      { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' } });
+    if (!r.ok) return;
+    const j = await r.json();
+    const run = j.workflow_runs && j.workflow_runs[0];
+    if (!run) return;
+    const cuando = new Date(run.created_at).toLocaleString('es');
+    const estado = run.status === 'completed'
+      ? (run.conclusion === 'success' ? '✅ último lote completado' : '⚠ último lote con error: ' + run.conclusion)
+      : '⏳ robot trabajando ahora mismo (' + run.status + ')…';
+    el.textContent += `\n🤖 ${estado} · ${cuando}`;
+  } catch (e) { /* sin red */ }
+}
+
+async function openMigration() {
+  $('modalMigrate').classList.remove('hidden');
+  $('migStatus').textContent = 'Comprobando progreso…';
+  await migRefreshMap();
+  renderMigration();
+  migRefreshRuns();
+  /* precarga las claves guardadas */
+  const a = $('migIaAccess'), s = $('migIaSecret');
+  if (a && !a.value) a.value = vget('iaAccess') || '';
+  if (s && !s.value) s.value = vget('iaSecret') || '';
+}
+
+$('migrateBtn').addEventListener('click', openMigration);
+$('closeMigrate').addEventListener('click', () => $('modalMigrate').classList.add('hidden'));
+
+$('migRunBtn').addEventListener('click', async () => {
+  const token = (() => { try { return localStorage.getItem('xstream-gh-token') || ''; } catch (e) { return ''; } })();
+  if (!token) return toast('⚠ Falta tu token de GitHub (el que usas para Publicar)', true);
+  if (vget('stLogin') === '' || vget('stKey') === '')
+    return toast('⚠ Faltan tus claves de Streamtape: guárdalas en Importar carpeta Drive → Streamtape', true);
+  /* claves de archive.org: pedir una vez, guardar en la bóveda local */
+  const iaA = $('migIaAccess').value.trim(), iaS = $('migIaSecret').value.trim();
+  if (iaA && iaS && window.XAUTH && XAUTH.vaultSet) XAUTH.vaultSet({ iaAccess: iaA, iaSecret: iaS });
+  const iaAccess = iaA || vget('iaAccess'), iaSecret = iaS || vget('iaSecret');
+  if (!iaAccess || !iaSecret) {
+    $('migCredsBox').setAttribute('open', '');
+    return toast('🔑 Pega tus claves S3 de archive.org (archive.org/account/s3.php)', true);
+  }
+  try {
+    const r = await fetch(`https://api.github.com/repos/${MIG_REPO}/actions/workflows/${MIG_WORKFLOW}/dispatches`, {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ref: 'main',
+        inputs: { stape_login: vget('stLogin'), stape_key: vget('stKey'), ia_access: iaAccess, ia_secret: iaSecret, lote: '15' },
+      }),
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    toast('🤖 Robot lanzado — migra 15 episodios y guarda el progreso. Vuelve a lanzarlo hasta que diga «terminada».');
+    setTimeout(migRefreshRuns, 12000);
+  } catch (e) {
+    toast('⚠ No se pudo lanzar el robot: ' + e.message, true);
+  }
+});
+
+$('migApplyBtn').addEventListener('click', async () => {
+  await migRefreshMap();
+  let cambios = 0;
+  for (const s of state.series) {
+    for (const e of s.episodes) {
+      const nueva = migMap && migMap[e.url];
+      if (typeof nueva === 'string' && nueva.startsWith('http')) { e.url = nueva; cambios++; }
+    }
+  }
+  if (!cambios) return toast('Nada nuevo que integrar todavía');
+  save();
+  renderSeries(els.searchInput.value);
+  renderEpisodes();
+  toast(`📥 ${cambios} episodios apuntan ya a archive.org. Revisa uno y pulsa «Publicar» en tu perfil para firmarlo para todos.`);
+});
+
 /* 🔥 Firebase Sync ELIMINADO por diseño: cero dependencias externas.
    La nube del proyecto es GitHub + catalog.json cifrado (ver auth.js). */
 

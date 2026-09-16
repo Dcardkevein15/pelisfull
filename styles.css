@@ -1391,6 +1391,22 @@ body.light .drive-status.ok{color:#3aa832}
 .stape-go{width:100%;margin-top:10px;justify-content:center}
 .stape-hint{margin-top:8px;font-size:11px}
 
+/* ═══════ 🚚 Migración Streamtape → archive.org ═══════ */
+.mig-status{font-family:'JetBrains Mono';font-size:11px;color:var(--dim);margin:4px 0 8px;white-space:pre-wrap}
+.mig-list{display:flex;flex-direction:column;gap:8px;max-height:42vh;overflow-y:auto;margin:10px 0}
+.mig-row{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.mig-t{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mig-meta{font-family:'JetBrains Mono';font-size:10.5px;color:var(--dim);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}
+.mig-bar{height:5px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:7px}
+.mig-bar i{display:block;height:100%;background:var(--acid);transition:width .3s}
+.mig-badge{font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+.mig-badge.ok{color:var(--acid);border-color:var(--acid)}
+.mig-badge.fail{color:var(--hot);border-color:var(--hot)}
+.mig-creds{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.mig-creds input{background:var(--panel2);border:1px solid var(--line);border-radius:8px;
+  padding:8px 10px;color:var(--ink);font-size:12px;font-family:'JetBrains Mono';outline:none}
+.mig-creds input:focus{border-color:var(--acid)}
+
 /* ═══════ MODAL REPORTE / RELACIONADAS ═══════ */
 .modal-flag{width:min(380px,92vw);text-align:center;gap:16px}
 .flag-icon{
