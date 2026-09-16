@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1789528022757,
+ "v": 1789537858409,
  "by": "Dcard #2968",
- "at": "2026-09-16T03:07:02.757Z",
- "n": 5355,
+ "at": "2026-09-16T05:50:58.409Z",
+ "n": 5358,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -21835,6 +21835,120 @@
      "n": 11,
      "t": "GATON 2 11",
      "url": "https://archive.org/download/kimetsu_20240913/GATON%202.11.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-stratos_4",
+   "t": "Stratos 4",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b421-tRLEEXt9asEv.jpg",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E01 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E01.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E02 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E02.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E03 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E03.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E04 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E04.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E05 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E05.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E06 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E06.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E07 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E07.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E08 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E08.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E09 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E09.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E10 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E10.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E11 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E11.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E12 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E12.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Stratos 4 (ESP)(2005)(Animax)/S01E13 ia",
+     "url": "https://archive.org/download/stratos_4/Stratos%204%20(ESP)(2005)(Animax)/S01E13.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-demon-slayer-kimetsu-no-yaiba-infinity-castle-2025-online-gratis-en-espanol-ver-peliculas-ultra",
+   "t": "Demon Slayer: Infinity Castle",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime · 2025",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/8uYxx23KyDnbDkA3eQSNECVeOiS.jpg",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Demon Slayer Kimetsu No Yaiba Infinity Castle ( 2025) On",
+     "url": "https://archive.org/download/ver-demon-slayer-kimetsu-no-yaiba-infinity-castle-2025-online-gratis-en-espanol-ver-peliculas-ultra/Ver_Demon_Slayer__Kimetsu_No_Yaiba_Infinity_Castle_(2025)_Online_Gratis_en_Espa%C3%B1ol_-_VerPeliculasUltra.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-VerTresVecesTuPelculaCompletaOnlineGratisDescargarl",
+   "t": "Ver Tres Veces Tu Película Completa Online Gratis Descargarl",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2011",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/VerTresVecesTuPelculaCompletaOnlineGratisDescargarl",
+   "tags": [],
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Tres Veces Tu Película Completa Online Gratis Descargarl",
+     "url": "https://archive.org/download/VerTresVecesTuPelculaCompletaOnlineGratisDescargarl/Ver%20Tres%20veces%20tu%20pel%C3%ADcula%20completa%20online%20gratis%20descargarl.ogv"
     }
    ]
   }
@@ -101953,8 +102067,83 @@
    "dest": "#/pelicula/dragon-ball-super-broly",
    "t": "Dragon Ball Super: Broly",
    "at": 1789483175263
+  },
+  "q8t84h": {
+   "dest": "#/anime/stratos-4/1",
+   "t": "Stratos 4 · E1",
+   "at": 1789529713627
+  },
+  "xrhdq9": {
+   "dest": "#/anime/stratos-4/2",
+   "t": "Stratos 4 · E2",
+   "at": 1789529713627
+  },
+  "wk48yj": {
+   "dest": "#/anime/stratos-4/3",
+   "t": "Stratos 4 · E3",
+   "at": 1789529713627
+  },
+  "kckhkj": {
+   "dest": "#/anime/stratos-4/4",
+   "t": "Stratos 4 · E4",
+   "at": 1789529713627
+  },
+  "2ewe6z": {
+   "dest": "#/anime/stratos-4/5",
+   "t": "Stratos 4 · E5",
+   "at": 1789529713627
+  },
+  "rx2c2h": {
+   "dest": "#/anime/stratos-4/6",
+   "t": "Stratos 4 · E6",
+   "at": 1789529713627
+  },
+  "p9s248": {
+   "dest": "#/anime/stratos-4/7",
+   "t": "Stratos 4 · E7",
+   "at": 1789529713627
+  },
+  "epaxb9": {
+   "dest": "#/anime/stratos-4/8",
+   "t": "Stratos 4 · E8",
+   "at": 1789529713627
+  },
+  "mhyph6": {
+   "dest": "#/anime/stratos-4/9",
+   "t": "Stratos 4 · E9",
+   "at": 1789529713627
+  },
+  "qcbkga": {
+   "dest": "#/anime/stratos-4/10",
+   "t": "Stratos 4 · E10",
+   "at": 1789529713627
+  },
+  "5tk4dk": {
+   "dest": "#/anime/stratos-4/11",
+   "t": "Stratos 4 · E11",
+   "at": 1789529713627
+  },
+  "w5d87b": {
+   "dest": "#/anime/stratos-4/12",
+   "t": "Stratos 4 · E12",
+   "at": 1789529713628
+  },
+  "rx94hy": {
+   "dest": "#/anime/stratos-4/13",
+   "t": "Stratos 4 · E13",
+   "at": 1789529713628
+  },
+  "pwqj6e": {
+   "dest": "#/pelicula/demon-slayer-infinity-castle",
+   "t": "Demon Slayer: Infinity Castle",
+   "at": 1789531860822
+  },
+  "krsjvz": {
+   "dest": "#/pelicula/ver-tres-veces-tu-pelicula-completa-online-gratis-descargarl",
+   "t": "Ver Tres Veces Tu Película Completa Online Gratis Descargarl",
+   "at": 1789531899908
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "Om8cSk0DpJcYk8ExxyTKfVUh4LNOQ2LxMFBBIQjY6Oczy3/Ir1KKFJ0eJyX5lYm6/s5QCihC5ul98N9ygq2t1w=="
+ "sig": "UtdUPXkY6jyU/UolLJ9OhHMOlbiyfXd+EKoAyNsFrFzuf0pgUWFwLor/gEsZhFqSpc+Uqhhqi6mEm1Jss9rD9w=="
 }
