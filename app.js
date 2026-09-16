@@ -271,7 +271,6 @@ function exitDriveMode() {
   els.playerArea.classList.remove('drive-direct');
   if (!isDriveMode()) return;
   els.playerArea.classList.remove('drive-mode');
-  els.driveFrame.removeAttribute('sandbox'); /* el sandbox anti-anuncios es solo para Streamtape */
   els.driveFrame.src = 'about:blank'; // detiene la reproducción del iframe
 }
 
@@ -2767,7 +2766,6 @@ function loadEpisode(epN, autoplayNow = true) {
       startDriveTracking(s.id, ep.n);
       els.spinner.classList.add('hidden');
       els.playerArea.classList.add('drive-mode');
-      els.driveFrame.removeAttribute('sandbox'); /* Drive necesita ir sin sandbox */
       els.driveFrame.src = drivePreviewUrl(driveId);
       els.nowPlaying.textContent += ' · DRIVE (integrado)';
       renderEpisodes();
@@ -2792,10 +2790,7 @@ function loadEpisode(epN, autoplayNow = true) {
     els.spinner.classList.add('hidden');
     els.playerArea.classList.add('drive-mode');
     const src = stapeEmbedUrl(stape.id);
-    /* 🚫 CERO anuncios de Streamtape: sandbox sin popups ni navegación fuera
-       del marco. Su reproductor funciona igual, pero NINGÚN popup, popunder,
-       redirección ni publicidad puede abrirse — el navegador los bloquea. */
-    els.driveFrame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+    els.driveFrame.removeAttribute('sandbox'); /* Streamtape BLOQUEA el video si va con sandbox — no aplicable */
     if (!els.driveFrame.src.startsWith(src)) els.driveFrame.src = src;
     els.nowPlaying.textContent += ' · STREAMTAPE';
     renderEpisodes();
