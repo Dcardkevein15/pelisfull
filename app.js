@@ -5369,9 +5369,24 @@ function loadScript(src) {
 /* 🔥 Firebase Sync ELIMINADO por diseño: cero dependencias externas.
    La nube del proyecto es GitHub + catalog.json cifrado (ver auth.js). */
 
-/* ── PWA: service worker (solo con hosting HTTPS) ── */
+/* ── PWA: service worker con AUTO-ACTUALIZACIÓN (solo con hosting HTTPS) ──
+   Antes: la versión nueva se descargaba en segundo plano pero el usuario
+   seguía viendo la VIEJA hasta que recargaba a mano (o nunca). Ahora: en el
+   momento en que una versión nueva toma el control, la página se recarga
+   sola UNA vez — al entrar siempre ves la última versión, de inmediato. */
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-  navigator.serviceWorker.register('sw.js').catch(() => { });
+  const teniaSW = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!teniaSW || window.__swReloaded) return; /* la 1ª vez de la historia no recarga */
+    window.__swReloaded = true;
+    location.reload();
+  });
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    /* busca versión nueva al volver a la pestaña y cada 10 min,
+       sin tener que cerrar la app */
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) reg.update().catch(() => { }); });
+    setInterval(() => reg.update().catch(() => { }), 10 * 60 * 1000);
+  }).catch(() => { });
 }
 
 /* splash */
