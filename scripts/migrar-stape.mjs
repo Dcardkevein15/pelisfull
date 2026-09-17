@@ -31,7 +31,9 @@ const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const CATALOG = path.join(ROOT, 'catalog.json');
 const MAPFILE = path.join(ROOT, 'migration-map.json');
 
-const LOTE = Math.max(1, parseInt(process.env.INPUT_LOTE || '15', 10));
+const LOTE = Math.max(1, parseInt(process.env.INPUT_LOTE || '8', 10));
+/* timeout por episodio (descargar+subir ~130 MB puede tardar) */
+const EP_TIMEOUT_MS = 8 * 60 * 1000;
 const SA = process.env.STAPE_LOGIN, SK = process.env.STAPE_KEY;
 const IA_A = process.env.IA_ACCESS, IA_S = process.env.IA_SECRET;
 
@@ -56,8 +58,29 @@ const stapeId = u => (String(u || '').match(/streamtape\.(?:com|to)\/e\/([\w-]+)
    agrupado en él; nunca se parte una serie en varios ítems) */
 const iaItem = s => 'xmig-' + String(s.id).toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
 
+/* crea el ítem (bucket) si no existe; archive.org lo exige antes de subir */
+async function iaEnsureBucket(item, title) {
+  const url = `https://s3.us.archive.org/${item}/`;
+  const r = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `LOW ${IA_A}:${IA_S}`,
+      'x-archive-meta-mediatype': 'movies',
+      'x-archive-meta-title': title.slice(0, 120),
+      'x-archive-meta-description': 'Mirror público migrado por el propietario del contenido.',
+      'x-archive-meta-language': 'Spanish',
+    },
+  });
+  /* 200 OK = creado; 301/409 = ya existía: igual */
+  if (!r.ok) {
+    const txt = await r.text().catch(() => '');
+    throw new Error(`IA no pudo crear el ítem ${item}: HTTP ${r.status} ${txt.slice(0, 100)}`);
+  }
+}
+
 /* sube un archivo de disco a archive.org (S3-compatible) */
 async function iaUpload(item, filename, filePath, title) {
+  await iaEnsureBucket(item, title);
   const url = `https://s3.us.archive.org/${item}/${encodeURIComponent(filename)}`;
   const data = fs.createReadStream(filePath);
   const size = fs.statSync(filePath).size;
@@ -67,24 +90,23 @@ async function iaUpload(item, filename, filePath, title) {
       'Authorization': `LOW ${IA_A}:${IA_S}`,
       'Content-Type': 'video/mp4',
       'Content-Length': String(size),
-      'x-archive-meta-mediatype': 'movies',
-      'x-archive-meta-title': title.slice(0, 120),
-      'x-archive-meta-description': 'Mirror público migrado por el propietario del contenido.',
-      'x-archive-meta-language': 'Spanish',
-      'x-archive-keep-old-version': '0',
-      'x-amz-auto-make-bucket': '1',
     },
     body: data,
     duplex: 'half',
   });
-  if (!r.ok) throw new Error('IA PUT ' + r.status + ' ' + (await r.text()).slice(0, 120));
-  /* archive.org tarda unos segundos en exponer el archivo tras el PUT */
+  if (!r.ok) {
+    const txt = await r.text().catch(() => '');
+    throw new Error('IA PUT ' + r.status + ' ' + txt.slice(0, 120));
+  }
   return `https://archive.org/download/${item}/${encodeURIComponent(filename)}`;
 }
 
 async function main() {
   const cat = JSON.parse(fs.readFileSync(CATALOG, 'utf8'));
   const map = fs.existsSync(MAPFILE) ? JSON.parse(fs.readFileSync(MAPFILE, 'utf8')) : {};
+  /* reintentar los que antes marcaron FAIL (p. ej. cuando archive.org no
+     creaba el bucket y todo fallaba en 500: ya no es culpa del enlace) */
+  for (const k of Object.keys(map)) if (map[k] === 'FAIL') delete map[k];
 
   /* inventario pendiente */
   const pend = [];

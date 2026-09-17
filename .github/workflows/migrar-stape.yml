@@ -19,6 +19,9 @@ on:
         required: false
         default: '15'
 
+permissions:
+  contents: write
+
 jobs:
   migrar:
     runs-on: ubuntu-latest
