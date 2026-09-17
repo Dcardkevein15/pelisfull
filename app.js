@@ -5369,27 +5369,41 @@ function loadScript(src) {
 
 /* ═══════════ 🚚 MIGRACIÓN STREAMTAPE → archive.org ═══════════
    Streamtape mete anuncios dentro de su reproductor y los detecta contra
-   cualquier bloqueo (sandbox → "Client blocked"). Solución de verdad:
-   sacar los videos de ahí. Flujo:
-     1) este panel lista lo que vive en Streamtape y su progreso
-     2) "🚀 Lanzar robot" dispara el workflow de GitHub (.github/workflows/
-        migrar-stape.yml), que descarga cada episodio con la API oficial del
-        admin (dlticket→dl) y lo sube a archive.org, guardando el mapa
-        viejo-url → nueva-url en migration-map.json del repo
-     3) "📥 Integrar" aplica ese mapa al estado local y queda listo para el
-        Publicar de siempre (firmado, como todo lo demás)                  */
-const MIG_REPO = 'Dcardkevein15/pelisfull';
-const MIG_WORKFLOW = 'migrar-stape.yml';
+   cualquier bloqueo (sandbox → "Client blocked"). Y archive.org bloquea los
+   datacenters (GitHub Actions/Azure → HTTP 500), así que el robot NUNCA iba a
+   funcionar en la nube. La forma que SÍ funciona: TODO ocurre en TU navegador
+   — descarga directa de Streamtape (su CDN tapecontent permite CORS) y subida
+   a archive.org (SU S3 permite CORS). Sin límites de tiempo, con progreso en
+   vivo y todo queda en tu memoria hasta que publiques.                  */
+
 let migMap = null;
-const migTotal = () => state.series.reduce((a, s) => a + s.episodes.filter(e => parseStape(e.url)).length, 0);
+let migRunning = false;
+let migAbort = false;
+let migWorker = null;
+
+function migLoadMap() {
+  try { migMap = JSON.parse(localStorage.getItem('xstream-mig-map') || '{}'); }
+  catch (e) { migMap = {}; }
+  return migMap;
+}
+function migSaveMap() {
+  try { localStorage.setItem('xstream-mig-map', JSON.stringify(migMap)); } catch (e) { }
+}
+const migPend = () => {
+  const out = [];
+  for (const s of state.series) {
+    for (const e of s.episodes) {
+      if (!parseStape(e.url)) continue;
+      if (migMap && typeof migMap[e.url] === 'string' && migMap[e.url].startsWith('http')) continue;
+      out.push({ s, e });
+    }
+  }
+  return out;
+};
 const migDoneCount = url => migMap && typeof migMap[url] === 'string' && migMap[url].startsWith('http');
 
-async function migRefreshMap() {
-  try {
-    const r = await fetch('migration-map.json?t=' + Date.now(), { cache: 'no-store' });
-    migMap = r.ok ? await r.json() : {};
-  } catch (e) { migMap = migMap || {}; }
-}
+/* ítem en archive.org (1 solo por entrada) */
+const migItem = s => 'xmig-' + String(s.id).toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
 
 function renderMigration() {
   const stEl = $('migStatus');
@@ -5407,7 +5421,7 @@ function renderMigration() {
   const okAll = groups.reduce((a, g) => a + g.ok, 0);
   const failAll = groups.reduce((a, g) => a + g.fail, 0);
   stEl.textContent = total
-    ? `${total} episodios viven en Streamtape · ${okAll} ya migrados · ${failAll} fallidos (reintentables)`
+    ? `${total} episodios viven en Streamtape · ${okAll} ya migrados a archive.org${failAll ? ` · ${failAll} fallidos (se reintentan solos al lanzar)` : ''}`
     : '✅ Ningún episodio queda en Streamtape — catálogo 100% libre de anuncios';
   list.innerHTML = '';
   for (const g of groups) {
@@ -5426,83 +5440,126 @@ function renderMigration() {
       <div class="mig-bar"><i style="width:${pct}%"></i></div>`;
     list.appendChild(row);
   }
-  const btn = $('migApplyBtn');
-  if (btn) btn.classList.toggle('hidden', !okAll);
-}
-
-/* estado del último robot (GitHub Actions) */
-async function migRefreshRuns() {
-  const el = $('migStatus');
-  const token = (() => { try { return localStorage.getItem('xstream-gh-token') || ''; } catch (e) { return ''; } })();
-  if (!token || !el) return;
-  try {
-    const r = await fetch(`https://api.github.com/repos/${MIG_REPO}/actions/workflows/${MIG_WORKFLOW}/runs?per_page=1`,
-      { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' } });
-    if (!r.ok) return;
-    const j = await r.json();
-    const run = j.workflow_runs && j.workflow_runs[0];
-    if (!run) return;
-    const cuando = new Date(run.created_at).toLocaleString('es');
-    const estado = run.status === 'completed'
-      ? (run.conclusion === 'success' ? '✅ último lote completado' : '⚠ último lote con error: ' + run.conclusion)
-      : '⏳ robot trabajando ahora mismo (' + run.status + ')…';
-    el.textContent += `\n🤖 ${estado} · ${cuando}`;
-  } catch (e) { /* sin red */ }
+  const btn = $('migRunBtn');
+  if (btn) { btn.disabled = migRunning; btn.textContent = migRunning ? '⏳ Migrando… (detener con ⏹)' : '🚀 Migrar un lote (15)'; }
+  const ab = $('migApplyBtn');
+  if (ab) ab.classList.toggle('hidden', !okAll);
 }
 
 async function openMigration() {
   $('modalMigrate').classList.remove('hidden');
-  $('migStatus').textContent = 'Comprobando progreso…';
-  await migRefreshMap();
+  const stEl = $('migStatus');
+  if (stEl && !migRunning) stEl.textContent = 'Preparando…';
+  migLoadMap();
   renderMigration();
-  migRefreshRuns();
-  /* precarga las 4 claves guardadas (cambia de cuenta cuando quieras) */
+  /* precarga las 4 claves guardadas; cambiarlas = lanzar con otras cuentas */
   const fil = [['migIaAccess', 'iaAccess'], ['migIaSecret', 'iaSecret'], ['migStapeLogin', 'stLogin'], ['migStapeKey', 'stKey']];
   for (const [el, k] of fil) { const n = $(el); if (n && !n.value) n.value = vget(k) || ''; }
 }
 
 $('migrateBtn').addEventListener('click', openMigration);
-$('closeMigrate').addEventListener('click', () => $('modalMigrate').classList.add('hidden'));
+$('closeMigrate').addEventListener('click', () => { if (migRunning) migAbort = true; $('modalMigrate').classList.add('hidden'); });
+
+/* ▶ EL WORKER DE MIGRACIÓN — corre 100% en este navegador */
+async function migWorkerRun(lote) {
+  if (migRunning) return;
+  migRunning = true; migAbort = false;
+  const stEl = $('migStatus');
+  let hechos = 0, fallos = 0;
+  const setState = t => { if (stEl) stEl.textContent = t; renderMigration(); };
+  try {
+    while (hechos + fallos < lote) {
+      const pend = migPend();
+      if (!pend.length) { setState(`✅ TODO migrado — no queda nada en Streamtape (${hechos} hechos esta vez)`); break; }
+      const job = pend[0];
+      const { s, e } = job;
+      setState(`🔄 [${hechos + fallos + 1}/${lote}] «${s.t}» E${e.n}…`);
+      const st = parseStape(e.url);
+      try {
+        /* 1) ticket → url directa temporal */
+        const tk = await stapeApi('file/dlticket', { file: st.id });
+        if (!tk || !tk.ticket) throw new Error('Streamtape no dio ticket');
+        await new Promise(r => setTimeout(r, 6000)); /* Streamtape exige la pausa */
+        const dl = await stapeApi('file/dl', { file: st.id, ticket: tk.ticket });
+        if (!dl || !dl.url) throw new Error('sin url directa');
+        /* 2) descargar del CDN (sí tiene CORS) */
+        const res = await fetch(dl.url);
+        if (!res.ok || !res.body) throw new Error('descarga HTTP ' + res.status);
+        const blob = await res.blob();
+        const mb = blob.size / 1048576;
+        if (mb < 1) throw new Error('archivo sospechosamente pequeño (' + blob.size + ' B)');
+        /* 3) subir a archive.org: crear el bucket si no existe, luego PUT */
+        const item = migItem(s);
+        const iaA = vget('iaAccess'), iaS = vget('iaSecret');
+        const auth = { Authorization: `LOW ${iaA}:${iaS}` };
+        const mk = await fetch(`https://s3.us.archive.org/${item}/`, {
+          method: 'PUT',
+          headers: { ...auth, 'x-archive-meta-mediatype': 'movies', 'x-archive-meta-title': s.t.slice(0, 100) },
+        });
+        if (!mk.ok && mk.status !== 409) throw new Error('no se pudo crear el ítem IA (' + mk.status + ')');
+        const esSolo = (s.episodes || []).length === 1;
+        const baseName = String(esSolo ? (s.t || dl.name) : (e.t || dl.name))
+          .replace(/\.[^.]+$/, '').replace(/[\\/:*?"<>|]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 70);
+        const fileName = esSolo ? `${baseName || 'video'}.mp4` : `E${String(e.n).padStart(3, '0')} - ${baseName || ('Capitulo ' + e.n)}.mp4`;
+        const put = await fetch(`https://s3.us.archive.org/${item}/${encodeURIComponent(fileName)}`, {
+          method: 'PUT',
+          headers: { ...auth, 'Content-Type': 'video/mp4', 'Content-Length': String(blob.size) },
+          body: blob,
+        });
+        if (!put.ok) throw new Error('IA PUT ' + put.status);
+        /* 4) esperar a que archive.org lo exponga y verificar */
+        await new Promise(r => setTimeout(r, 4000));
+        const newUrl = `https://archive.org/download/${item}/${encodeURIComponent(fileName)}`;
+        const chk = await fetch(newUrl, { headers: { Range: 'bytes=0-1' } }).catch(() => null);
+        if (!chk || !chk.ok) throw new Error('IA no confirma aún (reintenta en un momento)');
+        migMap[e.url] = newUrl;
+        migSaveMap();
+        hechos++;
+        setState(`✅ [${hechos}] «${s.t}» E${e.n} migrado (${mb.toFixed(0)} MB)`);
+      } catch (err) {
+        const msg = err && err.message || 'fallo';
+        migMap[e.url] = 'FAIL';
+        migSaveMap();
+        fallos++;
+        setState(`⚠ [${fallos}] «${s.t}» E${e.n} falló: ${msg}`);
+      }
+      renderMigration();
+      await new Promise(r => setTimeout(r, 1500));
+      if (migAbort) { setState(`⏸ Detenido — ${hechos} migrados, ${fallos} fallidos. Lanza otro lote para seguir.`); break; }
+    }
+    setState(migAbort
+      ? `⏸ Detenido — ${hechos} migrados, ${fallos} fallidos. Lanza otro lote para seguir.`
+      : `🏁 Lote finalizado: ${hechos} migrados${fallos ? ` · ${fallos} fallidos (se retoman en el próximo lote)` : ''}. Pulsa «Integrar» para meterlo en tu catálogo y luego Publicar.`);
+  } finally {
+    migRunning = false;
+    renderMigration();
+  }
+}
 
 $('migRunBtn').addEventListener('click', async () => {
-  const token = (() => { try { return localStorage.getItem('xstream-gh-token') || ''; } catch (e) { return ''; } })();
-  if (!token) return toast('⚠ Falta tu token de GitHub (el que usas para Publicar)', true);
-  /* las 4 claves son editables siempre: lo que escribas se guarda y se usa */
+  if (migRunning) { migAbort = true; return; }
+  /* guarda las 4 claves escritas en el panel (cambiar cuenta = editar y lanzar) */
   const nStL = $('migStapeLogin').value.trim(), nStK = $('migStapeKey').value.trim();
   const nIaA = $('migIaAccess').value.trim(), nIaS = $('migIaSecret').value.trim();
   if (window.XAUTH && XAUTH.vaultSet) {
     const patch = {};
-    if (nStL) patch.stLogin = nStL;
-    if (nStK) patch.stKey = nStK;
-    if (nIaA) patch.iaAccess = nIaA;
-    if (nIaS) patch.iaSecret = nIaS;
+    if (nStL) patch.stLogin = nStL; if (nStK) patch.stKey = nStK;
+    if (nIaA) patch.iaAccess = nIaA; if (nIaS) patch.iaSecret = nIaS;
     if (Object.keys(patch).length) XAUTH.vaultSet(patch);
   }
-  const stLogin = nStL || vget('stLogin'), stKey = nStK || vget('stKey');
-  const iaAccess = nIaA || vget('iaAccess'), iaSecret = nIaS || vget('iaSecret');
-  if (!stLogin || !stKey || !iaAccess || !iaSecret) {
+  if (!(nIaA || vget('iaAccess')) || !(nIaS || vget('iaSecret'))) {
     $('migCredsBox').setAttribute('open', '');
-    return toast('🔑 Faltan credenciales — rellena las 4 casillas (Streamtape + archive.org)', true);
+    return toast('🔑 Pega tus claves S3 de archive.org (archive.org/account/s3.php)', true);
   }
-  try {
-    const r = await fetch(`https://api.github.com/repos/${MIG_REPO}/actions/workflows/${MIG_WORKFLOW}/dispatches`, {
-      method: 'POST',
-      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ref: 'main',
-        inputs: { stape_login: stLogin, stape_key: stKey, ia_access: iaAccess, ia_secret: iaSecret, lote: '15' },
-      }),
-    });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    toast('🤖 Robot lanzado — migra 15 episodios y guarda el progreso. Vuelve a lanzarlo hasta que diga «terminada».');
-    setTimeout(migRefreshRuns, 12000);
-  } catch (e) {
-    toast('⚠ No se pudo lanzar el robot: ' + e.message, true);
+  if (!(nStL || vget('stLogin')) || !(nStK || vget('stKey'))) {
+    $('migCredsBox').setAttribute('open', '');
+    return toast('🔑 Faltan las claves de Streamtape (las de Importar carpeta Drive)', true);
   }
+  migWorkerRun(15);
 });
 
-$('migApplyBtn').addEventListener('click', async () => {
-  await migRefreshMap();
+$('migApplyBtn').addEventListener('click', () => {
+  migLoadMap();
   let cambios = 0;
   for (const s of state.series) {
     for (const e of s.episodes) {
@@ -5514,7 +5571,8 @@ $('migApplyBtn').addEventListener('click', async () => {
   save();
   renderSeries(els.searchInput.value);
   renderEpisodes();
-  toast(`📥 ${cambios} episodios apuntan ya a archive.org. Revisa uno y pulsa «Publicar» en tu perfil para firmarlo para todos.`);
+  renderMigration();
+  toast(`📥 ${cambios} episodios ya apuntan a archive.org. Pulsa «Publicar» en tu perfil para firmarlo para todos.`);
 });
 
 /* 🔥 Firebase Sync ELIMINADO por diseño: cero dependencias externas.
