@@ -285,8 +285,17 @@
         </div>
       </div>
 
-      <!-- ══════════ CAPÍTULOS ══════════ -->
+      <!-- ══════════ PANEL INFERIOR: Contenido / 💬 Chat ══════════ -->
       <div class="episodes-panel" id="episodesPanel">
+        <div class="panel-tabs">
+          <button class="panel-tab on" id="ptabContent" title="Capítulos y relacionados">
+            <span>📺</span> Contenido
+          </button>
+          <button class="panel-tab" id="ptabChat" title="Chat de la comunidad — habla con quienes están viendo ahora">
+            💬 Chat <b id="chatBadge" class="chat-badge hidden">0</b>
+          </button>
+        </div>
+        <div class="panel-page" id="panelContent">
         <div class="episodes-head">
           <h2 id="episodesTitle">Capítulos</h2>
           <div class="episodes-tools">
@@ -303,6 +312,31 @@
         </div>
         <div class="episodes-grid" id="episodesGrid">
           <div class="episodes-hint">← Selecciona una serie para ver sus capítulos</div>
+        </div>
+        </div><!-- /panelContent -->
+
+        <!-- ══════════ 💬 CHAT ══════════ -->
+        <div class="panel-page hidden chat-panel" id="panelChat">
+          <div class="chat-top">
+            <select id="chatRoomSel" class="chat-roomsel" title="Sala actual"></select>
+            <button class="chip-filter" id="chatInboxBtn" title="Mensajes privados">📩 <b id="chatDmBadge" class="chat-badge hidden">0</b></button>
+            <span class="chat-online" id="chatOnline" title="Usuarios en línea">● 0</span>
+            <span class="spacer"></span>
+            <button class="chip-filter hidden" id="chatSettingsBtn" title="Ajustes del chat (admin)">⚙</button>
+            <button class="chip-filter" id="chatFavsBtn" title="Mis enlaces favoritos ❤ — se quedan aunque el chat se limpie">❤</button>
+          </div>
+          <div class="chat-main" id="chatMain">
+            <div class="chat-bg" id="chatBg"></div>
+            <div class="chat-stage">
+              <div class="chat-msgs" id="chatMsgs"></div>
+              <div class="chat-users hidden" id="chatUsers"></div>
+            </div>
+          </div>
+          <div class="chat-compose">
+            <input type="text" id="chatInput" placeholder="Escribe en el chat… (enlaces se ven con tarjeta)" maxlength="2000" autocomplete="off">
+            <button class="btn btn-acid" id="chatSend">➤</button>
+          </div>
+          <div class="chat-inbox hidden" id="chatInbox"></div>
         </div>
       </div>
     </div>
@@ -529,5 +563,6 @@
 
 <script src="auth.js"></script>
 <script src="app.js"></script>
+<script src="chat.js"></script>
 </body>
 </html>
