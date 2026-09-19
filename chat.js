@@ -75,11 +75,23 @@
     $('panelChat').classList.toggle('hidden', !isChat);
     S.open = isChat;
     if (isChat) {
+      fitChatToViewport();
       ensureRoom().then(() => beat());
       renderMsgs();          /* pintar inmediato aunque el poll ya vendrá */
       if (S.view === 'dm') markDmRead();
     }
   }
+  /* En móvil: al abrir, el chat ocupa toda la pantalla útil (debajo de la
+     barra superior) con scroll interno — la caja de texto queda fija abajo */
+  function fitChatToViewport() {
+    const panel = $('panelChat');
+    if (!panel) return;
+    if (window.innerWidth > 900) { panel.style.height = ''; return; }
+    panel.style.height = 'calc(100dvh - 66px)';
+    /* sube el panel hasta el borde superior para que ocupe toda la vista */
+    requestAnimationFrame(() => panel.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+  }
+  window.addEventListener('resize', () => { if (S.open) fitChatToViewport(); });
   $('ptabContent').addEventListener('click', () => switchTab('content'));
   $('ptabChat').addEventListener('click', () => switchTab('chat'));
 
@@ -444,6 +456,105 @@
     } catch (e) { }
   }
 
+  /* ═══════ 🖼 FONDO DEL CHAT — subida desde el dispositivo ═══════
+   Admin: la imagen SUBE al repo y queda como predeterminada de TODOS.
+   Cada usuario puede poner la suya SOLO en su dispositivo (localStorage),
+   con opción de "volver a la oficial". Las medidas óptimas se sugieren
+   según el dispositivo detectado.                                */
+  function deviceKind() {
+    const w = Math.min(screen.width, screen.height);
+    const ua = navigator.userAgent;
+    if (/iPad|tablet/i.test(ua) || (w >= 768 && w <= 1280)) return 'tablet';
+    if (/mobi|android|iphone/i.test(ua) || w < 768) return 'movil';
+    return 'pc';
+  }
+  function sugerenciaMedidas() {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const w = Math.round(screen.width * dpr), h = Math.round(screen.height * dpr);
+    const kind = deviceKind();
+    if (kind === 'movil') return { w: Math.min(w, 1080), ratio: '9:16 (vertical)', dev: '📱 móvil' };
+    if (kind === 'tablet') return { w: Math.min(w, 1600), ratio: '4:3 (casi cuadrada)', dev: '📟 tablet' };
+    return { w: Math.min(w, 1920), ratio: '16:9 (panorámica)', dev: '🖥 computador' };
+  }
+  /* recorta/encaja una imagen local a ancho útil y la devuelve como data url */
+  function fitImage(file, maxW) {
+    return new Promise((res, rej) => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxW / img.width);
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale);
+        c.height = Math.round(img.height * scale);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        res(c.toDataURL('image/jpeg', 0.82));
+      };
+      img.onerror = () => rej(new Error('imagen no legible'));
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  function openBgPicker(adminMode) {
+    const sug = sugerenciaMedidas();
+    const cur = (adminMode ? (S.meta && S.meta.bg) : localStorage.getItem('xchat-bg-local'));
+    const w = document.createElement('div');
+    w.className = 'chat-set-wrap';
+    w.innerHTML = `
+      <div class="chat-set" style="max-width:460px">
+        <h3 style="margin:0">🖼 Fondo del chat</h3>
+        <p class="chat-hint">Estás en un <b>${sug.dev}</b>. Para que se vea perfecta aquí, elige una imagen de unos
+          <b>${sug.w} px de ancho</b> (formato ${sug.ratio}). La app la ajustará automáticamente al subirla.</p>
+        ${cur ? `<div class="chat-bgprev" style="background-image:url('${esc(cur)}')"></div>` : '<p class="chat-hint">(sin imagen actual)</p>'}
+        <input type="file" id="bgFile" accept="image/*" hidden>
+        <button class="btn btn-acid" id="bgPick">📁 Elegir imagen de este ${sug.dev.replace(/^\S+\s/, '')}</button>
+        <div id="bgStatus" class="chat-hint"></div>
+        <div class="chat-setrow">
+          ${adminMode ? '<button class="btn btn-ghost" id="bgPublish">🌐 Publicar como fondo oficial (para todos)</button>' : ''}
+          <button class="btn btn-ghost" id="bgMine">${adminMode ? 'Solo en mi dispositivo' : 'Aplicar solo aquí'}</button>
+          <button class="btn btn-ghost" id="bgReset">↺ Restaurar fondo oficial</button>
+          <button class="btn btn-ghost" id="bgClose">Cerrar</button>
+        </div>
+      </div>`;
+    document.body.appendChild(w);
+    let chosen = null;
+    $('bgPick').addEventListener('click', () => $('bgFile').click());
+    $('bgFile').addEventListener('change', async ev => {
+      const f = ev.target.files && ev.target.files[0];
+      if (!f) return;
+      $('bgStatus').textContent = '⏳ Preparando la imagen…';
+      try {
+        chosen = await fitImage(f, sug.w);
+        $('bgStatus').textContent = `✅ Lista (${(chosen.length / 1024).toFixed(0)} KB) — elige dónde aplicarla`;
+      } catch (e) { $('bgStatus').textContent = '⚠ ' + e.message; }
+    });
+    $('bgMine').addEventListener('click', () => {
+      if (!chosen) return toastLite('Elige primero una imagen', true);
+      localStorage.setItem('xchat-bg-local', chosen);
+      applyChatBg();
+      toastLite('🖼 Fondo aplicado solo en TU dispositivo');
+      w.remove();
+    });
+    $('bgReset').addEventListener('click', () => {
+      localStorage.removeItem('xchat-bg-local');
+      applyChatBg();
+      toastLite('↺ Fondo restablecido al oficial');
+      w.remove();
+    });
+    if (adminMode) $('bgPublish').addEventListener('click', async () => {
+      if (!chosen) return toastLite('Elige primero una imagen', true);
+      $('bgStatus').textContent = '🌐 Publicando…';
+      try {
+        const j = await api('', 'POST', { op: 'bgUpload', dataUrl: chosen });
+        S.meta.bg = j.url;
+        S.meta.bgTs = Date.now();
+        applyChatBg();
+        toastLite('🌐 Fondo publicado — TODOS lo verán en su próxima carga');
+        w.remove();
+      } catch (e) { $('bgStatus').textContent = '⚠ ' + (e.message || 'falló'); }
+    });
+    $('bgClose').addEventListener('click', () => w.remove());
+    w.addEventListener('click', ev => { if (ev.target === w) w.remove(); });
+  }
+
   /* ═══════ ADMIN: ajustes del chat ═══════ */
   function buildSettings() {
     const btn = $('chatSettingsBtn');
@@ -460,10 +571,14 @@
             <input type="number" id="csTtl" min="1" max="720" value="${m.ttlHours || 48}"></label>
           <label>🔒 Borrar mensajes privados cada… (horas)
             <input type="number" id="csDmTtl" min="1" max="720" value="${m.dmTtlHours || m.ttlHours || 48}"></label>
-          <label>🖼 Imagen de fondo del chat (URL) — vacío = sin fondo
-            <input type="text" id="csBg" placeholder="https://…" value="${esc(m.bg || '')}"></label>
+          <div class="chat-setrow">
+            <label style="flex:1">🖼 Fondo oficial
+              <button class="btn btn-ghost" id="csBgBtn" style="width:100%">Cambiar imagen…</button></label>
+            <button class="btn btn-ghost" id="csBgOff" title="Quitar el fondo">✕</button>
+          </div>
           <label>🏷 Salas (una por línea: «id · nombre»)
             <textarea id="csRooms" rows="3">${esc((m.rooms || S.meta?.rooms || []).map(r => r.id + ' · ' + r.name).join('\n'))}</textarea></label>
+          <p class="chat-hint">El fondo oficial se sube con el botón de arriba; cada visitante puede poner el suyo localmente desde el icono 🖼 del chat.</p>
           <button class="btn btn-acid" id="csSave">Guardar ajustes</button>
         </div>`;
       const w = document.createElement('div');
@@ -471,6 +586,13 @@
       w.innerHTML = html;
       document.body.appendChild(w);
       $('csMaxIn').addEventListener('input', () => $('csMax').textContent = $('csMaxIn').value);
+      $('csBgBtn').addEventListener('click', () => { w.remove(); openBgPicker(true); });
+      $('csBgOff').addEventListener('click', async () => {
+        try {
+          await api('', 'POST', { op: 'meta', meta: { bg: '' } });
+          S.meta.bg = ''; applyChatBg(); toastLite('Fondo oficial eliminado');
+        } catch (e) { toastLite('⚠ ' + e.message, true); }
+      });
       $('csSave').addEventListener('click', async () => {
         const rooms = $('csRooms').value.split('\n').map(l => l.trim()).filter(Boolean)
           .map(l => { const p = l.split('·'); return { id: (p[0] || '').trim().replace(/[^\w-]/g, '').toLowerCase() || ('sala' + Math.random().toString(36).slice(2, 6)), name: (p[1] || p[0] || 'Sala').trim() }; });
@@ -478,7 +600,7 @@
           await api('', 'POST', {
             op: 'meta', meta: {
               maxUsers: +$('csMaxIn').value, ttlHours: +$('csTtl').value,
-              dmTtlHours: +$('csDmTtl').value, bg: $('csBg').value.trim(), rooms,
+              dmTtlHours: +$('csDmTtl').value, rooms,
             },
           });
           w.remove();
@@ -490,12 +612,15 @@
     };
   }
 
-  /* fondo del chat (translúcido) */
+  /* fondo del chat: gana el local del usuario; si no hay, el oficial */
   function applyChatBg() {
     const el = $('chatBg');
     if (!el) return;
-    const url = (S.meta && S.meta.bg) || '';
-    el.style.backgroundImage = url ? `url("${esc(url)}")` : 'none';
+    const local = localStorage.getItem('xchat-bg-local');
+    const official = (S.meta && S.meta.bg) || '';
+    const url = local || official;
+    el.style.backgroundImage = url ? `url("${url}")` : 'none';
+    $('panelChat').classList.toggle('has-bg', !!url);
   }
 
   function toastLite(text, err) {
@@ -506,6 +631,10 @@
     t.classList.toggle('toast-err', !!err);
     clearTimeout(t._h); t._h = setTimeout(() => t.classList.add('hidden'), 3400);
   }
+
+  /* 🖼 todos pueden cambiar su fondo del chat (solo en SU dispositivo);
+     el admin además puede publicar la oficial para TODOS desde ⚙ */
+  $('chatBgBtn').addEventListener('click', () => openBgPicker(!!(me() && me().admin)));
 
   /* editar mi apodo del chat (lápiz junto al selector de sala) */
   function wireNick() {

@@ -1618,9 +1618,19 @@ body.light .drive-status.ok{color:#3aa832}
 /* ═══════ 💬 CHAT — diseño ═══════ */
 .chat-panel{display:flex;flex-direction:column;flex:1;min-height:0;background:var(--panel);border-radius:var(--r);
   border:1px solid var(--line);overflow:hidden;position:relative}
+/* MÓVIL: el chat mide toda la pantalla útil y SCROLEA POR DENTRO:
+   el compositor queda fijo abajo, nunca hay que hacer scroll para alcanzarlo */
+@media (max-width:900px){}
 .chat-panel.has-bg .chat-msg{background:rgba(14,14,22,.92)}
 .chat-panel.has-bg .chat-empty,.chat-panel.has-bg .chat-inbox{box-shadow:0 10px 40px rgba(0,0,0,.5)}
-.chat-top{display:flex;align-items:center;gap:8px;padding:10px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.2)}
+.chat-top{display:flex;align-items:center;gap:6px;padding:10px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.2);flex-wrap:wrap}
+/* los botones nunca se salen: en pantallas angostas caen a la segunda fila */
+.chat-top .chip-filter{flex:none;white-space:nowrap}
+@media (max-width:560px){
+  .chat-top{padding:8px 6px;gap:5px}
+  .chat-roomsel{max-width:150px;flex:1 1 140px}
+  .chat-top .chip-filter{padding:6px 8px;font-size:11.5px}
+}
 .chat-roomsel{flex:1;min-width:0;max-width:250px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;
   padding:7px 10px;color:var(--ink);font-size:12px;font-weight:600;outline:none}
 .chat-roomsel:focus{border-color:var(--acid)}
@@ -1710,6 +1720,9 @@ body.light .drive-status.ok{color:#3aa832}
 .chat-set input:focus,.chat-set textarea:focus{border-color:var(--acid)}
 .chat-hint{font-size:10.5px;color:var(--dim);margin:0}
 .chat-set .btn-acid{justify-content:center}
+.chat-setrow{display:flex;align-items:end;gap:8px;flex-wrap:wrap}
+.chat-setrow .btn-acid{flex:1;justify-content:center}
+.chat-bgprev{height:110px;border-radius:12px;background-size:cover;background-position:center;border:1px solid var(--line)}
 
 /* ═══════ MÓVIL · modo TV: la lista duplicada desaparece
    (los relacionados de abajo ya hacen ese papel mejor) ═══════ */
