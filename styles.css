@@ -1616,8 +1616,10 @@ body.light .drive-status.ok{color:#3aa832}
 .panel-page.hidden,.chat-panel.hidden{display:none}
 
 /* ═══════ 💬 CHAT — diseño ═══════ */
-.chat-panel{display:flex;flex-direction:column;flex:1;min-height:0;background:var(--panel);border-radius:var(--r);
-  border:1px solid var(--line);overflow:hidden;position:relative}
+.chat-panel{display:flex;flex-direction:column;min-height:0;background:var(--panel);border-radius:var(--r);
+  border:1px solid var(--line);overflow:hidden;position:relative;
+  /* PC: altura fija — la caja de texto siempre a la vista, sin desplazarte */
+  height:min(72vh,660px)}
 /* MÓVIL: el chat mide toda la pantalla útil y SCROLEA POR DENTRO:
    el compositor queda fijo abajo, nunca hay que hacer scroll para alcanzarlo */
 @media (max-width:900px){}
@@ -1723,6 +1725,15 @@ body.light .drive-status.ok{color:#3aa832}
 .chat-setrow{display:flex;align-items:end;gap:8px;flex-wrap:wrap}
 .chat-setrow .btn-acid{flex:1;justify-content:center}
 .chat-bgprev{height:110px;border-radius:12px;background-size:cover;background-position:center;border:1px solid var(--line)}
+/* selector de fondo por dispositivo: 3 columnas (una fila en móvil pequeño sería demasiado angosto) */
+.bg-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bg-slot{border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.bg-slot.here{border-color:var(--acid)}
+.bg-slot-head{font-size:12px;font-weight:700}
+.bg-slot-prev{height:74px;border-radius:9px;background:var(--panel2) center/cover;border:1px dashed var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--dim)}
+.bg-slot-btns{display:flex;flex-wrap:wrap;gap:5px}
+@media (max-width:560px){.bg-slots{grid-template-columns:1fr}}
 
 /* ═══════ MÓVIL · modo TV: la lista duplicada desaparece
    (los relacionados de abajo ya hacen ese papel mejor) ═══════ */

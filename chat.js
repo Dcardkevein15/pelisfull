@@ -493,63 +493,128 @@
     });
   }
 
+  /* sugerencia por dispositivo: nombre amable + ancho recomendado para cubrir su pantalla */
+  const DEVS = [
+    { k: 'movil', icon: '📱', label: 'Móvil', ratio: 'vertical (9:19) — lo ve quien entra desde el teléfono' },
+    { k: 'tablet', icon: '📟', label: 'Tablet', ratio: 'apaisada suave (4:3) — tablets' },
+    { k: 'pc', icon: '🖥', label: 'PC', ratio: 'panorámica (16:9) — computadores' },
+  ];
+  function devWidth(dev) {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (dev === 'movil') return Math.min(Math.round(Math.min(screen.width, screen.height) * dpr * 1.1), 1080);
+    if (dev === 'tablet') return Math.min(Math.round(Math.max(screen.width, screen.height) * dpr * 0.9), 1600);
+    return Math.min(Math.round(screen.width * dpr), 1920);
+  }
+
   function openBgPicker(adminMode) {
-    const sug = sugerenciaMedidas();
-    const cur = (adminMode ? (S.meta && S.meta.bg) : localStorage.getItem('xchat-bg-local'));
+    const oficial = (S.meta && typeof S.meta.bg === 'object' ? S.meta.bg : {}) || {};
+    const mine = localStorage.getItem('xchat-bg-local');
+    const miDev = deviceKind();
+    /* el estado de cada dispositivo: oficial (global) + mi override local */
+    const card = d => {
+      const oficialUrl = oficial[d.k] ? oficial[d.k] + '&m=' + (S.meta && S.meta.bgTs || 0) : null;
+      const esMiDispositivo = d.k === miDev ? ' · <b style="color:var(--acid)">TÚ ESTÁS AQUÍ</b>' : '';
+      return `<div class="bg-slot${d.k === miDev ? ' here' : ''}" data-dev="${d.k}">
+        <div class="bg-slot-head">${d.icon} <b>${d.label}</b>${esMiDispositivo}</div>
+        <div class="bg-slot-prev" data-prev="${d.k}" style="${oficialUrl ? `background-image:url('${esc(oficialUrl)}')` : ''}">
+          ${oficialUrl ? '' : '<span>Sin imagen oficial</span>'}
+        </div>
+        <p class="chat-hint">Sugerida: ${devWidth(d.k)} px de ancho · ${d.ratio}</p>
+        <div class="bg-slot-btns">
+          <button class="btn btn-mini" data-pick="${d.k}">📁 Elegir…</button>
+          <button class="btn btn-mini hidden" data-apply="${d.k}">Aplicar aquí</button>
+          ${adminMode ? `<button class="btn btn-mini hidden" data-pub="${d.k}">🌐 Publicar oficial</button>` : ''}
+          ${adminMode && oficialUrl ? `<button class="btn btn-mini" data-clear="${d.k}" title="Quitar el fondo oficial de este dispositivo">✕</button>` : ''}
+        </div>
+      </div>`;
+    };
     const w = document.createElement('div');
     w.className = 'chat-set-wrap';
     w.innerHTML = `
-      <div class="chat-set" style="max-width:460px">
-        <h3 style="margin:0">🖼 Fondo del chat</h3>
-        <p class="chat-hint">Estás en un <b>${sug.dev}</b>. Para que se vea perfecta aquí, elige una imagen de unos
-          <b>${sug.w} px de ancho</b> (formato ${sug.ratio}). La app la ajustará automáticamente al subirla.</p>
-        ${cur ? `<div class="chat-bgprev" style="background-image:url('${esc(cur)}')"></div>` : '<p class="chat-hint">(sin imagen actual)</p>'}
-        <input type="file" id="bgFile" accept="image/*" hidden>
-        <button class="btn btn-acid" id="bgPick">📁 Elegir imagen de este ${sug.dev.replace(/^\S+\s/, '')}</button>
+      <div class="chat-set" style="max-width:600px">
+        <h3 style="margin:0">🖼 Fondo del chat, por dispositivo</h3>
+        <p class="chat-hint">Cada hueco es un tipo de dispositivo: la imagen que subas a 📱 <b>Móvil</b> la ven quienes entren desde el teléfono; la de 🖥 <b>PC</b>, quienes entren desde computador. La mía LOCAL solo se ve en ESTE aparato.</p>
+        ${adminMode ? '' : (mine ? '<div class="bg-slot-prev" style="background-image:url(\'data:image/jpeg;base64,' + ' '.repeat(0) + '\');background-image:var(--nada)"><span>Mi fondo local (encima del oficial)</span></div>' : '')}
+        <div class="bg-slots">${DEVS.map(card).join('')}</div>
         <div id="bgStatus" class="chat-hint"></div>
         <div class="chat-setrow">
-          ${adminMode ? '<button class="btn btn-ghost" id="bgPublish">🌐 Publicar como fondo oficial (para todos)</button>' : ''}
-          <button class="btn btn-ghost" id="bgMine">${adminMode ? 'Solo en mi dispositivo' : 'Aplicar solo aquí'}</button>
-          <button class="btn btn-ghost" id="bgReset">↺ Restaurar fondo oficial</button>
+          <button class="btn btn-ghost" id="bgReset">↺ Quitar mi personalización (volver a la oficial)</button>
           <button class="btn btn-ghost" id="bgClose">Cerrar</button>
         </div>
+        <input type="file" id="bgFile" accept="image/*" hidden>
       </div>`;
     document.body.appendChild(w);
-    let chosen = null;
-    $('bgPick').addEventListener('click', () => $('bgFile').click());
+    const chosen = {};  /* dev → dataUrl */
+    let pubBusy = false;
+    w.addEventListener('click', async ev => {
+      const pick = ev.target.closest('[data-pick]');
+      const apply = ev.target.closest('[data-apply]');
+      const pub = ev.target.closest('[data-pub]');
+      const clear = ev.target.closest('[data-clear]');
+      if (pick) { w.dataset.armed = pick.dataset.pick; $('bgFile').click(); return; }
+      if (apply) {
+        const dev = apply.dataset.apply;
+        if (!chosen[dev]) return toastLite('Primero elige la imagen', true);
+        localStorage.setItem('xchat-bg-local-' + dev, chosen[dev]);
+        applyChatBg();
+        toastLite(`🖼 Tu fondo en ${dev} — solo TU dispositivo lo ve así`);
+        return;
+      }
+      if (clear) {
+        const dev = clear.dataset.clear;
+        try {
+          await api('', 'POST', { op: 'bgClear', dev });
+          if (S.meta && typeof S.meta.bg === 'object') delete S.meta.bg[dev];
+          applyChatBg();
+          w.querySelector(`[data-prev="${dev}"]`).style.backgroundImage = 'none';
+          w.querySelector(`[data-prev="${dev}"]`).innerHTML = '<span>Sin imagen oficial</span>';
+          toastLite(`✕ Fondo oficial de ${dev} eliminado`);
+        } catch (e) { toastLite('⚠ ' + (e.message || 'falló'), true); }
+        return;
+      }
+      if (pub) {
+        const dev = pub.dataset.pub;
+        if (!chosen[dev]) return toastLite('Primero elige la imagen', true);
+        if (pubBusy) return;
+        pubBusy = true;
+        $('bgStatus').textContent = `🌐 Publicando fondo de ${dev}…`;
+        try {
+          const j = await api('', 'POST', { op: 'bgUpload', dev, dataUrl: chosen[dev] });
+          if (!S.meta || typeof S.meta.bg !== 'object') S.meta = { ...(S.meta || {}), bg: {} };
+          S.meta.bg[dev] = j.url;
+          S.meta.bgTs = Date.now();
+          applyChatBg();
+          const prev = w.querySelector(`[data-prev="${dev}"]`);
+          prev.style.backgroundImage = `url('${j.url}')`; prev.innerHTML = '';
+          $('bgStatus').textContent = `✅ Oficial de ${dev} publicada — todos la verán`;
+        } catch (e) { $('bgStatus').textContent = '⚠ ' + (e.message || 'falló'); }
+        finally { pubBusy = false; }
+        return;
+      }
+    });
     $('bgFile').addEventListener('change', async ev => {
       const f = ev.target.files && ev.target.files[0];
-      if (!f) return;
-      $('bgStatus').textContent = '⏳ Preparando la imagen…';
+      const dev = w.dataset.armed;
+      if (!f || !dev) return;
+      $('bgStatus').textContent = '⏳ Ajustando la imagen para ' + dev + '…';
       try {
-        chosen = await fitImage(f, sug.w);
-        $('bgStatus').textContent = `✅ Lista (${(chosen.length / 1024).toFixed(0)} KB) — elige dónde aplicarla`;
+        chosen[dev] = await fitImage(f, devWidth(dev));
+        $('bgStatus').textContent = `✅ Lista (${(chosen[dev].length / 1024).toFixed(0)} KB) — pulsa «Aplicar aquí»${adminMode ? ' o «Publicar oficial»' : ''}`;
+        const applyBtn = w.querySelector(`[data-apply="${dev}"]`);
+        const pubBtn = w.querySelector(`[data-pub="${dev}"]`);
+        if (applyBtn) applyBtn.classList.remove('hidden');
+        if (pubBtn) pubBtn.classList.remove('hidden');
+        const prev = w.querySelector(`[data-prev="${dev}"]`);
+        prev.style.backgroundImage = `url('${chosen[dev]}')`;
+        prev.style.display = 'flex';
       } catch (e) { $('bgStatus').textContent = '⚠ ' + e.message; }
     });
-    $('bgMine').addEventListener('click', () => {
-      if (!chosen) return toastLite('Elige primero una imagen', true);
-      localStorage.setItem('xchat-bg-local', chosen);
-      applyChatBg();
-      toastLite('🖼 Fondo aplicado solo en TU dispositivo');
-      w.remove();
-    });
     $('bgReset').addEventListener('click', () => {
+      ['movil', 'tablet', 'pc'].forEach(d => localStorage.removeItem('xchat-bg-local-' + d));
       localStorage.removeItem('xchat-bg-local');
       applyChatBg();
-      toastLite('↺ Fondo restablecido al oficial');
+      toastLite('↺ Volvió el fondo oficial');
       w.remove();
-    });
-    if (adminMode) $('bgPublish').addEventListener('click', async () => {
-      if (!chosen) return toastLite('Elige primero una imagen', true);
-      $('bgStatus').textContent = '🌐 Publicando…';
-      try {
-        const j = await api('', 'POST', { op: 'bgUpload', dataUrl: chosen });
-        S.meta.bg = j.url;
-        S.meta.bgTs = Date.now();
-        applyChatBg();
-        toastLite('🌐 Fondo publicado — TODOS lo verán en su próxima carga');
-        w.remove();
-      } catch (e) { $('bgStatus').textContent = '⚠ ' + (e.message || 'falló'); }
     });
     $('bgClose').addEventListener('click', () => w.remove());
     w.addEventListener('click', ev => { if (ev.target === w) w.remove(); });
@@ -589,8 +654,9 @@
       $('csBgBtn').addEventListener('click', () => { w.remove(); openBgPicker(true); });
       $('csBgOff').addEventListener('click', async () => {
         try {
-          await api('', 'POST', { op: 'meta', meta: { bg: '' } });
-          S.meta.bg = ''; applyChatBg(); toastLite('Fondo oficial eliminado');
+          await api('', 'POST', { op: 'bgClear' });  /* quita el fondo oficial de los 3 dispositivos */
+          if (S.meta && typeof S.meta.bg === 'object') S.meta.bg = {}; else if (S.meta) S.meta.bg = {};
+          applyChatBg(); toastLite('Fondo oficial eliminado en todos los dispositivos');
         } catch (e) { toastLite('⚠ ' + e.message, true); }
       });
       $('csSave').addEventListener('click', async () => {
@@ -612,12 +678,15 @@
     };
   }
 
-  /* fondo del chat: gana el local del usuario; si no hay, el oficial */
+  /* fondo del chat: gana el override local de ESTE dispositivo; si no, el
+     oficial de ESTE tipo de dispositivo (móvil/tablet/PC son independientes) */
   function applyChatBg() {
     const el = $('chatBg');
     if (!el) return;
-    const local = localStorage.getItem('xchat-bg-local');
-    const official = (S.meta && S.meta.bg) || '';
+    const dev = deviceKind();
+    const local = localStorage.getItem('xchat-bg-local-' + dev) || localStorage.getItem('xchat-bg-local');
+    const oficialObj = (S.meta && typeof S.meta.bg === 'object' ? S.meta.bg : {}) || {};
+    const official = oficialObj[dev] || '';
     const url = local || official;
     el.style.backgroundImage = url ? `url("${url}")` : 'none';
     $('panelChat').classList.toggle('has-bg', !!url);
