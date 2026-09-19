@@ -318,9 +318,10 @@
         <!-- ══════════ 💬 CHAT ══════════ -->
         <div class="panel-page hidden chat-panel" id="panelChat">
           <div class="chat-top">
+            <button class="chip-filter hidden" id="chatBackBtn" title="Volver a la sala">← Sala</button>
             <select id="chatRoomSel" class="chat-roomsel" title="Sala actual"></select>
             <button class="chip-filter" id="chatInboxBtn" title="Mensajes privados">📩 <b id="chatDmBadge" class="chat-badge hidden">0</b></button>
-            <span class="chat-online" id="chatOnline" title="Usuarios en línea">● 0</span>
+            <button class="chat-online chip-filter" id="chatOnline" title="Usuarios en línea — toca para ver la lista">● 0</button>
             <span class="spacer"></span>
             <button class="chip-filter hidden" id="chatSettingsBtn" title="Ajustes del chat (admin)">⚙</button>
             <button class="chip-filter" id="chatFavsBtn" title="Mis enlaces favoritos ❤ — se quedan aunque el chat se limpie">❤</button>
@@ -329,7 +330,7 @@
             <div class="chat-bg" id="chatBg"></div>
             <div class="chat-stage">
               <div class="chat-msgs" id="chatMsgs"></div>
-              <div class="chat-users hidden" id="chatUsers"></div>
+              <div class="chat-users" id="chatUsers"></div>
             </div>
           </div>
           <div class="chat-compose">

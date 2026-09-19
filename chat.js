@@ -383,10 +383,24 @@
     S.view = 'dm'; S.peer = uid; S.peerName = name || uid;
     $('chatInbox').classList.add('hidden');
     if (!S.open) switchTab('chat');
-    $('chatRoomSel').style.display = 'none';
+    $('chatRoomSel').classList.add('hidden');
+    $('chatBackBtn').classList.remove('hidden');
     renderMsgs();
     markDmRead();
   }
+  /* volver de un DM a la sala */
+  $('chatBackBtn').addEventListener('click', () => {
+    S.view = 'room'; S.peer = null; S.peerName = '';
+    $('chatRoomSel').classList.remove('hidden');
+    $('chatBackBtn').classList.add('hidden');
+    renderMsgs();
+  });
+
+  /* 👥 toggle de la lista de usuarios en línea */
+  $('chatOnline').addEventListener('click', () => {
+    const p = $('chatUsers');
+    p.classList.toggle('open');
+  });
   async function markDmRead() {
     if (!S.peer || !S.ready) return;
     try { await api('', 'POST', { op: 'dmRead', uid: me().uid, peer: S.peer }); } catch (e) { }
