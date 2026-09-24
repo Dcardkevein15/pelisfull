@@ -251,13 +251,15 @@
     const staff = me() && (me().admin || me().mod);
     const mk = (p, on) => {
       const li = document.createElement('button');
-      li.className = 'chat-user' + (on ? '' : ' off');
       const isMe = p.uid === mine;
+      /* ⭐ TÚ: tu propio usuario se marca con borde ácido y etiqueta «tú»
+         para que lo reconozcas al instante entre los conectados          */
+      li.className = 'chat-user' + (on ? '' : ' off') + (isMe ? ' me' : '');
       const isOtherStaff = p.role === 'admin' || p.role === 'mod';
       const muteB = (staff && !isMe && !isOtherStaff)
         ? `<i class="chat-mute" data-mute="${esc(p.uid)}" data-name="${esc(p.name)}" title="Silenciar a ${esc(p.name)} (sus mensajes llegan pero no puede escribir)">🔇</i>` : '';
-      li.innerHTML = `<img class="chat-ava u-ava" src="${avatarFor(p.uid, p.name)}" alt=""><i class="u-dot">${on ? '●' : '○'}</i><span class="u-name">${esc(p.name)}</span>${p.role === 'admin' ? '<b>👑</b>' : p.role === 'mod' ? '<b>🛡</b>' : ''}${muteB}`;
-      li.title = (on ? 'En línea' : 'Fuera de línea') + ' — toca para mensaje privado';
+      li.innerHTML = `<img class="chat-ava u-ava" src="${avatarFor(p.uid, p.name)}" alt=""><i class="u-dot">${on ? '●' : '○'}</i><span class="u-name">${esc(p.name)}</span>${p.role === 'admin' ? '<b>👑</b>' : p.role === 'mod' ? '<b>🛡</b>' : ''}${isMe ? '<span class="u-me">tú</span>' : ''}${muteB}`;
+      li.title = (isMe ? 'Este eres TÚ — ' : '') + (on ? 'En línea' : 'Fuera de línea') + ' — toca para mensaje privado';
       li.addEventListener('click', ev => {
         /* el 🔇 tiene su propio evento y no abre DM */
         if (ev.target.closest('.chat-mute')) return;
@@ -974,34 +976,11 @@
      el admin además puede publicar la oficial para TODOS desde ⚙ */
   $('chatBgBtn').addEventListener('click', () => openBgPicker(!!(me() && me().admin)));
 
-  /* editar mi apodo del chat (lápiz junto al selector de sala) */
-  function wireNick() {
-    /* lo inyectamos en el top del chat */
-    const top = document.querySelector('.chat-top');
-    if (!top) return;
-    const b = document.createElement('button');
-    b.className = 'chip-filter';
-    b.id = 'chatNickBtn';
-    b.title = 'Tu nombre visible en el chat (doble toque para cambiarlo)';
-    const paint = () => b.innerHTML = '✍ ' + esc(displayName());
-    paint();
-    b.addEventListener('click', () => {
-      const v = prompt('Tu nombre para el chat:', localStorage.getItem('xchat-nick') || displayName());
-      if (v === null) return;
-      const n = v.trim().slice(0, 30) || '';
-      if (n) localStorage.setItem('xchat-nick', n); else localStorage.removeItem('xchat-nick');
-      paint();
-      beat(); /* publicar el cambio en presencia al instante */
-    });
-    top.insertBefore(b, $('chatSettingsBtn'));
-  }
-
   /* ═══════ ARRANQUE ═══════ */
   function bootChat() {
     const m = me();
     if (!m || !m.uid) { setTimeout(bootChat, 600); return; }
     S.ready = true;
-    wireNick();
     buildSettings();
     /* 🕊 NUNCA pedimos el permiso de notificaciones: esa burbuja del navegador
        genera desconfianza. Quien lo haya activado por su cuenta en los ajustes

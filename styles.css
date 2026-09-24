@@ -1644,13 +1644,23 @@ body.light .drive-status.ok{color:#3aa832}
     box-shadow:0 -8px 24px rgba(0,0,0,.45)}
 }
 
-/* ═══════ 🖥 PC — BARRA DEL CHAT SIEMPRE EN UNA SOLA LÍNEA ═══════
-   Por muchas salas que crees, sus chips se deslizan con SCROLL HORIZONTAL
-   dentro de su propia zona: nunca empujan los botones 📩 ● 🖼 ❤ a una
-   segunda fila ni engordan la cabecera del chat                            */
+/* ═══════ 🖥 PC — BARRA DEL CHAT: UNA SOLA LÍNEA, 50% + 50% ═══════
+   Izquierda (máx 50%): SOLO los chips de salas — se deslizan con scroll
+   horizontal dentro de su propia mitad (general, anime, películas, series,
+   hentai… por muchas que haya). Derecha (el otro 50%): TODOS los botones
+   (📩 ● 🖼 ❤ ⚙…) pegados a la derecha. Prohibido que nada caiga abajo   */
 @media (min-width:901px){
   .chat-top{flex-wrap:nowrap}
+  .chat-top .chat-rooms{flex:0 1 50%;max-width:50%;min-width:100px}
+  .chat-top .spacer{flex:1 1 auto;min-width:8px}
 }
+
+/* ⭐ tú en la lista de conectados: marcado con ácido para reconocerte */
+.chat-user.me{background:rgba(216,255,62,.09);border:1px solid rgba(216,255,62,.45);
+  box-shadow:inset 3px 0 0 var(--acid)}
+.chat-user.me .u-name{color:var(--acid);font-weight:800}
+.chat-user .u-me{margin-left:auto;font:800 9px 'JetBrains Mono';letter-spacing:1px;color:#111;
+  background:var(--acid);border-radius:999px;padding:1px 7px;text-transform:uppercase}
 .chat-panel.has-bg .chat-msg{background:rgba(14,14,22,.92)}
 .chat-panel.has-bg .chat-empty,.chat-panel.has-bg .chat-inbox{box-shadow:0 10px 40px rgba(0,0,0,.5)}
 /* ── BARRA SUPERIOR DEL CHAT (remodelada) ──
