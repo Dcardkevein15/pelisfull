@@ -1628,8 +1628,6 @@ body.light .drive-status.ok{color:#3aa832}
    botones extra)                                                          */
 @media (max-width:900px){
   .chat-panel{height:calc(100svh - 66px)}
-  /* en pantallas chicas los chips sí van en su propia fila completa */
-  .chat-rooms{flex:1 1 100%;min-width:0}
   /* 📱 chat abierto = PANTALLA COMPLETA JUSTA: el panel mide EXACTAMENTE el
      hueco bajo la barra (dvh sigue al navegador en tiempo real: con barra de
      URL expuesta o escondida el chat siempre llena la vista). Al abrir, el
@@ -1644,16 +1642,16 @@ body.light .drive-status.ok{color:#3aa832}
     box-shadow:0 -8px 24px rgba(0,0,0,.45)}
 }
 
-/* ═══════ 🖥 PC — BARRA DEL CHAT: UNA SOLA LÍNEA, 50% + 50% ═══════
-   Izquierda (máx 50%): SOLO los chips de salas — se deslizan con scroll
+/* ═══════ BARRA DEL CHAT: UNA SOLA LÍNEA, 50% + 50% — PC, TABLET Y MÓVIL ═
+   Izquierda (MÁX 50%): SOLO los chips de salas — se deslizan con scroll
    horizontal dentro de su propia mitad (general, anime, películas, series,
-   hentai… por muchas que haya). Derecha (el otro 50%): TODOS los botones
-   (📩 ● 🖼 ❤ ⚙…) pegados a la derecha. Prohibido que nada caiga abajo   */
-@media (min-width:901px){
-  .chat-top{flex-wrap:nowrap}
-  .chat-top .chat-rooms{flex:0 1 50%;max-width:50%;min-width:100px}
-  .chat-top .spacer{flex:1 1 auto;min-width:8px}
-}
+   hentai… entran todas por muchas que haya). Derecha (el otro 50%): TODOS
+   los botones (📩 ● 🖼 ❤ ⚙…) pegados a la derecha. Así, en cualquier
+   pantalla, NADA cae a una segunda fila y la cabecera queda delgada.
+   En pantallas muy angostas los chips ceden (encogen) y los botones mandan */
+.chat-top{flex-wrap:nowrap}
+.chat-top .chat-rooms{flex:0 1 50%;max-width:50%;min-width:80px}
+.chat-top .spacer{flex:1 1 auto;min-width:6px}
 
 /* ⭐ tú en la lista de conectados: marcado con ácido para reconocerte */
 .chat-user.me{background:rgba(216,255,62,.09);border:1px solid rgba(216,255,62,.45);
