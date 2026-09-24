@@ -133,10 +133,6 @@
   window.addEventListener('resize', () => { /* el CSS fluido lo resuelve solo */ });
   $('ptabContent').addEventListener('click', () => switchTab('content'));
   $('ptabChat').addEventListener('click', () => switchTab('chat'));
-  /* 📱 móvil a pantalla completa: sin las pestañas visibles hace falta un
-     botón de salida DENTRO del chat (la ✕ del chat-top, solo se ve con el
-     chat abierto y pantalla chica — ver CSS body.chat-open #chatCloseBtn) */
-  $('chatCloseBtn').addEventListener('click', () => switchTab('content'));
 
   /* ═══════ RENDER: mensajes ═══════ */
   const escUrl = u => { try { const uu = new URL(u); return uu.protocol === 'http:' || uu.protocol === 'https:' ? uu.href : null; } catch (e) { return null; } };

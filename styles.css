@@ -1622,44 +1622,34 @@ body.light .drive-status.ok{color:#3aa832}
      escribir cabe TODO a la vista: barra 62px + margen 26 + pestañas ~54
      = 142px; con límite del 85% del alto en pantallas grandes          */
   height:min(85dvh, calc(100dvh - 142px))}
-/* MÓVIL: el chat ocupa el hueco útil DENTRO del flujo de la página (nada
-   queda atrapado: la página scrolea libre y las pestañas siempre se pueden
-   alcanzar). La FIRMEZA la pone la caja de escribir: position:sticky abajo
-   (regla global más abajo) — pegada al borde inferior mientras el chat
-   esté en pantalla, se mueva lo que se mueva detrás                       */
+/* MÓVIL: el chat ocupa el hueco útil DENTRO del flujo de la página — la
+   página scrolea NORMAL, como siempre: subes un pelín y las pestañas
+   «Contenido/Chat» vuelven a la vista solas (nada de paneles fijos ni
+   botones extra)                                                          */
 @media (max-width:900px){
-  /* svh (NO dvh): altura estable que NO cambia cuando la barra del navegador
-     aparece/desaparece al scrollear — el panel nunca "respira" ni deja una
-     franja rara abajo; la caja fija (74px) cubre cualquier sobrante        */
   .chat-panel{height:calc(100svh - 66px)}
   /* en pantallas chicas los chips sí van en su propia fila completa */
   .chat-rooms{flex:1 1 100%;min-width:0}
-  /* 📱 chat abierto: la CAJA DE ESCRIBIR se ancla al borde inferior de la
-     pantalla y no se mueve jamás — aunque scrollees la página hasta el tope
-     (el panel va en el flujo normal y sí se desplaza contigo; la caja,
-     no: firmeza total). Compensamos su alto al panel para que no tape el
-     último mensaje                                                         */
-  body.chat-open .chat-compose{position:fixed;left:0;right:0;bottom:0;z-index:78;
+  /* 📱 chat abierto = PANTALLA COMPLETA JUSTA: el panel mide EXACTAMENTE el
+     hueco bajo la barra (dvh sigue al navegador en tiempo real: con barra de
+     URL expuesta o escondida el chat siempre llena la vista). Al abrir, el
+     salto instantáneo (scrollIntoView end, en chat.js) deja la fila de
+     pestañas justo FUERA, arriba — ni se ven ni descuadran nada. La caja de
+     escribir va sticky en el flujo: jamás se despega del fondo del panel,
+     así que la imagen llega EXACTA hasta su borde — cero franja de 10-15px
+     aunque la barra del navegador aparezca/desaparezca al scrollear. Para
+     que el sticky pegue al viewport, el panel no puede recortar contenido   */
+  body.chat-open .chat-panel{height:calc(100dvh - 62px);overflow:visible;border-radius:0}
+  body.chat-open .chat-compose{position:sticky;bottom:0;z-index:78;
     box-shadow:0 -8px 24px rgba(0,0,0,.45)}
-  body.chat-open .chat-panel{padding-bottom:74px}
 }
 
-/* ═══════ 📱 MÓVIL — CHAT A PANTALLA COMPLETA ═══════
-   Al abrir el chat: las pestañas «Contenido/Chat» se esconden y el panel
-   queda FIJO al viewport (top:0 + bottom:0 = exactamente lo visible SIEMPRE,
-   con barra del navegador o sin ella). La página sigue scrolleando libre
-   detrás, pero el chat no se mueve ni un píxel: la imagen de fondo jamás se
-   descuadra y no queda franja rara abajo. La caja de escribir vuelve a ser
-   hija normal del panel fijo (flex la pega al fondo sola) — así el fondo
-   llega EXACTAMENTE hasta su borde, sin reservas aproximadas (adiós al
-   hueco de ~10-15px que dejaba el padding de 74px al scrollear)          */
-#chatCloseBtn{display:none}
-@media (max-width:900px){
-  body.chat-open .panel-tabs{display:none}
-  body.chat-open #chatCloseBtn{display:inline-flex}
-  body.chat-open .chat-panel{position:fixed;left:0;right:0;top:0;bottom:0;z-index:70;
-    height:auto;border:none;border-radius:0;padding-bottom:0}
-  body.chat-open .chat-compose{position:static;box-shadow:none}
+/* ═══════ 🖥 PC — BARRA DEL CHAT SIEMPRE EN UNA SOLA LÍNEA ═══════
+   Por muchas salas que crees, sus chips se deslizan con SCROLL HORIZONTAL
+   dentro de su propia zona: nunca empujan los botones 📩 ● 🖼 ❤ a una
+   segunda fila ni engordan la cabecera del chat                            */
+@media (min-width:901px){
+  .chat-top{flex-wrap:nowrap}
 }
 .chat-panel.has-bg .chat-msg{background:rgba(14,14,22,.92)}
 .chat-panel.has-bg .chat-empty,.chat-panel.has-bg .chat-inbox{box-shadow:0 10px 40px rgba(0,0,0,.5)}
