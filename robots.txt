@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://x.yapido.click/sitemap.xml

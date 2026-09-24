@@ -1,0 +1,37 @@
+name: seo
+
+# El bot del workflow necesita ESCRIBIR en el repo (commit + push de las
+# páginas generadas). Sin esto el paso "Publicar" falla con 403.
+permissions:
+  contents: write
+
+on:
+  push:
+    paths: ['catalog.json']     # cada publicación del catálogo regenera las páginas
+  schedule:
+    - cron: '23 6 * * *'        # …y cada día publica el cupo de páginas nuevas (8/día)
+  workflow_dispatch:            # …y se puede forzar a mano
+
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 20 }
+      - name: Generar páginas /ver + sitemap (cupo diario)
+        run: node scripts/gen-seo.mjs
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}   # opcional: sin ella usa plantillas propias
+      - name: Publicar si cambió algo
+        run: |
+          git config user.name "xstream-seo[bot]"
+          git config user.email "seo-bot@yapido.click"
+          git add ver/ sitemap.xml sitemap-urls.json seo-state.json seo-cache.json seo-new-urls.json feed.xml b/
+          git diff --cached --quiet && echo "Sin cambios" && exit 0
+          git commit -m "chore(seo): regenerado (cupo diario / catálogo)"
+          git pull --rebase --autostash origin main
+          git push
+      - name: Avisar a buscadores (IndexNow)
+        if: always()
+        run: node scripts/indexnow.mjs

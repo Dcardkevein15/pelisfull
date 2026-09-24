@@ -1,0 +1,14 @@
+{
+  "name": "X·STREAM Anime",
+  "short_name": "X·STREAM",
+  "description": "Tu reproductor instantáneo de anime: pégales enlaces de Drive y mira tus series y películas con tu propio player.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,50 @@
+name: 🚚 Migrar Streamtape → archive.org (lote)
+on:
+  workflow_dispatch:
+    inputs:
+      stape_login:
+        description: 'Streamtape API Login'
+        required: true
+      stape_key:
+        description: 'Streamtape API Key'
+        required: true
+      ia_access:
+        description: 'archive.org S3 access key (archive.org/account/s3.php)'
+        required: true
+      ia_secret:
+        description: 'archive.org S3 secret key'
+        required: true
+      lote:
+        description: 'Episodios por corrida'
+        required: false
+        default: '15'
+
+permissions:
+  contents: write
+
+jobs:
+  migrar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Migrar un lote
+        env:
+          STAPE_LOGIN: ${{ inputs.stape_login }}
+          STAPE_KEY: ${{ inputs.stape_key }}
+          IA_ACCESS: ${{ inputs.ia_access }}
+          IA_SECRET: ${{ inputs.ia_secret }}
+          INPUT_LOTE: ${{ inputs.lote }}
+        run: node scripts/migrar-stape.mjs
+      - name: Guardar progreso (migration-map.json)
+        if: always()
+        run: |
+          git config user.name "xstream-migrador"
+          git config user.email "bot@x.yapido.click"
+          git add migration-map.json
+          git diff --cached --quiet && echo "sin cambios" && exit 0
+          git commit -m "chore(migracion): progreso de migracion stape -> archive.org"
+          git push

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>One moment, please…</title>
+<link rel="icon" type="image/svg+xml" href="../icon.svg">
+<script>
+/* 🕊 REGLA DE ORO DE ESTA PÁGINA: NUNCA se piden permisos al visitante.
+   Algunas redes de anuncios intentan solicitar el permiso de NOTIFICACIONES
+   (o de almacenamiento persistente) desde sus scripts propios — eso es lo
+   que asusta a la gente. Aquí lo dejamos sin efecto ANTES de cargar nada:
+   los anuncios se siguen mostrando y contando exactamente igual. */
+try { Object.defineProperty(window, 'Notification', { value: undefined, configurable: true }); } catch (e) { try { window.Notification = undefined; } catch (e2) { } }
+try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist = function () { return Promise.resolve(false); }; } catch (e) { }
+</script>
+<style>
+/* ═══════════ XLINK — estilo terminológico premium ═══════════ */
+:root{
+  --bg:#07070d; --card:#0d0d18; --card2:#12121f;
+  --line:#1f1f33; --ink:#f4f4fb; --dim:#8f8fae; --acid:#d8ff3e; --hot:#ff2e63;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(216,255,62,.07), transparent 55%),
+    radial-gradient(700px 400px at -5% 110%, rgba(255,46,99,.08), transparent 55%),
+    var(--bg);
+  color:var(--ink); min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  padding:18px;
+}
+
+/* barra de marca mínima */
+.brandbar{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.brand-x{width:38px;height:38px;border-radius:12px;background:var(--acid);color:#111;font:900 22px/1 'Archivo Black',Arial;display:grid;place-items:center}
+.brand-txt{font:800 13.5px/1 'JetBrains Mono',monospace;letter-spacing:2.5px}
+.brand-txt em{font-style:normal;color:var(--dim);font-weight:600;letter-spacing:1px;margin-left:6px}
+
+/* tarjeta principal */
+.card{
+  width:min(460px,100%);
+  background:linear-gradient(170deg,var(--card),var(--card2));
+  border:1px solid var(--line); border-radius:26px;
+  padding:34px 26px 28px; text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.02) inset;
+  animation:pep .7s cubic-bezier(.2,1.2,.3,1) both;
+}
+@keyframes pep{0%{transform:scale(.94);opacity:0}60%{transform:scale(1.015)}100%{transform:scale(1);opacity:1}}
+
+/* splash narrador */
+.eyebrow{font:700 10px 'JetBrains Mono',monospace;letter-spacing:2.6px;text-transform:uppercase;color:var(--acid);margin-bottom:8px}
+.h-title{font:900 26px/1.15 'Archivo Black',Arial;letter-spacing:-.4px;margin-bottom:6px}
+.h-sub{color:var(--dim);font-size:13.5px;margin-bottom:20px}
+
+/* ══ contador en anillo SVG ══ */
+.ring{width:118px;height:118px;position:relative;margin:0 auto 18px}
+.ring svg{width:118px;height:118px;transform:rotate(-90deg)}
+.ring .base{fill:none;stroke:var(--line);stroke-width:9}
+.ring .fill{fill:none;stroke:var(--acid);stroke-width:9;stroke-linecap:round;stroke-dasharray:314;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear}
+.ring .num{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font:900 30px 'JetBrains Mono',monospace;color:var(--acid);
+}
+
+/* texto de estado */
+.statue{font-size:12.5px;color:var(--dim);margin-bottom:14px;font-family:'JetBrains Mono',monospace}
+.statue b{color:var(--ink)}
+
+/* botón principal */
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  width:100%; padding:16px 20px;
+  background:var(--acid); color:#101010; border:none; border-radius:14px;
+  font:900 15px 'Inter',sans-serif; letter-spacing:.3px; cursor:pointer;
+  transition:transform .18s, box-shadow .18s, filter .18s;
+  box-shadow:0 12px 30px rgba(216,255,62,.28);
+}
+.cta:hover:not(:disabled){transform:translateY(-2px) scale(1.01);filter:brightness(1.05)}
+.cta:disabled{background:#232342;color:var(--dim);cursor:not-allowed;box-shadow:none;transform:none}
+.cta .arrow{font-size:18px}
+
+/* destino visible — transparencia anti-phishing */
+.dest{
+  margin:-6px 0 14px;font:600 11px 'JetBrains Mono',monospace;color:var(--dim);
+  word-break:break-all;
+}
+.dest b{color:var(--acid)}
+.dest.warn b{color:#ffb020}
+.dest.warn span{color:#ffb020}
+
+/* nota de seguridad */
+.sec{
+  margin-top:14px;font-size:10.5px;color:var(--dim);
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.sec svg{flex:none}
+
+/* ══ ADS (3 unidades únicas de Adsterra) ══ */
+.adzone{margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
+.ad-line{font:700 9px 'JetBrains Mono',monospace;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ads{display:flex;flex-direction:column;align-items:center;gap:16px}
+.adslot{
+  background:#111119;border:1px solid #1b1b2e;border-radius:14px;
+  overflow:hidden;position:relative;width:300px;height:250px;flex:none;
+}
+.adslot .tag{position:absolute;top:6px;right:8px;font:700 9px 'JetBrains Mono',monospace;color:var(--dim);z-index:2;background:#0008;padding:2px 8px;border-radius:20px}
+
+/* footer mínimo */
+.foot{margin-top:22px;color:#55556e;font:600 10px 'JetBrains Mono',monospace;letter-spacing:1.6px;text-transform:uppercase}
+
+/* ══ FASES: la página 1 ("Preparando tu enlace…") dura 3s exactos con los
+   tres anuncios apilados; luego entra al instante la fase 2 (el acortador
+   con su orden de anuncios original). Los anuncios NO se mueven del DOM:
+   solo se reordenan visualmente por fases (flex order) → cero recargas. ══ */
+.card{display:flex;flex-direction:column}
+.hd{order:10}
+#az1{order:20}
+#az2{order:30}
+#azSocial{order:35}
+#phase2{display:none;order:25}
+body.f2 #phase2{display:block;animation:pep .5s cubic-bezier(.2,1.2,.3,1) both}
+/* fase 1 respira: la cabecera se siente de página propia */
+body:not(.f2) .card{padding-top:44px}
+body:not(.f2) .hd{margin-bottom:6px}
+
+/* botón listo: cambio de color + latido suave (sutil, nada estridente) */
+.cta.ready{
+  background:#eaff70;color:#0a0a0a;
+  animation:readyPulse 1.8s ease-in-out infinite;
+}
+@keyframes readyPulse{
+  0%,100%{box-shadow:0 12px 30px rgba(216,255,62,.28)}
+  50%{box-shadow:0 14px 44px rgba(216,255,62,.58)}
+}
+
+/* tercera unidad (social bar) apilada dentro de la tarjeta */
+.adslot-bar{min-height:0;height:auto;padding:2px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- marca mínima -->
+  <div class="brandbar">
+    <div class="brand-x">X</div>
+    <div class="brand-txt">LINK <em>acortador</em></div>
+  </div>
+
+  <div class="card">
+    <div class="hd">
+      <div class="eyebrow">Tu enlace seguro está casi listo</div>
+      <div class="h-title" id="mainTitle">Preparando tu enlace…</div>
+      <div class="h-sub" id="mainSub">Cargando el contenido y verificando el destino…</div>
+      <div class="dest" id="destHost"></div>
+    </div>
+
+    <!-- ① banner 300×250 Adsterra — fase 1: apilado · fase 2: arriba (como antes) -->
+    <div class="adzone" id="az1">
+      <div class="ad-line">Publicidad</div>
+      <div class="ads">
+        <div class="adslot">
+          <span class="tag">ADS</span>
+          <script type="text/javascript">
+            atOptions = { 'key' : '825b6c261bcb7f937eaa5a427f5536d5', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+          </script>
+          <script type="text/javascript" src="https://www.highrevenueformat.com/825b6c261bcb7f937eaa5a427f5536d5/invoke.js"></script>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② direct link iframe — fase 1: apilado · fase 2: abajo del botón (como antes) -->
+    <div class="adzone" id="az2">
+      <div class="ad-line">Más ofertas</div>
+      <div class="ads">
+        <div class="adslot">
+          <span class="tag">ADS</span>
+          <iframe src="https://www.profitableratecpmnetwork.com/ur6i54e1s9?key=2d22ac685695ac659c2f75c51c04b51f" style="border:0;display:block;width:300px;height:250px" scrolling="no" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ social bar (tercera unidad) — contenedor incluido en la pila de la fase 1 -->
+    <div class="adzone" id="azSocial">
+      <div class="ads">
+        <div class="adslot adslot-bar">
+          <span class="tag">ADS</span>
+          <div id="container-160fa130587ee2c54605a09d7f6d332d"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2: el acortador de siempre (orden original) — anillo + botón -->
+    <div id="phase2">
+      <div class="ring" style="margin-top:22px">
+        <svg viewBox="0 0 118 118">
+          <circle class="base" cx="59" cy="59" r="50"/>
+          <circle class="fill" id="ringFill" cx="59" cy="59" r="50"/>
+        </svg>
+        <div class="num" id="countNum">3</div>
+      </div>
+
+      <div class="statue" id="statue">Esperando <b>3</b> segundos…</div>
+
+      <button class="cta" id="goBtn" disabled>
+        <span>⏳ Espera por favor</span>
+      </button>
+
+      <div class="sec">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Verificamos el destino antes de abrirlo — solo http/https permitidos.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">XLINK · tu acortador con anuncios</div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  /* ─── destino: decodificamos base64url de ?u=… ─── */
+  function decodeU(s){
+    try{
+      s = s.replace(/-/g,'+').replace(/_/g,'/');
+      while(s.length%4) s += '=';
+      return decodeURIComponent(escape(atob(s)));
+    }catch(e){ return null; }
+  }
+  const q = new URLSearchParams(location.search);
+  const target = decodeU(q.get('u') || '');
+  /* 👑 VIP: si la app principal me marca como administrador, paso directo sin anuncios */
+  const isVip = q.get('vip') === '1';
+
+  const titleEl = document.getElementById('mainTitle');
+  const subEl   = document.getElementById('mainSub');
+  const destEl  = document.getElementById('destHost');
+  const statue  = document.getElementById('statue');
+  const numEl   = document.getElementById('countNum');
+  const ring    = document.getElementById('ringFill');
+  const goBtn   = document.getElementById('goBtn');
+
+  if (!target) {
+    titleEl.textContent = 'Enlace inválido';
+    subEl.textContent   = 'Este enlace está dañado o incompleto.';
+    statue.innerHTML    = '⚠ <b>sin destino</b>';
+    goBtn.disabled = true;
+    return;
+  }
+
+  /* ─── 🔒 VALIDACIÓN ESTRICTA DEL DESTINO ───
+     Solo URLs absolutas http(s). javascript:, data:, file:, vbscript:,
+     esquemas raros y texto suelto = BLOQUEADO. Ni se muestra el botón. */
+  let dest = null;
+  try { dest = new URL(target); } catch (e) { dest = null; }
+  if (!dest || (dest.protocol !== 'https:' && dest.protocol !== 'http:')) {
+    titleEl.textContent = '⛔ Enlace bloqueado';
+    subEl.textContent   = 'Este enlace no apunta a una dirección web http/https. Detenido por seguridad.';
+    destEl.textContent  = '';
+    statue.innerHTML    = '🛡 <b>destino no permitido</b>';
+    goBtn.disabled = true;
+    return;
+  }
+
+  /* ─── transparencia: el destino REAL a la vista antes de saltar ─── */
+  const KNOWN = ['drive.google.com','drive.usercontent.google.com','docs.google.com',
+    'googleusercontent.com','archive.org','streamtape.com','mega.nz','mega.io','yapido.click'];
+  const known = KNOWN.some(h => dest.host === h || dest.host.endsWith('.' + h));
+  const httpPlain = dest.protocol === 'http:';
+  destEl.textContent = 'Destino: ';
+  var b = document.createElement('b'); b.textContent = dest.host; destEl.appendChild(b);
+  if (!known || httpPlain) {
+    destEl.classList.add('warn');
+    const w = document.createElement('span');
+    w.textContent = httpPlain
+      ? ' — ⚠ conexión no cifrada (http), revisa bien antes de continuar'
+      : ' — ⚠ sitio no reconocido: verifica que confías en él';
+    destEl.appendChild(w);
+  }
+
+  /* 👑 VIP (administrador de la app): sin espera extra */
+  /* ══ Función ÚNICA de apertura: externa (pestaña nueva), 1 sola vez ══ */
+  let abierto = false;
+  function openExt() {
+    if (abierto) return;
+    abierto = true;
+    /* «forma externa»: pestaña nueva al lado del acortador.
+       OJO: sin 'noopener' en features — con noopener window.open siempre
+       devuelve null y dispararía la doble apertura; anulamos opener a mano. */
+    const w = window.open(dest.href, '_blank');
+    if (!w) {
+      /* bloqueada → navegamos esta misma como último recurso (destino ya validado http/s) */
+      window.location.replace(dest.href);
+      return;
+    }
+    try { w.opener = null; } catch (e) { } /* anti reverse-tabnabbing */
+    goBtn.disabled = true;
+    goBtn.style.pointerEvents = 'none';
+    numEl.textContent = '✓';
+    statue.innerHTML = '📤 <b>Abierto en otra pestaña</b>';
+  }
+
+  /* ══ salto a la FASE 2: el acortador con su orden original. Se usa
+     la clase body.f2 (los anuncios no se reinsertan: cero recargas) ══ */
+  function toPhase2() {
+    document.body.classList.add('f2');
+    titleEl.textContent = 'Tu enlace está casi listo';
+    subEl.textContent = 'Última comprobación — tres segundos.';
+  }
+
+  if (isVip) {
+    /* VIP: fase 2 directa y lista, sin espera ni publicidad */
+    toPhase2();
+    titleEl.textContent = 'Modo admin';
+    subEl.textContent = 'Pulsa para continuar — sin espera ni publicidad para ti.';
+    statue.innerHTML = '✔ <b>Enlace listo</b>';
+    goBtn.disabled = false;
+    goBtn.innerHTML = '<span class="arrow">▶</span> CONTINUAR';
+    goBtn.onclick = openExt;
+    return;
+  }
+
+  /* ══ FASE 1: "Preparando tu enlace…" — EXACTAMENTE 3 segundos con
+     las tres unidades apiladas cargando. Al término: salto automático
+     instantáneo al acortador (fase 2). ══ */
+  setTimeout(() => {
+    toPhase2();
+    /* ══ FASE 2: cuenta atrás 3s + anillo; al acabar, el botón se
+       enciende con un pulso sutil (ya se puede pulsar) ══ */
+    const total = 3;
+    let n = total;
+    const dash = 314;
+    const tick = setInterval(() => {
+      n--;
+      numEl.textContent = Math.max(0, n);
+      ring.style.strokeDashoffset = String(dash - (dash * (total - Math.max(0,n)) / total));
+      if (n === 1) {
+        titleEl.textContent = '¡Ya casi!';
+        subEl.textContent = 'Un segundo más y continúas a tu enlace.';
+      }
+      if (n <= 0) {
+        clearInterval(tick);
+        numEl.textContent = '✓';
+        statue.innerHTML = '✔ <b>Enlace listo</b>';
+        statue.style.color = 'var(--acid)';
+        goBtn.disabled = false;
+        goBtn.classList.add('ready');           /* ← la señal sutil */
+        goBtn.innerHTML = '<span class="arrow">▶</span> CONTINUAR';
+        goBtn.onclick = openExt;
+      }
+    }, 1000);
+  }, 3000);
+})();
+</script>
+
+<!-- social bar / popunder de Adsterra (3ª unidad — su contenedor vive apilado arriba) -->
+<script async="async" data-cfasync="false" src="https://pl31187643.profitableratecpmnetwork.com/160fa130587ee2c54605a09d7f6d332d/invoke.js"></script>
+
+</body>
+</html>
