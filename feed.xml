@@ -6,7 +6,7 @@
   <atom:link href="https://x.yapido.click/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Anime, series y películas completas en español, gratis y en HD.</description>
   <language>es</language>
-  <lastBuildDate>Fri, 25 Sep 2026 11:56:17 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 25 Sep 2026 20:41:04 GMT</lastBuildDate>
   <item>
     <title>Jurassic world</title>
     <link>https://x.yapido.click/ver/jurassic-world/</link>
@@ -80,18 +80,6 @@
     ]]></description>
   </item>
   <item>
-    <title>Isekai Suicide Squad</title>
-    <link>https://x.yapido.click/ver/isekai-suicide-squad/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/isekai-suicide-squad/</guid>
-    <pubDate>Fri, 25 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/e9qGP2ayOeoqlxXWIMhfr1BCymb.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/e9qGP2ayOeoqlxXWIMhfr1BCymb.jpg" alt="Isekai Suicide Squad" style="max-width:220px;border-radius:10px"></p>
-      <p>Harley Quinn es transportada a un mundo fantástico en el estilo del género anime "Isekai" ("Otro Mundo"). Además aparecerán otros personajes de los cómics "Escuadrón Suicida" y otros cómics de DC, como Joker o Amanda Waller.</p>
-      <p><a href="https://x.yapido.click/ver/isekai-suicide-squad/">▶ Continuar viendo: Isekai Suicide Squad</a></p>
-    ]]></description>
-  </item>
-  <item>
     <title>The Dog y Pony Show</title>
     <link>https://x.yapido.click/ver/the-dog-y-pony-show/</link>
     <guid isPermaLink="true">https://x.yapido.click/ver/the-dog-y-pony-show/</guid>
@@ -104,15 +92,15 @@
     ]]></description>
   </item>
   <item>
-    <title>Dororo</title>
-    <link>https://x.yapido.click/ver/dororo/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/dororo/</guid>
-    <pubDate>Thu, 24 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/6TX5aQHlJKdRZqV9nFPty3dOdfe.jpg" medium="image"/>
+    <title>Isekai Suicide Squad</title>
+    <link>https://x.yapido.click/ver/isekai-suicide-squad/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/isekai-suicide-squad/</guid>
+    <pubDate>Fri, 25 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/e9qGP2ayOeoqlxXWIMhfr1BCymb.jpg" medium="image"/>
     <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/6TX5aQHlJKdRZqV9nFPty3dOdfe.jpg" alt="Dororo" style="max-width:220px;border-radius:10px"></p>
-      <p>Un señor samurai ha regalado los órganos de su hijo recién nacido a cuarenta y ocho demonios a cambio del dominio en el campo de batalla. Sin embargo, el niño abandonado sobrevive gracias a un curandero que lo equipa con prótesis primitivas, letales con las que el hijo maltratado usará para cazar a…</p>
-      <p><a href="https://x.yapido.click/ver/dororo/">▶ Continuar viendo: Dororo</a></p>
+      <p><img src="https://image.tmdb.org/t/p/w500/e9qGP2ayOeoqlxXWIMhfr1BCymb.jpg" alt="Isekai Suicide Squad" style="max-width:220px;border-radius:10px"></p>
+      <p>Harley Quinn es transportada a un mundo fantástico en el estilo del género anime "Isekai" ("Otro Mundo"). Además aparecerán otros personajes de los cómics "Escuadrón Suicida" y otros cómics de DC, como Joker o Amanda Waller.</p>
+      <p><a href="https://x.yapido.click/ver/isekai-suicide-squad/">▶ Continuar viendo: Isekai Suicide Squad</a></p>
     ]]></description>
   </item>
   <item>
@@ -125,6 +113,18 @@
       <p><img src="https://image.tmdb.org/t/p/w500/ccG0ZfXOQ0834bIus4SwZrXtkyM.jpg" alt="Re. Zero" style="max-width:220px;border-radius:10px"></p>
       <p>Subaru Natsuki es un estudiante corriente de preparatoria que conoce a una hermosa chica de pelo plateado de otro mundo que lo rescata. Para devolverle el favor decide quedarse con ella, pero el destino con el que carga la muchacha es mucho más pesado de lo que Subaru puede imaginar. Los enemigos…</p>
       <p><a href="https://x.yapido.click/ver/re-zero/">▶ Continuar viendo: Re. Zero</a></p>
+    ]]></description>
+  </item>
+  <item>
+    <title>Dororo</title>
+    <link>https://x.yapido.click/ver/dororo/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/dororo/</guid>
+    <pubDate>Thu, 24 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/6TX5aQHlJKdRZqV9nFPty3dOdfe.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://image.tmdb.org/t/p/w500/6TX5aQHlJKdRZqV9nFPty3dOdfe.jpg" alt="Dororo" style="max-width:220px;border-radius:10px"></p>
+      <p>Un señor samurai ha regalado los órganos de su hijo recién nacido a cuarenta y ocho demonios a cambio del dominio en el campo de batalla. Sin embargo, el niño abandonado sobrevive gracias a un curandero que lo equipa con prótesis primitivas, letales con las que el hijo maltratado usará para cazar a…</p>
+      <p><a href="https://x.yapido.click/ver/dororo/">▶ Continuar viendo: Dororo</a></p>
     ]]></description>
   </item>
   <item>
@@ -200,30 +200,6 @@
     ]]></description>
   </item>
   <item>
-    <title>Zombieland</title>
-    <link>https://x.yapido.click/ver/zombieland/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/zombieland/</guid>
-    <pubDate>Sun, 13 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/vSaonGCXOtC8RmqR3e5L8f4lAdI.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/vSaonGCXOtC8RmqR3e5L8f4lAdI.jpg" alt="Zombieland" style="max-width:220px;border-radius:10px"></p>
-      <p>Sakura Minamoto es una chica de preparatoria que espera ser una idol, pero lo que no esperaba era tener que sobrevivir a un terrorífico apocalipsis zombi... o no. Cuando despierta se encuentra en la prefectura de Saga y un hombre muy escandaloso le indica que lleva bastante tiempo muerta, pero la…</p>
-      <p><a href="https://x.yapido.click/ver/zombieland/">▶ Continuar viendo: Zombieland</a></p>
-    ]]></description>
-  </item>
-  <item>
-    <title>Mythical Detective Loki Ragnarok</title>
-    <link>https://x.yapido.click/ver/mythical-detective-loki-ragnarok/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/mythical-detective-loki-ragnarok/</guid>
-    <pubDate>Sun, 13 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/igO7ZYrvB1uEgrJ5wAOZzCfCuoD.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/igO7ZYrvB1uEgrJ5wAOZzCfCuoD.jpg" alt="Mythical Detective Loki Ragnarok" style="max-width:220px;border-radius:10px"></p>
-      <p>Una chica apasionada de los misterios y los poderes sobrenaturales, incapaz de ver ninguno de ellos, consigue un día encontrar una muñeca que habla, que es robada poco después por un gato, tratando de reencontrarla encuentra una extraña agencia de detectives que se ocupa de casos sobrenaturales. Al…</p>
-      <p><a href="https://x.yapido.click/ver/mythical-detective-loki-ragnarok/">▶ Continuar viendo: Mythical Detective Loki Ragnarok</a></p>
-    ]]></description>
-  </item>
-  <item>
     <title>Naruto</title>
     <link>https://x.yapido.click/ver/naruto-completo/</link>
     <guid isPermaLink="true">https://x.yapido.click/ver/naruto-completo/</guid>
@@ -281,6 +257,42 @@
       <p><img src="https://image.tmdb.org/t/p/w500/aY7Q2MX5O60njeYV4DB0WrYj9ym.jpg" alt="Nanatsu No Taizai" style="max-width:220px;border-radius:10px"></p>
       <p>Usted, va a ser un adorador de los señores del diablo? Estas hermosas señores llevan los seres humanos a los siete pecados capitales: soberbia, la envidia, la ira, la pereza, la avaricia, la gula y la lujuria. Una fantasía revelador que anhela para corromper y robar la verdadera felicidad comienza…</p>
       <p><a href="https://x.yapido.click/ver/nanatsu-no-taizai/">▶ Continuar viendo: Nanatsu No Taizai</a></p>
+    ]]></description>
+  </item>
+  <item>
+    <title>Zombieland</title>
+    <link>https://x.yapido.click/ver/zombieland/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/zombieland/</guid>
+    <pubDate>Sun, 13 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/vSaonGCXOtC8RmqR3e5L8f4lAdI.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://image.tmdb.org/t/p/w500/vSaonGCXOtC8RmqR3e5L8f4lAdI.jpg" alt="Zombieland" style="max-width:220px;border-radius:10px"></p>
+      <p>Sakura Minamoto es una chica de preparatoria que espera ser una idol, pero lo que no esperaba era tener que sobrevivir a un terrorífico apocalipsis zombi... o no. Cuando despierta se encuentra en la prefectura de Saga y un hombre muy escandaloso le indica que lleva bastante tiempo muerta, pero la…</p>
+      <p><a href="https://x.yapido.click/ver/zombieland/">▶ Continuar viendo: Zombieland</a></p>
+    ]]></description>
+  </item>
+  <item>
+    <title>Mythical Detective Loki Ragnarok</title>
+    <link>https://x.yapido.click/ver/mythical-detective-loki-ragnarok/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/mythical-detective-loki-ragnarok/</guid>
+    <pubDate>Sun, 13 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/igO7ZYrvB1uEgrJ5wAOZzCfCuoD.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://image.tmdb.org/t/p/w500/igO7ZYrvB1uEgrJ5wAOZzCfCuoD.jpg" alt="Mythical Detective Loki Ragnarok" style="max-width:220px;border-radius:10px"></p>
+      <p>Una chica apasionada de los misterios y los poderes sobrenaturales, incapaz de ver ninguno de ellos, consigue un día encontrar una muñeca que habla, que es robada poco después por un gato, tratando de reencontrarla encuentra una extraña agencia de detectives que se ocupa de casos sobrenaturales. Al…</p>
+      <p><a href="https://x.yapido.click/ver/mythical-detective-loki-ragnarok/">▶ Continuar viendo: Mythical Detective Loki Ragnarok</a></p>
+    ]]></description>
+  </item>
+  <item>
+    <title>Boruto</title>
+    <link>https://x.yapido.click/ver/boruto/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/boruto/</guid>
+    <pubDate>Sat, 12 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/qlJS7iG25kzrlX8Bn13kfn1Qay4.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://image.tmdb.org/t/p/w500/qlJS7iG25kzrlX8Bn13kfn1Qay4.jpg" alt="Boruto" style="max-width:220px;border-radius:10px"></p>
+      <p>En Konoha han entrado en una era de paz y modernidad. Los altos edificios despuntan en las calles, las pantallas gigantes muestran imágenes de todo tipo y los medios de transporte conectan los vairos distritos. Pese a que sigue siendo una aldea ninja, el número de civiles ha aumentado y la vida de…</p>
+      <p><a href="https://x.yapido.click/ver/boruto/">▶ Continuar viendo: Boruto</a></p>
     ]]></description>
   </item>
   <item>
@@ -356,27 +368,15 @@
     ]]></description>
   </item>
   <item>
-    <title>Boruto</title>
-    <link>https://x.yapido.click/ver/boruto/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/boruto/</guid>
-    <pubDate>Sat, 12 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/qlJS7iG25kzrlX8Bn13kfn1Qay4.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/qlJS7iG25kzrlX8Bn13kfn1Qay4.jpg" alt="Boruto" style="max-width:220px;border-radius:10px"></p>
-      <p>En Konoha han entrado en una era de paz y modernidad. Los altos edificios despuntan en las calles, las pantallas gigantes muestran imágenes de todo tipo y los medios de transporte conectan los vairos distritos. Pese a que sigue siendo una aldea ninja, el número de civiles ha aumentado y la vida de…</p>
-      <p><a href="https://x.yapido.click/ver/boruto/">▶ Continuar viendo: Boruto</a></p>
-    ]]></description>
-  </item>
-  <item>
-    <title>How To Train Your Dragon</title>
-    <link>https://x.yapido.click/ver/how-to-train-your-dragon-dreamworks-dragons-the-complete-ser/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/how-to-train-your-dragon-dreamworks-dragons-the-complete-ser/</guid>
+    <title>Bleach</title>
+    <link>https://x.yapido.click/ver/bleach/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/bleach/</guid>
     <pubDate>Fri, 11 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/lfGCjbfUK7isQ1tBBGu1dyZOM2q.jpg" medium="image"/>
+    <media:content url="https://image.tmdb.org/t/p/w500/rsv116o9M983WvInXztEiwc6WRD.jpg" medium="image"/>
     <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/lfGCjbfUK7isQ1tBBGu1dyZOM2q.jpg" alt="How To Train Your Dragon" style="max-width:220px;border-radius:10px"></p>
-      <p>Tras los acontecimientos de la película “Cómo entrenar a tu dragón”, los vikingos de Mema y sus antiguos enemigos, los dragones, viven felices y en armonía, pero esta coexistencia no es tan armoniosa como uno puede pensar. Los dragones, siendo aún fabulosas bestias salvajes, sin querer, crean…</p>
-      <p><a href="https://x.yapido.click/ver/how-to-train-your-dragon-dreamworks-dragons-the-complete-ser/">▶ Continuar viendo: How To Train Your Dragon</a></p>
+      <p><img src="https://image.tmdb.org/t/p/w500/rsv116o9M983WvInXztEiwc6WRD.jpg" alt="Bleach" style="max-width:220px;border-radius:10px"></p>
+      <p>La serie narra las aventuras de Ichigo Kurosaki, un adolescente que tiene la facultad de interactuar con los espíritus. Una noche, Ichigo se encuentra con una shinigami —personificación japonesa del Dios de la muerte— llamada Rukia Kuchiki, quien se sorprende que pueda verla. Sin embargo, su…</p>
+      <p><a href="https://x.yapido.click/ver/bleach/">▶ Continuar viendo: Bleach</a></p>
     ]]></description>
   </item>
   <item>
@@ -389,6 +389,18 @@
       <p><img src="https://image.tmdb.org/t/p/w500/fjyVD5gaXAPWbrTGaeEg7wAaz2y.jpg" alt="Voltron" style="max-width:220px;border-radius:10px"></p>
       <p>Sorprendidos pero listos para la acción, cinco pilotos espaciales descubren que pueden crear a Voltron, el robot mas poderoso del universo.</p>
       <p><a href="https://x.yapido.click/ver/voltron-temporada-1-a-8-serie-2016-2018-espanol-latino/">▶ Continuar viendo: Voltron</a></p>
+    ]]></description>
+  </item>
+  <item>
+    <title>How To Train Your Dragon</title>
+    <link>https://x.yapido.click/ver/how-to-train-your-dragon-dreamworks-dragons-the-complete-ser/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/how-to-train-your-dragon-dreamworks-dragons-the-complete-ser/</guid>
+    <pubDate>Fri, 11 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/lfGCjbfUK7isQ1tBBGu1dyZOM2q.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://image.tmdb.org/t/p/w500/lfGCjbfUK7isQ1tBBGu1dyZOM2q.jpg" alt="How To Train Your Dragon" style="max-width:220px;border-radius:10px"></p>
+      <p>Tras los acontecimientos de la película “Cómo entrenar a tu dragón”, los vikingos de Mema y sus antiguos enemigos, los dragones, viven felices y en armonía, pero esta coexistencia no es tan armoniosa como uno puede pensar. Los dragones, siendo aún fabulosas bestias salvajes, sin querer, crean…</p>
+      <p><a href="https://x.yapido.click/ver/how-to-train-your-dragon-dreamworks-dragons-the-complete-ser/">▶ Continuar viendo: How To Train Your Dragon</a></p>
     ]]></description>
   </item>
   <item>
@@ -428,18 +440,6 @@
     ]]></description>
   </item>
   <item>
-    <title>Bleach</title>
-    <link>https://x.yapido.click/ver/bleach/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/bleach/</guid>
-    <pubDate>Fri, 11 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/rsv116o9M983WvInXztEiwc6WRD.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/rsv116o9M983WvInXztEiwc6WRD.jpg" alt="Bleach" style="max-width:220px;border-radius:10px"></p>
-      <p>La serie narra las aventuras de Ichigo Kurosaki, un adolescente que tiene la facultad de interactuar con los espíritus. Una noche, Ichigo se encuentra con una shinigami —personificación japonesa del Dios de la muerte— llamada Rukia Kuchiki, quien se sorprende que pueda verla. Sin embargo, su…</p>
-      <p><a href="https://x.yapido.click/ver/bleach/">▶ Continuar viendo: Bleach</a></p>
-    ]]></description>
-  </item>
-  <item>
     <title>Ranma½</title>
     <link>https://x.yapido.click/ver/ranma/</link>
     <guid isPermaLink="true">https://x.yapido.click/ver/ranma/</guid>
@@ -476,18 +476,6 @@
     ]]></description>
   </item>
   <item>
-    <title>Dragon ball super</title>
-    <link>https://x.yapido.click/ver/dragon-ball-super/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/dragon-ball-super/</guid>
-    <pubDate>Fri, 04 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/ruLBbIX15HrECgLJ3uZPo6X3YCN.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/ruLBbIX15HrECgLJ3uZPo6X3YCN.jpg" alt="Dragon ball super" style="max-width:220px;border-radius:10px"></p>
-      <p>Tras derrotar a Majin Buu, Goku y sus amigos tienen una vida de lo más pacífica: Goku ahora se dedica a la agricultura, aunque siempre encuentra un rato para seguir entrenando; Mister Satán se ha hecho famoso como gran salvador de la Humanidad; Trunks y Goten hacen cosas de niños; Gohan y Videl se…</p>
-      <p><a href="https://x.yapido.click/ver/dragon-ball-super/">▶ Continuar viendo: Dragon ball super</a></p>
-    ]]></description>
-  </item>
-  <item>
     <title>kimetsu no yaiba</title>
     <link>https://x.yapido.click/ver/kimetsu-no-yaiba/</link>
     <guid isPermaLink="true">https://x.yapido.click/ver/kimetsu-no-yaiba/</guid>
@@ -497,6 +485,18 @@
       <p><img src="https://image.tmdb.org/t/p/w500/inXU5hvbDbitrYOgLrq2QjYqiJD.jpg" alt="kimetsu no yaiba" style="max-width:220px;border-radius:10px"></p>
       <p>Tanjiro Kamado vive feliz con su madre y hermanos pequeños en la montaña, subsistiendo humildemente. Una mañana, al regresar a casa, se encuentra a toda su familia asesinada y a su hermana Nezuko convertida en demonio. Tanjiro buscará desesperadamente la manera de devolverla a su condición humana y…</p>
       <p><a href="https://x.yapido.click/ver/kimetsu-no-yaiba/">▶ Continuar viendo: kimetsu no yaiba</a></p>
+    ]]></description>
+  </item>
+  <item>
+    <title>Dragon ball super</title>
+    <link>https://x.yapido.click/ver/dragon-ball-super/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/dragon-ball-super/</guid>
+    <pubDate>Fri, 04 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/ruLBbIX15HrECgLJ3uZPo6X3YCN.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://image.tmdb.org/t/p/w500/ruLBbIX15HrECgLJ3uZPo6X3YCN.jpg" alt="Dragon ball super" style="max-width:220px;border-radius:10px"></p>
+      <p>Tras derrotar a Majin Buu, Goku y sus amigos tienen una vida de lo más pacífica: Goku ahora se dedica a la agricultura, aunque siempre encuentra un rato para seguir entrenando; Mister Satán se ha hecho famoso como gran salvador de la Humanidad; Trunks y Goten hacen cosas de niños; Gohan y Videl se…</p>
+      <p><a href="https://x.yapido.click/ver/dragon-ball-super/">▶ Continuar viendo: Dragon ball super</a></p>
     ]]></description>
   </item>
   <item>
@@ -550,6 +550,18 @@ Hace ciento cuarenta años en Kioto, con la llegada de los "Barcos Negros" estad
     ]]></description>
   </item>
   <item>
+    <title>Amores Perros</title>
+    <link>https://x.yapido.click/ver/amores-perros/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/amores-perros/</guid>
+    <pubDate>Fri, 04 Sep 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://image.tmdb.org/t/p/w500/bVK4CPluBY9LFkzCAwhG5Fs04HE.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://image.tmdb.org/t/p/w500/bVK4CPluBY9LFkzCAwhG5Fs04HE.jpg" alt="Amores Perros" style="max-width:220px;border-radius:10px"></p>
+      <p>Ciudad de México: un fatal accidente automovilístico afecta trágicamente a tres personas. Octavio, un joven adolescente, decide fugarse con Susana, la esposa de su hermano; el Cofí, su perro, se convierte en el medio para conseguir el dinero que necesitan para poder escapar juntos. Al mismo tiempo,…</p>
+      <p><a href="https://x.yapido.click/ver/amores-perros/">▶ Continuar viendo: Amores Perros</a></p>
+    ]]></description>
+  </item>
+  <item>
     <title>La Vendedora De Rosas</title>
     <link>https://x.yapido.click/ver/la-vendedora-de-rosas/</link>
     <guid isPermaLink="true">https://x.yapido.click/ver/la-vendedora-de-rosas/</guid>
@@ -559,18 +571,6 @@ Hace ciento cuarenta años en Kioto, con la llegada de los "Barcos Negros" estad
       <p><img src="https://image.tmdb.org/t/p/w500/oZgWtVMiq0IuuvmArTtLzWKIra3.jpg" alt="La Vendedora De Rosas" style="max-width:220px;border-radius:10px"></p>
       <p>Mónica tiene 13 años y ya se ha rebelado contra todo. Ha creado su propio mundo, en la calle, donde lucha con coraje para defender lo poco que tiene: sus amigas¸ tan niñas como ella; su novio, que vende droga, y su dignidad y su orgullo que no le hace concesiones a nadie. En la noche de Navidad,…</p>
       <p><a href="https://x.yapido.click/ver/la-vendedora-de-rosas/">▶ Continuar viendo: La Vendedora De Rosas</a></p>
-    ]]></description>
-  </item>
-  <item>
-    <title>Dragon Ball Heroes  (1 Al 20)</title>
-    <link>https://x.yapido.click/ver/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-fu/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-fu/</guid>
-    <pubDate>Fri, 04 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b102352-iTBUsIV9x7KH.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b102352-iTBUsIV9x7KH.jpg" alt="Dragon Ball Heroes  (1 Al 20)" style="max-width:220px;border-radius:10px"></p>
-      <p>Dragon Ball Heroes  (1 Al 20) disponible completa y en español en X·STREAM.</p>
-      <p><a href="https://x.yapido.click/ver/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-fu/">▶ Continuar viendo: Dragon Ball Heroes  (1 Al 20)</a></p>
     ]]></description>
   </item>
   <item>
@@ -598,15 +598,15 @@ Hace ciento cuarenta años en Kioto, con la llegada de los "Barcos Negros" estad
     ]]></description>
   </item>
   <item>
-    <title>Dragon Ball Super: Broly</title>
-    <link>https://x.yapido.click/ver/dragon-ball-super-broly-480p-720p-1080p-2160p-mul-sub-dub/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/dragon-ball-super-broly-480p-720p-1080p-2160p-mul-sub-dub/</guid>
+    <title>El Libro de la Vida</title>
+    <link>https://x.yapido.click/ver/el-libro-de-la-vida/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/el-libro-de-la-vida/</guid>
     <pubDate>Fri, 04 Sep 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w500/6JilEC1SON8tWIRHcdJzf4uVBpX.jpg" medium="image"/>
+    <media:content url="https://image.tmdb.org/t/p/w500/k669nOalwu7NKhW7aWNJKN7Nxvi.jpg" medium="image"/>
     <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w500/6JilEC1SON8tWIRHcdJzf4uVBpX.jpg" alt="Dragon Ball Super: Broly" style="max-width:220px;border-radius:10px"></p>
-      <p>La Tierra vive en paz después de que concluyó el Torneo de Fuerza. Luego de darse cuenta que los Universos aún tienen muchos guerreros poderosos, Goku pasa todos los días entrenando para alcanzar un nivel de pelea mayor.  Un día Goku y Vegeta enfrentan a un nuevo saiyan llamado “Broly”, a quien…</p>
-      <p><a href="https://x.yapido.click/ver/dragon-ball-super-broly-480p-720p-1080p-2160p-mul-sub-dub/">▶ Continuar viendo: Dragon Ball Super: Broly</a></p>
+      <p><img src="https://image.tmdb.org/t/p/w500/k669nOalwu7NKhW7aWNJKN7Nxvi.jpg" alt="El Libro de la Vida" style="max-width:220px;border-radius:10px"></p>
+      <p>La película cuenta el viaje de Manolo, un joven torero que se debate entre cumplir con las expectativas de su familia o seguir su corazón y dedicarse a su verdadera pasión: la música. Antes de escoger el camino que seguirá, emprende una aventura recorriendo tres mundos fantásticos, donde tendrá que…</p>
+      <p><a href="https://x.yapido.click/ver/el-libro-de-la-vida/">▶ Continuar viendo: El Libro de la Vida</a></p>
     ]]></description>
   </item>
 </channel>
