@@ -2219,15 +2219,29 @@ body.staff-on .admin-only{display:revert!important}
 }
 
 /* ═══════ ✨ SINOPSIS — ficha a pantalla completa ═══════ */
-/* botón grande y llamativo junto a Descargar/Compartir */
+/* botón GRANDE, a la derecha de Compartir: dorado con barrido de sol */
 .btn-syn{
+  position:relative;overflow:hidden;
   background:linear-gradient(135deg,#ffd24a,#ff9d2e 55%,#ff5c84);color:#221200;
-  font-weight:900;letter-spacing:.2px;
-  box-shadow:0 8px 26px rgba(255,157,46,.35);
-  animation:synGlow 2.6s ease-in-out infinite;
+  font-weight:900;font-size:13.5px;letter-spacing:.3px;padding:13px 20px;border-radius:13px;
+  border:1.5px solid rgba(255,222,120,.85);
+  box-shadow:0 10px 30px rgba(255,157,46,.4),inset 0 1px 0 rgba(255,255,255,.5);
+  animation:synGlow 2.6s ease-in-out infinite;white-space:nowrap;
 }
-.btn-syn:hover{transform:translateY(-1px) scale(1.03);box-shadow:0 12px 32px rgba(255,157,46,.5)}
-@keyframes synGlow{0%,100%{box-shadow:0 8px 26px rgba(255,157,46,.35)}50%{box-shadow:0 8px 34px rgba(255,196,0,.65)}}
+.btn-syn svg{filter:drop-shadow(0 1px 0 rgba(255,255,255,.5))}
+/* el rayo de sol que cruza el botón cada pocos segundos */
+.btn-syn::after{
+  content:'';position:absolute;top:-30%;bottom:-30%;left:-45%;width:38%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);
+  transform:skewX(-18deg);animation:synShine 2.8s ease-in-out infinite;pointer-events:none;
+}
+@keyframes synShine{0%{left:-45%}55%,100%{left:130%}}
+.btn-syn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 14px 36px rgba(255,157,46,.55)}
+@keyframes synGlow{0%,100%{box-shadow:0 10px 30px rgba(255,157,46,.4),inset 0 1px 0 rgba(255,255,255,.5)}50%{box-shadow:0 10px 38px rgba(255,196,0,.7),inset 0 1px 0 rgba(255,255,255,.5)}}
+/* móvil: ocupa SU PROPIA línea entera — siempre se lee «Leer sinopsis» */
+@media (max-width:640px){
+  .stage-side .btn-syn{order:9;flex:1 1 100%;justify-content:center;padding:14px 18px;font-size:14px}
+}
 
 .syn-backdrop{
   position:fixed;inset:0;z-index:130;background:rgba(4,4,9,.8);

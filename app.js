@@ -3315,13 +3315,21 @@ els.shareBtn.addEventListener('click', () => {
         const r = await tj(`https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_KEY_APP}&language=es-ES&query=${encodeURIComponent(q)}&page=1`);
         const top = (r.results || [])[0];
         if (!top || !synMatch(clean || q, top)) continue;
-        const det = await tj(`https://api.themoviedb.org/3/${type}/${top.id}?api_key=${TMDB_KEY_APP}&language=es-ES&append_to_response=credits,videos,images&include_image_language=es,null`);
+        const det = await tj(`https://api.themoviedb.org/3/${type}/${top.id}?api_key=${TMDB_KEY_APP}&language=es-ES&append_to_response=credits,videos,images&include_image_language=es,en,null&include_video_language=es,en,null`);
         let overview = (det.overview || '').trim(), enNote = false;
         if (!overview) { /* ficha sin sinopsis en español → trae la inglesa y se avisa */
           const en = await tj(`https://api.themoviedb.org/3/${type}/${top.id}?api_key=${TMDB_KEY_APP}&language=en-US`);
           overview = (en.overview || '').trim(); enNote = !!overview;
         }
-        const vids = ((det.videos || {}).results) || [];
+        let vids = ((det.videos || {}).results) || [];
+        /* 🎬 respaldo: si TMDB no devolvió videos (pasa cuando solo existen
+           en inglés y la consulta era es-ES), se piden explícitos en inglés */
+        if (!vids.length) {
+          try { vids = (((await tj(`https://api.themoviedb.org/3/${type}/${top.id}/videos?api_key=${TMDB_KEY_APP}&language=en-US`)) || {}).results) || []; } catch (e2) { }
+        }
+        const yt = vids.filter(v => v.site === 'YouTube');
+        const pickVid = vs => vs.find(v => v.type === 'Trailer') || vs.find(v => v.type === 'Teaser') || vs[0] || null;
+        const ytEs = yt.filter(v => v.iso_639_1 === 'es');
         data = {
           overview, enNote,
           poster: TIMG(det.poster_path, 'w500'),
@@ -3340,7 +3348,8 @@ els.shareBtn.addEventListener('click', () => {
           tmdbId: top.id, type,
           cast: (((det.credits || {}).cast) || []).slice(0, 12)
             .map(c => ({ name: c.name, char: c.character || '', img: TIMG(c.profile_path, 'w185') })),
-          trailer: vids.find(v => v.site === 'YouTube' && v.type === 'Trailer') || vids.find(v => v.site === 'YouTube'),
+          /* tráiler: se prefiere el oficial EN ESPAÑOL; si no hay, cualquiera en YouTube */
+          trailer: pickVid(ytEs) || pickVid(yt),
           gallery: (((det.images || {}).backdrops) || []).slice(1, 4).map(b => TIMG(b.file_path, 'w780')),
         };
         break;
