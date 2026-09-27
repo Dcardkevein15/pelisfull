@@ -1074,6 +1074,22 @@
       return;
     }
 
+    /* 🛡 CANDADO ANTI-VACIADO: si la web EN VIVO tenía mucho más contenido del
+       que va a salir en este paquete (p. ej. 0 canales cuando hay miles, o la
+       mitad de las series), esta copia local venía incompleta — BLOQUEAMOS
+       para que nunca publiques un catálogo empobrecido por accidente.   */
+    if (lastSeenRemote && lastSeenRemote.v) {
+      const liveS = (lastSeenRemote.series || []).length;
+      const liveCh = (lastSeenRemote.channels || []).length;
+      const myS = payload.series.length, myCh = payload.channels.length;
+      const vanCanales = liveCh > 100 && myCh < liveCh * 0.5;
+      const vanSeries = liveS > 20 && myS < liveS * 0.7;
+      if (vanCanales || vanSeries) {
+        axToast(`🚨 Publicación BLOQUEADA para no perder contenido: la web tiene ${liveS} series y ${liveCh} canales, pero tu paquete saldría con ${myS} series y ${myCh} canales. Tu copia local está incompleta → ${vanCanales && !vanSeries ? 'abre la pestaña 📡 TV y pulsa «🔄 Actualizar» para reconstruir los canales desde las listas guardadas, y vuelve a publicar.' : 'revisa tu biblioteca antes de publicar.'}`, true);
+        return;
+      }
+    }
+
     /* 🔐 FIRMA ECDSA — invisible: la 1ª vez crea tu clave en este
        dispositivo y firma; después solo firma. Si no hay cripto
        disponible (contexto no seguro), publica como siempre.     */
@@ -2100,7 +2116,7 @@
     if (added || updated) axToast(`🌐 Catálogo actualizado: ${cat.series.length} títulos de ${cat.by || 'el administrador'}`);
   }
 
-  let syncing = false, syncInflight = null;
+  let syncing = false, syncInflight = null, lastSeenRemote = null;
   async function syncCatalog(opts) {
     opts = opts || {};
     /* 👑 El dispositivo QUE PUBLICA ya tiene la última versión en su estado
@@ -2144,6 +2160,7 @@
         return;
       }
       if (firma === 'no-key') console.info('[xstream] catálogo aceptado sin verificación de firma (blíndalo pegando CONFIG.catalogPubKey en auth.js)');
+      lastSeenRemote = cat; /* la verdad del cable: la usa publishCatalog como candado anti-vaciado */
       const st = API.getState();
       const cur = (st.catalogMeta && st.catalogMeta.v) || 0;
       if (cat.v <= cur) return;            /* ya está aplicada esta versión */
