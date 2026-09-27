@@ -79,7 +79,8 @@ async function tmdbFor(s) {
   const key = slugify(s.t);
   const hit = cache[key];
   const now = Date.now();
-  if (hit && now - hit.at < (hit.data ? TTL_HIT : TTL_MISS)) return hit.data;
+  /* cv=2: añade backdrop (w780) — los aciertos viejos sin él se repiden */
+  if (hit && hit.cv === 2 && now - hit.at < (hit.data ? TTL_HIT : TTL_MISS)) return hit.data;
   let data = null;
   const isPeli = s.kind === 'pelicula';
   const type = isPeli ? 'movie' : 'tv';
@@ -105,6 +106,7 @@ async function tmdbFor(s) {
       data = {
         overview: det.overview || '',
         poster: img(det.poster_path, 'w500'),
+        backdrop: img(det.backdrop_path, 'w780'),   /* panorámico para tarjetas sociales grandes */
         year: (det.release_date || det.first_air_date || '').slice(0, 4) || null,
         original: det.original_title || det.original_name || null,
         genres: (det.genres || []).map(g => g.name),
@@ -117,7 +119,7 @@ async function tmdbFor(s) {
       break;
     }
   } catch (e) { /* sin red / límite de API → se usan plantillas propias */ }
-  cache[key] = { at: now, data };
+  cache[key] = { at: now, data, cv: 2 };
   return data;
 }
 
@@ -294,6 +296,10 @@ function pageHtml(s, d, slug) {
   const tps = [...new Set(eps.map(e => e.season || 1))].length;
   const linked = eps.filter(e => e.url).length;
   const poster = (d && d.poster) || s.poster || '';
+  /* imagen social: panorámica TMDB si hay (tarjeta GRANDE en WhatsApp/Telegram/X) */
+  const social = (d && d.backdrop) || poster || `${SITE}/assets/og-cover.jpg`;
+  const socialW = (d && d.backdrop) ? 780 : (poster ? 500 : 1200);
+  const socialH = (d && d.backdrop) ? 439 : (poster ? 750 : 630);
   const year = d && d.year;
   const { intro, overview, cierre } = composeCopy(s, d);
   const metaDesc = clip(intro);
@@ -339,8 +345,15 @@ function pageHtml(s, d, slug) {
 <meta property="og:title" content="Ver ${esc(s.t)} online gratis en español">
 <meta property="og:description" content="${esc(metaDesc)}">
 <meta property="og:url" content="${SITE}/ver/${slug}/">
-<meta property="og:image" content="${esc(poster || SITE + '/icon.svg')}">
+<meta property="og:image" content="${esc(social)}">
+<meta property="og:image:secure_url" content="${esc(social)}">
+<meta property="og:image:width" content="${socialW}">
+<meta property="og:image:height" content="${socialH}">
+<meta property="og:image:alt" content="${esc(s.t)} — mírala gratis en español en X·STREAM">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="▶ ${esc(s.t)} completa en español — X·STREAM">
+<meta name="twitter:description" content="${esc(metaDesc)}">
+<meta name="twitter:image" content="${esc(social)}">
 <script type="application/ld+json">${JSON.stringify(ldMain)}</script>
 <script type="application/ld+json">${JSON.stringify(ldCrumbs)}</script>
 <style>${PAGE_CSS}</style>
@@ -388,6 +401,10 @@ function pageHtml(s, d, slug) {
 /* ── páginas por CAPÍTULO (long-tail: "ver X capítulo N") ── */
 function epPageHtml(s, ep, prev, next, slug, d) {
   const poster = (d && d.poster) || s.poster || '';
+  /* tarjeta social grande: backdrop panorámico si la ficha lo tiene */
+  const social = (d && d.backdrop) || poster || `${SITE}/assets/og-cover.jpg`;
+  const socialW = (d && d.backdrop) ? 780 : (poster ? 500 : 1200);
+  const socialH = (d && d.backdrop) ? 439 : (poster ? 750 : 630);
   const title = `Ver ${esc(s.t)} capítulo ${ep.n} online gratis en español — X·STREAM`;
   const desc = `Mira ${s.t} capítulo ${ep.n}${ep.t ? ` ("${ep.t}")` : ''} online gratis en español y HD en X·STREAM. Sin registro.`;
   const verUrl = `${SITE}/#/anime/${slug}/${ep.n}`;
@@ -397,6 +414,26 @@ function epPageHtml(s, ep, prev, next, slug, d) {
     name: ep.t || `${s.t} — capítulo ${ep.n}`,
     episodeNumber: ep.n,
     partOfSeries: { '@type': 'TVSeries', name: s.t },
+  };
+  /* VideoObject: aparece en la pestaña «Videos» de Google con miniatura */
+  const ldVideo = {
+    '@context': 'https://schema.org', '@type': 'VideoObject',
+    name: `${s.t} — capítulo ${ep.n}${ep.t ? ': ' + ep.t : ''}`,
+    description: desc,
+    thumbnailUrl: social,
+    uploadDate: (s.at ? new Date(s.at) : new Date()).toISOString(),
+    embedUrl: verUrl,
+    potentialAction: { '@type': 'WatchAction', target: verUrl },
+    isAccessibleForFree: true,
+    inLanguage: 'es',
+  };
+  const ldCrumbs = {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'X·STREAM', item: SITE + '/' },
+      { '@type': 'ListItem', position: 2, name: s.t, item: serieUrl },
+      { '@type': 'ListItem', position: 3, name: `Capítulo ${ep.n}` },
+    ],
   };
   return `<!DOCTYPE html>
 <html lang="es">
@@ -409,8 +446,19 @@ function epPageHtml(s, ep, prev, next, slug, d) {
 <meta property="og:type" content="video.episode">
 <meta property="og:title" content="${esc(`Ver ${s.t} capítulo ${ep.n} — X·STREAM`)}">
 <meta property="og:description" content="${esc(desc)}">
-${poster ? `<meta property="og:image" content="${esc(poster)}">` : ''}
+<meta property="og:url" content="${SITE}/ver/${slug}/capitulo-${ep.n}/">
+<meta property="og:image" content="${esc(social)}">
+<meta property="og:image:secure_url" content="${esc(social)}">
+<meta property="og:image:width" content="${socialW}">
+<meta property="og:image:height" content="${socialH}">
+<meta property="og:image:alt" content="${esc(s.t)} — capítulo ${ep.n} en español">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="▶ ${esc(s.t)} · Capítulo ${ep.n} en español — X·STREAM">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${esc(social)}">
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
+<script type="application/ld+json">${JSON.stringify(ldVideo)}</script>
+<script type="application/ld+json">${JSON.stringify(ldCrumbs)}</script>
 <style>
 body{margin:0;background:#07070d;color:#f4f4fb;font-family:system-ui,sans-serif;line-height:1.6}
 .wrap{max-width:640px;margin:0 auto;padding:40px 20px 60px}
@@ -519,6 +567,9 @@ ${body}
   slugOf = new Map(Object.entries(state.items).map(([id, v]) => [id, v.slug]));
   const publicados = series.filter(s => state.items[s.id]);
   const esNuevo = new Set(nuevos.map(s => s.id));
+  /* póster por slug — para que los enlaces CORTOS (b/código) se compartan
+     en redes con la imagen GRANDE de su película/anime                  */
+  const posterBySlug = new Map();
 
   const urls = [];
   const newUrls = [];
@@ -527,6 +578,7 @@ ${body}
   for (const s of publicados) {
     const { slug, at } = state.items[s.id];
     const d = await tmdbFor(s);
+    posterBySlug.set(slug, (d && d.backdrop) || (d && d.poster) || s.poster || '');
     feedItems.push({
       t: s.t, slug, at,
       poster: (d && d.poster) || s.poster || '',
@@ -635,16 +687,39 @@ ${body}
   const bDir = path.join(ROOT, 'b');
   fs.mkdirSync(bDir, { recursive: true });
   fs.writeFileSync(path.join(bDir, 'links.json'), JSON.stringify({ dominio: ldom, links: linksAll }), 'utf8');
-  /* una página física por código: el navegador salta al parsearla, sin espera */
-  const redirectHtml = (dest, t) => `<!DOCTYPE html>
+  /* una página física por código: el navegador salta al parsearla, sin espera.
+     🃏 OG propio: al pegar el enlace corto en WhatsApp/Telegram/X sale la
+     tarjeta GRANDE con el póster/backdrop de su título (el crawler lee el
+     head; no ejecuta la redirección).                                   */
+  const redirectHtml = (dest, t) => {
+    const mSlug = String(dest).match(/#\/(?:anime|pelicula)\/([a-z0-9-]+)/i);
+    const img = (mSlug && posterBySlug.get(mSlug[1])) || `${SITE}/assets/og-cover.jpg`;
+    const iw = img.includes('image.tmdb.org') ? (img.includes('/w780') ? 780 : 500) : 1200;
+    const ih = iw === 780 ? 439 : (iw === 500 ? 750 : 630);
+    const tit = t ? `▶ ${t} — míralo gratis en español` : '▶ X·STREAM — anime y películas en español';
+    const dsc = t ? `Ver «${t}» online gratis en español y HD en X·STREAM. Sin registro.` : 'Anime y películas completas en español, gratis y en HD.';
+    return `<!DOCTYPE html>
 <html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
 <meta http-equiv="refresh" content="0;url=${esc(dest)}">
 <link rel="canonical" href="${esc(dest)}">
 <title>Abriendo ${esc(t || '…')} · X·STREAM</title>
+<meta property="og:type" content="video.other">
+<meta property="og:title" content="${esc(tit)}">
+<meta property="og:description" content="${esc(dsc)}">
+<meta property="og:site_name" content="X·STREAM">
+<meta property="og:image" content="${esc(img)}">
+<meta property="og:image:secure_url" content="${esc(img)}">
+<meta property="og:image:width" content="${iw}">
+<meta property="og:image:height" content="${ih}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(tit)}">
+<meta name="twitter:description" content="${esc(dsc)}">
+<meta name="twitter:image" content="${esc(img)}">
 <script>location.replace(${JSON.stringify(dest)});</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#07070d;color:#9a9ab2;font-family:system-ui}a{color:#d8ff3e}</style>
 </head><body><div>Abriendo <b>${esc(t || 'enlace')}</b>… <a href="${esc(dest)}">continuar</a></div></body></html>
 `;
+  };
   for (const [c, e] of Object.entries(linksAll)) {
     const dest = /^https?:\/\//i.test(e.dest || '')
       ? e.dest

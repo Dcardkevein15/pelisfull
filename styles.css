@@ -2217,3 +2217,108 @@ body.staff-on .admin-only{display:revert!important}
   .pv-modal{width:96vw}
   .pv-body{max-height:46vh}
 }
+
+/* ═══════ ✨ SINOPSIS — ficha a pantalla completa ═══════ */
+/* botón grande y llamativo junto a Descargar/Compartir */
+.btn-syn{
+  background:linear-gradient(135deg,#ffd24a,#ff9d2e 55%,#ff5c84);color:#221200;
+  font-weight:900;letter-spacing:.2px;
+  box-shadow:0 8px 26px rgba(255,157,46,.35);
+  animation:synGlow 2.6s ease-in-out infinite;
+}
+.btn-syn:hover{transform:translateY(-1px) scale(1.03);box-shadow:0 12px 32px rgba(255,157,46,.5)}
+@keyframes synGlow{0%,100%{box-shadow:0 8px 26px rgba(255,157,46,.35)}50%{box-shadow:0 8px 34px rgba(255,196,0,.65)}}
+
+.syn-backdrop{
+  position:fixed;inset:0;z-index:130;background:rgba(4,4,9,.8);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:fade .2s;
+}
+.syn-shell{
+  position:absolute;inset:0;margin:auto;overflow-y:auto;overscroll-behavior:contain;
+  background:var(--bg);animation:up .28s cubic-bezier(.2,1.2,.3,1);
+}
+@media (min-width:760px){
+  .syn-shell{inset:26px auto 26px auto;left:50%;transform:translateX(-50%);margin:0;max-width:960px;width:calc(100% - 52px);
+    border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 120px rgba(0,0,0,.65)}
+}
+.syn-card{min-height:100%;display:flex;flex-direction:column;background:var(--bg)}
+/* héroe con backdrop cinematográfico */
+.syn-hero{position:relative;min-height:210px;background-size:cover;background-position:center 22%}
+.syn-hero.syn-loading .syn-poster{min-height:150px}
+.syn-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,13,.25) 0%,rgba(7,7,13,.72) 55%,var(--bg) 100%)}
+.syn-x{
+  position:absolute;top:14px;right:14px;z-index:5;width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;font-size:15px;font-weight:900;cursor:pointer;
+  background:rgba(8,8,14,.62);border:1px solid var(--line);color:#f0f0f6;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:.15s;
+}
+.syn-x:hover{background:var(--hot);border-color:var(--hot);transform:scale(1.08)}
+.syn-hero-in{position:relative;z-index:2;display:flex;gap:18px;align-items:flex-end;padding:120px 22px 18px}
+.syn-poster{width:120px;min-width:120px;aspect-ratio:2/3;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 40px rgba(0,0,0,.55)}
+.syn-poster.sk{display:grid;place-items:center;font-size:34px;background:var(--panel)}
+.syn-hmeta h2{font-family:'Archivo Black';font-size:clamp(21px,4.4vw,32px);letter-spacing:-.4px;line-height:1.08;margin:0;text-shadow:0 3px 18px rgba(0,0,0,.6)}
+.syn-hmeta h2 span{color:var(--dim);font-size:.6em}
+.syn-orig{font:600 11px 'JetBrains Mono';color:var(--dim);margin-top:4px}
+.syn-tagline{color:#e9e9f5;font-size:13.5px;font-style:italic;margin-top:6px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.syn-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.syn-chips span{background:rgba(8,8,14,.66);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font:700 10.5px 'JetBrains Mono';color:#f0f0f6;backdrop-filter:blur(4px)}
+/* cuerpo */
+.syn-scroll{padding:6px 22px 26px;max-width:920px;margin:0 auto;width:100%}
+.syn-sec{margin-top:22px}
+.syn-sec h3{font-family:'Archivo Black';font-size:16px;margin:0 0 11px;letter-spacing:-.2px}
+.syn-sec h3 small{font:600 10.5px 'JetBrains Mono';color:var(--dim);letter-spacing:.6px;margin-left:8px}
+.syn-story{font-size:15px;line-height:1.75;color:#d9d9e8;margin:0}
+.syn-note{font-size:11.5px;color:var(--dim);margin-top:10px}
+.syn-note em{font-style:italic}
+.syn-ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+/* tráiler YouTube (fachada rápida → iframe al clic) */
+.syn-tra{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);cursor:pointer;background:#000}
+.syn-tra img{width:100%;height:100%;object-fit:cover;opacity:.86;transition:.25s}
+.syn-tra:hover img{opacity:1;transform:scale(1.02)}
+.syn-playBtn{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-size:23px;color:#111;background:var(--acid);box-shadow:0 12px 34px rgba(216,255,62,.45);transition:.18s}
+.syn-tra:hover .syn-playBtn{transform:scale(1.12)}
+.syn-tra iframe{width:100%;height:100%;border:0;display:block}
+.syn-tra.on{cursor:default}
+/* reparto */
+.syn-cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:12px}
+.syn-actor{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 8px;text-align:center;transition:.18s}
+.syn-actor:hover{border-color:var(--acid);transform:translateY(-2px)}
+.syn-actor img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto 7px;border:2px solid var(--line)}
+.syn-actor b{display:block;font-size:11.5px;line-height:1.25}
+.syn-actor span{display:block;font-size:10px;color:var(--dim);margin-top:2px;line-height:1.3}
+.syn-noimg{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 7px;background:var(--panel2);font-size:24px}
+/* galería de escenas */
+.syn-gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.syn-gal a{border-radius:12px;overflow:hidden;border:1px solid var(--line);display:block;transition:.18s}
+.syn-gal a:hover{border-color:var(--acid);transform:translateY(-2px)}
+.syn-gal img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+/* capítulos reales de la casa */
+.syn-eps{display:flex;flex-direction:column;gap:7px;max-height:52vh;overflow-y:auto;padding-right:4px}
+.syn-ep{
+  display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid var(--line);
+  border-radius:12px;padding:9px 12px;cursor:pointer;transition:.15s;position:relative;text-align:left;
+}
+.syn-ep:hover{border-color:var(--acid);transform:translateX(3px)}
+.syn-ep.off{opacity:.55;cursor:default}
+.syn-ep.off:hover{border-color:var(--line);transform:none}
+.se-n{min-width:40px;font:900 12px 'JetBrains Mono';color:var(--acid)}
+.se-t{flex:1;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.se-bar{position:relative;height:3px;min-width:54px;background:var(--line);border-radius:3px;overflow:hidden}
+.se-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--acid)}
+.se-done{color:var(--acid);font-weight:900;font-size:12px}
+.se-lnk{border:1px solid var(--line);background:var(--panel2);border-radius:9px;padding:5px 8px;font-size:12px;cursor:pointer;transition:.15s}
+.se-lnk:hover{background:var(--acid);border-color:var(--acid)}
+.se-off{font:600 9.5px 'JetBrains Mono';color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.syn-foot{margin:26px 0 4px;text-align:center;font:600 9.5px 'JetBrains Mono';letter-spacing:1.4px;text-transform:uppercase;color:var(--dim)}
+/* esqueleto de carga */
+.syn-skl{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.syn-skl i{display:block;height:15px;border-radius:8px;background:linear-gradient(90deg,var(--panel) 25%,var(--panel2) 50%,var(--panel) 75%);background-size:200% 100%;animation:synSk 1.2s linear infinite}
+.syn-skl i:nth-child(1){width:58%}.syn-skl i:nth-child(2){width:92%}.syn-skl i:nth-child(3){width:84%}.syn-skl i:nth-child(4){width:40%}
+@keyframes synSk{to{background-position:-200% 0}}
+@media (max-width:640px){
+  .syn-hero-in{gap:13px;padding:96px 14px 14px}
+  .syn-poster{width:88px;min-width:88px}
+  .syn-scroll{padding:4px 14px 20px}
+  .syn-cast{grid-template-columns:repeat(auto-fill,minmax(82px,1fr))}
+  .syn-gal{grid-template-columns:1fr 1fr}
+}

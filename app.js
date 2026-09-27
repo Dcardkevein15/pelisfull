@@ -3273,6 +3273,278 @@ els.shareBtn.addEventListener('click', () => {
   if (current.seriesId && current.ep) openShare(current.seriesId, current.ep);
 });
 
+/* ═══════════ ✨ SINOPSIS — ficha completa a pantalla entera ═══════════
+   Botón junto a ↓ Descargar / ↗ Compartir. Trae la ficha real del título
+   desde TMDB (historia, reparto con fotos, tráiler de YouTube, año,
+   duración/temporadas) y lista NUESTROS capítulos reales: clic en uno =
+   reproducirlo al instante; botón 🔗 = copiar su enlace corto del
+   acortador (b.yapido.click, 6 dígitos) listo para redes.            */
+(function synopsisModule() {
+  const synBtn = $('synopsisBtn'), synBd = $('synModal'), synShell = $('synShell');
+  if (!synBtn || !synBd || !synShell) return;
+
+  /* el botón aparece exactamente cuando aparece «Compartir»
+     (series/películas; nunca en canales de TV)                         */
+  const syncSynBtn = () => synBtn.classList.toggle('hidden', els.shareBtn.classList.contains('hidden'));
+  new MutationObserver(syncSynBtn).observe(els.shareBtn, { attributes: true, attributeFilter: ['class'] });
+  syncSynBtn();
+  synBtn.addEventListener('click', () => { if (current.seriesId) openSynopsis(current.seriesId); });
+
+  const TIMG = (p, size) => p ? `https://image.tmdb.org/t/p/${size}${p}` : '';
+  const synCache = {}; /* idSerie → { at, data|null } (30 min de memoria) */
+  const SYN_JUNK = new Set(('pelicula peliculas completa completas completo completos online gratis latino latina castellano castellana espanol español esp sub subs subtitulada subtitulado subtitulos vose dual audio hd full 1080p 720p 480p 2160p 4k uhd brrip bdrip bluray dvdrip webrip hdrip hdtv xvid x264 h264 h265 mega rip ver descargar capitulos episodios temporada temporadas temp dub doblada doblado movie film netflix hbo amazon prime serie series ova ovas la el de del los las en por').split(' '));
+  const synClean = t => (' ' + String(t || '').toLowerCase() + ' ')
+    .replace(/[([][^)\]]*[)\]]/g, ' ').replace(/\b(19|20)\d{2}\b/g, ' ')
+    .replace(/[^a-z0-9áéíóúñü ]+/gi, ' ').split(/\s+/).filter(w => w && !SYN_JUNK.has(w)).join(' ').trim();
+  const synNorm = x => String(x || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+  function synMatch(clean, top) {
+    const ws = synNorm(clean).split(' ').filter(w => w.length >= 4);
+    if (!ws.length) return true;
+    const a = synNorm(top.title || top.name), b = synNorm(top.original_title || top.original_name);
+    return ws.some(w => a.includes(w) || b.includes(w));
+  }
+  async function tj(u) { const r = await fetch(u); if (!r.ok) throw new Error('TMDB ' + r.status); return r.json(); }
+  async function synFetch(s) {
+    const hit = synCache[s.id];
+    if (hit && Date.now() - hit.at < 30 * 60e3) return hit.data;
+    let data = null;
+    const type = s.kind === 'pelicula' ? 'movie' : 'tv';
+    const clean = synClean(s.t);
+    try {
+      for (const q of [...new Set([clean, s.t].filter(Boolean))]) {
+        const r = await tj(`https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_KEY_APP}&language=es-ES&query=${encodeURIComponent(q)}&page=1`);
+        const top = (r.results || [])[0];
+        if (!top || !synMatch(clean || q, top)) continue;
+        const det = await tj(`https://api.themoviedb.org/3/${type}/${top.id}?api_key=${TMDB_KEY_APP}&language=es-ES&append_to_response=credits,videos,images&include_image_language=es,null`);
+        let overview = (det.overview || '').trim(), enNote = false;
+        if (!overview) { /* ficha sin sinopsis en español → trae la inglesa y se avisa */
+          const en = await tj(`https://api.themoviedb.org/3/${type}/${top.id}?api_key=${TMDB_KEY_APP}&language=en-US`);
+          overview = (en.overview || '').trim(); enNote = !!overview;
+        }
+        const vids = ((det.videos || {}).results) || [];
+        data = {
+          overview, enNote,
+          poster: TIMG(det.poster_path, 'w500'),
+          backdrop: TIMG(det.backdrop_path, 'w1280'),
+          title: det.title || det.name || s.t,
+          original: det.original_title || det.original_name || '',
+          year: (det.release_date || det.first_air_date || '').slice(0, 4),
+          rating: det.vote_average ? Math.round(det.vote_average * 10) / 10 : 0,
+          votes: det.vote_count || 0,
+          genres: (det.genres || []).map(g => g.name),
+          runtime: det.runtime || (det.episode_run_time || [])[0] || 0,
+          seasons: det.number_of_seasons || 0,
+          tmdbEps: det.number_of_episodes || 0,
+          status: det.status || '',
+          tagline: det.tagline || '',
+          tmdbId: top.id, type,
+          cast: (((det.credits || {}).cast) || []).slice(0, 12)
+            .map(c => ({ name: c.name, char: c.character || '', img: TIMG(c.profile_path, 'w185') })),
+          trailer: vids.find(v => v.site === 'YouTube' && v.type === 'Trailer') || vids.find(v => v.site === 'YouTube'),
+          gallery: (((det.images || {}).backdrops) || []).slice(1, 4).map(b => TIMG(b.file_path, 'w780')),
+        };
+        break;
+      }
+    } catch (e) { /* sin red → el modal sale igual con los datos locales */ }
+    synCache[s.id] = { at: Date.now(), data };
+    return data;
+  }
+
+  /* enlace corto b.yapido.click para compartir ESE capítulo en redes */
+  async function epShareLink(s, ep) {
+    let u = null;
+    try { u = await shareCodeFor(s, ep); } catch (e) { }
+    if (!u) { try { u = await mintAdminShareLink(s, ep); } catch (e) { } }
+    if (!u) u = 'https://x.yapido.click/' + lnkDestOf(s, ep);
+    return u;
+  }
+
+  let synOpen = false;
+  function closeSynopsis() {
+    synOpen = false;
+    synBd.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+  synBd.addEventListener('click', e => { if (e.target === synBd) closeSynopsis(); });
+  document.addEventListener('keydown', e => { if (synOpen && e.key === 'Escape') closeSynopsis(); });
+
+  function esc(s2) { return escapeHtml(String(s2 == null ? '' : s2)); }
+
+  async function openSynopsis(id) {
+    const s = getSeries(id);
+    if (!s) return;
+    synOpen = true;
+    document.body.style.overflow = 'hidden';
+    synBd.classList.remove('hidden');
+    synShell.innerHTML = `
+      <div class="syn-card">
+        <div class="syn-hero syn-loading"><div class="syn-shade"></div>
+          <button class="syn-x" data-x="1" aria-label="Cerrar">✕</button>
+          <div class="syn-hero-in"><div class="syn-poster sk"></div>
+            <div class="syn-hmeta"><h2>${esc(s.t)}</h2><div class="syn-tagline">Buscando la ficha completa…</div></div>
+          </div>
+        </div>
+        <div class="syn-scroll"><div class="syn-skl"><i></i><i></i><i></i><i></i></div></div>
+      </div>`;
+    synShell.scrollTop = 0;
+    synShell.querySelector('[data-x]').addEventListener('click', closeSynopsis);
+    const d = await synFetch(s);
+    if (!synOpen) return;
+    synShell.innerHTML = buildSynopsisHtml(s, d);
+    wireSynopsis(s, d);
+  }
+
+  function buildSynopsisHtml(s, d) {
+    const isPeli = s.kind === 'pelicula';
+    const eps = (s.episodes || []).slice().sort((a, b) => (a.n || 0) - (b.n || 0));
+    const linked = eps.filter(e => e.url).length;
+    const heroBg = (d && d.backdrop) || (d && d.poster) || s.poster || '';
+    const poster = (d && d.poster) || s.poster || '';
+    const chips = [];
+    if (d && d.year) chips.push(`📅 ${d.year}`);
+    if (d && d.rating) chips.push(`⭐ ${d.rating}/10${d.votes ? ` (${d.votes.toLocaleString('es')} votos)` : ''}`);
+    if (d && d.genres.length) chips.push(`🎭 ${d.genres.slice(0, 3).join(' · ')}`);
+    if (d && d.runtime) chips.push(`⏱ ${d.runtime} min${isPeli ? '' : '/cap'}`);
+    if (d && d.seasons) chips.push(`📺 ${d.seasons} temporada${d.seasons === 1 ? '' : 's'}`);
+    if (d && d.status) chips.push(d.status === 'Ended' ? '✅ Finalizada' : (d.status === 'Returning Series' ? '🟢 En emisión' : esc(d.status)));
+    const first = eps.find(e => e.url) || eps[0];
+    return `
+  <div class="syn-card">
+    <div class="syn-hero"${heroBg ? ` style="background-image:url('${esc(heroBg)}')"` : ''}>
+      <div class="syn-shade"></div>
+      <button class="syn-x" data-x="1" aria-label="Cerrar">✕</button>
+      <div class="syn-hero-in">
+        ${poster ? `<img class="syn-poster" src="${esc(poster)}" alt="Póster de ${esc(s.t)}" loading="lazy">` : `<div class="syn-poster sk">${esc(s.jp || '🎬')}</div>`}
+        <div class="syn-hmeta">
+          <h2>${esc((d && d.title) || s.t)}${d && d.year ? ` <span>(${d.year})</span>` : ''}</h2>
+          ${d && d.original && synNorm(d.original) !== synNorm(d.title) ? `<div class="syn-orig">${esc(d.original)}</div>` : ''}
+          ${d && d.tagline ? `<div class="syn-tagline">“${esc(d.tagline)}”</div>` : `<div class="syn-tagline">${esc(isPeli ? 'Película completa en español' : 'Serie completa en español')}</div>`}
+          ${chips.length ? `<div class="syn-chips">${chips.map(c => `<span>${c}</span>`).join('')}</div>` : ''}
+        </div>
+      </div>
+    </div>
+    <div class="syn-scroll">
+
+      <section class="syn-sec">
+        <h3>📖 La historia</h3>
+        <p class="syn-story">${d && d.overview ? esc(d.overview) + (d.enNote ? ' <em class="syn-note">(ficha oficial solo disponible en inglés)</em>' : '') : `«${esc(s.t)}» ${isPeli ? 'es una película' : 'es una serie'} disponible completa en español aquí en X·STREAM.${s.tag ? ` Colección: ${esc(s.tag)}.` : ''}`}</p>
+        ${d ? '' : '<p class="syn-note">⚡ Ficha en línea no disponible ahora mismo — aquí tienes nuestros datos reales.</p>'}
+        <div class="syn-ctaRow">
+          ${first ? `<button class="btn btn-acid syn-playMain" data-n="${first.n}">▶ ${isPeli ? 'Ver la película ahora' : 'Ver desde el capítulo ' + first.n}</button>` : ''}
+          <button class="btn btn-ghost syn-shareBtn">↗ Compartir</button>
+          ${d ? `<a class="btn btn-ghost" href="https://www.themoviedb.org/${d.type}/${d.tmdbId}" target="_blank" rel="noopener">Ficha TMDB ↗</a>` : ''}
+        </div>
+      </section>
+
+      ${d && d.trailer ? `
+      <section class="syn-sec">
+        <h3>🎬 Tráiler oficial</h3>
+        <div class="syn-tra" data-k="${esc(d.trailer.key)}" role="button" tabindex="0" aria-label="Reproducir tráiler">
+          <img src="https://i.ytimg.com/vi/${esc(d.trailer.key)}/hqdefault.jpg" alt="Tráiler de ${esc(s.t)}" loading="lazy">
+          <span class="syn-playBtn">▶</span>
+        </div>
+      </section>` : ''}
+
+      ${d && d.cast.length ? `
+      <section class="syn-sec">
+        <h3>🎭 Reparto y personajes</h3>
+        <div class="syn-cast">
+          ${d.cast.map(c => `
+            <div class="syn-actor">
+              ${c.img ? `<img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy">` : '<div class="syn-noimg">🎭</div>'}
+              <b>${esc(c.name)}</b>
+              ${c.char ? `<span>${esc(c.char)}</span>` : ''}
+            </div>`).join('')}
+        </div>
+      </section>` : ''}
+
+      ${d && d.gallery.length ? `
+      <section class="syn-sec">
+        <h3>🖼 Escenas</h3>
+        <div class="syn-gal">
+          ${d.gallery.map(g => `<a href="${esc(g)}" target="_blank" rel="noopener"><img src="${esc(g)}" alt="Escena de ${esc(s.t)}" loading="lazy"></a>`).join('')}
+        </div>
+      </section>` : ''}
+
+      ${eps.length ? `
+      <section class="syn-sec">
+        <h3>▶ Capítulos en X·STREAM <small>${linked} listos para ver${s.kind !== 'pelicula' && eps.length !== linked ? ` de ${eps.length} listados` : ''}${d && d.tmdbEps && d.tmdbEps !== eps.length ? ` · ${d.tmdbEps} en la ficha oficial` : ''}</small></h3>
+        <div class="syn-eps">
+          ${eps.map(e => {
+            const pr = (state.progress || {})[s.id] && state.progress[s.id][e.n];
+            const pct = pr ? (pr.done ? 100 : (pr.d ? Math.min(100, Math.round(pr.t / pr.d * 100)) : 0)) : 0;
+            return `
+            <div class="syn-ep${e.url ? '' : ' off'}" data-n="${e.n}" role="button" tabindex="0" ${e.url ? '' : 'aria-disabled="true"'}>
+              <span class="se-n">${isPeli ? '▶' : 'E' + e.n}</span>
+              <span class="se-t">${esc(e.t || (isPeli ? 'Ver ahora' : 'Capítulo ' + e.n))}</span>
+              ${pct ? `<span class="se-bar"><i style="width:${pct}%"></i></span>` : ''}
+              ${pr && pr.done ? '<span class="se-done">✓</span>' : ''}
+              ${e.url ? `<button class="se-lnk" data-n="${e.n}" title="Copiar enlace corto de este ${isPeli ? 'video' : 'capítulo'}">🔗</button>` : '<span class="se-off">pronto</span>'}
+            </div>`;
+          }).join('')}
+        </div>
+        <p class="syn-note">🔗 Cada botón copia el enlace corto (b.yapido.click/xxxxxx) que abre <b>exactamente ese capítulo</b> — perfecto para redes: siempre se ve con imagen y descripción.</p>
+      </section>` : ''}
+
+      <footer class="syn-foot">Datos y fotos: TMDB (themoviedb.org) · Enlaces directos: X·STREAM · b.yapido.click</footer>
+    </div>
+  </div>`;
+  }
+
+  function wireSynopsis(s, d) {
+    synShell.querySelector('[data-x]').addEventListener('click', closeSynopsis);
+    synShell.scrollTop = 0;
+    const isPeli = s.kind === 'pelicula';
+
+    const main = synShell.querySelector('.syn-playMain');
+    if (main) main.addEventListener('click', () => { const n = +main.dataset.n; closeSynopsis(); selectSeries(s.id); loadEpisode(n, true); });
+    const sh = synShell.querySelector('.syn-shareBtn');
+    if (sh) sh.addEventListener('click', () => {
+      closeSynopsis();
+      const sNow = getSeries(s.id);
+      if (!sNow) return;
+      const epN = isPeli ? (sNow.episodes[0] || {}).n || 1 : (current.seriesId === s.id && current.ep) ? current.ep : ((sNow.episodes.find(e => e.url) || sNow.episodes[0]) || {}).n;
+      if (epN != null) openShare(s.id, epN);
+    });
+
+    const tra = synShell.querySelector('.syn-tra');
+    if (tra) {
+      const play = () => {
+        tra.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(tra.dataset.k)}?autoplay=1&rel=0" title="Tráiler" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+        tra.classList.add('on');
+      };
+      tra.addEventListener('click', play);
+      tra.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); } });
+    }
+
+    synShell.querySelectorAll('.syn-ep').forEach(row => {
+      const n = +row.dataset.n;
+      const ep = s.episodes.find(e => e.n === n);
+      const playable = ep && ep.url;
+      if (playable) {
+        row.addEventListener('click', ev => {
+          if (ev.target.closest('.se-lnk')) return; /* el 🔗 no reproduce */
+          closeSynopsis(); selectSeries(s.id); loadEpisode(n, true);
+        });
+        row.addEventListener('keydown', ev => { if ((ev.key === 'Enter' || ev.key === ' ') && !ev.target.closest('.se-lnk')) { ev.preventDefault(); closeSynopsis(); selectSeries(s.id); loadEpisode(n, true); } });
+      }
+      const lnk = row.querySelector('.se-lnk');
+      if (lnk && playable) lnk.addEventListener('click', async ev => {
+        ev.stopPropagation();
+        lnk.disabled = true;
+        try {
+          const u = await epShareLink(s, ep);
+          await navigator.clipboard.writeText(u);
+          toast(`🔗 Enlace corto copiado: ${u}`);
+        } catch (e) {
+          toast('⚠ No se pudo copiar — ' + (e.message || e), true);
+        }
+        lnk.disabled = false;
+      });
+    });
+  }
+})();
+
 /* ═══════════ ⬇ Descarga directa del video original ═══════════
    💰 MONETIZACIÓN: todos los enlaces pasan por TU PROPIO acortador
    en ./z/ (con tus banners Adsterra). La URL original viaja codificada

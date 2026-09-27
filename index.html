@@ -17,14 +17,23 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="X·STREAM">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="X·STREAM — Anime y películas gratis en español">
-<meta property="og:description" content="Mira anime y películas completas en español latino, gratis y en HD. Sin registro.">
+<meta property="og:title" content="X·STREAM — Anime y películas completas en español, gratis y en HD">
+<meta property="og:description" content="Mira anime y películas completas en español latino y castellano: temporadas enteras, estrenos y clásicos. Gratis, sin registro y sin anuncios molestos.">
 <meta property="og:url" content="https://x.yapido.click/">
-<meta property="og:image" content="https://x.yapido.click/icon.svg">
+<meta property="og:image" content="https://x.yapido.click/assets/og-cover.jpg">
+<meta property="og:image:secure_url" content="https://x.yapido.click/assets/og-cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="X·STREAM — Anime y películas completas en español">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="X·STREAM — Anime y películas gratis">
-<meta name="twitter:description" content="Mira anime y películas completas en español latino, gratis y en HD.">
-<meta name="twitter:image" content="https://x.yapido.click/icon.svg">
+<meta name="twitter:title" content="X·STREAM — Anime y películas completas en español">
+<meta name="twitter:description" content="Temporadas enteras y películas en español latino, gratis y en HD. Sin registro.">
+<meta name="twitter:image" content="https://x.yapido.click/assets/og-cover.jpg">
+<meta name="twitter:image:alt" content="X·STREAM — Anime y películas completas en español">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"X·STREAM","alternateName":"XSTREAM Anime y Películas","url":"https://x.yapido.click/","description":"Anime y películas completas en español latino y castellano, gratis y en HD.","inLanguage":"es"}
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -162,6 +171,16 @@
   <main class="stage">
     <!-- 🏠 Home (descubrimiento): ocupa todo el escenario cuando la pestaña Inicio está activa -->
     <div class="home-view hidden" id="homeView"></div>
+    <noscript>
+      <div style="max-width:640px;margin:0 auto;padding:44px 20px;text-align:center;color:#f4f4fb;font-family:system-ui">
+        <h1 style="letter-spacing:-.5px">X·STREAM — Anime y películas completas en español</h1>
+        <p>Mira anime y películas completas en español latino y castellano, gratis y en HD. Sin registro y sin anuncios molestos.</p>
+        <p>Activa JavaScript para usar el reproductor. Mientras tanto, explora el catálogo:
+          <a href="/ver/naruto-completo/" style="color:#d8ff3e">Naruto completo</a> ·
+          <a href="/ver/zombieland/" style="color:#d8ff3e">Zombieland</a> ·
+          <a href="/sitemap.xml" style="color:#d8ff3e">todas las series y películas</a></p>
+      </div>
+    </noscript>
     <div class="player-shell" id="playerShell">
       <!-- 📺 Categorías de TV en vivo (con barra de desplazamiento propia) -->
       <div class="tvcats-wrap hidden" id="tvCatsWrap">
@@ -274,6 +293,9 @@
           <p id="stageSub">Tu reproductor instantáneo de enlaces directos</p>
         </div>
         <div class="stage-side">
+          <button class="btn btn-syn hidden" id="synopsisBtn" title="✨ Historia completa, reparto con fotos, tráiler y todos los capítulos">
+            <span>✨</span> <span>Sinopsis</span>
+          </button>
           <button class="btn btn-dl hidden" id="downloadBtn" title="Descargar el video original a tu dispositivo">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v11m0 0 4.5-4.5M12 14 7.5 9.5M4 19h16"/></svg>
             <span id="downloadLbl">Descargar</span>
@@ -384,6 +406,11 @@
       <button class="btn btn-ghost" id="closeShare">Cerrar</button>
     </div>
   </div>
+</div>
+
+<!-- ══════════ ✨ SINOPSIS (historia + reparto + tráiler + capítulos) ══════════ -->
+<div class="syn-backdrop hidden" id="synModal" role="dialog" aria-modal="true" aria-label="Sinopsis y ficha completa">
+  <div class="syn-shell" id="synShell"></div>
 </div>
 
 <!-- ══════════ MODAL IMPORTAR CARPETA DE GOOGLE DRIVE ══════════ -->
