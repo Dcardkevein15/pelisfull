@@ -33,6 +33,11 @@
     cacheName: 'xstream-auth-v1', cacheUrl: './xauth-identity.json',
     cookie: 'xuid', cookieDays: 3650,
     catalogUrl: 'catalog.json',
+    /* 📡 espejo público del catálogo EN PRODUCCIÓN (GitHub Pages, CORS abierto).
+       SOLO se consulta cuando la app corre FUERA del dominio (file:// o
+       localhost): así la copia local siempre se sincroniza con la web
+       publicada y publicar desde local nunca pisa el trabajo del dominio. */
+    catalogUrlRemote: 'https://dcardkevein15.github.io/pelisfull/catalog.json',
     /* 🔐 Clave pública ECDSA P-256 (base64 SPKI) que firma el catálogo.
        Es la del dispositivo que publica HOY (verificada contra el catálogo
        en vivo el 15-sep-2026). Si algún día publicas desde OTRO dispositivo:
@@ -1050,6 +1055,11 @@
   async function publishCatalog() {
     if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
     if (!API || !API.getState) return axToast('La app aún no está lista', true);
+    /* 🔄 PRE-VUELO ANTI-PÉRDIDA: trae el catálogo EN VIVO de la web y fusiónalo
+       antes de armar el paquete. Si producción va más adelante que esta copia
+       (publicaste desde el dominio u otro dispositivo), publicar desde aquí
+       jamás borra ese trabajo — se mezcla y sale TODO junto.            */
+    await syncCatalog({ always: true, fresh: true });
     const state = API.getState();
     const payload = buildCatalogPayload(state);
 
@@ -2090,23 +2100,30 @@
     if (added || updated) axToast(`🌐 Catálogo actualizado: ${cat.series.length} títulos de ${cat.by || 'el administrador'}`);
   }
 
-  let syncing = false;
-  async function syncCatalog() {
+  let syncing = false, syncInflight = null;
+  async function syncCatalog(opts) {
+    opts = opts || {};
     /* 👑 El dispositivo QUE PUBLICA ya tiene la última versión en su estado
        (su catalogMeta.v coincide y el chequeo de abajo lo salta solo). Pero
        OTROS dispositivos del mismo admin (p. ej. su móvil) SÍ deben ponerse
        al día: antes se saltaban siempre y se quedaban viendo un catálogo
        viejo para siempre sin entender por qué. Única excepción: si el admin
-       está EDITANDO ahora mismo, no pisamos su trabajo en curso. */
-    if (isAdmin() && document.body.classList.contains('editing')) return;
-    if (!/^https?:$/.test(location.protocol)) return; /* file:// → sin red */
-    if (syncing) return;
+       está EDITANDO ahora mismo, no pisamos su trabajo en curso.       */
+    if (!opts.always && isAdmin() && document.body.classList.contains('editing')) return;
+    if (syncing) { if (opts.fresh && syncInflight) await syncInflight.catch(() => { }); if (syncing) return; }
     syncing = true;
+    const job = (async () => {
     try {
+      /* 🔄 origen del catálogo: en el dominio de producción se usa el archivo
+         relativo (mismo origen, rapidísimo). Abriendo el HTML en LOCAL
+         (file://, localhost, 127.0.0.1) se jala el catálogo PUBLICADO en la
+         web — la copia local queda al día y trabajar desde local es seguro. */
+      const onProd = /^https?:$/.test(location.protocol) && !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
+      const base = onProd ? CONFIG.catalogUrl : (CONFIG.catalogUrlRemote || CONFIG.catalogUrl);
       /* anti-caché agresivo: el mismo archivo pedido 2 veces seguidas
          puede servirse viejo desde el CDN de GitHub Pages, así que
          añadimos un parámetro único cada vez */
-      const r = await fetch(CONFIG.catalogUrl + '?t=' + Date.now(), { cache: 'no-store' });
+      const r = await fetch(base + (base.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) return;
       const cat = await r.json();
       if (!cat || typeof cat.v !== 'number' || !Array.isArray(cat.series) || !cat.series.length) return;
@@ -2131,8 +2148,12 @@
       const cur = (st.catalogMeta && st.catalogMeta.v) || 0;
       if (cat.v <= cur) return;            /* ya está aplicada esta versión */
       applyCatalog(cat);
-    } catch (e) { /* sin archivo: sigue con lo local */ }
+    } catch (e) { /* sin archivo o sin red: sigue con lo local */ }
     finally { syncing = false; }
+    })();
+    syncInflight = job;
+    await job;
+    if (syncInflight === job) syncInflight = null;
   }
 
   /* ═══════════ ARRANQUE ═══════════ */
