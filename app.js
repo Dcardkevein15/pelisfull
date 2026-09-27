@@ -87,6 +87,7 @@ function load() {
         state = parsed;
         /* migraciones de versiones anteriores */
         state.trash = Array.isArray(state.trash) ? state.trash : [];
+        state.deleted = state.deleted || {}; /* 🪦 lápidas: borrados intencionales que viajan en el catálogo */
         state.progress = state.progress || {};
         state.contHide = state.contHide || {}; /* series quitadas de «Sigue viendo» con la ✕ */
         state.lastPlayed = state.lastPlayed || {};
@@ -160,6 +161,7 @@ function load() {
   } catch (e) { /* corrupto → reseed */ }
   seed();
   state.trash = [];
+  state.deleted = {};
   state.broken = [];
   state.progress = {};
   state.contHide = {};
@@ -380,7 +382,12 @@ async function confirmDeleteSeries(s) {
     sub: `«<b>${escapeHtml(s.t)}</b>» — ${s.episodes.length} ${s.kind === 'pelicula' ? 'video' : 'caps'}.<br>Podrás restaurarla durante <b>7 días</b> desde el icono 🗑 del panel.`,
   });
   if (!r) return;
-  state.trash.push({ deletedAt: Date.now(), series: s });
+  const ts = Date.now();
+  state.trash.push({ deletedAt: ts, series: s });
+  /* 🪦 lápida: el borrado es intencional — viaja en el catálogo al publicar
+     para que ningún otro PC/moderador la resucite al republicar        */
+  state.deleted = state.deleted || {};
+  state.deleted[s.id] = ts;
   state.series.splice(state.series.indexOf(s), 1);
   state.broken = (state.broken || []).filter(b => b.sid !== s.id); // limpia su historial de rotos
   if (current.seriesId === s.id) {
@@ -419,6 +426,10 @@ function renderTrash() {
     row.querySelector('.restore').addEventListener('click', () => {
       if (!needAdmin()) return;
       state.trash.splice(i, 1);
+      /* ↩ restaurar LEVANTA la lápida y renueva su registro: así derrota
+         cualquier lápida vieja que aún circule en otros PCs          */
+      s.at = Date.now();
+      if (state.deleted) delete state.deleted[s.id];
       state.series.push(s);
       save(); renderTrash(); renderSeries(els.searchInput.value); syncTrashBtn();
       toast(`↩ «${s.t}» restaurada`);
@@ -556,6 +567,15 @@ els.video.addEventListener('playing', () => {
 /* ═══════════ Helpers ═══════════ */
 const grad = s => { const [a, b] = GRADS[s.g % GRADS.length]; return `linear-gradient(135deg,${a},${b})`; };
 const getSeries = id => state.series.find(s => s.id === id);
+
+/* ☀ (Re)agregar una serie A PROPÓSITO levanta su lápida: renueva su `at`
+   (así derrota cualquier borrado viejo que aún circule en otros PCs)
+   y la saca del libro de borrados. Úsala al crear/importar series.    */
+function liftTombstone(s) {
+  if (!s || !s.id) return;
+  s.at = Date.now();
+  if (state.deleted && state.deleted[s.id]) delete state.deleted[s.id];
+}
 const getEp = epN => { const s = getSeries(current.seriesId); return s && s.episodes.find(e => e.n === epN); };
 
 function fmt(sec) {
@@ -3862,6 +3882,7 @@ function importSingleFile(videoUrl, name, tag) {
   let s = getSeries(id);
   if (!s) {
     s = { id, t, jp: '🎬', tag: tag || 'Archivo externo', g: 6, kind: 'pelicula', poster: dId ? driveThumbUrl(dId, 1000) : null, episodes: [{ n: 1, t: '▶ Ver', url: videoUrl }] };
+    liftTombstone(s);
     state.series.push(s);
     freshIds.add(id);
   } else {
@@ -4107,6 +4128,7 @@ function addImportedItems(items, srcId, srcTag, g) {
       else s.episodes = it.episodes;
     } else {
       s = { id, t: it.t, jp: it.kind === 'pelicula' ? '🎬' : '📁', tag: srcTag, g, kind: it.kind, episodes: it.episodes, poster: it.poster || null };
+      liftTombstone(s); /* reimportar a propósito revive lo borrado */
       state.series.push(s);
       freshIds.add(id); // entra con shimmer
     }
@@ -5234,6 +5256,11 @@ els.importFile.addEventListener('change', () => {
         }
         state.progress = { ...(data.progress || {}), ...(state.progress || {}) };
         if (data.trash) state.trash.push(...data.trash);
+        /* 🪦 las lápidas del respaldo también se heredan (manda la más nueva) */
+        state.deleted = state.deleted || {};
+        if (data.deleted) for (const [id, at] of Object.entries(data.deleted)) {
+          if (!state.deleted[id] || state.deleted[id] < at) state.deleted[id] = at;
+        }
       }
       save();
       location.reload();
@@ -5953,6 +5980,7 @@ function cineImport(doc, title, media, year) {
         poster: `https://archive.org/services/img/${doc.identifier}`,
         episodes: orden.map((v, i) => ({ n: i + 1, t: cleanEpName(v.name) || `Capítulo ${i + 1}`, url: v.url, sub: media.sub })),
       };
+      liftTombstone(s); /* re-agregar a propósito revive lo borrado */
       state.series.push(s);
       freshIds.add(id);
       if (esAnime) queuePoster(s); // carátula anime en AniList
@@ -5969,6 +5997,7 @@ function cineImport(doc, title, media, year) {
         poster: `https://archive.org/services/img/${doc.identifier}`,
         episodes: [{ n: 1, t: String(title).slice(0, 60), url: best.url, sub: media.sub }],
       };
+      liftTombstone(s);
       state.series.push(s);
       freshIds.add(id);
       if (esAnime) queuePoster(s);

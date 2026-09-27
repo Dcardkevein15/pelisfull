@@ -644,6 +644,17 @@
       }
     }
     if (cat.linksDom !== undefined && !okUrl(cat.linksDom)) return false;
+    /* 🪦 lápidas: mapa id → timestamp de borrado (opcional) */
+    if (cat.del !== undefined) {
+      if (!cat.del || typeof cat.del !== 'object' || Array.isArray(cat.del) || !noBadKeys(cat.del)) return false;
+      const ks = Object.keys(cat.del);
+      if (ks.length > 50000) return false;
+      for (const k of ks) {
+        if (!okStr(k, 160)) return false;
+        const d = cat.del[k];
+        if (typeof d !== 'number' || !isFinite(d) || d < 0) return false;
+      }
+    }
     if (cat.at !== undefined && !okStr(cat.at, 40)) return false;
     if (cat.sig !== undefined && (typeof cat.sig !== 'string' || cat.sig.length > 512)) return false;
     return true;
@@ -1017,7 +1028,7 @@
      un archivo estático servido por el propio hosting. */
   function cleanForPublish(s) {
     const o = {};
-    ['id', 't', 'jp', 'tag', 'g', 'kind', 'anime', 'poster', 'tags', 'seasons', 'order', 'clsManual', 'hentai'].forEach(k => {
+    ['id', 't', 'jp', 'tag', 'g', 'kind', 'anime', 'poster', 'tags', 'seasons', 'order', 'clsManual', 'hentai', 'at'].forEach(k => {
       if (s[k] !== undefined) o[k] = s[k];
     });
     o.episodes = (s.episodes || []).map(e => {
@@ -1043,9 +1054,17 @@
       id: c.id, name: c.name, logo: c.logo, group: c.group, url: c.url,
       epg: c.epg || '', cc: c.cc || '', quality: c.quality || '', src: c.src,
     }));
+    /* 🪦 LÁPIDAS: lo que está en la papelera/lápidas ES un borrado
+       intencional — viaja en el catálogo para que NADIE lo resucite al
+       republicar desde otro PC (una serie solo puede volver si se reimporta
+       DESPUÉS del borrado: su `at` nuevo derrota la lápida vieja).      */
+    const del = Object.assign({}, state.deleted || {});
+    for (const t of state.trash || []) {
+      if (t && t.series && t.series.id) del[t.series.id] = Math.max(del[t.series.id] || 0, t.deletedAt || 0);
+    }
     return {
       app: 'xstream', v: Date.now(), by: ID.name + ' ' + ID.tag,
-      at: new Date().toISOString(), n: series.length + channels.length, series, channels,
+      at: new Date().toISOString(), n: series.length + channels.length, series, channels, del,
       tvSources: state.tvSources || {},
       links: state.links || {},                     /* 🔗 acortador b.yapido.click */
       linksDom: state.linksDom || 'https://x.yapido.click',
@@ -1418,6 +1437,13 @@
 
     axToast('📥 Integrando los cambios del moderador en tu biblioteca…');
     applyProposalDiff(diff, state);
+    /* 🪦 aprobar una propuesta que trae de vuelta algo borrado = restaurarlo:
+       se levanta su lápida para que el catálogo publicado sí lo mantenga  */
+    state.deleted = state.deleted || {};
+    for (const ps of payload.series || []) {
+      const ex = (state.series || []).find(x => x.id === ps.id);
+      if (ex && state.deleted[ps.id]) { ex.at = Date.now(); delete state.deleted[ps.id]; }
+    }
 
     /* 🔄 misma fusión en vivo que publishCatalog: si alguien publicó desde
        otro PC mientras revisabas, su contenido se SUMA antes de publicar  */
@@ -2217,8 +2243,32 @@
      Así publicar desde PC-A nunca pisa lo que publicó PC-B/moderadores. */
   function mergeLiveCatalog(cat) {
     const state = API.getState();
-    let addS = 0, addE = 0, addCh = 0;
+    let addS = 0, addE = 0, addCh = 0, killed = 0;
+
+    /* 🪦 PASO 0 — lápidas: lo que otro BORRÓ de verdad se ejecuta aquí también
+       (pasa a TU papelera, reversible 7 días) y se aprende para futuros
+       publishes. Una entrada solo se respeta si la lápida es MÁS NUEVA que
+       el registro de la serie (así una reimportación posterior sí revive). */
+    state.deleted = state.deleted || {};
+    const del = (cat.del && typeof cat.del === 'object' && !Array.isArray(cat.del)) ? cat.del : {};
+    for (const [id, at] of Object.entries(del)) {
+      if (!state.deleted[id] || state.deleted[id] < at) state.deleted[id] = at;
+    }
+    if (Object.keys(del).length) {
+      state.series = state.series.filter(s => {
+        const tAt = state.deleted[s.id];
+        if (!tAt || tAt <= (s.importedAt || s.at || 0)) return true;
+        state.trash = state.trash || [];
+        if (!state.trash.some(t => t.series && t.series.id === s.id)) state.trash.push({ deletedAt: tAt, series: s });
+        killed++;
+        return false;
+      });
+    }
+
     for (const cs of cat.series || []) {
+      /* series con lápida activa NO resucitan aunque lleguen en la fusión */
+      const tAt = state.deleted[cs.id];
+      if (tAt && tAt > (cs.importedAt || cs.at || 0)) continue;
       const local = state.series.find(x => x.id === cs.id);
       if (!local) { state.series.push(JSON.parse(JSON.stringify(cs))); addS++; continue; }
       if (local.personal || local.via === 'shared') continue; /* lo privado no se toca */
@@ -2256,7 +2306,7 @@
        vuelva a aplicar encima (ya contiene todo lo suyo)                */
     state.catalogMeta = { v: cat.v, at: Date.now(), n: (cat.series ? cat.series.length : 0) + (cat.channels ? cat.channels.length : 0) };
     if (API.save) API.save();
-    if (addS || addE || addCh) axToast(`🔄 Fusioné lo publicado por otros: +${addS} series, +${addE} capítulos, +${addCh} canales — tu contenido se conserva intacto`);
+    if (addS || addE || addCh || killed) axToast(`🔄 Fusión aplicada: +${addS} series, +${addE} capítulos, +${addCh} canales${killed ? ` · 🪦 ${killed} borrada(s) por el equipo (→ papelera)` : ''} — tu contenido se conserva`);
   }
 
   /* ═══════════ ARRANQUE ═══════════ */
