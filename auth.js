@@ -1055,13 +1055,14 @@
   async function publishCatalog() {
     if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
     if (!API || !API.getState) return axToast('La app aún no está lista', true);
-    /* 🔄 PRE-VUELO ANTI-PÉRDIDA: trae el catálogo EN VIVO de la web y fusiónalo
-       antes de armar el paquete. Si producción va más adelante que esta copia
-       (publicaste desde el dominio u otro dispositivo), publicar desde aquí
-       jamás borra ese trabajo — se mezcla y sale TODO junto.            */
-    await syncCatalog({ always: true, fresh: true });
+    /* 🔄 PRE-VUELO DE FUSIÓN (multi-PC y moderadores): trae el catálogo EN
+       VIVO de la web y fusiónalo POR UNIÓN antes de armar el paquete —
+       lo que publicó otra persona se SUMA y lo tuyo se conserva. Publicar
+       desde aquí jamás borra el trabajo de nadie.                      */
+    const live = await fetchRemoteCatalog();
+    if (live) mergeLiveCatalog(live);
     const state = API.getState();
-    const payload = buildCatalogPayload(state);
+    let payload = buildCatalogPayload(state);
 
     /* 🧯 Candado anti-apagón: valida el payload EXACTAMENTE como haría un
        lector. Un solo registro inválido (p. ej. un id demasiado largo) hace
@@ -1113,8 +1114,27 @@
     const token = ghToken() || ghAskToken();
     if (token) {
       axToast('🌐 Publicando en GitHub… todos lo recibirán en ~1 minuto');
-      try {
-        await ghPublishCatalog(payload, token);
+      /* ⚡ anti-choque de publicadores: si otro (tu otro PC, un moderador)
+         publicó en ESTE MISMO instante, GitHub responde 409; se fusiona su
+         versión por unión, se rearma el paquete y se reintenta UNA vez — el
+         contenido de nadie se pierde aunque publiquen a la vez.        */
+      let publicado = false, errFinal = null;
+      for (let intento = 0; intento < 2 && !publicado; intento++) {
+        if (intento) {
+          axToast('⚡ Alguien más publicó hace un segundo — fusionando su versión y reintentando…');
+          const again = await fetchRemoteCatalog();
+          if (again) mergeLiveCatalog(again);
+          payload = buildCatalogPayload(API.getState());
+          try {
+            await sigKeysEnsure();
+            const s2 = await sigSignPayload(payload);
+            if (s2) payload.sig = s2;
+          } catch (e2) { }
+        }
+        try { await ghPublishCatalog(payload, token); publicado = true; }
+        catch (e) { errFinal = e; if (!e || e.code !== 'CONFLICT') break; }
+      }
+      if (publicado) {
         state.catalogMeta = { v: payload.v, at: Date.now(), n: payload.n };
         if (API.save) API.save();
         renderCatalogStatus();
@@ -1125,10 +1145,9 @@
         /* 📢 Telegram: anuncia solo las novedades (nunca bloquea la publicación) */
         telegramAnnounce(payload).catch(e => console.warn('[telegram]', e));
         return;
-      } catch (e) {
-        axToast('⚠ No se pudo publicar en GitHub: ' + (e.message || e) + '. Revisa tu token.', true);
-        /* continúa al respaldo local abajo */
       }
+      axToast('⚠ No se pudo publicar en GitHub: ' + ((errFinal && errFinal.message) || errFinal) + '. Revisa tu token.', true);
+      /* continúa al respaldo local abajo */
     } else {
       axToast('⚠ Sin token de GitHub: uso el respaldo con descarga', true);
     }
@@ -1200,6 +1219,9 @@
     });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
+      /* ⚡ 409 = alguien más publicó en este instante (sha quedó viejo):
+         publishCatalog lo atrapa, fusiona la versión ganadora y reintenta */
+      if (res.status === 409) { const c = new Error('otro publicador ganó el turno (409)'); c.code = 'CONFLICT'; throw c; }
       throw new Error(err.message || ('HTTP ' + res.status));
     }
     return true;
@@ -1397,8 +1419,13 @@
     axToast('📥 Integrando los cambios del moderador en tu biblioteca…');
     applyProposalDiff(diff, state);
 
+    /* 🔄 misma fusión en vivo que publishCatalog: si alguien publicó desde
+       otro PC mientras revisabas, su contenido se SUMA antes de publicar  */
+    const live = await fetchRemoteCatalog();
+    if (live) mergeLiveCatalog(live);
+
     /* publicar = tu flujo normal: FIRMA contigo + subida a GitHub */
-    const finalPayload = buildCatalogPayload(state);
+    const finalPayload = buildCatalogPayload(API.getState());
     await sigKeysEnsure();
     const sig = await sigSignPayload(finalPayload);
     if (sig) finalPayload.sig = sig;
@@ -2117,6 +2144,42 @@
   }
 
   let syncing = false, syncInflight = null, lastSeenRemote = null;
+
+  /* ÚNICA lectura del catálogo EN VIVO (validada y verificada por firma).
+     En el dominio de producción usa el archivo relativo (mismo origen,
+     rapidísimo); abriendo el HTML en LOCAL (file://, localhost) jala el
+     catálogo PUBLICADO en la web. Devuelve el catálogo o null.         */
+  async function fetchRemoteCatalog() {
+    /* anti-caché agresivo: el mismo archivo pedido 2 veces seguidas
+       puede servirse viejo desde el CDN de GitHub Pages, así que
+       añadimos un parámetro único cada vez */
+    const onProd = /^https?:$/.test(location.protocol) && !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
+    const base = onProd ? CONFIG.catalogUrl : (CONFIG.catalogUrlRemote || CONFIG.catalogUrl);
+    const r = await fetch(base + (base.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) return null;
+    const cat = await r.json();
+    if (!cat || typeof cat.v !== 'number' || !Array.isArray(cat.series) || !cat.series.length) return null;
+    /* 🔒 Candado 1: esquema — si no tiene EXACTAMENTE la forma esperada,
+       se descarta entero (protege de archivos corruptos o inyectados)  */
+    if (!validateCatalog(cat)) { console.warn('[xstream] catálogo rechazado: estructura inválida'); return null; }
+    /* 🔒 Candado 2: firma ECDSA — si la clave pública está activada y la
+       firma no cuadra, alguien modificó el archivo: se ignora          */
+    const firma = await verifyCatalog(cat);
+    if (firma === 'invalid') {
+      console.warn('[xstream] catálogo rechazado: FIRMA INVÁLIDA — el archivo fue alterado o se firmó con otra clave');
+      /* aviso visible (una vez por sesión): antes fallaba en SILENCIO y el
+         visitante se quedaba para siempre con su catálogo viejo          */
+      if (!syncCatalog.warned) {
+        syncCatalog.warned = true;
+        axToast('⚠ El catálogo publicado no pasa la verificación de firma. Si eres el admin: revisa Perfil → «🔐 Firma del catálogo» y CONFIG.catalogPubKey en auth.js', true);
+      }
+      return null;
+    }
+    if (firma === 'no-key') console.info('[xstream] catálogo aceptado sin verificación de firma (blíndalo pegando CONFIG.catalogPubKey en auth.js)');
+    lastSeenRemote = cat; /* la verdad del cable: la usa publishCatalog como candado anti-vaciado */
+    return cat;
+  }
+
   async function syncCatalog(opts) {
     opts = opts || {};
     /* 👑 El dispositivo QUE PUBLICA ya tiene la última versión en su estado
@@ -2130,47 +2193,70 @@
     syncing = true;
     const job = (async () => {
     try {
-      /* 🔄 origen del catálogo: en el dominio de producción se usa el archivo
-         relativo (mismo origen, rapidísimo). Abriendo el HTML en LOCAL
-         (file://, localhost, 127.0.0.1) se jala el catálogo PUBLICADO en la
-         web — la copia local queda al día y trabajar desde local es seguro. */
-      const onProd = /^https?:$/.test(location.protocol) && !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
-      const base = onProd ? CONFIG.catalogUrl : (CONFIG.catalogUrlRemote || CONFIG.catalogUrl);
-      /* anti-caché agresivo: el mismo archivo pedido 2 veces seguidas
-         puede servirse viejo desde el CDN de GitHub Pages, así que
-         añadimos un parámetro único cada vez */
-      const r = await fetch(base + (base.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' });
-      if (!r.ok) return;
-      const cat = await r.json();
-      if (!cat || typeof cat.v !== 'number' || !Array.isArray(cat.series) || !cat.series.length) return;
-      /* 🔒 Candado 1: esquema — si no tiene EXACTAMENTE la forma esperada,
-         se descarta entero (protege de archivos corruptos o inyectados)  */
-      if (!validateCatalog(cat)) { console.warn('[xstream] catálogo rechazado: estructura inválida'); return; }
-      /* 🔒 Candado 2: firma ECDSA — si la clave pública está activada y la
-         firma no cuadra, alguien modificó el archivo: se ignora          */
-      const firma = await verifyCatalog(cat);
-      if (firma === 'invalid') {
-        console.warn('[xstream] catálogo rechazado: FIRMA INVÁLIDA — el archivo fue alterado o se firmó con otra clave');
-        /* aviso visible (una vez por sesión): antes fallaba en SILENCIO y el
-           visitante se quedaba para siempre con su catálogo viejo          */
-        if (!syncCatalog.warned) {
-          syncCatalog.warned = true;
-          axToast('⚠ El catálogo publicado no pasa la verificación de firma. Si eres el admin: revisa Perfil → «🔐 Firma del catálogo» y CONFIG.catalogPubKey en auth.js', true);
-        }
-        return;
-      }
-      if (firma === 'no-key') console.info('[xstream] catálogo aceptado sin verificación de firma (blíndalo pegando CONFIG.catalogPubKey en auth.js)');
-      lastSeenRemote = cat; /* la verdad del cable: la usa publishCatalog como candado anti-vaciado */
+      const cat = await fetchRemoteCatalog();
+      if (!cat) return;
       const st = API.getState();
       const cur = (st.catalogMeta && st.catalogMeta.v) || 0;
       if (cat.v <= cur) return;            /* ya está aplicada esta versión */
-      applyCatalog(cat);
+      /* 👑 ADMIN/STAFF: FUSIÓN por unión — tu trabajo aún no publicado en
+         este PC sobrevive al llegar lo del otro PC/moderadores.
+         👤 Lector: la web manda (reemplazo clásico de applyCatalog).    */
+      if (isAdmin()) mergeLiveCatalog(cat); else applyCatalog(cat);
     } catch (e) { /* sin archivo o sin red: sigue con lo local */ }
     finally { syncing = false; }
     })();
     syncInflight = job;
     await job;
     if (syncInflight === job) syncInflight = null;
+  }
+
+  /* ═══════════ FUSIÓN POR UNIÓN (solo para quien PUBLICA) ═══════════
+     A diferencia de applyCatalog (lector: la web manda y reemplaza), aquí
+     NADA se borra: lo que publicó otra persona se SUMA a tu copia local
+     (series, capítulos, campos vacíos), y lo que tú tienes se conserva.
+     Así publicar desde PC-A nunca pisa lo que publicó PC-B/moderadores. */
+  function mergeLiveCatalog(cat) {
+    const state = API.getState();
+    let addS = 0, addE = 0, addCh = 0;
+    for (const cs of cat.series || []) {
+      const local = state.series.find(x => x.id === cs.id);
+      if (!local) { state.series.push(JSON.parse(JSON.stringify(cs))); addS++; continue; }
+      if (local.personal || local.via === 'shared') continue; /* lo privado no se toca */
+      /* campos de serie: solo RELLENA huecos, jamás pisa lo que tú ves */
+      ['t', 'jp', 'tag', 'g', 'kind', 'anime', 'poster', 'tags', 'seasons', 'order', 'clsManual', 'hentai'].forEach(k => {
+        if ((local[k] === undefined || local[k] === null || local[k] === '') && cs[k] !== undefined && cs[k] !== null && cs[k] !== '') local[k] = cs[k];
+      });
+      /* episodios: UNIÓN por número — nunca se borra un capítulo;
+         si ambos lo tienen, solo se rellenan los campos que te falten */
+      local.episodes = local.episodes || [];
+      const byN = new Map(local.episodes.map(e => [e.n, e]));
+      let touched = false;
+      for (const re of cs.episodes || []) {
+        const le = byN.get(re.n);
+        if (!le) { local.episodes.push(re); byN.set(re.n, re); addE++; touched = true; continue; }
+        ['t', 'url', 'sub', 'season', 'ova', 'srcOva', 'srcSeason', 'thumb'].forEach(k => {
+          if ((le[k] === undefined || le[k] === null || le[k] === '') && re[k] !== undefined && re[k] !== null && re[k] !== '') le[k] = re[k];
+        });
+      }
+      if (touched) local.episodes.sort((a, b) => (a.n || 0) - (b.n || 0));
+    }
+    /* canales TV: unión por id (los tuyos manuales siempre se quedan) */
+    if (Array.isArray(cat.channels)) {
+      state.channels = state.channels || [];
+      const have = new Set(state.channels.map(c => c.id));
+      for (const cc of cat.channels) {
+        if (!have.has(cc.id)) { state.channels.push({ ...cc }); addCh++; }
+      }
+    }
+    /* fuentes M3U y enlaces del acortador: unión (en empate mandan los tuyos) */
+    if (cat.tvSources && typeof cat.tvSources === 'object') state.tvSources = Object.assign({}, cat.tvSources, state.tvSources || {});
+    if (cat.links && typeof cat.links === 'object' && !Array.isArray(cat.links)) state.links = Object.assign({}, cat.links, state.links || {});
+    if (typeof cat.linksDom === 'string' && cat.linksDom && !state.linksDom) state.linksDom = cat.linksDom;
+    /* marca la versión fusionada para que el sync de los lectores no la
+       vuelva a aplicar encima (ya contiene todo lo suyo)                */
+    state.catalogMeta = { v: cat.v, at: Date.now(), n: (cat.series ? cat.series.length : 0) + (cat.channels ? cat.channels.length : 0) };
+    if (API.save) API.save();
+    if (addS || addE || addCh) axToast(`🔄 Fusioné lo publicado por otros: +${addS} series, +${addE} capítulos, +${addCh} canales — tu contenido se conserva intacto`);
   }
 
   /* ═══════════ ARRANQUE ═══════════ */
