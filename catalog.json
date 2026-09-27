@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1790485943755,
+ "v": 1790486378364,
  "by": "Dcard #2968",
- "at": "2026-09-27T05:12:23.755Z",
- "n": 286,
+ "at": "2026-09-27T05:19:38.364Z",
+ "n": 287,
  "series": [
   {
    "id": "ia-naruto-completo",
@@ -15,7 +15,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20-dE6UHbFFg1A5.jpg",
    "tags": [],
-   "order": 68,
+   "order": 1,
    "episodes": [
     {
      "n": 1,
@@ -3553,7 +3553,7 @@
     "6": "NARUTO SHIPPUDEN 111-128",
     "7": "Naruto Shippuden 111-121"
    },
-   "order": 1,
+   "order": 2,
    "episodes": [
     {
      "n": 1,
@@ -4414,7 +4414,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21220-3cWAUtR1Ih5h.jpg",
    "tags": [],
-   "order": 69,
+   "order": 3,
    "clsManual": true,
    "episodes": [
     {
@@ -5885,583 +5885,6 @@
    ]
   },
   {
-   "id": "custom-1788322893082",
-   "t": "kimetsu no yaiba",
-   "jp": "KI",
-   "tag": "Personalizada",
-   "g": 9,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101922-WBsBl0ClmgYL.jpg",
-   "tags": [],
-   "seasons": {
-    "1": "kimetsu no yaiba",
-    "3": "Temporada 1",
-    "4": "Temporada 2",
-    "5": "Temporada 3",
-    "6": "Temporada 4"
-   },
-   "order": 2,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "CAPITULO 1 Mp4",
-     "url": "https://streamtape.com/e/4RDM2z323lsK0jZ",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 2,
-     "t": "CAPITULO 2",
-     "url": "https://streamtape.com/e/AkM07yDvpWtbLZ",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 3,
-     "t": "CAPITULO 3 Mp4",
-     "url": "https://streamtape.com/e/6xQKYWebXzH9zBP",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 4,
-     "t": "CAPITULO 4",
-     "url": "https://streamtape.com/e/V0L3043LxRiKRB4",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 5,
-     "t": "CAPITULO 5",
-     "url": "https://streamtape.com/e/ALDL0ZYeemIXRvM",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 6,
-     "t": "CAPITULO 6 Mp4",
-     "url": "https://streamtape.com/e/O2Ov1m0dzXsZ4dg",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 7,
-     "t": "CAPITULO 7 Mp4",
-     "url": "https://streamtape.com/e/Kqj839vVljTAo3",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 8,
-     "t": "CAPITULO 8 Mp4",
-     "url": "https://streamtape.com/e/0ZlB8eRlDKULdQ",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 9,
-     "t": "CAPITULO 9 Mp4",
-     "url": "https://streamtape.com/e/Pyb0mqKyJrCG0G",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 10,
-     "t": "CAPITULO 10 Mp4",
-     "url": "https://streamtape.com/e/k24KqLqqPxsO2X7",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 11,
-     "t": "CAPITULO 11",
-     "url": "https://streamtape.com/e/Mkk9Lr80GJUD6B",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 12,
-     "t": "CAPITULO 12 Mp4",
-     "url": "https://streamtape.com/e/vwWWBQRKkYFBLG",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 13,
-     "t": "CAPITULO 13 Mp4",
-     "url": "https://streamtape.com/e/VoZ2wW2az0tOlp",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 14,
-     "t": "CAPITULO 14 Mp4",
-     "url": "https://streamtape.com/e/q8BgZ6DKBbtz3Kb",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 15,
-     "t": "CAPITULO 15 Mp4",
-     "url": "https://streamtape.com/e/Qa30YAkwA1f0DMG",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 16,
-     "t": "CAPITULO 16 Mp4",
-     "url": "https://streamtape.com/e/pMD7RkPD8vHrvkv",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 17,
-     "t": "CAPITULO 17 Mp4",
-     "url": "https://streamtape.com/e/eAwroJ9ew8CoBX",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 18,
-     "t": "CAPITULO 18 Mp4",
-     "url": "https://streamtape.com/e/2aKBJgdwP9HQxA",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 19,
-     "t": "CAPITULO 19 Mp4",
-     "url": "https://streamtape.com/e/jrvj20x00DizXDx",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 20,
-     "t": "CAPITULO 20 Mp4",
-     "url": "https://streamtape.com/e/7pBGDJwm4DsAq2W",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 21,
-     "t": "CAPITULO 21 Mp4",
-     "url": "https://streamtape.com/e/4o0AX9gKbjCKgZ4",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 22,
-     "t": "CAPITULO 22 Mp4",
-     "url": "https://streamtape.com/e/e3DAXq1rOMTj8W",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 23,
-     "t": "CAPITULO 23 Mp4",
-     "url": "https://streamtape.com/e/eVj1pgg7qpUkvG",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 24,
-     "t": "CAPITULO 25 Mp4",
-     "url": "https://streamtape.com/e/8BOJVD7wblfo700",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 25,
-     "t": "CAPITULO 26 Mp4",
-     "url": "https://streamtape.com/e/ZwR90ewRqwFqG0k",
-     "season": 3,
-     "srcSeason": "imp-stape-SRSTuF5NSnc"
-    },
-    {
-     "n": 26,
-     "t": "K1m3tsu T2 01 mkv",
-     "url": "https://streamtape.com/e/eoR704XD1zSY3OR",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 27,
-     "t": "K1m3tsu T2 02 mkv",
-     "url": "https://streamtape.com/e/vLvRAW96e7f4OeZ",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 28,
-     "t": "K1m3tsu T2 03 mkv",
-     "url": "https://streamtape.com/e/lrjVbVMrGeT7MMl",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 29,
-     "t": "K1m3tsu T2 04 mkv",
-     "url": "https://streamtape.com/e/qgPZRMrKr3UaBB",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 30,
-     "t": "K1m3tsu T2 05 mkv",
-     "url": "https://streamtape.com/e/eq2VMgyxXdij97",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 31,
-     "t": "K1m3tsu T2 06 mkv",
-     "url": "https://streamtape.com/e/BQkJwdGYW1CyAmR",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 32,
-     "t": "K1m3tsu T2 07 mkv",
-     "url": "https://streamtape.com/e/oZZpxwzRJ6hJ4jl",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 33,
-     "t": "K1m3tsu T2 08 mkv",
-     "url": "https://streamtape.com/e/VGRG9lKZxvTkl9",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 34,
-     "t": "K1m3tsu T2 09 mkv",
-     "url": "https://streamtape.com/e/VOaZKjqb6zUKDGM",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 35,
-     "t": "K1m3tsu T2 10",
-     "url": "https://streamtape.com/e/jqxdLyjLXAszAwW",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 36,
-     "t": "K1m3tsu T2 11 mkv",
-     "url": "https://streamtape.com/e/KQY0J31edDI0OmM",
-     "season": 4,
-     "srcSeason": "imp-stape-CLo3b_y73Fs"
-    },
-    {
-     "n": 37,
-     "t": "Ep 01",
-     "url": "https://streamtape.com/e/y2bGzgrl7QSoml",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 38,
-     "t": "Ep 02",
-     "url": "https://streamtape.com/e/lkoGQVqD2yt7x9M",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 39,
-     "t": "Ep 03 mkv",
-     "url": "https://streamtape.com/e/YOW192RxW1C33o",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 40,
-     "t": "Ep 04",
-     "url": "https://streamtape.com/e/v26AqYOB1Gi4yyd",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 41,
-     "t": "Ep 05 mkv",
-     "url": "https://streamtape.com/e/lqYJddMymyfZoD",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 42,
-     "t": "Ep 06 mkv",
-     "url": "https://streamtape.com/e/WQx9JqOgJwUbKab",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 43,
-     "t": "Ep 07 mkv",
-     "url": "https://streamtape.com/e/ZkYZLGoRvyCq889",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 44,
-     "t": "Ep 08",
-     "url": "https://streamtape.com/e/1xD1LMolP2teovk",
-     "season": 5,
-     "srcSeason": "imp-stape-VBfWf12DTi4"
-    },
-    {
-     "n": 45,
-     "t": "Cap 1 mkv",
-     "url": "https://streamtape.com/e/WPjJARKgxPubakQ",
-     "season": 6,
-     "srcSeason": "imp-stape-aahMX8TK1KU"
-    },
-    {
-     "n": 46,
-     "t": "Cap 2 mkv",
-     "url": "https://streamtape.com/e/pa0MqWJOqVcryd6",
-     "season": 6,
-     "srcSeason": "imp-stape-aahMX8TK1KU"
-    },
-    {
-     "n": 47,
-     "t": "Cap 3 mkv",
-     "url": "https://streamtape.com/e/oLgmx6zYwZCJ1Yw",
-     "season": 6,
-     "srcSeason": "imp-stape-aahMX8TK1KU"
-    },
-    {
-     "n": 48,
-     "t": "Cap 4 mkv",
-     "url": "https://streamtape.com/e/qxPBBlLbzzsz3zo",
-     "season": 6,
-     "srcSeason": "imp-stape-aahMX8TK1KU"
-    },
-    {
-     "n": 49,
-     "t": "Cap 5 mkv",
-     "url": "https://streamtape.com/e/D9Gq1gkJDeIV46",
-     "season": 6,
-     "srcSeason": "imp-stape-aahMX8TK1KU"
-    },
-    {
-     "n": 50,
-     "t": "Cap 6 mkv",
-     "url": "https://streamtape.com/e/mqKWPMRQDdSMOe",
-     "season": 6,
-     "srcSeason": "imp-stape-aahMX8TK1KU"
-    },
-    {
-     "n": 51,
-     "t": "Cap 7 mkv",
-     "url": "https://streamtape.com/e/r3JAbakewZSb0kq",
-     "season": 6,
-     "srcSeason": "imp-stape-aahMX8TK1KU"
-    }
-   ]
-  },
-  {
-   "id": "ia-Death-Note-Latino",
-   "t": "Death Note",
-   "jp": "🎌",
-   "tag": "Cine IA · Anime · Temporada",
-   "g": 4,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1535-kUgkcrfOrkUM.jpg",
-   "tags": [],
-   "order": 53,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "S01E01-Renacimiento",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E01-Renacimiento.mp4"
-    },
-    {
-     "n": 2,
-     "t": "S01E02-Duelo",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E02-Duelo.mp4"
-    },
-    {
-     "n": 3,
-     "t": "S01E03-Negociaciones",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E03-Negociaciones.mp4"
-    },
-    {
-     "n": 4,
-     "t": "S01E04-Persecución",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E04-Persecuci%C3%B3n.mp4"
-    },
-    {
-     "n": 5,
-     "t": "S01E05-Estrategia",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E05-Estrategia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "S01E06-Florecer",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E06-Florecer.mp4"
-    },
-    {
-     "n": 7,
-     "t": "S01E07-Nublado",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E07-Nublado.mp4"
-    },
-    {
-     "n": 8,
-     "t": "S01E08-Mirada",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E08-Mirada.mp4"
-    },
-    {
-     "n": 9,
-     "t": "S01E09-Contacto",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E09-Contacto.mp4"
-    },
-    {
-     "n": 10,
-     "t": "S01E10-Sospechas",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E10-Sospechas.mp4"
-    },
-    {
-     "n": 11,
-     "t": "S01E11-Asalto",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E11-Asalto.mp4"
-    },
-    {
-     "n": 12,
-     "t": "S01E12-Enamoramiento",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E12-Enamoramiento.mp4"
-    },
-    {
-     "n": 13,
-     "t": "S01E13-Confesión",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E13-Confesi%C3%B3n.mp4"
-    },
-    {
-     "n": 14,
-     "t": "S01E14-Amigos",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E14-Amigos.mp4"
-    },
-    {
-     "n": 15,
-     "t": "S01E15-Apuestas",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E15-Apuestas.mp4"
-    },
-    {
-     "n": 16,
-     "t": "S01E16-Decisión",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E16-Decisi%C3%B3n.mp4"
-    },
-    {
-     "n": 17,
-     "t": "S01E17-Ejecución",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E17-Ejecuci%C3%B3n.mp4"
-    },
-    {
-     "n": 18,
-     "t": "S01E18-Compañeros",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E18-Compa%C3%B1eros.mp4"
-    },
-    {
-     "n": 19,
-     "t": "S01E19-Matsuda",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E19-Matsuda.mp4"
-    },
-    {
-     "n": 20,
-     "t": "S01E20-Improvisación",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E20-Improvisaci%C3%B3n.mp4"
-    },
-    {
-     "n": 21,
-     "t": "S01E21-Actividad",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E21-Actividad.mp4"
-    },
-    {
-     "n": 22,
-     "t": "S01E22-Inducción",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E22-Inducci%C3%B3n.mp4"
-    },
-    {
-     "n": 23,
-     "t": "S01E23-Frenesí",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E23-Frenes%C3%AD.mp4"
-    },
-    {
-     "n": 24,
-     "t": "S01E24-Resurrección",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E24-Resurrecci%C3%B3n.mp4"
-    },
-    {
-     "n": 25,
-     "t": "S01E25-Silencio",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E25-Silencio.mp4"
-    },
-    {
-     "n": 26,
-     "t": "S01E26-Regeneración",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E26-Regeneraci%C3%B3n.mp4"
-    },
-    {
-     "n": 27,
-     "t": "S01E27-Secuestro",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E27-Secuestro.mp4"
-    },
-    {
-     "n": 28,
-     "t": "S01E28-Impaciencia",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E28-Impaciencia.mp4"
-    },
-    {
-     "n": 29,
-     "t": "S01E29-Padre",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E29-Padre.mp4"
-    },
-    {
-     "n": 30,
-     "t": "S01E30-Justicia",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E30-Justicia.mp4"
-    },
-    {
-     "n": 31,
-     "t": "S01E31-Cesión",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E31-Cesi%C3%B3n.mp4"
-    },
-    {
-     "n": 32,
-     "t": "S01E32-Elección 1",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E32-Elecci%C3%B3n_1.mp4"
-    },
-    {
-     "n": 33,
-     "t": "S01E33-Desprecio",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E33-Desprecio.mp4"
-    },
-    {
-     "n": 34,
-     "t": "S01E34-Acecho",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E34-Acecho.mp4"
-    },
-    {
-     "n": 35,
-     "t": "S01E35-Intento de asesinato",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E35-Intento%20de%20asesinato.mp4"
-    },
-    {
-     "n": 36,
-     "t": "S01E36-28 de enero",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E36-28%20de%20enero.mp4"
-    },
-    {
-     "n": 37,
-     "t": "S01E37-Un nuevo mundo",
-     "url": "https://archive.org/download/Death-Note-Latino/S01E37-Un%20nuevo%20mundo.mp4"
-    }
-   ]
-  },
-  {
    "id": "ia-dragon-ball-zvideoplaytv",
    "t": "Dragon ball Z",
    "jp": "🎌",
@@ -6471,7 +5894,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx813-ZhnFNOeCU5dQ.png",
    "tags": [],
-   "order": 70,
+   "order": 4,
    "episodes": [
     {
      "n": 1,
@@ -7940,7 +7363,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6033-TKDWyjZN3dXk.png",
    "tags": [],
-   "order": 54,
+   "order": 5,
    "episodes": [
     {
      "n": 1,
@@ -8100,703 +7523,6 @@
    ]
   },
   {
-   "id": "ia-one-piece-latino-0152",
-   "t": "One Piece",
-   "jp": "🎌",
-   "tag": "Cine IA · Anime · Temporada · 2023",
-   "g": 4,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
-   "tags": [],
-   "seasons": {
-    "1": "One Piece Latino",
-    "2": "Temporada 2 — One Piece Latino 264"
-   },
-   "order": 80,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "One Piece Latino 0151",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200151.mp4",
-     "season": 1
-    },
-    {
-     "n": 2,
-     "t": "One Piece Latino 0152",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200152.mp4",
-     "season": 1
-    },
-    {
-     "n": 3,
-     "t": "One Piece Latino 0153",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200153.mp4",
-     "season": 1
-    },
-    {
-     "n": 4,
-     "t": "One Piece Latino 0154",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200154.mp4",
-     "season": 1
-    },
-    {
-     "n": 5,
-     "t": "One Piece Latino 0155",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200155.mp4",
-     "season": 1
-    },
-    {
-     "n": 6,
-     "t": "One Piece Latino 0156",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200156.mp4",
-     "season": 1
-    },
-    {
-     "n": 7,
-     "t": "One Piece Latino 0157",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200157.mp4",
-     "season": 1
-    },
-    {
-     "n": 8,
-     "t": "One Piece Latino 0158",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200158.mp4",
-     "season": 1
-    },
-    {
-     "n": 9,
-     "t": "One Piece Latino 0159",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200159.mp4",
-     "season": 1
-    },
-    {
-     "n": 10,
-     "t": "One Piece Latino 0160",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200160.mp4",
-     "season": 1
-    },
-    {
-     "n": 11,
-     "t": "One Piece Latino 0161",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200161.mp4",
-     "season": 1
-    },
-    {
-     "n": 12,
-     "t": "One Piece Latino 0162",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200162.mp4",
-     "season": 1
-    },
-    {
-     "n": 13,
-     "t": "One Piece Latino 0163",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200163.mp4",
-     "season": 1
-    },
-    {
-     "n": 14,
-     "t": "One Piece Latino 0164",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200164.mp4",
-     "season": 1
-    },
-    {
-     "n": 15,
-     "t": "One Piece Latino 0165",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200165.mp4",
-     "season": 1
-    },
-    {
-     "n": 16,
-     "t": "One Piece Latino 0166",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200166.mp4",
-     "season": 1
-    },
-    {
-     "n": 17,
-     "t": "One Piece Latino 0167",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200167.mp4",
-     "season": 1
-    },
-    {
-     "n": 18,
-     "t": "One Piece Latino 0168",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200168.mp4",
-     "season": 1
-    },
-    {
-     "n": 19,
-     "t": "One Piece Latino 0169",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200169.mp4",
-     "season": 1
-    },
-    {
-     "n": 20,
-     "t": "One Piece Latino 0170",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200170.mp4",
-     "season": 1
-    },
-    {
-     "n": 21,
-     "t": "One Piece Latino 0171",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200171.mp4",
-     "season": 1
-    },
-    {
-     "n": 22,
-     "t": "One Piece Latino 0172",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200172.mp4",
-     "season": 1
-    },
-    {
-     "n": 23,
-     "t": "One Piece Latino 0173",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200173.mp4",
-     "season": 1
-    },
-    {
-     "n": 24,
-     "t": "One Piece Latino 0174",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200174.mp4",
-     "season": 1
-    },
-    {
-     "n": 25,
-     "t": "One Piece Latino 0175",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200175.mp4",
-     "season": 1
-    },
-    {
-     "n": 26,
-     "t": "One Piece Latino 0176",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200176.mp4",
-     "season": 1
-    },
-    {
-     "n": 27,
-     "t": "One Piece Latino 0177",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200177.mp4",
-     "season": 1
-    },
-    {
-     "n": 28,
-     "t": "One Piece Latino 0178",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200178.mp4",
-     "season": 1
-    },
-    {
-     "n": 29,
-     "t": "One Piece Latino 0179",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200179.mp4",
-     "season": 1
-    },
-    {
-     "n": 30,
-     "t": "One Piece Latino 0180 ia",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200180.ia.mp4",
-     "season": 1
-    },
-    {
-     "n": 31,
-     "t": "One Piece Latino 0181 ia",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200181.ia.mp4",
-     "season": 1
-    },
-    {
-     "n": 32,
-     "t": "One Piece Latino 0182",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200182.mp4",
-     "season": 1
-    },
-    {
-     "n": 33,
-     "t": "One Piece Latino 0183",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200183.mp4",
-     "season": 1
-    },
-    {
-     "n": 34,
-     "t": "One Piece Latino 0184",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200184.mp4",
-     "season": 1
-    },
-    {
-     "n": 35,
-     "t": "One Piece Latino 0185",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200185.mp4",
-     "season": 1
-    },
-    {
-     "n": 36,
-     "t": "One Piece Latino 0186",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200186.mp4",
-     "season": 1
-    },
-    {
-     "n": 37,
-     "t": "One Piece Latino 0187",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200187.mp4",
-     "season": 1
-    },
-    {
-     "n": 38,
-     "t": "One Piece Latino 0188",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200188.mp4",
-     "season": 1
-    },
-    {
-     "n": 39,
-     "t": "One Piece Latino 0189 ia",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200189.ia.mp4",
-     "season": 1
-    },
-    {
-     "n": 40,
-     "t": "One Piece Latino 0190",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200190.mp4",
-     "season": 1
-    },
-    {
-     "n": 41,
-     "t": "One Piece Latino 0191",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200191.mp4",
-     "season": 1
-    },
-    {
-     "n": 42,
-     "t": "One Piece Latino 0192",
-     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200192.mp4",
-     "season": 1
-    },
-    {
-     "n": 43,
-     "t": "One piece Latino 264",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20264.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 44,
-     "t": "One piece Latino 265",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20265.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 45,
-     "t": "One piece Latino 266",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20266.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 46,
-     "t": "One piece Latino 267",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20267.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 47,
-     "t": "One piece Latino 268",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20268.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 48,
-     "t": "One piece Latino 269",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20269.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 49,
-     "t": "One piece Latino 270",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20270.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 50,
-     "t": "One piece Latino 271",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20271.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 51,
-     "t": "One piece Latino 272",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20272.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 52,
-     "t": "One piece Latino 273",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20273.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 53,
-     "t": "One piece Latino 274",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20274.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 54,
-     "t": "One piece Latino 275",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20275.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 55,
-     "t": "One piece Latino 276",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20276.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 56,
-     "t": "One piece Latino 277",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20277.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 57,
-     "t": "One piece Latino 278",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20278.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 58,
-     "t": "One piece Latino 279",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20279.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 59,
-     "t": "One piece Latino 280",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20280.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 60,
-     "t": "One piece Latino 281",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20281.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 61,
-     "t": "One piece Latino 282",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20282.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 62,
-     "t": "One piece Latino 283",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20283.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 63,
-     "t": "One piece Latino 284",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20284.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 64,
-     "t": "One piece Latino 285",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20285.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 65,
-     "t": "One piece Latino 286",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20286.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 66,
-     "t": "One piece Latino 287",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20287.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 67,
-     "t": "One piece Latino 288",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20288.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 68,
-     "t": "One piece Latino 289",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20289.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 69,
-     "t": "One piece Latino 290",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20290.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 70,
-     "t": "One piece Latino 291",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20291.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 71,
-     "t": "One piece Latino 292",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20292.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 72,
-     "t": "One piece Latino 293",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20293.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 73,
-     "t": "One piece Latino 294",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20294.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 74,
-     "t": "One piece Latino 295",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20295.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 75,
-     "t": "One piece Latino 296",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20296.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 76,
-     "t": "One piece Latino 297",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20297.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 77,
-     "t": "One piece Latino 298",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20298.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 78,
-     "t": "One piece Latino 299",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20299.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 79,
-     "t": "One piece Latino 300",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20300.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 80,
-     "t": "One piece Latino 301",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20301.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 81,
-     "t": "One piece Latino 302",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20302.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 82,
-     "t": "One piece Latino 303",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20303.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 83,
-     "t": "One piece Latino 304",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20304.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 84,
-     "t": "One piece Latino 305",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20305.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 85,
-     "t": "One piece Latino 306",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20306.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 86,
-     "t": "One piece Latino 307",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20307.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 87,
-     "t": "One piece Latino 308",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20308.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 88,
-     "t": "One piece Latino 309",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20309.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 89,
-     "t": "One piece Latino 310",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20310.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 90,
-     "t": "One piece Latino 311",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20311.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 91,
-     "t": "One piece Latino 312",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20312.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 92,
-     "t": "One piece Latino 313",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20313.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 93,
-     "t": "One piece Latino 314",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20314.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 94,
-     "t": "One piece Latino 315",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20315.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 95,
-     "t": "One piece Latino 316",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20316.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 96,
-     "t": "One piece Latino 317",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20317.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 97,
-     "t": "One piece Latino 318",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20318.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 98,
-     "t": "One piece Latino 319",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20319.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 99,
-     "t": "One piece Latino 320",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20320.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 100,
-     "t": "One piece Latino 321",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20321.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 101,
-     "t": "One piece Latino 323",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20323.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 102,
-     "t": "One piece Latino 324",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20324.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    },
-    {
-     "n": 103,
-     "t": "One piece Latino 325",
-     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20325.mp4",
-     "season": 2,
-     "srcSeason": "ia-one-piece-latino-264"
-    }
-   ]
-  },
-  {
    "id": "ia-Dragon-Ball-GT-Latino-JP",
    "t": "Dragon Ball GT",
    "jp": "🎌",
@@ -8806,7 +7532,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/Dragon-Ball-GT-Latino-JP",
    "tags": [],
-   "order": 71,
+   "order": 6,
    "episodes": [
     {
      "n": 1,
@@ -9136,312 +7862,691 @@
    ]
   },
   {
-   "id": "ia-nanatsu-no-taizai-temporada-3-latino",
-   "t": "The Seven Deadly Sins",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada",
-   "g": 5,
+   "id": "ia-dr-4-gbsp-3-r-121",
+   "t": "Dragon Ball Super",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
    "kind": "serie",
    "anime": true,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20789-Ma5ouSYPkru9.jpg",
-   "tags": [],
-   "seasons": {
-    "1": "3 Temporada",
-    "2": "4 Temporada"
-   },
-   "order": 72,
-   "clsManual": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21175-EH06qlfF8TnB.jpg",
+   "order": 7,
    "episodes": [
     {
      "n": 1,
-     "t": "NNT T3-01 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-01%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (1) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(1).ia.mp4"
     },
     {
      "n": 2,
-     "t": "NNT T3-02 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-02%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (2) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(2).ia.mp4"
     },
     {
      "n": 3,
-     "t": "NNT T3-03 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-03%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (3) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(3).ia.mp4"
     },
     {
      "n": 4,
-     "t": "NNT T3-04 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-04%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (4) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(4).ia.mp4"
     },
     {
      "n": 5,
-     "t": "NNT T3-05 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-05%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (5) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(5).ia.mp4"
     },
     {
      "n": 6,
-     "t": "NNT T3-06 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-06%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (6) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(6).ia.mp4"
     },
     {
      "n": 7,
-     "t": "NNT T3-07 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-07%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (7) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(7).ia.mp4"
     },
     {
      "n": 8,
-     "t": "NNT T3-08 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-08%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (8) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(8).ia.mp4"
     },
     {
      "n": 9,
-     "t": "NNT T3-09 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-09%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (9) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(9).ia.mp4"
     },
     {
      "n": 10,
-     "t": "NNT T3-10 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-10%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (10) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(10).ia.mp4"
     },
     {
      "n": 11,
-     "t": "NNT T3-11 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-11%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (11) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(11).ia.mp4"
     },
     {
      "n": 12,
-     "t": "NNT T3-12 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-12%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (12) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(12).ia.mp4"
     },
     {
      "n": 13,
-     "t": "NNT T3-13 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-13%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (13) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(13).ia.mp4"
     },
     {
      "n": 14,
-     "t": "NNT T3-14 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-14%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (14) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(14).ia.mp4"
     },
     {
      "n": 15,
-     "t": "NNT T3-15 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-15%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (15) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(15).ia.mp4"
     },
     {
      "n": 16,
-     "t": "NNT T3-16 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-16%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (16) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(16).ia.mp4"
     },
     {
      "n": 17,
-     "t": "NNT T3-17 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-17%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (17) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(17).ia.mp4"
     },
     {
      "n": 18,
-     "t": "NNT T3-18 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-18%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (18) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(18).ia.mp4"
     },
     {
      "n": 19,
-     "t": "NNT T3-19 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-19%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (19) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(19).ia.mp4"
     },
     {
      "n": 20,
-     "t": "NNT T3-20 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-20%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (20) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(20).ia.mp4"
     },
     {
      "n": 21,
-     "t": "NNT T3-21 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-21%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (21) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(21).ia.mp4"
     },
     {
      "n": 22,
-     "t": "NNT T3-22 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-22%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (22) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(22).ia.mp4"
     },
     {
      "n": 23,
-     "t": "NNT T3-23 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-23%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (23) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(23).ia.mp4"
     },
     {
      "n": 24,
-     "t": "NNT T3-24 BY PerezosoPro",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-24%20BY%20PerezosoPro.mp4",
-     "season": 1
+     "t": "DR4GBSP3R (24) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(24).ia.mp4"
     },
     {
      "n": 25,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 1 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%201.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (25) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(25).ia.mp4"
     },
     {
      "n": 26,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 2 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%202.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (26) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(26).ia.mp4"
     },
     {
      "n": 27,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 3 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%203.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (27) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(27).ia.mp4"
     },
     {
      "n": 28,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 4 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%204.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (28) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(28).ia.mp4"
     },
     {
      "n": 29,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 5 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%205.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (29) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(29).ia.mp4"
     },
     {
      "n": 30,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 6 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%206.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (30) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(30).ia.mp4"
     },
     {
      "n": 31,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 7 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%207.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (31) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(31).ia.mp4"
     },
     {
      "n": 32,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 8 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%208.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (32) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(32).ia.mp4"
     },
     {
      "n": 33,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 9 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%209.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (33) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(33).ia.mp4"
     },
     {
      "n": 34,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 10 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2010.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (34) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(34).ia.mp4"
     },
     {
      "n": 35,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 11 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2011.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (35) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(35).ia.mp4"
     },
     {
      "n": 36,
-     "t": "temporada 4/Nanatsu no taizai T4 cap 12 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2012.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (36) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(36).ia.mp4"
     },
     {
      "n": 37,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 13 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2013.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (37) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(37).ia.mp4"
     },
     {
      "n": 38,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 14 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2014.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (38) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(38).ia.mp4"
     },
     {
      "n": 39,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 15 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2015.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (39) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(39).ia.mp4"
     },
     {
      "n": 40,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 16 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2016.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (40) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(40).ia.mp4"
     },
     {
      "n": 41,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 17 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2017.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (41) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(41).ia.mp4"
     },
     {
      "n": 42,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 18 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2018.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (42) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(42).ia.mp4"
     },
     {
      "n": 43,
-     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 19 ia",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2019.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (43) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(43).ia.mp4"
     },
     {
      "n": 44,
-     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 20 Sub Es",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2020%20Sub%20Espa%C3%B1ol%20Completo%20(SUBFIX%20).mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (44) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(44).ia.mp4"
     },
     {
      "n": 45,
-     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 21 en Sub",
-     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2021%20en%20Sub-Espa%C3%B1ol%20%20Recuerden%20esta%20trasmisi%C3%B3n%20esta%20patrocinada%20por%20Andr%C3%A9%20Molina%202%20vayan%20a%20suscribirse%20https-__www.youtube.com_channel_UC12sn2kPlNJktdsqsQtuF1g-2.ia.mp4",
-     "season": 2,
-     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+     "t": "DR4GBSP3R (45) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(45).ia.mp4"
+    },
+    {
+     "n": 46,
+     "t": "DR4GBSP3R (46) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(46).ia.mp4"
+    },
+    {
+     "n": 47,
+     "t": "DR4GBSP3R (47) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(47).ia.mp4"
+    },
+    {
+     "n": 48,
+     "t": "DR4GBSP3R (48) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(48).ia.mp4"
+    },
+    {
+     "n": 49,
+     "t": "DR4GBSP3R (49) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(49).ia.mp4"
+    },
+    {
+     "n": 50,
+     "t": "DR4GBSP3R (50) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(50).ia.mp4"
+    },
+    {
+     "n": 51,
+     "t": "DR4GBSP3R (51) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(51).ia.mp4"
+    },
+    {
+     "n": 52,
+     "t": "DR4GBSP3R (52) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(52).ia.mp4"
+    },
+    {
+     "n": 53,
+     "t": "DR4GBSP3R (53) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(53).ia.mp4"
+    },
+    {
+     "n": 54,
+     "t": "DR4GBSP3R (54) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(54).ia.mp4"
+    },
+    {
+     "n": 55,
+     "t": "DR4GBSP3R (55) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(55).ia.mp4"
+    },
+    {
+     "n": 56,
+     "t": "DR4GBSP3R (56) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(56).ia.mp4"
+    },
+    {
+     "n": 57,
+     "t": "DR4GBSP3R (57) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(57).ia.mp4"
+    },
+    {
+     "n": 58,
+     "t": "DR4GBSP3R (58) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(58).ia.mp4"
+    },
+    {
+     "n": 59,
+     "t": "DR4GBSP3R (59) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(59).ia.mp4"
+    },
+    {
+     "n": 60,
+     "t": "DR4GBSP3R (60) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(60).ia.mp4"
+    },
+    {
+     "n": 61,
+     "t": "DR4GBSP3R (61) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(61).ia.mp4"
+    },
+    {
+     "n": 62,
+     "t": "DR4GBSP3R (62) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(62).ia.mp4"
+    },
+    {
+     "n": 63,
+     "t": "DR4GBSP3R (63) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(63).ia.mp4"
+    },
+    {
+     "n": 64,
+     "t": "DR4GBSP3R (64) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(64).ia.mp4"
+    },
+    {
+     "n": 65,
+     "t": "DR4GBSP3R (65) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(65).ia.mp4"
+    },
+    {
+     "n": 66,
+     "t": "DR4GBSP3R (66) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(66).ia.mp4"
+    },
+    {
+     "n": 67,
+     "t": "DR4GBSP3R (67) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(67).ia.mp4"
+    },
+    {
+     "n": 68,
+     "t": "DR4GBSP3R (68) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(68).ia.mp4"
+    },
+    {
+     "n": 69,
+     "t": "DR4GBSP3R (69) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(69).ia.mp4"
+    },
+    {
+     "n": 70,
+     "t": "DR4GBSP3R (70) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(70).ia.mp4"
+    },
+    {
+     "n": 71,
+     "t": "DR4GBSP3R (71) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(71).ia.mp4"
+    },
+    {
+     "n": 72,
+     "t": "DR4GBSP3R (72) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(72).ia.mp4"
+    },
+    {
+     "n": 73,
+     "t": "DR4GBSP3R (73) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(73).ia.mp4"
+    },
+    {
+     "n": 74,
+     "t": "DR4GBSP3R (74) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(74).ia.mp4"
+    },
+    {
+     "n": 75,
+     "t": "DR4GBSP3R (75) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(75).ia.mp4"
+    },
+    {
+     "n": 76,
+     "t": "DR4GBSP3R (76) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(76).ia.mp4"
+    },
+    {
+     "n": 77,
+     "t": "DR4GBSP3R (77) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(77).ia.mp4"
+    },
+    {
+     "n": 78,
+     "t": "DR4GBSP3R (78) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(78).ia.mp4"
+    },
+    {
+     "n": 79,
+     "t": "DR4GBSP3R (79) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(79).ia.mp4"
+    },
+    {
+     "n": 80,
+     "t": "DR4GBSP3R (80) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(80).ia.mp4"
+    },
+    {
+     "n": 81,
+     "t": "DR4GBSP3R (81) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(81).ia.mp4"
+    },
+    {
+     "n": 82,
+     "t": "DR4GBSP3R (82) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(82).ia.mp4"
+    },
+    {
+     "n": 83,
+     "t": "DR4GBSP3R (83) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(83).ia.mp4"
+    },
+    {
+     "n": 84,
+     "t": "DR4GBSP3R (84) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(84).ia.mp4"
+    },
+    {
+     "n": 85,
+     "t": "DR4GBSP3R (85) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(85).ia.mp4"
+    },
+    {
+     "n": 86,
+     "t": "DR4GBSP3R (86) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(86).ia.mp4"
+    },
+    {
+     "n": 87,
+     "t": "DR4GBSP3R (87) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(87).ia.mp4"
+    },
+    {
+     "n": 88,
+     "t": "DR4GBSP3R (88) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(88).ia.mp4"
+    },
+    {
+     "n": 89,
+     "t": "DR4GBSP3R (89) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(89).ia.mp4"
+    },
+    {
+     "n": 90,
+     "t": "DR4GBSP3R (90) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(90).ia.mp4"
+    },
+    {
+     "n": 91,
+     "t": "DR4GBSP3R (91) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(91).ia.mp4"
+    },
+    {
+     "n": 92,
+     "t": "DR4GBSP3R (92) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(92).ia.mp4"
+    },
+    {
+     "n": 93,
+     "t": "DR4GBSP3R (93) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(93).ia.mp4"
+    },
+    {
+     "n": 94,
+     "t": "DR4GBSP3R (94) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(94).ia.mp4"
+    },
+    {
+     "n": 95,
+     "t": "DR4GBSP3R (95) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(95).ia.mp4"
+    },
+    {
+     "n": 96,
+     "t": "DR4GBSP3R (96) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(96).ia.mp4"
+    },
+    {
+     "n": 97,
+     "t": "DR4GBSP3R (97) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(97).ia.mp4"
+    },
+    {
+     "n": 98,
+     "t": "DR4GBSP3R (98) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(98).ia.mp4"
+    },
+    {
+     "n": 99,
+     "t": "DR4GBSP3R (99) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(99).ia.mp4"
+    },
+    {
+     "n": 100,
+     "t": "DR4GBSP3R (100) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(100).ia.mp4"
+    },
+    {
+     "n": 101,
+     "t": "DR4GBSP3R (101) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(101).ia.mp4"
+    },
+    {
+     "n": 102,
+     "t": "DR4GBSP3R (102) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(102).ia.mp4"
+    },
+    {
+     "n": 103,
+     "t": "DR4GBSP3R (103) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(103).ia.mp4"
+    },
+    {
+     "n": 104,
+     "t": "DR4GBSP3R (104) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(104).ia.mp4"
+    },
+    {
+     "n": 105,
+     "t": "DR4GBSP3R (105) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(105).ia.mp4"
+    },
+    {
+     "n": 106,
+     "t": "DR4GBSP3R (106) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(106).ia.mp4"
+    },
+    {
+     "n": 107,
+     "t": "DR4GBSP3R (107) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(107).ia.mp4"
+    },
+    {
+     "n": 108,
+     "t": "DR4GBSP3R (108) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(108).ia.mp4"
+    },
+    {
+     "n": 109,
+     "t": "DR4GBSP3R (109) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(109).ia.mp4"
+    },
+    {
+     "n": 110,
+     "t": "DR4GBSP3R (110) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(110).ia.mp4"
+    },
+    {
+     "n": 111,
+     "t": "DR4GBSP3R (111) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(111).ia.mp4"
+    },
+    {
+     "n": 112,
+     "t": "DR4GBSP3R (112) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(112).ia.mp4"
+    },
+    {
+     "n": 113,
+     "t": "DR4GBSP3R (113) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(113).ia.mp4"
+    },
+    {
+     "n": 114,
+     "t": "DR4GBSP3R (114) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(114).ia.mp4"
+    },
+    {
+     "n": 115,
+     "t": "DR4GBSP3R (115) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(115).ia.mp4"
+    },
+    {
+     "n": 116,
+     "t": "DR4GBSP3R (116) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(116).ia.mp4"
+    },
+    {
+     "n": 117,
+     "t": "DR4GBSP3R (117) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(117).ia.mp4"
+    },
+    {
+     "n": 118,
+     "t": "DR4GBSP3R (118) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(118).ia.mp4"
+    },
+    {
+     "n": 119,
+     "t": "DR4GBSP3R (119) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(119).ia.mp4"
+    },
+    {
+     "n": 120,
+     "t": "DR4GBSP3R (120) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(120).ia.mp4"
+    },
+    {
+     "n": 121,
+     "t": "DR4GBSP3R (121) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(121).ia.mp4"
+    },
+    {
+     "n": 122,
+     "t": "DR4GBSP3R (122) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(122).ia.mp4"
+    },
+    {
+     "n": 123,
+     "t": "DR4GBSP3R (123) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(123).ia.mp4"
+    },
+    {
+     "n": 124,
+     "t": "DR4GBSP3R (124) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(124).ia.mp4"
+    },
+    {
+     "n": 125,
+     "t": "DR4GBSP3R (125) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(125).ia.mp4"
+    },
+    {
+     "n": 126,
+     "t": "DR4GBSP3R (126) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(126).ia.mp4"
+    },
+    {
+     "n": 127,
+     "t": "DR4GBSP3R (127) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(127).ia.mp4"
+    },
+    {
+     "n": 128,
+     "t": "DR4GBSP3R (128) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(128).ia.mp4"
+    },
+    {
+     "n": 129,
+     "t": "DR4GBSP3R (129) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(129).ia.mp4"
+    },
+    {
+     "n": 130,
+     "t": "DR4GBSP3R (130) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(130).ia.mp4"
+    },
+    {
+     "n": 131,
+     "t": "DR4GBSP3R (131) ia",
+     "url": "https://archive.org/download/dr-4-gbsp-3-r-121/DR4GBSP3R%20(131).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd",
+   "t": "Dragon Ball Heroes  (1 Al 20)",
+   "jp": "🎬",
+   "tag": "Cine IA · Español",
+   "g": 1,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b102352-iTBUsIV9x7KH.jpg",
+   "tags": [],
+   "order": 8,
+   "clsManual": true,
+   "hentai": false,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Dragon Ball Heroes Capítulos 1 Al 20 En Español Completos Fu",
+     "url": "https://archive.org/download/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd/Dragon%20Ball%20Heroes%20Cap%C3%ADtulos%20%201%20al%2020%20En%20Espa%C3%B1ol%20Completos%20full%20HD.ia.mp4"
     }
    ]
   },
@@ -9459,7 +8564,7 @@
     "1": "Temporada 1 - Bleach",
     "2": "Temporada 2 — Bleach latino"
    },
-   "order": 73,
+   "order": 9,
    "episodes": [
     {
      "n": 1,
@@ -11255,6 +10360,1590 @@
    ]
   },
   {
+   "id": "custom-1788322893082",
+   "t": "kimetsu no yaiba",
+   "jp": "KI",
+   "tag": "Personalizada",
+   "g": 9,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101922-WBsBl0ClmgYL.jpg",
+   "tags": [],
+   "seasons": {
+    "1": "kimetsu no yaiba",
+    "3": "Temporada 1",
+    "4": "Temporada 2",
+    "5": "Temporada 3",
+    "6": "Temporada 4"
+   },
+   "order": 10,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "CAPITULO 1 Mp4",
+     "url": "https://streamtape.com/e/4RDM2z323lsK0jZ",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 2,
+     "t": "CAPITULO 2",
+     "url": "https://streamtape.com/e/AkM07yDvpWtbLZ",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 3,
+     "t": "CAPITULO 3 Mp4",
+     "url": "https://streamtape.com/e/6xQKYWebXzH9zBP",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 4,
+     "t": "CAPITULO 4",
+     "url": "https://streamtape.com/e/V0L3043LxRiKRB4",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 5,
+     "t": "CAPITULO 5",
+     "url": "https://streamtape.com/e/ALDL0ZYeemIXRvM",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 6,
+     "t": "CAPITULO 6 Mp4",
+     "url": "https://streamtape.com/e/O2Ov1m0dzXsZ4dg",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 7,
+     "t": "CAPITULO 7 Mp4",
+     "url": "https://streamtape.com/e/Kqj839vVljTAo3",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 8,
+     "t": "CAPITULO 8 Mp4",
+     "url": "https://streamtape.com/e/0ZlB8eRlDKULdQ",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 9,
+     "t": "CAPITULO 9 Mp4",
+     "url": "https://streamtape.com/e/Pyb0mqKyJrCG0G",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 10,
+     "t": "CAPITULO 10 Mp4",
+     "url": "https://streamtape.com/e/k24KqLqqPxsO2X7",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 11,
+     "t": "CAPITULO 11",
+     "url": "https://streamtape.com/e/Mkk9Lr80GJUD6B",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 12,
+     "t": "CAPITULO 12 Mp4",
+     "url": "https://streamtape.com/e/vwWWBQRKkYFBLG",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 13,
+     "t": "CAPITULO 13 Mp4",
+     "url": "https://streamtape.com/e/VoZ2wW2az0tOlp",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 14,
+     "t": "CAPITULO 14 Mp4",
+     "url": "https://streamtape.com/e/q8BgZ6DKBbtz3Kb",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 15,
+     "t": "CAPITULO 15 Mp4",
+     "url": "https://streamtape.com/e/Qa30YAkwA1f0DMG",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 16,
+     "t": "CAPITULO 16 Mp4",
+     "url": "https://streamtape.com/e/pMD7RkPD8vHrvkv",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 17,
+     "t": "CAPITULO 17 Mp4",
+     "url": "https://streamtape.com/e/eAwroJ9ew8CoBX",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 18,
+     "t": "CAPITULO 18 Mp4",
+     "url": "https://streamtape.com/e/2aKBJgdwP9HQxA",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 19,
+     "t": "CAPITULO 19 Mp4",
+     "url": "https://streamtape.com/e/jrvj20x00DizXDx",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 20,
+     "t": "CAPITULO 20 Mp4",
+     "url": "https://streamtape.com/e/7pBGDJwm4DsAq2W",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 21,
+     "t": "CAPITULO 21 Mp4",
+     "url": "https://streamtape.com/e/4o0AX9gKbjCKgZ4",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 22,
+     "t": "CAPITULO 22 Mp4",
+     "url": "https://streamtape.com/e/e3DAXq1rOMTj8W",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 23,
+     "t": "CAPITULO 23 Mp4",
+     "url": "https://streamtape.com/e/eVj1pgg7qpUkvG",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 24,
+     "t": "CAPITULO 25 Mp4",
+     "url": "https://streamtape.com/e/8BOJVD7wblfo700",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 25,
+     "t": "CAPITULO 26 Mp4",
+     "url": "https://streamtape.com/e/ZwR90ewRqwFqG0k",
+     "season": 3,
+     "srcSeason": "imp-stape-SRSTuF5NSnc"
+    },
+    {
+     "n": 26,
+     "t": "K1m3tsu T2 01 mkv",
+     "url": "https://streamtape.com/e/eoR704XD1zSY3OR",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 27,
+     "t": "K1m3tsu T2 02 mkv",
+     "url": "https://streamtape.com/e/vLvRAW96e7f4OeZ",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 28,
+     "t": "K1m3tsu T2 03 mkv",
+     "url": "https://streamtape.com/e/lrjVbVMrGeT7MMl",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 29,
+     "t": "K1m3tsu T2 04 mkv",
+     "url": "https://streamtape.com/e/qgPZRMrKr3UaBB",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 30,
+     "t": "K1m3tsu T2 05 mkv",
+     "url": "https://streamtape.com/e/eq2VMgyxXdij97",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 31,
+     "t": "K1m3tsu T2 06 mkv",
+     "url": "https://streamtape.com/e/BQkJwdGYW1CyAmR",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 32,
+     "t": "K1m3tsu T2 07 mkv",
+     "url": "https://streamtape.com/e/oZZpxwzRJ6hJ4jl",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 33,
+     "t": "K1m3tsu T2 08 mkv",
+     "url": "https://streamtape.com/e/VGRG9lKZxvTkl9",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 34,
+     "t": "K1m3tsu T2 09 mkv",
+     "url": "https://streamtape.com/e/VOaZKjqb6zUKDGM",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 35,
+     "t": "K1m3tsu T2 10",
+     "url": "https://streamtape.com/e/jqxdLyjLXAszAwW",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 36,
+     "t": "K1m3tsu T2 11 mkv",
+     "url": "https://streamtape.com/e/KQY0J31edDI0OmM",
+     "season": 4,
+     "srcSeason": "imp-stape-CLo3b_y73Fs"
+    },
+    {
+     "n": 37,
+     "t": "Ep 01",
+     "url": "https://streamtape.com/e/y2bGzgrl7QSoml",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 38,
+     "t": "Ep 02",
+     "url": "https://streamtape.com/e/lkoGQVqD2yt7x9M",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 39,
+     "t": "Ep 03 mkv",
+     "url": "https://streamtape.com/e/YOW192RxW1C33o",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 40,
+     "t": "Ep 04",
+     "url": "https://streamtape.com/e/v26AqYOB1Gi4yyd",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 41,
+     "t": "Ep 05 mkv",
+     "url": "https://streamtape.com/e/lqYJddMymyfZoD",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 42,
+     "t": "Ep 06 mkv",
+     "url": "https://streamtape.com/e/WQx9JqOgJwUbKab",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 43,
+     "t": "Ep 07 mkv",
+     "url": "https://streamtape.com/e/ZkYZLGoRvyCq889",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 44,
+     "t": "Ep 08",
+     "url": "https://streamtape.com/e/1xD1LMolP2teovk",
+     "season": 5,
+     "srcSeason": "imp-stape-VBfWf12DTi4"
+    },
+    {
+     "n": 45,
+     "t": "Cap 1 mkv",
+     "url": "https://streamtape.com/e/WPjJARKgxPubakQ",
+     "season": 6,
+     "srcSeason": "imp-stape-aahMX8TK1KU"
+    },
+    {
+     "n": 46,
+     "t": "Cap 2 mkv",
+     "url": "https://streamtape.com/e/pa0MqWJOqVcryd6",
+     "season": 6,
+     "srcSeason": "imp-stape-aahMX8TK1KU"
+    },
+    {
+     "n": 47,
+     "t": "Cap 3 mkv",
+     "url": "https://streamtape.com/e/oLgmx6zYwZCJ1Yw",
+     "season": 6,
+     "srcSeason": "imp-stape-aahMX8TK1KU"
+    },
+    {
+     "n": 48,
+     "t": "Cap 4 mkv",
+     "url": "https://streamtape.com/e/qxPBBlLbzzsz3zo",
+     "season": 6,
+     "srcSeason": "imp-stape-aahMX8TK1KU"
+    },
+    {
+     "n": 49,
+     "t": "Cap 5 mkv",
+     "url": "https://streamtape.com/e/D9Gq1gkJDeIV46",
+     "season": 6,
+     "srcSeason": "imp-stape-aahMX8TK1KU"
+    },
+    {
+     "n": 50,
+     "t": "Cap 6 mkv",
+     "url": "https://streamtape.com/e/mqKWPMRQDdSMOe",
+     "season": 6,
+     "srcSeason": "imp-stape-aahMX8TK1KU"
+    },
+    {
+     "n": 51,
+     "t": "Cap 7 mkv",
+     "url": "https://streamtape.com/e/r3JAbakewZSb0kq",
+     "season": 6,
+     "srcSeason": "imp-stape-aahMX8TK1KU"
+    }
+   ]
+  },
+  {
+   "id": "ia-Death-Note-Latino",
+   "t": "Death Note",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1535-kUgkcrfOrkUM.jpg",
+   "tags": [],
+   "order": 11,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "S01E01-Renacimiento",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E01-Renacimiento.mp4"
+    },
+    {
+     "n": 2,
+     "t": "S01E02-Duelo",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E02-Duelo.mp4"
+    },
+    {
+     "n": 3,
+     "t": "S01E03-Negociaciones",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E03-Negociaciones.mp4"
+    },
+    {
+     "n": 4,
+     "t": "S01E04-Persecución",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E04-Persecuci%C3%B3n.mp4"
+    },
+    {
+     "n": 5,
+     "t": "S01E05-Estrategia",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E05-Estrategia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "S01E06-Florecer",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E06-Florecer.mp4"
+    },
+    {
+     "n": 7,
+     "t": "S01E07-Nublado",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E07-Nublado.mp4"
+    },
+    {
+     "n": 8,
+     "t": "S01E08-Mirada",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E08-Mirada.mp4"
+    },
+    {
+     "n": 9,
+     "t": "S01E09-Contacto",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E09-Contacto.mp4"
+    },
+    {
+     "n": 10,
+     "t": "S01E10-Sospechas",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E10-Sospechas.mp4"
+    },
+    {
+     "n": 11,
+     "t": "S01E11-Asalto",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E11-Asalto.mp4"
+    },
+    {
+     "n": 12,
+     "t": "S01E12-Enamoramiento",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E12-Enamoramiento.mp4"
+    },
+    {
+     "n": 13,
+     "t": "S01E13-Confesión",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E13-Confesi%C3%B3n.mp4"
+    },
+    {
+     "n": 14,
+     "t": "S01E14-Amigos",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E14-Amigos.mp4"
+    },
+    {
+     "n": 15,
+     "t": "S01E15-Apuestas",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E15-Apuestas.mp4"
+    },
+    {
+     "n": 16,
+     "t": "S01E16-Decisión",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E16-Decisi%C3%B3n.mp4"
+    },
+    {
+     "n": 17,
+     "t": "S01E17-Ejecución",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E17-Ejecuci%C3%B3n.mp4"
+    },
+    {
+     "n": 18,
+     "t": "S01E18-Compañeros",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E18-Compa%C3%B1eros.mp4"
+    },
+    {
+     "n": 19,
+     "t": "S01E19-Matsuda",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E19-Matsuda.mp4"
+    },
+    {
+     "n": 20,
+     "t": "S01E20-Improvisación",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E20-Improvisaci%C3%B3n.mp4"
+    },
+    {
+     "n": 21,
+     "t": "S01E21-Actividad",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E21-Actividad.mp4"
+    },
+    {
+     "n": 22,
+     "t": "S01E22-Inducción",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E22-Inducci%C3%B3n.mp4"
+    },
+    {
+     "n": 23,
+     "t": "S01E23-Frenesí",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E23-Frenes%C3%AD.mp4"
+    },
+    {
+     "n": 24,
+     "t": "S01E24-Resurrección",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E24-Resurrecci%C3%B3n.mp4"
+    },
+    {
+     "n": 25,
+     "t": "S01E25-Silencio",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E25-Silencio.mp4"
+    },
+    {
+     "n": 26,
+     "t": "S01E26-Regeneración",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E26-Regeneraci%C3%B3n.mp4"
+    },
+    {
+     "n": 27,
+     "t": "S01E27-Secuestro",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E27-Secuestro.mp4"
+    },
+    {
+     "n": 28,
+     "t": "S01E28-Impaciencia",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E28-Impaciencia.mp4"
+    },
+    {
+     "n": 29,
+     "t": "S01E29-Padre",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E29-Padre.mp4"
+    },
+    {
+     "n": 30,
+     "t": "S01E30-Justicia",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E30-Justicia.mp4"
+    },
+    {
+     "n": 31,
+     "t": "S01E31-Cesión",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E31-Cesi%C3%B3n.mp4"
+    },
+    {
+     "n": 32,
+     "t": "S01E32-Elección 1",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E32-Elecci%C3%B3n_1.mp4"
+    },
+    {
+     "n": 33,
+     "t": "S01E33-Desprecio",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E33-Desprecio.mp4"
+    },
+    {
+     "n": 34,
+     "t": "S01E34-Acecho",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E34-Acecho.mp4"
+    },
+    {
+     "n": 35,
+     "t": "S01E35-Intento de asesinato",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E35-Intento%20de%20asesinato.mp4"
+    },
+    {
+     "n": 36,
+     "t": "S01E36-28 de enero",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E36-28%20de%20enero.mp4"
+    },
+    {
+     "n": 37,
+     "t": "S01E37-Un nuevo mundo",
+     "url": "https://archive.org/download/Death-Note-Latino/S01E37-Un%20nuevo%20mundo.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-one-piece-latino-0152",
+   "t": "One Piece",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada · 2023",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
+   "tags": [],
+   "seasons": {
+    "1": "One Piece Latino",
+    "2": "Temporada 2 — One Piece Latino 264"
+   },
+   "order": 12,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "One Piece Latino 0151",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200151.mp4",
+     "season": 1
+    },
+    {
+     "n": 2,
+     "t": "One Piece Latino 0152",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200152.mp4",
+     "season": 1
+    },
+    {
+     "n": 3,
+     "t": "One Piece Latino 0153",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200153.mp4",
+     "season": 1
+    },
+    {
+     "n": 4,
+     "t": "One Piece Latino 0154",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200154.mp4",
+     "season": 1
+    },
+    {
+     "n": 5,
+     "t": "One Piece Latino 0155",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200155.mp4",
+     "season": 1
+    },
+    {
+     "n": 6,
+     "t": "One Piece Latino 0156",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200156.mp4",
+     "season": 1
+    },
+    {
+     "n": 7,
+     "t": "One Piece Latino 0157",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200157.mp4",
+     "season": 1
+    },
+    {
+     "n": 8,
+     "t": "One Piece Latino 0158",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200158.mp4",
+     "season": 1
+    },
+    {
+     "n": 9,
+     "t": "One Piece Latino 0159",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200159.mp4",
+     "season": 1
+    },
+    {
+     "n": 10,
+     "t": "One Piece Latino 0160",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200160.mp4",
+     "season": 1
+    },
+    {
+     "n": 11,
+     "t": "One Piece Latino 0161",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200161.mp4",
+     "season": 1
+    },
+    {
+     "n": 12,
+     "t": "One Piece Latino 0162",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200162.mp4",
+     "season": 1
+    },
+    {
+     "n": 13,
+     "t": "One Piece Latino 0163",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200163.mp4",
+     "season": 1
+    },
+    {
+     "n": 14,
+     "t": "One Piece Latino 0164",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200164.mp4",
+     "season": 1
+    },
+    {
+     "n": 15,
+     "t": "One Piece Latino 0165",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200165.mp4",
+     "season": 1
+    },
+    {
+     "n": 16,
+     "t": "One Piece Latino 0166",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200166.mp4",
+     "season": 1
+    },
+    {
+     "n": 17,
+     "t": "One Piece Latino 0167",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200167.mp4",
+     "season": 1
+    },
+    {
+     "n": 18,
+     "t": "One Piece Latino 0168",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200168.mp4",
+     "season": 1
+    },
+    {
+     "n": 19,
+     "t": "One Piece Latino 0169",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200169.mp4",
+     "season": 1
+    },
+    {
+     "n": 20,
+     "t": "One Piece Latino 0170",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200170.mp4",
+     "season": 1
+    },
+    {
+     "n": 21,
+     "t": "One Piece Latino 0171",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200171.mp4",
+     "season": 1
+    },
+    {
+     "n": 22,
+     "t": "One Piece Latino 0172",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200172.mp4",
+     "season": 1
+    },
+    {
+     "n": 23,
+     "t": "One Piece Latino 0173",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200173.mp4",
+     "season": 1
+    },
+    {
+     "n": 24,
+     "t": "One Piece Latino 0174",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200174.mp4",
+     "season": 1
+    },
+    {
+     "n": 25,
+     "t": "One Piece Latino 0175",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200175.mp4",
+     "season": 1
+    },
+    {
+     "n": 26,
+     "t": "One Piece Latino 0176",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200176.mp4",
+     "season": 1
+    },
+    {
+     "n": 27,
+     "t": "One Piece Latino 0177",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200177.mp4",
+     "season": 1
+    },
+    {
+     "n": 28,
+     "t": "One Piece Latino 0178",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200178.mp4",
+     "season": 1
+    },
+    {
+     "n": 29,
+     "t": "One Piece Latino 0179",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200179.mp4",
+     "season": 1
+    },
+    {
+     "n": 30,
+     "t": "One Piece Latino 0180 ia",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200180.ia.mp4",
+     "season": 1
+    },
+    {
+     "n": 31,
+     "t": "One Piece Latino 0181 ia",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200181.ia.mp4",
+     "season": 1
+    },
+    {
+     "n": 32,
+     "t": "One Piece Latino 0182",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200182.mp4",
+     "season": 1
+    },
+    {
+     "n": 33,
+     "t": "One Piece Latino 0183",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200183.mp4",
+     "season": 1
+    },
+    {
+     "n": 34,
+     "t": "One Piece Latino 0184",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200184.mp4",
+     "season": 1
+    },
+    {
+     "n": 35,
+     "t": "One Piece Latino 0185",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200185.mp4",
+     "season": 1
+    },
+    {
+     "n": 36,
+     "t": "One Piece Latino 0186",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200186.mp4",
+     "season": 1
+    },
+    {
+     "n": 37,
+     "t": "One Piece Latino 0187",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200187.mp4",
+     "season": 1
+    },
+    {
+     "n": 38,
+     "t": "One Piece Latino 0188",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200188.mp4",
+     "season": 1
+    },
+    {
+     "n": 39,
+     "t": "One Piece Latino 0189 ia",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200189.ia.mp4",
+     "season": 1
+    },
+    {
+     "n": 40,
+     "t": "One Piece Latino 0190",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200190.mp4",
+     "season": 1
+    },
+    {
+     "n": 41,
+     "t": "One Piece Latino 0191",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200191.mp4",
+     "season": 1
+    },
+    {
+     "n": 42,
+     "t": "One Piece Latino 0192",
+     "url": "https://archive.org/download/one-piece-latino-0152/One%20Piece%20Latino%200192.mp4",
+     "season": 1
+    },
+    {
+     "n": 43,
+     "t": "One piece Latino 264",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20264.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 44,
+     "t": "One piece Latino 265",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20265.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 45,
+     "t": "One piece Latino 266",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20266.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 46,
+     "t": "One piece Latino 267",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20267.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 47,
+     "t": "One piece Latino 268",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20268.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 48,
+     "t": "One piece Latino 269",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20269.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 49,
+     "t": "One piece Latino 270",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20270.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 50,
+     "t": "One piece Latino 271",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20271.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 51,
+     "t": "One piece Latino 272",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20272.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 52,
+     "t": "One piece Latino 273",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20273.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 53,
+     "t": "One piece Latino 274",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20274.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 54,
+     "t": "One piece Latino 275",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20275.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 55,
+     "t": "One piece Latino 276",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20276.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 56,
+     "t": "One piece Latino 277",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20277.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 57,
+     "t": "One piece Latino 278",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20278.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 58,
+     "t": "One piece Latino 279",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20279.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 59,
+     "t": "One piece Latino 280",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20280.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 60,
+     "t": "One piece Latino 281",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20281.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 61,
+     "t": "One piece Latino 282",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20282.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 62,
+     "t": "One piece Latino 283",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20283.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 63,
+     "t": "One piece Latino 284",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20284.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 64,
+     "t": "One piece Latino 285",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20285.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 65,
+     "t": "One piece Latino 286",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20286.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 66,
+     "t": "One piece Latino 287",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20287.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 67,
+     "t": "One piece Latino 288",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20288.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 68,
+     "t": "One piece Latino 289",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20289.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 69,
+     "t": "One piece Latino 290",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20290.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 70,
+     "t": "One piece Latino 291",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20291.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 71,
+     "t": "One piece Latino 292",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20292.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 72,
+     "t": "One piece Latino 293",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20293.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 73,
+     "t": "One piece Latino 294",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20294.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 74,
+     "t": "One piece Latino 295",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20295.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 75,
+     "t": "One piece Latino 296",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20296.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 76,
+     "t": "One piece Latino 297",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20297.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 77,
+     "t": "One piece Latino 298",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20298.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 78,
+     "t": "One piece Latino 299",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20299.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 79,
+     "t": "One piece Latino 300",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20300.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 80,
+     "t": "One piece Latino 301",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20301.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 81,
+     "t": "One piece Latino 302",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20302.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 82,
+     "t": "One piece Latino 303",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20303.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 83,
+     "t": "One piece Latino 304",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20304.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 84,
+     "t": "One piece Latino 305",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20305.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 85,
+     "t": "One piece Latino 306",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20306.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 86,
+     "t": "One piece Latino 307",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20307.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 87,
+     "t": "One piece Latino 308",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20308.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 88,
+     "t": "One piece Latino 309",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20309.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 89,
+     "t": "One piece Latino 310",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20310.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 90,
+     "t": "One piece Latino 311",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20311.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 91,
+     "t": "One piece Latino 312",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20312.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 92,
+     "t": "One piece Latino 313",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20313.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 93,
+     "t": "One piece Latino 314",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20314.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 94,
+     "t": "One piece Latino 315",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20315.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 95,
+     "t": "One piece Latino 316",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20316.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 96,
+     "t": "One piece Latino 317",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20317.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 97,
+     "t": "One piece Latino 318",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20318.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 98,
+     "t": "One piece Latino 319",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20319.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 99,
+     "t": "One piece Latino 320",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20320.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 100,
+     "t": "One piece Latino 321",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20321.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 101,
+     "t": "One piece Latino 323",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20323.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 102,
+     "t": "One piece Latino 324",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20324.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    },
+    {
+     "n": 103,
+     "t": "One piece Latino 325",
+     "url": "https://archive.org/download/one-piece-latino-264/One%20piece%20Latino%20325.mp4",
+     "season": 2,
+     "srcSeason": "ia-one-piece-latino-264"
+    }
+   ]
+  },
+  {
+   "id": "ia-nanatsu-no-taizai-temporada-3-latino",
+   "t": "The Seven Deadly Sins",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20789-Ma5ouSYPkru9.jpg",
+   "tags": [],
+   "seasons": {
+    "1": "3 Temporada",
+    "2": "4 Temporada"
+   },
+   "order": 13,
+   "clsManual": true,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "NNT T3-01 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-01%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 2,
+     "t": "NNT T3-02 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-02%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 3,
+     "t": "NNT T3-03 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-03%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 4,
+     "t": "NNT T3-04 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-04%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 5,
+     "t": "NNT T3-05 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-05%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 6,
+     "t": "NNT T3-06 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-06%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 7,
+     "t": "NNT T3-07 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-07%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 8,
+     "t": "NNT T3-08 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-08%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 9,
+     "t": "NNT T3-09 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-09%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 10,
+     "t": "NNT T3-10 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-10%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 11,
+     "t": "NNT T3-11 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-11%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 12,
+     "t": "NNT T3-12 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-12%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 13,
+     "t": "NNT T3-13 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-13%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 14,
+     "t": "NNT T3-14 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-14%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 15,
+     "t": "NNT T3-15 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-15%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 16,
+     "t": "NNT T3-16 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-16%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 17,
+     "t": "NNT T3-17 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-17%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 18,
+     "t": "NNT T3-18 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-18%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 19,
+     "t": "NNT T3-19 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-19%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 20,
+     "t": "NNT T3-20 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-20%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 21,
+     "t": "NNT T3-21 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-21%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 22,
+     "t": "NNT T3-22 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-22%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 23,
+     "t": "NNT T3-23 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-23%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 24,
+     "t": "NNT T3-24 BY PerezosoPro",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-3-latino/NNT%20T3-24%20BY%20PerezosoPro.mp4",
+     "season": 1
+    },
+    {
+     "n": 25,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 1 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%201.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 26,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 2 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%202.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 27,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 3 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%203.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 28,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 4 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%204.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 29,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 5 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%205.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 30,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 6 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%206.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 31,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 7 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%207.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 32,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 8 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%208.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 33,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 9 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%209.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 34,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 10 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2010.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 35,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 11 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2011.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 36,
+     "t": "temporada 4/Nanatsu no taizai T4 cap 12 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20taizai%20T4%20cap%2012.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 37,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 13 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2013.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 38,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 14 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2014.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 39,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 15 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2015.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 40,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 16 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2016.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 41,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 17 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2017.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 42,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 18 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2018.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 43,
+     "t": "temporada 4/Nanatsu no Taizai T4 sub español cap 19 ia",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20T4%20sub%20espa%C3%B1ol%20cap%2019.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 44,
+     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 20 Sub Es",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2020%20Sub%20Espa%C3%B1ol%20Completo%20(SUBFIX%20).mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    },
+    {
+     "n": 45,
+     "t": "temporada 4/Nanatsu no Taizai Temporada 4 Capitulo 21 en Sub",
+     "url": "https://archive.org/download/nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix/temporada%204/Nanatsu%20no%20Taizai%20Temporada%204%20Capitulo%2021%20en%20Sub-Espa%C3%B1ol%20%20Recuerden%20esta%20trasmisi%C3%B3n%20esta%20patrocinada%20por%20Andr%C3%A9%20Molina%202%20vayan%20a%20suscribirse%20https-__www.youtube.com_channel_UC12sn2kPlNJktdsqsQtuF1g-2.ia.mp4",
+     "season": 2,
+     "srcSeason": "ia-nanatsu-no-taizai-temporada-4-capitulo-20-sub-espanol-completo-subfix"
+    }
+   ]
+  },
+  {
    "id": "ia-voltron-defensor-legendario-temporada-1-a-8-espanol-latino",
    "t": "Voltron",
    "jp": "📺",
@@ -11264,7 +11953,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/fjyVD5gaXAPWbrTGaeEg7wAaz2y.jpg",
    "tags": [],
-   "order": 55,
+   "order": 14,
    "episodes": [
     {
      "n": 1,
@@ -11658,7 +12347,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx45-DEFgZRCxiGmF.png",
    "tags": [],
-   "order": 3,
+   "order": 15,
    "episodes": [
     {
      "n": 1,
@@ -12172,7 +12861,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21355-wRVUrGxpvIQQ.jpg",
    "tags": [],
-   "order": 74,
+   "order": 16,
    "clsManual": true,
    "episodes": [
     {
@@ -12312,7 +13001,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
    "tags": [],
-   "order": 4,
+   "order": 17,
    "episodes": [
     {
      "n": 1,
@@ -12397,7 +13086,7 @@
     "4": "TEMPORADA 3",
     "5": "TEMPORADA 4"
    },
-   "order": 5,
+   "order": 18,
    "episodes": [
     {
      "n": 1,
@@ -12747,7 +13436,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/yQ4uC13IYVerbxMMXeSogSQUkOT.jpg",
    "tags": [],
-   "order": 6,
+   "order": 19,
    "episodes": [
     {
      "n": 1,
@@ -12766,7 +13455,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/bVK4CPluBY9LFkzCAwhG5Fs04HE.jpg",
    "tags": [],
-   "order": 16,
+   "order": 20,
    "episodes": [
     {
      "n": 1,
@@ -12785,7 +13474,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/oZgWtVMiq0IuuvmArTtLzWKIra3.jpg",
    "tags": [],
-   "order": 7,
+   "order": 21,
    "episodes": [
     {
      "n": 1,
@@ -12804,7 +13493,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/sYHRcd9p3rV3t3w8MHGaA7wdIBl.jpg",
    "tags": [],
-   "order": 9,
+   "order": 22,
    "episodes": [
     {
      "n": 1,
@@ -12823,7 +13512,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/6cn59ln0KEG990ofoed1MUgsYGB.jpg",
    "tags": [],
-   "order": 10,
+   "order": 23,
    "episodes": [
     {
      "n": 1,
@@ -12842,7 +13531,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/k669nOalwu7NKhW7aWNJKN7Nxvi.jpg",
    "tags": [],
-   "order": 17,
+   "order": 24,
    "episodes": [
     {
      "n": 1,
@@ -12861,7 +13550,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/ydExhIrbFvPedN9tSIHzzniU1Dd.jpg",
    "tags": [],
-   "order": 18,
+   "order": 25,
    "episodes": [
     {
      "n": 1,
@@ -12880,7 +13569,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/n52k2FD0ub5I3goqnj5qr98ROk4.jpg",
    "tags": [],
-   "order": 19,
+   "order": 26,
    "episodes": [
     {
      "n": 1,
@@ -12899,7 +13588,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/iLcCVKuePGh7mgUndk59VUyctKJ.jpg",
    "tags": [],
-   "order": 20,
+   "order": 27,
    "episodes": [
     {
      "n": 1,
@@ -12918,7 +13607,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/hC5FyR149ZOnXUuXdIHQN5LAozW.jpg",
    "tags": [],
-   "order": 21,
+   "order": 28,
    "episodes": [
     {
      "n": 1,
@@ -12937,7 +13626,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/aJCqUjcUgjqS7bxLpgH0C7pe3WW.jpg",
    "tags": [],
-   "order": 22,
+   "order": 29,
    "episodes": [
     {
      "n": 1,
@@ -12956,7 +13645,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/sHMeoaJaPbGIBYxvcydTvzBNgKU.jpg",
    "tags": [],
-   "order": 48,
+   "order": 30,
    "episodes": [
     {
      "n": 1,
@@ -13030,7 +13719,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/jd65E9H3uGOAY1esFlXCnM3Swki.jpg",
    "tags": [],
-   "order": 23,
+   "order": 31,
    "episodes": [
     {
      "n": 1,
@@ -13049,7 +13738,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/u9Exh1SL3zqmkA1CZF8S7V3pAti.jpg",
    "tags": [],
-   "order": 24,
+   "order": 32,
    "episodes": [
     {
      "n": 1,
@@ -13068,7 +13757,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/lIUUOu59O7lmt2NxMATiB4mgULc.jpg",
    "tags": [],
-   "order": 25,
+   "order": 33,
    "episodes": [
     {
      "n": 1,
@@ -13087,7 +13776,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/n2enco3SU6uaV7jlidjOvEkumBg.jpg",
    "tags": [],
-   "order": 26,
+   "order": 34,
    "episodes": [
     {
      "n": 1,
@@ -13106,7 +13795,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/wnBEdWq5gplaAgTmYFg4cq89mWi.jpg",
    "tags": [],
-   "order": 27,
+   "order": 35,
    "episodes": [
     {
      "n": 1,
@@ -13125,7 +13814,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/qYiZOCXkOYtYfolUUdJKoZ8xPsL.jpg",
    "tags": [],
-   "order": 28,
+   "order": 36,
    "episodes": [
     {
      "n": 1,
@@ -13144,7 +13833,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/kwuQPxbJPfjU0TKXcVpdzJ0RvJ5.jpg",
    "tags": [],
-   "order": 29,
+   "order": 37,
    "episodes": [
     {
      "n": 1,
@@ -13163,7 +13852,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/r9rCLrojxwXm0meuVWQwCf3bqnz.jpg",
    "tags": [],
-   "order": 30,
+   "order": 38,
    "episodes": [
     {
      "n": 1,
@@ -13182,7 +13871,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/3mLNXA98vI0HWeLCz0bMAPgUDfJ.jpg",
    "tags": [],
-   "order": 31,
+   "order": 39,
    "episodes": [
     {
      "n": 1,
@@ -13201,7 +13890,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/3ZxG3dBC1XTAnI0akuwVdyt8Ze1.jpg",
    "tags": [],
-   "order": 32,
+   "order": 40,
    "episodes": [
     {
      "n": 1,
@@ -13220,7 +13909,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/97962-3rBcawJt63sG.jpg",
    "tags": [],
-   "order": 33,
+   "order": 41,
    "episodes": [
     {
      "n": 1,
@@ -13239,7 +13928,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/fgrVbga0oZQNeljO6dyoWknjOzJ.jpg",
    "tags": [],
-   "order": 34,
+   "order": 42,
    "episodes": [
     {
      "n": 1,
@@ -13258,7 +13947,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/voPAzJFyopCnLEwaBWpoX8uDvGI.jpg",
    "tags": [],
-   "order": 37,
+   "order": 43,
    "episodes": [
     {
      "n": 1,
@@ -13277,7 +13966,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/jeFZn9KpUnTBBQPaUCHxyCtYA8t.jpg",
    "tags": [],
-   "order": 38,
+   "order": 44,
    "episodes": [
     {
      "n": 1,
@@ -13296,7 +13985,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/eFIbnDnBnIi1qnz15UUiMFmjRmL.jpg",
    "tags": [],
-   "order": 39,
+   "order": 45,
    "episodes": [
     {
      "n": 1,
@@ -13315,7 +14004,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/tHvNX0SSyCW9MyPeWK5myc9lTLS.jpg",
    "tags": [],
-   "order": 40,
+   "order": 46,
    "episodes": [
     {
      "n": 1,
@@ -13334,7 +14023,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/iPpcZUkcUrjSrYbmInPL17YfiLv.jpg",
    "tags": [],
-   "order": 41,
+   "order": 47,
    "clsManual": true,
    "episodes": [
     {
@@ -13418,7 +14107,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/l9rucgmMIZToqamNHez8RhAADOy.jpg",
    "tags": [],
-   "order": 42,
+   "order": 48,
    "clsManual": true,
    "episodes": [
     {
@@ -13488,7 +14177,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/NpHctZgDk1QvwQWpR4gZaqZIdP.jpg",
    "tags": [],
-   "order": 43,
+   "order": 49,
    "episodes": [
     {
      "n": 1,
@@ -13622,7 +14311,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/aiKnZ7KNcpWBjFHudImi9RB3hqY.jpg",
    "tags": [],
-   "order": 44,
+   "order": 50,
    "episodes": [
     {
      "n": 1,
@@ -13641,7 +14330,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/9uvzmyPGoNRvRQIaNBFAegavkHr.jpg",
    "tags": [],
-   "order": 45,
+   "order": 51,
    "episodes": [
     {
      "n": 1,
@@ -13660,7 +14349,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/lfGCjbfUK7isQ1tBBGu1dyZOM2q.jpg",
    "tags": [],
-   "order": 47,
+   "order": 52,
    "episodes": [
     {
      "n": 1,
@@ -14309,7 +14998,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/x0CwUdcWWQgOb9tO8cW6jxyo9Zx.jpg",
    "tags": [],
-   "order": 49,
+   "order": 53,
    "clsManual": true,
    "episodes": [
     {
@@ -14349,7 +15038,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/hTzw4ectHlJw1gZciFNsemTPARM.jpg",
    "tags": [],
-   "order": 50,
+   "order": 54,
    "episodes": [
     {
      "n": 1,
@@ -14368,7 +15057,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/c3BPypoaQ10cMVyMuLmf7OiTM3T.jpg",
    "tags": [],
-   "order": 51,
+   "order": 55,
    "episodes": [
     {
      "n": 1,
@@ -14387,7 +15076,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/fJCmpFnGeS9pjzR9QAmPxGWpGYa.jpg",
    "tags": [],
-   "order": 52,
+   "order": 56,
    "episodes": [
     {
      "n": 1,
@@ -14406,7 +15095,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/bJlKzr5v8Oaxeog1xpBsMQXzSlA.jpg",
    "tags": [],
-   "order": 46,
+   "order": 57,
    "episodes": [
     {
      "n": 1,
@@ -14425,7 +15114,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/fJdnp5OO2wh07tdy6noACNyaqMJ.jpg",
    "tags": [],
-   "order": 12,
+   "order": 58,
    "episodes": [
     {
      "n": 1,
@@ -14444,7 +15133,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/dbhDKp4MzOZKNBVf2PYHutoWvDj.jpg",
    "tags": [],
-   "order": 13,
+   "order": 59,
    "episodes": [
     {
      "n": 1,
@@ -14463,7 +15152,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/rEkIrwuMOyrplmo0dtx3CqpzQmX.jpg",
    "tags": [],
-   "order": 14,
+   "order": 60,
    "episodes": [
     {
      "n": 1,
@@ -14482,7 +15171,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/9jbxvKB937BWeYAmMKZTqPxBLsk.jpg",
    "tags": [],
-   "order": 15,
+   "order": 61,
    "episodes": [
     {
      "n": 1,
@@ -14509,7 +15198,7 @@
     "5": "Parte 5 — Devuélvanme A Mi Gohan  [1998]",
     "6": "Parte 6 — ¡Fusión!"
    },
-   "order": 35,
+   "order": 62,
    "episodes": [
     {
      "n": 1,
@@ -14558,33 +15247,12 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/30xtcdMdSHROk89iwNNxlC8DVoP.jpg",
    "tags": [],
-   "order": 36,
+   "order": 63,
    "episodes": [
     {
      "n": 1,
      "t": "Pokémon El Regreso De Mewtwo Película Completa En Español La",
      "url": "https://archive.org/download/pokemon-el-regreso-de-mewtwo-pelicula-completa-en-espanol-latino/Pok%C3%A9mon%20El%20Regreso%20de%20Mewtwo%20Pel%C3%ADcula%20Completa%20en%20Espa%C3%B1ol.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd",
-   "t": "Dragon Ball Heroes  (1 Al 20)",
-   "jp": "🎬",
-   "tag": "Cine IA · Español",
-   "g": 1,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b102352-iTBUsIV9x7KH.jpg",
-   "tags": [],
-   "order": 8,
-   "clsManual": true,
-   "hentai": false,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Dragon Ball Heroes Capítulos 1 Al 20 En Español Completos Fu",
-     "url": "https://archive.org/download/dragon-ball-heroes-capitulos-1-al-20-en-espanol-completos-full-hd/Dragon%20Ball%20Heroes%20Cap%C3%ADtulos%20%201%20al%2020%20En%20Espa%C3%B1ol%20Completos%20full%20HD.ia.mp4"
     }
    ]
   },
@@ -14598,7 +15266,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/sakura-card-captor-en-espanol-latino",
    "tags": [],
-   "order": 56,
+   "order": 64,
    "clsManual": true,
    "episodes": [
     {
@@ -14963,7 +15631,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/2Ir8QfX6pbRhR4oN5XiV0xhD6vV.jpg",
    "tags": [],
-   "order": 57,
+   "order": 65,
    "episodes": [
     {
      "n": 1,
@@ -15241,7 +15909,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/2OFwsFhAobczgJWnVdwd9oZAF2N.jpg",
    "tags": [],
-   "order": 58,
+   "order": 66,
    "episodes": [
     {
      "n": 1,
@@ -15320,7 +15988,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/como-me-converti-en-superheroe",
    "tags": [],
-   "order": 59,
+   "order": 67,
    "episodes": [
     {
      "n": 1,
@@ -16114,7 +16782,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/dororo-capitulo-23-sub-espanol",
    "tags": [],
-   "order": 60,
+   "order": 68,
    "episodes": [
     {
      "n": 1,
@@ -16248,7 +16916,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/tpo-neon-genesis-evangelion-05-trapo-2019-universo-anime",
    "tags": [],
-   "order": 61,
+   "order": 69,
    "episodes": [
     {
      "n": 1,
@@ -16394,7 +17062,7 @@
    "tags": [
     "hentai"
    ],
-   "order": 62,
+   "order": 70,
    "episodes": [
     {
      "n": 1,
@@ -16413,7 +17081,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b3051-OWrA0ybwgNgV.jpg",
    "tags": [],
-   "order": 63,
+   "order": 71,
    "episodes": [
     {
      "n": 1,
@@ -16677,7 +17345,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/serial-experiments-lain-ep-12",
    "tags": [],
-   "order": 64,
+   "order": 72,
    "episodes": [
     {
      "n": 1,
@@ -16756,7 +17424,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/samurai-troopers-e-16",
    "tags": [],
-   "order": 65,
+   "order": 73,
    "episodes": [
     {
      "n": 1,
@@ -16965,7 +17633,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/zombieland-saga-yumeginga-paradise",
    "tags": [],
-   "order": 66,
+   "order": 74,
    "episodes": [
     {
      "n": 1,
@@ -17109,7 +17777,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/mythical-detective-loki-lat",
    "tags": [],
-   "order": 67,
+   "order": 75,
    "episodes": [
     {
      "n": 1,
@@ -17253,7 +17921,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/8G4MSlG8bSWXATU95o1hqsFxZkc.jpg",
    "tags": [],
-   "order": 75,
+   "order": 76,
    "episodes": [
     {
      "n": 1,
@@ -17272,7 +17940,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/3UnmNPTDMOThd8Oi9L2pEXqfO0D.jpg",
    "tags": [],
-   "order": 76,
+   "order": 77,
    "episodes": [
     {
      "n": 1,
@@ -17356,7 +18024,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2800-YbzQOTWszvst.png",
    "tags": [],
-   "order": 77,
+   "order": 78,
    "episodes": [
     {
      "n": 1,
@@ -17945,7 +18613,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx210-qgahLDYT0t9b.png",
    "tags": [],
-   "order": 78,
+   "order": 79,
    "episodes": [
     {
      "n": 1,
@@ -18764,7 +19432,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/3ROiiGuYqXkm1CKX1h3KtmSvI8z.jpg",
    "tags": [],
-   "order": 79,
+   "order": 80,
    "episodes": [
     {
      "n": 1,
@@ -19626,7 +20294,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101302-7L0lcwYeFQQM.jpg",
    "tags": [],
-   "order": 11,
+   "order": 83,
    "clsManual": true,
    "hentai": false,
    "episodes": [
@@ -19651,7 +20319,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/1YjDHBC4v2O7IQDKYAiM8fOxzf3.jpg",
    "tags": [],
-   "order": 83,
+   "order": 84,
    "episodes": [
     {
      "n": 1,
@@ -19671,7 +20339,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/uEt3l1c3KvT5jPkwntKN3PFYkTV.jpg",
    "tags": [],
-   "order": 84,
+   "order": 85,
    "episodes": [
     {
      "n": 1,
@@ -19690,7 +20358,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx6443-BIUWdiztRIFb.jpg",
    "tags": [],
-   "order": 85,
+   "order": 86,
    "episodes": [
     {
      "n": 1,
@@ -19709,7 +20377,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9322-9drT21TnFgjm.jpg",
    "tags": [],
-   "order": 86,
+   "order": 87,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -19750,7 +20418,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5684-jrSyAbr10ALo.jpg",
    "tags": [],
-   "order": 87,
+   "order": 88,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -20026,7 +20694,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/aWwGofN99kd8g1MUza39sI72upj.jpg",
    "tags": [],
-   "order": 88,
+   "order": 89,
    "episodes": [
     {
      "n": 1,
@@ -20045,7 +20713,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9893-vqhj2M6aR3Bv.jpg",
    "tags": [],
-   "order": 89,
+   "order": 90,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -20316,7 +20984,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/edLTBJfrOBEk32cLidjFuWCb1cp.jpg",
    "tags": [],
-   "order": 90,
+   "order": 91,
    "episodes": [
     {
      "n": 1,
@@ -20335,7 +21003,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/1t4cy5vPAkkmfclX9MEMcvAj4dL.jpg",
    "tags": [],
-   "order": 91,
+   "order": 92,
    "episodes": [
     {
      "n": 1,
@@ -20354,7 +21022,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/p8EARnEw8KPZzlZg3vkseYVMczu.jpg",
    "tags": [],
-   "order": 92,
+   "order": 93,
    "episodes": [
     {
      "n": 1,
@@ -20373,7 +21041,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/tCw5ZR5RkmAtCztmkP8dYh1nkoX.jpg",
    "tags": [],
-   "order": 93,
+   "order": 94,
    "episodes": [
     {
      "n": 1,
@@ -20392,7 +21060,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/yeB3UCvjRsKTuDs6iTS7u9HYpJ2.jpg",
    "tags": [],
-   "order": 94,
+   "order": 95,
    "episodes": [
     {
      "n": 1,
@@ -20411,7 +21079,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/oH7XpfTSKZ2Uwn30yHnkBsnfVFQ.jpg",
    "tags": [],
-   "order": 95,
+   "order": 96,
    "episodes": [
     {
      "n": 1,
@@ -20430,7 +21098,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/cUZop9T440Bx25P8Ptc0qXkLYEa.jpg",
    "tags": [],
-   "order": 96,
+   "order": 97,
    "episodes": [
     {
      "n": 1,
@@ -20449,7 +21117,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/j61GLMo7nWcNwHneL0lhT4NvgCH.jpg",
    "tags": [],
-   "order": 97,
+   "order": 98,
    "episodes": [
     {
      "n": 1,
@@ -20468,7 +21136,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/hGQnljXpDGI429SC39LohaQBHhf.jpg",
    "tags": [],
-   "order": 98,
+   "order": 99,
    "episodes": [
     {
      "n": 1,
@@ -20487,7 +21155,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/s7eCmdLxYnMCEa9Au2N78CRSbkC.jpg",
    "tags": [],
-   "order": 99,
+   "order": 100,
    "episodes": [
     {
      "n": 1,
@@ -20506,7 +21174,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/a4QuZ6oW71zCpwVW08u3fHBxc6E.jpg",
    "tags": [],
-   "order": 100,
+   "order": 101,
    "episodes": [
     {
      "n": 1,
@@ -20525,7 +21193,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/r8SzZKHfF1lzu9SpXk1afmaviC0.jpg",
    "tags": [],
-   "order": 101,
+   "order": 102,
    "episodes": [
     {
      "n": 1,
@@ -20544,7 +21212,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/9LjBVBcRM0VW2yywXu5p6bqX965.jpg",
    "tags": [],
-   "order": 102,
+   "order": 103,
    "episodes": [
     {
      "n": 1,
@@ -20563,7 +21231,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/xrTbwqIwy3fJRWo289JUq75oYWX.jpg",
    "tags": [],
-   "order": 103,
+   "order": 104,
    "episodes": [
     {
      "n": 1,
@@ -20582,7 +21250,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/a4QuZ6oW71zCpwVW08u3fHBxc6E.jpg",
    "tags": [],
-   "order": 104,
+   "order": 105,
    "episodes": [
     {
      "n": 1,
@@ -20601,7 +21269,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/vWa1DEwV5RbAOiuAm0WNXD3Aydw.jpg",
    "tags": [],
-   "order": 105,
+   "order": 106,
    "episodes": [
     {
      "n": 1,
@@ -20620,7 +21288,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/t9CbcNU7zsBfmjYLccrv6TLccve.jpg",
    "tags": [],
-   "order": 108,
+   "order": 107,
    "episodes": [
     {
      "n": 1,
@@ -20639,7 +21307,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/owk40tn1sFJmC7bhamEpmhdZPKa.jpg",
    "tags": [],
-   "order": 106,
+   "order": 108,
    "episodes": [
     {
      "n": 1,
@@ -20658,7 +21326,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/yamBr3ihlWFF9jh3oOODSvjDY2e.jpg",
    "tags": [],
-   "order": 107,
+   "order": 109,
    "episodes": [
     {
      "n": 1,
@@ -20679,7 +21347,7 @@
    "tags": [
     "hentai"
    ],
-   "order": 109,
+   "order": 110,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -20700,7 +21368,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx140960-Kb6R5nYQfjmP.jpg",
    "tags": [],
-   "order": 110,
+   "order": 111,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -20778,7 +21446,7 @@
    "tags": [
     "hentai"
    ],
-   "order": 111,
+   "order": 112,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -20824,7 +21492,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx104451-voSuczUrX6kk.jpg",
    "tags": [],
-   "order": 112,
+   "order": 113,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -20870,7 +21538,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b421-tRLEEXt9asEv.jpg",
    "tags": [],
-   "order": 113,
+   "order": 114,
    "episodes": [
     {
      "n": 1,
@@ -20968,7 +21636,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/8uYxx23KyDnbDkA3eQSNECVeOiS.jpg",
    "tags": [],
-   "order": 114,
+   "order": 116,
    "episodes": [
     {
      "n": 1,
@@ -20987,7 +21655,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/oy6R3y26TWo1Tp5T7XIxenN2zWV.jpg",
    "tags": [],
-   "order": 116,
+   "order": 117,
    "episodes": [
     {
      "n": 1,
@@ -21006,7 +21674,7 @@
    "anime": true,
    "poster": "https://archive.org/services/img/Martin-Mistery-Latino",
    "tags": [],
-   "order": 117,
+   "order": 118,
    "episodes": [
     {
      "n": 1,
@@ -21339,7 +22007,7 @@
     "7": "Temporada 7 — Isekai Suicide Squad 05",
     "8": "Temporada 8 — Isekai Suicide Squad 06"
    },
-   "order": 201,
+   "order": 119,
    "clsManual": true,
    "hentai": false,
    "episodes": [
@@ -21397,7 +22065,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/40FuQAiHjCvh9fYFigGAVWJ6Czu.jpg",
    "tags": [],
-   "order": 195,
+   "order": 120,
    "episodes": [
     {
      "n": 1,
@@ -21416,7 +22084,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/cBBkrylShdQryKKxaPNBYS5ssMy.jpg",
    "tags": [],
-   "order": 196,
+   "order": 121,
    "episodes": [
     {
      "n": 1,
@@ -21435,7 +22103,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/p9U8lqwRDLhrU9TnLQylfdBmeNl.jpg",
    "tags": [],
-   "order": 197,
+   "order": 122,
    "episodes": [
     {
      "n": 1,
@@ -21454,7 +22122,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/zTx88as3jxuCyoaWE5Om8RXddxB.jpg",
    "tags": [],
-   "order": 198,
+   "order": 123,
    "episodes": [
     {
      "n": 1,
@@ -21588,7 +22256,7 @@
    "anime": false,
    "poster": "https://archive.org/services/img/casa-de-mutantes-temporada-1",
    "tags": [],
-   "order": 199,
+   "order": 124,
    "episodes": [
     {
      "n": 1,
@@ -21792,7 +22460,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/hb2P9SBStcrKTVamH8nkHj5PtZc.jpg",
    "tags": [],
-   "order": 200,
+   "order": 125,
    "episodes": [
     {
      "n": 1,
@@ -21811,7 +22479,7 @@
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166710-3G2croXhaCOm.jpg",
    "tags": [],
-   "order": 202,
+   "order": 126,
    "episodes": [
     {
      "n": 1,
@@ -21829,7 +22497,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/vjPt8HYymLOkRv82x9JwVO7M2a5.jpg",
    "tags": [],
-   "order": 118,
+   "order": 127,
    "episodes": [
     {
      "n": 1,
@@ -21848,7 +22516,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/5fx9WM0skOfLH3lFsfSMp53Gleh.jpg",
    "tags": [],
-   "order": 119,
+   "order": 128,
    "episodes": [
     {
      "n": 1,
@@ -21867,7 +22535,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/d1QKiYtceF3GDtxvTFXFAqwwah9.jpg",
    "tags": [],
-   "order": 120,
+   "order": 129,
    "episodes": [
     {
      "n": 1,
@@ -21886,7 +22554,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21163-TAvE0kPtz5JQ.jpg",
    "tags": [],
-   "order": 121,
+   "order": 130,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -21912,7 +22580,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b20933-Ah6Z7ZlMNGTv.jpg",
    "tags": [],
-   "order": 122,
+   "order": 131,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -21938,7 +22606,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21217-bVtttMLiK1s1.jpg",
    "tags": [],
-   "order": 123,
+   "order": 132,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -21964,7 +22632,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21278-OJNki332Tluv.png",
    "tags": [],
-   "order": 124,
+   "order": 133,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -21990,7 +22658,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21159-ei9cQ2EUYMIf.jpg",
    "tags": [],
-   "order": 125,
+   "order": 134,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22016,7 +22684,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21617-ZtqzLoYJpgEC.png",
    "tags": [],
-   "order": 126,
+   "order": 135,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22042,7 +22710,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/17747.jpg",
    "tags": [],
-   "order": 127,
+   "order": 136,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22068,7 +22736,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21062-Y5CxBvbA6WbM.png",
    "tags": [],
-   "order": 128,
+   "order": 137,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22109,7 +22777,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx142116-9pjiwj1hc1Rm.jpg",
    "tags": [],
-   "order": 129,
+   "order": 138,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22135,7 +22803,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21073-yyLwtgQPoIKQ.jpg",
    "tags": [],
-   "order": 130,
+   "order": 139,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22161,7 +22829,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21105-VjjffpIeSlSL.jpg",
    "tags": [],
-   "order": 131,
+   "order": 140,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22187,7 +22855,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx19051-ljz7tY8C5MSp.jpg",
    "tags": [],
-   "order": 132,
+   "order": 141,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22213,7 +22881,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx212617-hHf09tkVkiGz.png",
    "tags": [],
-   "order": 133,
+   "order": 142,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22239,7 +22907,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21067-iqPTvtqwnCxA.jpg",
    "tags": [],
-   "order": 134,
+   "order": 143,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22265,7 +22933,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/19569.jpg",
    "tags": [],
-   "order": 135,
+   "order": 144,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22291,7 +22959,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21111-GsX3EYggAsPs.jpg",
    "tags": [],
-   "order": 136,
+   "order": 145,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22317,7 +22985,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/17745-IvUOtgzZJ9ee.png",
    "tags": [],
-   "order": 137,
+   "order": 146,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22353,7 +23021,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21029-Daq9Vg9w7Dqe.jpg",
    "tags": [],
-   "order": 138,
+   "order": 147,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22379,7 +23047,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21063-AaiDmhE1vuqy.jpg",
    "tags": [],
-   "order": 139,
+   "order": 148,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22410,7 +23078,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21074-BumDa4qtJWG5.png",
    "tags": [],
-   "order": 140,
+   "order": 149,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22436,7 +23104,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/17541-p65zLeyxjTNQ.jpg",
    "tags": [],
-   "order": 141,
+   "order": 150,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22462,7 +23130,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx17012-tsaBf7m4iad5.jpg",
    "tags": [],
-   "order": 142,
+   "order": 151,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22488,7 +23156,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/sGx6Iu1AGmUsmaj67bLBj67Jaza.jpg",
    "tags": [],
-   "order": 143,
+   "order": 152,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22509,7 +23177,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21542-sQPkPq1tj6nL.png",
    "tags": [],
-   "order": 144,
+   "order": 153,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22535,7 +23203,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21141-D7qg40g9h5P1.jpg",
    "tags": [],
-   "order": 145,
+   "order": 154,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22571,7 +23239,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21106-VakGfsE3HILf.jpg",
    "tags": [],
-   "order": 146,
+   "order": 155,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22597,7 +23265,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/17867.jpg",
    "tags": [],
-   "order": 147,
+   "order": 156,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22623,7 +23291,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx102499-AoaIK54zlm85.jpg",
    "tags": [],
-   "order": 148,
+   "order": 157,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22649,7 +23317,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21535-yauyQGAt3975.jpg",
    "tags": [],
-   "order": 149,
+   "order": 158,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22675,7 +23343,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20783-tAGqOxaFFNaO.png",
    "tags": [],
-   "order": 150,
+   "order": 159,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22711,7 +23379,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/17537-uIuoltHLDp4C.jpg",
    "tags": [],
-   "order": 151,
+   "order": 160,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22737,7 +23405,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/5455.jpg",
    "tags": [],
-   "order": 152,
+   "order": 161,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22763,7 +23431,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/19101.jpg",
    "tags": [],
-   "order": 153,
+   "order": 162,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22789,7 +23457,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21478-u6aW0K8igpCW.jpg",
    "tags": [],
-   "order": 154,
+   "order": 163,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22815,7 +23483,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/20860.jpg",
    "tags": [],
-   "order": 155,
+   "order": 164,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22846,7 +23514,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/19631.jpg",
    "tags": [],
-   "order": 156,
+   "order": 165,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22882,7 +23550,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/18693-U66vAyIfzdlH.jpg",
    "tags": [],
-   "order": 157,
+   "order": 166,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22908,7 +23576,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21524-2eA2trsRZ12o.png",
    "tags": [],
-   "order": 158,
+   "order": 167,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22934,7 +23602,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21523-sz387GNGsHuI.jpg",
    "tags": [],
-   "order": 159,
+   "order": 168,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22960,7 +23628,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21089-unfWfeIp1EiZ.jpg",
    "tags": [],
-   "order": 160,
+   "order": 169,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -22986,7 +23654,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21522-nDpsGktIO1Ww.png",
    "tags": [],
-   "order": 161,
+   "order": 170,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -23012,7 +23680,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21211-egtSZ1vP1Qaa.jpg",
    "tags": [],
-   "order": 162,
+   "order": 171,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -23038,7 +23706,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11061-y5gsT1hoHuHw.png",
    "tags": [],
-   "order": 163,
+   "order": 172,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -23794,7 +24462,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/dtTYNpOi3YfYY8Cs6OMGTBUMg16.jpg",
    "tags": [],
-   "order": 164,
+   "order": 173,
    "episodes": [
     {
      "n": 1,
@@ -23813,7 +24481,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/soZdshVi2nQpCWqQkS8qumUNNqO.jpg",
    "tags": [],
-   "order": 165,
+   "order": 174,
    "episodes": [
     {
      "n": 1,
@@ -23832,7 +24500,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/ymi9oxpJ9oaiHJtDOSO5J6ssk6Q.jpg",
    "tags": [],
-   "order": 166,
+   "order": 175,
    "episodes": [
     {
      "n": 1,
@@ -23851,7 +24519,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/yJTk4eqQd9Yo5REpFbTSOMkbSgn.jpg",
    "tags": [],
-   "order": 167,
+   "order": 176,
    "episodes": [
     {
      "n": 1,
@@ -23870,7 +24538,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/eCQ4oJn5onEjLxZ9RphpAtprriJ.jpg",
    "tags": [],
-   "order": 168,
+   "order": 177,
    "episodes": [
     {
      "n": 1,
@@ -23889,7 +24557,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/AanDSgj7uONzY3vUw7ayEXs0HxE.jpg",
    "tags": [],
-   "order": 169,
+   "order": 178,
    "episodes": [
     {
      "n": 1,
@@ -23908,7 +24576,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/5yprxs7ZyBr58RsTQJrKCVmqk8X.jpg",
    "tags": [],
-   "order": 170,
+   "order": 179,
    "episodes": [
     {
      "n": 1,
@@ -23927,7 +24595,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/ce0FZXoRKwKgjEmD7zplemMP63p.jpg",
    "tags": [],
-   "order": 171,
+   "order": 180,
    "episodes": [
     {
      "n": 1,
@@ -23946,7 +24614,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21144-tl9BRZtzIej6.jpg",
    "tags": [],
-   "order": 172,
+   "order": 181,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -23967,7 +24635,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21167-ib147IufaFB7.jpg",
    "tags": [],
-   "order": 173,
+   "order": 182,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24003,7 +24671,7 @@
    "anime": false,
    "poster": null,
    "tags": [],
-   "order": 174,
+   "order": 183,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24034,7 +24702,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21143-7WuB7twpAVVN.png",
    "tags": [],
-   "order": 175,
+   "order": 184,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24055,7 +24723,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/8110.jpg",
    "tags": [],
-   "order": 176,
+   "order": 185,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24086,7 +24754,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21146-uuvyrVWPHLuy.jpg",
    "tags": [],
-   "order": 177,
+   "order": 186,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24122,7 +24790,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21147-AiTWGYeUb1fh.png",
    "tags": [],
-   "order": 178,
+   "order": 187,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24148,7 +24816,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21615-G7m7x6R3YYvh.png",
    "tags": [],
-   "order": 179,
+   "order": 188,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24169,7 +24837,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21667-RqNP79Kou2tY.png",
    "tags": [],
-   "order": 180,
+   "order": 189,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24195,7 +24863,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21151-ADHMZ6BYEwfE.jpg",
    "tags": [],
-   "order": 181,
+   "order": 190,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24216,7 +24884,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21160-mZWpz9c1K4Sg.jpg",
    "tags": [],
-   "order": 182,
+   "order": 191,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24237,7 +24905,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21150-eJQoUz3zmmfN.jpg",
    "tags": [],
-   "order": 183,
+   "order": 192,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24263,7 +24931,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21153-ee5nMvDJmNK5.png",
    "tags": [],
-   "order": 184,
+   "order": 193,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24289,7 +24957,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/yNeYbG587BgeynMyLaT8YP2gR9P.jpg",
    "tags": [],
-   "order": 185,
+   "order": 194,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24315,7 +24983,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21282-lpfZBtEe6kjd.jpg",
    "tags": [],
-   "order": 186,
+   "order": 195,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24341,7 +25009,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21222-GxhbPz7klIFw.png",
    "tags": [],
-   "order": 187,
+   "order": 196,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24377,7 +25045,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21161-MkZP5lkADLfz.jpg",
    "tags": [],
-   "order": 188,
+   "order": 197,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24403,7 +25071,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21168-cFkOvepbgbdj.jpg",
    "tags": [],
-   "order": 189,
+   "order": 198,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24424,7 +25092,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/18525.jpg",
    "tags": [],
-   "order": 190,
+   "order": 199,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24450,7 +25118,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21527-WBGtmWqZQpfQ.png",
    "tags": [],
-   "order": 191,
+   "order": 200,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24471,7 +25139,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b21176-TrjtsY4UqtKH.png",
    "tags": [],
-   "order": 192,
+   "order": 201,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24492,7 +25160,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21419-9DgLiTJoYtDs.png",
    "tags": [],
-   "order": 193,
+   "order": 202,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24525,7 +25193,7 @@
     "4": "Temporada 4 — Isekai Suicide Squad 08",
     "5": "Temporada 5 — Isekai Suicide Squad 07"
    },
-   "order": 194,
+   "order": 203,
    "clsManual": true,
    "hentai": false,
    "episodes": [
@@ -24601,7 +25269,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/tLEaz41vKyKY7AgCTGgijLGWzbk.jpg",
    "tags": [],
-   "order": 203,
+   "order": 204,
    "episodes": [
     {
      "n": 1,
@@ -24620,7 +25288,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/oq1pGVQ2t3Cy4v7sA4LRhNjtZuJ.jpg",
    "tags": [],
-   "order": 204,
+   "order": 205,
    "episodes": [
     {
      "n": 1,
@@ -24639,7 +25307,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/97810-dMrtUmtec3Nc.jpg",
    "tags": [],
-   "order": 205,
+   "order": 206,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24660,7 +25328,7 @@
    "anime": false,
    "poster": null,
    "tags": [],
-   "order": 206,
+   "order": 207,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24686,7 +25354,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21575-0ip8PayPgTH5.jpg",
    "tags": [],
-   "order": 207,
+   "order": 208,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24722,7 +25390,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/kTvxRfilhyE651QSc8lYKRJuSQb.jpg",
    "tags": [],
-   "order": 208,
+   "order": 209,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24743,7 +25411,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21124-34y5TWO39bQq.jpg",
    "tags": [],
-   "order": 209,
+   "order": 210,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24764,7 +25432,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21240-Sqyin6RClcBb.jpg",
    "tags": [],
-   "order": 210,
+   "order": 211,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24790,7 +25458,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21632-WY1iQt61axRN.png",
    "tags": [],
-   "order": 211,
+   "order": 212,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24826,7 +25494,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx97624-esANh72EJfIo.jpg",
    "tags": [],
-   "order": 212,
+   "order": 213,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24852,7 +25520,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b21193-hnqrPOK6Smt4.jpg",
    "tags": [],
-   "order": 213,
+   "order": 214,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24873,7 +25541,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/20377-tqVIvoTzQhNK.jpg",
    "tags": [],
-   "order": 214,
+   "order": 215,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24894,7 +25562,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/qh325jz8pfSMbW88lzeg1Ikb7JK.jpg",
    "tags": [],
-   "order": 215,
+   "order": 216,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24920,7 +25588,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21670-peVFl49qMvpY.png",
    "tags": [],
-   "order": 216,
+   "order": 217,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24946,7 +25614,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21475-bs67KimRLqXP.png",
    "tags": [],
-   "order": 217,
+   "order": 218,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24972,7 +25640,7 @@
    "anime": false,
    "poster": null,
    "tags": [],
-   "order": 218,
+   "order": 219,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -24993,7 +25661,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21785-ORbg3V81ivIf.jpg",
    "tags": [],
-   "order": 219,
+   "order": 220,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25019,7 +25687,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/98080-TJRCN3FWQO67.jpg",
    "tags": [],
-   "order": 220,
+   "order": 221,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25040,7 +25708,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx87457-FOXRiVF5SykX.jpg",
    "tags": [],
-   "order": 221,
+   "order": 222,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25071,7 +25739,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/97773-wN83kanXmfr8.png",
    "tags": [],
-   "order": 222,
+   "order": 223,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25092,7 +25760,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21866-3PozfdjOD04Y.jpg",
    "tags": [],
-   "order": 223,
+   "order": 224,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25118,7 +25786,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21888-R6C4sCHSZPUy.png",
    "tags": [],
-   "order": 224,
+   "order": 225,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25144,7 +25812,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21819-a9yJnMPh1Rx0.png",
    "tags": [],
-   "order": 225,
+   "order": 226,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25170,7 +25838,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21581-0z7Pckn6Yla8.jpg",
    "tags": [],
-   "order": 226,
+   "order": 227,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25236,7 +25904,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21551-qPXNfhCSwZXL.png",
    "tags": [],
-   "order": 227,
+   "order": 228,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25257,7 +25925,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/20379-pnL243kpoJCU.jpg",
    "tags": [],
-   "order": 228,
+   "order": 229,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25278,7 +25946,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21060-CAOekPi19kKH.jpg",
    "tags": [],
-   "order": 229,
+   "order": 230,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25299,7 +25967,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21026-czrzMZNzcGYz.png",
    "tags": [],
-   "order": 230,
+   "order": 231,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25320,7 +25988,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx97775-kEOF3iTsOSGm.jpg",
    "tags": [],
-   "order": 231,
+   "order": 232,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25341,7 +26009,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21195-roPQjnulkZTy.jpg",
    "tags": [],
-   "order": 232,
+   "order": 233,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25362,7 +26030,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21656-dspx9g9OBNJO.png",
    "tags": [],
-   "order": 233,
+   "order": 234,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25383,7 +26051,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21521-qpf2UqZJaCio.png",
    "tags": [],
-   "order": 234,
+   "order": 235,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25414,7 +26082,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21515-BlKI6DHGYb6k.png",
    "tags": [],
-   "order": 235,
+   "order": 236,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25440,7 +26108,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx97850-DiDxOHj49KHb.jpg",
    "tags": [],
-   "order": 236,
+   "order": 237,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25466,7 +26134,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21622-nZ30YbPnhk7b.jpg",
    "tags": [],
-   "order": 237,
+   "order": 238,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25487,7 +26155,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21545-JkGpz6UvE1Hr.png",
    "tags": [],
-   "order": 238,
+   "order": 239,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25508,7 +26176,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21479-wWeNlnVohjVv.png",
    "tags": [],
-   "order": 239,
+   "order": 240,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25544,7 +26212,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21583-UJ9sWxlUAzHc.png",
    "tags": [],
-   "order": 240,
+   "order": 241,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25570,7 +26238,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21762-mevJoqFzGmih.png",
    "tags": [],
-   "order": 241,
+   "order": 242,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25596,7 +26264,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21374-NgbvduXwCUpz.png",
    "tags": [],
-   "order": 242,
+   "order": 243,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25642,7 +26310,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/3895.jpg",
    "tags": [],
-   "order": 243,
+   "order": 244,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25663,7 +26331,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21109-kHHb4tsBp9Tx.jpg",
    "tags": [],
-   "order": 244,
+   "order": 245,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25684,7 +26352,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98079-FVYNHSXpFrdO.jpg",
    "tags": [],
-   "order": 245,
+   "order": 246,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25705,7 +26373,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98308-XF6zVEnfYkm7.jpg",
    "tags": [],
-   "order": 246,
+   "order": 247,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25731,7 +26399,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx106863-CxiCK7HejySK.png",
    "tags": [],
-   "order": 247,
+   "order": 248,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25757,7 +26425,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21668-i2tD558TqCo6.png",
    "tags": [],
-   "order": 248,
+   "order": 249,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25783,7 +26451,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx97905-ybcBmnEunHV5.jpg",
    "tags": [],
-   "order": 249,
+   "order": 250,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25819,7 +26487,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21889-tJBf0YXI2jau.png",
    "tags": [],
-   "order": 250,
+   "order": 251,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25855,7 +26523,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21083-KUnmbNPk65YU.jpg",
    "tags": [],
-   "order": 251,
+   "order": 252,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25876,7 +26544,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/98081-FqksY6drDRvS.png",
    "tags": [],
-   "order": 252,
+   "order": 253,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25897,7 +26565,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/uSAZrDrR8sySebreeK4FPfjyL0i.jpg",
    "tags": [],
-   "order": 253,
+   "order": 254,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25918,7 +26586,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21536-SsoHZILOFMrC.png",
    "tags": [],
-   "order": 254,
+   "order": 255,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25939,7 +26607,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21805-MWredTlhki1o.jpg",
    "tags": [],
-   "order": 255,
+   "order": 256,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25970,7 +26638,7 @@
    "anime": false,
    "poster": null,
    "tags": [],
-   "order": 256,
+   "order": 257,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -25996,7 +26664,7 @@
    "anime": false,
    "poster": null,
    "tags": [],
-   "order": 257,
+   "order": 258,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26022,7 +26690,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21533-ukBfQxcJNwGB.png",
    "tags": [],
-   "order": 258,
+   "order": 259,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26043,7 +26711,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21532-pKLahKuASdAe.png",
    "tags": [],
-   "order": 259,
+   "order": 260,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26064,7 +26732,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/97911-c6lN9eiTP0qD.jpg",
    "tags": [],
-   "order": 260,
+   "order": 261,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26085,7 +26753,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97809-T0l12IdyqFu1.jpg",
    "tags": [],
-   "order": 261,
+   "order": 262,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26111,7 +26779,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21480-Kxyu5h95bmog.png",
    "tags": [],
-   "order": 262,
+   "order": 263,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26137,7 +26805,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21215-96NIlPl0yV4L.jpg",
    "tags": [],
-   "order": 263,
+   "order": 264,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26158,7 +26826,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97623-TRugdwsoiQOx.jpg",
    "tags": [],
-   "order": 264,
+   "order": 265,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26184,7 +26852,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21526-8fpF5yX67n6e.png",
    "tags": [],
-   "order": 265,
+   "order": 266,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26205,7 +26873,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21084-HJ2Pl8m55URf.png",
    "tags": [],
-   "order": 266,
+   "order": 267,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26226,7 +26894,7 @@
    "anime": false,
    "poster": null,
    "tags": [],
-   "order": 267,
+   "order": 268,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26262,7 +26930,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21514-g4zxaId9oTGW.jpg",
    "tags": [],
-   "order": 268,
+   "order": 269,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26308,7 +26976,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21582-Sq3eDHuVj0qz.png",
    "tags": [],
-   "order": 269,
+   "order": 270,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26334,7 +27002,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21828-3KDKm3Zu2DyX.jpg",
    "tags": [],
-   "order": 270,
+   "order": 271,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26385,7 +27053,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx87456-b4ypWGMayrQc.jpg",
    "tags": [],
-   "order": 271,
+   "order": 272,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26411,7 +27079,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21401-OJlgpIta1HOM.jpg",
    "tags": [],
-   "order": 272,
+   "order": 273,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26432,7 +27100,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx97854-RX0nmAxX85Be.jpg",
    "tags": [],
-   "order": 273,
+   "order": 274,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26458,7 +27126,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21870-K8QrcgR9c74z.png",
    "tags": [],
-   "order": 274,
+   "order": 275,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26484,7 +27152,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/18959.jpg",
    "tags": [],
-   "order": 275,
+   "order": 276,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26505,7 +27173,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21580-UlNdV1oURZRs.jpg",
    "tags": [],
-   "order": 276,
+   "order": 277,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26531,7 +27199,7 @@
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/19859.jpg",
    "tags": [],
-   "order": 277,
+   "order": 278,
    "clsManual": true,
    "hentai": true,
    "episodes": [
@@ -26552,6 +27220,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/d7qG9sdCTo3uBeWXpxKehplvr8B.jpg",
    "tags": [],
+   "order": 279,
    "episodes": [
     {
      "n": 1,
@@ -26570,6 +27239,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/kZkn34WF6AIYlPP2w1iR6g0gcIZ.jpg",
    "tags": [],
+   "order": 280,
    "episodes": [
     {
      "n": 1,
@@ -31518,6 +32188,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/zeWczm28NqrPWII3BeqH77N0IIV.jpg",
    "tags": [],
+   "order": 281,
    "episodes": [
     {
      "n": 1,
@@ -31536,6 +32207,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/b0j9rHYpRML7dKm5xw9e97HTDJF.jpg",
    "tags": [],
+   "order": 282,
    "episodes": [
     {
      "n": 1,
@@ -31554,6 +32226,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/jMBTJQiHAyGlZR05J2sq5coA6ew.jpg",
    "tags": [],
+   "order": 283,
    "episodes": [
     {
      "n": 1,
@@ -31572,6 +32245,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/toZiAd0n0NKhiuHTiGk7kBMmhtG.jpg",
    "tags": [],
+   "order": 284,
    "episodes": [
     {
      "n": 1,
@@ -31590,6 +32264,7 @@
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/dL5W3MdndSsQXBulHnH5fduAH0R.jpg",
    "tags": [],
+   "order": 285,
    "clsManual": true,
    "hentai": false,
    "episodes": [
@@ -31855,6 +32530,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/vuphbYxqjsTLfTFykpZj7dy2mRg.jpg",
    "tags": [],
+   "order": 286,
    "episodes": [
     {
      "n": 1,
@@ -31873,6 +32549,7 @@
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/ajuYAcn5LDxXE7yoDISTsL0BCuy.jpg",
    "tags": [],
+   "order": 287,
    "episodes": [
     {
      "n": 1,
@@ -104883,5 +105560,5 @@
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "eZHhBCmjLrVBsv8f+CdL7ZUNM4IMQ/dObH0d6EKrvuGlH9wK0CUGccEhNgQneJYFpMZNV75myNik45yywuc0ZA=="
+ "sig": "XxrDiG+KmYNq1DZvZGOtWtZtbQ8YcTQ22xBbC5ggS9GP2vyfZ12wYj1jrXjaVbJJzaRcFA1ndi5I33AhTTsKkw=="
 }
