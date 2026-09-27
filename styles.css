@@ -932,22 +932,11 @@ body.light .side-tab.on{color:#6a9000}
 }
 .hero-btn{padding:12px 20px;font-weight:800;font-size:13px;border-radius:12px}
 
-/* las filas de tarjetas — scroll horizontal pulcro */
-.home-row{margin-bottom:26px}
-.hr-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 2px 10px}
-.hr-head h3{font-family:'Archivo Black';font-size:16px;letter-spacing:-.2px;font-weight:900}
-.home-row-list{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
-.home-row-list::-webkit-scrollbar{display:none}
-.home-row-list .hc-card{width:150px;flex:0 0 auto;border-radius:14px}
-.home-row-list .hc-card .rel-t{font-size:11.5px}
-.home-row-list .hc-card .rel-c{font-size:8.5px}
-
 @media (max-width:900px){
   .home-view{padding:16px 12px 60px}
   .home-hero{min-height:220px;margin-bottom:20px}
   .home-hero h2{font-size:24px}
   .home-hero .h-meta{padding:22px 18px 20px;max-width:none}
-  .home-row-list .hc-card{width:130px}
 }
 .tv-cat-card{
   flex:0 0 auto;width:150px;border-radius:16px;overflow:hidden;
@@ -1148,24 +1137,55 @@ body.light .tag-chip.on{color:#6a9000}
 .btn-dl:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 10px 30px color-mix(in srgb,var(--acid) 55%,transparent)}
 .btn-dl:active{transform:translateY(0) scale(.97)}
 
-/* ═══════ CONTINUAR VIENDO ═══════ */
-.continue-row{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 14px;align-items:stretch}
-.cont-title{
-  align-self:center;font-family:'Archivo Black';font-size:13px;color:var(--dim);
-  writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:2px;white-space:nowrap;
+/* ═══════ CONTINUAR VIENDO ═══════ — mismo tamaño/idioma que el riel
+   "Sigue viendo" de la portada (miniatura panorámica 96×56, barra 4px) */
+/* la fila es un WRAPPER fijo: el rótulo vertical no rueda; quien rueda es .cont-track */
+.continue-row{display:flex;gap:9px;padding:2px 2px 14px;align-items:center}
+.cont-rail{flex:1;min-width:0}
+.cont-track{
+  display:flex;gap:12px;overflow-x:auto;padding:2px 2px 10px;
+  scrollbar-width:none;scroll-behavior:smooth;scroll-snap-type:x proximity;overscroll-behavior-x:contain;
 }
+.cont-track::-webkit-scrollbar{display:none}
+.cont-title{
+  align-self:center;font-family:'Archivo Black';font-size:13px;
+  writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:2px;white-space:nowrap;
+  /* misma geometría de siempre — ahora en dorado eléctrico: un reflejo
+     de sol recorre las letras de arriba abajo en bucle            */
+  background:linear-gradient(180deg,#8a6d1a 0%,#ffd24a 30%,#fff6c4 48%,#ffc400 62%,#8a6d1a 100%);
+  background-size:100% 400%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 7px rgba(255,196,0,.38));
+  animation:cont-gold 3.4s linear infinite;
+}
+@keyframes cont-gold{to{background-position:0 -400%}}
 .cont-card{
-  display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);
-  border-radius:12px;padding:8px 14px 8px 8px;cursor:pointer;transition:.15s;min-width:210px;text-align:left;
+  position:relative;flex:0 0 auto;
+  display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);
+  /* padding vertical casi a ras de la miniatura 96×56 (2px arriba/abajo) */
+  border-radius:12px;padding:2px 10px 2px 2px;cursor:pointer;transition:.18s;min-width:265px;text-align:left;
+  scroll-snap-align:start;
 }
 .cont-card:hover{border-color:var(--acid);transform:translateY(-2px)}
-.cont-cover{width:44px;height:44px;min-width:44px;border-radius:9px;overflow:hidden;position:relative;display:grid;place-items:center;font-weight:900;font-size:12px;color:#fff}
+/* ✕ quitar de Sigue viendo — esquina superior derecha de cada tarjeta */
+.cont-x{
+  position:absolute;top:4px;right:5px;z-index:4;width:22px;height:22px;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;font-weight:700;line-height:1;padding:0 0 1px;
+  background:rgba(5,5,12,.68);color:#f0f0f6;border:1px solid var(--line);cursor:pointer;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  opacity:0;transition:opacity .15s,background .15s,transform .15s;
+}
+.hm-cont:hover .cont-x,.cont-card:hover .cont-x{opacity:1}
+.cont-x:hover{background:var(--hot);border-color:var(--hot);color:#fff;transform:scale(1.12)}
+@media (hover:none),(pointer:coarse){.cont-x{opacity:.78}}
+.cont-cover{width:96px;height:56px;min-width:96px;border-radius:10px;overflow:hidden;position:relative;display:grid;place-items:center;font-weight:900;font-size:18px;color:#fff}
 .cont-cover img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.cont-meta{min-width:0}
-.cont-t{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
-.cont-p{font-size:10px;color:var(--dim);font-family:'JetBrains Mono';margin-top:2px}
-.cont-bar{position:relative;height:3px;background:var(--line);border-radius:3px;margin-top:6px;min-width:110px}
-.cont-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--acid);border-radius:3px}
+.cont-meta{flex:1;min-width:0}
+.cont-t{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.cont-p{font:600 10px 'JetBrains Mono';color:var(--dim);margin-top:3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont-bar{position:relative;height:4px;background:var(--line);border-radius:4px;margin-top:7px;overflow:hidden}
+.cont-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--acid);border-radius:4px}
 
 /* ═══════ CAPÍTULOS: visto / nota / corazón ═══════ */
 .ep-check{
@@ -1418,9 +1438,12 @@ body.light .drive-status.ok{color:#3aa832}
 .btn-solid-danger{background:var(--hot);color:#fff}
 .btn-solid-danger:hover{filter:brightness(1.12);transform:translateY(-1px)}
 
-/* relacionadas con imagen de fondo optimizada — tarjetas compactas para no estirar miniaturas pequeñas (menos borrosas) */
-.episodes-grid.rel-movies{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.ep.movie-rel{aspect-ratio:16/10;min-height:0;padding:0;overflow:hidden}
+/* relacionadas: el mismo póster 2:3 que la portada — un solo idioma
+   visual para "títulos" en toda la app (antes 16:10 aquí, mosaico allí) */
+.episodes-grid.rel-movies{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.ep.movie-rel{aspect-ratio:2/3;min-height:0;padding:0;overflow:hidden}
+/* …excepto los canales de TV relacionados: sus logos viven mejor en panorámico */
+.ep.movie-rel.tv-rel{aspect-ratio:16/10}
 .ep.movie-rel .rel-bg{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.96;
   image-rendering:auto;transform:translateZ(0); /* composición por GPU: nitidez al escalar */
@@ -2023,65 +2046,107 @@ body.staff-on .admin-only{display:revert!important}
 
 /* ③ SIGUE VIENDO — strip panorámico con progreso */
 .hm-strip{
-  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(265px,330px);
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(265px,384px);
   gap:12px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;
+  scroll-behavior:smooth;scroll-snap-type:x proximity;overscroll-behavior-x:contain;
 }
 .hm-strip::-webkit-scrollbar{display:none}
 .hm-cont{
   display:flex;align-items:center;gap:12px;background:var(--panel);
-  border:1px solid var(--line);border-radius:16px;padding:10px 12px;
-  text-align:left;transition:.18s;position:relative;overflow:hidden;
+  /* padding vertical casi a ras de la miniatura 96×56 (2px arriba/abajo) */
+  border:1px solid var(--line);border-radius:12px;padding:2px 10px 2px 2px;
+  text-align:left;transition:.18s;position:relative;overflow:hidden;scroll-snap-align:start;
 }
 .hm-cont:hover{border-color:var(--acid);transform:translateY(-2px)}
-.hm-cont-cover{width:56px;height:56px;min-width:56px;border-radius:12px;overflow:hidden;
+/* miniatura panorámica 12:7 — el lenguaje "video" también aquí,
+   nada de cuadrados sueltos: cada zona habla un solo idioma visual */
+.hm-cont-cover{width:96px;height:56px;min-width:96px;border-radius:10px;overflow:hidden;
   display:grid;place-items:center;font-size:20px;position:relative}
 .hm-cont-cover img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .hm-cont-meta{flex:1;min-width:0}
 .hm-cont-t{display:block;font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hm-cont-p{display:block;font:600 10px 'JetBrains Mono';color:var(--dim);margin-top:3px}
+.hm-cont-p{display:block;font:600 10px 'JetBrains Mono';color:var(--dim);margin-top:3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hm-cont-bar{display:block;height:4px;background:var(--line);border-radius:4px;margin-top:7px;overflow:hidden}
 .hm-cont-bar i{display:block;height:100%;background:var(--acid);border-radius:4px}
+/* la barra "carga" de 0 hasta el % REAL al aparecer (efecto de recarga);
+   en re-pintados posteriores (guardado cada 5 s) se desactiva con .no-anim */
+.hm-cont-bar i,.cont-bar i{animation:bar-load 1s cubic-bezier(.22,.9,.26,.99) both}
+@keyframes bar-load{from{width:0;box-shadow:0 0 12px var(--acid)}}
+.no-anim .hm-cont-bar i,.no-anim .cont-bar i{animation:none}
 .hm-cont-go{color:var(--acid);font-size:15px;opacity:0;transition:.15s;margin-right:2px}
 .hm-cont:hover .hm-cont-go{opacity:1}
 
-/* ④ LA PARED — mosaico mixing sizes, grid denso */
-.hm-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:96px;gap:12px;grid-auto-flow:dense}
-.hm-grid .hm-sec{margin-bottom:2px}
+/* ④ RIELES — UNA fila desplazable por sección, con flechas ◀ ▶ en
+   las esquinas (PC) y gesto táctil nativo (móvil/tablet).            */
+.hm-block{margin:26px 0 30px}
+.hm-block .hm-sec{margin:0 2px 12px}
+.hm-rail{position:relative}
+.hm-track{
+  display:flex;gap:14px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;
+  scroll-behavior:smooth;scroll-snap-type:x proximity;overscroll-behavior-x:contain;
+}
+.hm-track::-webkit-scrollbar{display:none}
+.hm-track .hm-tile{flex:0 0 auto;width:150px;scroll-snap-align:start}
+.hm-track:focus-visible,.hm-strip:focus-visible,.hm-tvgrid:focus-visible,.cont-track:focus-visible{
+  outline:2px solid var(--acid);outline-offset:4px;border-radius:8px
+}
+/* flechas laterales — solo aparecen cuando hay más hacia ese lado (can-l / can-r) */
+.hm-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(8,8,14,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border:1px solid var(--line);color:#f0f0f6; /* fijo claro: el fondo del botón siempre es oscuro */
+  font-size:22px;font-weight:900;line-height:.8;padding:0 0 3px;
+  opacity:0;pointer-events:none;transition:opacity .18s,background .18s,transform .18s;
+}
+.hm-arrow.l{left:8px}
+.hm-arrow.r{right:8px}
+.hm-rail.can-l .hm-arrow.l,
+.hm-rail.can-r .hm-arrow.r{opacity:.9;pointer-events:auto}
+.hm-arrow:hover{background:var(--acid);border-color:var(--acid);color:#111;transform:translateY(-50%) scale(1.1)}
+/* fades de borde — insinúan que la fila continúa más allá */
+.hm-rail::before,.hm-rail::after{
+  content:'';position:absolute;top:0;bottom:0;width:48px;z-index:5;pointer-events:none;
+  opacity:0;transition:opacity .25s;
+}
+.hm-rail::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.hm-rail::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.hm-rail.can-l::before,
+.hm-rail.can-r::after{opacity:1}
 .hm-tile{
-  position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);
-  padding:0;text-align:left;display:flex;align-items:flex-end;transition:.18s;
+  position:relative;aspect-ratio:2/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  padding:0;text-align:left;display:flex;align-items:flex-end;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
   background:var(--panel);min-width:0;
 }
-.hm-tile:hover{transform:translateY(-3px);border-color:var(--acid);box-shadow:0 14px 34px rgba(0,0,0,.45)}
-.hm-xl{grid-column:span 2;grid-row:span 2}
-.hm-wide{grid-column:span 2}
-.hm-tall{grid-row:span 2}
-.hm-std{grid-column:span 1;grid-row:span 1}
+.hm-tile:hover{transform:translateY(-4px);border-color:var(--acid);box-shadow:0 16px 34px rgba(0,0,0,.5)}
 .hm-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.hm-tile:hover .hm-bg{transform:scale(1.06)}
-.hm-emoji{position:absolute;inset:0;display:grid;place-items:center;font-size:30px}
-.hm-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,12,.08) 30%,rgba(5,5,12,.92));pointer-events:none}
+.hm-tile:hover .hm-bg{transform:scale(1.05)}
+.hm-emoji{position:absolute;inset:0;display:grid;place-items:center;font-size:36px}
+.hm-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,12,.04) 34%,rgba(5,5,12,.5) 68%,rgba(5,5,12,.93));pointer-events:none}
 .hm-chip{
   position:absolute;top:8px;left:8px;z-index:2;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
   font:800 8.5px 'JetBrains Mono';letter-spacing:1.2px;color:var(--acid);
   padding:4px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
 }
 .hm-chip.peli{color:#ff5c84}
-.hm-info{position:relative;z-index:1;padding:9px 11px;width:100%;min-width:0}
-.hm-t{display:block;font-weight:800;font-size:12.5px;line-height:1.2;max-height:2.4em;overflow:hidden;
-  text-shadow:0 2px 8px rgba(0,0,0,.7)}
-.hm-xl .hm-t{font-size:16px}
-.hm-sub{display:block;font:600 9px 'JetBrains Mono';color:var(--dim);margin-top:4px;
+.hm-info{position:relative;z-index:1;padding:10px 11px;width:100%;min-width:0}
+.hm-t{display:block;font-weight:800;font-size:13px;line-height:1.22;max-height:2.44em;overflow:hidden;
+  text-shadow:0 2px 8px rgba(0,0,0,.75)}
+.hm-sub{display:block;font:600 9px 'JetBrains Mono';color:rgba(255,255,255,.62);margin-top:4px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hm-tile.hm-std .hm-sub{display:none}
-.hm-std .hm-t{font-size:11px}
 
-/* ⑤ TV EN VIVO — grilla fina de logos */
-.hm-tvgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+/* ⑤ TV EN VIVO — riel horizontal de logos */
+.hm-tvgrid{
+  display:flex;gap:12px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;
+  scroll-behavior:smooth;scroll-snap-type:x proximity;overscroll-behavior-x:contain;
+}
+.hm-tvgrid::-webkit-scrollbar{display:none}
 .hm-tv{
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
   background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 8px 10px;
-  transition:.15s;min-height:92px;
+  transition:.15s;min-height:92px;flex:0 0 auto;width:104px;scroll-snap-align:start;
 }
 .hm-tv:hover{border-color:var(--acid);transform:translateY(-2px)}
 .hm-tv img{width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
@@ -2090,13 +2155,13 @@ body.staff-on .admin-only{display:revert!important}
   max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hm-tv.is-ph{opacity:.6;border-style:dashed}
 
-/* responsive */
-@media (max-width:1100px){.hm-grid{grid-template-columns:repeat(4,1fr)}}
-@media (max-width:760px){
-  .hm-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:86px;gap:9px}
-  .hm-strip{grid-auto-columns:minmax(230px,82%)}
+/* responsive — en móvil las tarjetas del riel son algo más compactas */
+@media (max-width:700px){
+  .hm-track{gap:10px}
+  .hm-track .hm-tile{width:118px}
+  .hm-arrow{width:34px;height:34px;font-size:19px}
+  .hm-strip{grid-auto-columns:minmax(230px,88%)}
 }
-@media (max-width:480px){.hm-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* En móvil (≤900px) el menú de Inicio colapsado va HORIZONTAL,
    tal cual la fila de pestañas de la versión de computadora */

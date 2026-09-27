@@ -88,6 +88,7 @@ function load() {
         /* migraciones de versiones anteriores */
         state.trash = Array.isArray(state.trash) ? state.trash : [];
         state.progress = state.progress || {};
+        state.contHide = state.contHide || {}; /* series quitadas de «Sigue viendo» con la ✕ */
         state.lastPlayed = state.lastPlayed || {};
         state.stats = state.stats || { totalSec: 0, days: {} };
         state.sortMode = state.sortMode || 'manual';
@@ -161,6 +162,7 @@ function load() {
   state.trash = [];
   state.broken = [];
   state.progress = {};
+  state.contHide = {};
   state.lastPlayed = {};
   state.stats = { totalSec: 0, days: {} };
   state.sortMode = 'manual';
@@ -294,6 +296,7 @@ function startDriveTracking(sid, epN) {
     state.progress[sid] = state.progress[sid] || {};
     const prev = state.progress[sid][epN] || {};
     state.progress[sid][epN] = { t: driveSeconds, d: prev.d || 0, done: prev.done || false, at: Date.now() };
+    if (state.contHide && state.contHide[sid]) delete state.contHide[sid]; /* la reproduciste → regresa a Sigue viendo */
     save();
     renderContinue();
   }, 5000);
@@ -948,44 +951,52 @@ async function fetchText(url) {
 els.tvScanBtn.addEventListener('click', scanTvList);
 els.tvRescanBtn.addEventListener('click', rescanAllTv);
 
-function homeCard(s) {
-  const card = document.createElement('button');
-  card.className = 'ep movie-rel hc-card' + (s.poster ? ' has-url' : '');
-  const chip = s.kind === 'pelicula' ? 'Película' : 'Serie';
-  const prog = (state.progress || {})[s.id];
-  let pct = 0;
-  if (prog) {
-    const vals = Object.values(prog);
-    const withWatched = vals.filter(p => p && (p.t > 10 || p.done)).length;
-    pct = withWatched ? Math.min(100, Math.round((withWatched / Math.max(1, s.episodes.length)) * 100)) : 0;
-  }
-  card.innerHTML = `
-    ${s.poster ? `<img class="rel-bg" src="${escapeHtml(s.poster)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">${escapeHtml(s.jp || '🎬')}</span>`}
-    <div class="rel-body">
-      <div class="rel-t">${escapeHtml(s.t)}</div>
-      <div class="rel-c">${chip}${pct ? ' · ' + pct + '% visto' : ''}</div>
-    </div>`;
-  card.addEventListener('click', () => {
-    setTab(s.kind === 'pelicula' ? 'peliculas' : (s.anime === false ? 'series' : 'anime'));
-    selectSeries(s.id);
-    if (s.episodes && s.episodes.length) {
-      const first = s.episodes.find(e => e.url) || s.episodes[0];
-      if (first) loadEpisode(first.n, true);
-    }
+/* ◀ ▶ RIELES — una sola fila desplazable con flechas laterales (PC),
+   gesto táctil (móvil/tablet), rueda del mouse y teclado ← →.
+   Las flechas solo aparecen cuando hay más contenido hacia ese lado
+   (can-l / can-r). track._railUpd() re-evalúa flechas tras rellenar. */
+function makeRail(track) {
+  const rail = document.createElement('div');
+  rail.className = 'hm-rail';
+  const L = document.createElement('button');
+  L.className = 'hm-arrow l'; L.textContent = '‹'; L.title = 'Anteriores'; L.setAttribute('aria-label', 'Anteriores');
+  const R = document.createElement('button');
+  R.className = 'hm-arrow r'; R.textContent = '›'; R.title = 'Ver más'; R.setAttribute('aria-label', 'Ver más');
+  const step = () => Math.max(260, track.clientWidth * 0.8);
+  L.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  R.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+  if (track.parentNode) track.parentNode.insertBefore(rail, track); /* envolver en el acto */
+  rail.append(track, L, R);
+  /* PC: la rueda vertical mueve el riel en horizontal mientras pueda
+     seguir hacia ese lado; al llegar al borde la página baja normal */
+  track.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; /* trackpad horizontal nativo */
+    const dir = e.deltaY > 0 ? 1 : -1;
+    const can = dir > 0
+      ? track.scrollLeft < track.scrollWidth - track.clientWidth - 2
+      : track.scrollLeft > 0;
+    if (!can) return;
+    e.preventDefault();
+    track.scrollBy({ left: e.deltaY * 1.6 }); /* sin behavior: uso el smooth del CSS */
+  }, { passive: false });
+  /* teclado: con el riel enfocado, ← → también lo desplazan */
+  track.tabIndex = 0;
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); track.scrollBy({ left: step(), behavior: 'smooth' }); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); track.scrollBy({ left: -step(), behavior: 'smooth' }); }
   });
-  return card;
+  const upd = () => {
+    const x = track.scrollLeft, max = track.scrollWidth - track.clientWidth - 2;
+    rail.classList.toggle('can-l', x > 4);
+    rail.classList.toggle('can-r', x < max && max > 4);
+  };
+  track.addEventListener('scroll', upd, { passive: true });
+  if (window.ResizeObserver) new ResizeObserver(upd).observe(track);
+  track._railUpd = upd;
+  requestAnimationFrame(upd); setTimeout(upd, 150); /* tras el layout inicial */
+  return rail;
 }
-function homeRow(title, items) {
-  if (!items || !items.length) return;
-  const row = document.createElement('div');
-  row.className = 'home-row';
-  row.innerHTML = `<div class="hr-head"><h3>${escapeHtml(title)}</h3></div>`;
-  const wrap = document.createElement('div');
-  wrap.className = 'home-row-list';
-  for (const it of items) wrap.appendChild(homeCard(it));
-  row.appendChild(wrap);
-  els.homeView.appendChild(row);
-}
+
 function renderHome() {
   if (!els.homeView) return;
   els.homeView.innerHTML = '';
@@ -1015,9 +1026,13 @@ function renderHome() {
     els.homeView.appendChild(hv);
   }
 
-  /* ② SIGUE VIENDO — tarjetas panorámicas con barra de progreso real */
+
+  /* ② SIGUE VIENDO — tarjetas panorámicas con barra de progreso real.
+     SIN límite: se muestran TODAS (el riel se desplaza). Las quitadas
+     con la ✕ (state.contHide) no aparecen; el progreso se conserva. */
   const returning = [];
   for (const s of state.series) {
+    if (state.contHide && state.contHide[s.id]) continue;
     const prog = (state.progress || {})[s.id];
     if (!prog) continue;
     let bestKey = null, best = null;
@@ -1028,13 +1043,15 @@ function renderHome() {
   }
   returning.sort((a, b) => b.p.at - a.p.at);
   if (returning.length) {
+    const blk = document.createElement('section');
+    blk.className = 'hm-block';
     const sec = document.createElement('div');
     sec.className = 'hm-sec';
     sec.innerHTML = `Sigue viendo <small>DONDE LO DEJASTE</small>`;
-    els.homeView.appendChild(sec);
+    blk.appendChild(sec);
     const strip = document.createElement('div');
     strip.className = 'hm-strip';
-    for (const r of returning.slice(0, 10)) {
+    for (const r of returning) {
       const pct = r.p.d ? Math.min(100, Math.round((r.p.t / r.p.d) * 100)) : 0;
       const card = document.createElement('button');
       card.className = 'hm-cont';
@@ -1042,10 +1059,17 @@ function renderHome() {
         <span class="hm-cont-cover" style="background:${grad(r.s)}">${r.s.poster ? `<img src="${escapeHtml(r.s.poster)}" alt="" loading="lazy" onerror="this.remove()">` : escapeHtml(r.s.jp || '🎬')}</span>
         <span class="hm-cont-meta">
           <span class="hm-cont-t">${escapeHtml(r.s.t)}</span>
-          <span class="hm-cont-p">${r.s.kind === 'pelicula' ? '🎬' : 'E' + r.ep} · quedan ${fmt(Math.max(0, (r.p.d || 0) - r.p.t))}</span>
-          <span class="hm-cont-bar"><i style="width:${pct}%"></i></span>
+        <span class="hm-cont-p">${r.s.kind === 'pelicula' ? '🎬' : 'E' + r.ep} · vas en ${fmt(r.p.t)}${r.p.d ? ' · quedan ' + fmt(Math.max(0, r.p.d - r.p.t)) : ''}</span>
+        ${r.p.d ? `<span class="hm-cont-bar"><i style="width:${pct}%"></i></span>` : ''}
         </span>
         <span class="hm-cont-go">▶</span>`;
+      const del = document.createElement('span');
+      del.className = 'cont-x'; del.textContent = '✕';
+      del.title = 'Quitar de Sigue viendo';
+      del.setAttribute('role', 'button');
+      del.setAttribute('aria-label', `Quitar ${r.s.t} de Sigue viendo`);
+      del.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); removeFromContinue(r.s); });
+      card.appendChild(del);
       card.addEventListener('click', () => {
         setTab(r.s.kind === 'pelicula' ? 'peliculas' : (r.s.anime === false ? 'series' : 'anime'));
         selectSeries(r.s.id);
@@ -1053,28 +1077,18 @@ function renderHome() {
       });
       strip.appendChild(card);
     }
-    els.homeView.appendChild(strip);
+    blk.appendChild(makeRail(strip));
+    els.homeView.appendChild(blk);
   }
 
-  /* ③ LA PARED — mosaico editorial: tamaños variados, categorías mezcladas */
-  const grid = document.createElement('div');
-  grid.className = 'hm-grid';
-  const secInGrid = (title, sub) => {
-    const h = document.createElement('div');
-    h.className = 'hm-sec';
-    h.innerHTML = `${escapeHtml(title)} <small>${escapeHtml(sub)}</small>`;
-    grid.appendChild(h);
-  };
-  /* tamaño de cada tarjeta: ritmo editorial fijo + protagonistas destacados */
-  const tileSize = (i, preferBig) =>
-    (preferBig && i === 0) ? 'hm-xl'
-      : (i % 8 === 1) ? 'hm-wide'
-        : (i % 8 === 4) ? 'hm-tall'
-          : 'hm-std';
-  const tile = (s, size) => {
+  /* ③ LA PARED — rejilla uniforme de pósters 2:3.
+     Cada sección es un bloque propio con su título FUERA de la rejilla
+     (antes: mosaico denso de tamaños mezclados + cabeceras atrapadas
+     entre tarjetas → se veía amontonado a primera vista)              */
+  const tile = (s) => {
     const isPeli = s.kind === 'pelicula';
     const b = document.createElement('button');
-    b.className = 'hm-tile ' + size + (s.poster ? ' has-poster' : '');
+    b.className = 'hm-tile' + (s.poster ? ' has-poster' : '');
     const prog = (state.progress || {})[s.id];
     const vistos = prog ? Object.values(prog).filter(p => p && (p.done || p.t > 10)).length : 0;
     const pct = vistos ? Math.min(100, Math.round((vistos / Math.max(1, s.episodes.length)) * 100)) : 0;
@@ -1097,30 +1111,32 @@ function renderHome() {
     return b;
   };
 
-  const nuevas = all.slice().sort((a, b) => (b.importedAt || b.at || 0) - (a.importedAt || a.at || 0)).slice(0, 9);
-  if (nuevas.length) {
-    secInGrid('Novedades recientes', 'LO QUE ACABA DE LLEGAR');
-    nuevas.forEach((s, i) => grid.appendChild(tile(s, tileSize(i, !!s.poster))));
-  }
-  const pelis = all.filter(s => s.kind === 'pelicula' && s.episodes && s.episodes[0] && s.episodes[0].url).slice(0, 8);
-  if (pelis.length) {
-    secInGrid('Películas listas', 'UNA NOCHE DE CINE');
-    pelis.forEach((s, i) => grid.appendChild(tile(s, tileSize(i, false))));
-  }
+  /* cada sección = bloque con cabecera + un riel horizontal con flechas */
+  const wallSection = (title, sub, items) => {
+    if (!items || !items.length) return;
+    const block = document.createElement('section');
+    block.className = 'hm-block';
+    block.innerHTML = `<div class="hm-sec">${escapeHtml(title)} <small>${escapeHtml(sub)}</small></div>`;
+    const g = document.createElement('div');
+    g.className = 'hm-track';
+    items.forEach(s => g.appendChild(tile(s)));
+    block.appendChild(makeRail(g));
+    els.homeView.appendChild(block);
+  };
+
+  const nuevas = all.slice().sort((a, b) => (b.importedAt || b.at || 0) - (a.importedAt || a.at || 0)).slice(0, 16);
+  wallSection('Novedades recientes', 'LO QUE ACABA DE LLEGAR', nuevas);
+  const pelis = all.filter(s => s.kind === 'pelicula' && s.episodes && s.episodes[0] && s.episodes[0].url).slice(0, 16);
+  wallSection('Películas listas', 'UNA NOCHE DE CINE', pelis);
   const largas = all.filter(s => s.kind !== 'pelicula' && s.episodes && s.episodes.some(e => e.url))
-    .sort((a, b) => b.episodes.length - a.episodes.length).slice(0, 8);
-  if (largas.length) {
-    secInGrid('Maratones recomendadas', 'PARA NO DORMIR');
-    largas.forEach((s, i) => grid.appendChild(tile(s, tileSize(i, false))));
-  }
-  if (grid.children.length) els.homeView.appendChild(grid); /* vacía → ni se asoma */
+    .sort((a, b) => b.episodes.length - a.episodes.length).slice(0, 16);
+  wallSection('Maratones recomendadas', 'PARA NO DORMIR', largas);
 
   /* ④ TV EN VIVO — grilla fina de logos, directo a reproducir */
   const canales = state.channels || [];
-  const sec = document.createElement('div');
-  sec.className = 'hm-sec';
-  sec.innerHTML = `TV en vivo <small>${canales.length ? canales.length + ' CANALES' : 'ABRIENDO…'}</small>`;
-  els.homeView.appendChild(sec);
+  const tvBlock = document.createElement('section');
+  tvBlock.className = 'hm-block';
+  tvBlock.innerHTML = `<div class="hm-sec">TV en vivo <small>${canales.length ? canales.length + ' CANALES' : 'ABRIENDO…'}</small></div>`;
   const tvGrid = document.createElement('div');
   tvGrid.className = 'hm-tvgrid';
   const lista = canales.length ? canales.slice(0, 18) : [{ id: 'tv-placeholder', name: 'TV en vivo', logo: '', group: 'Abriendo canales…' }];
@@ -1136,7 +1152,8 @@ function renderHome() {
     });
     tvGrid.appendChild(c);
   }
-  els.homeView.appendChild(tvGrid);
+  tvBlock.appendChild(makeRail(tvGrid));
+  els.homeView.appendChild(tvBlock);
 }
 
 /* ── render de la lista de canales (pestaña 📡 TV) ── */
@@ -1534,7 +1551,7 @@ function renderRelatedChannels(ch) {
     ...pool.map(c => ({
       el: (() => {
         const cell = document.createElement('div');
-        cell.className = 'ep movie-rel has-url' + (c.id === ch.id ? ' playing' : '');
+        cell.className = 'ep movie-rel tv-rel has-url' + (c.id === ch.id ? ' playing' : '');
         const nowProg = c.epg ? epgNow(c.epg) : null;
         cell.innerHTML = `
           ${c.logo ? `<img class="rel-bg ch-rel-bg" src="${escapeHtml(c.logo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">📡</span>`}
@@ -4907,6 +4924,7 @@ function trackPlayback() {
   state.progress[current.seriesId][current.ep] = {
     t: Math.floor(v.currentTime), d: Math.floor(v.duration), done, at: now,
   };
+  if (state.contHide && state.contHide[current.seriesId]) delete state.contHide[current.seriesId]; /* la reproduciste → regresa */
   save();
   if (done && !prev.done) { renderEpisodes(); renderSeries(els.searchInput.value); }
   renderContinue();
@@ -4921,10 +4939,27 @@ els.video.addEventListener('ended', () => {
   }
 });
 
-/* ── Sigue viendo ── */
+/* ── Sigue viendo (fila sobre el reproductor) ──
+   TODAS las tarjetas, sin límite, dentro de un riel con flechas ◀ ▶
+   (antes se reconstruía entera cada 5 s y el scroll saltaba al inicio —
+   ahora se guarda/recupera la posición y solo se repinta si cambió algo) */
 function renderContinue() {
+  const row = els.continueRow;
+  /* una sola vez: rótulo vertical DORADO fijo a la izquierda (como siempre
+     estuvo, NO rueda con las tarjetas) + riel con flechas a su lado     */
+  if (!row._track) {
+    row.innerHTML = '<span class="cont-title">SIGUE VIENDO</span>';
+    const trk = document.createElement('div');
+    trk.className = 'cont-track';
+    const rl = makeRail(trk);
+    rl.classList.add('cont-rail');
+    row.appendChild(rl);
+    row._track = trk;
+  }
+  const track = row._track;
   const items = [];
   for (const s of state.series) {
+    if (state.contHide && state.contHide[s.id]) continue; /* quitadas con la ✕ */
     const prog = (state.progress || {})[s.id];
     if (!prog) continue;
     let best = null;
@@ -4935,10 +4970,21 @@ function renderContinue() {
     if (best) items.push({ s, best });
   }
   items.sort((a, b) => b.best.at - a.best.at);
-  if (!items.length) { els.continueRow.classList.add('hidden'); return; }
-  els.continueRow.classList.remove('hidden');
-  els.continueRow.innerHTML = '<span class="cont-title">SIGUE VIENDO</span>';
-  for (const { s, best } of items.slice(0, 10)) {
+  if (!items.length) { row.classList.add('hidden'); row._sig = ''; return; }
+  row.classList.remove('hidden');
+
+  /* firma: mismas series/capítulo/% (t redondeado a 15 s) → no repintar */
+  const sig = items.map(i =>
+    `${i.s.id}:${i.best.ep}:${i.best.d ? Math.round(i.best.t / i.best.d * 100) : -1}:${Math.round(i.best.t / 15)}`
+  ).join('|');
+  requestAnimationFrame(() => { if (track._railUpd) track._railUpd(); }); /* por si estaba oculto y acaba de aparecer */
+  if (row._sig === sig) return;
+  const firstPaint = !track.children.length;
+  const sx = track.scrollLeft;
+  row._sig = sig;
+  row.classList.toggle('no-anim', !firstPaint); /* el efecto de carga solo al aparecer */
+  track.innerHTML = '';
+  for (const { s, best } of items) {
     const pct = best.d ? Math.round(best.t / best.d * 100) : 0;
     const card = document.createElement('button');
     card.className = 'cont-card';
@@ -4946,12 +4992,44 @@ function renderContinue() {
       <span class="cont-cover" style="background:${grad(s)}">${s.poster ? `<img src="${escapeHtml(s.poster)}" alt="" loading="lazy">` : escapeHtml(s.jp || s.t.slice(0, 2).toUpperCase())}</span>
       <span class="cont-meta">
         <div class="cont-t">${escapeHtml(s.t)}</div>
-        <div class="cont-p">${s.kind === 'pelicula' ? '🎬' : `E${best.ep}`} · ${fmt(best.t)}</div>
-        <div class="cont-bar"><i style="width:${pct}%"></i></div>
+        <div class="cont-p">${s.kind === 'pelicula' ? '🎬' : `E${best.ep}`} · ${fmt(best.t)}${best.d ? ' · quedan ' + fmt(Math.max(0, best.d - best.t)) : ''}</div>
+        ${best.d ? `<div class="cont-bar"><i style="width:${pct}%"></i></div>` : ''}
       </span>`;
+    const del = document.createElement('span');
+    del.className = 'cont-x'; del.textContent = '✕';
+    del.title = 'Quitar de Sigue viendo';
+    del.setAttribute('role', 'button');
+    del.setAttribute('aria-label', `Quitar ${s.t} de Sigue viendo`);
+    del.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); removeFromContinue(s); });
+    card.appendChild(del);
     card.addEventListener('click', () => { selectSeries(s.id); loadEpisode(best.ep, true); });
-    els.continueRow.appendChild(card);
+    track.appendChild(card);
   }
+  /* restaurar donde ibas sin animación (el smooth del CSS no estorba aquí) */
+  track.style.scrollBehavior = 'auto'; track.scrollLeft = sx; track.style.scrollBehavior = '';
+  requestAnimationFrame(() => { if (track._railUpd) track._railUpd(); });
+}
+
+/* ✕ Quitar de «Sigue viendo» — confirmación con el modal elegante.
+   No borra tu historial: solo la esconde de la fila (state.contHide);
+   si la vuelves a reproducir, regresa sola.                            */
+async function removeFromContinue(s) {
+  const r = await uiModal({
+    icon: '🧹',
+    title: '¿Quitar de Sigue viendo?',
+    danger: true,
+    okLabel: 'Sí, quitarla',
+    sub: `<b>${escapeHtml(s.t)}</b> dejará de aparecer en «Sigue viendo».<br>
+          <span style="opacity:.78">Tus marcas de visto y los tiempos NO se borran:
+          si la reproduces otra vez, vuelve a aparecer sola.</span>`
+  });
+  if (r === null) return;
+  state.contHide = state.contHide || {};
+  state.contHide[s.id] = true;
+  save();
+  renderContinue();
+  if (state.tab === 'home' && els.homeView && !els.homeView.classList.contains('hidden')) renderHome();
+  toast(`🧹 «${s.t}» fuera de Sigue viendo`);
 }
 
 /* ── Favoritos ── */
