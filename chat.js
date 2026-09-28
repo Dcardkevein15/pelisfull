@@ -1305,15 +1305,16 @@
         MS.cur = { ...t, url };
         MS.audio.src = url;
         MS.audio.play().catch(() => { });
-        paintDock();
+        setNow(); setPlayingUI();
       } catch (e) { toastLite('⚠ No pude reproducirla'); }
       finally { dock.classList.remove('cmu-busy'); }
     }
     function playYt(t) {
       mini.open('', t.title, { yt: t.id });
-      cur2({ ...t }); paintDock();
+      if (MS.audio) MS.audio.pause();
+      MS.cur = { ...t };
+      setNow(); setPlayingUI();
     }
-    function cur2(t) { MS.cur = t; }
 
     function ensureAudio() {
       if (MS.audio) return;
@@ -1322,8 +1323,8 @@
       MS.audio.preload = 'none';
       MS.audio.addEventListener('ended', () => smartNext());
       MS.audio.addEventListener('error', () => { });
-      MS.audio.addEventListener('playing', () => { MS.playing = true; paintDock(); startViz(); });
-      MS.audio.addEventListener('pause', () => { MS.playing = false; paintDock(); });
+      MS.audio.addEventListener('playing', () => { MS.playing = true; setPlayingUI(); startViz(); });
+      MS.audio.addEventListener('pause', () => { MS.playing = false; setPlayingUI(); });
     }
     /* siguiente pista: de la búsqueda si hay, si no de la categoría */
     function smartNext() {
@@ -1364,16 +1365,30 @@
       return `
         <button class="cmu-track${on ? ' on' : ''}" data-i="${i}" style="--d:${Math.min(i, 14) * 30}ms">
           <span class="ct-ava">${t.src === 'yt' ? (t.thumb ? `<img src="${esc(t.thumb)}" alt="" loading="lazy">` : '▶') : '🎵'}</span>
-          <span class="ct-meta"><b>${esc(t.title.slice(0, 64))}</b><span>${esc(String(t.artist || '').slice(0, 42))}</span></span>
+          <span class="ct-meta"><b>${esc(t.title.slice(0, 70))}</b><span>${esc(String(t.artist || '').slice(0, 46))}</span></span>
           <span class="ct-side">
-            ${t.src === 'yt' ? '<i class="ct-src yt">YouTube</i>' : '<i class="ct-src">MP3</i>'}
             ${t.dur ? `<i class="ct-dur">${fmtDur(t.dur)}</i>` : ''}
-            <span class="ct-eq">${on ? (MS.playing ? '<u></u><u></u><u></u>' : '❚❚') : ''}</span>
+            <span class="ct-eq"><u></u><u></u><u></u></span>
           </span>
         </button>`;
     }
+    /* 🔇➡🔊 solo el glifo del botón + la fila encendida — la LISTA jamás se
+       re-arma al pausar/reanudar (antes parpadeaba entera en cada toque) */
+    function setPlayingUI() {
+      dock.classList.toggle('playing', MS.playing);
+      const p = dock.querySelector('.cmu-play'); if (p) p.textContent = MS.playing ? '⏸' : '▶';
+      dock.querySelectorAll('.cmu-track').forEach(b => {
+        const it = dock._rows && dock._rows[+b.dataset.i];
+        b.classList.toggle('on', !!(it && MS.cur && it.title === MS.cur.title));
+      });
+    }
+    function setNow() {
+      const n = dock.querySelector('.cmu-now');
+      if (n) n.innerHTML = MS.cur ? `<b>${esc(MS.cur.title)}</b><span>${esc(MS.cur.artist || '')}</span>` : '<span>Música mientras chateas 🎵</span>';
+    }
     function paintDock() {
       const rows = MS.mode === 'search' ? MS.results : MS.list;
+      dock._rows = rows || [];
       const t = MS.cur;
       dock.innerHTML = `
         <div class="cmu-cats">${CATS.map(c => `<button class="cmu-cat${MS.mode === 'genero' && c.id === MS.cat ? ' on' : ''}" data-cat="${c.id}">${c.name}</button>`).join('')}</div>
@@ -1405,17 +1420,21 @@
       }));
       dock.querySelector('.cmu-play').addEventListener('click', () => {
         ensureAudio();
-        if (MS.playing) { MS.audio.pause(); paintDock(); }
-        else if (MS.cur && MS.cur.url) { MS.audio.play().catch(() => { }); paintDock(); }
+        if (MS.playing) { MS.audio.pause(); }
+        else if (MS.cur && MS.cur.url) { MS.audio.play().catch(() => { }); }
         else if (MS.cur && MS.cur.src === 'ia') playIa(MS.cur);
+        else if (MS.cur && MS.cur.src === 'yt') playYt(MS.cur);
         else smartNext();
       });
       dock.querySelector('.cmu-next').addEventListener('click', smartNext);
+      dock.classList.toggle('playing', MS.playing);
     }
     /* el dock abierto convierte la caja del chat en buscador de música */
     function setSearchOn(on) {
       window.__xMusicOn = on;
-      if (on) { inp.placeholder = '🎵 Escribe una canción o artista y pulsa Enter…'; sendBtn.textContent = '🔍'; }
+      const compose = inp.closest('.chat-compose');
+      if (compose) compose.classList.toggle('music-on', on);
+      if (on) { inp.placeholder = '🎵 ¡Busca aquí cualquier canción o artista al instante!'; sendBtn.textContent = '🔍'; }
       else { inp.placeholder = 'Escribe en el chat… (enlaces se ven con tarjeta)'; sendBtn.textContent = '➤'; }
     }
     btn.addEventListener('click', async () => {

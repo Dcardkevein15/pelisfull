@@ -2486,3 +2486,32 @@ body.chat-full .cmu-list{max-height:44vh}
 .chat-user .u-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 /* en pantalla completa (PC): la lista de conectados respira un 25% más */
 @media (min-width:721px){ body.chat-full .chat-users{width:212px} }
+
+/* 🎵 pulido del dock: filas MÁS ALTAS y legibles, sin sello «MP3»,
+   ecualizador sutil solo en la pista activa (sin recargar la lista) */
+.cmu-track{padding:11px 12px;min-height:60px;gap:12px}
+.ct-ava{width:46px;height:46px;min-width:46px;font-size:19px;border-radius:11px}
+.ct-meta b{font-size:12.8px;font-weight:700;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.32}
+.ct-meta span{font-size:10.8px;margin-top:2px}
+.ct-src{display:none}                       /* adiós sello MP3/YouTube del final */
+.ct-dur{font-size:10.5px}
+.ct-eq{display:inline-flex;gap:2.5px;align-items:flex-end;height:14px;width:22px;visibility:hidden}
+.cmu-track.on .ct-eq{visibility:visible}
+.ct-eq u{width:3.5px;background:var(--acid);border-radius:2px;transform:scaleY(.45);transform-origin:bottom}
+.ct-eq u:nth-child(1){height:60%}.ct-eq u:nth-child(2){height:100%}.ct-eq u:nth-child(3){height:42%}
+.chat-music.playing .ct-eq u{animation:eqB .8s ease-in-out infinite}
+.chat-music.playing .ct-eq u:nth-child(2){animation-delay:.18s}
+.chat-music.playing .ct-eq u:nth-child(3){animation-delay:.36s}
+
+/* la caja del chat EN MODO BÚSQUEDA DE MÚSICA llama la atención sola */
+.chat-compose.music-on #chatInput{
+  border-color:var(--acid);
+  box-shadow:0 0 0 2px rgba(216,255,62,.30),0 0 22px rgba(216,255,62,.16);
+  animation:muPulse 1.9s ease-in-out infinite;
+}
+.chat-compose.music-on #chatInput::placeholder{color:var(--acid);opacity:.85}
+.chat-compose.music-on #chatSend{background:linear-gradient(135deg,#ffd24a,#ff9d2e 55%,#ff5c84);color:#221200}
+@keyframes muPulse{0%,100%{box-shadow:0 0 0 2px rgba(216,255,62,.30),0 0 22px rgba(216,255,62,.16)}50%{box-shadow:0 0 0 3px rgba(216,255,62,.55),0 0 30px rgba(216,255,62,.3)}}
+
+/* pausado = ecualizador quieto (el orden lo da la cascada) */
+.chat-music:not(.playing) .ct-eq u{animation:none!important}
