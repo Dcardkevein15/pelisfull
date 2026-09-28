@@ -286,8 +286,6 @@
         }
         continue;
       }
-        continue;
-      }
       /* ② externo → unfurl del servidor, como siempre */
       try {
         if (!unfurlCache.has(url)) unfurlCache.set(url, await api('?op=unfurl&url=' + encodeURIComponent(url)));
