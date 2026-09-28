@@ -239,6 +239,23 @@
     if (DIRECT_VID.test(url)) return { kind: 'video', url, title: url.split('/').pop().split(/[?#]/)[0].slice(0, 60) };
     return null;
   }
+  /* 🎬 fuentes EMBEBIBLES: el enlace compartido se vuelve reproductor del chat */
+  function embedFor(url) {
+    let m = url.match(/drive\.google\.com\/file\/d\/([\w-]{10,})/i)
+      || url.match(/drive\.google\.com\/open\?id=([\w-]{10,})/i);
+    if (m) return { src: `https://drive.google.com/file/d/${m[1]}/preview`, name: 'Google Drive' };
+    m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{6,})/i);
+    if (m) return { src: `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0`, name: 'YouTube' };
+    m = url.match(/streamtape\.(?:com|to)\/(?:e|v)\/([\w-]+)/i);
+    if (m) return { src: `https://streamtape.com/e/${m[1]}?pop=0`, name: 'Streamtape' };
+    m = url.match(/vimeo\.com\/(\d{6,})/i);
+    if (m) return { src: `https://player.vimeo.com/video/${m[1]}`, name: 'Vimeo' };
+    m = url.match(/(?:dropbox\.com\/s\S+|www\.dropbox\.com\/\S+)$/i);
+    if (m) return { src: url + (url.includes('?') ? '&' : '?') + 'raw=1', name: 'Dropbox', video: true };
+    m = url.match(/mega\.(?:nz|io)\/(file|embed)\/([\w!-]+)(?:#!([\w-]+))?/i);
+    if (m) return { src: `https://mega.nz/embed/${m[2]}${m[3] ? '#' + m[3] : ''}`, name: 'MEGA' };
+    return null;
+  }
 
   async function fillPreviews(container) {
     const nodes = container.querySelectorAll('.chat-prev[data-unfurl]:not([data-done])');
@@ -284,6 +301,29 @@
               <span class="cc-brand">X·STREAM</span>
             </div>`;
         }
+        continue;
+      }
+      /* ①½ fuente embebible (Drive/YouTube/Streamtape/Vimeo/Dropbox/MEGA):
+          el enlace se convierte en un reproductor DENTRO del chat        */
+      let emb = null;
+      try { emb = embedFor(url); } catch (e) { }
+      if (emb) {
+        const isVideo = !!emb.video;   /* Dropbox: se reproduce como <video> directo */
+        n.innerHTML = `
+          <div class="chat-card-own">
+            <div class="cc-main">
+              <span class="cc-thumb"><i>🎬</i></span>
+              <span class="cc-info">
+                <span class="cc-kind">🎥 Video · ${esc(emb.name)}</span>
+                <b class="cc-t">Se reproduce aquí, dentro del chat</b>
+                <span class="cc-d">reproductor interno · sin salir de la conversación</span>
+              </span>
+            </div>
+            <span class="cc-bts">
+              <button class="cc-here" data-vurl="${esc(isVideo ? emb.src : url)}" data-vt="${esc(emb.name)}"${isVideo ? '' : ` data-frame="${esc(emb.src)}"`}>▶ Reproducir aquí</button>
+            </span>
+            <span class="cc-brand">X·STREAM</span>
+          </div>`;
         continue;
       }
       /* ② externo → unfurl del servidor, como siempre */
@@ -1109,12 +1149,12 @@
       this.el.classList.remove('hidden');
       this.el.querySelector('.cm-title').textContent = title || 'Video compartido';
       const v = this.video, f = this.frame;
-      /* 🎵 modo YouTube: suena en iframe (búsqueda de música) */
-      if (opts.yt) {
+      /* 🎬 modo IFRAME (YouTube, Drive, Streamtape…): embebido en el chat */
+      if (opts.frameSrc) {
         if (this.hls) { try { this.hls.destroy(); } catch (e) { } this.hls = null; }
         v.pause(); v.removeAttribute('src'); v.load(); v.style.display = 'none';
         f.style.display = 'block';
-        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(opts.yt) + '?autoplay=1&rel=0';
+        f.src = opts.frameSrc;
         return;
       }
       f.style.display = 'none'; f.removeAttribute('src');
@@ -1171,7 +1211,8 @@
     const here = ev.target.closest('.cc-here');
     if (here) {
       ev.preventDefault(); ev.stopPropagation();
-      mini.open(here.dataset.vurl, here.dataset.vt);
+      if (here.dataset.frame) mini.open('', here.dataset.vt || 'Video compartido', { frameSrc: here.dataset.frame });
+      else mini.open(here.dataset.vurl, here.dataset.vt);
       if (!S.open) switchTab('chat');
       return;
     }
@@ -1254,21 +1295,23 @@
     const pick = arr => arr[Math.floor(Math.random() * arr.length)];
     const fmtDur = s => { s = Math.round(s || 0); return s ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : ''; };
 
-    async function fetchCat(catId, force) {
-      if (MS.loadingList) return MS.list;
-      if (MS.list.length && !force && MS.listCat === catId) return MS.list;
-      MS.loadingList = true;
+    async function fetchCat(catId, page) {
       try {
         const cat = CATS.find(c => c.id === catId) || CATS[0];
-        const page = 1 + Math.floor(Math.random() * 5);
-        const r = await fetch(`https://archive.org/advancedsearch.php?q=${encodeURIComponent(cat.q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=40&page=${page}&output=json&sort[]=downloads desc`, { cache: 'no-store' });
+        const r = await fetch(`https://archive.org/advancedsearch.php?q=${encodeURIComponent(cat.q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=100&page=${page || 1}&output=json&sort[]=downloads desc`, { cache: 'no-store' });
         const j = await r.json();
-        MS.list = ((j.response || {}).docs || []).filter(d => d.identifier)
+        return ((j.response || {}).docs || []).filter(d => d.identifier)
           .map(d => ({ src: 'ia', id: d.identifier, title: d.title || d.identifier, artist: d.creator || 'archive.org' }));
-        MS.listCat = catId;
-      } catch (e) { }
-      MS.loadingList = false;
-      return MS.list;
+      } catch (e) { return []; }
+    }
+    async function loadCat(catId, reset) {
+      if (reset) { MS.list = []; MS.page = 0; MS.listCat = catId; }
+      MS.page = (MS.page || 0) + 1;
+      const more = await fetchCat(catId, MS.page);
+      const have = new Set(MS.list.map(x => x.id));
+      const fresh = more.filter(x => !have.has(x.id));
+      MS.list = MS.list.concat(fresh);
+      return fresh;
     }
     async function iaSearch(q) {
       try {
@@ -1322,7 +1365,7 @@
       finally { dock.classList.remove('cmu-busy'); }
     }
     function playYt(t) {
-      mini.open('', t.title, { yt: t.id });
+      mini.open('', t.title, { frameSrc: 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(t.id) + '?autoplay=1&rel=0' });
       if (MS.audio) MS.audio.pause();
       MS.cur = { ...t };
       setNow(); setPlayingUI();
@@ -1343,8 +1386,7 @@
       const rows = MS.mode === 'search' && MS.results ? MS.results.filter(r => r.src === 'ia') : MS.list;
       const ia = rows && rows.length ? pick(rows) : null;
       if (ia) playIa(ia);
-    }
-    function startViz() {
+    }    function startViz() {
       try {
         if (!MS.ac) {
           MS.ac = new (window.AudioContext || window.webkitAudioContext)();
@@ -1398,6 +1440,46 @@
       const n = dock.querySelector('.cmu-now');
       if (n) n.innerHTML = MS.cur ? `<b>${esc(MS.cur.title)}</b><span>${esc(MS.cur.artist || '')}</span>` : '<span>Música mientras chateas 🎵</span>';
     }
+    function trackClicks(b) {
+      b.addEventListener('click', () => {
+        const item = dock._rows && dock._rows[+b.dataset.i];
+        if (!item) return;
+        if (item.src === 'yt') playYt(item); else playIa(item);
+      });
+    }
+    /* añade filas NUEVAS al final de la lista sin rearmarla (scroll intacto) */
+    function appendRows(items) {
+      const box = dock.querySelector('.cmu-list');
+      if (!box) return;
+      const load = box.querySelector('.cmu-loading'); if (load) load.remove();
+      const base = dock._rows ? dock._rows.length - items.length : 0;
+      for (let k = 0; k < items.length; k++) {
+        const el = document.createElement('div');
+        el.innerHTML = rowHtml(items[k], base + k);
+        const node = el.firstElementChild;
+        trackClicks(node);
+        box.appendChild(node);
+      }
+      if (!dock._rows.length) box.innerHTML = `<div class="cmu-empty">${MS.mode === 'search' ? 'Sin resultados — prueba con otra palabra ✨' : 'Toca una categoría para armar la lista ✨'}</div>`;
+    }
+    /* 🔁 SCROLL INFINITO: al llegar cerca del final carga 100 más */
+    let loadingMore = false;
+    function bindInfinite() {
+      const box = dock.querySelector('.cmu-list');
+      if (!box || box.dataset.inf) return;
+      box.dataset.inf = '1';
+      box.addEventListener('scroll', async () => {
+        if (MS.mode !== 'genero' || loadingMore) return;
+        if (box.scrollTop + box.clientHeight < box.scrollHeight - 260) return;
+        loadingMore = true;
+        try {
+          const fresh = await loadCat(MS.cat, false);
+          appendRows(fresh);
+          if (!fresh.length) box.dataset.inf = '2';   /* no hay más: dejar de pedir */
+        } catch (e) { }
+        loadingMore = false;
+      });
+    }
     function paintDock() {
       const rows = MS.mode === 'search' ? MS.results : MS.list;
       dock._rows = rows || [];
@@ -1410,6 +1492,7 @@
             : rows && rows.length
               ? rows.map((r, i) => rowHtml(r, i)).join('')
               : `<div class="cmu-empty">${MS.mode === 'search' ? 'Escribe arriba y pulsa 🔍 — busco en archive.org y YouTube ✨' : 'Toca una categoría para armar la lista ✨'}</div>`}
+          ${rows && rows.length && MS.mode === 'genero' ? `<div class="cmu-more">⏳ baja para cargar más canciones…</div>` : ''}
         </div>
         <div class="cmu-row">
           <button class="cmu-btn cmu-play" title="Reproducir / pausar">${MS.playing ? '⏸' : '▶'}</button>
@@ -1422,14 +1505,11 @@
         MS.cat = b.dataset.cat; localStorage.setItem('xchat-music-cat', MS.cat);
         MS.mode = 'genero'; MS.results = null; MS.list = [];
         paintDock();
-        await fetchCat(MS.cat, true);
-        paintDock();
+        await loadCat(MS.cat, true);
+        appendRows(MS.list);
+        bindInfinite();
       }));
-      dock.querySelectorAll('.cmu-track').forEach(b => b.addEventListener('click', () => {
-        const item = rows[+b.dataset.i];
-        if (!item) return;
-        if (item.src === 'yt') playYt(item); else playIa(item);
-      }));
+      dock.querySelectorAll('.cmu-track').forEach(trackClicks);
       dock.querySelector('.cmu-play').addEventListener('click', () => {
         ensureAudio();
         if (MS.playing) { MS.audio.pause(); }
@@ -1440,12 +1520,15 @@
       });
       dock.querySelector('.cmu-next').addEventListener('click', smartNext);
       dock.classList.toggle('playing', MS.playing);
+      bindInfinite();
     }
     /* el dock abierto convierte la caja del chat en buscador de música */
     function setSearchOn(on) {
       window.__xMusicOn = on;
       const compose = inp.closest('.chat-compose');
       if (compose) compose.classList.toggle('music-on', on);
+      const panel = $('panelChat');
+      if (panel) panel.classList.toggle('music-on', on);
       if (on) { inp.placeholder = '🎵 ¡Busca aquí cualquier canción o artista al instante!'; sendBtn.textContent = '🔍'; }
       else { inp.placeholder = 'Escribe en el chat… (enlaces se ven con tarjeta)'; sendBtn.textContent = '➤'; }
     }
@@ -1458,7 +1541,12 @@
         if (!dock.children.length) paintDock();
         inp.focus();
         /* precargar la categoría activa si sigue vacía */
-        if (MS.mode === 'genero' && !MS.list.length) { paintDock(); await fetchCat(MS.cat, true); paintDock(); }
+        if (MS.mode === 'genero' && !MS.list.length) {
+          paintDock();
+          await loadCat(MS.cat, true);
+          appendRows(MS.list);
+          paintDock();
+        }
       }
     });
   })();
