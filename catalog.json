@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1790571514391,
+ "v": 1790639166152,
  "by": "MortosPr #2968",
- "at": "2026-09-28T04:58:34.391Z",
- "n": 5636,
+ "at": "2026-09-28T23:46:06.152Z",
+ "n": 5649,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -21550,12 +21550,14 @@
     {
      "n": 1,
      "t": "Furyou ni Hamerarete Jusei Suru Kyonyuu Okaasan 1 Sub Esp",
-     "url": "https://streamtape.com/e/KyvOgeVg0OtwRo"
+     "url": "https://streamtape.com/e/KyvOgeVg0OtwRo",
+     "thumb": "https://thumb.tapecontent.net/thumb/KyvOgeVg0OtwRo/4vZVjdRlmDCKl4p.jpg"
     },
     {
      "n": 2,
      "t": "Furyou ni Hamerarete Jusei Suru Kyonyuu Okaasan 2 Sub Esp",
-     "url": "https://streamtape.com/e/wYb46kZPbDUoZW"
+     "url": "https://streamtape.com/e/wYb46kZPbDUoZW",
+     "thumb": "https://thumb.tapecontent.net/thumb/wYb46kZPbDUoZW/XWDV1RqKOkCD92l.jpg"
     }
    ]
   },
@@ -23569,20 +23571,17 @@
     {
      "n": 1,
      "t": "Chitchana Onaka Naisho Desu yo 1",
-     "url": "https://streamtape.com/e/eGqMV6jZXXUoM3",
-     "thumb": "https://thumb.tapecontent.net/thumb/eGqMV6jZXXUoM3/jqOZgGymXAcGe0.jpg"
+     "url": "https://streamtape.com/e/eGqMV6jZXXUoM3"
     },
     {
      "n": 2,
      "t": "Chitchana Onaka Naisho Desu yo 2",
-     "url": "https://streamtape.com/e/eVldJkVl6rsJRK",
-     "thumb": "https://thumb.tapecontent.net/thumb/eVldJkVl6rsJRK/m60vMqD92rhbj61.jpg"
+     "url": "https://streamtape.com/e/eVldJkVl6rsJRK"
     },
     {
      "n": 3,
      "t": "Chitchana Onaka Naisho Desu yo 3",
-     "url": "https://streamtape.com/e/ogkzqlPYQ0FJeo7",
-     "thumb": "https://thumb.tapecontent.net/thumb/ogkzqlPYQ0FJeo7/mDGmY1m77PfbZvv.jpg"
+     "url": "https://streamtape.com/e/ogkzqlPYQ0FJeo7"
     }
    ]
   },
@@ -24061,12 +24060,14 @@
     {
      "n": 1,
      "t": "Watashi ga Toriko ni Natte Yaru 1",
-     "url": "https://streamtape.com/e/AqWl0gvb0ztwKl"
+     "url": "https://streamtape.com/e/AqWl0gvb0ztwKl",
+     "thumb": "https://thumb.tapecontent.net/thumb/AqWl0gvb0ztwKl/DXAA8O329mckyRy.jpg"
     },
     {
      "n": 2,
      "t": "Watashi ga Toriko ni Natte Yaru 2",
-     "url": "https://streamtape.com/e/7XMdyj1V00S4Al"
+     "url": "https://streamtape.com/e/7XMdyj1V00S4Al",
+     "thumb": "https://thumb.tapecontent.net/thumb/7XMdyj1V00S4Al/mDplWAG4GRUbLx0.jpg"
     }
    ]
   },
@@ -24101,19 +24102,22 @@
      "n": 2,
      "t": "Isekai Suicide Squad 02",
      "url": "https://streamtape.com/e/qaBkjBl7DXFzqV0",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/qaBkjBl7DXFzqV0/rg6WKDo3AGhbbvx.jpg"
     },
     {
      "n": 3,
      "t": "Isekai Suicide Squad 03",
      "url": "https://streamtape.com/e/PG92rkO99bF0Jbz",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/PG92rkO99bF0Jbz/Qbg9lvVB6Lc0bjl.jpg"
     },
     {
      "n": 4,
      "t": "Isekai Suicide Squad 04",
      "url": "https://streamtape.com/e/8W0y2PPv1BSlLP",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/8W0y2PPv1BSlLP/vQwx3bPjDvh498M.jpg"
     },
     {
      "n": 5,
@@ -24125,7 +24129,8 @@
      "n": 6,
      "t": "Isekai Suicide Squad 06",
      "url": "https://streamtape.com/e/8d0R80A30RuoLVM",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/8d0R80A30RuoLVM/M6yQrxp34aFDoO.jpg"
     },
     {
      "n": 7,
@@ -24137,13 +24142,15 @@
      "n": 8,
      "t": "Isekai Suicide Squad 08",
      "url": "https://streamtape.com/e/qrRjGmDovVfzdZd",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/qrRjGmDovVfzdZd/kPeQJr2Z0YtQgZ.jpg"
     },
     {
      "n": 9,
      "t": "Isekai Suicide Squad 09",
      "url": "https://streamtape.com/e/eLy381xGv0UYgBk",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/eLy381xGv0UYgBk/R6rX7Y9XQGC0Lj.jpg"
     },
     {
      "n": 10,
@@ -24832,8 +24839,7 @@
     {
      "n": 1,
      "t": "Cosplay Rakuen",
-     "url": "https://streamtape.com/e/9XW86r0Q1wIa8po",
-     "thumb": "https://thumb.tapecontent.net/thumb/9XW86r0Q1wIa8po/BbpDwKwGeQfM94.jpg"
+     "url": "https://streamtape.com/e/9XW86r0Q1wIa8po"
     }
    ]
   },
@@ -25053,8 +25059,7 @@
     {
      "n": 1,
      "t": "Iizuka-senpai x Blazer Ane Kyun! Yori",
-     "url": "https://streamtape.com/e/Jv73ZweAKWUjkbk",
-     "thumb": "https://thumb.tapecontent.net/thumb/Jv73ZweAKWUjkbk/AJpqM7Pa9kTZXB.jpg"
+     "url": "https://streamtape.com/e/Jv73ZweAKWUjkbk"
     }
    ]
   },
@@ -25649,8 +25654,7 @@
     {
      "n": 1,
      "t": "Mokkai Shiyo",
-     "url": "https://streamtape.com/e/D4RljXkjzqikvx7",
-     "thumb": "https://thumb.tapecontent.net/thumb/D4RljXkjzqikvx7/ylbPMm61ejC16gJ.jpg"
+     "url": "https://streamtape.com/e/D4RljXkjzqikvx7"
     }
    ]
   },
@@ -25957,14 +25961,12 @@
     {
      "n": 1,
      "t": "Pretty x Cation 2 - 1",
-     "url": "https://streamtape.com/e/qyMMbVKj8wTzqp8",
-     "thumb": "https://thumb.tapecontent.net/thumb/qyMMbVKj8wTzqp8/8606Mx3Zjbt8yd.jpg"
+     "url": "https://streamtape.com/e/qyMMbVKj8wTzqp8"
     },
     {
      "n": 2,
      "t": "Pretty x Cation 2 - 2",
-     "url": "https://streamtape.com/e/Z16qxMMdzXIqQV0",
-     "thumb": "https://thumb.tapecontent.net/thumb/Z16qxMMdzXIqQV0/6oVeeoKbb2IeJB.jpg"
+     "url": "https://streamtape.com/e/Z16qxMMdzXIqQV0"
     }
    ]
   },
@@ -26032,8 +26034,7 @@
     {
      "n": 1,
      "t": "Rennyuu Tales The Animation",
-     "url": "https://streamtape.com/e/L1441BXyMbhROwK",
-     "thumb": "https://thumb.tapecontent.net/thumb/L1441BXyMbhROwK/LJwqL9v3OVCRQr3.jpg"
+     "url": "https://streamtape.com/e/L1441BXyMbhROwK"
     }
    ]
   },
@@ -26522,8 +26523,7 @@
     {
      "n": 1,
      "t": "Yokujou Bazooka",
-     "url": "https://streamtape.com/e/jqVzyQj49AuzVyj",
-     "thumb": "https://thumb.tapecontent.net/thumb/jqVzyQj49AuzVyj/wgk3m0zp0Muea9.jpg"
+     "url": "https://streamtape.com/e/jqVzyQj49AuzVyj"
     }
    ]
   },
@@ -35096,6 +35096,502 @@
      "n": 1,
      "t": "Ecchi na Shintai Sokutei",
      "url": "https://streamtape.com/e/oDrwxbJOaWtJo64"
+    }
+   ]
+  },
+  {
+   "id": "ia-golden-boy-espanol-castellano-1",
+   "t": "Golden Boy",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/aYj35mK32fEF1Ky7pe3Y2z7S2q4.jpg",
+   "tags": [],
+   "at": 1790627214495,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Golden Boy Español Castellano (1) ia",
+     "url": "https://archive.org/download/golden-boy-espanol-castellano-1/Golden%20Boy%20Espa%C3%B1ol%20Castellano%20(1).ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Golden Boy Español Castellano (2) ia",
+     "url": "https://archive.org/download/golden-boy-espanol-castellano-1/Golden%20Boy%20Espa%C3%B1ol%20Castellano%20(2).ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Golden Boy Español Castellano (3) ia",
+     "url": "https://archive.org/download/golden-boy-espanol-castellano-1/Golden%20Boy%20Espa%C3%B1ol%20Castellano%20(3).ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Golden Boy Español Castellano (4) ia",
+     "url": "https://archive.org/download/golden-boy-espanol-castellano-1/Golden%20Boy%20Espa%C3%B1ol%20Castellano%20(4).ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Golden Boy Español Castellano (5) ia",
+     "url": "https://archive.org/download/golden-boy-espanol-castellano-1/Golden%20Boy%20Espa%C3%B1ol%20Castellano%20(5).ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Golden Boy Español Castellano (6) ia",
+     "url": "https://archive.org/download/golden-boy-espanol-castellano-1/Golden%20Boy%20Espa%C3%B1ol%20Castellano%20(6).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1vgewyc6PCpkGLHshb7qSAwI3sO7ue",
+   "t": "Barbie Cascanueces (2001)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/3M5fjV6Pze7zC6suGQAG2MWI2fk.jpg",
+   "tags": [],
+   "at": 1790630823676,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1vgewyc6PCpkGLHshb7qSAwI3sO7uejrD/view"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-predator-asesino-de-asesinos-2025-online-gratis-en-es",
+   "t": "Predator Asesino De Asesinos",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8upWJ1KTR1bAPqXCHAuVOhfuiAZ.jpg",
+   "tags": [],
+   "at": 1790633457942,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Predator Asesino De Asesinos ( 2025) Online Gratis En Es",
+     "url": "https://archive.org/download/ver-predator-asesino-de-asesinos-2025-online-gratis-en-espanol-ver-peliculas-ultra-f/Ver_Predator__Asesino_De_Asesinos_(2025)_Online_Gratis_en_Espa%C3%B1ol_-_VerPeliculasUltra_f_.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-depredador-tierras-salvajes-2025-online-gratis-en-esp",
+   "t": "Depredador Tierras Salvajes",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2025",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8nCEJ5hFJt0h8FhXafHGhEhT8d7.jpg",
+   "tags": [],
+   "at": 1790633504182,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Depredador Tierras Salvajes ( 2025) Online Gratis En Esp",
+     "url": "https://archive.org/download/ver-depredador-tierras-salvajes-2025-online-gratis-en-espanol-ver-peliculas-ultra-f/Ver_Depredador__Tierras_Salvajes_(2025)_Online_Gratis_en_Espa%C3%B1ol_-_VerPeliculasUltra_f_.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-TheTerminator-1984",
+   "t": "The Terminator",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/9KI49SBnwAOzGcMw1onIki7vd2.jpg",
+   "tags": [],
+   "at": 1790633649977,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "The Terminator ( 1984)",
+     "url": "https://archive.org/download/TheTerminator-1984/The%20Terminator%20(1984).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-terminator-2_202409",
+   "t": "Terminator 2",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1991",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/10xtoK2SFv6ADIeWxr3mcrjko72.jpg",
+   "tags": [],
+   "at": 1790633693926,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Terminator 2",
+     "url": "https://archive.org/download/terminator-2_202409/Terminator%202.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-terminator-3-la-rebelion-de-las-maquinas",
+   "t": "Terminator: 3 La Rebelión De Las Máquinas",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/ugVNhnnH3DKUZZ3JtzRkViIh4L9.jpg",
+   "tags": [],
+   "at": 1790633718061,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Terminator: 3 La Rebelión De Las Máquinas",
+     "url": "https://archive.org/download/terminator-3-la-rebelion-de-las-maquinas/Terminator%203%20La%20Rebeli%C3%B3n%20de%20las%20M%C3%A1quinas.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-lenore-la-hermosa-nina-muerta-espanol-latino-original-720",
+   "t": "Lenore",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2002",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/5yLxBY8JP02ol8EJh0ffjaiIXb1.jpg",
+   "tags": [],
+   "at": 1790635491125,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Lenore  la hermosa niña muerta - Episodio 1  El Nuevo Juguet",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%201_%20El%20Nuevo%20Juguete%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 2,
+     "t": "Lenore  la hermosa niña muerta - Episodio 2  Ragamuffin (Esp",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%202_%20Ragamuffin%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 3,
+     "t": "Lenore  la hermosa niña muerta - Episodio 3  El Mago (Españo",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%203_%20El%20Mago%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 4,
+     "t": "Lenore  la hermosa niña muerta - Episodio 4  La rana inflada",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%204_%20La%20rana%20inflada%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 5,
+     "t": "Lenore  la hermosa niña muerta - Episodio 5  Taxidermio (Esp",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%205_%20Taxidermio%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 6,
+     "t": "Lenore  la hermosa niña muerta - Episodio 6  El regreso del ",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%206_%20El%20regreso%20del%20Sr.%20Gosh%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 7,
+     "t": "Lenore  la hermosa niña muerta - Episodio 7  El Muffin Mágic",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%207_%20El%20Muffin%20M%C3%A1gico%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 8,
+     "t": "Lenore  la hermosa niña muerta - Episodio 8  Un paseo por la",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%208_%20Un%20paseo%20por%20la%20ciudad%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 9,
+     "t": "Lenore  la hermosa niña muerta - Episodio 9  La Reina Hada d",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%209_%20La%20Reina%20Hada%20de%20los%20Gnomos%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 10,
+     "t": "Lenore  la hermosa niña muerta - Episodio 10  La reunión del",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2010_%20La%20reuni%C3%B3n%20del%20T%C3%A9%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 11,
+     "t": "Lenore  la hermosa niña muerta - Episodio 11  Grave Error (E",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2011_%20Grave%20Error%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 12,
+     "t": "Lenore  la hermosa niña muerta - Episodio 12 La cosa que sal",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2012%20La%20cosa%20que%20sali%C3%B3%20del%20inodoro%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 13,
+     "t": "Lenore  la hermosa niña muerta - Episodio 13  El día que Mr ",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2013_%20El%20d%C3%ADa%20que%20Mr.%20Chippy%20camin%C3%B3%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 14,
+     "t": "Lenore  la hermosa niña muerta - Episodio 14  Bola de Cabell",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2014_%20Bola%20de%20Cabellos%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 15,
+     "t": "Lenore  la hermosa niña muerta - Episodio 15  El Pato Feo (E",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2015_%20El%20Pato%20Feo%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 16,
+     "t": "Lenore  la hermosa niña muerta - Episodio 16  Gatito (Españo",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2016_%20Gatito%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 17,
+     "t": "Lenore  la hermosa niña muerta - Episodio 17  Los Insectos I",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2017_%20Los%20Insectos%20Insurrectos%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 18,
+     "t": "Lenore  la hermosa niña muerta - Episodio 18 19 (Español Lat",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2018_19%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 19,
+     "t": "Lenore  la hermosa niña muerta - Episodio 20  Frito  el demo",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2020_%20Frito_%20el%20demonio%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 20,
+     "t": "Lenore  la hermosa niña muerta - Episodio 22  La Pequeña Con",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2022_%20La%20Peque%C3%B1a%20Conejita%20Foo%20Foo%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 21,
+     "t": "Lenore  la hermosa niña muerta - Episodio 23  La Pequeña Bai",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2023_%20La%20Peque%C3%B1a%20Bailarina%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 22,
+     "t": "Lenore  la hermosa niña muerta - Episodio 24  La Cama de la ",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2024_%20La%20Cama%20de%20la%20Muerte%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    },
+    {
+     "n": 23,
+     "t": "Lenore  la hermosa niña muerta - Episodio 25 26 (Español Lat",
+     "url": "https://archive.org/download/lenore-la-hermosa-nina-muerta-espanol-latino-original-720-p-hd/Lenore_%20la%20hermosa%20ni%C3%B1a%20muerta%20-%20Episodio%2025_26%20(Espa%C3%B1ol%20Latino%20Original)(720P_HD).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-starship-troopers-las-brigadas-del-espacio-dvdrip",
+   "t": "Starship Troopers",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1997",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/rK7LafXBhHKjALYOT3jRUTlFdpk.jpg",
+   "tags": [],
+   "at": 1790635671055,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Starship Troopers Las Brigadas Del Espacio [DVDRip] [Castell",
+     "url": "https://archive.org/download/starship-troopers-las-brigadas-del-espacio-dvdrip/Starship%20Troopers%20-%20Las%20Brigadas%20Del%20Espacio%20%5BDVDRip%5D.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-idiocracia-2006-brrip-m-720p-x-264-ac-3-es",
+   "t": "Idiocracia",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8iO3iSWhlIqd0mCtW7iTJaThled.jpg",
+   "tags": [],
+   "at": 1790635780004,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Idiocracia ( 2006)",
+     "url": "https://archive.org/download/idiocracia-2006-brrip-m-720p-x-264-ac-3-es/Idiocracia%20(2006)%20%5BBRrip%20m720p%20x264%20AC3(ES)%5D.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-TheReturnOfTheLivingDead",
+   "t": "The Return Of The Living Dead",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1985",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/TheReturnOfTheLivingDead",
+   "tags": [],
+   "at": 1790635827101,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "The Return Of The Living Dead",
+     "url": "https://archive.org/download/TheReturnOfTheLivingDead/The%20Return%20of%20the%20Living%20Dead.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-haruhi-suzumiya-pelicula-latino",
+   "t": "La Desaparición de Haruhi Suzumiya",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/tEPcSwoXCKGNC6fwYiEfC7xj2Sw.jpg",
+   "tags": [],
+   "at": 1790635875350,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La Desaparición de Haruhi Suzumiya Pelicula en Español Latin",
+     "url": "https://archive.org/download/haruhi-suzumiya-pelicula-latino/Haruhi%20Suzumiya%20-%20Pelicula%20Latino.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-spider-man-y-sus-increibles-amigos-dob-lat",
+   "t": "Spider Man Y Sus Increíbles Amigos 1981 Doblaje Latino",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 1981",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://archive.org/services/img/spider-man-y-sus-increibles-amigos-dob-lat",
+   "at": 1790636085832,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E01%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E02%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E03%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E04%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E05%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E06%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E07%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E08%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E09%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E10%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E11%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E12%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E13%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E14%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E15%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E16%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E17%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E18%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E19%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E20%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E21%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E22%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E23%20%5B480p%5D.mp4"
+    },
+    {
+     "n": 24,
+     "t": "Spider-Man y sus increibles amigos 1981/Spider-Man y sus inc",
+     "url": "https://archive.org/download/spider-man-y-sus-increibles-amigos-dob-lat/Spider-Man%20y%20sus%20increibles%20amigos%201981/Spider-Man%20y%20sus%20increibles%20amigos%20S01E24%20%5B480p%5D.mp4"
     }
    ]
   }
@@ -93189,7 +93685,13 @@
   "mp-stape-root-JkJgjyyGpvfjWgy": 1790570828670,
   "mp-stape-root-BkRX864K2lIyaxv": 1790570839911,
   "custom-1789930507081": 1790570983022,
-  "mp-stape-root-17BOA8DWeGTeaGd": 1790571264773
+  "mp-stape-root-17BOA8DWeGTeaGd": 1790571264773,
+  "imp-drv-1O8Uw4-e6c89UOEsaH6xx10fc9DMGjqCZ": 1790630720036,
+  "ia-depredador-2-1990-espanol-latino-tv-rip-fullscreen": 1790633579912,
+  "ia-depredador-1987-espanol-latino-dvd-fullscreen": 1790633614263,
+  "ia-terminator_202403": 1790633644942,
+  "ia-PatchAdamLatino1080p": 1790635955309,
+  "ia-yt-la-filmoteca-maldita-MATzIN7eMrY": 1790636312622
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -167873,8 +168375,208 @@
    "dest": "#/anime/yarimoku-beach-ni-shuugakuryokou-de/1",
    "t": "Yarimoku Beach ni Shuugakuryokou de!! · E1",
    "at": 1790571492754
+  },
+  "mre9f4": {
+   "dest": "#/anime/golden-boy/1",
+   "t": "Golden Boy · E1",
+   "at": 1790628385292
+  },
+  "scnjc8": {
+   "dest": "#/anime/golden-boy/2",
+   "t": "Golden Boy · E2",
+   "at": 1790628385292
+  },
+  "r28739": {
+   "dest": "#/anime/golden-boy/3",
+   "t": "Golden Boy · E3",
+   "at": 1790628385292
+  },
+  "d3bv8a": {
+   "dest": "#/anime/golden-boy/4",
+   "t": "Golden Boy · E4",
+   "at": 1790628385292
+  },
+  "h2rq9p": {
+   "dest": "#/anime/golden-boy/5",
+   "t": "Golden Boy · E5",
+   "at": 1790628385292
+  },
+  "dq7ppb": {
+   "dest": "#/anime/golden-boy/6",
+   "t": "Golden Boy · E6",
+   "at": 1790628385292
+  },
+  "tnkkqm": {
+   "dest": "#/pelicula/barbie-cascanueces-2001",
+   "t": "Barbie Cascanueces (2001)",
+   "at": 1790635945012
+  },
+  "rvevp4": {
+   "dest": "#/pelicula/predator-asesino-de-asesinos",
+   "t": "Predator Asesino De Asesinos",
+   "at": 1790635945012
+  },
+  "hrd467": {
+   "dest": "#/pelicula/depredador-tierras-salvajes",
+   "t": "Depredador Tierras Salvajes",
+   "at": 1790635945012
+  },
+  "33p72b": {
+   "dest": "#/pelicula/the-terminator",
+   "t": "The Terminator",
+   "at": 1790635945012
+  },
+  "vv6edy": {
+   "dest": "#/pelicula/terminator-2",
+   "t": "Terminator 2",
+   "at": 1790635945012
+  },
+  "ehwmqj": {
+   "dest": "#/pelicula/terminator-3-la-rebelion-de-las-maquinas",
+   "t": "Terminator: 3 La Rebelión De Las Máquinas",
+   "at": 1790635945012
+  },
+  "qxq7au": {
+   "dest": "#/anime/lenore/1",
+   "t": "Lenore · E1",
+   "at": 1790635945012
+  },
+  "ywmvn5": {
+   "dest": "#/anime/lenore/2",
+   "t": "Lenore · E2",
+   "at": 1790635945012
+  },
+  "wwh296": {
+   "dest": "#/anime/lenore/3",
+   "t": "Lenore · E3",
+   "at": 1790635945012
+  },
+  "g386xt": {
+   "dest": "#/anime/lenore/4",
+   "t": "Lenore · E4",
+   "at": 1790635945012
+  },
+  "zvyevb": {
+   "dest": "#/anime/lenore/5",
+   "t": "Lenore · E5",
+   "at": 1790635945012
+  },
+  "2kravn": {
+   "dest": "#/anime/lenore/6",
+   "t": "Lenore · E6",
+   "at": 1790635945012
+  },
+  "r9nefz": {
+   "dest": "#/anime/lenore/7",
+   "t": "Lenore · E7",
+   "at": 1790635945012
+  },
+  "53mmvf": {
+   "dest": "#/anime/lenore/8",
+   "t": "Lenore · E8",
+   "at": 1790635945012
+  },
+  "t4rjx5": {
+   "dest": "#/anime/lenore/9",
+   "t": "Lenore · E9",
+   "at": 1790635945012
+  },
+  "q2mvw8": {
+   "dest": "#/anime/lenore/10",
+   "t": "Lenore · E10",
+   "at": 1790635945012
+  },
+  "jrmecg": {
+   "dest": "#/anime/lenore/11",
+   "t": "Lenore · E11",
+   "at": 1790635945012
+  },
+  "x2z2cg": {
+   "dest": "#/anime/lenore/12",
+   "t": "Lenore · E12",
+   "at": 1790635945012
+  },
+  "x6jcbh": {
+   "dest": "#/anime/lenore/13",
+   "t": "Lenore · E13",
+   "at": 1790635945012
+  },
+  "fsv746": {
+   "dest": "#/anime/lenore/14",
+   "t": "Lenore · E14",
+   "at": 1790635945012
+  },
+  "vuubtd": {
+   "dest": "#/anime/lenore/15",
+   "t": "Lenore · E15",
+   "at": 1790635945012
+  },
+  "yzwyqq": {
+   "dest": "#/anime/lenore/16",
+   "t": "Lenore · E16",
+   "at": 1790635945012
+  },
+  "auksv8": {
+   "dest": "#/anime/lenore/17",
+   "t": "Lenore · E17",
+   "at": 1790635945012
+  },
+  "9tpufn": {
+   "dest": "#/anime/lenore/18",
+   "t": "Lenore · E18",
+   "at": 1790635945012
+  },
+  "5bd5wt": {
+   "dest": "#/anime/lenore/19",
+   "t": "Lenore · E19",
+   "at": 1790635945012
+  },
+  "d6y3hf": {
+   "dest": "#/anime/lenore/20",
+   "t": "Lenore · E20",
+   "at": 1790635945012
+  },
+  "755dyd": {
+   "dest": "#/anime/lenore/21",
+   "t": "Lenore · E21",
+   "at": 1790635945012
+  },
+  "tjghyh": {
+   "dest": "#/anime/lenore/22",
+   "t": "Lenore · E22",
+   "at": 1790635945012
+  },
+  "mmsrgf": {
+   "dest": "#/anime/lenore/23",
+   "t": "Lenore · E23",
+   "at": 1790635945012
+  },
+  "ukzrj3": {
+   "dest": "#/pelicula/starship-troopers",
+   "t": "Starship Troopers",
+   "at": 1790635945012
+  },
+  "3s37ex": {
+   "dest": "#/pelicula/idiocracia",
+   "t": "Idiocracia",
+   "at": 1790635945012
+  },
+  "ps2zp5": {
+   "dest": "#/pelicula/the-return-of-the-living-dead",
+   "t": "The Return Of The Living Dead",
+   "at": 1790635945012
+  },
+  "jsatrn": {
+   "dest": "#/pelicula/la-desaparicion-de-haruhi-suzumiya",
+   "t": "La Desaparición de Haruhi Suzumiya",
+   "at": 1790635945012
+  },
+  "gutpk5": {
+   "dest": "#/pelicula/patch-adam-latino-1080p",
+   "t": "Patch Adam Latino 1080p",
+   "at": 1790635945012
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "IUIlT/Dg8ct8f+hHEz2xoeMn50oXXKUEbDMp/nCtXHZy2Jyn7AZKKLbfYT+U1yM5FrufIsGMmdOxYsMAlSGpBg=="
+ "sig": "gg6Uk/srhJRReyZd58/z7fQ8Rv5HVCuAo2zuT11HxDeBiR7AzHHOIRYIZLMaUXKTNgcOaEFvqIWYHeH0MRzDcQ=="
 }
