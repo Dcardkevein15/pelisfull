@@ -2219,12 +2219,16 @@ body.staff-on .admin-only{display:revert!important}
 }
 
 /* ═══════ ✨ SINOPSIS — ficha a pantalla completa ═══════ */
-/* botón GRANDE, a la derecha de Compartir: dorado con barrido de sol */
+/* botón GRANDE, a la derecha de Compartir: cinta de cine dorada con
+   imagen de fondo (assets/btn-syn-bg.jpg) + barrido de sol           */
 .btn-syn{
   position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#ffd24a,#ff9d2e 55%,#ff5c84);color:#221200;
-  font-weight:900;font-size:13.5px;letter-spacing:.3px;padding:13px 20px;border-radius:13px;
-  border:1.5px solid rgba(255,222,120,.85);
+  background:
+    linear-gradient(135deg,rgba(255,210,74,.86),rgba(255,157,46,.82) 55%,rgba(255,92,132,.84)),
+    url('assets/btn-syn-bg.jpg') center/cover;
+  color:#221200;text-shadow:0 1px 0 rgba(255,255,255,.35);
+  font-weight:900;font-size:13.5px;letter-spacing:.3px;padding:15px 22px;border-radius:13px;
+  border:1.5px solid rgba(255,222,120,.9);
   box-shadow:0 10px 30px rgba(255,157,46,.4),inset 0 1px 0 rgba(255,255,255,.5);
   animation:synGlow 2.6s ease-in-out infinite;white-space:nowrap;
 }
@@ -2238,9 +2242,12 @@ body.staff-on .admin-only{display:revert!important}
 @keyframes synShine{0%{left:-45%}55%,100%{left:130%}}
 .btn-syn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 14px 36px rgba(255,157,46,.55)}
 @keyframes synGlow{0%,100%{box-shadow:0 10px 30px rgba(255,157,46,.4),inset 0 1px 0 rgba(255,255,255,.5)}50%{box-shadow:0 10px 38px rgba(255,196,0,.7),inset 0 1px 0 rgba(255,255,255,.5)}}
-/* móvil: ocupa SU PROPIA línea entera — siempre se lee «Leer sinopsis» */
-@media (max-width:640px){
-  .stage-side .btn-syn{order:9;flex:1 1 100%;justify-content:center;padding:14px 18px;font-size:14px}
+/* móvil/tablet: a la DERECHA en la MISMA fila de botones (no se va abajo),
+   y SÍ se lee «Leer sinopsis» — la regla global que esconde textos de
+   botones en pantallas ≤900px se anula SOLO para este botón          */
+@media (max-width:900px){
+  .stage-side .btn-syn{flex:0 0 auto;padding:12px 15px;font-size:12px}
+  .stage-side .btn-syn span{display:inline}
 }
 
 .syn-backdrop{
