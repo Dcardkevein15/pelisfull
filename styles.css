@@ -2366,13 +2366,23 @@ body.staff-on .admin-only{display:revert!important}
    pantalla completa solo) — todo lo demás del chat sigue igual  */
 @media (max-width:900px){ .panel-tab-mid{display:none!important} }
 
-/* chat PANTALLA COMPLETA (responsive — se adapta a cualquier dispositivo) */
+/* chat PANTALLA COMPLETA (responsive — se adapta a cualquier dispositivo):
+   100% de altura REAL — la fila de pestañas se esconde; «Restaurar» flota */
 body.chat-full .episodes-panel{
   position:fixed;inset:0;z-index:118;display:flex;flex-direction:column;
-  background:var(--bg);border-radius:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));
+  background:var(--bg);border-radius:0;padding:0 0 env(safe-area-inset-bottom,0px);
 }
-body.chat-full .panel-tabs{padding:0 2px 8px}
-body.chat-full .chat-panel{flex:1;min-height:0;height:auto!important;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+body.chat-full .panel-tabs{display:none}
+body.chat-full .chat-panel{flex:1;min-height:0;height:auto!important;border-radius:0;overflow:hidden;display:flex;flex-direction:column}
+/* ⤓ botón RESTAURAR flotante, imposible de no ver */
+.chat-unfull{
+  position:fixed;top:12px;right:12px;z-index:142;display:none;align-items:center;gap:7px;
+  background:var(--acid);color:#111;font-weight:900;font-size:12.5px;letter-spacing:.3px;
+  border:none;border-radius:999px;padding:10px 16px;cursor:pointer;
+  box-shadow:0 10px 30px rgba(216,255,62,.45);animation:up .25s cubic-bezier(.2,1.4,.4,1);
+}
+body.chat-full .chat-unfull{display:flex}
+.chat-unfull:hover{transform:scale(1.05)}
 body.chat-full .chat-main{flex:1;min-height:0}
 body.chat-full .chat-stage{height:100%}
 body.chat-full .chat-msgs{max-height:none!important;height:100%}
@@ -2429,3 +2439,43 @@ body.chat-full .chat-msgs{max-height:none!important;height:100%}
 .cmu-viz{width:110px;height:30px;flex:0 0 auto;border-radius:8px;background:#0a0a12}
 .chat-music.noviz .cmu-viz{background:linear-gradient(90deg,#0a0a12 30%,#15130a 50%,#0a0a12 70%);background-size:200% 100%;animation:synSk 1.6s linear infinite}
 #chatMusicBtn.on{background:var(--acid);color:#111;border-color:var(--acid)}
+
+/* 🎵 dock de música PRO: lista vertical bonita */
+.chat-music{border-top:1px solid var(--line);background:var(--panel)}
+.chat-music .cmu-cats{padding:8px 10px 6px}
+.cmu-list{max-height:34vh;overflow-y:auto;display:flex;flex-direction:column;gap:5px;padding:2px 8px;scrollbar-width:thin}
+body.chat-full .cmu-list{max-height:44vh}
+.cmu-track{
+  position:relative;display:flex;align-items:center;gap:10px;text-align:left;
+  background:rgba(14,14,22,.72);border:1px solid var(--line);border-radius:12px;
+  padding:8px 10px;cursor:pointer;overflow:hidden;
+  animation:trackIn .3s cubic-bezier(.2,1.2,.3,1) both;animation-delay:var(--d,0ms);
+}
+@keyframes trackIn{from{opacity:0;transform:translateX(-12px)}}
+.cmu-track::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(216,255,62,.06),transparent);transform:translateX(-100%);transition:transform .5s;pointer-events:none}
+.cmu-track:hover{border-color:var(--acid);transform:translateX(3px)}
+.cmu-track:hover::after{transform:translateX(100%)}
+.cmu-track.on{border-color:var(--acid);background:rgba(216,255,62,.08)}
+.ct-ava{width:38px;height:38px;min-width:38px;border-radius:9px;overflow:hidden;display:grid;place-items:center;background:var(--panel2);font-size:16px}
+.ct-ava img{width:100%;height:100%;object-fit:cover}
+.ct-meta{flex:1;min-width:0;line-height:1.3}
+.ct-meta b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ct-meta span{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ct-side{display:flex;align-items:center;gap:7px;flex:0 0 auto}
+.ct-src{font:800 8.5px 'JetBrains Mono';letter-spacing:.6px;color:#6ee7b7;border:1px solid rgba(110,231,183,.4);border-radius:999px;padding:2px 7px}
+.ct-src.yt{color:#ff6b81;border-color:rgba(255,107,129,.4)}
+.ct-dur{font:600 9.5px 'JetBrains Mono';color:var(--dim)}
+.ct-eq{width:20px;text-align:center;color:var(--acid);font-size:11px;font-weight:900}
+.cmu-track.on .ct-eq{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.cmu-track.on .ct-eq u{width:3px;background:var(--acid);animation:eqB .7s ease-in-out infinite;text-decoration:none}
+.cmu-track.on .ct-eq u:nth-child(2){animation-delay:.18s;height:100%}
+.cmu-track.on .ct-eq u:nth-child(1){height:60%}
+.cmu-track.on .ct-eq u:nth-child(3){animation-delay:.36s;height:40%}
+@keyframes eqB{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+.cmu-loading{display:flex;flex-direction:column;gap:8px;padding:10px 4px}
+.cmu-loading i{display:block;height:34px;border-radius:12px;background:linear-gradient(90deg,var(--panel) 25%,var(--panel2) 50%,var(--panel) 75%);background-size:200% 100%;animation:synSk 1.2s linear infinite}
+.cmu-empty{text-align:center;color:var(--dim);font-size:11.5px;padding:16px 10px}
+.cmu-row{padding:7px 10px 9px;border-top:1px solid var(--line)}
+.chat-music.cmu-busy .cmu-list{opacity:.55;pointer-events:none}
+.chat-mini .cm-frame{width:100%;aspect-ratio:16/9;background:#000;border:0;display:block}
+@media (max-width:640px){ .cmu-list{max-height:30vh} .ct-src{display:none} }

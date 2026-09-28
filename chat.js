@@ -488,6 +488,8 @@
   async function sendNow() {
     const inp = $('chatInput');
     const text = (inp.value || '').trim();
+    /* 🎵 con el dock de música ABIERTO, la caja es buscador de música */
+    if (text && typeof window.__musicSearch === 'function' && window.__musicSearch(text)) { inp.value = ''; return; }
     const editing = inp.dataset.editId;
     const pendImg = inp.dataset.imgUrl;
     const quoting = inp.dataset.quoteId && inp.dataset.quoteText
@@ -1088,12 +1090,23 @@
      Nace cuando tocas «▶ Reproducir aquí» en una tarjeta de enlace.
      Vive dentro del chat; lo arrastras desde su barra de título.        */
   const mini = {
-    el: null, video: null, hls: null,
-    open(url, title) {
+    el: null, video: null, hls: null, frame: null,
+    open(url, title, opts) {
+      opts = opts || {};
       if (!this.el) this.build();
       this.el.classList.remove('hidden');
       this.el.querySelector('.cm-title').textContent = title || 'Video compartido';
-      const v = this.video;
+      const v = this.video, f = this.frame;
+      /* 🎵 modo YouTube: suena en iframe (búsqueda de música) */
+      if (opts.yt) {
+        if (this.hls) { try { this.hls.destroy(); } catch (e) { } this.hls = null; }
+        v.pause(); v.removeAttribute('src'); v.load(); v.style.display = 'none';
+        f.style.display = 'block';
+        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(opts.yt) + '?autoplay=1&rel=0';
+        return;
+      }
+      f.style.display = 'none'; f.removeAttribute('src');
+      v.style.display = 'block';
       if (this.hls) { try { this.hls.destroy(); } catch (e) { } this.hls = null; }
       v.removeAttribute('src'); v.load();
       const isHls = /\.m3u8(\?|#|$)/i.test(url);
@@ -1113,9 +1126,10 @@
       el.innerHTML = `
         <div class="cm-bar"><span class="cm-grip">⠿</span><span class="cm-title">Video</span>
           <button class="cm-x" title="Cerrar">✕</button></div>
-        <video class="cm-vid" controls playsinline></video>`;
-      this.el = el; this.video = el.querySelector('video');
-      el.querySelector('.cm-x').addEventListener('click', () => { this.video.pause(); el.classList.add('hidden'); });
+        <video class="cm-vid" controls playsinline></video>
+        <iframe class="cm-frame" style="display:none" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      this.el = el; this.video = el.querySelector('video'); this.frame = el.querySelector('.cm-frame');
+      el.querySelector('.cm-x').addEventListener('click', () => { this.video.pause(); this.frame.removeAttribute('src'); el.classList.add('hidden'); });
       /* arrastre con pointer events (funciona con mouse y dedo) */
       const bar = el.querySelector('.cm-bar');
       let drag = null;
@@ -1171,6 +1185,8 @@
     if (on) { switchTab('chat'); setTimeout(() => { const b = $('chatMsgs'); if (b) b.scrollTop = b.scrollHeight; }, 60); }
   }
   if (expBtn) expBtn.addEventListener('click', () => setChatFull(!document.body.classList.contains('chat-full')));
+  const unfBtn = $('chatUnfullBtn');
+  if (unfBtn) unfBtn.addEventListener('click', () => setChatFull(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('chat-full')) setChatFull(false); });
 
   /* ═══════ ❔ AYUDA (circulito arriba a la derecha) ═══════ */
@@ -1189,86 +1205,132 @@
     if (typeof uiModal === 'function') uiModal(s); else alert(s.sub.replace(/<[^>]+>/g, ' '));
   });
 
-  /* ═══════ 🎵 MÚSICA en el chat — listas MP3 auto-alimentadas ═══════
-     Fuentes: archive.org (MP3 directos, CORS abierto → carga instantánea
-     y visualizador real). Categorías curadas; cada «⏭» arma la siguiente
-     pista sola desde la colección elegida.                            */
+  /* ═══════ 🎵 MÚSICA PRO en el chat ═══════
+     · Géneros populares (reggaetón, vallenato, salsa, corridos, pop…).
+     · LISTA VERTICAL bonita: cada fila es una pista clicable.
+     · Con el dock abierto, LA CAJA DEL CHAT se vuelve buscador:
+       archive.org (MP3 al instante) + YouTube (búsqueda por título) —
+       los de YT suenan en el mini-reproductor arrastrable.           */
   (function musicDock() {
-    const dock = $('chatMusic'), btn = $('chatMusicBtn');
+    const dock = $('chatMusic'), btn = $('chatMusicBtn'), inp = $('chatInput'), sendBtn = $('chatSend');
     if (!dock || !btn) return;
     const CATS = [
+      { id: 'reggaeton', name: '🎤 Reggaetón', q: 'reggaeton AND mediatype:audio' },
+      { id: 'pop', name: '🎶 Pop', q: '(pop OR balada) AND mediatype:audio AND collection:(netlabels OR opensource_audio)' },
+      { id: 'salsa', name: '💃 Salsa', q: 'salsa AND mediatype:audio' },
+      { id: 'vallenato', name: '🪗 Vallenato', q: 'vallenato AND mediatype:audio' },
+      { id: 'merengue', name: '🥁 Merengue', q: 'merengue AND mediatype:audio' },
+      { id: 'corridos', name: '🤠 Corridos', q: '(corridos OR "corridos tumbados") AND mediatype:audio' },
+      { id: 'mexicana', name: '🇲🇽 Mexicana', q: '(ranchera OR mariachi OR banda) AND mediatype:audio' },
+      { id: 'bachata', name: '💜 Bachata', q: 'bachata AND mediatype:audio' },
+      { id: 'cumbia', name: '🎺 Cumbia', q: 'cumbia AND mediatype:audio' },
+      { id: 'electronica', name: '⚡ Electrónica', q: '(techno OR house OR electronic) AND mediatype:audio AND collection:netlabels' },
+      { id: 'rock', name: '🎸 Rock', q: '(rock OR indie) AND mediatype:audio AND collection:netlabels' },
       { id: 'lofi', name: '🌙 Lofi', q: '(lofi OR "lo-fi" OR chillhop) AND mediatype:audio' },
-      { id: 'chill', name: '🌊 Chill', q: '(chillout OR chillwave OR downtempo) AND mediatype:audio' },
-      { id: 'synth', name: '🌆 Synthwave', q: '(synthwave OR retrowave OR vaporwave) AND mediatype:audio' },
-      { id: 'electro', name: '⚡ Electrónica', q: '(techno OR house OR electronic) AND mediatype:audio AND collection:netlabels' },
       { id: 'jazz', name: '🎷 Jazz', q: 'jazz AND mediatype:audio AND collection:(netlabels OR opensource_audio)' },
       { id: 'clasica', name: '🎻 Clásica', q: '(classical OR piano) AND mediatype:audio AND collection:opensource_audio' },
-      { id: 'ambient', name: '🌌 Ambient', q: 'ambient AND mediatype:audio AND collection:netlabels' },
-      { id: 'rock', name: '🎸 Rock', q: '(rock OR indie) AND mediatype:audio AND collection:netlabels' },
-      { id: 'pop', name: '🎤 Pop/Indie', q: '(pop OR indie) AND mediatype:audio AND collection:netlabels' },
-      { id: 'latina', name: '💃 Latina', q: '(cumbia OR salsa OR bachata) AND mediatype:audio' },
     ];
+    const PIPED = ['https://pipedapi.kavin.rocks', 'https://pipedapi.adminforge.de', 'https://api.piped.private.coffee', 'https://pipedapi.reallyaweso.me'];
     const MS = {
-      cat: localStorage.getItem('xchat-music-cat') || 'lofi',
-      list: [],            /* pistas de la categoría activa */
-      loadingList: false,
+      cat: localStorage.getItem('xchat-music-cat') || 'reggaeton',
+      mode: 'genero',            /* 'genero' | 'search' */
+      list: [], loadingList: false, listCat: '',
+      results: null,             /* resultados de búsqueda */
       audio: null, ac: null, analyser: null, canvas: null, raf: 0,
-      cur: null,           /* pista sonando {title, artist, url} */
-      playing: false,
+      cur: null, playing: false,
     };
     const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+    const fmtDur = s => { s = Math.round(s || 0); return s ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : ''; };
 
-    /* archive.org: busca items de audio y elige su MP3 */
-    async function fetchTracks(catId, force) {
+    async function fetchCat(catId, force) {
       if (MS.loadingList) return MS.list;
       if (MS.list.length && !force && MS.listCat === catId) return MS.list;
       MS.loadingList = true;
       try {
         const cat = CATS.find(c => c.id === catId) || CATS[0];
-        const page = 1 + Math.floor(Math.random() * 4);
-        const r = await fetch(`https://archive.org/advancedsearch.php?q=${encodeURIComponent(cat.q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=24&page=${page}&output=json`, { cache: 'no-store' });
+        const page = 1 + Math.floor(Math.random() * 5);
+        const r = await fetch(`https://archive.org/advancedsearch.php?q=${encodeURIComponent(cat.q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=40&page=${page}&output=json&sort[]=downloads desc`, { cache: 'no-store' });
         const j = await r.json();
-        MS.list = ((j.response || {}).docs || []).filter(d => d.identifier);
+        MS.list = ((j.response || {}).docs || []).filter(d => d.identifier)
+          .map(d => ({ src: 'ia', id: d.identifier, title: d.title || d.identifier, artist: d.creator || 'archive.org' }));
         MS.listCat = catId;
-      } catch (e) { /* sin red: conserva lo que haya */ }
+      } catch (e) { }
       MS.loadingList = false;
       return MS.list;
     }
-    async function nextTrack(auto) {
-      const docs = await fetchTracks(MS.cat);
-      if (!docs.length) { toastLite('⚠ No pude cargar la lista de música'); return; }
-      /* hasta 6 intentos hallando un mp3 reproducible */
-      for (let i = 0; i < 6; i++) {
-        const doc = pick(docs);
+    async function iaSearch(q) {
+      try {
+        const r = await fetch(`https://archive.org/advancedsearch.php?q=${encodeURIComponent('(' + q + ') AND mediatype:audio')}&fl[]=identifier&fl[]=title&fl[]=creator&rows=16&output=json&sort[]=downloads desc`, { cache: 'no-store' });
+        const j = await r.json();
+        return ((j.response || {}).docs || []).map(d => ({ src: 'ia', id: d.identifier, title: d.title || d.identifier, artist: d.creator || 'archive.org' }));
+      } catch (e) { return []; }
+    }
+    async function ytSearch(q) {
+      for (const base of PIPED) {
         try {
-          const meta = await (await fetch(`https://archive.org/metadata/${doc.identifier}`, { cache: 'no-store' })).json();
-          const f = (meta.files || []).find(x => /VBR MP3|MP3/i.test(x.format || '') && x.name)
-            || (meta.files || []).find(x => /\.mp3$/i.test(x.name || ''));
-          if (!f) continue;
-          const url = `https://archive.org/download/${doc.identifier}/${encodeURIComponent(f.name).replace(/\+/g, '%20')}`;
-          return play({ url, title: doc.title || f.name, artist: doc.creator || 'archive.org', auto });
+          const r = await fetch(`${base}/search?q=${encodeURIComponent(q)}&filter=videos`, { cache: 'no-store' });
+          const j = await r.json();
+          const items = (j.items || []).filter(x => x.url && /[?&]v=\S/.test(x.url)).slice(0, 14).map(x => ({
+            src: 'yt', id: (x.url.match(/[?&]v=([\w-]+)/) || [])[1],
+            title: x.title || 'Video', artist: x.uploaderName || 'YouTube',
+            thumb: x.thumbnail || '', dur: x.duration || 0,
+          })).filter(x => x.id);
+          if (items.length) return items;
         } catch (e) { }
       }
-      toastLite('⚠ Esa lista no respondió — prueba otra categoría');
+      return [];
     }
+    async function doSearch(q) {
+      MS.mode = 'search'; MS.results = null; paintDock();
+      const [ia, yt] = await Promise.allSettled([iaSearch(q), ytSearch(q)]);
+      MS.results = [...(yt.status === 'fulfilled' ? yt.value : []), ...(ia.status === 'fulfilled' ? ia.value : [])]
+        .filter(x => x.title && !/full album|podcast|radio show|trailer/i.test(x.title)).slice(0, 20);
+      paintDock();
+      if (!MS.results.length) toastLite('⚠ Sin resultados para «' + q + '»');
+    }
+    window.__musicSearch = text => { if (!window.__xMusicOn) return false; doSearch(text); return true; };
+
+    async function resolveIaUrl(id) {
+      const meta = await (await fetch(`https://archive.org/metadata/${id}`, { cache: 'no-store' })).json();
+      const f = (meta.files || []).find(x => /VBR MP3|MP3/i.test(x.format || '') && x.name)
+        || (meta.files || []).find(x => /\.mp3$/i.test(x.name || ''));
+      return f ? `https://archive.org/download/${id}/${encodeURIComponent(f.name).replace(/\+/g, '%20')}` : null;
+    }
+    async function playIa(t) {
+      try {
+        dock.classList.add('cmu-busy');
+        const url = await resolveIaUrl(t.id);
+        if (!url) { toastLite('⚠ Esa pieza no tiene MP3 directo'); return; }
+        ensureAudio();
+        MS.cur = { ...t, url };
+        MS.audio.src = url;
+        MS.audio.play().catch(() => { });
+        paintDock();
+      } catch (e) { toastLite('⚠ No pude reproducirla'); }
+      finally { dock.classList.remove('cmu-busy'); }
+    }
+    function playYt(t) {
+      mini.open('', t.title, { yt: t.id });
+      cur2({ ...t }); paintDock();
+    }
+    function cur2(t) { MS.cur = t; }
+
     function ensureAudio() {
       if (MS.audio) return;
       MS.audio = new Audio();
-      MS.audio.crossOrigin = 'anonymous';   /* archive.org lo permite → visualizador real */
+      MS.audio.crossOrigin = 'anonymous';
       MS.audio.preload = 'none';
-      MS.audio.addEventListener('ended', () => nextTrack(true));
-      MS.audio.addEventListener('error', () => { if (MS.playing) nextTrack(true); });
+      MS.audio.addEventListener('ended', () => smartNext());
+      MS.audio.addEventListener('error', () => { });
       MS.audio.addEventListener('playing', () => { MS.playing = true; paintDock(); startViz(); });
       MS.audio.addEventListener('pause', () => { MS.playing = false; paintDock(); });
     }
-    function play(t, o) {
-      ensureAudio();
-      MS.cur = t;
-      MS.audio.src = t.url;
-      MS.audio.play().catch(() => { });
-      paintDock();
+    /* siguiente pista: de la búsqueda si hay, si no de la categoría */
+    function smartNext() {
+      const rows = MS.mode === 'search' && MS.results ? MS.results.filter(r => r.src === 'ia') : MS.list;
+      const ia = rows && rows.length ? pick(rows) : null;
+      if (ia) playIa(ia);
     }
-    /* visualizador: barras ácidas bailando con el audio real */
     function startViz() {
       try {
         if (!MS.ac) {
@@ -1294,37 +1356,79 @@
             ctx.fillRect(i * bw + 1, c.height - h, bw - 2, h);
           }
         })();
-      } catch (e) { dock.classList.add('noviz'); /* sin analyser: barras CSS */ }
+      } catch (e) { dock.classList.add('noviz'); }
+    }
+
+    function rowHtml(t, i) {
+      const on = MS.cur && MS.cur.title === t.title;
+      return `
+        <button class="cmu-track${on ? ' on' : ''}" data-i="${i}" style="--d:${Math.min(i, 14) * 30}ms">
+          <span class="ct-ava">${t.src === 'yt' ? (t.thumb ? `<img src="${esc(t.thumb)}" alt="" loading="lazy">` : '▶') : '🎵'}</span>
+          <span class="ct-meta"><b>${esc(t.title.slice(0, 64))}</b><span>${esc(String(t.artist || '').slice(0, 42))}</span></span>
+          <span class="ct-side">
+            ${t.src === 'yt' ? '<i class="ct-src yt">YouTube</i>' : '<i class="ct-src">MP3</i>'}
+            ${t.dur ? `<i class="ct-dur">${fmtDur(t.dur)}</i>` : ''}
+            <span class="ct-eq">${on ? (MS.playing ? '<u></u><u></u><u></u>' : '❚❚') : ''}</span>
+          </span>
+        </button>`;
     }
     function paintDock() {
+      const rows = MS.mode === 'search' ? MS.results : MS.list;
       const t = MS.cur;
       dock.innerHTML = `
-        <div class="cmu-cats">${CATS.map(c => `<button class="cmu-cat${c.id === MS.cat ? ' on' : ''}" data-cat="${c.id}">${c.name}</button>`).join('')}</div>
+        <div class="cmu-cats">${CATS.map(c => `<button class="cmu-cat${MS.mode === 'genero' && c.id === MS.cat ? ' on' : ''}" data-cat="${c.id}">${c.name}</button>`).join('')}</div>
+        <div class="cmu-list">
+          ${rows === null
+            ? `<div class="cmu-loading">${'<i></i>'.repeat(5)}</div>`
+            : rows && rows.length
+              ? rows.map((r, i) => rowHtml(r, i)).join('')
+              : `<div class="cmu-empty">${MS.mode === 'search' ? 'Escribe arriba y pulsa 🔍 — busco en archive.org y YouTube ✨' : 'Toca una categoría para armar la lista ✨'}</div>`}
+        </div>
         <div class="cmu-row">
           <button class="cmu-btn cmu-play" title="Reproducir / pausar">${MS.playing ? '⏸' : '▶'}</button>
-          <button class="cmu-btn cmu-next" title="Otra pista al azar">⏭</button>
-          <div class="cmu-now">${t ? `<b>${esc(t.title)}</b><span>${esc(t.artist)}</span>` : '<span>Elige ▶ y suena música ✨</span>'}</div>
+          <button class="cmu-btn cmu-next" title="Siguiente pista">⏭</button>
+          <div class="cmu-now">${t ? `<b>${esc(t.title)}</b><span>${esc(t.artist || '')}</span>` : '<span>Música mientras chateas 🎵</span>'}</div>
           <canvas class="cmu-viz" width="300" height="30"></canvas>
         </div>`;
       MS.canvas = dock.querySelector('.cmu-viz');
-      dock.querySelectorAll('.cmu-cat').forEach(b => b.addEventListener('click', () => {
+      dock.querySelectorAll('.cmu-cat').forEach(b => b.addEventListener('click', async () => {
         MS.cat = b.dataset.cat; localStorage.setItem('xchat-music-cat', MS.cat);
-        MS.list = []; nextTrack(false); paintDock();
+        MS.mode = 'genero'; MS.results = null; MS.list = [];
+        paintDock();
+        await fetchCat(MS.cat, true);
+        paintDock();
+      }));
+      dock.querySelectorAll('.cmu-track').forEach(b => b.addEventListener('click', () => {
+        const item = rows[+b.dataset.i];
+        if (!item) return;
+        if (item.src === 'yt') playYt(item); else playIa(item);
       }));
       dock.querySelector('.cmu-play').addEventListener('click', () => {
         ensureAudio();
         if (MS.playing) { MS.audio.pause(); paintDock(); }
-        else if (MS.cur) { MS.audio.play().catch(() => { }); paintDock(); }
-        else nextTrack(false);
+        else if (MS.cur && MS.cur.url) { MS.audio.play().catch(() => { }); paintDock(); }
+        else if (MS.cur && MS.cur.src === 'ia') playIa(MS.cur);
+        else smartNext();
       });
-      dock.querySelector('.cmu-next').addEventListener('click', () => nextTrack(false));
+      dock.querySelector('.cmu-next').addEventListener('click', smartNext);
     }
-    btn.addEventListener('click', () => {
+    /* el dock abierto convierte la caja del chat en buscador de música */
+    function setSearchOn(on) {
+      window.__xMusicOn = on;
+      if (on) { inp.placeholder = '🎵 Escribe una canción o artista y pulsa Enter…'; sendBtn.textContent = '🔍'; }
+      else { inp.placeholder = 'Escribe en el chat… (enlaces se ven con tarjeta)'; sendBtn.textContent = '➤'; }
+    }
+    btn.addEventListener('click', async () => {
       const show = dock.classList.contains('hidden');
       dock.classList.toggle('hidden', !show);
       btn.classList.toggle('on', show);
-      if (show && !dock.children.length) paintDock();
-      if (!show && MS.audio && MS.playing) { /* la música SIGUE sonando aunque ocultes el dock 💛 */ }
+      setSearchOn(show);
+      if (show) {
+        if (!dock.children.length) paintDock();
+        inp.focus();
+        /* precargar la categoría activa si sigue vacía */
+        if (MS.mode === 'genero' && !MS.list.length) { paintDock(); await fetchCat(MS.cat, true); paintDock(); }
+      }
     });
   })();
 
