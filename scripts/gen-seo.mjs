@@ -30,7 +30,11 @@ const ogCard = (t, k, poster, r) => `${SITE}/api/og?t=${encodeURIComponent(Strin
   + (poster ? `&img=${encodeURIComponent(poster)}` : '')
   + (r ? `&r=${encodeURIComponent(r)}` : '');
 let ogLive = false;
-try { ogLive = (await fetch(`${SITE}/api/og?t=x`)).ok; } catch (e) { ogLive = false; }
+try {
+  const probe = await fetch(`${SITE}/api/og?t=x`);
+  const ct = (probe.headers.get('content-type') || '');
+  ogLive = probe.ok && ct.includes('image');   /* SOLO si de verdad devuelve una imagen */
+} catch (e) { ogLive = false; }
 const ogImage = (t, k, poster, r, fallback) => (ogLive && poster ? ogCard(t, k, poster, r) : (poster || fallback));
 const TMDB_KEY = process.env.TMDB_API_KEY || '';
 const DAILY_LIMIT = Math.max(1, parseInt(process.env.SEO_DAILY_LIMIT || '8', 10) || 8);
