@@ -23,12 +23,15 @@ const ROOT = path.resolve(path.dirname(decodeURIComponent(new URL(import.meta.ur
 const SITE = 'https://x.yapido.click';
 
 /* 🃏 tarjeta cinematográfica VERTICAL dinámica (api/og): póster real +
-   marca X·STREAM + CTA «▶ VER AHORA». La usan como og:image las páginas
-   /ver/ y los enlaces cortos b/<código>.                              */
+   marca X·STREAM + CTA «▶ VER AHORA». Se usa si la función está activa;
+   si /api/og responde 404 el generador cae al póster TMDB directo.  */
 const ogCard = (t, k, poster, r) => `${SITE}/api/og?t=${encodeURIComponent(String(t || '').slice(0, 64))}`
   + (k ? `&k=${encodeURIComponent(k)}` : '')
   + (poster ? `&img=${encodeURIComponent(poster)}` : '')
   + (r ? `&r=${encodeURIComponent(r)}` : '');
+let ogLive = false;
+try { ogLive = (await fetch(`${SITE}/api/og?t=x`)).ok; } catch (e) { ogLive = false; }
+const ogImage = (t, k, poster, r, fallback) => (ogLive && poster ? ogCard(t, k, poster, r) : (poster || fallback));
 const TMDB_KEY = process.env.TMDB_API_KEY || '';
 const DAILY_LIMIT = Math.max(1, parseInt(process.env.SEO_DAILY_LIMIT || '8', 10) || 8);
 const FORCE = process.env.SEO_FORCE === '1';   /* ignora el cupo diario */
@@ -309,11 +312,11 @@ function pageHtml(s, d, slug) {
   const year = d && d.year;
   const { intro, overview, cierre } = composeCopy(s, d);
   const metaDesc = clip(intro);
-  const social = (typeof ogCard === 'function' && (poster || '').includes('image.tmdb.org'))
-    ? ogCard(s.t, isPeli ? 'PELÍCULA' : 'SERIE COMPLETA', poster, d && d.rating ? d.rating + '/10' : '')
+  const social = (poster || '').includes('image.tmdb.org')
+    ? ogImage(s.t, isPeli ? 'PELÍCULA' : 'SERIE COMPLETA', poster, d && d.rating ? d.rating + '/10' : '', `${SITE}/assets/og-cover.jpg`)
     : `${SITE}/assets/og-cover.jpg`;
-  const socialW = social.includes('/api/og?') ? 1000 : 1200;
-  const socialH = social.includes('/api/og?') ? 1500 : 630;
+  const socialW = social.includes('/api/og?') ? 1000 : (social.includes('image.tmdb.org') ? 780 : 1200);
+  const socialH = social.includes('/api/og?') ? 1500 : (social.includes('image.tmdb.org') ? 1170 : 630);
   const verUrl = `${SITE}/#/${isPeli ? 'pelicula' : 'anime'}/${slug}`;
   const ficha = fichaHtml(s, d);
   const tipoChip = isPeli ? '🎬 Película' : (s.anime ? '🎌 Anime' : '📺 Serie');
@@ -412,12 +415,13 @@ function pageHtml(s, d, slug) {
 /* ── páginas por CAPÍTULO (long-tail: "ver X capítulo N") ── */
 function epPageHtml(s, ep, prev, next, slug, d) {
   const poster = (d && d.poster) || s.poster || '';
-  /* tarjeta social cinematográfica VERTICAL (api/og) con el póster real */
+  /* tarjeta social cinematográfica VERTICAL: póster TMDB w780 real (o la
+     compuesta si la función /api/og está activa)                        */
   const social = (poster || '').includes('image.tmdb.org')
-    ? ogCard(s.t, 'CAPÍTULO ' + ep.n, poster, d && d.rating ? d.rating + '/10' : '')
+    ? ogImage(s.t, 'CAPÍTULO ' + ep.n, poster, d && d.rating ? d.rating + '/10' : '', `${SITE}/assets/og-cover.jpg`)
     : `${SITE}/assets/og-cover.jpg`;
-  const socialW = social.includes('/api/og?') ? 1000 : 1200;
-  const socialH = social.includes('/api/og?') ? 1500 : 630;
+  const socialW = social.includes('/api/og?') ? 1000 : (social.includes('image.tmdb.org') ? 780 : 1200);
+  const socialH = social.includes('/api/og?') ? 1500 : (social.includes('image.tmdb.org') ? 1170 : 630);
   const title = `Ver ${esc(s.t)} capítulo ${ep.n} online gratis en español — X·STREAM`;
   const desc = `Mira ${s.t} capítulo ${ep.n}${ep.t ? ` ("${ep.t}")` : ''} online gratis en español y HD en X·STREAM. Sin registro.`;
   const verUrl = `${SITE}/#/anime/${slug}/${ep.n}`;
@@ -704,11 +708,12 @@ ${body}
   const redirectHtml = (dest, t) => {
     const mSlug = String(dest).match(/#\/(?:anime|pelicula)\/([a-z0-9-]+)/i);
     const it = mSlug ? posterBySlug.get(mSlug[1]) : null;
-    const poster = it && it.includes('image.tmdb.org') ? it.replace('/w780/', '/w780/') : null;
+    const poster = it && it.includes('image.tmdb.org') ? it : null;
+    const isOg = ogLive && !!poster;
     const img = poster || `${SITE}/assets/og-cover.jpg`;
-    const iw = poster ? 1000 : 1200;
-    const ih = poster ? 1500 : 630;
-    const og = poster ? ogCard(t ? t.replace(/\s*·\s*E\d+$/, '') : '', t && /·\s*E\d+$/.test(t) ? t.match(/·\s*(E\d+)$/)[1].replace('E', 'Capítulo ') : '', poster, '') : img;
+    const iw = isOg ? 1000 : (poster ? 780 : 1200);
+    const ih = isOg ? 1500 : (poster ? 1170 : 630);
+    const og = isOg ? ogCard(t ? t.replace(/\s*·\s*E\d+$/, '') : '', t && /·\s*E\d+$/.test(t) ? 'Capítulo ' + t.match(/E(\d+)$/)[1] : '', poster, '') : img;
     const tit = t ? `▶ VER AHORA: ${t} — gratis y en español` : '▶ X·STREAM — anime y películas completas en español';
     const dsc = t ? `Abre al instante ⚡ «${t}» completo, en HD y sin registro. En X·STREAM, tu cine libre.` : 'Anime y películas completas en español, gratis y en HD. Sin registro.';
     return `<!DOCTYPE html>
