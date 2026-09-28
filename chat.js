@@ -254,24 +254,38 @@
           const sid = s.id, epN = ep ? ep.n : null;
           const canPlayHere = ep && ep.url && DIRECT_VID.test(ep.url);
           n.innerHTML = `
-            <div class="chat-card chat-card-own">
-              ${local.poster ? `<img src="${esc(local.poster)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="cc-emoji">${esc(s.jp || '🎬')}</span>`}
-              <span class="cc-t">▶ ${esc(s.t)}${s.kind !== 'pelicula' && epN != null ? ` · Capítulo ${epN}` : ''}</span>
-              <span class="cc-d">${s.kind === 'pelicula' ? 'Película' : (s.anime === false ? 'Serie' : 'Anime')} · ${(s.episodes || []).length} ${s.kind === 'pelicula' ? 'video' : 'capítulos'} · abre al instante ⚡</span>
+            <div class="chat-card-own">
+              <div class="cc-main">
+                <span class="cc-thumb"${local.poster ? ` style="background-image:url('${esc(local.poster)}')"` : ''}>${local.poster ? '' : `<i>${esc(s.jp || '🎬')}</i>`}</span>
+                <span class="cc-info">
+                  <span class="cc-kind">${s.kind === 'pelicula' ? '🎬 Película' : (s.anime === false ? '📺 Serie' : '🎌 Anime')}</span>
+                  <b class="cc-t">${esc(s.t)}${s.kind !== 'pelicula' && epN != null ? ` <i>· Capítulo ${epN}</i>` : ''}</b>
+                  <span class="cc-d">${(s.episodes || []).length} ${s.kind === 'pelicula' ? 'video' : 'capítulos'} · en español · gratis y sin registro</span>
+                </span>
+              </div>
               <span class="cc-bts">
                 <button class="cc-open" data-sid="${esc(sid)}" data-ep="${epN == null ? '' : epN}">▶ Ver ahora</button>
                 ${canPlayHere ? `<button class="cc-here" data-vurl="${esc(ep.url)}" data-vt="${esc(s.t + (epN != null ? ' · E' + epN : ''))}" title="Reproducir sin salir del chat (mini-reproductor)">🎬 Aquí</button>` : ''}
               </span>
+              <span class="cc-brand">X·STREAM</span>
             </div>`;
         } else {
           n.innerHTML = `
-            <div class="chat-card chat-card-own">
-              <span class="cc-emoji">🎬</span>
-              <span class="cc-t">${esc(local.title || 'Video compartido')}</span>
-              <span class="cc-d">Video directo · se reproduce aquí mismo, sin anuncios ni esperas</span>
+            <div class="chat-card-own">
+              <div class="cc-main">
+                <span class="cc-thumb"><i>🎬</i></span>
+                <span class="cc-info">
+                  <span class="cc-kind">🎥 Video directo</span>
+                  <b class="cc-t">${esc(local.title || 'Video compartido')}</b>
+                  <span class="cc-d">se reproduce aquí mismo · sin anuncios ni esperas</span>
+                </span>
+              </div>
               <span class="cc-bts"><button class="cc-here" data-vurl="${esc(local.url)}" data-vt="${esc(local.title || 'Video del chat')}">▶ Reproducir aquí</button></span>
+              <span class="cc-brand">X·STREAM</span>
             </div>`;
         }
+        continue;
+      }
         continue;
       }
       /* ② externo → unfurl del servidor, como siempre */

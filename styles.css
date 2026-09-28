@@ -2392,13 +2392,51 @@ body.chat-full .chat-msgs{max-height:none!important;height:100%}
 .chat-help:hover{transform:scale(1.12)}
 @keyframes helpPulse{0%,100%{box-shadow:0 0 0 0 rgba(216,255,62,.35)}50%{box-shadow:0 0 0 7px rgba(216,255,62,0)}}
 
-/* tarjetas de ENLACES INTERNOS / videos (vista previa rica en el chat) */
-.chat-card-own{display:flex;flex-direction:column;gap:7px;cursor:default}
-.chat-card-own img{width:100%;max-height:150px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
-.cc-emoji{font-size:34px;line-height:1}
-.cc-bts{display:flex;gap:8px;margin-top:2px}
-.cc-open,.cc-here{border-radius:10px;padding:7px 13px;font-size:12px;font-weight:800;cursor:pointer;transition:.15s}
-.cc-open{background:var(--acid);color:#111;border:none}
+/* tarjetas de ENLACES INTERNOS / videos — diseño de PORTADA de cine:
+   miniatura 2:3 COMPLETA (sin recortes) + info elegante al lado      */
+.chat-card-own{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:9px;cursor:default;
+  background:linear-gradient(160deg,rgba(24,24,38,.94) 0%,rgba(11,11,19,.97) 100%);
+  border:1px solid rgba(216,255,62,.22);border-radius:14px;padding:10px;
+  transition:border-color .18s,transform .18s,box-shadow .18s;
+}
+.chat-card-own:hover{
+  border-color:rgba(216,255,62,.6);
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px rgba(0,0,0,.5),0 0 20px rgba(216,255,62,.14);
+}
+/* brillo que recorre la tarjeta suavemente */
+.chat-card-own::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.05) 45%,rgba(216,255,62,.07) 50%,transparent 65%);
+  transform:translateX(-110%);animation:ccShine 3.6s ease-in-out infinite;
+}
+@keyframes ccShine{0%,55%{transform:translateX(-110%)}100%{transform:translateX(110%)}}
+.cc-main{display:flex;gap:11px;align-items:stretch;min-width:0}
+.cc-thumb{
+  position:relative;flex:none;width:76px;aspect-ratio:2/3;border-radius:10px;overflow:hidden;
+  background:linear-gradient(150deg,#23233a,#101018);background-size:cover;background-position:center;
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 7px 20px rgba(0,0,0,.5);
+  display:grid;place-items:center;
+}
+.cc-thumb i{font-style:normal;font-size:27px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6))}
+.cc-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:2px 4px 0 0}
+.cc-kind{
+  align-self:flex-start;font:800 8.5px 'JetBrains Mono';letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--acid);background:rgba(216,255,62,.1);border:1px solid rgba(216,255,62,.32);
+  border-radius:999px;padding:3px 9px;
+}
+.cc-t{font-size:13.2px;font-weight:800;line-height:1.32;color:#f4f4fb;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.cc-t i{color:var(--acid);font-style:normal}
+.cc-d{font-size:10.5px;color:var(--dim);line-height:1.4}
+.cc-brand{
+  position:absolute;top:8px;right:10px;pointer-events:none;
+  font:800 7.5px 'Archivo Black';letter-spacing:1px;color:rgba(216,255,62,.5);
+}
+.cc-bts{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:2}
+.cc-open,.cc-here{border-radius:10px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer;transition:.15s}
+.cc-open{background:var(--acid);color:#111;border:none;box-shadow:0 6px 18px rgba(216,255,62,.28)}
 .cc-open:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .cc-here{background:rgba(255,157,46,.16);color:#ffc66e;border:1px solid rgba(255,157,46,.5)}
 .cc-here:hover{background:rgba(255,157,46,.3)}
