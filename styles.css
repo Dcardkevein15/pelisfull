@@ -2347,22 +2347,24 @@ body.staff-on .admin-only{display:revert!important}
 }
 
 /* ═══════ CHAT 2.0 — expandir, ayuda, mini-player, música, tarjetas ═══════ */
-/* pestaña central ⛶ (Contenido 35 · Expandir 30 · Chat 35) */
+/* pestaña central ⛶ — SOLO PC; Contenido 42.5 · Expandir 15 · Chat 42.5 */
 .panel-tabs{display:flex;gap:8px}
-#ptabContent{flex:35 1 0}
-#ptabChat{flex:35 1 0}
+#ptabContent{flex:42.5 1 0}
+#ptabChat{flex:42.5 1 0}
 .panel-tab-mid{
-  flex:30 1 0;display:flex;align-items:center;justify-content:center;gap:8px;
+  flex:15 1 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;
   background:linear-gradient(135deg,rgba(216,255,62,.16),rgba(216,255,62,.05));
   border:1px dashed color-mix(in srgb,var(--acid) 55%,transparent)!important;color:var(--acid);
-  font-weight:800;letter-spacing:.4px;
+  font-weight:800;letter-spacing:.4px;padding:8px 10px;
 }
 .panel-tab-mid svg{filter:drop-shadow(0 0 6px rgba(216,255,62,.5))}
 .panel-tab-mid:hover{background:color-mix(in srgb,var(--acid) 22%,transparent);transform:translateY(-1px)}
 .panel-tab-mid.on{background:var(--acid);color:#111;border-style:solid!important}
 .panel-tab-mid.on svg{filter:none}
-@media (max-width:900px){ .panel-tab-mid b{display:none} }
-.panel-tab-mid b{font-size:12px}
+.panel-tab-mid b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 📱 móvil/tablet: el botón Expandir NO existe (allí el chat ya va a
+   pantalla completa solo) — todo lo demás del chat sigue igual  */
+@media (max-width:900px){ .panel-tab-mid{display:none!important} }
 
 /* chat PANTALLA COMPLETA (responsive — se adapta a cualquier dispositivo) */
 body.chat-full .episodes-panel{
