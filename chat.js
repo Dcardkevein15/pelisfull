@@ -160,15 +160,15 @@
       + `<button class="chat-act" data-quote="${m.id}" title="Citar / responder">↩</button>`
       + (mine ? `<button class="chat-act" data-edit="${m.id}" title="Editar el mensaje">✏</button>` : '');
     const quoteBlk = m.quote
-      ? `<div class="chat-quote"><b>${esc(m.quote.name || '?')}</b><span>${esc((m.quote.text || '').slice(0, 90))}</span></div>` : '';
+      ? `<div class="chat-quote"><b>${esc(cleanName(m.quote.name || '?'))}</b><span>${esc((m.quote.text || '').slice(0, 90))}</span></div>` : '';
     const imgBlk = m.img ? `<img class="chat-img" src="${esc(m.img)}" alt="" loading="lazy">` : '';
     const reacts = m.reactions && Object.keys(m.reactions).length
       ? `<div class="chat-reactions">` + Object.entries(m.reactions).map(([e, uids]) =>
         `<button class="chat-reaction${(me() && (uids || []).includes(me().uid)) ? ' on' : ''}" data-emoji="${esc(e)}" data-msg="${esc(m.id)}">${e} ${uids.length}</button>`).join('') + `</div>` : '';
     div.innerHTML = `
       <div class="chat-head">
-        <img class="chat-ava" src="${avatarFor(m.uid, m.name)}" alt="">
-        <button class="chat-who" data-uid="${esc(m.uid)}" data-name="${esc(m.name)}">${esc(m.name)}</button>
+        <img class="chat-ava" src="${avatarFor(m.uid, cleanName(m.name))}" alt="">
+        <button class="chat-who" data-uid="${esc(m.uid)}" data-name="${esc(cleanName(m.name))}">${esc(cleanName(m.name))}</button>
         ${roleBdg}
         <span class="chat-time">${timeHM(m.ts)}${m.edited ? ' <i>(editado)</i>' : ''}</span>
         ${favBtn}
@@ -182,27 +182,112 @@
       ${delBtn}`;
     /* abrir DM desde el nombre */
     div.querySelector('.chat-who').addEventListener('click', () => openDm(m.uid, m.name));
+    /* 📱 táctil: la barra de acciones NO está siempre visible — aparece al
+       TOCAR la burbuja (y se oculta al tocar de nuevo/fuera)          */
+    if (window.matchMedia && matchMedia('(hover:none)').matches) {
+      div.addEventListener('click', ev => {
+        if (ev.target.closest('button, a, img, iframe, video, .chat-actions')) return;
+        const was = div.classList.contains('act-open');
+        document.querySelectorAll('.chat-msg.act-open').forEach(x => x.classList.remove('act-open'));
+        if (!was) div.classList.add('act-open');
+      });
+    }
     return div;
   }
 
   /* tarjetas de enlace (unfurl asíncrono, una por URL) */
   const unfurlCache = new Map();
+
+  /* ── enlaces INTERNOS (b/código, #/anime/…, /ver/…) y VIDEOS directos ──
+     se resuelven AQUÍ MISMO: tarjeta rica con póster + reproducir al instante */
+  const DIRECT_VID = /\.(mp4|webm|m4v|mov|ogv|m3u8)(\?|#|$)/i;
+  async function resolveShortCode(code) {
+    try {
+      if (typeof state !== 'undefined' && state.links && state.links[code]) return state.links[code].dest;
+      if (typeof lnkSeoState === 'function') {
+        const st = await lnkSeoState();
+        if (st && st.links && st.links[code]) return st.links[code].dest;
+      }
+    } catch (e) { }
+    return null;
+  }
+  function findBySlug(slug) {
+    try {
+      if (typeof state === 'undefined' || !state.series) return null;
+      return state.series.find(x => slugify(x.t) === slug) || null;
+    } catch (e) { return null; }
+  }
+  /* devuelve {kind:'ep'|'video', s, ep, url, title, poster} o null */
+  async function internalLinkInfo(url) {
+    let m = url.match(/(?:b\.yapido\.click|x\.yapido\.click\/b)\/([a-z0-9]{5,8})\b/i);
+    if (m) {
+      const dest = await resolveShortCode(m[1].toLowerCase());
+      if (!dest) return { kind: 'short', url, title: null };
+      url = dest;
+    }
+    m = url.match(/#\/(anime|pelicula)\/([a-z0-9-]+?)(?:\/(\d+))?$/i)
+      || url.match(/\/ver\/([a-z0-9-]+?)\/(?:capitulo-(\d+)\/)?$/i);
+    if (m) {
+      const isVer = !!m[0].match(/\/ver\//);
+      const slug = isVer ? m[1] : m[2];
+      const epN = +(isVer ? m[2] : m[3]) || null;
+      const s = findBySlug(slug);
+      if (!s) return null;
+      const ep = epN != null ? (s.episodes || []).find(e => e.n === epN) : (s.episodes || []).find(e => e.url) || (s.episodes || [])[0];
+      return { kind: 'ep', s, ep, poster: s.poster || '', title: s.t };
+    }
+    if (DIRECT_VID.test(url)) return { kind: 'video', url, title: url.split('/').pop().split(/[?#]/)[0].slice(0, 60) };
+    return null;
+  }
+
   async function fillPreviews(container) {
     const nodes = container.querySelectorAll('.chat-prev[data-unfurl]:not([data-done])');
     for (const n of nodes) {
       n.dataset.done = '1';
       const url = n.dataset.unfurl;
+      /* ① primero: enlaces de la casa → tarjeta local instantánea */
+      let local = null;
+      try { local = await internalLinkInfo(url); } catch (e) { }
+      if (local && (local.kind === 'ep' || local.kind === 'video')) {
+        if (local.kind === 'ep') {
+          const { s, ep } = local;
+          const sid = s.id, epN = ep ? ep.n : null;
+          const canPlayHere = ep && ep.url && DIRECT_VID.test(ep.url);
+          n.innerHTML = `
+            <div class="chat-card chat-card-own">
+              ${local.poster ? `<img src="${esc(local.poster)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="cc-emoji">${esc(s.jp || '🎬')}</span>`}
+              <span class="cc-t">▶ ${esc(s.t)}${s.kind !== 'pelicula' && epN != null ? ` · Capítulo ${epN}` : ''}</span>
+              <span class="cc-d">${s.kind === 'pelicula' ? 'Película' : (s.anime === false ? 'Serie' : 'Anime')} · ${(s.episodes || []).length} ${s.kind === 'pelicula' ? 'video' : 'capítulos'} · abre al instante ⚡</span>
+              <span class="cc-bts">
+                <button class="cc-open" data-sid="${esc(sid)}" data-ep="${epN == null ? '' : epN}">▶ Ver ahora</button>
+                ${canPlayHere ? `<button class="cc-here" data-vurl="${esc(ep.url)}" data-vt="${esc(s.t + (epN != null ? ' · E' + epN : ''))}" title="Reproducir sin salir del chat (mini-reproductor)">🎬 Aquí</button>` : ''}
+              </span>
+            </div>`;
+        } else {
+          n.innerHTML = `
+            <div class="chat-card chat-card-own">
+              <span class="cc-emoji">🎬</span>
+              <span class="cc-t">${esc(local.title || 'Video compartido')}</span>
+              <span class="cc-d">Video directo · se reproduce aquí mismo, sin anuncios ni esperas</span>
+              <span class="cc-bts"><button class="cc-here" data-vurl="${esc(local.url)}" data-vt="${esc(local.title || 'Video del chat')}">▶ Reproducir aquí</button></span>
+            </div>`;
+        }
+        continue;
+      }
+      /* ② externo → unfurl del servidor, como siempre */
       try {
         if (!unfurlCache.has(url)) unfurlCache.set(url, await api('?op=unfurl&url=' + encodeURIComponent(url)));
       } catch (e) { unfurlCache.set(url, { ok: true }); }
       const u = unfurlCache.get(url);
       if (!u || !u.title) { n.remove(); continue; }
+      const isVid = DIRECT_VID.test(u.url);
       n.innerHTML = `
         <a class="chat-card" href="${esc(u.url)}" target="_blank" rel="noopener">
           ${u.img ? `<img src="${esc(u.img)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
           <span class="cc-t">${esc(u.title)}</span>
           ${u.desc ? `<span class="cc-d">${esc(u.desc)}</span>` : ''}
           <span class="cc-h">${esc((() => { try { return new URL(u.url).hostname; } catch (e) { return ''; } })())}</span>
+          ${isVid ? `<span class="cc-bts"><button class="cc-here" data-vurl="${esc(u.url)}" data-vt="${esc(u.title)}">▶ Reproducir aquí</button></span>` : ''}
         </a>`;
     }
   }
@@ -255,16 +340,16 @@
       /* ⭐ TÚ: tu propio usuario se marca con borde ácido y etiqueta «tú»
          para que lo reconozcas al instante entre los conectados          */
       li.className = 'chat-user' + (on ? '' : ' off') + (isMe ? ' me' : '');
-      const isOtherStaff = p.role === 'admin' || p.role === 'mod';
-      const muteB = (staff && !isMe && !isOtherStaff)
-        ? `<i class="chat-mute" data-mute="${esc(p.uid)}" data-name="${esc(p.name)}" title="Silenciar a ${esc(p.name)} (sus mensajes llegan pero no puede escribir)">🔇</i>` : '';
-      li.innerHTML = `<img class="chat-ava u-ava" src="${avatarFor(p.uid, p.name)}" alt=""><i class="u-dot">${on ? '●' : '○'}</i><span class="u-name">${esc(p.name)}</span>${p.role === 'admin' ? '<b>👑</b>' : p.role === 'mod' ? '<b>🛡</b>' : ''}${isMe ? '<span class="u-me">tú</span>' : ''}${muteB}`;
-      li.title = (isMe ? 'Este eres TÚ — ' : '') + (on ? 'En línea' : 'Fuera de línea') + ' — toca para mensaje privado';
-      li.addEventListener('click', ev => {
-        /* el 🔇 tiene su propio evento y no abre DM */
-        if (ev.target.closest('.chat-mute')) return;
-        if (!isMe) openDm(p.uid, p.name);
-      });
+        const isOtherStaff = p.role === 'admin' || p.role === 'mod';
+        const muteB = (staff && !isMe && !isOtherStaff)
+          ? `<i class="chat-mute" data-mute="${esc(p.uid)}" data-name="${esc(cleanName(p.name))}" title="Silenciar a ${esc(cleanName(p.name))} (sus mensajes llegan pero no puede escribir)">🔇</i>` : '';
+        li.innerHTML = `<img class="chat-ava u-ava" src="${avatarFor(p.uid, cleanName(p.name))}" alt=""><i class="u-dot">${on ? '●' : '○'}</i><span class="u-name">${esc(cleanName(p.name))}</span>${p.role === 'admin' ? '<b>👑</b>' : p.role === 'mod' ? '<b>🛡</b>' : ''}${isMe ? '<span class="u-me">tú</span>' : ''}${muteB}`;
+        li.title = (isMe ? 'Este eres TÚ — ' : '') + (on ? 'En línea' : 'Fuera de línea') + ' — toca para mensaje privado';
+        li.addEventListener('click', ev => {
+          /* el 🔇 tiene su propio evento y no abre DM */
+          if (ev.target.closest('.chat-mute')) return;
+          if (!isMe) openDm(p.uid, cleanName(p.name));
+        });
       return li;
     };
     for (const p of S.presence) wrap.appendChild(mk(p, true));
@@ -392,8 +477,12 @@
     const custom = localStorage.getItem('xchat-nick');
     if (custom) return custom;
     const m = me();
-    return m ? (m.name + (m.tag ? ' ' + m.tag : '')) : 'Anónimo';
+    /* solo el NOMBRE — el sufijo « #0000» es identidad interna, no se muestra */
+    return m ? m.name : 'Anónimo';
   }
+
+  /* limpia el sufijo numéro de cualquier nombre guardado viejo («Ana #4821» → «Ana») */
+  const cleanName = n => (String(n || '').replace(/\s*#\d{2,6}\s*$/, '').trim()) || 'Anónimo';
 
   /* ═══════ ENVIAR ═══════ */
   async function sendNow() {
@@ -995,5 +1084,336 @@
     window.addEventListener('focus', () => poll());
     autoOpenUnread();
   }
+  /* ═══════ 🎬 MINI-REPRODUCTOR flotante del chat (arrastrable) ═══════
+     Nace cuando tocas «▶ Reproducir aquí» en una tarjeta de enlace.
+     Vive dentro del chat; lo arrastras desde su barra de título.        */
+  const mini = {
+    el: null, video: null, hls: null,
+    open(url, title) {
+      if (!this.el) this.build();
+      this.el.classList.remove('hidden');
+      this.el.querySelector('.cm-title').textContent = title || 'Video compartido';
+      const v = this.video;
+      if (this.hls) { try { this.hls.destroy(); } catch (e) { } this.hls = null; }
+      v.removeAttribute('src'); v.load();
+      const isHls = /\.m3u8(\?|#|$)/i.test(url);
+      if (isHls && !(v.canPlayType('application/vnd.apple.mpegurl'))) {
+        loadScript('https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js').then(() => {
+          this.hls = new Hls({ maxBufferLength: 20 });
+          this.hls.loadSource(url); this.hls.attachMedia(v);
+          v.play().catch(() => { });
+        }).catch(() => { v.src = url; v.play().catch(() => { }); });
+      } else {
+        v.src = url;
+        v.play().catch(() => { });
+      }
+    },
+    build() {
+      const el = $('chatMini');
+      el.innerHTML = `
+        <div class="cm-bar"><span class="cm-grip">⠿</span><span class="cm-title">Video</span>
+          <button class="cm-x" title="Cerrar">✕</button></div>
+        <video class="cm-vid" controls playsinline></video>`;
+      this.el = el; this.video = el.querySelector('video');
+      el.querySelector('.cm-x').addEventListener('click', () => { this.video.pause(); el.classList.add('hidden'); });
+      /* arrastre con pointer events (funciona con mouse y dedo) */
+      const bar = el.querySelector('.cm-bar');
+      let drag = null;
+      bar.addEventListener('pointerdown', e => {
+        if (e.target.closest('.cm-x')) return;
+        drag = { dx: e.clientX - el.offsetLeft, dy: e.clientY - el.offsetTop };
+        bar.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+      bar.addEventListener('pointermove', e => {
+        if (!drag) return;
+        const L = Math.max(6, Math.min(window.innerWidth - el.offsetWidth - 6, e.clientX - drag.dx));
+        const T = Math.max(6, Math.min(window.innerHeight - el.offsetHeight - 6, e.clientY - drag.dy));
+        el.style.right = 'auto'; el.style.bottom = 'auto';
+        el.style.left = L + 'px'; el.style.top = T + 'px';
+        localStorage.setItem('xchat-mini-pos', JSON.stringify({ l: L, t: T }));
+      });
+      bar.addEventListener('pointerup', () => { drag = null; });
+      try {
+        const pos = JSON.parse(localStorage.getItem('xchat-mini-pos') || 'null');
+        if (pos) { el.style.left = pos.l + 'px'; el.style.top = pos.t + 'px'; el.style.right = 'auto'; el.style.bottom = 'auto'; }
+      } catch (e) { }
+    },
+  };
+  /* clics en tarjetas: «▶ Ver ahora» (app completa) / «🎬 Aquí» (mini player) */
+  document.addEventListener('click', ev => {
+    const here = ev.target.closest('.cc-here');
+    if (here) {
+      ev.preventDefault(); ev.stopPropagation();
+      mini.open(here.dataset.vurl, here.dataset.vt);
+      if (!S.open) switchTab('chat');
+      return;
+    }
+    const open = ev.target.closest('.cc-open');
+    if (open) {
+      ev.preventDefault(); ev.stopPropagation();
+      const sid = open.dataset.sid, epN = open.dataset.ep ? +open.dataset.ep : null;
+      document.body.classList.remove('chat-full');
+      switchTab('content');
+      selectSeries(sid);
+      if (epN != null) loadEpisode(epN, true);
+      else { const s = getSeries(sid); const f = s && s.episodes.find(e => e.url); if (f) loadEpisode(f.n, true); }
+      try { $('playerAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { }
+    }
+  });
+
+  /* ═══════ ⛶ PESTAÑA CENTRAL: chat a pantalla completa ═══════ */
+  const expBtn = $('ptabExpandChat');
+  function setChatFull(on) {
+    document.body.classList.toggle('chat-full', on);
+    expBtn.classList.toggle('on', on);
+    $('expandLbl').textContent = on ? 'Restaurar' : 'Expandir chat';
+    if (on) { switchTab('chat'); setTimeout(() => { const b = $('chatMsgs'); if (b) b.scrollTop = b.scrollHeight; }, 60); }
+  }
+  if (expBtn) expBtn.addEventListener('click', () => setChatFull(!document.body.classList.contains('chat-full')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('chat-full')) setChatFull(false); });
+
+  /* ═══════ ❔ AYUDA (circulito arriba a la derecha) ═══════ */
+  const helpBtn = $('chatHelpBtn');
+  if (helpBtn) helpBtn.addEventListener('click', () => {
+    const s = {
+      icon: '💬', title: 'Qué puedes hacer en este chat', okLabel: '¡Entendido!',
+      sub: `<div style="text-align:left;font-size:12.5px;line-height:1.65">
+        <b>🎬 Compartir videos</b> — pega la <b>URL directa del video</b> (.mp4, .webm, .m3u8) o un enlace de nuestra web (b.yapido.click/xxxxxx, /ver/…) y saldrá <b>tarjeta con imagen</b>: «▶ Ver ahora» abre la ficha completa; «🎬 Aquí» lo reproduce en el <b>mini-reproductor</b> que puedes <b>arrastrar</b> a donde quieras.<br>
+        <b>📍 Nuestro contenido</b> — los enlaces cortos de la web abren el capítulo exacto, sin salir del chat.<br>
+        <b>🎵 Música</b> — toca el 🎵 de arriba: listas MP3 en vivo por categorías, con visualizador.<br>
+        <b>📷 Imágenes</b> — el botón 📷 sube tu captura.<br>
+        <b>💬 Salas y privados</b> — chips de sala arriba; toca un nombre para hablar en privado; ❤ guarda enlaces.<br>
+        <b>⛶ Pantalla completa</b> — el botón de en medio entre Contenido y Chat estira el chat hasta llenar tu pantalla (Esc para volver).</div>`,
+    };
+    if (typeof uiModal === 'function') uiModal(s); else alert(s.sub.replace(/<[^>]+>/g, ' '));
+  });
+
+  /* ═══════ 🎵 MÚSICA en el chat — listas MP3 auto-alimentadas ═══════
+     Fuentes: archive.org (MP3 directos, CORS abierto → carga instantánea
+     y visualizador real). Categorías curadas; cada «⏭» arma la siguiente
+     pista sola desde la colección elegida.                            */
+  (function musicDock() {
+    const dock = $('chatMusic'), btn = $('chatMusicBtn');
+    if (!dock || !btn) return;
+    const CATS = [
+      { id: 'lofi', name: '🌙 Lofi', q: '(lofi OR "lo-fi" OR chillhop) AND mediatype:audio' },
+      { id: 'chill', name: '🌊 Chill', q: '(chillout OR chillwave OR downtempo) AND mediatype:audio' },
+      { id: 'synth', name: '🌆 Synthwave', q: '(synthwave OR retrowave OR vaporwave) AND mediatype:audio' },
+      { id: 'electro', name: '⚡ Electrónica', q: '(techno OR house OR electronic) AND mediatype:audio AND collection:netlabels' },
+      { id: 'jazz', name: '🎷 Jazz', q: 'jazz AND mediatype:audio AND collection:(netlabels OR opensource_audio)' },
+      { id: 'clasica', name: '🎻 Clásica', q: '(classical OR piano) AND mediatype:audio AND collection:opensource_audio' },
+      { id: 'ambient', name: '🌌 Ambient', q: 'ambient AND mediatype:audio AND collection:netlabels' },
+      { id: 'rock', name: '🎸 Rock', q: '(rock OR indie) AND mediatype:audio AND collection:netlabels' },
+      { id: 'pop', name: '🎤 Pop/Indie', q: '(pop OR indie) AND mediatype:audio AND collection:netlabels' },
+      { id: 'latina', name: '💃 Latina', q: '(cumbia OR salsa OR bachata) AND mediatype:audio' },
+    ];
+    const MS = {
+      cat: localStorage.getItem('xchat-music-cat') || 'lofi',
+      list: [],            /* pistas de la categoría activa */
+      loadingList: false,
+      audio: null, ac: null, analyser: null, canvas: null, raf: 0,
+      cur: null,           /* pista sonando {title, artist, url} */
+      playing: false,
+    };
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+    /* archive.org: busca items de audio y elige su MP3 */
+    async function fetchTracks(catId, force) {
+      if (MS.loadingList) return MS.list;
+      if (MS.list.length && !force && MS.listCat === catId) return MS.list;
+      MS.loadingList = true;
+      try {
+        const cat = CATS.find(c => c.id === catId) || CATS[0];
+        const page = 1 + Math.floor(Math.random() * 4);
+        const r = await fetch(`https://archive.org/advancedsearch.php?q=${encodeURIComponent(cat.q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=24&page=${page}&output=json`, { cache: 'no-store' });
+        const j = await r.json();
+        MS.list = ((j.response || {}).docs || []).filter(d => d.identifier);
+        MS.listCat = catId;
+      } catch (e) { /* sin red: conserva lo que haya */ }
+      MS.loadingList = false;
+      return MS.list;
+    }
+    async function nextTrack(auto) {
+      const docs = await fetchTracks(MS.cat);
+      if (!docs.length) { toastLite('⚠ No pude cargar la lista de música'); return; }
+      /* hasta 6 intentos hallando un mp3 reproducible */
+      for (let i = 0; i < 6; i++) {
+        const doc = pick(docs);
+        try {
+          const meta = await (await fetch(`https://archive.org/metadata/${doc.identifier}`, { cache: 'no-store' })).json();
+          const f = (meta.files || []).find(x => /VBR MP3|MP3/i.test(x.format || '') && x.name)
+            || (meta.files || []).find(x => /\.mp3$/i.test(x.name || ''));
+          if (!f) continue;
+          const url = `https://archive.org/download/${doc.identifier}/${encodeURIComponent(f.name).replace(/\+/g, '%20')}`;
+          return play({ url, title: doc.title || f.name, artist: doc.creator || 'archive.org', auto });
+        } catch (e) { }
+      }
+      toastLite('⚠ Esa lista no respondió — prueba otra categoría');
+    }
+    function ensureAudio() {
+      if (MS.audio) return;
+      MS.audio = new Audio();
+      MS.audio.crossOrigin = 'anonymous';   /* archive.org lo permite → visualizador real */
+      MS.audio.preload = 'none';
+      MS.audio.addEventListener('ended', () => nextTrack(true));
+      MS.audio.addEventListener('error', () => { if (MS.playing) nextTrack(true); });
+      MS.audio.addEventListener('playing', () => { MS.playing = true; paintDock(); startViz(); });
+      MS.audio.addEventListener('pause', () => { MS.playing = false; paintDock(); });
+    }
+    function play(t, o) {
+      ensureAudio();
+      MS.cur = t;
+      MS.audio.src = t.url;
+      MS.audio.play().catch(() => { });
+      paintDock();
+    }
+    /* visualizador: barras ácidas bailando con el audio real */
+    function startViz() {
+      try {
+        if (!MS.ac) {
+          MS.ac = new (window.AudioContext || window.webkitAudioContext)();
+          const src = MS.ac.createMediaElementSource(MS.audio);
+          MS.analyser = MS.ac.createAnalyser();
+          MS.analyser.fftSize = 64;
+          src.connect(MS.analyser); MS.analyser.connect(MS.ac.destination);
+        }
+        if (MS.ac.state === 'suspended') MS.ac.resume();
+        const c = MS.canvas; if (!c) return;
+        const ctx = c.getContext('2d');
+        const data = new Uint8Array(MS.analyser.frequencyBinCount);
+        cancelAnimationFrame(MS.raf);
+        (function draw() {
+          MS.raf = requestAnimationFrame(draw);
+          MS.analyser.getByteFrequencyData(data);
+          ctx.clearRect(0, 0, c.width, c.height);
+          const n = data.length, bw = c.width / n;
+          for (let i = 0; i < n; i++) {
+            const h = Math.max(2, (data[i] / 255) * c.height);
+            ctx.fillStyle = i % 3 ? '#d8ff3e' : '#8fff9e';
+            ctx.fillRect(i * bw + 1, c.height - h, bw - 2, h);
+          }
+        })();
+      } catch (e) { dock.classList.add('noviz'); /* sin analyser: barras CSS */ }
+    }
+    function paintDock() {
+      const t = MS.cur;
+      dock.innerHTML = `
+        <div class="cmu-cats">${CATS.map(c => `<button class="cmu-cat${c.id === MS.cat ? ' on' : ''}" data-cat="${c.id}">${c.name}</button>`).join('')}</div>
+        <div class="cmu-row">
+          <button class="cmu-btn cmu-play" title="Reproducir / pausar">${MS.playing ? '⏸' : '▶'}</button>
+          <button class="cmu-btn cmu-next" title="Otra pista al azar">⏭</button>
+          <div class="cmu-now">${t ? `<b>${esc(t.title)}</b><span>${esc(t.artist)}</span>` : '<span>Elige ▶ y suena música ✨</span>'}</div>
+          <canvas class="cmu-viz" width="300" height="30"></canvas>
+        </div>`;
+      MS.canvas = dock.querySelector('.cmu-viz');
+      dock.querySelectorAll('.cmu-cat').forEach(b => b.addEventListener('click', () => {
+        MS.cat = b.dataset.cat; localStorage.setItem('xchat-music-cat', MS.cat);
+        MS.list = []; nextTrack(false); paintDock();
+      }));
+      dock.querySelector('.cmu-play').addEventListener('click', () => {
+        ensureAudio();
+        if (MS.playing) { MS.audio.pause(); paintDock(); }
+        else if (MS.cur) { MS.audio.play().catch(() => { }); paintDock(); }
+        else nextTrack(false);
+      });
+      dock.querySelector('.cmu-next').addEventListener('click', () => nextTrack(false));
+    }
+    btn.addEventListener('click', () => {
+      const show = dock.classList.contains('hidden');
+      dock.classList.toggle('hidden', !show);
+      btn.classList.toggle('on', show);
+      if (show && !dock.children.length) paintDock();
+      if (!show && MS.audio && MS.playing) { /* la música SIGUE sonando aunque ocultes el dock 💛 */ }
+    });
+  })();
+
+  /* ═══════ 🤖 LUNA & KAI — personajes virtuales de la comunidad ═══════
+     Se comportan como usuarios normales: Luna pide series y Kai comparte
+     el enlace corto (su tarjeta rica sale sola). SOLO hablan cuando hay
+     un admin conectado (tú) y con mesura: nunca más de 1 tanda/7 min.  */
+  (function botsModule() {
+    if (localStorage.getItem('xchat-bots') === '0') return;
+    const LUNA = { uid: 'bot-luna', name: 'Luna' };
+    const KAI = { uid: 'bot-kai', name: 'Kai' };
+    const ASKS = [
+      t => `dicen que ${t} está increíble 🔥 ¿alguien la tiene completa por aquí?`,
+      t => `me acaban de hablar de ${t}… ¿dónde la puedo ver completa? 🥺`,
+      t => `¿alguien tiene el enlace de ${t}? quiero empezarla hoy 🙏`,
+      t => `${t}: ¿la recomiendan? ¿alguien ya la vio completa? 👀`,
+      t => `necesito maratón este finde y me dijeron que ${t} es de las buenas, ¿link? 🍿`,
+    ];
+    const REPS = [
+      (t, u) => `aquí la tienes completita 🍿👇 ${u}`,
+      (t, u) => `tranqui 😌 aquí está, todos los capítulos 👉 ${u}`,
+      (t, u) => `yo la acabé anoche jaja ábrela aquí ⚡ ${u}`,
+      (t, u) => `de las mejores que he visto, empieza aquí ✨ ${u}`,
+    ];
+    const RECS = [
+      (t, u) => `recomendación de hoy 🔥 «${t}» — entren aquí 👉 ${u} (no se arrepienten)`,
+      (t, u) => `para el maratón de hoy 🍿 «${t}» completita aquí 👉 ${u}`,
+      (t, u) => `si no saben qué ver: «${t}» está de locos ⚡ ${u}`,
+      (t, u) => `hoy amanecí pensando en «${t}» jaja — aquí pueden verla 👉 ${u}`,
+    ];
+    const QUICK = [
+      (t, u) => `con esas ganas te va a encantar «${t}» 🔥 👉 ${u}`,
+      (t, u) => `yo te recomiendo «${t}» de una — aquí está ✨ ${u}`,
+      (t, u) => `empieza por «${t}», brutal 👉 ${u} 🍿`,
+    ];
+    const pickA = a => a[Math.floor(Math.random() * a.length)];
+    const adminOn = () => { const m = me(); return m && m.admin; };
+    const lastBotTs = () => { let t = 0; for (const m of S.msgsById.values()) { if (/^bot-/.test(m.uid || '') && (m.ts || 0) > t) t = m.ts; } return t; };
+    function pickContent() {
+      try {
+        const pool = (typeof state !== 'undefined' ? state.series || [] : [])
+          .filter(s => s.poster && (s.episodes || []).some(e => e.url));
+        return pool.length ? pickA(pool) : null;
+      } catch (e) { return null; }
+    }
+    async function shortFor(s) {
+      const ep = (s.episodes || []).find(e => e.url);
+      let u = null;
+      try { u = await shareCodeFor(s, ep); } catch (e) { }
+      if (!u) { try { u = await mintAdminShareLink(s, ep); } catch (e) { } }
+      return u || ('https://x.yapido.click/#/' + (s.kind === 'pelicula' ? 'pelicula' : 'anime') + '/' + slugify(s.t));
+    }
+    async function say(bot, text) {
+      await api('', 'POST', { op: 'sent', room: S.room || 'general', uid: bot.uid, name: bot.name, role: 'user', text });
+      await poll();
+    }
+    async function botLoop() {
+      try {
+        if (!S.ready || document.hidden || !adminOn()) return;
+        if (Date.now() - lastBotTs() < 7 * 60e3) return;      /* mesura: min 7 min entre tandas */
+        const s = pickContent(); if (!s) return;
+        if (Math.random() < 0.45) {                            /* escena: Luna pide → Kai comparte */
+          await say(LUNA, pickA(ASKS)(s.t));
+          setTimeout(async () => { try { await say(KAI, pickA(REPS)(s.t, await shortFor(s))); } catch (e) { } },
+            (45 + Math.random() * 60) * 1000);
+        } else {                                              /* Kai recomienda de una */
+          await say(KAI, pickA(RECS)(s.t, await shortFor(s)));
+        }
+      } catch (e) { }
+      finally { schedule(); }
+    }
+    function schedule() { setTimeout(botLoop, (9 + Math.random() * 10) * 60e3); }
+    /* …y si un HUMANO pide recomendación, Kai contesta (máx 1 vez/25 min) */
+    let lastHelp = 0;
+    const ASK_RE = /(alguien (tiene|sabe)|recomi\w+|qu[eé] (veo|ver|me veo)|que veo|algo (pa|para) ver|aburrid|qu[eé] (serie|pelicula|peli)|que (serie|pelicula|peli)|me recomiend)/i;
+    setInterval(async () => {
+      try {
+        if (!S.ready || document.hidden || !adminOn()) return;
+        if (Date.now() - lastHelp < 25 * 60e3) return;
+        const ms = [...S.msgsById.values()].filter(m => m.room === S.room && (m.ts || 0) > Date.now() - 90e3 && !/^bot-/.test(m.uid || ''));
+        const last = ms[ms.length - 1];
+        if (!last || !ASK_RE.test(last.text || '')) return;
+        lastHelp = Date.now();
+        const s = pickContent(); if (!s) return;
+        setTimeout(async () => { try { await say(KAI, pickA(QUICK)(s.t, await shortFor(s))); } catch (e) { } }, 12e3 + Math.random() * 20e3);
+      } catch (e) { }
+    }, 20e3);
+    schedule();
+  })();
+
   bootChat();
 })();

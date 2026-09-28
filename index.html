@@ -314,6 +314,10 @@
           <button class="panel-tab on" id="ptabContent" title="Capítulos y relacionados">
             <span>📺</span> Contenido
           </button>
+          <button class="panel-tab panel-tab-mid" id="ptabExpandChat" title="Chat a PANTALLA COMPLETA — chatea cómodo ⛶">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4"/></svg>
+            <b id="expandLbl">Expandir chat</b>
+          </button>
           <button class="panel-tab" id="ptabChat" title="Chat de la comunidad — habla con quienes están viendo ahora">
             💬 Chat <b id="chatBadge" class="chat-badge hidden">0</b>
           </button>
@@ -348,7 +352,9 @@
             <span class="spacer"></span>
             <button class="chip-filter hidden" id="chatSettingsBtn" title="Ajustes del chat (admin)">⚙</button>
             <button class="chip-filter" id="chatBgBtn" title="Fondo del chat — elige una imagen (local en tu dispositivo)">🖼</button>
+            <button class="chip-filter" id="chatMusicBtn" title="🎵 Música mientras chateas — listas MP3 que se arman solas">🎵</button>
             <button class="chip-filter" id="chatFavsBtn" title="Mis enlaces favoritos ❤ — se quedan aunque el chat se limpie">❤</button>
+            <button class="chat-help" id="chatHelpBtn" title="Guía rápida: qué puedes hacer en este chat">?</button>
           </div>
           <div class="chat-main" id="chatMain">
             <div class="chat-bg" id="chatBg"></div>
@@ -357,6 +363,8 @@
               <div class="chat-users" id="chatUsers"></div>
             </div>
           </div>
+          <!-- 🎵 mini-dock de música (se abre con el 🎵 de arriba) -->
+          <div class="chat-music hidden" id="chatMusic"></div>
           <div class="chat-compose">
             <button class="chip-filter" id="chatImgBtn" title="Compartir imagen (se sube, no un enlace)">📷</button>
             <input type="text" id="chatInput" placeholder="Escribe en el chat… (enlaces se ven con tarjeta)" maxlength="2000" autocomplete="off">
@@ -365,6 +373,8 @@
           <div class="chat-inbox hidden" id="chatInbox"></div>
         </div>
       </div>
+      <!-- 🎬 mini-reproductor flotante del chat (arrastrable) -->
+      <div class="chat-mini hidden" id="chatMini"></div>
     </div>
   </main>
 </div>

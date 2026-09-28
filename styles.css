@@ -1682,7 +1682,7 @@ body.light .drive-status.ok{color:#3aa832}
 .chat-user.me .u-name{color:var(--acid);font-weight:800}
 .chat-user .u-me{margin-left:auto;font:800 9px 'JetBrains Mono';letter-spacing:1px;color:#111;
   background:var(--acid);border-radius:999px;padding:1px 7px;text-transform:uppercase}
-.chat-panel.has-bg .chat-msg{background:rgba(14,14,22,.92)}
+.chat-panel.has-bg .chat-msg{background:rgba(14,14,22,.8)}
 .chat-panel.has-bg .chat-empty,.chat-panel.has-bg .chat-inbox{box-shadow:0 10px 40px rgba(0,0,0,.5)}
 /* ── BARRA SUPERIOR DEL CHAT (remodelada) ──
    PC/tablet: los chips de salas + TODOS los botones van en UNA sola fila
@@ -1751,10 +1751,10 @@ body.light .drive-status.ok{color:#3aa832}
 .chat-user .u-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 .chat-empty{margin:20px auto;color:var(--dim);font-size:12.5px;text-align:center;max-width:280px}
-.chat-msg{max-width:82%;align-self:flex-start;background:rgba(14,14,22,.88);backdrop-filter:blur(8px);
+.chat-msg{max-width:82%;align-self:flex-start;background:rgba(14,14,22,.72);backdrop-filter:blur(9px);
   border:1px solid var(--line);border-radius:14px 14px 14px 4px;padding:8px 11px;position:relative;
-  box-shadow:0 2px 10px rgba(0,0,0,.35)}
-.chat-msg.mine{align-self:flex-end;background:rgba(36,38,10,.9);border-color:rgba(216,255,62,.4);border-radius:14px 14px 4px 14px}
+  box-shadow:0 2px 10px rgba(0,0,0,.28)}
+.chat-msg.mine{align-self:flex-end;background:rgba(48,50,18,.72);border-color:rgba(216,255,62,.4);border-radius:14px 14px 4px 14px}
 .chat-head{display:flex;align-items:baseline;gap:6px;margin-bottom:3px;flex-wrap:wrap}
 .chat-who{background:none;border:none;color:var(--acid);font-size:11.5px;font-weight:700;cursor:pointer;padding:0;text-align:left}
 .chat-who:hover{text-decoration:underline}
@@ -1774,13 +1774,15 @@ body.light .drive-status.ok{color:#3aa832}
 .chat-del:hover{border-color:var(--hot);color:var(--hot)}
 @media (hover:none){.chat-del,.chat-fav{opacity:.75}}
 
-/* acciones por mensaje (reaccionar, citar, editar) — visibles al pasar sobre la burbuja */
-.chat-actions{position:absolute;top:-8px;left:8px;display:none;gap:2px;background:var(--panel);border:1px solid var(--line);
-  border-radius:9px;padding:2px;box-shadow:0 4px 14px rgba(0,0,0,.4);z-index:3}
-.chat-msg:hover .chat-actions{display:flex}
+/* acciones por mensaje (reaccionar, citar, editar) — DESPEGADAS arriba-derecha
+   y solo al pasar el mouse (PC) o al TOCAR la burbuja (móvil/tablet). Nunca
+   tapan el nombre porque flotan fuera, sobre la esquina.                */
+.chat-actions{position:absolute;top:-11px;right:8px;left:auto;display:none;gap:2px;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px;padding:2px;box-shadow:0 5px 16px rgba(0,0,0,.45);z-index:3}
+.chat-msg:hover .chat-actions,
+.chat-msg.act-open .chat-actions{display:flex}
 .chat-act{background:none;border:none;padding:5px 7px;font-size:13px;cursor:pointer;border-radius:6px;color:var(--ink)}
 .chat-act:hover{background:var(--panel2)}
-@media (hover:none){.chat-actions{display:flex;top:-10px;left:6px;opacity:.85}}
 
 /* cita al responder */
 .chat-quote{border-left:3px solid var(--acid);background:rgba(216,255,62,.06);border-radius:4px 8px 8px 4px;
@@ -2343,3 +2345,85 @@ body.staff-on .admin-only{display:revert!important}
   .syn-cast{grid-template-columns:repeat(auto-fill,minmax(82px,1fr))}
   .syn-gal{grid-template-columns:1fr 1fr}
 }
+
+/* ═══════ CHAT 2.0 — expandir, ayuda, mini-player, música, tarjetas ═══════ */
+/* pestaña central ⛶ (Contenido 35 · Expandir 30 · Chat 35) */
+.panel-tabs{display:flex;gap:8px}
+#ptabContent{flex:35 1 0}
+#ptabChat{flex:35 1 0}
+.panel-tab-mid{
+  flex:30 1 0;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,rgba(216,255,62,.16),rgba(216,255,62,.05));
+  border:1px dashed color-mix(in srgb,var(--acid) 55%,transparent)!important;color:var(--acid);
+  font-weight:800;letter-spacing:.4px;
+}
+.panel-tab-mid svg{filter:drop-shadow(0 0 6px rgba(216,255,62,.5))}
+.panel-tab-mid:hover{background:color-mix(in srgb,var(--acid) 22%,transparent);transform:translateY(-1px)}
+.panel-tab-mid.on{background:var(--acid);color:#111;border-style:solid!important}
+.panel-tab-mid.on svg{filter:none}
+@media (max-width:900px){ .panel-tab-mid b{display:none} }
+.panel-tab-mid b{font-size:12px}
+
+/* chat PANTALLA COMPLETA (responsive — se adapta a cualquier dispositivo) */
+body.chat-full .episodes-panel{
+  position:fixed;inset:0;z-index:118;display:flex;flex-direction:column;
+  background:var(--bg);border-radius:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));
+}
+body.chat-full .panel-tabs{padding:0 2px 8px}
+body.chat-full .chat-panel{flex:1;min-height:0;height:auto!important;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+body.chat-full .chat-main{flex:1;min-height:0}
+body.chat-full .chat-stage{height:100%}
+body.chat-full .chat-msgs{max-height:none!important;height:100%}
+@media (min-width:760px){ body.chat-full .chat-msgs{font-size:14px} .chat-msg{max-width:64%} }
+
+/* circulito de ayuda arriba-derecha */
+.chat-help{
+  width:22px;height:22px;min-width:22px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;font-weight:900;color:#111;background:var(--acid);border:none;cursor:pointer;
+  box-shadow:0 0 0 0 rgba(216,255,62,.35);animation:helpPulse 3s ease-in-out infinite;
+}
+.chat-help:hover{transform:scale(1.12)}
+@keyframes helpPulse{0%,100%{box-shadow:0 0 0 0 rgba(216,255,62,.35)}50%{box-shadow:0 0 0 7px rgba(216,255,62,0)}}
+
+/* tarjetas de ENLACES INTERNOS / videos (vista previa rica en el chat) */
+.chat-card-own{display:flex;flex-direction:column;gap:7px;cursor:default}
+.chat-card-own img{width:100%;max-height:150px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.cc-emoji{font-size:34px;line-height:1}
+.cc-bts{display:flex;gap:8px;margin-top:2px}
+.cc-open,.cc-here{border-radius:10px;padding:7px 13px;font-size:12px;font-weight:800;cursor:pointer;transition:.15s}
+.cc-open{background:var(--acid);color:#111;border:none}
+.cc-open:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.cc-here{background:rgba(255,157,46,.16);color:#ffc66e;border:1px solid rgba(255,157,46,.5)}
+.cc-here:hover{background:rgba(255,157,46,.3)}
+
+/* 🎬 mini-reproductor flotante (arrastrable por su barra) */
+.chat-mini{
+  position:fixed;right:14px;bottom:86px;z-index:140;width:min(360px,86vw);
+  background:#0c0c14;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 22px 60px rgba(0,0,0,.65);touch-action:none;
+}
+.cm-bar{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--panel2);cursor:grab;user-select:none}
+.cm-bar:active{cursor:grabbing}
+.cm-grip{color:var(--dim);font-size:13px}
+.cm-title{flex:1;font-size:11.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cm-x{background:none;border:none;color:var(--dim);font-size:13px;cursor:pointer;padding:3px 6px;border-radius:7px}
+.cm-x:hover{background:var(--hot);color:#fff}
+.cm-vid{width:100%;aspect-ratio:16/9;background:#000;display:block}
+
+/* 🎵 dock de música */
+.chat-music{border-top:1px solid var(--line);background:var(--panel);padding:8px 10px 9px}
+.cmu-cats{display:flex;gap:6px;overflow-x:auto;padding-bottom:7px;scrollbar-width:none}
+.cmu-cats::-webkit-scrollbar{display:none}
+.cmu-cat{flex:0 0 auto;border:1px solid var(--line);background:var(--panel2);color:var(--dim);border-radius:999px;padding:5px 11px;font-size:11px;font-weight:700;cursor:pointer;transition:.15s}
+.cmu-cat:hover{color:var(--ink);border-color:var(--acid)}
+.cmu-cat.on{background:var(--acid);color:#111;border-color:var(--acid)}
+.cmu-row{display:flex;align-items:center;gap:8px}
+.cmu-btn{width:32px;height:32px;min-width:32px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--ink);font-size:13px;cursor:pointer;display:grid;place-items:center;transition:.15s}
+.cmu-btn:hover{border-color:var(--acid)}
+.cmu-play{background:var(--acid);color:#111;border-color:var(--acid)}
+.cmu-now{flex:1;min-width:0;line-height:1.25;overflow:hidden}
+.cmu-now b{display:block;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmu-now span{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmu-viz{width:110px;height:30px;flex:0 0 auto;border-radius:8px;background:#0a0a12}
+.chat-music.noviz .cmu-viz{background:linear-gradient(90deg,#0a0a12 30%,#15130a 50%,#0a0a12 70%);background-size:200% 100%;animation:synSk 1.6s linear infinite}
+#chatMusicBtn.on{background:var(--acid);color:#111;border-color:var(--acid)}
