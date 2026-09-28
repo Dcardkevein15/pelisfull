@@ -2563,3 +2563,29 @@ body.chat-full .cmu-list{max-height:44vh}
 .chat-panel.music-on .chat-music .cmu-list{flex:1;max-height:none;min-height:0}
 .cmu-more{text-align:center;color:var(--dim);font:600 10px 'JetBrains Mono';letter-spacing:1px;padding:10px 0 4px;text-transform:uppercase}
 .cmu-list{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+
+/* 🎛 mini-reproductor PRO: controles propios + modo TEATRO (expandido) */
+.cm-controls{display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--panel);border-top:1px solid var(--line)}
+.cmc{background:none;border:none;color:var(--dim);font-size:13px;cursor:pointer;padding:3px 5px;border-radius:7px;transition:.12s}
+.cmc:hover{color:var(--acid);background:var(--panel2)}
+.cmc-play{color:var(--acid);font-size:15px}
+.cm-seek{position:relative;flex:1;height:16px;cursor:pointer}
+.cm-seek::before{content:'';position:absolute;left:0;right:0;top:7px;height:3px;background:var(--line);border-radius:3px}
+.cm-seek-buf{position:absolute;left:0;top:7px;height:3px;background:rgba(216,255,62,.22);border-radius:3px;width:0}
+.cm-seek-fill{position:absolute;left:0;top:7px;height:3px;background:var(--acid);border-radius:3px;width:0}
+.cm-seek-knob{position:absolute;top:4px;width:9px;height:9px;margin-left:-4px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px rgba(216,255,62,.6)}
+.cm-time{font:600 9.5px 'JetBrains Mono';color:var(--dim);min-width:74px;text-align:center}
+.cm-vol{width:56px;accent-color:var(--acid);height:3px}
+.cmc-next{margin-left:2px}
+/* modo iframe: YouTube/Drive traen sus controles → escondemos los nuestros */
+.chat-mini.cm-iframe .cm-controls{display:none}
+/* ⛶ TEATRO: expande el mini a casi toda la pantalla al instante */
+.chat-mini.theater{
+  left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;
+  transform:translate(-50%,-50%);
+  width:min(1080px,96vw)!important;z-index:150;
+  box-shadow:0 40px 120px rgba(0,0,0,.8);
+}
+.chat-mini.theater .cm-vid{aspect-ratio:16/9}
+.chat-mini:fullscreen{border-radius:0;width:100vw!important}
+.chat-mini:fullscreen .cm-bar{display:none}

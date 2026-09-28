@@ -21,6 +21,14 @@ import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(decodeURIComponent(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1')), '..');
 const SITE = 'https://x.yapido.click';
+
+/* 🃏 tarjeta cinematográfica VERTICAL dinámica (api/og): póster real +
+   marca X·STREAM + CTA «▶ VER AHORA». La usan como og:image las páginas
+   /ver/ y los enlaces cortos b/<código>.                              */
+const ogCard = (t, k, poster, r) => `${SITE}/api/og?t=${encodeURIComponent(String(t || '').slice(0, 64))}`
+  + (k ? `&k=${encodeURIComponent(k)}` : '')
+  + (poster ? `&img=${encodeURIComponent(poster)}` : '')
+  + (r ? `&r=${encodeURIComponent(r)}` : '');
 const TMDB_KEY = process.env.TMDB_API_KEY || '';
 const DAILY_LIMIT = Math.max(1, parseInt(process.env.SEO_DAILY_LIMIT || '8', 10) || 8);
 const FORCE = process.env.SEO_FORCE === '1';   /* ignora el cupo diario */
@@ -79,8 +87,8 @@ async function tmdbFor(s) {
   const key = slugify(s.t);
   const hit = cache[key];
   const now = Date.now();
-  /* cv=2: añade backdrop (w780) — los aciertos viejos sin él se repiden */
-  if (hit && hit.cv === 2 && now - hit.at < (hit.data ? TTL_HIT : TTL_MISS)) return hit.data;
+  /* cv=3: póster w780 (grande, vertical) para tarjetas sociales */
+  if (hit && hit.cv === 3 && now - hit.at < (hit.data ? TTL_HIT : TTL_MISS)) return hit.data;
   let data = null;
   const isPeli = s.kind === 'pelicula';
   const type = isPeli ? 'movie' : 'tv';
@@ -105,8 +113,8 @@ async function tmdbFor(s) {
       }
       data = {
         overview: det.overview || '',
-        poster: img(det.poster_path, 'w500'),
-        backdrop: img(det.backdrop_path, 'w780'),   /* panorámico para tarjetas sociales grandes */
+        poster: img(det.poster_path, 'w780'),   /* póster GRANDE y vertical para redes */
+        backdrop: img(det.backdrop_path, 'w780'),
         year: (det.release_date || det.first_air_date || '').slice(0, 4) || null,
         original: det.original_title || det.original_name || null,
         genres: (det.genres || []).map(g => g.name),
@@ -119,7 +127,7 @@ async function tmdbFor(s) {
       break;
     }
   } catch (e) { /* sin red / límite de API → se usan plantillas propias */ }
-  cache[key] = { at: now, data, cv: 2 };
+  cache[key] = { at: now, data, cv: 3 };
   return data;
 }
 
@@ -296,13 +304,16 @@ function pageHtml(s, d, slug) {
   const tps = [...new Set(eps.map(e => e.season || 1))].length;
   const linked = eps.filter(e => e.url).length;
   const poster = (d && d.poster) || s.poster || '';
-  /* imagen social: panorámica TMDB si hay (tarjeta GRANDE en WhatsApp/Telegram/X) */
-  const social = (d && d.backdrop) || poster || `${SITE}/assets/og-cover.jpg`;
-  const socialW = (d && d.backdrop) ? 780 : (poster ? 500 : 1200);
-  const socialH = (d && d.backdrop) ? 439 : (poster ? 750 : 630);
+  /* 🎬 imagen social: TARJETA CINEMATOGRÁFICA VERTICAL dinámica con el
+     póster real + marca + CTA (api/og); sin póster → tarjeta de marca */
   const year = d && d.year;
   const { intro, overview, cierre } = composeCopy(s, d);
   const metaDesc = clip(intro);
+  const social = (typeof ogCard === 'function' && (poster || '').includes('image.tmdb.org'))
+    ? ogCard(s.t, isPeli ? 'PELÍCULA' : 'SERIE COMPLETA', poster, d && d.rating ? d.rating + '/10' : '')
+    : `${SITE}/assets/og-cover.jpg`;
+  const socialW = social.includes('/api/og?') ? 1000 : 1200;
+  const socialH = social.includes('/api/og?') ? 1500 : 630;
   const verUrl = `${SITE}/#/${isPeli ? 'pelicula' : 'anime'}/${slug}`;
   const ficha = fichaHtml(s, d);
   const tipoChip = isPeli ? '🎬 Película' : (s.anime ? '🎌 Anime' : '📺 Serie');
@@ -401,10 +412,12 @@ function pageHtml(s, d, slug) {
 /* ── páginas por CAPÍTULO (long-tail: "ver X capítulo N") ── */
 function epPageHtml(s, ep, prev, next, slug, d) {
   const poster = (d && d.poster) || s.poster || '';
-  /* tarjeta social grande: backdrop panorámico si la ficha lo tiene */
-  const social = (d && d.backdrop) || poster || `${SITE}/assets/og-cover.jpg`;
-  const socialW = (d && d.backdrop) ? 780 : (poster ? 500 : 1200);
-  const socialH = (d && d.backdrop) ? 439 : (poster ? 750 : 630);
+  /* tarjeta social cinematográfica VERTICAL (api/og) con el póster real */
+  const social = (poster || '').includes('image.tmdb.org')
+    ? ogCard(s.t, 'CAPÍTULO ' + ep.n, poster, d && d.rating ? d.rating + '/10' : '')
+    : `${SITE}/assets/og-cover.jpg`;
+  const socialW = social.includes('/api/og?') ? 1000 : 1200;
+  const socialH = social.includes('/api/og?') ? 1500 : 630;
   const title = `Ver ${esc(s.t)} capítulo ${ep.n} online gratis en español — X·STREAM`;
   const desc = `Mira ${s.t} capítulo ${ep.n}${ep.t ? ` ("${ep.t}")` : ''} online gratis en español y HD en X·STREAM. Sin registro.`;
   const verUrl = `${SITE}/#/anime/${slug}/${ep.n}`;
@@ -687,17 +700,17 @@ ${body}
   const bDir = path.join(ROOT, 'b');
   fs.mkdirSync(bDir, { recursive: true });
   fs.writeFileSync(path.join(bDir, 'links.json'), JSON.stringify({ dominio: ldom, links: linksAll }), 'utf8');
-  /* una página física por código: el navegador salta al parsearla, sin espera.
-     🃏 OG propio: al pegar el enlace corto en WhatsApp/Telegram/X sale la
-     tarjeta GRANDE con el póster/backdrop de su título (el crawler lee el
-     head; no ejecuta la redirección).                                   */
+  /* 🃏 (ogCard vive en el scope del módulo) */
   const redirectHtml = (dest, t) => {
     const mSlug = String(dest).match(/#\/(?:anime|pelicula)\/([a-z0-9-]+)/i);
-    const img = (mSlug && posterBySlug.get(mSlug[1])) || `${SITE}/assets/og-cover.jpg`;
-    const iw = img.includes('image.tmdb.org') ? (img.includes('/w780') ? 780 : 500) : 1200;
-    const ih = iw === 780 ? 439 : (iw === 500 ? 750 : 630);
-    const tit = t ? `▶ ${t} — míralo gratis en español` : '▶ X·STREAM — anime y películas en español';
-    const dsc = t ? `Ver «${t}» online gratis en español y HD en X·STREAM. Sin registro.` : 'Anime y películas completas en español, gratis y en HD.';
+    const it = mSlug ? posterBySlug.get(mSlug[1]) : null;
+    const poster = it && it.includes('image.tmdb.org') ? it.replace('/w780/', '/w780/') : null;
+    const img = poster || `${SITE}/assets/og-cover.jpg`;
+    const iw = poster ? 1000 : 1200;
+    const ih = poster ? 1500 : 630;
+    const og = poster ? ogCard(t ? t.replace(/\s*·\s*E\d+$/, '') : '', t && /·\s*E\d+$/.test(t) ? t.match(/·\s*(E\d+)$/)[1].replace('E', 'Capítulo ') : '', poster, '') : img;
+    const tit = t ? `▶ VER AHORA: ${t} — gratis y en español` : '▶ X·STREAM — anime y películas completas en español';
+    const dsc = t ? `Abre al instante ⚡ «${t}» completo, en HD y sin registro. En X·STREAM, tu cine libre.` : 'Anime y películas completas en español, gratis y en HD. Sin registro.';
     return `<!DOCTYPE html>
 <html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
 <meta http-equiv="refresh" content="0;url=${esc(dest)}">
@@ -707,14 +720,15 @@ ${body}
 <meta property="og:title" content="${esc(tit)}">
 <meta property="og:description" content="${esc(dsc)}">
 <meta property="og:site_name" content="X·STREAM">
-<meta property="og:image" content="${esc(img)}">
-<meta property="og:image:secure_url" content="${esc(img)}">
+<meta property="og:image" content="${esc(og)}">
+<meta property="og:image:secure_url" content="${esc(og)}">
 <meta property="og:image:width" content="${iw}">
 <meta property="og:image:height" content="${ih}">
+<meta property="og:image:alt" content="${esc(t || 'X·STREAM')} — póster oficial">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(tit)}">
 <meta name="twitter:description" content="${esc(dsc)}">
-<meta name="twitter:image" content="${esc(img)}">
+<meta name="twitter:image" content="${esc(og)}">
 <script>location.replace(${JSON.stringify(dest)});</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#07070d;color:#9a9ab2;font-family:system-ui}a{color:#d8ff3e}</style>
 </head><body><div>Abriendo <b>${esc(t || 'enlace')}</b>… <a href="${esc(dest)}">continuar</a></div></body></html>

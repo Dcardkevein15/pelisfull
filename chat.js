@@ -1154,11 +1154,13 @@
         if (this.hls) { try { this.hls.destroy(); } catch (e) { } this.hls = null; }
         v.pause(); v.removeAttribute('src'); v.load(); v.style.display = 'none';
         f.style.display = 'block';
+        if (this.el) this.el.classList.add('cm-iframe');   /* sus propios controles mandan */
         f.src = opts.frameSrc;
         return;
       }
       f.style.display = 'none'; f.removeAttribute('src');
       v.style.display = 'block';
+      if (this.el) this.el.classList.remove('cm-iframe');
       if (this.hls) { try { this.hls.destroy(); } catch (e) { } this.hls = null; }
       v.removeAttribute('src'); v.load();
       const isHls = /\.m3u8(\?|#|$)/i.test(url);
@@ -1177,11 +1179,81 @@
       const el = $('chatMini');
       el.innerHTML = `
         <div class="cm-bar"><span class="cm-grip">⠿</span><span class="cm-title">Video</span>
+          <button class="cm-b cm-expand" title="Pantalla completa">⛶</button>
           <button class="cm-x" title="Cerrar">✕</button></div>
-        <video class="cm-vid" controls playsinline></video>
-        <iframe class="cm-frame" style="display:none" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+        <video class="cm-vid" playsinline></video>
+        <iframe class="cm-frame" style="display:none" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+        <div class="cm-controls">
+          <button class="cmc cmc-play" title="Reproducir / pausar">▶</button>
+          <button class="cmc" data-seek="-10" title="-10 segundos">⏪</button>
+          <button class="cmc" data-seek="10" title="+10 segundos">⏩</button>
+          <div class="cm-seek"><div class="cm-seek-buf"></div><div class="cm-seek-fill"></div><div class="cm-seek-knob"></div></div>
+          <span class="cm-time">0:00 / 0:00</span>
+          <button class="cmc cmc-mute" title="Silenciar">🔊</button>
+          <input type="range" class="cm-vol" min="0" max="1" step="0.05" value="1" title="Volumen">
+          <button class="cmc cmc-next" title="Siguiente video compartido en el chat">⏭</button>
+        </div>`;
       this.el = el; this.video = el.querySelector('video'); this.frame = el.querySelector('.cm-frame');
-      el.querySelector('.cm-x').addEventListener('click', () => { this.video.pause(); this.frame.removeAttribute('src'); el.classList.add('hidden'); });
+      const v = this.video;
+      const play = el.querySelector('.cmc-play'), mute = el.querySelector('.cmc-mute'),
+        seek = el.querySelector('.cm-seek'), fill = el.querySelector('.cm-seek-fill'),
+        buf = el.querySelector('.cm-seek-buf'), knob = el.querySelector('.cm-seek-knob'),
+        time = el.querySelector('.cm-time'), vol = el.querySelector('.cm-vol');
+      const fmt = s => { s = Math.max(0, Math.floor(s || 0)); const m = Math.floor(s / 60); return `${m}:${String(s % 60).padStart(2, '0')}`; };
+      const upd = () => {
+        const d = v.duration || 0, c = v.currentTime || 0;
+        fill.style.width = (d ? (c / d) * 100 : 0) + '%';
+        knob.style.left = (d ? (c / d) * 100 : 0) + '%';
+        if (v.buffered && v.buffered.length && d) buf.style.width = (v.buffered.end(v.buffered.length - 1) / d) * 100 + '%';
+        time.textContent = `${fmt(c)} / ${d && isFinite(d) ? fmt(d) : '∞'}`;
+        play.textContent = v.paused ? '▶' : '⏸';
+      };
+      v.addEventListener('timeupdate', upd); v.addEventListener('play', upd); v.addEventListener('pause', upd);
+      v.addEventListener('loadedmetadata', upd); v.addEventListener('volumechange', () => { mute.textContent = v.muted || !v.volume ? '🔇' : '🔊'; vol.value = v.muted ? 0 : v.volume; });
+      play.addEventListener('click', () => { v.paused ? v.play().catch(() => { }) : v.pause(); });
+      mute.addEventListener('click', () => { v.muted = !v.muted; v.dispatchEvent(new Event('volumechange')); });
+      vol.addEventListener('input', () => { v.volume = +vol.value; v.muted = !+vol.value; });
+      el.querySelectorAll('[data-seek]').forEach(b => b.addEventListener('click', () => { v.currentTime = Math.max(0, Math.min((v.duration || 0), v.currentTime + (+b.dataset.seek))); }));
+      /* barra de progreso: clic para saltar */
+      seek.addEventListener('pointerdown', ev => {
+        const move = e2 => {
+          const r = seek.getBoundingClientRect();
+          const pct = Math.max(0, Math.min(1, (e2.clientX - r.left) / r.width));
+          if (v.duration) v.currentTime = pct * v.duration;
+        };
+        move(ev);
+        const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
+        window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+      });
+      /* ⏭ siguiente video/compartido del chat: recorre las tarjetas en orden */
+      el.querySelector('.cmc-next').addEventListener('click', () => {
+        const cards = [...document.querySelectorAll('#chatMsgs .cc-here[data-vurl], #chatMsgs .cc-here[data-frame]')];
+        const cur = this._srcEl ? cards.indexOf(this._srcEl) : -1;
+        const nxt = cards[(cur + 1) % cards.length];
+        if (nxt) { this._srcEl = nxt; nxt.click(); }
+        else toastLite('No hay más videos compartidos todavía');
+      });
+      el.querySelector('.cm-x').addEventListener('click', () => {
+        v.pause(); this.frame.removeAttribute('src');
+        if (el.classList.contains('theater')) el.classList.remove('theater');
+        if (document.fullscreenElement) document.exitFullscreen().catch(() => { });
+        el.classList.add('hidden');
+      });
+      /* ⛶ EXPANDIR instantáneo: primero Fullscreen API, si no modo teatro */
+      const expand = el.querySelector('.cm-expand');
+      expand.addEventListener('click', () => {
+        const isFs = document.fullscreenElement === el || el.classList.contains('theater');
+        if (isFs) {
+          if (document.fullscreenElement) document.exitFullscreen().catch(() => { });
+          el.classList.remove('theater');
+          return;
+        }
+        try {
+          if (el.requestFullscreen) el.requestFullscreen().catch(() => el.classList.add('theater'));
+          else el.classList.add('theater');
+        } catch (e) { el.classList.add('theater'); }
+        setTimeout(() => { if (!document.fullscreenElement && !el.classList.contains('theater')) el.classList.add('theater'); }, 350);
+      });
       /* arrastre con pointer events (funciona con mouse y dedo) */
       const bar = el.querySelector('.cm-bar');
       let drag = null;
@@ -1211,6 +1283,7 @@
     const here = ev.target.closest('.cc-here');
     if (here) {
       ev.preventDefault(); ev.stopPropagation();
+      mini._srcEl = here;                    /* ⏭ recuerda de qué tarjeta salió */
       if (here.dataset.frame) mini.open('', here.dataset.vt || 'Video compartido', { frameSrc: here.dataset.frame });
       else mini.open(here.dataset.vurl, here.dataset.vt);
       if (!S.open) switchTab('chat');
