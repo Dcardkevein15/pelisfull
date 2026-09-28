@@ -2374,15 +2374,10 @@ body.chat-full .episodes-panel{
 }
 body.chat-full .panel-tabs{display:none}
 body.chat-full .chat-panel{flex:1;min-height:0;height:auto!important;border-radius:0;overflow:hidden;display:flex;flex-direction:column}
-/* ⤓ botón RESTAURAR flotante, imposible de no ver */
-.chat-unfull{
-  position:fixed;top:12px;right:12px;z-index:142;display:none;align-items:center;gap:7px;
-  background:var(--acid);color:#111;font-weight:900;font-size:12.5px;letter-spacing:.3px;
-  border:none;border-radius:999px;padding:10px 16px;cursor:pointer;
-  box-shadow:0 10px 30px rgba(216,255,62,.45);animation:up .25s cubic-bezier(.2,1.4,.4,1);
-}
-body.chat-full .chat-unfull{display:flex}
-.chat-unfull:hover{transform:scale(1.05)}
+/* ⤓ Restaurar: un chip más de la barra del chat, visible SOLO expandido */
+.chat-restore{display:none}
+body.chat-full .chat-restore{display:inline-flex;align-items:center;background:var(--acid);color:#111;border-color:var(--acid)}
+body.chat-full .chat-restore:hover{transform:translateY(-1px);filter:brightness(1.08)}
 body.chat-full .chat-main{flex:1;min-height:0}
 body.chat-full .chat-stage{height:100%}
 body.chat-full .chat-msgs{max-height:none!important;height:100%}

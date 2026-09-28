@@ -1185,7 +1185,7 @@
     if (on) { switchTab('chat'); setTimeout(() => { const b = $('chatMsgs'); if (b) b.scrollTop = b.scrollHeight; }, 60); }
   }
   if (expBtn) expBtn.addEventListener('click', () => setChatFull(!document.body.classList.contains('chat-full')));
-  const unfBtn = $('chatUnfullBtn');
+  const unfBtn = $('chatRestoreBtn');
   if (unfBtn) unfBtn.addEventListener('click', () => setChatFull(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('chat-full')) setChatFull(false); });
 
