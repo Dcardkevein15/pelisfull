@@ -343,7 +343,7 @@
         const isOtherStaff = p.role === 'admin' || p.role === 'mod';
         const muteB = (staff && !isMe && !isOtherStaff)
           ? `<i class="chat-mute" data-mute="${esc(p.uid)}" data-name="${esc(cleanName(p.name))}" title="Silenciar a ${esc(cleanName(p.name))} (sus mensajes llegan pero no puede escribir)">🔇</i>` : '';
-        li.innerHTML = `<img class="chat-ava u-ava" src="${avatarFor(p.uid, cleanName(p.name))}" alt=""><i class="u-dot">${on ? '●' : '○'}</i><span class="u-name">${esc(cleanName(p.name))}</span>${p.role === 'admin' ? '<b>👑</b>' : p.role === 'mod' ? '<b>🛡</b>' : ''}${isMe ? '<span class="u-me">tú</span>' : ''}${muteB}`;
+        li.innerHTML = `<span class="u-avaw${on ? ' on' : ''}"><img class="chat-ava u-ava" src="${avatarFor(p.uid, cleanName(p.name))}" alt=""></span><span class="u-name">${esc(cleanName(p.name))}</span>${p.role === 'admin' ? '<b>👑</b>' : p.role === 'mod' ? '<b>🛡</b>' : ''}${isMe ? '<span class="u-me">tú</span>' : ''}${muteB}`;
         li.title = (isMe ? 'Este eres TÚ — ' : '') + (on ? 'En línea' : 'Fuera de línea') + ' — toca para mensaje privado';
         li.addEventListener('click', ev => {
           /* el 🔇 tiene su propio evento y no abre DM */

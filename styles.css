@@ -2369,7 +2369,7 @@ body.staff-on .admin-only{display:revert!important}
 /* chat PANTALLA COMPLETA (responsive — se adapta a cualquier dispositivo):
    100% de altura REAL — la fila de pestañas se esconde; «Restaurar» flota */
 body.chat-full .episodes-panel{
-  position:fixed;inset:0;z-index:118;display:flex;flex-direction:column;
+  position:fixed;inset:0;margin:0;z-index:118;display:flex;flex-direction:column;
   background:var(--bg);border-radius:0;padding:0 0 env(safe-area-inset-bottom,0px);
 }
 body.chat-full .panel-tabs{display:none}
@@ -2479,3 +2479,15 @@ body.chat-full .cmu-list{max-height:44vh}
 .chat-music.cmu-busy .cmu-list{opacity:.55;pointer-events:none}
 .chat-mini .cm-frame{width:100%;aspect-ratio:16/9;background:#000;border:0;display:block}
 @media (max-width:640px){ .cmu-list{max-height:30vh} .ct-src{display:none} }
+
+/* 👤 conectados: sin puntico — el CÍRCULO del avatar es el que se ilumina.
+   nombre más pegado al avatar.                               */
+.chat-user{gap:6px;padding:6px 8px}
+.chat-user .u-avaw{position:relative;width:26px;height:26px;min-width:26px;border-radius:50%;display:grid;place-items:center}
+.chat-user .u-ava{width:26px;height:26px;display:block;border-radius:50%}
+.chat-user .u-avaw::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:2px solid transparent;transition:.25s}
+.chat-user .u-avaw.on::after{border-color:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.65)}
+.chat-user.off .u-ava{filter:grayscale(.75) brightness(.72)}
+.chat-user .u-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+/* en pantalla completa (PC): la lista de conectados respira un 25% más */
+@media (min-width:721px){ body.chat-full .chat-users{width:212px} }
