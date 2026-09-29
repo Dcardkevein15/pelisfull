@@ -63,6 +63,19 @@ async function resolveMp3(id) {
 
 let total = 0;
 for (const cat of CATS) {
+  const file = path.join(OUT, cat.id + '.json');
+  /* resumable: si ya existe de hace menos de 20h, se salta (para correr
+     en tandas sin repetir trabajo)                                */
+  if (process.env.RESUME === '1' && fs.existsSync(file)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(file, 'utf8'));
+      if (Date.now() - new Date(prev.at).getTime() < 20 * 3600e3) {
+        total += prev.n || 0;
+        console.log(`⏭ ${cat.id}: ya fresco (${prev.n || 0} canciones)`);
+        continue;
+      }
+    } catch (e) { }
+  }
   let docs = await search(cat.q, 120);
   if (docs.length < 12) docs = docs.concat(await search(cat.alt, 120));
   if (docs.length < 12) docs = docs.concat(await search(LATINO_MIX, 120));
