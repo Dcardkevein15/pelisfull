@@ -1341,48 +1341,70 @@
     const dock = $('chatMusic'), btn = $('chatMusicBtn'), inp = $('chatInput'), sendBtn = $('chatSend');
     if (!dock || !btn) return;
     const CATS = [
-      { id: 'reggaeton', name: '🎤 Reggaetón', q: 'reggaeton AND mediatype:audio' },
-      { id: 'pop', name: '🎶 Pop', q: '(pop OR balada) AND mediatype:audio AND collection:(netlabels OR opensource_audio)' },
-      { id: 'salsa', name: '💃 Salsa', q: 'salsa AND mediatype:audio' },
-      { id: 'vallenato', name: '🪗 Vallenato', q: 'vallenato AND mediatype:audio' },
-      { id: 'merengue', name: '🥁 Merengue', q: 'merengue AND mediatype:audio' },
-      { id: 'corridos', name: '🤠 Corridos', q: '(corridos OR "corridos tumbados") AND mediatype:audio' },
-      { id: 'mexicana', name: '🇲🇽 Mexicana', q: '(ranchera OR mariachi OR banda) AND mediatype:audio' },
-      { id: 'bachata', name: '💜 Bachata', q: 'bachata AND mediatype:audio' },
-      { id: 'cumbia', name: '🎺 Cumbia', q: 'cumbia AND mediatype:audio' },
-      { id: 'electronica', name: '⚡ Electrónica', q: '(techno OR house OR electronic) AND mediatype:audio AND collection:netlabels' },
-      { id: 'rock', name: '🎸 Rock', q: '(rock OR indie) AND mediatype:audio AND collection:netlabels' },
-      { id: 'lofi', name: '🌙 Lofi', q: '(lofi OR "lo-fi" OR chillhop) AND mediatype:audio' },
-      { id: 'jazz', name: '🎷 Jazz', q: 'jazz AND mediatype:audio AND collection:(netlabels OR opensource_audio)' },
-      { id: 'clasica', name: '🎻 Clásica', q: '(classical OR piano) AND mediatype:audio AND collection:opensource_audio' },
+      { id: 'reggaeton', name: '🎤 Reggaetón', q: '(reggaeton OR perreo OR dembow) AND mediatype:audio', alt: 'reggaeton AND mediatype:(audio)' },
+      { id: 'pop', name: '🎶 Pop', q: 'title:(pop) AND mediatype:audio', alt: '(pop hits OR pop music OR "pop latino") AND mediatype:audio' },
+      { id: 'salsa', name: '💃 Salsa', q: '(salsa OR "salsa dura") AND mediatype:audio', alt: 'salsa AND mediatype:(audio)' },
+      { id: 'vallenato', name: '🪗 Vallenato', q: 'vallenato AND mediatype:audio', alt: '(vallenatos OR "vallenato moderno") AND mediatype:audio' },
+      { id: 'merengue', name: '🥁 Merengue', q: 'merengue AND mediatype:audio', alt: '(merengue dominicano OR "merengues") AND mediatype:audio' },
+      { id: 'corridos', name: '🤠 Corridos', q: '(corridos OR corrido OR norteno OR "norteño" OR ranchera) AND mediatype:audio', alt: '(corridos OR "musica norteña") AND mediatype:audio' },
+      { id: 'mexicana', name: '🇲🇽 Mexicana', q: '(mariachi OR ranchera OR "banda sinaloense" OR jarocha) AND mediatype:audio', alt: '(mexican music OR "musica mexicana") AND mediatype:audio' },
+      { id: 'bachata', name: '💜 Bachata', q: 'bachata AND mediatype:audio', alt: '(bachatas OR "bachata romantica") AND mediatype:audio' },
+      { id: 'cumbia', name: '🎺 Cumbia', q: 'cumbia AND mediatype:audio', alt: '(cumbias OR "cumbia sonidera") AND mediatype:audio' },
+      { id: 'electronica', name: '⚡ Electrónica', q: '(techno OR house OR electro OR EDM OR trance) AND mediatype:audio', alt: 'collection:netlabels AND mediatype:audio' },
+      { id: 'rock', name: '🎸 Rock', q: '(rock OR "rock en español" OR "rock latino") AND mediatype:audio', alt: 'collection:(netlabels OR etree) AND rock AND mediatype:audio' },
+      { id: 'lofi', name: '🌙 Lofi', q: '(lofi OR "lo-fi" OR chillhop OR "study beats") AND mediatype:audio', alt: 'lofi AND mediatype:audio' },
+      { id: 'jazz', name: '🎷 Jazz', q: '(jazz OR "jazz latino" OR bossa) AND mediatype:audio', alt: 'collection:(netlabels OR opensource_audio) AND jazz AND mediatype:audio' },
+      { id: 'clasica', name: '🎻 Clásica', q: '(classical OR "piano solo" OR orquesta OR sinfonia) AND mediatype:audio', alt: 'collection:(opensource_audio OR librivoxaudio OR "78rpm") AND mediatype:audio' },
     ];
+    /* 🌎 PLAN B continental: si un género no da nada, suena lo popular */
+    const LATINO_MIX = '(latin OR salsa OR cumbia OR vallenato OR reggaeton OR bachata OR merengue) AND mediatype:audio';
     const PIPED = ['https://pipedapi.kavin.rocks', 'https://pipedapi.adminforge.de', 'https://api.piped.private.coffee', 'https://pipedapi.reallyaweso.me'];
     const MS = {
       cat: localStorage.getItem('xchat-music-cat') || 'reggaeton',
       mode: 'genero',            /* 'genero' | 'search' */
       list: [], loadingList: false, listCat: '',
-      results: null,             /* resultados de búsqueda */
+      q: '',                      /* query ACTIVA (género o su fallback) */
+      seq: 0,                     /* descarta respuestas de clics viejos */
+      results: null,              /* resultados de búsqueda */
       audio: null, ac: null, analyser: null, canvas: null, raf: 0,
       cur: null, playing: false,
     };
     const pick = arr => arr[Math.floor(Math.random() * arr.length)];
     const fmtDur = s => { s = Math.round(s || 0); return s ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : ''; };
 
-    async function fetchCat(catId, page) {
-      try {
-        const cat = CATS.find(c => c.id === catId) || CATS[0];
-        const r = await fetch(`https://archive.org/advancedsearch.php?q=${encodeURIComponent(cat.q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=100&page=${page || 1}&output=json&sort[]=downloads desc`, { cache: 'no-store' });
-        const j = await r.json();
-        return ((j.response || {}).docs || []).filter(d => d.identifier)
-          .map(d => ({ src: 'ia', id: d.identifier, title: d.title || d.identifier, artist: d.creator || 'archive.org' }));
-      } catch (e) { return []; }
+    /* fetch de archive.org CON REINTENTO (a veces se hace el loco) */
+    async function fetchQ(q, page, rows) {
+      const url = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=${rows || 100}&page=${page || 1}&output=json&sort[]=downloads desc`;
+      for (let i = 0; i < 2; i++) {
+        try {
+          const r = await fetch(url, { cache: 'no-store' });
+          const j = await r.json();
+          const docs = ((j.response || {}).docs || []).filter(d => d.identifier)
+            .map(d => ({ src: 'ia', id: d.identifier, title: d.title || d.identifier, artist: d.creator || 'archive.org' }));
+          if (docs.length || i === 1) return docs;
+        } catch (e) { }
+        await new Promise(res => setTimeout(res, 900));
+      }
+      return [];
     }
+    /* carga de categoría con CADENA DE FALLBACK:
+       género → sinónimos → mix latino popular. NUNCA se queda en blanco. */
     async function loadCat(catId, reset) {
-      if (reset) { MS.list = []; MS.page = 0; MS.listCat = catId; }
+      const mySeq = ++MS.seq;                     /* solo la última petición pinta */
+      if (reset) { MS.list = []; MS.page = 0; MS.listCat = catId; MS.q = ''; MS.loadingList = true; }
       MS.page = (MS.page || 0) + 1;
-      const more = await fetchCat(catId, MS.page);
+      const cat = CATS.find(c => c.id === catId) || CATS[0];
+      if (!MS.q) MS.q = cat.q;                    /* primera página: fija la query */
+      let docs = await fetchQ(MS.q, MS.page);
+      /* género flaco y primera página → prueba el fallback; si sigue flaco → MIX */
+      if (MS.page === 1 && docs.length < 12) {
+        docs = docs.concat(await fetchQ(cat.alt, 1));
+        if (docs.length < 12) { MS.q = LATINO_MIX; docs = docs.concat(await fetchQ(MS.q, 1)); }
+      }
+      if (mySeq !== MS.seq) return [];            /* el usuario cambió de categoría: tirar */
+      MS.loadingList = false;
       const have = new Set(MS.list.map(x => x.id));
-      const fresh = more.filter(x => !have.has(x.id));
+      const fresh = docs.filter(x => !have.has(x.id));
       MS.list = MS.list.concat(fresh);
       return fresh;
     }
@@ -1409,8 +1431,10 @@
       return [];
     }
     async function doSearch(q) {
+      const mySeq = ++MS.seq;               /* búsqueda nueva invalida la anterior */
       MS.mode = 'search'; MS.results = null; paintDock();
       const [ia, yt] = await Promise.allSettled([iaSearch(q), ytSearch(q)]);
+      if (mySeq !== MS.seq || MS.mode !== 'search') return;
       MS.results = [...(yt.status === 'fulfilled' ? yt.value : []), ...(ia.status === 'fulfilled' ? ia.value : [])]
         .filter(x => x.title && !/full album|podcast|radio show|trailer/i.test(x.title)).slice(0, 20);
       paintDock();
@@ -1450,7 +1474,7 @@
       MS.audio.crossOrigin = 'anonymous';
       MS.audio.preload = 'none';
       MS.audio.addEventListener('ended', () => smartNext());
-      MS.audio.addEventListener('error', () => { });
+      MS.audio.addEventListener('error', () => { if (MS.cur) { toastLite('⚠ Esa pista no sonó — paso a la siguiente…'); smartNext(); } });
       MS.audio.addEventListener('playing', () => { MS.playing = true; setPlayingUI(); startViz(); });
       MS.audio.addEventListener('pause', () => { MS.playing = false; setPlayingUI(); });
     }
@@ -1560,11 +1584,13 @@
       dock.innerHTML = `
         <div class="cmu-cats">${CATS.map(c => `<button class="cmu-cat${MS.mode === 'genero' && c.id === MS.cat ? ' on' : ''}" data-cat="${c.id}">${c.name}</button>`).join('')}</div>
         <div class="cmu-list">
-          ${rows === null
-            ? `<div class="cmu-loading">${'<i></i>'.repeat(5)}</div>`
-            : rows && rows.length
-              ? rows.map((r, i) => rowHtml(r, i)).join('')
-              : `<div class="cmu-empty">${MS.mode === 'search' ? 'Escribe arriba y pulsa 🔍 — busco en archive.org y YouTube ✨' : 'Toca una categoría para armar la lista ✨'}</div>`}
+          ${MS.mode === 'genero' && MS.loadingList
+            ? `<div class="cmu-loading">${'<i></i>'.repeat(6)}<span class="cmu-loading-txt">🎶 Cargando ${esc((CATS.find(c => c.id === MS.cat) || {}).name || 'música')}…</span></div>`
+            : rows === null
+              ? `<div class="cmu-loading">${'<i></i>'.repeat(5)}</div>`
+              : rows && rows.length
+                ? rows.map((r, i) => rowHtml(r, i)).join('')
+                : `<div class="cmu-empty">${MS.mode === 'search' ? 'Escribe arriba y pulsa 🔍 — busco en archive.org y YouTube ✨' : 'Toca una categoría para armar la lista ✨'}</div>`}
           ${rows && rows.length && MS.mode === 'genero' ? `<div class="cmu-more">⏳ baja para cargar más canciones…</div>` : ''}
         </div>
         <div class="cmu-row">
@@ -1576,10 +1602,10 @@
       MS.canvas = dock.querySelector('.cmu-viz');
       dock.querySelectorAll('.cmu-cat').forEach(b => b.addEventListener('click', async () => {
         MS.cat = b.dataset.cat; localStorage.setItem('xchat-music-cat', MS.cat);
-        MS.mode = 'genero'; MS.results = null; MS.list = [];
-        paintDock();
-        await loadCat(MS.cat, true);
-        appendRows(MS.list);
+        MS.mode = 'genero'; MS.results = null;
+        paintDock();                       /* skeleton inmediato */
+        const fresh = await loadCat(MS.cat, true);
+        appendRows(fresh);
         bindInfinite();
       }));
       dock.querySelectorAll('.cmu-track').forEach(trackClicks);
@@ -1611,14 +1637,13 @@
       btn.classList.toggle('on', show);
       setSearchOn(show);
       if (show) {
-        if (!dock.children.length) paintDock();
+        paintDock();                 /* pinta skeleton si toca cargar */
         inp.focus();
         /* precargar la categoría activa si sigue vacía */
         if (MS.mode === 'genero' && !MS.list.length) {
-          paintDock();
-          await loadCat(MS.cat, true);
-          appendRows(MS.list);
-          paintDock();
+          const fresh = await loadCat(MS.cat, true);
+          appendRows(fresh);
+          bindInfinite();
         }
       }
     });

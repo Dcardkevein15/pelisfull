@@ -2589,3 +2589,7 @@ body.chat-full .cmu-list{max-height:44vh}
 .chat-mini.theater .cm-vid{aspect-ratio:16/9}
 .chat-mini:fullscreen{border-radius:0;width:100vw!important}
 .chat-mini:fullscreen .cm-bar{display:none}
+
+/* 🎵 carga de categoría: skeleton con nombre del género */
+.cmu-loading{display:flex;flex-direction:column;gap:8px;padding:12px 6px;align-items:stretch}
+.cmu-loading-txt{text-align:center;color:var(--dim);font:600 10.5px 'JetBrains Mono';letter-spacing:1.2px;padding-top:4px}
