@@ -1341,6 +1341,7 @@
     const dock = $('chatMusic'), btn = $('chatMusicBtn'), inp = $('chatInput'), sendBtn = $('chatSend');
     if (!dock || !btn) return;
     const CATS = [
+      { id: 'favs', name: '❤ Favoritas', q: '', alt: '' },   /* tus corazones, siempre primero */
       { id: 'reggaeton', name: '🎤 Reggaetón', q: '(reggaeton OR perreo OR dembow) AND mediatype:audio', alt: 'reggaeton AND mediatype:(audio)' },
       { id: 'pop', name: '🎶 Pop', q: 'title:(pop) AND mediatype:audio', alt: '(pop hits OR pop music OR "pop latino") AND mediatype:audio' },
       { id: 'salsa', name: '💃 Salsa', q: '(salsa OR "salsa dura") AND mediatype:audio', alt: 'salsa AND mediatype:(audio)' },
@@ -1363,12 +1364,16 @@
       cat: localStorage.getItem('xchat-music-cat') || 'reggaeton',
       mode: 'genero',            /* 'genero' | 'search' */
       list: [], loadingList: false, listCat: '',
-      q: '',                      /* query ACTIVA (género o su fallback) */
-      seq: 0,                     /* descarta respuestas de clics viejos */
-      results: null,              /* resultados de búsqueda */
+      q: '',                     /* query ACTIVA (género o su fallback) */
+      seq: 0,                    /* descarta respuestas de clics viejos */
+      results: null,             /* resultados de búsqueda */
       audio: null, ac: null, analyser: null, canvas: null, raf: 0,
       cur: null, playing: false,
+      cacheCat: (() => { try { return JSON.parse(sessionStorage.getItem('xchat-cats') || '{}'); } catch (e) { return {}; } })(),
+      favs: (() => { try { return JSON.parse(localStorage.getItem('xchat-music-favs') || '[]'); } catch (e) { return []; } })(),
     };
+    const saveFavs = () => localStorage.setItem('xchat-music-favs', JSON.stringify(MS.favs.slice(0, 300)));
+    const saveCatCache = () => { try { sessionStorage.setItem('xchat-cats', JSON.stringify(MS.cacheCat)); } catch (e) { } };
     const pick = arr => arr[Math.floor(Math.random() * arr.length)];
     const fmtDur = s => { s = Math.round(s || 0); return s ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : ''; };
 
@@ -1387,25 +1392,38 @@
       }
       return [];
     }
-    /* carga de categoría con CADENA DE FALLBACK:
-       género → sinónimos → mix latino popular. NUNCA se queda en blanco. */
+    /* carga de categoría: CACHÉ instantánea + fallback en cadena.
+       NUNCA se queda pegada: la lista en vivo es SIEMPRE MS.list.       */
     async function loadCat(catId, reset) {
-      const mySeq = ++MS.seq;                     /* solo la última petición pinta */
-      if (reset) { MS.list = []; MS.page = 0; MS.listCat = catId; MS.q = ''; MS.loadingList = true; }
+      const mySeq = ++MS.seq;
+      if (catId === 'favs') {                       /* ❤ favoritas: local, cero red */
+        if (reset) { MS.list = MS.favs.slice(); MS.listCat = 'favs'; MS.page = 1; MS.loadingList = false; }
+        return reset ? MS.list.slice() : [];
+      }
+      if (reset) {
+        MS.list = []; MS.page = 0; MS.listCat = catId; MS.q = ''; MS.loadingList = true;
+        /* ⚡ caché de esta sesión → pinta YA, la red solo refresca */
+        if (MS.cacheCat[catId] && MS.cacheCat[catId].length) {
+          MS.list = MS.cacheCat[catId].slice();
+          MS.q = (CATS.find(c => c.id === catId) || {}).q;
+          MS.page = 1; MS.loadingList = false;
+          paintDock();
+        }
+      }
       MS.page = (MS.page || 0) + 1;
-      const cat = CATS.find(c => c.id === catId) || CATS[0];
-      if (!MS.q) MS.q = cat.q;                    /* primera página: fija la query */
+      const cat = CATS.find(c => c.id === catId) || CATS[1];
+      if (!MS.q) MS.q = cat.q;
       let docs = await fetchQ(MS.q, MS.page);
-      /* género flaco y primera página → prueba el fallback; si sigue flaco → MIX */
       if (MS.page === 1 && docs.length < 12) {
         docs = docs.concat(await fetchQ(cat.alt, 1));
         if (docs.length < 12) { MS.q = LATINO_MIX; docs = docs.concat(await fetchQ(MS.q, 1)); }
       }
-      if (mySeq !== MS.seq) return [];            /* el usuario cambió de categoría: tirar */
+      if (mySeq !== MS.seq) return [];
       MS.loadingList = false;
       const have = new Set(MS.list.map(x => x.id));
       const fresh = docs.filter(x => !have.has(x.id));
-      MS.list = MS.list.concat(fresh);
+      for (const f of fresh) MS.list.push(f);         /* push: misma referencia viva */
+      if (MS.page === 1 && MS.list.length) { MS.cacheCat[catId] = MS.list.slice(0, 120); saveCatCache(); }
       return fresh;
     }
     async function iaSearch(q) {
@@ -1444,21 +1462,26 @@
 
     async function resolveIaUrl(id) {
       const meta = await (await fetch(`https://archive.org/metadata/${id}`, { cache: 'no-store' })).json();
-      const f = (meta.files || []).find(x => /VBR MP3|MP3/i.test(x.format || '') && x.name)
-        || (meta.files || []).find(x => /\.mp3$/i.test(x.name || ''));
-      return f ? `https://archive.org/download/${id}/${encodeURIComponent(f.name).replace(/\+/g, '%20')}` : null;
+      /* candidatos ordenados: MP3 "normal" primero, luego cualquier mp3 */
+      const files = meta.files || [];
+      const cands = files.filter(x => /MP3/i.test(x.format || '') && x.name && /\.(mp3)$/i.test(x.name));
+      const url = cands.length
+        ? `https://archive.org/download/${id}/${encodeURIComponent(cands[0].name).replace(/\+/g, '%20')}`
+        : (files.find(x => /\.mp3$/i.test(x.name || '')) ? `https://archive.org/download/${id}/${encodeURIComponent(files.find(x => /\.mp3$/i.test(x.name)).name).replace(/\+/g, '%20')}` : null);
+      return url;
     }
     async function playIa(t) {
       try {
         dock.classList.add('cmu-busy');
-        const url = await resolveIaUrl(t.id);
-        if (!url) { toastLite('⚠ Esa pieza no tiene MP3 directo'); return; }
+        const url = t._url || await resolveIaUrl(t.id);
+        if (!url) { toastLite('⚠ Sin MP3 directo — salto a la siguiente'); smartNext(); return; }
         ensureAudio();
         MS.cur = { ...t, url };
+        t._url = url;                     /* cacheada: reintentos ya no re-descargan */
         MS.audio.src = url;
-        MS.audio.play().catch(() => { });
+        MS.audio.play().catch(() => { setTimeout(() => { if (MS.audio.paused) { toastLite('⚠ Esa pista no sonó — siguiente…'); smartNext(); } }, 1400); });
         setNow(); setPlayingUI();
-      } catch (e) { toastLite('⚠ No pude reproducirla'); }
+      } catch (e) { toastLite('⚠ No pude reproducirla — siguiente…'); smartNext(); }
       finally { dock.classList.remove('cmu-busy'); }
     }
     function playYt(t) {
@@ -1513,6 +1536,7 @@
 
     function rowHtml(t, i) {
       const on = MS.cur && MS.cur.title === t.title;
+      const fav = MS.favs.some(f => f.title === t.title && f.id === t.id);
       return `
         <button class="cmu-track${on ? ' on' : ''}" data-i="${i}" style="--d:${Math.min(i, 14) * 30}ms">
           <span class="ct-ava">${t.src === 'yt' ? (t.thumb ? `<img src="${esc(t.thumb)}" alt="" loading="lazy">` : '▶') : '🎵'}</span>
@@ -1520,6 +1544,8 @@
           <span class="ct-side">
             ${t.dur ? `<i class="ct-dur">${fmtDur(t.dur)}</i>` : ''}
             <span class="ct-eq"><u></u><u></u><u></u></span>
+            <b class="ct-fav${fav ? ' on' : ''}" data-fav="${i}" title="${fav ? 'Quitar de tus favoritas' : 'Guardar en ❤ Favoritas'}">${fav ? '❤' : '♡'}</b>
+            ${t.src !== 'yt' ? `<b class="ct-dl" data-dl="${i}" title="Descargar el MP3 a tu dispositivo">⬇</b>` : ''}
           </span>
         </button>`;
     }
@@ -1538,18 +1564,62 @@
       if (n) n.innerHTML = MS.cur ? `<b>${esc(MS.cur.title)}</b><span>${esc(MS.cur.artist || '')}</span>` : '<span>Música mientras chateas 🎵</span>';
     }
     function trackClicks(b) {
-      b.addEventListener('click', () => {
-        const item = dock._rows && dock._rows[+b.dataset.i];
+      b.addEventListener('click', ev => {
+        const rows = MS.mode === 'search' ? MS.results : MS.list;
+        /* ❤ favorito: NO reproduce */
+        const fv = ev.target.closest('.ct-fav');
+        if (fv) {
+          ev.stopPropagation();
+          const it = rows[+fv.dataset.fav]; if (!it) return;
+          const idx = MS.favs.findIndex(f => f.title === it.title && f.id === it.id);
+          if (idx >= 0) { MS.favs.splice(idx, 1); toastLite('Quitada de ❤ Favoritas'); }
+          else { MS.favs.push({ id: it.id, title: it.title, artist: it.artist, src: it.src, thumb: it.thumb, dur: it.dur }); toastLite('❤ Guardada en Favoritas'); }
+          saveFavs();
+          if (MS.cat === 'favs' && MS.mode === 'genero') { MS.list = MS.favs.slice(); paintDock(); }
+          else { const nb = fv.cloneNode(true); nb.classList.toggle('on', idx < 0); nb.textContent = idx < 0 ? '❤' : '♡'; fv.replaceWith(nb); }
+          return;
+        }
+        /* ⬇ descargar: guarda el MP3 en tu dispositivo */
+        const dl = ev.target.closest('.ct-dl');
+        if (dl) {
+          ev.stopPropagation();
+          const it = rows[+dl.dataset.dl]; if (!it) return;
+          downloadTrack(it, dl);
+          return;
+        }
+        const item = rows && rows[+b.dataset.i];
         if (!item) return;
         if (item.src === 'yt') playYt(item); else playIa(item);
       });
+    }
+    /* ⬇ descarga real del MP3 (archive.org permite CORS → blob local) */
+    async function downloadTrack(it, btnEl) {
+      if (btnEl) btnEl.textContent = '…';
+      try {
+        if (!it._url) it._url = await resolveIaUrl(it.id);
+        if (!it._url) throw new Error('sin MP3');
+        const r = await fetch(it._url);
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const blob = await r.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = (it.title || 'cancion').replace(/[\\/:*?"<>|]+/g, '').slice(0, 90) + '.mp3';
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 8000);
+        toastLite('⬇ Descargada: ' + (it.title || '').slice(0, 40));
+      } catch (e) {
+        toastLite('⚠ No pude descargar esa pista');
+      }
+      if (btnEl) btnEl.textContent = '⬇';
     }
     /* añade filas NUEVAS al final de la lista sin rearmarla (scroll intacto) */
     function appendRows(items) {
       const box = dock.querySelector('.cmu-list');
       if (!box) return;
       const load = box.querySelector('.cmu-loading'); if (load) load.remove();
-      const base = dock._rows ? dock._rows.length - items.length : 0;
+      const rows = MS.mode === 'search' ? MS.results : MS.list;   /* SIEMPRE la lista viva */
+      dock._rows = rows || [];
+      const base = Math.max(0, rows.length - items.length);
       for (let k = 0; k < items.length; k++) {
         const el = document.createElement('div');
         el.innerHTML = rowHtml(items[k], base + k);
@@ -1557,7 +1627,7 @@
         trackClicks(node);
         box.appendChild(node);
       }
-      if (!dock._rows.length) box.innerHTML = `<div class="cmu-empty">${MS.mode === 'search' ? 'Sin resultados — prueba con otra palabra ✨' : 'Toca una categoría para armar la lista ✨'}</div>`;
+      if (!rows.length) box.innerHTML = `<div class="cmu-empty">${MS.cat === 'favs' && MS.mode === 'genero' ? 'Toca el ❤ de cualquier canción y queda guardada aquí para siempre 🎵' : (MS.mode === 'search' ? 'Sin resultados — prueba con otra palabra ✨' : 'Toca una categoría para armar la lista ✨')}</div>`;
     }
     /* 🔁 SCROLL INFINITO: al llegar cerca del final carga 100 más */
     let loadingMore = false;
@@ -1603,7 +1673,11 @@
       dock.querySelectorAll('.cmu-cat').forEach(b => b.addEventListener('click', async () => {
         MS.cat = b.dataset.cat; localStorage.setItem('xchat-music-cat', MS.cat);
         MS.mode = 'genero'; MS.results = null;
-        paintDock();                       /* skeleton inmediato */
+        MS.seq++;                             /* invalida cargas previas ya */
+        if (MS.cat !== 'favs' && !(MS.cacheCat[MS.cat] && MS.cacheCat[MS.cat].length)) {
+          MS.list = []; MS.loadingList = true; MS.listCat = MS.cat; MS.q = ''; MS.page = 0;
+          paintDock();                        /* skeleton inmediato */
+        }
         const fresh = await loadCat(MS.cat, true);
         appendRows(fresh);
         bindInfinite();
@@ -1637,9 +1711,8 @@
       btn.classList.toggle('on', show);
       setSearchOn(show);
       if (show) {
-        paintDock();                 /* pinta skeleton si toca cargar */
+        paintDock();
         inp.focus();
-        /* precargar la categoría activa si sigue vacía */
         if (MS.mode === 'genero' && !MS.list.length) {
           const fresh = await loadCat(MS.cat, true);
           appendRows(fresh);
@@ -1647,6 +1720,17 @@
         }
       }
     });
+    /* ⚡ PRECARGA silenciosa: la primera categoría ya está lista antes de
+       que toques 🎵 (usa la caché de sesión si existe)                  */
+    setTimeout(async () => {
+      try {
+        const c = MS.cat;
+        if (c !== 'favs' && !MS.list.length && !(MS.cacheCat[c] && MS.cacheCat[c].length)) {
+          const fresh = await loadCat(c, true);
+          if (fresh.length && !dock.classList.contains('hidden') && MS.cat === c) appendRows(fresh);
+        }
+      } catch (e) { }
+    }, 3500);
   })();
 
   /* ═══════ 🤖 LUNA & KAI — personajes virtuales de la comunidad ═══════

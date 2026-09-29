@@ -2593,3 +2593,12 @@ body.chat-full .cmu-list{max-height:44vh}
 /* 🎵 carga de categoría: skeleton con nombre del género */
 .cmu-loading{display:flex;flex-direction:column;gap:8px;padding:12px 6px;align-items:stretch}
 .cmu-loading-txt{text-align:center;color:var(--dim);font:600 10.5px 'JetBrains Mono';letter-spacing:1.2px;padding-top:4px}
+
+/* ❤ corazones de canciones (grandes) + ⬇ descarga */
+.ct-side{gap:6px}
+.ct-fav{font-size:19px;cursor:pointer;color:var(--dim);transition:.15s;line-height:1;font-weight:400;padding:2px 3px;border-radius:8px}
+.ct-fav:hover{transform:scale(1.25);color:#ff5c84}
+.ct-fav.on{color:#ff2e63;filter:drop-shadow(0 0 6px rgba(255,46,99,.55));animation:favPop .3s cubic-bezier(.2,1.6,.4,1)}
+@keyframes favPop{from{transform:scale(.4)}to{transform:scale(1)}}
+.ct-dl{font-size:14px;cursor:pointer;color:var(--dim);transition:.15s;padding:3px 4px;border-radius:8px;font-weight:400}
+.ct-dl:hover{color:var(--acid);transform:translateY(2px)}
