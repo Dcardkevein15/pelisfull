@@ -1394,6 +1394,20 @@
     }
     /* carga de categoría: CACHÉ instantánea + fallback en cadena.
        NUNCA se queda pegada: la lista en vivo es SIEMPRE MS.list.       */
+    /* ⚡ LISTA PRE-COCINADA en nuestro CDN (assets/music/<genero>.json —
+       la genera el bot a diario): carga en <50ms y las primeras 60
+       canciones traen la URL del MP3 ya resuelta → suenan instantáneo.
+       Si el archivo no existiera, se cae a archive.org en vivo.         */
+    async function loadPack(catId) {
+      try {
+        const r = await fetch(`assets/music/${catId}.json`, { cache: 'force-cache' });
+        if (!r.ok) return null;
+        const j = await r.json();
+        if (!j || !Array.isArray(j.tracks) || !j.tracks.length) return null;
+        return j.tracks.filter(t => t.id && t.title)
+          .map(t => ({ src: 'ia', id: t.id, title: t.title, artist: t.artist || 'archive.org', _url: t.url || '', dur: t.dur || 0 }));
+      } catch (e) { return null; }
+    }
     async function loadCat(catId, reset) {
       const mySeq = ++MS.seq;
       if (catId === 'favs') {                       /* ❤ favoritas: local, cero red */
@@ -1408,6 +1422,17 @@
           MS.q = (CATS.find(c => c.id === catId) || {}).q;
           MS.page = 1; MS.loadingList = false;
           paintDock();
+        } else {
+          /* ⚡⚡ PACK del CDN: instantáneo y con MP3s ya resueltos */
+          const pack = await loadPack(catId);
+          if (pack && mySeq === MS.seq) {
+            MS.list = pack; MS.listCat = catId;
+            MS.q = (CATS.find(c => c.id === catId) || {}).q;
+            MS.page = 1; MS.loadingList = false;
+            MS.cacheCat[catId] = pack.slice(0, 120); saveCatCache();
+            paintDock();
+            return pack;
+          }
         }
       }
       MS.page = (MS.page || 0) + 1;
