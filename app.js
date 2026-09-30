@@ -220,8 +220,12 @@ async function tvRestore() {
        Si la sincronización del catálogo trae canales, esos mandan.       */
     if (ch && ch.length && !(state.channels && state.channels.length)) {
       state.channels = ch;
-      try { renderTvCats(); } catch (e) { }
-      try { renderChannels(''); } catch (e) { }
+      /* 🔥 SOLO repinta la columna SI estás en la pestaña TV — antes lo
+         hacía SIEMPRE y machacaba la lista de películas/anime con canales */
+      if (state.tab === 'tv') {
+        try { renderTvCats(); } catch (e) { }
+        try { renderChannels(''); } catch (e) { }
+      }
       console.info(`[xstream] 📺 ${ch.length} canales TV restaurados desde IndexedDB`);
     }
   } catch (e) { }
