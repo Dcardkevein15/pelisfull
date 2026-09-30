@@ -155,6 +155,8 @@ function load() {
            se borran aquí y viajan solo a la bóveda local de auth.js (este dispositivo) */
         delete state.apikey; delete state.stapeKey; delete state.stapeLogin;
         delete state.fbConfig; /* Firebase Sync retirado por diseño */
+        /* 📺 si localStorage llegó recortado (cuota), IDB repone los canales */
+        tvRestore();
         return;
       }
     }
@@ -173,29 +175,78 @@ function load() {
   state.tvSources = {};
   state.iptvPacks = null;
   state.epg = { url: '', map: {}, at: 0 };
+  /* 📺 rehidrata los canales desde IndexedDB (asíncrono, pinta al llegar) */
+  tvRestore();
 }
+/* ═══ 📺 TV EN IndexedDB — miles de canales SIN límite de cuota ═══
+   localStorage apenas aguanta ~5MB: con miles de canales el guardado
+   fallaba y la cascada los RECORTABA → al recargar, TV en cero.
+   Ahora los canales viven en IndexedDB (gigabytes) y NUNCA se pierden. */
+let tvDbPromise = null;
+function tvDb() {
+  if (!('indexedDB' in window)) return Promise.resolve(null);
+  if (tvDbPromise) return tvDbPromise;
+  tvDbPromise = new Promise((res, rej) => {
+    const rq = indexedDB.open('xstream-tv', 1);
+    rq.onupgradeneeded = () => { try { rq.result.createObjectStore('tv'); } catch (e) { } };
+    rq.onsuccess = () => res(rq.result);
+    rq.onerror = () => res(null);      /* sin IDB → simplemente no hay respaldo */
+  }).catch(() => null);
+  return tvDbPromise;
+}
+async function tvPersist(channels) {
+  try {
+    const db = await tvDb();
+    if (!db) return;
+    await new Promise(r => {
+      const tx = db.transaction('tv', 'readwrite');
+      tx.objectStore('tv').put({ channels }, 'main');
+      tx.oncomplete = r; tx.onerror = r; tx.onabort = r;
+    });
+  } catch (e) { }
+}
+let tvRestoreDone = false;
+async function tvRestore() {
+  if (tvRestoreDone) return; tvRestoreDone = true;
+  try {
+    const db = await tvDb();
+    if (!db) return;
+    const got = await new Promise(r => {
+      const rq = db.transaction('tv', 'readonly').objectStore('tv').get('main');
+      rq.onsuccess = () => r(rq.result); rq.onerror = () => r(null);
+    });
+    const ch = got && Array.isArray(got.channels) ? got.channels : null;
+    /* repone SOLO si el estado arrancó sin canales (cuota los recortó).
+       Si la sincronización del catálogo trae canales, esos mandan.       */
+    if (ch && ch.length && !(state.channels && state.channels.length)) {
+      state.channels = ch;
+      try { renderTvCats(); } catch (e) { }
+      try { renderChannels(''); } catch (e) { }
+      console.info(`[xstream] 📺 ${ch.length} canales TV restaurados desde IndexedDB`);
+    }
+  } catch (e) { }
+}
+
 function save() {
-  const write = () => localStorage.setItem(LS_KEY, JSON.stringify(state));
+  /* 📺 los canales salen del JSON de localStorage (viven en IDB) → la
+     cuota ya no se desborda y la cascada de emergencia ya no los borra */
+  const ch = Array.isArray(state.channels) ? state.channels : null;
+  if (ch && ch.length) tvPersist(ch);
+  const light = ch && ch.length ? Object.assign({}, state, { channels: [] }) : state;
+  const write = () => localStorage.setItem(LS_KEY, JSON.stringify(light));
   try { write(); return; } catch (e) { /* cuota llena → recortar lo regenerable */ }
   /* En móviles la cuota de localStorage es ~5 MB y el estado con catálogo
-     grande (miles de canales TV + enlaces) la desborda. Antes el fallo era
-     SILENCIOSO: nada se guardaba y al reabrir la app arrancaba SIEMPRE del
-     estado viejo (parecía que "no se actualizaba"). Ahora se adelgaza en
-     cascada, solo datos que se regeneran o vuelven con la próxima sync: */
+     grande la desborda. Antes el fallo era SILENCIOSO: nada se guardaba y
+     al reabrir la app arrancaba SIEMPRE del estado viejo. Ahora se adelgaza
+     en cascada, solo datos que se regeneran o vuelven con la próxima sync: */
   /* 1) miniaturas: caché visual (vuelven del catálogo o al reproducir) */
-  if (state.thumbs && Object.keys(state.thumbs).length) {
-    state.thumbs = {};
+  if (light.thumbs && Object.keys(light.thumbs).length) {
+    light.thumbs = {};
     try { write(); console.info('[xstream] guardado sin miniaturas (cuota)'); return; } catch (e) { }
   }
-  /* 2) canales TV traídos del catálogo/listas (reaparecen solos al sincronizar);
-        se conservan siempre los añadidos a mano */
-  if (Array.isArray(state.channels) && state.channels.length) {
-    state.channels = state.channels.filter(c => c && c.src === 'manual');
-    try { write(); console.info('[xstream] guardado sin canales de catálogo (cuota)'); return; } catch (e) { }
-  }
-  /* 3) guía EPG: caché que se vuelve a descargar sola */
-  if (state.epg && state.epg.map && Object.keys(state.epg.map).length) {
-    state.epg = { url: state.epg.url || '', map: {}, at: 0 };
+  /* 2) guía EPG: caché que se vuelve a descargar sola */
+  if (light.epg && light.epg.map && Object.keys(light.epg.map).length) {
+    light.epg = { url: light.epg.url || '', map: {}, at: 0 };
     try { write(); console.info('[xstream] guardado sin EPG (cuota)'); return; } catch (e) { }
   }
 }

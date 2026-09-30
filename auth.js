@@ -1238,6 +1238,14 @@
     });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
+      /* 🔑 401 = el token guardado en ESTE dispositivo expiró o lo revocaste:
+         se borra y el próximo «Publicar» pedirá uno nuevo (pegas el vigente) */
+      if (res.status === 401) {
+        try { localStorage.removeItem(CONFIG.ghTokenKey); } catch (e2) { }
+        const t = new Error('Tu token de GitHub expiró o ya no es válido — se borró de este equipo. Vuelve a dar «Publicar» y pega el token nuevo (GitHub → Settings → Developer settings → Tokens).');
+        t.code = 'TOKEN';
+        throw t;
+      }
       /* ⚡ 409 = alguien más publicó en este instante (sha quedó viejo):
          publishCatalog lo atrapa, fusiona la versión ganadora y reintenta */
       if (res.status === 409) { const c = new Error('otro publicador ganó el turno (409)'); c.code = 'CONFLICT'; throw c; }
@@ -2135,8 +2143,11 @@
     state.trash = (state.trash || []).filter(t => t.series && alive.has(t.series.id));
     /* 📡 canales de TV: el catálogo del admin es la lista oficial.
        Se reemplazan los canales compartidos anteriores pero se conservan
-       los que el lector haya añadido a mano (src 'manual'). */
-    if (Array.isArray(cat.channels)) {
+       los que el lector haya añadido a mano (src 'manual').
+       🛡 DEFENSA ANTI-VACIADO: si el catálogo llega SIN canales (publicado
+       desde una copia pobre), los locales NO se borran — la TV jamás se
+       pierde por un mal publish de nadie.                                 */
+    if (Array.isArray(cat.channels) && cat.channels.length) {
       const manuales = (state.channels || []).filter(c => c.src === 'manual');
       state.channels = cat.channels.map(c => ({ ...c, src: c.src || 'catalog', at: Date.now() })).concat(manuales);
       if (state.currentChannel && !state.channels.some(c => c.id === state.currentChannel)) {
