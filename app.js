@@ -1909,9 +1909,87 @@ els.tvEpgBtn.addEventListener('click', epgSetup);
 /* ids recién importados → entran con animación shimmer escalonada */
 const freshIds = new Set();
 
+/* ═══ 🃏 TARJETA DE SERIE (plantilla + wiring) — reutilizada por el render
+   completo y por el MODO QUIETO (parche de solo la tarjeta que cambió) ═══ */
+function seriesCardSig(s) {
+  const linked = s.episodes.filter(e => e.url).length;
+  const seen = watchedCount(s);
+  return [s.t, s.kind, s.hentai ? 1 : 0, s.anime === false ? 1 : 0, s.fav ? 1 : 0,
+    s.id === current.seriesId ? 1 : 0, s.episodes.length, linked, seen,
+    s.poster || '', freshIds.has(s.id) ? 'f' : ''].join('|');
+}
+function buildSeriesCard(s, idx) {
+  const linked = s.episodes.filter(e => e.url).length;
+  const isMovie = s.kind === 'pelicula';
+  const seen = watchedCount(s);
+  const chip = isMovie
+    ? (isOvaEntry(s)
+        ? '<span class="s-kind pelicula">OVA</span>'
+        : (s.anime ? '<span class="s-kind pelicula">PELÍCULA ANIME</span>' : '<span class="s-kind pelicula">PELÍCULA</span>'))
+    : `<span class="s-kind serie">${s.hentai ? '💗 HENTAI' : (s.anime === false ? 'SERIE' : 'ANIME')}</span>`;
+  const sub = isMovie
+    ? (s.episodes.length > 1
+        ? `${chip}<span class="s-linked">${s.episodes.length} partes</span>`
+        : `${chip}${linked ? '<span class="s-linked">con enlace</span>' : 'sin enlace'}`)
+    : `${chip}${s.episodes.length} caps${seen ? ` · <span class="s-linked">${seen} vistos</span>` : ''}`;
+  const btn = document.createElement('button');
+  btn.className = 's-item' + (s.id === current.seriesId ? ' active' : '');
+  btn.dataset.sid = s.id;
+  btn.dataset.sig = seriesCardSig(s);
+  btn.draggable = canAdmin();       /* el lector no puede arrastrar para fusionar/reordenar */
+  const esAdmin = canAdmin();
+  btn.innerHTML = `
+      <span class="s-cover" style="background:${grad(s)}">
+        ${coverHtml(s)}
+        ${esAdmin ? '<span class="s-refresh" title="Forzar actualización de carátula con el nombre actual">✎</span>' : ''}
+        <span class="s-fav${s.fav ? ' is-fav' : ''}" title="${s.fav ? 'Quitar de favoritos' : 'Añadir a favoritos'}">${s.fav ? '♥' : '♡'}</span>
+      </span>
+      <span class="s-meta">
+        <span class="s-title">${escapeHtml(s.t)}</span>
+        <span class="s-sub">${sub}</span>
+      </span>
+      ${esAdmin ? `<span class="s-del" title="Enviar a la papelera (restaurable 7 días)">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg>
+      </span>` : ''}`;
+  const delBtn = btn.querySelector('.s-del');
+  if (delBtn) delBtn.addEventListener('click', ev => { ev.stopPropagation(); confirmDeleteSeries(s); });
+  btn.querySelector('.s-fav').addEventListener('click', ev => { ev.stopPropagation(); s.fav = !s.fav; save(); renderSeries(els.searchInput.value); if (s.id === current.seriesId) syncFavBtn(); });
+  const refBtn = btn.querySelector('.s-refresh');
+  if (refBtn) refBtn.addEventListener('click', ev => { ev.stopPropagation(); refetchPoster(s); });
+  btn.addEventListener('click', ev => { if (!ev.target.closest('.s-del,.s-fav,.s-refresh')) selectSeries(s.id); });
+
+  /* entrada con shimmer escalonado para lo recién importado */
+  if (freshIds.has(s.id)) {
+    freshIds.delete(s.id);
+    btn.classList.add('fresh');
+    btn.style.animationDelay = (Math.min(idx, 14) * 50) + 'ms';
+    const d = Math.min(idx, 14) * 50;
+    setTimeout(() => { btn.classList.remove('fresh'); btn.style.animationDelay = ''; }, 1500 + d);
+  }
+
+  /* drag & drop → orden manual · o UNIR como temporada al soltar sobre otra serie */
+  btn.addEventListener('dragstart', () => { dragId = s.id; btn.classList.add('dragging'); });
+  btn.addEventListener('dragend', () => { btn.classList.remove('dragging'); });
+  btn.addEventListener('dragover', ev => ev.preventDefault());
+  btn.addEventListener('drop', ev => {
+    ev.preventDefault();
+    if (!needAdmin()) return;
+    if (!dragId || dragId === s.id) return;
+    const dragged = getSeries(dragId);
+    if (dragged && dragged.kind === s.kind) {
+      /* mismo tipo → elegir: serie↔serie = temporada · peli↔peli = parte de la saga */
+      showDropChooser(btn, dragged, s);
+    } else {
+      reorderSeries(dragId, s.id);
+    }
+  });
+  /* portada automática (anime) en segundo plano */
+  queuePoster(s);
+  return btn;
+}
+
 function renderSeries(filter = '') {
   const q = filter.trim().toLowerCase();
-  els.seriesList.innerHTML = '';
   /* contadores por pestaña (siempre actualizados) */
   els.countAnime.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime !== false && !s.hentai).length;
   els.countSeries.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime === false && !s.hentai).length;
@@ -1949,78 +2027,54 @@ function renderSeries(filter = '') {
     return;
   }
 
+  /* ⚡⚡ MODO QUIETO (edición): misma pestaña, mismos filtros y búsqueda →
+     la columna NO se reconstruye: solo se REEMPLAZAN las tarjetas cuyo
+     contenido cambió (título, captura, favorito, activa…). El scroll y el
+     resto de tarjetas quedan exactamente donde estaban — al editar ves el
+     resultado al instante, en sitio, sin perseguir tu posición.         */
+  const skey = [state.tab, state.sortMode || 'manual', favOnly ? 1 : 0, tagFilter || '', q].join('|');
+  if (els.seriesList._skey === skey && els.seriesList.querySelector('.s-item')) {
+    const cards = [...els.seriesList.querySelectorAll('.s-item')];
+    const byId = new Map(list.map(s => [s.id, s]));
+    let visibles = 0;
+    for (const old of cards) {
+      const s = byId.get(old.dataset.sid);
+      if (!s) continue;                      /* la serie salió de la lista → render completo */
+      visibles++;
+      const sig = seriesCardSig(s);
+      if (old.dataset.sig !== sig) {
+        const fresh = buildSeriesCard(s, -1);   /* -1: sin shimmer en parches */
+        old.replaceWith(fresh);                 /* mismo hueco → scroll intacto */
+      }
+    }
+    if (visibles === cards.length && cards.length === list.length) {
+      els.seriesList._skey = skey;
+      return;                                   /* ✔ columna quieta, solo lo editado cambió */
+    }
+    /* el set cambió (serie nueva/quitada) → render completo, scroll abajo */
+  }
+
+  /* render completo (pestaña/filtro/búsqueda nuevos o set distinto) */
+  const sx = els.sideScroll ? els.sideScroll.scrollLeft : 0;
+  const sy = els.sideScroll ? els.sideScroll.scrollTop : 0;
+  const back = els.seriesList._skey === skey;     /* ¿venimos del MISMO listado? */
   /* ⚡ render perezoso: solo se crean las primeras tarjetas visibles
      y el resto se agrega automáticamente al hacer scroll.
      (en PC el nº de series puede ser enorme; esto hace la app instantánea) */
-  lazyRender(els.seriesList, list, (s, idx) => {
-    const linked = s.episodes.filter(e => e.url).length;
-    const isMovie = s.kind === 'pelicula';
-    const seen = watchedCount(s);
-    const chip = isMovie
-      ? (isOvaEntry(s)
-          ? '<span class="s-kind pelicula">OVA</span>'
-          : (s.anime ? '<span class="s-kind pelicula">PELÍCULA ANIME</span>' : '<span class="s-kind pelicula">PELÍCULA</span>'))
-      : `<span class="s-kind serie">${s.hentai ? '💗 HENTAI' : (s.anime === false ? 'SERIE' : 'ANIME')}</span>`;
-    const sub = isMovie
-      ? (s.episodes.length > 1
-          ? `${chip}<span class="s-linked">${s.episodes.length} partes</span>`
-          : `${chip}${linked ? '<span class="s-linked">con enlace</span>' : 'sin enlace'}`)
-      : `${chip}${s.episodes.length} caps${seen ? ` · <span class="s-linked">${seen} vistos</span>` : ''}`;
-    const btn = document.createElement('button');
-    btn.className = 's-item' + (s.id === current.seriesId ? ' active' : '');
-    btn.dataset.sid = s.id;
-    btn.draggable = canAdmin();       /* el lector no puede arrastrar para fusionar/reordenar */
-    const esAdmin = canAdmin();
-    btn.innerHTML = `
-      <span class="s-cover" style="background:${grad(s)}">
-        ${coverHtml(s)}
-        ${esAdmin ? '<span class="s-refresh" title="Forzar actualización de carátula con el nombre actual">✎</span>' : ''}
-        <span class="s-fav${s.fav ? ' is-fav' : ''}" title="${s.fav ? 'Quitar de favoritos' : 'Añadir a favoritos'}">${s.fav ? '♥' : '♡'}</span>
-      </span>
-      <span class="s-meta">
-        <span class="s-title">${escapeHtml(s.t)}</span>
-        <span class="s-sub">${sub}</span>
-      </span>
-      ${esAdmin ? `<span class="s-del" title="Enviar a la papelera (restaurable 7 días)">
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg>
-      </span>` : ''}`;
-    const delBtn = btn.querySelector('.s-del');
-    if (delBtn) delBtn.addEventListener('click', ev => { ev.stopPropagation(); confirmDeleteSeries(s); });
-    btn.querySelector('.s-fav').addEventListener('click', ev => { ev.stopPropagation(); s.fav = !s.fav; save(); renderSeries(els.searchInput.value); if (s.id === current.seriesId) syncFavBtn(); });
-    const refBtn = btn.querySelector('.s-refresh');
-    if (refBtn) refBtn.addEventListener('click', ev => { ev.stopPropagation(); refetchPoster(s); });
-    btn.addEventListener('click', ev => { if (!ev.target.closest('.s-del,.s-fav,.s-refresh')) selectSeries(s.id); });
-
-    /* entrada con shimmer escalonado para lo recién importado */
-    if (freshIds.has(s.id)) {
-      freshIds.delete(s.id);
-      btn.classList.add('fresh');
-      btn.style.animationDelay = (Math.min(idx, 14) * 50) + 'ms';
-      const d = Math.min(idx, 14) * 50;
-      setTimeout(() => { btn.classList.remove('fresh'); btn.style.animationDelay = ''; }, 1500 + d);
-    }
-
-    /* drag & drop → orden manual · o UNIR como temporada al soltar sobre otra serie */
-    btn.addEventListener('dragstart', () => { dragId = s.id; btn.classList.add('dragging'); });
-    btn.addEventListener('dragend', () => { btn.classList.remove('dragging'); });
-    btn.addEventListener('dragover', ev => ev.preventDefault());
-    btn.addEventListener('drop', ev => {
-      ev.preventDefault();
-      if (!needAdmin()) return;
-      if (!dragId || dragId === s.id) return;
-      const dragged = getSeries(dragId);
-      if (dragged && dragged.kind === s.kind) {
-        /* mismo tipo → elegir: serie↔serie = temporada · peli↔peli = parte de la saga */
-        showDropChooser(btn, dragged, s);
-      } else {
-        reorderSeries(dragId, s.id);
-      }
-    });
-    /* portada automática (anime) en segundo plano */
-    queuePoster(s);
-    /* el nodo lo toma lazyRender y lo inserta solo cuando toca verlo */
-    return btn;
-  });
+  lazyRender(els.seriesList, list, (s, idx) => buildSeriesCard(s, idx));
+  if (back) {
+    /* estaba en ESTE listado (p.ej. acabó de editar y el set cambió):
+       el lazyRender va creando hasta que el scroll aterriza donde estaba */
+    let tries = 0;
+    const rest = () => {
+      if (!els.sideScroll) return;
+      els.sideScroll.scrollLeft = sx;
+      els.sideScroll.scrollTop = sy;
+      if (++tries < 60 && Math.abs(els.sideScroll.scrollTop - sy) > 4) requestAnimationFrame(rest);
+    };
+    requestAnimationFrame(rest);
+  }
+  els.seriesList._skey = skey;
 }
 
 /* ═══════════ Reordenar / fundir series como temporadas ═══════════ */
