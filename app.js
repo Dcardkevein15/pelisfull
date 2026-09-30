@@ -2526,6 +2526,36 @@ function renderEpisodes() {
         els.episodesGrid.scrollLeft += e.deltaY * 1.4;
       }, { passive: false });
     }
+    /* ◀ ▶ flechas laterales del riel (solo aparecen si hay más hacia ese lado) */
+    const wrap = els.episodesGrid.parentElement;
+    if (wrap && !wrap._relRail) {
+      wrap._relRail = true;
+      wrap.style.position = 'relative';
+      const mkArr = dir => {
+        const b = document.createElement('button');
+        b.className = 'rel-arrow ' + dir;
+        b.textContent = dir === 'l' ? '‹' : '›';
+        b.setAttribute('aria-label', dir === 'l' ? 'Anteriores' : 'Siguientes');
+        b.addEventListener('click', () => {
+          const step = Math.max(260, els.episodesGrid.clientWidth * 0.7);
+          els.episodesGrid.scrollBy({ left: dir === 'l' ? -step : step, behavior: 'smooth' });
+        });
+        wrap.appendChild(b);
+        return b;
+      };
+      const L = mkArr('l'), R = mkArr('r');
+      const upd = () => {
+        const x = els.episodesGrid.scrollLeft;
+        const max = els.episodesGrid.scrollWidth - els.episodesGrid.clientWidth - 2;
+        L.style.opacity = x > 4 ? .92 : 0;
+        R.style.opacity = x < max && max > 4 ? .92 : 0;
+        L.style.pointerEvents = x > 4 ? 'auto' : 'none';
+        R.style.pointerEvents = x < max && max > 4 ? 'auto' : 'none';
+      };
+      els.episodesGrid.addEventListener('scroll', upd, { passive: true });
+      if (window.ResizeObserver) new ResizeObserver(upd).observe(els.episodesGrid);
+      setTimeout(upd, 120); setTimeout(upd, 400);
+    }
     const pool = state.series.filter(x => x.kind === 'pelicula' && isOvaEntry(x) === esOva);
     if (pool.length <= 1) {
       els.episodesGrid.innerHTML = `<div class="episodes-hint">No hay más ${esOva ? 'OVAs' : 'películas'} todavía — impórtalas con 🎬 Buscar cine o 📁 Drive</div>`;
