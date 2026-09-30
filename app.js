@@ -1730,8 +1730,10 @@ async function iptvPicker() {
   }
   state[IPTV_AUTO_KEY] = Date.now();
   save();
-  setTab('tv');
-  toast(`🌐 iptv-org: +${totalAdded} nuevos · ${totalUpd} al día · ${totalRem} retirados${fallidas ? ` · ⚠ ${fallidas} fallidas` : ''}`);
+  /* 🚫 NO se cambia de pestaña: el auto-update es invisible (el toast es
+     el único aviso). Antes hacía setTab('tv') y te saltaba a TV solo.  */
+  if (state.tab === 'tv') { renderChannels(els.searchInput.value); renderTvCats(); }
+  toast(`📡 iptv-org: +${totalAdded} nuevos · ${totalUpd} al día · ${totalRem} retirados${fallidas ? ` · ⚠ ${fallidas} fallidas` : ''}`);
 }
 
 /* ── AUTO-UPDATE: se dispara solo al entrar, máx. 1 vez al día ──
