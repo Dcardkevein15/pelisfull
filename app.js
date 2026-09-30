@@ -790,7 +790,6 @@ function syncTabs() {
 }
 function setTab(tab) {
   state.tab = tab;
-  localStorage.setItem('xstream-tab', tab);   /* 🔄 al recargar, ESTA es tu pestaña */
   syncTabs();
   save();
   if (tab === 'tv') { renderChannels(els.searchInput.value); renderTvCats(); }
@@ -1318,6 +1317,8 @@ function playFirstOfCategory(cat) {
 function renderChannels(q) {
   /* chips de categorías, auto-organizadas desde los datos iptv-org */
   renderTvCats();
+  /* el contador de la pestaña TV siempre al día (aunque venga de IDB/sync) */
+  els.countTv.textContent = (state.channels || []).length;
   let list = (state.channels || []).slice();
   if (tvCatFilter) list = list.filter(c => (c.group || 'Otros') === tvCatFilter);
   list.sort((a, b) => (a.group || '').localeCompare(b.group || '') || a.name.localeCompare(b.name));
@@ -6538,16 +6539,15 @@ els.cineMinDur.addEventListener('change', cineSearch);
 
 /* ═══════════ Init ═══════════ */
 load();
-/* 🔄 AL RECARGAR: si el hash trae un capítulo (#/anime/…), esa pestaña manda;
-   si no hay hash, se respeta la ÚLTIMA pestaña que usaste (guardada en
-   localStorage). Nada de saltar a una categoría que no estabas viendo.  */
+/* 🏠 la app abre en INICIO siempre — o en la pestaña del capítulo que
+   estás viendo (hash #/anime/… #/pelicula/… #/tv/…). Así al recargar
+   con F5 NUNCA saltas a otra categoría: sigues donde estabas.        */
 {
   const h = location.hash.replace(/^#\/?/, '');
-  const fromHash = /^anime\//.test(h) ? 'anime'
+  state.tab = /^anime\//.test(h) ? 'anime'
     : /^pelicula\//.test(h) ? 'peliculas'
-    : /^tv\//.test(h) ? 'tv' : null;
-  state.tab = fromHash || localStorage.getItem('xstream-tab') || 'home';
-  localStorage.setItem('xstream-tab', state.tab);
+    : /^tv\//.test(h) ? 'tv'
+    : 'home';
 }
 purgeTrash();          /* elimina lo que lleva +7 días en papelera */
 syncTrashBtn();
