@@ -1438,9 +1438,8 @@ body.light .drive-status.ok{color:#3aa832}
 .btn-solid-danger{background:var(--hot);color:#fff}
 .btn-solid-danger:hover{filter:brightness(1.12);transform:translateY(-1px)}
 
-/* relacionadas: el mismo póster 2:3 que la portada — un solo idioma
-   visual para "títulos" en toda la app (antes 16:10 aquí, mosaico allí) */
-.episodes-grid.rel-movies{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+/* relacionadas: riel horizontal (la definición completa vive al final del archivo) */
+.episodes-grid.rel-movies{grid-template-columns:none}
 .ep.movie-rel{aspect-ratio:2/3;min-height:0;padding:0;overflow:hidden}
 /* …excepto los canales de TV relacionados: sus logos viven mejor en panorámico */
 .ep.movie-rel.tv-rel{aspect-ratio:16/10}
@@ -2603,30 +2602,7 @@ body.chat-full .cmu-list{max-height:44vh}
 .ct-dl{font-size:14px;cursor:pointer;color:var(--dim);transition:.15s;padding:3px 4px;border-radius:8px;font-weight:400}
 .ct-dl:hover{color:var(--acid);transform:translateY(2px)}
 
-/* ═══════ 🎬 RELACIONADAS EN RIEL HORIZONTAL ═══════
-   · PC: 1 sola línea horizontal, scroll vertical del mouse = horizontal
-   · Tablet: hasta 8 visibles en la línea
-   · Móvil: 2×2 (4 visibles), el scroll vertical = horizontal          */
-.episodes-grid.rel-movies{
-  display:flex!important;                /* riel horizontal, no grid */
-  overflow-x:auto;overflow-y:hidden;
-  gap:12px;
-  scroll-snap-type:x proximity;
-  overscroll-behavior-x:contain;
-  padding-bottom:4px;
-  scrollbar-width:thin;scrollbar-color:var(--line) transparent;
-}
-.episodes-grid.rel-movies::-webkit-scrollbar{height:5px}
-.episodes-grid.rel-movies::-webkit-scrollbar-thumb{background:var(--line);border-radius:5px}
-.ep.movie-rel{flex:0 0 auto;scroll-snap-align:start}
-/* 📱 móvil horizontal / tablet: 8 visibles en línea */
-@media (min-width:641px) and (max-width:1100px){
-  .episodes-grid.rel-movies .ep.movie-rel{width:calc((100% - 7 * 12px) / 8)}
-}
-/* 🖥 PC: ~6 visibles, línea única ancha */
-@media (min-width:1101px){
-  .episodes-grid.rel-movies .ep.movie-rel{width:calc((100% - 5 * 12px) / 6)}
-}
+/* ═══════ 🎬 RELACIONADAS — la definición completa del riel vive al final ═══ */
 
 /* ◀ ▶ flechas del riel de relacionadas */
 .rel-arrow{
@@ -2642,26 +2618,37 @@ body.chat-full .cmu-list{max-height:44vh}
 .rel-arrow:hover{background:var(--acid);border-color:var(--acid);color:#111;transform:translateY(-50%) scale(1.1)}
 @media (max-width:640px){ .rel-arrow{width:30px;height:30px;font-size:17px} }
 
-/* ═══════ 🎬 RELACIONADAS RIEL HORIZONTAL — OVERRIDE DEFINITIVO ═══════
-   Este bloque PISA todas las reglas anteriores de rel-movies en móvil
-   y tablet (grid verticales de la media query de 900px, etc).           */
-@media (max-width:900px){
-  .episodes-grid.rel-movies{
-    display:flex!important;
-    flex-direction:row!important;
-    flex-wrap:wrap!important;
-    grid-template-columns:none!important;
-    overflow-x:auto!important;
-    overflow-y:hidden!important;
-    gap:10px!important;
-    align-content:flex-start;
-  }
-  .episodes-grid.rel-movies .ep.movie-rel{
-    width:calc(50% - 5px)!important;
-    min-width:calc(50% - 5px)!important;
-    max-width:calc(50% - 5px)!important;
-    flex:0 0 auto!important;
-    aspect-ratio:2/3!important;
-  }
-  .episodes-grid.rel-movies .episodes-hint{flex:1 1 100%!important}
+/* ═══════ 🎬 RELACIONADAS RIEL HORIZONTAL — UNA SOLA LÍNEA EN TODAS LAS
+   PANTALLAS (PC, tablet y móvil idénticos): scroll horizontal, flechas ◀▶  */
+.episodes-grid.rel-movies{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  grid-template-columns:none!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  gap:12px!important;
+  padding-bottom:4px;
+  scroll-snap-type:x proximity;
+  overscroll-behavior-x:contain;
+  scrollbar-width:thin;
+  scrollbar-color:var(--line) transparent;
+  align-items:stretch;
 }
+.episodes-grid.rel-movies::-webkit-scrollbar{height:5px}
+.episodes-grid.rel-movies::-webkit-scrollbar-thumb{background:var(--line);border-radius:5px}
+.episodes-grid.rel-movies .ep.movie-rel{
+  flex:0 0 auto!important;
+  scroll-snap-align:start;
+  aspect-ratio:2/3;
+  min-height:0;
+}
+/* anchos por pantalla: móvil ~3.2 visibles, tablet ~6, PC ~6 */
+.episodes-grid.rel-movies .ep.movie-rel{width:calc(32% - 8px)}
+@media (min-width:641px){
+  .episodes-grid.rel-movies .ep.movie-rel{width:calc(16% - 10px)}
+}
+@media (min-width:1101px){
+  .episodes-grid.rel-movies .ep.movie-rel{width:calc(15% - 10px)}
+}
+.episodes-grid.rel-movies .episodes-hint{flex:1 1 100%}
