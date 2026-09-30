@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1790752065116,
+ "v": 1790752378803,
  "by": "MortosPr #2968",
- "at": "2026-09-30T07:07:45.116Z",
- "n": 5710,
+ "at": "2026-09-30T07:12:58.803Z",
+ "n": 5711,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -40650,9 +40650,11 @@
    "jp": "📺",
    "tag": "Cine IA · Temporada · 2007",
    "g": 5,
-   "kind": "serie",
+   "kind": "pelicula",
    "anime": false,
    "poster": "https://archive.org/services/img/la-leyenda-del-charro-negro-2018.ia",
+   "clsManual": true,
+   "hentai": false,
    "at": 1790752019303,
    "episodes": [
     {
@@ -42485,6 +42487,24 @@
      "n": 50,
      "t": "Digimon Adventure 02 [Episodio 50] Español Latino (Final)",
      "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2050%5D%20Espa%C3%B1ol%20Latino%20(Final).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-le-seguian-llamando-trinidad-peli-cula-del-oeste-espanol-",
+   "t": "Le Seguían Llamando Trinidad",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/twdVgMxBJjRj0EIzxRgiuE77YGr.jpg",
+   "at": 1790752292803,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Le Seguían Llamando Trinidad PELÍ CULA DEL OESTE Español Spa",
+     "url": "https://archive.org/download/le-seguian-llamando-trinidad-peli-cula-del-oeste-espanol-spanish-western-cine-occidental-720-p-hd/Le%20segu%C3%ADan%20llamando%20Trinidad%20_%20PEL%C3%8DCULA%20DEL%20OESTE%20_%20Espa%C3%B1ol%20_%20Spanish%20Western%20_%20Cine%20Occidental(720P_HD).mp4"
     }
    ]
   }
@@ -100928,7 +100948,9 @@
   "ia-depredador-1987-espanol-latino-dvd-fullscreen": 1790740758965,
   "ia-pooh-west": 1790741282507,
   "ia-south-park-mas-grande-mas-largo-y-sin-cortes-la-madre-de-": 1790751915972,
-  "ia-conan-el-aventurero-capitulo-39-las-ultimas-horas-de-cona": 1790664336515
+  "ia-conan-el-aventurero-capitulo-39-las-ultimas-horas-de-cona": 1790664336515,
+  "ia-angel-la-nina-de-las-flores-capitulo-1-lat": 1790752259723,
+  "ia-trigun_episodio_2": 1790752333279
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -183672,8 +183694,13 @@
    "dest": "#/anime/nuki-doki-tenshi-to-akuma-no-sakusei-battle/4",
    "t": "Nuki Doki! Tenshi To akuma no Sakusei Battle · E4",
    "at": 1790739051569
+  },
+  "95953z": {
+   "dest": "#/anime/futurama/1",
+   "t": "FUTURAMA · E1",
+   "at": 1790752305431
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "fIx8bTiDFJotLlnaErk/x6ab4rI/ugBYRF4esDQ5IfVNhV0Ta7IpsNj0bNB3MK1Z05o25O+TvC6pcC7hAwTs0w=="
+ "sig": "15n59Dl04ON5vhgK/98o0oO9cW5hhhA7pWybSwxp1tRkzzE43pUkLh9Avk7r2FLI2AdnKlEycfiGnq4yf9czkA=="
 }
