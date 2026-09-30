@@ -1581,8 +1581,8 @@ body.light .drive-status.ok{color:#3aa832}
   .now-playing{display:none}
   .time{font-size:11px}
 
-  /* tarjetas de «relacionadas» a 2 columnas reales y legibles */
-  .episodes-grid.rel-movies{grid-template-columns:repeat(2,1fr);gap:8px}
+  /* tarjetas de «relacionadas»: riel horizontal (2x2 en móvil) —
+     el override completo vive al final del archivo, en su propio bloque  */
   .episodes-grid{grid-auto-rows:auto}
 
   /* «Sigue viendo» horizontal con scroll limpio */
@@ -1899,7 +1899,7 @@ body.light .drive-status.ok{color:#3aa832}
   body.tab-tv .sidebar{border-bottom:none}
   body.tab-tv .tv-cats{position:static;border-bottom:none}
   /* la guía «qué echan ahora» en chips de canal: legible */
-  body.tab-tv .episodes-grid.rel-movies{grid-template-columns:repeat(2,1fr)}
+  body.tab-tv .episodes-grid.rel-movies{grid-template-columns:none}
 }
 
 /* ═══════ LOGO DE PAUSA: retirado — la marca vive dentro del círculo
@@ -2655,3 +2655,27 @@ body.chat-full .cmu-list{max-height:44vh}
 .rel-arrow.r{right:6px}
 .rel-arrow:hover{background:var(--acid);border-color:var(--acid);color:#111;transform:translateY(-50%) scale(1.1)}
 @media (max-width:640px){ .rel-arrow{width:30px;height:30px;font-size:17px} }
+
+/* ═══════ 🎬 RELACIONADAS RIEL HORIZONTAL — OVERRIDE DEFINITIVO ═══════
+   Este bloque PISA todas las reglas anteriores de rel-movies en móvil
+   y tablet (grid verticales de la media query de 900px, etc).           */
+@media (max-width:900px){
+  .episodes-grid.rel-movies{
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:wrap!important;
+    grid-template-columns:none!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    gap:10px!important;
+    align-content:flex-start;
+  }
+  .episodes-grid.rel-movies .ep.movie-rel{
+    width:calc(50% - 5px)!important;
+    min-width:calc(50% - 5px)!important;
+    max-width:calc(50% - 5px)!important;
+    flex:0 0 auto!important;
+    aspect-ratio:2/3!important;
+  }
+  .episodes-grid.rel-movies .episodes-hint{flex:1 1 100%!important}
+}
