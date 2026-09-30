@@ -1734,8 +1734,8 @@ async function iptvPicker() {
 /* ── AUTO-UPDATE: se dispara solo al entrar, máx. 1 vez al día ──
    Corre para TODOS (admin y lectores): las listas oficiales iptv-org
    son públicas, y cada dispositivo las mantiene frescas por su cuenta.  */
-async function iptvAutoUpdate() {
-  if (!/^https?:$/.test(location.protocol)) return;
+  async function iptvAutoUpdate() {
+  /* 🖥️ en LOCAL (file://) TAMBIÉN auto-refresca: usa los proxies CORS de fetchText */
   const last = state[IPTV_AUTO_KEY] || 0;
   if (Date.now() - last < 23 * 3600 * 1000) return;   /* 1 vez al día */
   state[IPTV_AUTO_KEY] = Date.now(); save();
@@ -2630,7 +2630,14 @@ function renderEpisodes() {
     const srcIcon = epSourceIcon(ep.url);
     /* capas premium: miniatura real + sello de calidad + indicador de retomar */
     const driveId = parseDriveId(ep.url || '');
-    const thumbSrc = getEpThumb(s, ep) || (driveId ? driveThumbUrl(driveId, 320) : null);
+    /* 🖼 miniatura del capítulo: capturada (catálogo) → Drive oficial →
+       ARCHIVE.ORG oficial (services/img) — TODAS las fuentes tienen imagen */
+    const iaId = !getEpThumb(s, ep) && !driveId
+      ? (String(ep.url || '').match(/archive\.org\/(?:download|details|embed)\/([\w-]+)/i) || [])[1]
+      : null;
+    const thumbSrc = getEpThumb(s, ep)
+      || (driveId ? driveThumbUrl(driveId, 320) : null)
+      || (iaId ? `https://archive.org/services/img/${iaId}` : null);
     if (thumbSrc) cell.classList.add('has-thumb');
     const q = epQuality(ep);
     const resume = pr && !pr.done && pr.t > 20
@@ -6539,12 +6546,15 @@ syncBrokenBtn();
 renderBroken();
 applyTheme(state.theme || 'dark');
 syncAutoplayBtn();
-els.sortMode.value = state.sortMode || 'manual';
+  els.sortMode.value = state.sortMode || 'manual';
   syncTabs();
   buildAccentPicker();
   applyAccent(state.accent);
   renderTagChips();
-  if (state.tab === 'home') renderHome(); else renderSeries();
+  /* 📡 si estabas en TV, la columna muestra CANALES (no series anime) */
+  if (state.tab === 'tv') { renderChannels(''); renderTvCats(); }
+  else if (state.tab === 'home') renderHome();
+  else renderSeries();
 renderEpisodes();
 renderContinue();
 syncOvasToSeries(true); // OVAs sueltas que ya tienen serie → se integran en silencio al arrancar
