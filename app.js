@@ -2511,6 +2511,21 @@ function renderEpisodes() {
     els.addEpBtn.classList.add('hidden');
     els.insertEpBtn.classList.add('hidden');
     els.episodesGrid.classList.add('rel-movies');
+    /* 🖱️ el scroll VERTICAL del mouse desplaza el riel HORIZONTAL de
+       relacionadas (en PC; en móvil/tablet el gesto táctil ya es nativo) */
+    if (!els.episodesGrid._relWheel) {
+      els.episodesGrid._relWheel = true;
+      els.episodesGrid.addEventListener('wheel', e => {
+        if (!els.episodesGrid.classList.contains('rel-movies')) return;
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;   /* trackpad horizontal nativo */
+        const can = e.deltaY > 0
+          ? els.episodesGrid.scrollLeft < els.episodesGrid.scrollWidth - els.episodesGrid.clientWidth - 2
+          : els.episodesGrid.scrollLeft > 0;
+        if (!can) return;                                     /* al borde: la página baja normal */
+        e.preventDefault();
+        els.episodesGrid.scrollLeft += e.deltaY * 1.4;
+      }, { passive: false });
+    }
     const pool = state.series.filter(x => x.kind === 'pelicula' && isOvaEntry(x) === esOva);
     if (pool.length <= 1) {
       els.episodesGrid.innerHTML = `<div class="episodes-hint">No hay más ${esOva ? 'OVAs' : 'películas'} todavía — impórtalas con 🎬 Buscar cine o 📁 Drive</div>`;
