@@ -3955,29 +3955,15 @@ window.addEventListener('hashchange', openFromHash);
    si hay código corto (b.yapido.click/xxxxxx → servido también en
    x.yapido.click/b/xxxxxx/), la barra muestra ESA página: al copiarla y
    pegarla en WhatsApp/Facebook/X el crawler ve el PÓSTER REAL del título
-   con su descripción (no la tarjeta genérica del hash, que nunca viaja
-   al servidor). La app sigue funcionando igual: al recargar, la página
-   b/ redirige al reproductor en un parpadeo.                            */
-let syncBarSeq = 0;
+/* mantiene la URL del navegador SIEMPRE COMPARTIBLE (hash con el nombre
+   de la serie — es la que te gusta, es SEO y es la oficial). Al copiarla
+   y pegarla en WhatsApp usa el botón Compartir de la app, que da el
+   enlace corto b.yapido.click/xxxxxx con su tarjeta social.            */
 async function syncAddressBar() {
-  const my = ++syncBarSeq;
   const s = getSeries(current.seriesId);
   const ep = s && s.episodes.find(e => e.n === current.ep);
   if (!s || !ep) return;
-  const fallback = () => { try { history.replaceState(null, '', buildShareUrl(s, ep)); } catch (e) { } };
-  /* en file:// (local) no hay dominio que sirva /b/ → se queda el hash */
-  if (location.protocol === 'file:') return fallback();
-  try {
-    let code = await shareCodeFor(s, ep).catch(() => null);
-    if (!code && canAdmin()) code = await mintAdminShareLink(s, ep).catch(() => null);
-    if (my !== syncBarSeq) return;                      /* el usuario ya cambió de capítulo */
-    const m = code && code.match(/([a-z0-9]{4,8})\/?$/i);
-    if (m) {
-      /* misma página b/ servida desde NUESTRO dominio → same-origin ✓ */
-      const path = '/b/' + m[1].toLowerCase() + '/';
-      history.replaceState(null, '', path);
-    } else fallback();
-  } catch (e) { fallback(); }
+  try { history.replaceState(null, '', buildShareUrl(s, ep)); } catch (e) { /* file:// antiguo */ }
 }
 
 /* ═══════════ Importador de carpetas de Google Drive ═══════════
