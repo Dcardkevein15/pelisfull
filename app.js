@@ -2375,6 +2375,74 @@ function deferThumb(s, ep, cell) {
   }
 }
 
+/* ═══ 🖼 MINIATURAS OBLIGATORIAS en «relacionadas» ═══
+   TODAS las tarjetas de películas/OVAs relacionados deben tener imagen:
+   poster → miniatura guardada (viaja en el catálogo) → thumb oficial de
+   Drive → thumb oficial de archive.org → CAPTURA EN VIVO del primer frame
+   (MP4/MP3U8 directo con canvas; Streamtape vía su splash). Se encolan de
+   3 en 3 y al llegar, la tarjeta se pinta en sitio sin recargar nada.   */
+function relThumbFor(m) {
+  if (m.poster) return m.poster;
+  const ep = (m.episodes || []).find(e => e.url) || (m.episodes || [])[0];
+  if (ep && getEpThumb(m, ep)) return getEpThumb(m, ep);
+  if (ep && ep.url) {
+    const dId = parseDriveId(ep.url);
+    if (dId) return driveThumbUrl(dId);
+    const mm = String(ep.url).match(/archive\.org\/(?:download|details|embed)\/([\w-]+)/i);
+    if (mm) return `https://archive.org/services/img/${mm[1]}`;
+  }
+  return '';
+}
+const relQ = [];
+let relActive = 0;
+function relEnqueueThumb(m) {
+  const ep = (m.episodes || []).find(e => e.url) || (m.episodes || [])[0];
+  if (!ep || !ep.url) return;
+  const key = m.id + ':' + ep.n;
+  if (getEpThumb(m, ep) || relQ.some(j => j.key === key)) return;
+  const u = String(ep.url);
+  if (!/\.mp4(\?|$)|\.webm|\.m4v|\.m3u8|archive\.org\/download/i.test(u)
+    && epSourceClass(u) !== 'src-stape') return;   /* fuente sin captura posible */
+  relQ.push({ m, ep, key });
+  relPump();
+}
+async function relPump() {
+  if (relActive >= 3 || !relQ.length) return;
+  relActive++;
+  const job = relQ.shift();
+  try {
+    let data = null;
+    if (epSourceClass(job.ep.url) === 'src-stape') {
+      const st = parseStape(job.ep.url);
+      if (st) {
+        if (vget('stKey')) { try { data = await stapeApi('file/getsplash', { file: st.id }); } catch (e) { } }
+        if (!data) data = await stapeThumbScrape(st.id);
+      }
+    } else {
+      data = await captureFrame(job.ep.url);
+    }
+    if (data && typeof data === 'string') {
+      storeThumb(job.key, data);          /* queda en el catálogo: todos la reciben */
+      const cell = [...els.episodesGrid.querySelectorAll('.movie-rel')]
+        .find(x => x.dataset.relid === job.m.id);
+      if (cell) relThumbPaint(cell, data);
+    }
+  } catch (e) { } finally { relActive--; relPump(); }
+}
+function relThumbPaint(cell, src) {
+  cell.classList.remove('fallback');
+  cell.classList.add('has-url');
+  const emoji = cell.querySelector('.rel-emoji'); if (emoji) emoji.remove();
+  let img = cell.querySelector('img.rel-bg');
+  if (!img) {
+    img = document.createElement('img');
+    img.className = 'rel-bg'; img.alt = ''; img.loading = 'lazy';
+    cell.prepend(img);
+  }
+  img.onerror = () => { img.remove(); cell.classList.add('fallback'); };
+  img.src = src;
+}
+
 /* ☁ miniatura de Streamtape SIN API key: leemos el HTML del embed y extraemos
    su og:image / poster. CARRERA de proxies en paralelo: el primero que
    responde gana (los demás se ignoran) — mucho más rápido que en cadena. */
@@ -2435,26 +2503,20 @@ function renderEpisodes() {
       return;
     }
     for (const m of pool) {
-      /* miniatura sin red: poster guardada, miniatura de Drive, o la de archive.org */
-      let img = m.poster;
-      if (!img) {
-        const u = m.episodes[0] && m.episodes[0].url || '';
-        const dId = parseDriveId(u);
-        if (dId) img = driveThumbUrl(dId);
-        else {
-          const mm = u.match(/archive\.org\/download\/([^/]+)\//);
-          if (mm) img = `https://archive.org/services/img/${mm[1]}`; // ~miniatura ligera
-        }
-      }
+      /* 🖼 cascada de miniatura: poster → thumb guardado (catálogo) →
+         Drive → archive.org → captura EN VIVO (encolada al vuelo)      */
+      const img = relThumbFor(m);
       const cell = document.createElement('div');
+      cell.dataset.relid = m.id;
       cell.className = 'ep movie-rel has-url' + (img ? '' : ' fallback') + (m.id === s.id ? ' playing' : '');
       const chipTxt = isOvaEntry(m) ? '🎌 OVA' : (m.anime ? '🎬 ANIME' : '🎬 PELÍCULA');
       cell.innerHTML = `
-        ${img ? `<img class="rel-bg" src="${escapeHtml(img)}" alt="" loading="lazy">` : `<span class="rel-emoji">${isOvaEntry(m) ? '🎌' : '🎬'}</span>`}
+        ${img ? `<img class="rel-bg" src="${escapeHtml(img)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">${isOvaEntry(m) ? '🎌' : '🎬'}</span>`}
         <div class="rel-body">
           <div class="rel-t">${escapeHtml(m.t)}</div>
           <div class="rel-c">${chipTxt}</div>
         </div>`;
+      if (!img) relEnqueueThumb(m);   /* sin imagen aún → se captura y pinta sola */
       cell.addEventListener('click', () => selectSeries(m.id));
       els.episodesGrid.appendChild(cell);
     }
