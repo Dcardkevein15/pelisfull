@@ -2224,7 +2224,10 @@ function epQuality(ep) {
    · Directo   → frame real capturado con canvas (video oculto, t≈3s)
    Se generan SOLO cuando la tarjeta es visible (IntersectionObserver),
    máx. 2 a la vez, y se guardan en localStorage con purga automática.     */
-const getEpThumb = (s, ep) => (state.thumbs || {})[s.id + ':' + ep.n] || null;
+const getEpThumb = (s, ep) => (state.thumbs || {})[s.id + ':' + ep.n]
+  /* respaldo: la miniatura que viaja DENTRO del capítulo (catálogo publicado,
+     respaldo importado…). Así la imagen sale SIEMPRE, en local y en la web.  */
+  || (ep && ep.thumb) || null;
 
 function storeThumb(key, data) {
   state.thumbs = state.thumbs || {};

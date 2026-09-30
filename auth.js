@@ -2298,6 +2298,12 @@
         ['t', 'url', 'sub', 'season', 'ova', 'srcOva', 'srcSeason', 'thumb'].forEach(k => {
           if ((le[k] === undefined || le[k] === null || le[k] === '') && re[k] !== undefined && re[k] !== null && re[k] !== '') le[k] = re[k];
         });
+        /* 🖼 la miniatura del catálogo también entra al almacén local de
+           thumbs: así se pinta instantáneo y se vuelve a publicar        */
+        if (re.thumb && !(state.thumbs || {})[cs.id + ':' + re.n]) {
+          state.thumbs = state.thumbs || {};
+          state.thumbs[cs.id + ':' + re.n] = re.thumb;
+        }
       }
       if (touched) local.episodes.sort((a, b) => (a.n || 0) - (b.n || 0));
     }
