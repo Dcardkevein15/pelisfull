@@ -221,12 +221,16 @@ async function tvRestore() {
     if (ch && ch.length && !(state.channels && state.channels.length)) {
       state.channels = ch;
       /* el contador de la pestaña TV SIEMPRE se actualiza al llegar los
-         canales (así nadie cree que hay 0); la LISTA solo se repinta si
-         la pestaña activa es TV                                   */
+         canales; la LISTA solo se repinta si la pestaña activa es TV;
+         y si estás en la PORTADA, también se repinta para que el bloque
+         «TV en vivo» muestre las tarjetas sin esperar a cambiar de pestaña */
       try { els.countTv.textContent = ch.length; } catch (e) { }
       if (state.tab === 'tv') {
         try { renderTvCats(); } catch (e) { }
         try { renderChannels(''); } catch (e) { }
+      }
+      if (state.tab === 'home') {
+        try { renderHome(); } catch (e) { }
       }
       console.info(`[xstream] 📺 ${ch.length} canales TV restaurados desde IndexedDB`);
     }
@@ -1762,6 +1766,9 @@ async function iptvPicker() {
   }
   if (added || removed) {
     toast(`🌐 Auto-update: +${added} canales nuevos · ${removed} retirados${updated ? ` · ${updated} refrescados` : ''}`);
+    /* 🏠 si estás en la portada, repinta para que el bloque TV en vivo
+       muestre las tarjetas sin esperar a cambiar de pestaña          */
+    if (state.tab === 'home') { try { renderHome(); } catch (e) { } }
   }
 }
 
