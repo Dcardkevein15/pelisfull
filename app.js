@@ -220,8 +220,10 @@ async function tvRestore() {
        Si la sincronización del catálogo trae canales, esos mandan.       */
     if (ch && ch.length && !(state.channels && state.channels.length)) {
       state.channels = ch;
-      /* 🔥 SOLO repinta la columna SI estás en la pestaña TV — antes lo
-         hacía SIEMPRE y machacaba la lista de películas/anime con canales */
+      /* el contador de la pestaña TV SIEMPRE se actualiza al llegar los
+         canales (así nadie cree que hay 0); la LISTA solo se repinta si
+         la pestaña activa es TV                                   */
+      try { els.countTv.textContent = ch.length; } catch (e) { }
       if (state.tab === 'tv') {
         try { renderTvCats(); } catch (e) { }
         try { renderChannels(''); } catch (e) { }
