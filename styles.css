@@ -2619,20 +2619,6 @@ body.chat-full .cmu-list{max-height:44vh}
 .episodes-grid.rel-movies::-webkit-scrollbar{height:5px}
 .episodes-grid.rel-movies::-webkit-scrollbar-thumb{background:var(--line);border-radius:5px}
 .ep.movie-rel{flex:0 0 auto;scroll-snap-align:start}
-/* 📱 móvil: 4 visibles = 2 arriba 2 abajo, riel horizontal con 2 filas */
-@media (max-width:640px){
-  .episodes-grid.rel-movies{
-    display:flex!important;
-    flex-direction:column;flex-wrap:nowrap;
-    overflow-x:auto;overflow-y:hidden;
-    gap:10px;
-  }
-  .episodes-grid.rel-movies .ep.movie-rel{
-    width:44%;min-width:44%;flex:0 0 auto;
-  }
-  /* dos por línea con el hueco entre ellas */
-  .episodes-grid.rel-movies .ep.movie-rel:nth-child(2n+1){margin-right:12px}
-}
 /* 📱 móvil horizontal / tablet: 8 visibles en línea */
 @media (min-width:641px) and (max-width:1100px){
   .episodes-grid.rel-movies .ep.movie-rel{width:calc((100% - 7 * 12px) / 8)}
