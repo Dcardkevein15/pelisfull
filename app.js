@@ -790,9 +790,11 @@ function syncTabs() {
 }
 function setTab(tab) {
   state.tab = tab;
+  localStorage.setItem('xstream-tab', tab);   /* 🔄 al recargar, ESTA es tu pestaña */
   syncTabs();
   save();
-  if (tab === 'home') renderHome(); else renderSeries(els.searchInput.value);
+  if (tab === 'tv') { renderChannels(els.searchInput.value); renderTvCats(); }
+  else if (tab === 'home') renderHome(); else renderSeries(els.searchInput.value);
 }
 els.tabHome.addEventListener('click', () => setTab('home'));
 els.tabAnime.addEventListener('click', () => setTab('anime'));
@@ -6536,10 +6538,17 @@ els.cineMinDur.addEventListener('change', cineSearch);
 
 /* ═══════════ Init ═══════════ */
 load();
-/* 🏠 la app SIEMPRE abre en Inicio (independiente de la última pestaña).
-   Los enlaces compartidos (#/anime/… #/pelicula/… #/tv/…) eligen su
-   pestaña después, en openFromHash — así nada se rompe.              */
-state.tab = 'home';
+/* 🔄 AL RECARGAR: si el hash trae un capítulo (#/anime/…), esa pestaña manda;
+   si no hay hash, se respeta la ÚLTIMA pestaña que usaste (guardada en
+   localStorage). Nada de saltar a una categoría que no estabas viendo.  */
+{
+  const h = location.hash.replace(/^#\/?/, '');
+  const fromHash = /^anime\//.test(h) ? 'anime'
+    : /^pelicula\//.test(h) ? 'peliculas'
+    : /^tv\//.test(h) ? 'tv' : null;
+  state.tab = fromHash || localStorage.getItem('xstream-tab') || 'home';
+  localStorage.setItem('xstream-tab', state.tab);
+}
 purgeTrash();          /* elimina lo que lleva +7 días en papelera */
 syncTrashBtn();
 syncBrokenBtn();
@@ -6547,11 +6556,12 @@ renderBroken();
 applyTheme(state.theme || 'dark');
 syncAutoplayBtn();
   els.sortMode.value = state.sortMode || 'manual';
+  /* (la pestaña ya se resolvió arriba en el Init: hash → última usada → home) */
   syncTabs();
   buildAccentPicker();
   applyAccent(state.accent);
   renderTagChips();
-  /* 📡 si estabas en TV, la columna muestra CANALES (no series anime) */
+  /* 📡 columna inicial: TV muestra canales; el resto su lista de series */
   if (state.tab === 'tv') { renderChannels(''); renderTvCats(); }
   else if (state.tab === 'home') renderHome();
   else renderSeries();
