@@ -2998,6 +2998,19 @@ function scrollToEpCard(n) {
   buscar();
 }
 
+/* 🪙 ¿Es staff (admin o moderador)? — los dos ven TODO sin pagar monedas.
+   Si el sistema de roles aún no cargó (XAUTH indefinido), NO bloquear
+   (mejor dejar pasar 1 gratis que bloquear al admin por accidente). */
+function isStaff() {
+  try {
+    if (canAdmin()) return true;
+    if (window.XAUTH && typeof window.XAUTH.isMod === 'function') return window.XAUTH.isMod();
+    /* XAUTH aún no cargó → asumir staff para no romper la reproducción */
+    if (!window.XAUTH) return true;
+    return false;
+  } catch (e) { return true; }   /* ante cualquier error: dejar ver */
+}
+
 function loadEpisode(epN, autoplayNow = true) {
   const s = getSeries(current.seriesId);
   if (!s) return;
@@ -3013,12 +3026,6 @@ function loadEpisode(epN, autoplayNow = true) {
       showPaywall(s, ep, result);
       return;                     /* NO reproducir hasta pagar */
     }
-  }
-
-  function isStaff() {
-    try {
-      return canAdmin() || (window.XAUTH && window.XAUTH.isMod && window.XAUTH.isMod());
-    } catch (e) { return false; }
   }
 
   scrollToPlayerInstant();   /* 📈 al elegir capítulo desde abajo: el reproductor sube al instante, centrado */
