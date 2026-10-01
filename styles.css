@@ -2900,32 +2900,33 @@ body.chat-full .cmu-list{max-height:44vh}
 .vault-body{
   position:relative;z-index:2;flex:1;
   display:flex;
-  padding:20% 0 0 0;
+  padding:12% 0 0 0;
   min-height:0;
 }
 .vault-left{
-  flex:1 1 55%;min-width:0;
+  flex:1 1 50%;min-width:0;max-width:50%;
   display:flex;align-items:stretch;
   margin:0 5% 10% 10%;
 }
 .vl-card{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;gap:12px;
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  text-align:center;gap:10px;
   background:linear-gradient(165deg,rgba(255,46,99,.10) 0%,rgba(180,20,60,.06) 50%,rgba(255,46,99,.12) 100%);
   border:1.5px solid rgba(255,46,99,.35);
   border-radius:18px;
   padding:18px 16px;
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   box-shadow:0 14px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);
-  overflow-y:auto;scrollbar-width:none;
+  overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,46,99,.3) transparent;
 }
-.vl-card::-webkit-scrollbar{display:none}
+.vl-card::-webkit-scrollbar{width:3px}
+.vl-card::-webkit-scrollbar-thumb{background:rgba(255,46,99,.3);border-radius:3px}
 .vl-icon{
-  width:56px;height:56px;border-radius:18px;
+  width:46px;height:46px;border-radius:14px;
   display:grid;place-items:center;color:#ff2e63;
   background:rgba(255,46,99,.08);border:1.5px solid rgba(255,46,99,.3);
   animation:pwLock 2.4s ease-in-out infinite;
-  margin-bottom:4px;flex-shrink:0;
+  margin-bottom:8px;flex-shrink:0;
 }
 @keyframes pwLock{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 .vl-card h2{
@@ -2972,7 +2973,8 @@ body.chat-full .cmu-list{max-height:44vh}
 }
 .vault-explain:hover{color:var(--acid)}
 .vault-right{
-  flex:0 0 36%;display:flex;align-items:stretch;min-width:0;
+  flex:1 1 50%;min-width:0;max-width:50%;
+  display:flex;align-items:stretch;
   margin:0 10% 10% 5%;
 }
 .vr-card{
