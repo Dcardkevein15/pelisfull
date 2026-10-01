@@ -3018,17 +3018,16 @@ function loadEpisode(epN, autoplayNow = true) {
   if (!ep) return;
   current.ep = epN;
 
-  /* 🪙 PAYWALL: verificar monedas ANTES de reproducir.
-     Admin y Moderadores NUNCA pagan — solo usuarios normales.
-     ⚠ DESACTIVADO temporalmente para restaurar la reproducción —
-     se reactiva con el botón 🪙 del panel admin.                        */
-  const PAYWALL_ON = false;
+  /* 🪙 PAYWALL: el reproductor se CONVIERTE en caja fuerte.
+     Admin/Moderadores NUNCA pagan — solo usuarios normales.        */
+  const PAYWALL_ON = true;
   if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
     const result = COINS.pay(s.id, ep.n, s);
     if (!result.ok) {
-      showPaywall(s, ep, result);
+      showVault(s, ep, result);
       return;
     }
+    /* pagó o ya estaba desbloqueado → el reproductor abre normal */
   }
 
   scrollToPlayerInstant();   /* 📈 al elegir capítulo desde abajo: el reproductor sube al instante, centrado */
@@ -5606,42 +5605,61 @@ function trackPlayback() {
   renderContinue();
 }
 
-/* ═══════════════ 🪙 PAYWALL — candado de monedas en el reproductor ═══════════════ */
-function showPaywall(s, ep, result) {
-  const pw = document.getElementById('paywall');
-  if (!pw) return;
+/* ═══════════════ 🪙 LA CAJA FUERTE — el reproductor convertido en bóveda ═══════════════ */
+function showVault(s, ep, result) {
+  const vault = document.getElementById('paywall');
+  if (!vault) return;
   const price = COINS.priceOf(s);
   const st = COINS.getState();
-  document.getElementById('pwTitle').textContent = '🔒 Capítulo bloqueado';
-  document.getElementById('pwSub').innerHTML = `Necesitas <b>${price}</b> monedas para desbloquear este capítulo.<br>Queda desbloqueado <b>para siempre</b>.`;
+  const cfg = COINS.getConfig();
+  const hasEnough = st.coins >= price;
+
+  /* pintar datos de la bóveda */
+  document.getElementById('pwTitle').textContent = s.kind === 'pelicula' ? '🔒 Película bloqueada' : '🔒 Capítulo bloqueado';
   document.getElementById('pwPrice').textContent = price;
-  document.getElementById('pwPrice2').textContent = price;
   document.getElementById('pwCoins').textContent = st.coins;
-  pw.classList.remove('hidden');
+  document.getElementById('pwAdReward').textContent = '+' + cfg.adReward;
+  document.getElementById('pwSub').innerHTML = `Al desbloquear, queda abierto <b>para siempre</b>.<br>Recibes <b>${cfg.dailyCoins} monedas gratis</b> cada día.`;
 
-  /* botón desbloquear */
-  const unlockBtn = document.getElementById('pwUnlockBtn');
-  unlockBtn.disabled = st.coins < price;
-  unlockBtn.style.opacity = st.coins < price ? .4 : 1;
-  unlockBtn.onclick = () => {
+  /* botón ▶ REPRODUCIR AHORA — descuenta y abre */
+  const playBtn = document.getElementById('pwUnlockBtn');
+  playBtn.classList.toggle('cant', !hasEnough);
+  playBtn.onclick = () => {
     const r = COINS.pay(s.id, ep.n, s);
-    if (r.ok) { pw.classList.add('hidden'); loadEpisode(ep.n, true); }
-    else { document.getElementById('pwCoins').textContent = COINS.getState().coins; }
+    if (r.ok) {
+      /* ANIMACIÓN: la bóveda se desvanece y el video aparece */
+      vault.style.transition = 'opacity .4s, transform .4s';
+      vault.style.opacity = '0';
+      vault.style.transform = 'scale(1.05)';
+      setTimeout(() => {
+        vault.style.opacity = '';
+        vault.style.transform = '';
+        vault.style.transition = '';
+        vault.classList.add('hidden');
+        loadEpisode(ep.n, true);
+      }, 400);
+    }
   };
 
-  /* botón ver anuncio */
+  /* botón 📺 GANAR RECOMPENSAS — abre el anuncio */
   document.getElementById('pwAdBtn').onclick = () => {
-    pw.classList.add('hidden');
-    showAdwall(() => { showPaywall(s, ep, COINS.pay(s.id, ep.n, s)); });
+    vault.classList.add('hidden');
+    showAdwall(() => {
+      /* tras el anuncio, VOLVER a la bóveda con monedas nuevas */
+      showVault(s, ep, COINS.pay(s.id, ep.n, s));
+    });
   };
 
-  /* botón membresía */
-  document.getElementById('pwVipBtn').onclick = () => { alert('👑 Membresía $1/mes — próximamente. Por ahora, gana monedas viendo anuncios.'); };
+  /* botón VIP */
+  document.getElementById('pwVipBtn').onclick = () => showExplainModal();
   /* botón explicación */
   document.getElementById('pwExplainBtn').onclick = () => showExplainModal();
+  vault.classList.remove('hidden');
 }
 
-function hidePaywall() { const pw = document.getElementById('paywall'); if (pw) pw.classList.add('hidden'); }
+function hidePaywall() { const v = document.getElementById('paywall'); if (v) v.classList.add('hidden'); }
+/* alias para compatibilidad */
+function showPaywall(s, ep, result) { showVault(s, ep, result); }
 
 /* ═══════════════ 📺 ADWALL — anuncio con cuenta regresiva + clic obligatorio ═══════════════ */
 function showAdwall(onDone) {

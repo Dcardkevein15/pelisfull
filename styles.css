@@ -2879,3 +2879,111 @@ body.chat-full .cmu-list{max-height:44vh}
   .pw-actions{gap:7px}
   .pw-explain{margin-top:8px}
 }
+
+/* ═══════ 🪙 LA CAJA FUERTE — el reproductor se CONVIERTE en bóveda ═══════
+   No es un popup encima: ES el reproductor, transformado. El video queda
+   invisible detrás de una puerta con dial, precios y botones claros.     */
+.vault{
+  position:absolute;inset:0;z-index:15;
+  display:grid;place-items:center;
+  background:
+    radial-gradient(ellipse at 50% 30%,rgba(20,20,36,.92) 0%,rgba(8,8,14,.97) 70%),
+    linear-gradient(180deg,rgba(8,8,14,.96),rgba(5,5,10,.99));
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  animation:vaultIn .35s cubic-bezier(.2,1.2,.3,1);
+}
+@keyframes vaultIn{from{opacity:0;transform:scale(.96)}}
+.vault-door{
+  text-align:center;max-width:340px;width:90%;
+  padding:20px 16px;
+  border:1.5px solid rgba(216,255,62,.14);
+  border-radius:22px;
+  background:linear-gradient(165deg,rgba(16,16,26,.6),rgba(10,10,18,.4));
+  box-shadow:0 0 0 1px rgba(0,0,0,.4),0 30px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.04);
+  animation:pwPop .32s cubic-bezier(.2,1.3,.4,1) .05s both;
+}
+.vault-dial{
+  width:80px;height:80px;margin:0 auto 14px;color:var(--acid);
+  animation:vaultSpin 6s linear infinite;
+  filter:drop-shadow(0 0 14px rgba(216,255,62,.25));
+}
+@keyframes vaultSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.vault h2{
+  font-family:'Archivo Black';font-size:16px;color:#f4f4fb;
+  margin:0 0 10px;letter-spacing:.3px;
+}
+.vault-meta{
+  display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 8px;
+}
+.vault-price{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(216,255,62,.1);border:1px solid rgba(216,255,62,.28);
+  border-radius:999px;padding:6px 14px;
+}
+.vault-price b{font-size:16px;color:var(--acid);font-family:'JetBrains Mono';font-weight:900}
+.vault-price span{font-size:15px}
+.vault-have{
+  font:600 11px 'JetBrains Mono';color:var(--dim);letter-spacing:.5px;
+}
+.vault-have b{color:var(--ink);font-size:13px}
+.vault-sub{
+  font-size:11.5px;color:var(--dim);margin:0 0 16px;line-height:1.5;
+}
+.vault-sub b{color:var(--acid);font-weight:700}
+.vault-actions{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.vault-play{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--acid);color:#111;
+  font-weight:900;font-size:14.5px;letter-spacing:.3px;
+  border:none;border-radius:16px;padding:16px 20px;cursor:pointer;
+  box-shadow:0 10px 30px rgba(216,255,62,.28),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .15s,box-shadow .15s,filter .15s;
+}
+.vault-play svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
+.vault-play:hover{filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 14px 36px rgba(216,255,62,.4)}
+.vault-play:active{transform:scale(.97)}
+.vault-play.cant{opacity:.35;pointer-events:none}   /* sin monedas → botón apagado */
+.vault-earn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#8b5cf6,#ec4899);
+  color:#fff;font-weight:800;font-size:13px;
+  border:none;border-radius:16px;padding:14px 18px;cursor:pointer;
+  box-shadow:0 8px 24px rgba(139,92,246,.3);
+  transition:transform .15s,filter .15s;
+}
+.vault-earn b{font-family:'JetBrains Mono'}
+.vault-earn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.vault-earn:active{transform:scale(.97)}
+.vault-info{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:rgba(255,210,74,.05);border:1px solid rgba(255,210,74,.18);
+  border-radius:12px;padding:8px 12px;
+  font-size:11px;color:var(--dim);margin-bottom:12px;
+}
+.vault-info b{color:#ffd24a;font-weight:700}
+.vault-vip{
+  background:transparent;color:#ffd24a;font-weight:800;font-size:11.5px;
+  border:1px solid rgba(255,210,74,.4);border-radius:8px;padding:5px 10px;
+  cursor:pointer;white-space:nowrap;transition:.15s;
+}
+.vault-vip:hover{background:rgba(255,210,74,.12)}
+.vault-explain{
+  background:none;border:none;color:var(--dim);
+  font-size:10.5px;cursor:pointer;padding:4px;
+  text-decoration:underline;text-underline-offset:3px;
+}
+.vault-explain:hover{color:var(--acid)}
+/* móvil: todo cabe sin scroll */
+@media (max-width:640px){
+  .vault-door{padding:14px 10px;border-radius:16px;max-width:94%}
+  .vault-dial{width:56px;height:56px;margin-bottom:8px}
+  .vault h2{font-size:14px}
+  .vault-meta{flex-direction:column;gap:6px}
+  .vault-price{padding:5px 12px}
+  .vault-price b{font-size:14px}
+  .vault-have{font-size:10px}
+  .vault-play{padding:13px 14px;font-size:13px}
+  .vault-earn{padding:11px 14px;font-size:12px}
+  .vault-info{font-size:10px;padding:6px 8px;flex-direction:column;gap:6px;text-align:center}
+  .vault-explain{font-size:10px}
+}
