@@ -3019,12 +3019,15 @@ function loadEpisode(epN, autoplayNow = true) {
   current.ep = epN;
 
   /* 🪙 PAYWALL: verificar monedas ANTES de reproducir.
-     Admin y Moderadores NUNCA pagan — solo usuarios normales.        */
-  if (typeof COINS !== 'undefined' && ep.url && !isStaff()) {
+     Admin y Moderadores NUNCA pagan — solo usuarios normales.
+     ⚠ DESACTIVADO temporalmente para restaurar la reproducción —
+     se reactiva con el botón 🪙 del panel admin.                        */
+  const PAYWALL_ON = false;
+  if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
     const result = COINS.pay(s.id, ep.n, s);
     if (!result.ok) {
       showPaywall(s, ep, result);
-      return;                     /* NO reproducir hasta pagar */
+      return;
     }
   }
 
