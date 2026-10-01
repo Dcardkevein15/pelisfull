@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1790809834515,
+ "v": 1790874726754,
  "by": "Dcard #2968",
- "at": "2026-09-30T23:10:34.515Z",
- "n": 5711,
+ "at": "2026-10-01T17:12:06.754Z",
+ "n": 5773,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49314,10 +49314,10 @@
    "name": "Daystar TV Espanol",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Daystar_(2008%E2%80%93present)_unmodified_logo.svg/960px-Daystar_(2008%E2%80%93present)_unmodified_logo.svg.png",
    "group": "Religioso",
-   "url": "https://live-mcl.cdn01.net/smarttv/64wj6m6d8/playlist.m3u8",
+   "url": "http://167.249.23.102:8000/play/a0ev/index.m3u8",
    "epg": "DaystarTVEspanol.us",
    "cc": "us",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/spa"
   },
   {
@@ -49655,10 +49655,10 @@
    "name": "Disney Junior (United States)",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/960px-2024_Disney_Jr._Logo.svg.png",
    "group": "Infantil",
-   "url": "http://23.237.104.106:8080/USA_DISNEY_JUNIOR/index.m3u8",
+   "url": "http://tvsen5.aynascope.net/disney/index.m3u8",
    "epg": "DisneyJunior.us",
    "cc": "us",
-   "quality": "720p",
+   "quality": "480p",
    "src": "iptv-org/g-kids"
   },
   {
@@ -51863,10 +51863,10 @@
   },
   {
    "id": "tv-hbodrama-us",
-   "name": "HBO Drama West",
+   "name": "HBO Drama",
    "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/HBO_Drama_Logo.svg/960px-HBO_Drama_Logo.svg.png",
    "group": "Movies;Series",
-   "url": "https://sra72yz.s.gy/HBO_DRAMA_WEST_HD.m3u8",
+   "url": "https://sra72yz.s.gy/HBO_DRAMA_HD.m3u8",
    "epg": "HBODrama.us",
    "cc": "us",
    "quality": "1080p",
@@ -53461,10 +53461,10 @@
    "name": "LAMIL35 TV",
    "logo": "https://www.appcreator24.com/srv/imgs/gen/3544498_ico.png",
    "group": "Animation;Classic;Entertainment",
-   "url": "https://vd01.streaminghd.net.ar:3349/live/bzuctkgnlive.m3u8",
+   "url": "https://streamingvideo.com.ar/hls/eea3c96df781e0a3.m3u8",
    "epg": "LAMIL35TV.ar",
    "cc": "ar",
-   "quality": "",
+   "quality": "480p",
    "src": "iptv-org/g-anime"
   },
   {
@@ -56200,10 +56200,10 @@
    "name": "Nuestra Tele Internacional",
    "logo": "https://i.imgur.com/JoGQqmP.png",
    "group": "General",
-   "url": "http://170.238.200.199/nuestra-tele/index.m3u8",
+   "url": "http://45.173.231.22:8000/play/a0cr/index.m3u8",
    "epg": "NuestraTeleInternacional.co",
    "cc": "co",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/spa"
   },
   {
@@ -68025,7 +68025,7 @@
    "name": "4TV News",
    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/4_TV.png",
    "group": "Noticias",
-   "url": "https://cdn.pishow.tv/ott/live/1007/master.m3u8",
+   "url": "http://51.75.127.199:3141/4tv/index.m3u8",
    "epg": "4TVNews.in",
    "cc": "in",
    "quality": "576p",
@@ -68352,7 +68352,7 @@
   },
   {
    "id": "tv-abcnews-au",
-   "name": "ABC News",
+   "name": "ABC News (Australia)",
    "logo": "https://i.imgur.com/BrW7gk8.png",
    "group": "Noticias",
    "url": "https://abc-news-dmd-streams-1.akamaized.net/out/v1/701126012d044971b3fa89406a440133/index.m3u8",
@@ -72084,10 +72084,10 @@
    "name": "INH 24x7",
    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_INH_24X7/images/LOGO_HD/image.png",
    "group": "Noticias",
-   "url": "https://d1msejlow1t3l4.cloudfront.net/fta/inh24x7/playlist.m3u8",
+   "url": "http://51.75.127.199:3141/inh24x7/index.m3u8",
    "epg": "INH24x7.in",
    "cc": "in",
-   "quality": "396p",
+   "quality": "576p",
    "src": "iptv-org/g-news"
   },
   {
@@ -73822,10 +73822,10 @@
    "name": "News J",
    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/News_J.png",
    "group": "Noticias",
-   "url": "https://cdn.pishow.tv/ott/live/1279/master.m3u8",
+   "url": "http://51.75.127.199:3141/newsj/index.m3u8",
    "epg": "NewsJ.in",
    "cc": "in",
-   "quality": "720p",
+   "quality": "576p",
    "src": "iptv-org/g-news"
   },
   {
@@ -74042,10 +74042,10 @@
    "name": "NHK World-Japan HD",
    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/NHK_World_Japan.png",
    "group": "Culture;News",
-   "url": "http://170.83.16.50/NHK_WORLD/index.m3u8",
+   "url": "http://51.75.127.199:3141/nhkworldjapan/index.m3u8",
    "epg": "NHKWorldJapan.jp",
    "cc": "jp",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/g-news"
   },
   {
@@ -74933,10 +74933,10 @@
    "name": "Real News Kerala",
    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Real_News_Kerala.png",
    "group": "Noticias",
-   "url": "https://bk7l298nyx53-hls-live.5centscdn.com/realnews/e7dee419f91aa9e65939d3677fb9c4f5.sdp/playlist.m3u8",
+   "url": "http://51.75.127.199:3141/realnewskerala/index.m3u8",
    "epg": "RealNewsKerala.in",
    "cc": "in",
-   "quality": "1080p",
+   "quality": "576p",
    "src": "iptv-org/g-news"
   },
   {
@@ -76275,10 +76275,10 @@
    "name": "TV27 News",
    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/TV27_News.png",
    "group": "Noticias",
-   "url": "https://mumt04.tangotv.in/m18aqlK4TV27/index.m3u8",
+   "url": "http://51.75.127.199:3141/tv27news/index.m3u8",
    "epg": "TV27News.in",
    "cc": "in",
-   "quality": "360p",
+   "quality": "576p",
    "src": "iptv-org/g-news"
   },
   {
@@ -77559,10 +77559,10 @@
   },
   {
    "id": "tv-digisport3-ro",
-   "name": "Digi Sport 3",
+   "name": "Digi Sport 3 (576i)",
    "logo": "https://i.imgur.com/T1ci5UK.png",
    "group": "Deportes",
-   "url": "http://forever.megogo.xyz/iptv/QGB4M3H62GC7E3/2524/index.m3u8",
+   "url": "https://dokagents.site/live/digisport3/mono.m3u8",
    "epg": "DigiSport3.ro",
    "cc": "ro",
    "quality": "576p",
@@ -77570,10 +77570,10 @@
   },
   {
    "id": "tv-digisport4-ro",
-   "name": "Digi Sport 4",
+   "name": "Digi Sport 4 (576i)",
    "logo": "https://i.imgur.com/Knj9I6f.png",
    "group": "Deportes",
-   "url": "http://forever.megogo.xyz/iptv/QGB4M3H62GC7E3/2538/index.m3u8",
+   "url": "https://dokagents.site/live/digisport4/mono.m3u8",
    "epg": "DigiSport4.ro",
    "cc": "ro",
    "quality": "1080p",
@@ -78911,30 +78911,8 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-premiersports1-ie",
-   "name": "Premier Sports 1",
-   "logo": "https://i.imgur.com/eOybZMU.png",
-   "group": "Deportes",
-   "url": "https://7nyaler.streamhostingcdn.top/stream/47/index.m3u8",
-   "epg": "PremierSports1.ie",
-   "cc": "ie",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-premiersports2-ie",
-   "name": "Premier Sports 2 (Ireland)",
-   "logo": "https://i.imgur.com/Fx1n84p.png",
-   "group": "Deportes",
-   "url": "https://7nyaler.streamhostingcdn.top/stream/5/index.m3u8",
-   "epg": "PremierSports2.ie",
-   "cc": "ie",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-premiersports2-ph",
-   "name": "Premier Sports 2 (Philippines)",
+   "name": "Premier Sports 2",
    "logo": "https://i.imgur.com/UQeXWd2.png",
    "group": "Deportes",
    "url": "https://racitonsen.s.gy/PS2PH",
@@ -79307,19 +79285,8 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-skysportscricket-ie",
-   "name": "Sky Sports Cricket (Ireland)",
-   "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1302.png",
-   "group": "Deportes",
-   "url": "https://leaf.highfly.dev/m3u/now-sky-sports-cricket/live.m3u8",
-   "epg": "SkySportsCricket.ie",
-   "cc": "ie",
-   "quality": "1080p",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-skysportscricket-uk",
-   "name": "Sky Sports Cricket (United Kingdom) HD",
+   "name": "Sky Sports Cricket HD",
    "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1302.png",
    "group": "Deportes",
    "url": "https://bl.rutube.ru/livestream/7c13a51576b9ff2601f08f5d57dd5169/index.m3u8?s=uiXES2ePt7xTpQnbJxn7Dg&e=2074684474&scheme=https",
@@ -79329,36 +79296,14 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-skysportsf1-ie",
-   "name": "Sky Sports F1",
-   "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1306.png",
-   "group": "Deportes",
-   "url": "https://xemzi.short.gy/2000005",
-   "epg": "SkySportsF1.ie",
-   "cc": "ie",
-   "quality": "1080p",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-skysportsfootball-ie",
    "name": "Sky Sports Football",
    "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb3838.png",
    "group": "Deportes",
-   "url": "http://188.138.29.131/skyfootball/index.m3u8",
+   "url": "https://7nyaler.streamhostingcdn.top/stream/39/index.m3u8",
    "epg": "SkySportsFootball.ie",
    "cc": "ie",
    "quality": "720p",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-skysportsgolf-ie",
-   "name": "Sky Sports Golf HD",
-   "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1322.png",
-   "group": "Deportes",
-   "url": "https://leaf.highfly.dev/m3u/now-sky-sports-golf/live.m3u8",
-   "epg": "SkySportsGolf.ie",
-   "cc": "ie",
-   "quality": "1080p",
    "src": "iptv-org/g-sports"
   },
   {
@@ -79806,10 +79751,10 @@
    "name": "Sports Television",
    "logo": "https://i.imgur.com/HvFpGeH.png",
    "group": "Deportes",
-   "url": "https://kctv.koryofront.org/stream/sports/index.m3u8",
+   "url": "https://live.koryocdn.org/sports/index.m3u8",
    "epg": "SportsTelevision.kp",
    "cc": "kp",
-   "quality": "",
+   "quality": "720p",
    "src": "iptv-org/g-sports"
   },
   {
@@ -80364,13 +80309,13 @@
   },
   {
    "id": "tv-unite8sports2-in",
-   "name": "Unite8 Sports 2",
-   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SYMANDFLIX/images/LOGO_HD/LOGO_HD_BvXTgRk6Y_UNITE8-SPORTS-2_264X144.webp",
+   "name": "Unite8 Sports 2 HD",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SYMANDFLIX_HD/images/LOGO_HD/LOGO_HD_qVrE3q5rN_UNITE8-SPORTS-2_HD_264X144.webp",
    "group": "Deportes",
-   "url": "http://59.103.38.46:8000/play/a126/index.m3u8",
+   "url": "http://51.75.127.199:3141/andflixhd/index.m3u8",
    "epg": "Unite8Sports2.in",
    "cc": "in",
-   "quality": "",
+   "quality": "1080p",
    "src": "iptv-org/g-sports"
   },
   {
@@ -80708,7 +80653,7 @@
    "name": "&xplor HD",
    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SYMANDXPLOR_HD/images/LOGO_HD/LOGO_HD_image.png",
    "group": "Películas",
-   "url": "http://dksmedia.tv/play/live.php?mac=00:1A:79:B6:60:3D&stream=209743&extension=ts&play_token=mR7FwO88sY",
+   "url": "http://51.75.127.199:3141/andxplorehd/index.m3u8",
    "epg": "AndxplorHD.in",
    "cc": "in",
    "quality": "1080p",
@@ -80991,10 +80936,10 @@
   },
   {
    "id": "tv-b4ubhojpuri-in",
-   "name": "B4U Bhojpuri",
+   "name": "B4U Bhojpuri Plus",
    "logo": "https://i.imgur.com/NwOQUDp.png",
    "group": "Películas",
-   "url": "https://cdnb4u.wiseplayout.com/B4U_Bhojpuri/master.m3u8",
+   "url": "http://51.75.127.199:3141/b4ubhojpuri/index.m3u8",
    "epg": "B4UBhojpuri.in",
    "cc": "in",
    "quality": "1080p",
@@ -86109,10 +86054,10 @@
    "name": "Zee Cinemalu HD",
    "logo": "https://dtil.tmsimg.com/assets/GNLZZGG0022ZEQ9.png?lock=720x540",
    "group": "Películas",
-   "url": "https://mumbai-edge.smartplaytv.in/ZeeCinemaluHD/index.m3u8",
+   "url": "http://51.75.127.199:3141/zeecinemaluhd/index.m3u8",
    "epg": "ZeeCinemalu.in",
    "cc": "in",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/g-movies"
   },
   {
@@ -86128,13 +86073,13 @@
   },
   {
    "id": "tv-zeetalkies-in",
-   "name": "Zee Talkies",
+   "name": "Zee Talkies HD",
    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ZEE_TALKIES/images/LOGO_HD/LOGO_HD_image.png",
    "group": "Películas",
-   "url": "http://107.167.16.138/zeetalkies/index.m3u8?token=test",
+   "url": "http://51.75.127.199:3141/zeetalkieshd/index.m3u8",
    "epg": "ZeeTalkies.in",
    "cc": "in",
-   "quality": "576p",
+   "quality": "1080p",
    "src": "iptv-org/g-movies"
   },
   {
@@ -86458,7 +86403,7 @@
   },
   {
    "id": "tv-bet-se",
-   "name": "BET (Sweden) NO",
+   "name": "BET NO",
    "logo": "https://images.pluto.tv/channels/61c1939b8929e40007ff6382/colorLogoPNG.png",
    "group": "Series",
    "url": "https://jmp2.uk/plu-61dd5bf8db0b8e00080804ff.m3u8",
@@ -92962,10 +92907,10 @@
    "name": "B4U Music",
    "logo": "https://dtil.tmsimg.com/assets/s158141_ld_h15_aa.png?lock=720x540",
    "group": "Música",
-   "url": "https://cdn.pishow.tv/ott/live/415/master.m3u8",
+   "url": "https://amg01408-amg01408c5-amgplt0747.playout.now3.amagi.tv/b4um001/playlist.m3u8",
    "epg": "B4UMusic.in",
    "cc": "in",
-   "quality": "576p",
+   "quality": "1080p",
    "src": "iptv-org/g-music"
   },
   {
@@ -99064,13 +99009,13 @@
   },
   {
    "id": "tv-nationalgeographic-in",
-   "name": "National Geographic (India)",
-   "logo": "https://dtil.tmsimg.com/assets/s143573_ld_h15_aa.png?lock=720x540",
+   "name": "National Geographic (India) HD",
+   "logo": "https://dtil.tmsimg.com/assets/s143574_ld_h15_aa.png?lock=720x540",
    "group": "Documentales",
-   "url": "http://main.light-ott.net:80/play/live.php?mac=00:1A:79:17:28:41&stream=373017&extension=ts&play_token=zCaGy5dtla",
+   "url": "http://51.75.127.199:3141/natgeohd/index.m3u8",
    "epg": "NationalGeographic.in",
    "cc": "in",
-   "quality": "576p",
+   "quality": "1080p",
    "src": "iptv-org/g-doc"
   },
   {
@@ -100615,10 +100560,10 @@
   },
   {
    "id": "tv-toonamiaftermath-us",
-   "name": "Toonami Aftermath",
+   "name": "Toonami Aftermath West",
    "logo": "https://i.imgur.com/aSjhZK7.png",
    "group": "Animación",
-   "url": "http://api.toonamiaftermath.com:3000/est/playlist.m3u8",
+   "url": "http://api.toonamiaftermath.com:3000/pst/playlist.m3u8",
    "epg": "ToonamiAftermath.us",
    "cc": "us",
    "quality": "480p",
@@ -100812,17 +100757,6 @@
    "src": "iptv-org/g-movies"
   },
   {
-   "id": "tv-cinemaxaction-us",
-   "name": "Cinemax Action East HD",
-   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/78/Cinemax_Action_Logo.png/960px-Cinemax_Action_Logo.png",
-   "group": "Películas",
-   "url": "https://sra72yz.s.gy/CINEMAX_ACTION_EAST_HD.m3u8",
-   "epg": "CinemaxAction.us",
-   "cc": "us",
-   "quality": "1080p",
-   "src": "iptv-org/g-movies"
-  },
-  {
    "id": "tv-cronicatv-ar",
    "name": "Cronica TV",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Cr%C3%B3nica_TV_logotipo_%282008-2015%29.png",
@@ -100964,6 +100898,754 @@
    "cc": "ro",
    "quality": "576p",
    "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-canalonce-mx",
+   "name": "Canal Once",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Canal_Once_logo_2025.png",
+   "group": "Otros",
+   "url": "https://vivo.canaloncelive.tv/securepkgr3/oncemexico/playlist.m3u8",
+   "epg": "CanalOnce.mx",
+   "cc": "mx",
+   "quality": "1080p",
+   "src": "iptv-org/c-mx"
+  },
+  {
+   "id": "tv-canaltelesantiago-co",
+   "name": "Canal Telesantiago",
+   "logo": "https://i.imgur.com/DmkH5p8.jpg",
+   "group": "Religioso",
+   "url": "https://stream.canaltelesantiago.com:8000/play/TELESANTIAGO/index.m3u8",
+   "epg": "CanalTelesantiago.co",
+   "cc": "co",
+   "quality": "1080p",
+   "src": "iptv-org/c-co"
+  },
+  {
+   "id": "tv-cncmedellin-co",
+   "name": "CNC Medellin",
+   "logo": "https://i.imgur.com/J1f4fNq.png",
+   "group": "General",
+   "url": "http://138.94.3.106:8000/play/a02o/index.m3u8",
+   "epg": "CNCMedellin.co",
+   "cc": "co",
+   "quality": "1080p",
+   "src": "iptv-org/c-co"
+  },
+  {
+   "id": "tv-telefe-ar",
+   "name": "Telefe",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Telefe_%28nuevo_logo%29.png/960px-Telefe_%28nuevo_logo%29.png",
+   "group": "General",
+   "url": "http://45.173.231.22:8000/play/a053/index.m3u8",
+   "epg": "Telefe.ar",
+   "cc": "ar",
+   "quality": "1080p",
+   "src": "iptv-org/c-ar"
+  },
+  {
+   "id": "tv-telexitos-us",
+   "name": "TeleXitos",
+   "logo": "",
+   "group": "Otros",
+   "url": "http://190.197.41.183/TELEXITOS/index.m3u8",
+   "epg": "TeleXitos.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/spa"
+  },
+  {
+   "id": "tv-24hrstv-in",
+   "name": "24Hrs TV",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/24hourstv.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/24hrstv/index.m3u8",
+   "epg": "24HrsTV.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-abcnews-in",
+   "name": "ABC News (India)",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/ABC_News.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/abcnews/index.m3u8",
+   "epg": "ABCNews.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-anaaditv-in",
+   "name": "Anaadi TV",
+   "logo": "https://i.imgur.com/Ir26BK6.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/anaaditv/index.m3u8",
+   "epg": "AnaadiTV.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-annnews-in",
+   "name": "ANN News",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/annnewssrt.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/annnews/index.m3u8",
+   "epg": "ANNNews.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-bbcnewshindi-in",
+   "name": "BBC News Hindi",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/BBC_Hindi.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/bbcnewshindi/index.m3u8",
+   "epg": "BBCNewsHindi.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-bharatnewstv-in",
+   "name": "Bharat News TV",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Bharat_News.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/bharatnewstv/index.m3u8",
+   "epg": "BharatNewsTV.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-bharatupdate-in",
+   "name": "Bharat Update",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Bharat_Update.png",
+   "group": "Noticias",
+   "url": "https://cdn.pishow.tv/ott/live/339/master.m3u8",
+   "epg": "BharatUpdate.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-bs9news-in",
+   "name": "BS9 News",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/BS9_News.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/bs9news/index.m3u8",
+   "epg": "BS9News.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-buletinindia-in",
+   "name": "Buletin India",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Buletin_India.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/buletinindia/index.m3u8",
+   "epg": "BuletinIndia.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-dnn-in",
+   "name": "DNN",
+   "logo": "https://i.imgur.com/H5Kd0k6.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/dnn/index.m3u8",
+   "epg": "DNN.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-expressnews-in",
+   "name": "Express News",
+   "logo": "https://i.imgur.com/5ggKrf1.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/expressnews/index.m3u8",
+   "epg": "ExpressNews.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-fmnews-in",
+   "name": "FM News",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/FM_News.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/fmnews/index.m3u8",
+   "epg": "FMNews.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-in24news-in",
+   "name": "IN 24 News",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/in24news.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/in24news/index.m3u8",
+   "epg": "IN24News.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-india24x7-in",
+   "name": "India 24x7",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/India24x7.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/india24x7/index.m3u8",
+   "epg": "India24x7.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-kalaignarseithigal-in",
+   "name": "Kalaignar Seithigal",
+   "logo": "https://dtil.tmsimg.com/assets/s143769_ld_h15_aa.png?lock=720x540",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/kalaignarseithigal/index.m3u8",
+   "epg": "KalaignarSeithigal.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-kannurone-in",
+   "name": "Kannur One",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Kannur_one.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/kannurone/index.m3u8",
+   "epg": "KannurOne.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-kkdnews-in",
+   "name": "KKD News",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/KKD_News.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/kkdnews/index.m3u8",
+   "epg": "KKDNews.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-livesamacharbharat-in",
+   "name": "Live Samachar Bharat",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/livesamacharbharat.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/livesamacharbharat/index.m3u8",
+   "epg": "LiveSamacharBharat.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-news21-in",
+   "name": "News 21",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/News_21.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/news21/index.m3u8",
+   "epg": "News21.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-newsflash-in",
+   "name": "News Flash",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/News_Flash.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/newsflash/index.m3u8",
+   "epg": "NewsFlash.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-newsonly-in",
+   "name": "News Only",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/News_Only.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/newsonly/index.m3u8",
+   "epg": "NewsOnly.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-raftaarsamay-in",
+   "name": "Raftaar Samay",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/RRN_News.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/raftaarsamay/index.m3u8",
+   "epg": "RaftaarSamay.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-samacharnation-in",
+   "name": "Samachar Nation",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Samachar_Nation.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/samacharnation/index.m3u8",
+   "epg": "SamacharNation.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-starbharat-in",
+   "name": "Star Bharat HD",
+   "logo": "https://i.imgur.com/Q8ajPij.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/starbharathd/index.m3u8",
+   "epg": "StarBharat.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-stvharyananews-in",
+   "name": "STV Haryana News",
+   "logo": "https://i.imgur.com/TJRZo9e.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/stvharyananews/index.m3u8",
+   "epg": "STVHaryanaNews.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-suryasamachar-in",
+   "name": "Surya Samachar",
+   "logo": "https://i.imgur.com/vxs1kRB.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/suryasamachar/index.m3u8",
+   "epg": "SuryaSamachar.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-tv24-in",
+   "name": "TV 24",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/TV24.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/tv24/index.m3u8",
+   "epg": "TV24.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-vnmtv-in",
+   "name": "VNM TV",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/VNM_News.png",
+   "group": "Noticias",
+   "url": "http://51.75.127.199:3141/vnmtv/index.m3u8",
+   "epg": "VNMTV.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-extremesportschannelpolska-pl",
+   "name": "Extreme Sports Channel Polska",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/Extreme_Sports_Channel.svg/960px-Extreme_Sports_Channel.svg.png",
+   "group": "Deportes",
+   "url": "http://57.128.231.171:8080/262/index.m3u8",
+   "epg": "ExtremeSportsChannelPolska.pl",
+   "cc": "pl",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-starsports1-in",
+   "name": "Star Sports 1",
+   "logo": "https://i.imgur.com/E5jjKHI.png",
+   "group": "Deportes",
+   "url": "http://51.75.127.199:3141/starsports1/index.m3u8",
+   "epg": "StarSports1.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-starsportskhel-in",
+   "name": "Star Sports Khel",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_STAR_SPORTS_KHEL/images/LOGO_HD/LOGO_HD_image.png",
+   "group": "Deportes",
+   "url": "http://51.75.127.199:3141/starsportskhel/index.m3u8",
+   "epg": "StarSportsKhel.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-unite8sports1-in",
+   "name": "Unite8 Sports 1 HD",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ZEE_CAFE_HD/images/LOGO_HD/LOGO_HD_F6ILcp4Kk_UNITE8-SPORTS-1_HD_264X144.webp",
+   "group": "Deportes",
+   "url": "http://51.75.127.199:3141/zeecafehd/index.m3u8",
+   "epg": "Unite8Sports1.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-cinemaraton-ro",
+   "name": "CineMaraton (576i)",
+   "logo": "https://i.imgur.com/BY8UZa0.png",
+   "group": "Películas",
+   "url": "https://dokagents.site/live/cinemaraton/mono.m3u8",
+   "epg": "CineMaraton.ro",
+   "cc": "ro",
+   "quality": "",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-colorsbanglacinema-in",
+   "name": "Colors Bangla Cinema",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_COLORS_BANGLA_CINEMA/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/colorsbanglacinema/index.m3u8",
+   "epg": "ColorsBanglaCinema.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-colorscineplex-in",
+   "name": "Colors Cineplex HD",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_COLORS_CINEPLEX_HD/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/colorscineplexhd/index.m3u8",
+   "epg": "ColorsCineplex.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-colorscineplexsuperhits-in",
+   "name": "Colors Cineplex Superhits",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_COLORS_CINEPLEX_SUPERHITS/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8",
+   "epg": "ColorsCineplexSuperhits.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-colorsgujaraticinema-in",
+   "name": "Colors Gujarati Cinema",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_COLORS_GUJARATI_CINEMA/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/colorsgujaraticinema/index.m3u8",
+   "epg": "ColorsGujaratiCinema.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-colorskannadacinema-in",
+   "name": "Colors Kannada Cinema",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_COLORS_KANNADA_CINEMA/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/colorskannadacinema/index.m3u8",
+   "epg": "ColorsKannadaCinema.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-jalshamovies-in",
+   "name": "Jalsha Movies",
+   "logo": "https://i.imgur.com/25eWjX2.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/jalshamovies/index.m3u8",
+   "epg": "JalshaMovies.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-romedynow-in",
+   "name": "Romedy Now",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ROMEDY_NOW/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/romedynow/index.m3u8",
+   "epg": "RomedyNow.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-sidharthgold-in",
+   "name": "Sidharth Gold",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Sidharth_Gold.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/sidharthgold/index.m3u8",
+   "epg": "SidharthGold.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-stargold2-in",
+   "name": "Star Gold 2",
+   "logo": "https://i.imgur.com/G0ZfzZr.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/stargold2/index.m3u8",
+   "epg": "StarGold2.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-stargold-in",
+   "name": "Star Gold",
+   "logo": "https://i.imgur.com/xC460sj.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/stargold/index.m3u8",
+   "epg": "StarGold.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-stargoldselect-in",
+   "name": "Star Gold Select HD",
+   "logo": "https://i.imgur.com/U7eiuqv.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/stargoldselecthd/index.m3u8",
+   "epg": "StarGoldSelect.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-starmovies-in",
+   "name": "Star Movies (India) HD",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_STAR_MOVIES/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/starmovieshd/index.m3u8",
+   "epg": "StarMovies.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-starmoviesselect-in",
+   "name": "Star Movies Select HD",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_STAR_MOVIES_SELECT_HD/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/starmoviesselecthd/index.m3u8",
+   "epg": "StarMoviesSelect.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-starsuvarnaplus-in",
+   "name": "Star Suvarna Plus",
+   "logo": "https://i.imgur.com/xlCOq0l.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/starsuvarnaplus/index.m3u8",
+   "epg": "StarSuvarnaPlus.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-starutsavmovies-in",
+   "name": "Star Utsav Movies",
+   "logo": "https://i.imgur.com/k5QHfH2.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/starutsavmovies/index.m3u8",
+   "epg": "StarUtsavMovies.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-vijaysuper-in",
+   "name": "Vijay Super",
+   "logo": "https://i.imgur.com/3MWm9nD.png",
+   "group": "Películas",
+   "url": "http://51.75.127.199:3141/vijaysuper/index.m3u8",
+   "epg": "VijaySuper.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-disneyjunior-in",
+   "name": "Disney Junior (India)",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_DISNEY_JUNIOR/images/LOGO_HD/image.png",
+   "group": "Infantil",
+   "url": "http://51.75.127.199:3141/disneyjunior/index.m3u8",
+   "epg": "DisneyJunior.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-disneyjunior-pl",
+   "name": "Disney Junior (Poland)",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2024_Disney_Jr._Logo.svg",
+   "group": "Infantil",
+   "url": "http://57.128.231.171:8080/277/index.m3u8",
+   "epg": "DisneyJunior.pl",
+   "cc": "pl",
+   "quality": "576p",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-nickhdplus-in",
+   "name": "Nick HD+",
+   "logo": "https://dtil.tmsimg.com/assets/s159121_ld_h15_aa.png?lock=720x540",
+   "group": "Infantil",
+   "url": "http://51.75.127.199:3141/nickhd/index.m3u8",
+   "epg": "NickHDPlus.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-7xmusic-in",
+   "name": "7X Music",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/7X_Music.png",
+   "group": "Música",
+   "url": "http://51.75.127.199:3141/7xmusic/index.m3u8",
+   "epg": "7XMusic.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-rsbharat-in",
+   "name": "RS Bharat",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/RS_Bharat.png",
+   "group": "Música",
+   "url": "http://51.75.127.199:3141/rsbharat/index.m3u8",
+   "epg": "RSBharat.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-starmaamusic-in",
+   "name": "Star Maa Music",
+   "logo": "https://dtil.tmsimg.com/assets/s143828_ld_h15_aa.png?lock=720x540",
+   "group": "Música",
+   "url": "http://51.75.127.199:3141/starmaamusic/index.m3u8",
+   "epg": "StarMaaMusic.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-wahpunjabi-in",
+   "name": "Wah Punjabi",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Wah_Punjabi.png",
+   "group": "Música",
+   "url": "http://51.75.127.199:3141/wahpunjabi/index.m3u8",
+   "epg": "WahPunjabi.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-nationalgeographicwild-in",
+   "name": "National Geographic Wild (India)",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_NAT_GEO_WILD/images/LOGO_HD/image.png",
+   "group": "Documentales",
+   "url": "http://51.75.127.199:3141/natgeowild/index.m3u8",
+   "epg": "NationalGeographicWild.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-premiersports1-ie",
+   "name": "Premier Sports 1",
+   "logo": "https://i.imgur.com/eOybZMU.png",
+   "group": "Deportes",
+   "url": "https://7nyaler.streamhostingcdn.top/stream/47/index.m3u8",
+   "epg": "PremierSports1.ie",
+   "cc": "ie",
+   "quality": "",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-premiersports2-ie",
+   "name": "Premier Sports 2 (Ireland)",
+   "logo": "https://i.imgur.com/Fx1n84p.png",
+   "group": "Deportes",
+   "url": "https://7nyaler.streamhostingcdn.top/stream/5/index.m3u8",
+   "epg": "PremierSports2.ie",
+   "cc": "ie",
+   "quality": "",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-skysportscricket-ie",
+   "name": "Sky Sports Cricket (Ireland)",
+   "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1302.png",
+   "group": "Deportes",
+   "url": "https://leaf.highfly.dev/m3u/now-sky-sports-cricket/live.m3u8",
+   "epg": "SkySportsCricket.ie",
+   "cc": "ie",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-skysportsf1-ie",
+   "name": "Sky Sports F1",
+   "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1306.png",
+   "group": "Deportes",
+   "url": "https://xemzi.short.gy/2000005",
+   "epg": "SkySportsF1.ie",
+   "cc": "ie",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-skysportsgolf-ie",
+   "name": "Sky Sports Golf HD",
+   "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1322.png",
+   "group": "Deportes",
+   "url": "https://leaf.highfly.dev/m3u/now-sky-sports-golf/live.m3u8",
+   "epg": "SkySportsGolf.ie",
+   "cc": "ie",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-cinemaxaction-us",
+   "name": "Cinemax Action East HD",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/78/Cinemax_Action_Logo.png/960px-Cinemax_Action_Logo.png",
+   "group": "Películas",
+   "url": "https://sra72yz.s.gy/CINEMAX_ACTION_EAST_HD.m3u8",
+   "epg": "CinemaxAction.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
   },
   {
    "id": "tv-starzedge-us",
@@ -185567,5 +186249,19 @@
   }
  },
  "linksDom": "https://x.yapido.click",
- "sig": "j+aWn5RbgMa+GIBPtmrIziq6OD7JN9ORXzuw+mOfIBk9mvLA7Aecy+zM2MPw1jVd8TnkcNjnUmadfQ3QLsxEuA=="
+ "coinsCfg": {
+  "dailyCoins": 500,
+  "priceAnime": 100,
+  "priceMovie": 200,
+  "adReward": 50,
+  "adDuration": 15,
+  "adClickExtra": 10,
+  "adRequireClick": true
+ },
+ "coinsGift": {
+  "amount": 500,
+  "msg": "",
+  "at": 1790874717264
+ },
+ "sig": "EgPck0rZwM0bDU6ZHugTVwHnuao4QlfTJ73psEYOL+U3Y+S4HNEAohxAgd+UMmbow5BsuBXytQoIv4592KHw3Q=="
 }
