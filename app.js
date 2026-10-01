@@ -1244,31 +1244,51 @@ function renderHome() {
   musBlock.innerHTML = `
     <div class="hm-sec">🎵 Música <small>14 GÉNEROS · DESCARGA · FAVORITAS</small></div>
     <div class="home-music-strip" id="homeMusicStrip">
-      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+      <button class="home-music-card" data-mus="reggaeton">
         <span class="hm-mc-icon">🎤</span>
         <span class="hm-mc-txt"><b>Reggaetón</b><span>los más movidos</span></span>
       </button>
-      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+      <button class="home-music-card" data-mus="vallenato">
         <span class="hm-mc-icon">🪗</span>
         <span class="hm-mc-txt"><b>Vallenato</b><span>Dale Julián</span></span>
       </button>
-      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+      <button class="home-music-card" data-mus="salsa">
         <span class="hm-mc-icon">💃</span>
         <span class="hm-mc-txt"><b>Salsa</b><span>para gozar</span></span>
       </button>
-      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+      <button class="home-music-card" data-mus="corridos">
         <span class="hm-mc-icon">🤠</span>
         <span class="hm-mc-txt"><b>Corridos</b><span>tumbados</span></span>
       </button>
-      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+      <button class="home-music-card" data-mus="lofi">
         <span class="hm-mc-icon">🌙</span>
         <span class="hm-mc-txt"><b>Lofi</b><span>para estudiar</span></span>
       </button>
-      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+      <button class="home-music-card" data-mus="favs">
         <span class="hm-mc-icon">❤</span>
         <span class="hm-mc-txt"><b>Favoritas</b><span>tus corazones</span></span>
       </button>
     </div>`;
+  /* clic en una tarjeta: abre el reproductor con ESE género */
+  musBlock.querySelectorAll('.home-music-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const genre = card.dataset.mus;
+      /* 1) salir de la portada para que el panel del chat sea visible */
+      if (state.tab === 'home') setTab('anime');
+      /* 2) abrir la pestaña Chat */
+      const ptab = document.getElementById('ptabChat');
+      if (ptab) ptab.click();
+      /* 3) seleccionar el género y expandir el reproductor */
+      localStorage.setItem('xchat-music-cat', genre);
+      const musicBtnChat = document.getElementById('chatMusicBtn');
+      if (musicBtnChat) musicBtnChat.click();
+      /* 4) scroll hasta el reproductor */
+      requestAnimationFrame(() => {
+        const dock = document.getElementById('chatMusic');
+        if (dock) dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  });
   els.homeView.appendChild(musBlock);
 }
 
@@ -3554,7 +3574,13 @@ els.shareBtn.addEventListener('click', () => {
   const b = document.getElementById('musicBtn');
   if (!b) return;
   b.addEventListener('click', () => {
-    /* abre el chat Y el reproductor en cadena inmediata (cero esperas) */
+    /* si estás en la PORTADA, el panel del chat está oculto: primero
+       salimos de la portada a una pestaña de contenido para que el
+       panel del chat sea visible, y LUEGO abrimos la música          */
+    if (state.tab === 'home') {
+      setTab('anime');
+    }
+    /* abre la pestaña Chat y el reproductor en cadena inmediata */
     const ptab = document.getElementById('ptabChat');
     const musicBtnChat = document.getElementById('chatMusicBtn');
     if (ptab) ptab.click();
