@@ -1269,7 +1269,8 @@ function renderHome() {
         <span class="hm-mc-txt"><b>Favoritas</b><span>tus corazones</span></span>
       </button>
     </div>`;
-  /* clic en una tarjeta: abre el reproductor con ESE género */
+  /* clic en una tarjeta: abre el reproductor con ESE género — SIEMPRE
+     lo expande (nunca lo cierra aunque ya estuviera abierto)          */
   musBlock.querySelectorAll('.home-music-card').forEach(card => {
     card.addEventListener('click', () => {
       const genre = card.dataset.mus;
@@ -1278,13 +1279,18 @@ function renderHome() {
       /* 2) abrir la pestaña Chat */
       const ptab = document.getElementById('ptabChat');
       if (ptab) ptab.click();
-      /* 3) seleccionar el género y expandir el reproductor */
+      /* 3) seleccionar el género y FORZAR que el dock esté ABIERTO */
       localStorage.setItem('xchat-music-cat', genre);
-      const musicBtnChat = document.getElementById('chatMusicBtn');
-      if (musicBtnChat) musicBtnChat.click();
+      const dock = document.getElementById('chatMusic');
+      const chatBtn = document.getElementById('chatMusicBtn');
+      if (dock) {
+        const wasOpen = !dock.classList.contains('hidden');
+        if (!wasOpen && chatBtn) chatBtn.click();       /* estaba cerrado → abrirlo */
+        else if (wasOpen) dock.classList.remove('hidden');   /* ya abierto → dejarlo así (no toggle) */
+        if (chatBtn) chatBtn.classList.add('on');
+      }
       /* 4) scroll hasta el reproductor */
       requestAnimationFrame(() => {
-        const dock = document.getElementById('chatMusic');
         if (dock) dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     });
