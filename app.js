@@ -5751,6 +5751,32 @@ function showExplainModal() {
   }
 }
 
+/* ═══════════════ 🪙 CONTADOR DE MONEDAS en la barra superior ═══════════════ */
+function syncCoinsPill() {
+  const pill = document.getElementById('coinsPill');
+  const num = document.getElementById('coinsPillNum');
+  if (!pill || !num || typeof COINS === 'undefined') return;
+  const st = COINS.getState();
+  num.textContent = st.vip ? 'VIP' : st.coins;
+  num.classList.toggle('vip', st.vip);
+  num.classList.toggle('low', !st.vip && st.coins < 50);
+  pill.title = st.vip
+    ? '👑 Membresía VIP activa — todo desbloqueado'
+    : `Tienes ${st.coins} monedas · ${st.unlockedCount} capítulos desbloqueados`;
+}
+/* click en la pastilla → modal de explicación */
+document.addEventListener('DOMContentLoaded', () => {
+  const pill = document.getElementById('coinsPill');
+  if (pill) pill.addEventListener('click', () => showExplainModal());
+});
+/* actualizar al cargar y cada vez que se gaste/gane */
+setTimeout(syncCoinsPill, 1200);
+/* hook: después de cada pay/earn, refrescar la pastilla */
+const _origCoinsEarn = COINS.earn;
+COINS.earn = function() { const r = _origCoinsEarn.apply(this, arguments); syncCoinsPill(); return r; };
+const _origCoinsPay = COINS.pay;
+COINS.pay = function() { const r = _origCoinsPay.apply(this, arguments); syncCoinsPill(); return r; };
+
 /* ═══════════════ 👑 PANEL ADMIN DE MONEDAS — control total ═══════════════ */
 function buildCoinsPanel() {
   const btn = document.getElementById('coinsAdminBtn');

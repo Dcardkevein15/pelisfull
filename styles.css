@@ -2822,3 +2822,22 @@ body.chat-full .cmu-list{max-height:44vh}
   .ad-card{padding:14px}
   .ad-slot{aspect-ratio:4/3}
 }
+
+/* ═══════ 🪙 CONTADOR DE MONEDAS — barra superior, siempre visible ═══════ */
+.coins-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(216,255,62,.1);border:1.5px solid rgba(216,255,62,.3);
+  border-radius:999px;padding:7px 14px;cursor:pointer;
+  font-family:'JetBrains Mono';transition:.15s;white-space:nowrap;
+}
+.coins-pill:hover{background:rgba(216,255,62,.16);transform:translateY(-1px)}
+.cp-icon{font-size:16px;line-height:1}
+.coins-pill b{font-size:15px;color:var(--acid);font-weight:900}
+.coins-pill b.low{color:var(--hot)}            /* quedan pocas → rojo */
+.coins-pill b.vip{color:#ffd24a}               /* VIP → dorado */
+/* móvil: solo el número y el icono, sin padding extra */
+@media (max-width:900px){
+  .coins-pill{padding:5px 10px;gap:4px}
+  .cp-icon{font-size:14px}
+  .coins-pill b{font-size:13px}
+}

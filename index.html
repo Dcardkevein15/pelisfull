@@ -81,6 +81,15 @@
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
     </button>
     <button id="themeBtn" class="btn btn-ghost btn-icon" title="Cambiar tema (claro/oscuro)"></button>
+    <!-- 🪙 CONTADOR DE MONEDAS — siempre visible en la barra superior -->
+    <button id="coinsPill" class="coins-pill" title="Tus monedas — toca para ver cómo funcionan">
+      <span class="cp-icon">🪙</span>
+      <b id="coinsPillNum">50</b>
+    </button>
+    <!-- 👑 Panel admin de monedas (solo admin) -->
+    <button id="coinsAdminBtn" class="btn btn-ghost admin-only" style="color:var(--acid)" title="🪙 Panel de Monedas — precios, tiempos, recompensas (solo admin)">
+      <span>🪙</span><span class="admin-only-label">Monedas</span>
+    </button>
     <!-- 👤 Identidad del visitante (auth.js) — círculo + nombre, abre el perfil -->
     <button id="userChip" class="user-chip" title="Tu perfil — cuenta automática de este dispositivo">
       <img class="uc-ava" alt="" width="26" height="26">
@@ -417,7 +426,6 @@
             <button class="chat-online chip-filter" id="chatOnline" title="Usuarios en línea — toca para ver la lista">● 0</button>
             <span class="spacer"></span>
             <button class="chip-filter hidden" id="chatSettingsBtn" title="Ajustes del chat (admin)">⚙</button>
-            <button class="chip-filter hidden admin-only" id="coinsAdminBtn" title="🪙 Panel de monedas — precios, tiempos, recompensas (solo admin)" style="color:var(--acid)">🪙</button>
             <button class="chip-filter" id="chatBgBtn" title="Fondo del chat — elige una imagen (local en tu dispositivo)">🖼</button>
             <button class="chip-filter" id="chatMusicBtn" title="🎵 Música mientras chateas — listas MP3 que se arman solas">🎵</button>
             <button class="chip-filter" id="chatFavsBtn" title="Mis enlaces favoritos ❤ — se quedan aunque el chat se limpie">❤</button>
