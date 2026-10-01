@@ -1279,18 +1279,29 @@ function renderHome() {
       /* 2) abrir la pestaña Chat */
       const ptab = document.getElementById('ptabChat');
       if (ptab) ptab.click();
-      /* 3) seleccionar el género y FORZAR que el dock esté ABIERTO */
-      localStorage.setItem('xchat-music-cat', genre);
+      /* 3) abrir el dock si estaba cerrado (nunca cerrarlo si ya estaba abierto) */
       const dock = document.getElementById('chatMusic');
       const chatBtn = document.getElementById('chatMusicBtn');
-      if (dock) {
-        const wasOpen = !dock.classList.contains('hidden');
-        if (!wasOpen && chatBtn) chatBtn.click();       /* estaba cerrado → abrirlo */
-        else if (wasOpen) dock.classList.remove('hidden');   /* ya abierto → dejarlo así (no toggle) */
-        if (chatBtn) chatBtn.classList.add('on');
+      if (dock && dock.classList.contains('hidden') && chatBtn) {
+        chatBtn.click();
       }
-      /* 4) scroll hasta el reproductor */
+      if (chatBtn) chatBtn.classList.add('on');
+      /* 4) HACER CLIC en el CHIP del género dentro del dock — esto
+         activa el flujo natural de cambiar de género (pinta la lista,
+         guarda en localStorage, etc.) de forma 100% fiable              */
       requestAnimationFrame(() => {
+        const chip = dock && dock.querySelector(`.cmu-cat[data-cat="${genre}"]`);
+        if (chip) chip.click();
+        else {
+          /* si el dock aún no pintó sus chips, reintentar un frame después */
+          requestAnimationFrame(() => {
+            const chip2 = document.getElementById('chatMusic');
+            if (chip2) {
+              const c = chip2.querySelector(`.cmu-cat[data-cat="${genre}"]`);
+              if (c) c.click();
+            }
+          });
+        }
         if (dock) dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     });
