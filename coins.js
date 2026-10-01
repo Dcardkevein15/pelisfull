@@ -63,9 +63,17 @@ const COINS = (function () {
   /* ─── PRECIOS ─── */
   const priceOf = (s) => s.kind === 'pelicula' ? cfg.priceMovie : cfg.priceAnime;
 
-  /* ─── PAGAR un capítulo ─── */
-  /* devuelve: { ok:true } | { ok:false, reason:'no-coins'|'vip'|'unlocked', coins } */
-  function pay(sid, epN, s) {
+  /* ─── VERIFICAR sin consumir (la bóveda lo llama) ─── */
+  function check(sid, epN, s) {
+    if (isVip()) return { ok: true, reason: 'vip' };
+    if (isUnlocked(sid, epN)) return { ok: true, reason: 'unlocked' };
+    const price = priceOf(s);
+    const st = COINS.getState();
+    return { ok: false, reason: st.coins >= price ? 'confirm' : 'no-coins', coins: st.coins, price };
+  }
+
+  /* ─── CONSUMIR (solo tras la confirmación del usuario) ─── */
+  function confirmUnlock(sid, epN, s) {
     if (isVip()) return { ok: true, reason: 'vip' };
     if (isUnlocked(sid, epN)) return { ok: true, reason: 'unlocked' };
     const price = priceOf(s);
@@ -76,6 +84,9 @@ const COINS = (function () {
     persist(); persistUnlocked();
     return { ok: true, reason: 'paid', coins: S.coins, price };
   }
+
+  /* alias de compatibilidad — showVault usa check; solo confirmUnlock consume */
+  function pay(sid, epN, s) { return check(sid, epN, s); }
 
   /* ─── GANAR monedas viendo un anuncio ─── */
   function earn() {
@@ -174,7 +185,7 @@ const COINS = (function () {
   /* ─── INICIALIZAR ─── */
   load();
 
-  return { pay, earn, isVip, setVip, isUnlocked, priceOf, getConfig, setConfig,
+  return { pay, earn, check, confirmUnlock, isVip, setVip, isUnlocked, priceOf, getConfig, setConfig,
     getState, grantCoins, resetToday,
     applyRemoteCfg, applyGift, setTestMode, inTestMode, cfg };
 })();

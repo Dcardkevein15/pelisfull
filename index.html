@@ -293,9 +293,11 @@
                 </svg>
               </div>
             </div>
-            <!-- zona del anuncio Adsterra (el admin pega el código en el panel) -->
+            <!-- zona del anuncio Adsterra (el código lo inyecta app.js al abrir) -->
             <div class="ad-slot" id="adSlot">
-              <div class="ad-placeholder">
+              <div class="ad-nativo" id="adNative"></div>
+              <div class="ad-banner-wrap" id="adBannerWrap" style="display:none;width:300px;height:250px;margin:0 auto"></div>
+              <div class="ad-placeholder" id="adPlaceholder">
                 <p>📢 Espacio publicitario</p>
                 <small>El anuncio carga aquí</small>
               </div>

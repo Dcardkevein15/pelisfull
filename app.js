@@ -5608,7 +5608,14 @@ function trackPlayback() {
 }
 
 /* ═══════════════ 🪙 LA CAJA FUERTE — el reproductor convertido en bóveda ═══════════════ */
-function showVault(s, ep, result) {
+/* ═══════════════ 🪙 LA CAJA FUERTE — siempre visible hasta desbloquear ═══════════════
+   Reglas:
+   · VIP (membresía) → NUNCA ve la bóveda (el video reproduce directo)
+   · Staff (admin/mod) → NUNCA ve la bóveda (modo prueba aparte)
+   · Ya desbloqueado → NUNCA la ve de nuevo (permanente)
+   · Usuario normal: bóveda siempre visible; botones SIEMPRE a la vista
+   · Al confirmar «Reproducir ahora» → modal de confirmación → cobrar → abrir */
+function showVault(s, ep) {
   const vault = document.getElementById('paywall');
   if (!vault) return;
   const price = COINS.priceOf(s);
@@ -5623,40 +5630,58 @@ function showVault(s, ep, result) {
   document.getElementById('pwAdReward').textContent = '+' + cfg.adReward;
   document.getElementById('pwSub').innerHTML = `Al desbloquear, queda abierto <b>para siempre</b>.<br>Recibes <b>${cfg.dailyCoins} monedas gratis</b> cada día.`;
 
-  /* botón ▶ REPRODUCIR AHORA — descuenta y abre */
+  /* ▶ REPRODUCIR AHORA — SIEMPRE a la vista, solo deshabilitado si no alcanza */
   const playBtn = document.getElementById('pwUnlockBtn');
   playBtn.classList.toggle('cant', !hasEnough);
   playBtn.onclick = () => {
-    const r = COINS.pay(s.id, ep.n, s);
-    if (r.ok) {
-      /* ANIMACIÓN: la bóveda se desvanece y el video aparece */
-      vault.style.transition = 'opacity .4s, transform .4s';
+    if (!hasEnough) return;
+    /* confirmación antes de cobrar */
+    if (typeof uiModal !== 'function') { doUnlock(s, ep); return; }
+    uiModal({
+      icon: '🪙', title: '¿Desbloquear este capítulo?', danger: false,
+      okLabel: `Sí, cobrar ${price} 🪙`,
+      sub: `<div style="text-align:left;font-size:12.5px;line-height:1.7">
+        <b>${escapeHtml(s.t)}${ep.n != null ? ' · Capítulo ' + ep.n : ''}</b><br><br>
+        Costo: <b style="color:#ff6b81">${price} 🪙</b> — queda abierto <b>para siempre</b><br>
+        Tu saldo pasaría de <b style="color:var(--acid)">${st.coins}</b> a <b style="color:var(--acid)">${st.coins - price} 🪙</b><br>
+        ¿Confirmas?
+      </div>`,
+    }).then(r => { if (r) doUnlock(s, ep); }).catch(() => { });
+  };
+
+  /* 📺 GANAR RECOMPENSAS — siempre disponible */
+  document.getElementById('pwAdBtn').onclick = () => {
+    vault.classList.add('hidden');
+    showAdwall(() => { showVault(s, ep); });   /* tras el anuncio vuelve la bóveda */
+  };
+
+  /* 👑 VIP + ¿Cómo funciona? */
+  document.getElementById('pwVipBtn').onclick = () => showExplainModal();
+  document.getElementById('pwExplainBtn').onclick = () => showExplainModal();
+  vault.classList.remove('hidden');
+}
+
+/* cobrar y abrir — con animación de la bóveda desvaneciéndose */
+function doUnlock(s, ep) {
+  const r = COINS.confirmUnlock(s.id, ep.n, s);
+  if (r.ok) {
+    const vault = document.getElementById('paywall');
+    if (vault) {
+      vault.style.transition = 'opacity .35s, transform .35s';
       vault.style.opacity = '0';
-      vault.style.transform = 'scale(1.05)';
+      vault.style.transform = 'scale(.96)';
       setTimeout(() => {
         vault.style.opacity = '';
         vault.style.transform = '';
         vault.style.transition = '';
         vault.classList.add('hidden');
         loadEpisode(ep.n, true);
-      }, 400);
-    }
-  };
-
-  /* botón 📺 GANAR RECOMPENSAS — abre el anuncio */
-  document.getElementById('pwAdBtn').onclick = () => {
-    vault.classList.add('hidden');
-    showAdwall(() => {
-      /* tras el anuncio, VOLVER a la bóveda con monedas nuevas */
-      showVault(s, ep, COINS.pay(s.id, ep.n, s));
-    });
-  };
-
-  /* botón VIP */
-  document.getElementById('pwVipBtn').onclick = () => showExplainModal();
-  /* botón explicación */
-  document.getElementById('pwExplainBtn').onclick = () => showExplainModal();
-  vault.classList.remove('hidden');
+      }, 350);
+    } else { loadEpisode(ep.n, true); }
+  } else {
+    toast('⚠ No tienes suficientes monedas — gana con 📺 anuncios', true);
+    showVault(s, ep);   /* volver a mostrar la bóveda con saldo actualizado */
+  }
 }
 
 function hidePaywall() { const v = document.getElementById('paywall'); if (v) v.classList.add('hidden'); }
@@ -5680,6 +5705,29 @@ function showAdwall(onDone) {
   wait.classList.add('hidden');
   reward.classList.add('hidden');
   msg.innerHTML = `Mira el anuncio <b>${cfg.adDuration} segundos</b>${cfg.adRequireClick ? ' y haz <b>clic en el anuncio</b>' : ''}`;
+
+  /* 📢 inyectar el banner REAL de Adsterra (iframe 300×250) */
+  const bannerWrap = document.getElementById('adBannerWrap');
+  const placeholder = document.getElementById('adPlaceholder');
+  if (bannerWrap && placeholder) {
+    placeholder.style.display = 'none';
+    bannerWrap.style.display = 'block';
+    bannerWrap.innerHTML = '';
+    const script = document.createElement('script');
+    script.text = `atOptions = { 'key':'ca475470056a53094594075d45570e27', 'format':'iframe', 'height':250, 'width':300, 'params':{} };`;
+    bannerWrap.appendChild(script);
+    const invoke = document.createElement('script');
+    invoke.src = 'https://www.highrevenueformat.com/ca475470056a53094594075d45570e27/invoke.js';
+    invoke.onerror = () => { placeholder.style.display = 'grid'; bannerWrap.style.display = 'none'; };
+    bannerWrap.appendChild(invoke);
+    /* clic en el banner = clic registrado (delegado al manejador del slot) */
+    bannerWrap.onclick = () => {
+      if (phase === 'counting' && typeof slot.onclick === 'function') {
+        bannerWrap.style.borderColor = 'var(--acid)';
+        slot.onclick();
+      }
+    };
+  }
 
   /* estado del flujo */
   let secondsLeft = cfg.adDuration;
