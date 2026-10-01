@@ -3005,14 +3005,20 @@ function loadEpisode(epN, autoplayNow = true) {
   if (!ep) return;
   current.ep = epN;
 
-  /* 🪙 PAYWALL: verificar monedas ANTES de reproducir (el admin NUNCA paga) */
-  if (typeof COINS !== 'undefined' && !canAdmin() && ep.url) {
+  /* 🪙 PAYWALL: verificar monedas ANTES de reproducir.
+     Admin y Moderadores NUNCA pagan — solo usuarios normales.        */
+  if (typeof COINS !== 'undefined' && ep.url && !isStaff()) {
     const result = COINS.pay(s.id, ep.n, s);
     if (!result.ok) {
       showPaywall(s, ep, result);
       return;                     /* NO reproducir hasta pagar */
     }
-    /* si pagó bien (o ya estaba desbloqueado, o es VIP) → seguir normal */
+  }
+
+  function isStaff() {
+    try {
+      return canAdmin() || (window.XAUTH && window.XAUTH.isMod && window.XAUTH.isMod());
+    } catch (e) { return false; }
   }
 
   scrollToPlayerInstant();   /* 📈 al elegir capítulo desde abajo: el reproductor sube al instante, centrado */
