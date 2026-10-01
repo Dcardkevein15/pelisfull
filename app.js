@@ -1236,6 +1236,20 @@ function renderHome() {
   }
   tvBlock.appendChild(makeRail(tvGrid));
   els.homeView.appendChild(tvBlock);
+
+  /* ⑤ 🎵 MÚSICA — acceso directo al reproductor desde la portada */
+  const musBlock = document.createElement('section');
+  musBlock.className = 'hm-block';
+  musBlock.innerHTML = `<div class="hm-sec">🎵 Música <small>14 GÉNEROS · DESCARGA · FAVORITAS</small></div>
+    <div style="padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px">
+      <button class="btn btn-music" style="font-size:15px;padding:18px 26px" onclick="document.getElementById('musicBtn').click()">
+        🎵 Abrir el reproductor de música
+      </button>
+      <span style="align-self:center;color:var(--dim);font:600 11px 'JetBrains Mono';letter-spacing:1px">
+        Reggaetón · Vallenato · Salsa · Corridos · Pop · Lofi · Jazz…
+      </span>
+    </div>`;
+  els.homeView.appendChild(musBlock);
 }
 
 /* ── render de la lista de canales (pestaña 📡 TV) ── */
@@ -2586,6 +2600,13 @@ function renderEpisodes() {
       cell.addEventListener('click', () => selectSeries(m.id));
       els.episodesGrid.appendChild(cell);
     }
+    /* 🎵 bloque de música justo después de la fila de relacionadas */
+    const musStrip = document.createElement('div');
+    musStrip.style.cssText = 'display:flex;align-items:center;gap:12px;padding:12px 2px;margin-top:4px';
+    musStrip.innerHTML = `
+      <button class="btn btn-music" style="font-size:13px;padding:13px 18px" onclick="document.getElementById('musicBtn').click()">🎵 Escuchar música</button>
+      <span style="color:var(--dim);font:600 10px 'JetBrains Mono';letter-spacing:1px">mientras ves esto</span>`;
+    els.episodesGrid.parentElement.appendChild(musStrip);
     return;
   }
 
@@ -3512,6 +3533,21 @@ els.modalShare.addEventListener('click', ev => { if (ev.target === els.modalShar
 els.shareBtn.addEventListener('click', () => {
   if (current.seriesId && current.ep) openShare(current.seriesId, current.ep);
 });
+
+/* ═══════════ 🎵 MÚSICA — botón global (portada + debajo del video) ═══════════
+   Abre el reproductor de música del chat (mismas listas, favoritas,
+   descargas, visualizador) sin salir de donde estés.                      */
+(function musicBtn() {
+  const b = document.getElementById('musicBtn');
+  if (!b) return;
+  b.addEventListener('click', () => {
+    /* cambia a la pestaña Chat y toca el botón 🎵 del chat */
+    const ptab = document.getElementById('ptabChat');
+    const musicBtnChat = document.getElementById('chatMusicBtn');
+    if (ptab) ptab.click();
+    setTimeout(() => { if (musicBtnChat) musicBtnChat.click(); }, 180);
+  });
+})();
 
 /* ═══════════ ✨ SINOPSIS — ficha completa a pantalla entera ═══════════
    Botón junto a ↓ Descargar / ↗ Compartir. Trae la ficha real del título
