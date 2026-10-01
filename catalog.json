@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1790874726754,
+ "v": 1790877724271,
  "by": "Dcard #2968",
- "at": "2026-10-01T17:12:06.754Z",
+ "at": "2026-10-01T18:02:04.271Z",
  "n": 5773,
  "series": [
   {
@@ -186254,14 +186254,9 @@
   "priceAnime": 100,
   "priceMovie": 200,
   "adReward": 50,
-  "adDuration": 15,
+  "adDuration": 5,
   "adClickExtra": 10,
   "adRequireClick": true
  },
- "coinsGift": {
-  "amount": 500,
-  "msg": "",
-  "at": 1790874717264
- },
- "sig": "EgPck0rZwM0bDU6ZHugTVwHnuao4QlfTJ73psEYOL+U3Y+S4HNEAohxAgd+UMmbow5BsuBXytQoIv4592KHw3Q=="
+ "sig": "yMKhnsGAhu6wGQ8/KgHZPOs8vX6u5zO5NGjcfkJoOgL09w0uD33Qsj9nRJEQdQSiNeITYg71ayNhWswUOq5/Mg=="
 }
