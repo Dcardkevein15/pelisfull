@@ -644,6 +644,17 @@
       }
     }
     if (cat.linksDom !== undefined && !okUrl(cat.linksDom)) return false;
+    /* 🪙 config de monedas: objeto plano con números (si viene) */
+    if (cat.coinsCfg !== undefined) {
+      if (!cat.coinsCfg || typeof cat.coinsCfg !== 'object' || Array.isArray(cat.coinsCfg) || !noBadKeys(cat.coinsCfg)) return false;
+    }
+    if (cat.coinsGift !== undefined) {
+      const g = cat.coinsGift;
+      if (!g || typeof g !== 'object' || Array.isArray(g) || !noBadKeys(g)) return false;
+      if (typeof g.amount !== 'number' || !isFinite(g.amount) || g.amount <= 0) return false;
+      if (typeof g.at !== 'number' || !isFinite(g.at)) return false;
+      if (g.msg !== undefined && !okStr(g.msg, 200)) return false;
+    }
     /* 🪦 lápidas: mapa id → timestamp de borrado (opcional) */
     if (cat.del !== undefined) {
       if (!cat.del || typeof cat.del !== 'object' || Array.isArray(cat.del) || !noBadKeys(cat.del)) return false;
@@ -1068,6 +1079,11 @@
       tvSources: state.tvSources || {},
       links: state.links || {},                     /* 🔗 acortador b.yapido.click */
       linksDom: state.linksDom || 'https://x.yapido.click',
+      /* 🪙 CONFIG DE MONEDAS: viaja firmada en el catálogo → todos la reciben.
+         Solo el admin puede cambiarla (aquí se lee de COINS.getConfig()). */
+      coinsCfg: (typeof COINS !== 'undefined') ? COINS.getConfig() : undefined,
+      /* 🎁 REGALO ACTIVO: si el admin activó un obsequio, viaja también */
+      coinsGift: (typeof COINS !== 'undefined' && COINS._activeGift) ? COINS._activeGift : undefined,
     };
   }
 
@@ -2239,6 +2255,15 @@
          este PC sobrevive al llegar lo del otro PC/moderadores.
          👤 Lector: la web manda (reemplazo clásico de applyCatalog).    */
       if (isAdmin()) mergeLiveCatalog(cat); else applyCatalog(cat);
+      /* 🪙 SISTEMA DE MONEDAS: sincroniza la config del admin (dailyCoins,
+         precios, recompensas) y aplica los regalos a todos los usuarios */
+      if (typeof COINS !== 'undefined' && cat.coinsCfg) {
+        try {
+          const changed = COINS.applyRemoteCfg(cat.coinsCfg);
+          if (cat.coinsGift) COINS.applyGift(cat.coinsGift);
+          if (changed && typeof window.syncCoinsPill === 'function') window.syncCoinsPill();
+        } catch (e) { }
+      }
     } catch (e) { /* sin archivo o sin red: sigue con lo local */ }
     finally { syncing = false; }
     })();

@@ -97,8 +97,84 @@ const COINS = (function () {
   function grantCoins(n) { S.coins += n; S.totalEarned += n; persist(); return S.coins; }
   function resetToday() { S.day = ''; load(); return S.coins; }
 
+  /* ─── SINCRONIZACIÓN REMOTA: el admin cambia la config y TODOS la reciben ───
+     La config viaja dentro del catálogo firmado (campo "coinsCfg") →
+     cada usuario la lee al sincronizar y su sistema se actualiza solo. */
+  function applyRemoteCfg(remote) {
+    if (!remote || typeof remote !== 'object') return false;
+    let changed = false;
+    for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'adRequireClick']) {
+      if (remote[k] !== undefined && cfg[k] !== remote[k]) { cfg[k] = remote[k]; changed = true; }
+    }
+    if (changed) saveCfg();
+    return changed;
+  }
+
+  /* ─── REGALO DEL ADMIN a todos los usuarios (broadcast) ───
+     El admin emite "coinGift": { amount, msg, at } → cada dispositivo
+     que sincroniza lo ve UNA SOLA vez (por timestamp) y suma monedas
+     con una animación de lluvia de monedas.                            */
+  let lastGiftAt = 0;
+  try { lastGiftAt = +(localStorage.getItem(LS_KEY + '-gift-at') || 0); } catch (e) { }
+  function applyGift(gift) {
+    if (!gift || !gift.amount || !gift.at || gift.at <= lastGiftAt) return false;
+    lastGiftAt = gift.at;
+    try { localStorage.setItem(LS_KEY + '-gift-at', String(gift.at)); } catch (e) { }
+    S.coins += gift.amount;
+    S.totalEarned += gift.amount;
+    persist();
+    /* animación de lluvia de monedas */
+    coinRain(gift.amount, gift.msg || '🎁 ¡El administrador te ha obsequiado monedas!');
+    return true;
+  }
+
+  /* ─── ANIMACIÓN: lluvia de monedas ─── */
+  function coinRain(amount, msg) {
+    const layer = document.createElement('div');
+    layer.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden';
+    document.body.appendChild(layer);
+    /* monedas cayendo */
+    for (let i = 0; i < Math.min(20, amount / 25); i++) {
+      const c = document.createElement('div');
+      c.textContent = '🪙';
+      c.style.cssText = `position:absolute;font-size:${18 + Math.random() * 14}px;left:${Math.random() * 90 + 2}%;top:-5%;animation:coinFall ${1.4 + Math.random() * 1.2}s cubic-bezier(.3,.7,.4,1) ${i * 0.06}s forwards`;
+      layer.appendChild(c);
+    }
+    /* mensaje central */
+    const note = document.createElement('div');
+    note.style.cssText = 'position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);text-align:center;background:rgba(8,8,14,.88);border:1.5px solid rgba(216,255,62,.4);border-radius:18px;padding:18px 26px;backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(0,0,0,.6);animation:giftPop .4s cubic-bezier(.2,1.4,.4,1)';
+    note.innerHTML = `<div style="font-size:42px;margin-bottom:6px">🪙</div>
+      <div style="font-family:'Archivo Black';font-size:22px;color:var(--acid);margin-bottom:4px">+${amount} monedas</div>
+      <div style="font-size:12px;color:var(--dim);max-width:220px">${msg}</div>`;
+    layer.appendChild(note);
+    setTimeout(() => { layer.style.opacity = '0'; layer.style.transition = 'opacity .6s'; }, 2600);
+    setTimeout(() => layer.remove(), 3400);
+  }
+  /* keyframes para la lluvia (se inyectan al DOM para no tocar styles.css) */
+  if (!document.getElementById('coin-rain-styles')) {
+    const st = document.createElement('style');
+    st.id = 'coin-rain-styles';
+    st.textContent = `
+      @keyframes coinFall{to{transform:translateY(110vh) rotate(720deg);opacity:.3}}
+      @keyframes giftPop{from{opacity:0;transform:translate(-50%,-50%) scale(.6)}}
+    `;
+    document.head.appendChild(st);
+  }
+
+  /* ─── MODO PRUEBA: el admin ve el candado sin salir ─── */
+  let testMode = false;
+  try { testMode = localStorage.getItem(LS_KEY + '-test') === '1'; } catch (e) { }
+  function setTestMode(on) {
+    testMode = !!on;
+    try { localStorage.setItem(LS_KEY + '-test', on ? '1' : '0'); } catch (e) { }
+    return testMode;
+  }
+  function inTestMode() { return testMode; }
+
   /* ─── INICIALIZAR ─── */
   load();
 
-  return { pay, earn, isVip, setVip, isUnlocked, priceOf, getConfig, setConfig, getState, grantCoins, resetToday, cfg };
+  return { pay, earn, isVip, setVip, isUnlocked, priceOf, getConfig, setConfig,
+    getState, grantCoins, resetToday,
+    applyRemoteCfg, applyGift, setTestMode, inTestMode, cfg };
 })();

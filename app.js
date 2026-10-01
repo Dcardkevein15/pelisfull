@@ -2999,16 +2999,18 @@ function scrollToEpCard(n) {
 }
 
 /* 🪙 ¿Es staff (admin o moderador)? — los dos ven TODO sin pagar monedas.
-   Si el sistema de roles aún no cargó (XAUTH indefinido), NO bloquear
-   (mejor dejar pasar 1 gratis que bloquear al admin por accidente). */
+   Si el sistema de roles aún no cargó (XAUTH indefinido), NO bloquear.
+   🧪 MODO PRUEBA: el admin activa "ver el candado como usuario" —
+   el sistema lo trata como visitante para probar el flujo completo. */
 function isStaff() {
   try {
+    /* modo prueba: ignorar el rol y ver el candado */
+    if (typeof COINS !== 'undefined' && COINS.inTestMode && COINS.inTestMode()) return false;
     if (canAdmin()) return true;
     if (window.XAUTH && typeof window.XAUTH.isMod === 'function') return window.XAUTH.isMod();
-    /* XAUTH aún no cargó → asumir staff para no romper la reproducción */
     if (!window.XAUTH) return true;
     return false;
-  } catch (e) { return true; }   /* ante cualquier error: dejar ver */
+  } catch (e) { return true; }
 }
 
 function loadEpisode(epN, autoplayNow = true) {
@@ -5798,6 +5800,7 @@ function syncCoinsPill() {
     ? '👑 Membresía VIP activa — todo desbloqueado'
     : `Tienes ${st.coins} monedas · ${st.unlockedCount} capítulos desbloqueados`;
 }
+window.syncCoinsPill = syncCoinsPill;   /* auth.js la llama tras sincronizar */
 /* click en la pastilla → modal de explicación */
 document.addEventListener('DOMContentLoaded', () => {
   const pill = document.getElementById('coinsPill');
@@ -5818,27 +5821,29 @@ function buildCoinsPanel() {
   btn.addEventListener('click', () => {
     const cfg = COINS.getConfig();
     const st = COINS.getState();
+    const testing = COINS.inTestMode();
     if (typeof uiModal !== 'function') return;
     const m = uiModal({
       icon: '🪙', title: 'Panel de Monedas — Control Total', okLabel: 'Guardar',
       fields: [
-        { key: 'dailyCoins', label: `Monedas gratis por día (actual: ${cfg.dailyCoins})`, type: 'number', value: cfg.dailyCoins, min: 0, max: 10000 },
+        { key: 'dailyCoins', label: `Monedas gratis por día — TODOS los usuarios (actual: ${cfg.dailyCoins})`, type: 'number', value: cfg.dailyCoins, min: 0, max: 10000 },
         { key: 'priceAnime', label: `Precio capítulo anime/hentai (actual: ${cfg.priceAnime})`, type: 'number', value: cfg.priceAnime, min: 0, max: 10000 },
         { key: 'priceMovie', label: `Precio película (actual: ${cfg.priceMovie})`, type: 'number', value: cfg.priceMovie, min: 0, max: 10000 },
         { key: 'adReward', label: `Monedas por anuncio (actual: ${cfg.adReward})`, type: 'number', value: cfg.adReward, min: 1, max: 10000 },
         { key: 'adDuration', label: `Segundos del anuncio (actual: ${cfg.adDuration})`, type: 'number', value: cfg.adDuration, min: 3, max: 120 },
         { key: 'adClickExtra', label: `Segundos extra tras clic (actual: ${cfg.adClickExtra})`, type: 'number', value: cfg.adClickExtra, min: 0, max: 60 },
-        { key: 'adRequireClick', label: 'Exigir clic (1=sí, 0=no)', type: 'number', value: cfg.adRequireClick ? 1 : 0, min: 0, max: 1 },
-        { key: 'grantCoins', label: '🎁 Regalar monedas a ESTE dispositivo', type: 'number', value: 0, min: 0, max: 100000 },
+        { key: 'giftAll', label: '🎁 REGALAR monedas a TODOS los usuarios (al publicar el catálogo)', type: 'number', value: 0, min: 0, max: 100000 },
+        { key: 'giftMsg', label: '📝 Mensaje del regalo (opcional)', type: 'text', value: '', maxlength: 120, placeholder: 'Ej: ¡Gracias por ver X·STREAM!' },
+        { key: 'grantCoins', label: '🔧 Asignar monedas solo a ESTE dispositivo (modo prueba)', type: 'number', value: 0, min: 0, max: 100000 },
+        { key: 'testMode', label: testing ? '🧪 Modo PRUEBA ACTIVADO (ves el candado) — 0=apagar' : '🧪 Modo PRUEBA (ver el candado como usuario) — 1=activar', type: 'number', value: testing ? 0 : 1, min: 0, max: 1 },
       ],
       sub: `<div style="text-align:left;font:600 11px 'JetBrains Mono';color:var(--dim);letter-spacing:.5px;line-height:1.8">
         TU SALDO: <b style="color:var(--acid)">${st.coins} 🪙</b> ·
         DESBLOQUEADOS: <b>${st.unlockedCount}</b> ·
-        GASTADOS: <b>${st.totalSpent}</b> ·
-        GANADOS: <b>${st.totalEarned}</b> ·
-        ANUNCIOS VISTOS: <b>${st.adsWatched}</b> ·
-        VIP: <b>${st.vip ? '👑 sí' : 'no'}</b><br>
-        <span style="font-size:10px">💡 Como admin, TÚ nunca pagas monedas — el candado se salta automáticamente.</span>
+        ANUNCIOS: <b>${st.adsWatched}</b> ·
+        VIP: <b>${st.vip ? '👑' : 'no'}</b><br>
+        <span style="font-size:10px">💡 Los cambios de precios/monedas aplican a TODOS al PUBLICAR el catálogo (🌐 Publicar).
+        El 🎁 regalo llega como lluvia de monedas animada en cada dispositivo.</span>
       </div>`,
     });
     m.then(vals => {
@@ -5850,10 +5855,14 @@ function buildCoinsPanel() {
       if (vals.adReward !== undefined && vals.adReward !== '') updates.adReward = Math.max(1, +vals.adReward);
       if (vals.adDuration !== undefined && vals.adDuration !== '') updates.adDuration = Math.max(3, +vals.adDuration);
       if (vals.adClickExtra !== undefined && vals.adClickExtra !== '') updates.adClickExtra = Math.max(0, +vals.adClickExtra);
-      if (vals.adRequireClick !== undefined && vals.adRequireClick !== '') updates.adRequireClick = !!+vals.adRequireClick;
       if (Object.keys(updates).length) COINS.setConfig(updates);
       if (vals.grantCoins && +vals.grantCoins > 0) COINS.grantCoins(+vals.grantCoins);
-      toast('🪙 Configuración guardada — los cambios aplican al instante');
+      if (vals.giftAll !== undefined && +vals.giftAll > 0) {
+        COINS._activeGift = { amount: +vals.giftAll, msg: vals.giftMsg || '', at: Date.now() };
+        toast(`🎁 Regalo de ${vals.giftAll} monedas preparado — PUBLICA el catálogo para que lo reciban todos`);
+      }
+      if (vals.testMode !== undefined) COINS.setTestMode(!!+vals.testMode);
+      toast('🪙 Configuración guardada — publica el catálogo para sincronizar a todos');
     }).catch(() => { });
   });
 }
