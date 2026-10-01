@@ -1237,17 +1237,37 @@ function renderHome() {
   tvBlock.appendChild(makeRail(tvGrid));
   els.homeView.appendChild(tvBlock);
 
-  /* ⑤ 🎵 MÚSICA — acceso directo al reproductor desde la portada */
+  /* ⑤ 🎵 MÚSICA — mini-reproductor visual en la portada: un clic expande
+     el reproductor completo sin salir de la página                     */
   const musBlock = document.createElement('section');
   musBlock.className = 'hm-block';
-  musBlock.innerHTML = `<div class="hm-sec">🎵 Música <small>14 GÉNEROS · DESCARGA · FAVORITAS</small></div>
-    <div style="padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px">
-      <button class="btn btn-music" style="font-size:15px;padding:18px 26px" onclick="document.getElementById('musicBtn').click()">
-        🎵 Abrir el reproductor de música
+  musBlock.innerHTML = `
+    <div class="hm-sec">🎵 Música <small>14 GÉNEROS · DESCARGA · FAVORITAS</small></div>
+    <div class="home-music-strip" id="homeMusicStrip">
+      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+        <span class="hm-mc-icon">🎤</span>
+        <span class="hm-mc-txt"><b>Reggaetón</b><span>los más movidos</span></span>
       </button>
-      <span style="align-self:center;color:var(--dim);font:600 11px 'JetBrains Mono';letter-spacing:1px">
-        Reggaetón · Vallenato · Salsa · Corridos · Pop · Lofi · Jazz…
-      </span>
+      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+        <span class="hm-mc-icon">🪗</span>
+        <span class="hm-mc-txt"><b>Vallenato</b><span>Dale Julián</span></span>
+      </button>
+      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+        <span class="hm-mc-icon">💃</span>
+        <span class="hm-mc-txt"><b>Salsa</b><span>para gozar</span></span>
+      </button>
+      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+        <span class="hm-mc-icon">🤠</span>
+        <span class="hm-mc-txt"><b>Corridos</b><span>tumbados</span></span>
+      </button>
+      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+        <span class="hm-mc-icon">🌙</span>
+        <span class="hm-mc-txt"><b>Lofi</b><span>para estudiar</span></span>
+      </button>
+      <button class="home-music-card" onclick="document.getElementById('musicBtn').click()">
+        <span class="hm-mc-icon">❤</span>
+        <span class="hm-mc-txt"><b>Favoritas</b><span>tus corazones</span></span>
+      </button>
     </div>`;
   els.homeView.appendChild(musBlock);
 }
@@ -2600,13 +2620,6 @@ function renderEpisodes() {
       cell.addEventListener('click', () => selectSeries(m.id));
       els.episodesGrid.appendChild(cell);
     }
-    /* 🎵 bloque de música justo después de la fila de relacionadas */
-    const musStrip = document.createElement('div');
-    musStrip.style.cssText = 'display:flex;align-items:center;gap:12px;padding:12px 2px;margin-top:4px';
-    musStrip.innerHTML = `
-      <button class="btn btn-music" style="font-size:13px;padding:13px 18px" onclick="document.getElementById('musicBtn').click()">🎵 Escuchar música</button>
-      <span style="color:var(--dim);font:600 10px 'JetBrains Mono';letter-spacing:1px">mientras ves esto</span>`;
-    els.episodesGrid.parentElement.appendChild(musStrip);
     return;
   }
 
@@ -3541,11 +3554,18 @@ els.shareBtn.addEventListener('click', () => {
   const b = document.getElementById('musicBtn');
   if (!b) return;
   b.addEventListener('click', () => {
-    /* cambia a la pestaña Chat y toca el botón 🎵 del chat */
+    /* abre el chat Y el reproductor en cadena inmediata (cero esperas) */
     const ptab = document.getElementById('ptabChat');
     const musicBtnChat = document.getElementById('chatMusicBtn');
     if (ptab) ptab.click();
-    setTimeout(() => { if (musicBtnChat) musicBtnChat.click(); }, 180);
+    if (musicBtnChat) musicBtnChat.click();
+    /* hace scroll hasta el reproductor ya expandido */
+    requestAnimationFrame(() => {
+      const dock = document.getElementById('chatMusic');
+      if (dock && !dock.classList.contains('hidden')) {
+        dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
   });
 })();
 

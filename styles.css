@@ -2672,3 +2672,31 @@ body.chat-full .cmu-list{max-height:44vh}
   .stage-side .btn-music{flex:0 0 auto;padding:12px 14px;font-size:12px}
   .stage-side .btn-music span{display:inline}
 }
+
+/* ═══════ 🎵 MÚSICA en la portada — tarjetitas visuales por género ═══════ */
+.home-music-strip{
+  display:flex;gap:12px;overflow-x:auto;padding:4px 2px 10px;
+  scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+  scroll-snap-type:x proximity;
+}
+.home-music-strip::-webkit-scrollbar{height:5px}
+.home-music-strip::-webkit-scrollbar-thumb{background:var(--line);border-radius:5px}
+.home-music-card{
+  flex:0 0 auto;width:130px;aspect-ratio:1/1;scroll-snap-align:start;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:linear-gradient(150deg,rgba(139,92,246,.12) 0%,rgba(236,72,153,.08) 60%,var(--panel) 100%);
+  border:1px solid rgba(139,92,246,.28);border-radius:16px;cursor:pointer;
+  transition:transform .18s,border-color .18s,box-shadow .18s;position:relative;overflow:hidden;
+}
+.home-music-card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 50%,rgba(139,92,246,.06) 100%);
+}
+.home-music-card:hover{
+  transform:translateY(-3px);border-color:var(--acid);
+  box-shadow:0 12px 30px rgba(139,92,246,.28);
+}
+.hm-mc-icon{font-size:34px;line-height:1;filter:drop-shadow(0 4px 12px rgba(139,92,246,.4))}
+.hm-mc-txt{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.hm-mc-txt b{font-size:13px;font-weight:800;color:var(--ink)}
+.hm-mc-txt span{font:600 9.5px 'JetBrains Mono';letter-spacing:.6px;color:var(--dim);text-transform:uppercase}
