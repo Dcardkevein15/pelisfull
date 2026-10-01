@@ -221,42 +221,58 @@
           <button class="btn btn-acid admin-only" id="goEditBtn">Pegar enlace ahora</button>
         </div>
 
-        <!-- 🪙 LA CAJA FUERTE — el reproductor se CONVIERTE en bóveda -->
+        <!-- 🪙 LA CAJA FUERTE — fondo membresia.png + contenido en dos columnas -->
         <div class="vault hidden" id="paywall">
-          <div class="vault-door">
-            <div class="vault-dial">
-              <svg viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="3">
-                <circle cx="40" cy="40" r="30" stroke-linecap="round"/>
-                <circle cx="40" cy="40" r="22" stroke-width="1.5" opacity=".5"/>
-                <path d="M40 18v14M40 48v14M18 40h14M48 40h14" stroke-linecap="round"/>
-                <circle cx="40" cy="40" r="8" fill="currentColor" stroke="none" opacity=".3"/>
-              </svg>
+          <div class="vault-bg"></div>
+          <div class="vault-body">
+            <!-- ══ COLUMNA IZQUIERDA: sistema de monedas (gratis) ══ -->
+            <div class="vault-left">
+              <div class="vl-icon">
+                <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+                  <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+                  <circle cx="12" cy="15.5" r="1.8" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
+              <h2 id="pwTitle">🔒 Capítulo bloqueado</h2>
+              <div class="vault-meta">
+                <span class="vault-price" id="pwPriceWrap">
+                  <b id="pwPrice">100</b> <span>🪙</span>
+                </span>
+                <span class="vault-have">tienes <b id="pwCoins">50</b> 🪙</span>
+              </div>
+              <p class="vault-sub" id="pwSub">Al desbloquear, queda abierto <b>para siempre</b><br>Recibes <b>500 monedas gratis</b> cada día</p>
+              <div class="vault-actions">
+                <button class="vault-play" id="pwUnlockBtn">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  <span>Reproducir ahora</span>
+                </button>
+                <button class="vault-earn" id="pwAdBtn">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+                  <span>Ganar recompensas <b id="pwAdReward">+100</b> 🪙</span>
+                </button>
+              </div>
+              <button class="vault-explain" id="pwExplainBtn">¿Cómo funciona? →</button>
             </div>
-            <h2 id="pwTitle">🔒 Capítulo bloqueado</h2>
-            <div class="vault-meta">
-              <span class="vault-price" id="pwPriceWrap">
-                <b id="pwPrice">100</b> <span>🪙</span>
-              </span>
-              <span class="vault-have">
-                tienes <b id="pwCoins">50</b> 🪙
-              </span>
+            <!-- ══ COLUMNA DERECHA: MEMBRESÍA $1/mes (contenedor dorado) ══ -->
+            <div class="vault-right">
+              <div class="vr-card">
+                <div class="vr-head">
+                  <span class="vr-crown">👑</span>
+                  <h3>Membresía</h3>
+                  <span class="vr-price">$1<small>/mes</small></span>
+                </div>
+                <div class="vr-benefits">
+                  <li>✅ Sin límites — ve TODO</li>
+                  <li>✅ Sin anuncios — nunca</li>
+                  <li>✅ Sin monedas — desbloqueo directo</li>
+                  <li>✅ Calidad HD garantizada</li>
+                  <li>✅ Descargas de música gratis</li>
+                  <li>✅ Soporta el proyecto 💛</li>
+                </div>
+                <button class="vr-get" id="pwVipBtn">Obtener membresía</button>
+              </div>
             </div>
-            <p class="vault-sub" id="pwSub">Al desbloquear, queda abierto <b>para siempre</b></p>
-            <div class="vault-actions" id="pwActions">
-              <button class="vault-play" id="pwUnlockBtn">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                <span>Reproducir ahora</span>
-              </button>
-              <button class="vault-earn" id="pwAdBtn">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
-                <span>Ganar recompensas <b id="pwAdReward">+50</b> 🪙</span>
-              </button>
-            </div>
-            <div class="vault-info" id="pwInfo">
-              <span>👑 Membresía $1/mes · <b>sin límites ni anuncios</b></span>
-              <button class="vault-vip" id="pwVipBtn">Ver más</button>
-            </div>
-            <button class="vault-explain" id="pwExplainBtn">¿Cómo funciona? →</button>
           </div>
         </div>
 
