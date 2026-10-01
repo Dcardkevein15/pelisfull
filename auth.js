@@ -500,9 +500,18 @@
     const rec = await sigKeysGet();
     if (!rec) return null;
     const priv = await crypto.subtle.importKey('jwk', rec.jwkPriv, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
+    /* firma SOLO los campos canónicos — los mismos que verifica el lector.
+       Así el catálogo publicado puede llevar campos nuevos y NUNCA se
+       rompe la firma por campos extra o undefined.                       */
+    const signed = {
+      app: payload.app, v: payload.v, by: payload.by, at: payload.at, n: payload.n,
+      series: payload.series, channels: payload.channels, del: payload.del,
+      tvSources: payload.tvSources, links: payload.links, linksDom: payload.linksDom,
+      coinsCfg: payload.coinsCfg, coinsGift: payload.coinsGift,
+    };
     const sig = await crypto.subtle.sign(
       { name: 'ECDSA', hash: 'SHA-256' }, priv,
-      new TextEncoder().encode(canonicalJson(payload))
+      new TextEncoder().encode(canonicalJson(signed))
     );
     return bytesToB64(new Uint8Array(sig));
   }
@@ -542,12 +551,19 @@
     if (typeof cat.sig !== 'string' || cat.sig.length < 60 || cat.sig.length > 512) return 'invalid';
     try {
       const pub = await crypto.subtle.importKey('spki', b64ToBytes(pubB64), { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
-      const unsigned = { ...cat };
-      delete unsigned.sig;
+      /* firma SOLO los campos canónicos (igual que quien publica): con eso
+         sabemos que el contenido íntegro (series, canales, links, monedas)
+         no fue modificado — campos extra ignorados, nunca se rompe        */
+      const signed = {
+        app: cat.app, v: cat.v, by: cat.by, at: cat.at, n: cat.n,
+        series: cat.series, channels: cat.channels, del: cat.del,
+        tvSources: cat.tvSources, links: cat.links, linksDom: cat.linksDom,
+        coinsCfg: cat.coinsCfg, coinsGift: cat.coinsGift,
+      };
       const ok = await crypto.subtle.verify(
         { name: 'ECDSA', hash: 'SHA-256' }, pub,
         b64ToBytes(cat.sig),
-        new TextEncoder().encode(canonicalJson(unsigned))
+        new TextEncoder().encode(canonicalJson(signed))
       );
       return ok ? 'ok' : 'invalid';
     } catch (e) { return 'invalid'; }
