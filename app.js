@@ -3004,6 +3004,17 @@ function loadEpisode(epN, autoplayNow = true) {
   const ep = s.episodes.find(e => e.n === epN);
   if (!ep) return;
   current.ep = epN;
+
+  /* 🪙 PAYWALL: verificar monedas ANTES de reproducir (el admin NUNCA paga) */
+  if (typeof COINS !== 'undefined' && !canAdmin() && ep.url) {
+    const result = COINS.pay(s.id, ep.n, s);
+    if (!result.ok) {
+      showPaywall(s, ep, result);
+      return;                     /* NO reproducir hasta pagar */
+    }
+    /* si pagó bien (o ya estaba desbloqueado, o es VIP) → seguir normal */
+  }
+
   scrollToPlayerInstant();   /* 📈 al elegir capítulo desde abajo: el reproductor sube al instante, centrado */
   /* salir de cualquier directo 📡 o flujo HLS anterior */
   if (state.currentChannel) { state.currentChannel = null; save(); }
@@ -5578,6 +5589,215 @@ function trackPlayback() {
   if (done && !prev.done) { renderEpisodes(); renderSeries(els.searchInput.value); }
   renderContinue();
 }
+
+/* ═══════════════ 🪙 PAYWALL — candado de monedas en el reproductor ═══════════════ */
+function showPaywall(s, ep, result) {
+  const pw = document.getElementById('paywall');
+  if (!pw) return;
+  const price = COINS.priceOf(s);
+  const st = COINS.getState();
+  document.getElementById('pwTitle').textContent = '🔒 Capítulo bloqueado';
+  document.getElementById('pwSub').innerHTML = `Necesitas <b>${price}</b> monedas para desbloquear este capítulo.<br>Queda desbloqueado <b>para siempre</b>.`;
+  document.getElementById('pwPrice').textContent = price;
+  document.getElementById('pwPrice2').textContent = price;
+  document.getElementById('pwCoins').textContent = st.coins;
+  pw.classList.remove('hidden');
+
+  /* botón desbloquear */
+  const unlockBtn = document.getElementById('pwUnlockBtn');
+  unlockBtn.disabled = st.coins < price;
+  unlockBtn.style.opacity = st.coins < price ? .4 : 1;
+  unlockBtn.onclick = () => {
+    const r = COINS.pay(s.id, ep.n, s);
+    if (r.ok) { pw.classList.add('hidden'); loadEpisode(ep.n, true); }
+    else { document.getElementById('pwCoins').textContent = COINS.getState().coins; }
+  };
+
+  /* botón ver anuncio */
+  document.getElementById('pwAdBtn').onclick = () => {
+    pw.classList.add('hidden');
+    showAdwall(() => { showPaywall(s, ep, COINS.pay(s.id, ep.n, s)); });
+  };
+
+  /* botón membresía */
+  document.getElementById('pwVipBtn').onclick = () => { alert('👑 Membresía $1/mes — próximamente. Por ahora, gana monedas viendo anuncios.'); };
+  /* botón explicación */
+  document.getElementById('pwExplainBtn').onclick = () => showExplainModal();
+}
+
+function hidePaywall() { const pw = document.getElementById('paywall'); if (pw) pw.classList.add('hidden'); }
+
+/* ═══════════════ 📺 ADWALL — anuncio con cuenta regresiva + clic obligatorio ═══════════════ */
+function showAdwall(onDone) {
+  const ad = document.getElementById('adwall');
+  if (!ad) { if (onDone) onDone(); return; }
+  const cfg = COINS.getConfig();
+  const ring = document.getElementById('adTimerRing');
+  const num = document.getElementById('adTimerNum');
+  const msg = document.getElementById('adMsg');
+  const wait = document.getElementById('adWait');
+  const waitNum = document.getElementById('adWaitNum');
+  const reward = document.getElementById('adReward');
+  const slot = document.getElementById('adSlot');
+
+  ad.classList.remove('hidden');
+  wait.classList.add('hidden');
+  reward.classList.add('hidden');
+  msg.innerHTML = `Mira el anuncio <b>${cfg.adDuration} segundos</b>${cfg.adRequireClick ? ' y haz <b>clic en el anuncio</b>' : ''}`;
+
+  /* estado del flujo */
+  let secondsLeft = cfg.adDuration;
+  let clicked = !cfg.adRequireClick;
+  let phase = 'counting';    /* counting → post-click → reward */
+  let timerId = null;
+
+  const setCirc = pct => { ring.style.strokeDashoffset = String(119.4 * (1 - pct)); };
+  setCirc(0);
+  num.textContent = secondsLeft;
+
+  /* clic en la zona del anuncio = cuenta como clic */
+  slot.onclick = () => {
+    if (phase !== 'counting') return;
+    clicked = true;
+    if (secondsLeft <= 0) startPostClick();
+    else msg.innerHTML = '✅ <b>¡Clic registrado!</b> Espera que termine la cuenta regresiva…';
+  };
+
+  const startPostClick = () => {
+    if (phase !== 'counting') return;
+    phase = 'post-click';
+    msg.innerHTML = '';
+    wait.classList.remove('hidden');
+    let extra = cfg.adClickExtra;
+    waitNum.textContent = extra;
+    const extraTimer = setInterval(() => {
+      extra--;
+      waitNum.textContent = extra;
+      if (extra <= 0) {
+        clearInterval(extraTimer);
+        finish();
+      }
+    }, 1000);
+  };
+
+  const finish = () => {
+    if (timerId) clearInterval(timerId);
+    phase = 'reward';
+    wait.classList.add('hidden');
+    const earned = COINS.earn();
+    reward.classList.remove('hidden');
+    document.getElementById('adCollectBtn').onclick = () => {
+      ad.classList.add('hidden');
+      if (onDone) onDone();
+    };
+  };
+
+  /* cuenta regresiva principal */
+  timerId = setInterval(() => {
+    if (phase !== 'counting') { clearInterval(timerId); return; }
+    secondsLeft--;
+    num.textContent = Math.max(0, secondsLeft);
+    setCirc((cfg.adDuration - secondsLeft) / cfg.adDuration);
+    if (secondsLeft <= 0) {
+      clearInterval(timerId);
+      if (clicked) startPostClick();
+      else {
+        /* no hizo clic → reiniciar el timer con mensaje claro */
+        msg.innerHTML = '⚠ <b>No has hecho clic en el anuncio.</b><br>El contador no avanza sin clic. Toca el anuncio y vuelve a esperar.';
+        secondsLeft = cfg.adDuration;
+        let reNum = cfg.adDuration;
+        num.textContent = reNum;
+        setCirc(0);
+        timerId = setInterval(() => {
+          if (phase !== 'counting') { clearInterval(timerId); return; }
+          reNum--;
+          num.textContent = Math.max(0, reNum);
+          setCirc((cfg.adDuration - reNum) / cfg.adDuration);
+          if (reNum <= 0) {
+            clearInterval(timerId);
+            if (clicked) startPostClick();
+            else {
+              msg.innerHTML = '⚠ <b>Sigue sin clic.</b> Haz clic en el anuncio para continuar.';
+              reNum = cfg.adDuration;
+              setCirc(0);
+              num.textContent = reNum;
+            }
+          }
+        }, 1000);
+      }
+    }
+  }, 1000);
+}
+
+/* ═══════════════ ❓ MODAL de explicación del sistema ═══════════════ */
+function showExplainModal() {
+  const cfg = COINS.getConfig();
+  const st = COINS.getState();
+  if (typeof uiModal === 'function') {
+    uiModal({
+      icon: '🪙', title: 'Cómo funcionan las monedas', okLabel: '¡Entendido!',
+      sub: `<div style="text-align:left;font-size:12px;line-height:1.7">
+        <b style="color:var(--acid)">🪙 ${cfg.dailyCoins} monedas gratis cada día</b><br>
+        Se renuevan cada 24 horas — no se acumulan, al día siguiente vuelves a tener ${cfg.dailyCoins}.<br><br>
+        <b style="color:var(--acid)">📺 Precios:</b><br>
+        · Capítulo de anime/hentai: <b>${cfg.priceAnime} monedas</b><br>
+        · Película: <b>${cfg.priceMovie} monedas</b><br>
+        · Cada capítulo desbloqueado queda <b>abierto para siempre</b>.<br><br>
+        <b style="color:var(--acid)">📢 ¿Sin monedas?</b><br>
+        Mira un anuncio de <b>${cfg.adDuration} segundos</b>, haz clic en él, espera <b>${cfg.adClickExtra} segundos más</b> y gana <b>+${cfg.adReward} monedas</b>. Repite las veces que quieras.<br><br>
+        <b style="color:#ffd24a">👑 Membresía $1/mes:</b> sin anuncios, sin límites, todo abierto.<br><br>
+        <b>Tu saldo ahora:</b> ${st.coins} monedas ${st.vip ? '· <b style="color:#ffd24a">👑 VIP activo</b>' : ''}`,
+    });
+  }
+}
+
+/* ═══════════════ 👑 PANEL ADMIN DE MONEDAS — control total ═══════════════ */
+function buildCoinsPanel() {
+  const btn = document.getElementById('coinsAdminBtn');
+  if (!btn || !canAdmin()) return;
+  btn.addEventListener('click', () => {
+    const cfg = COINS.getConfig();
+    const st = COINS.getState();
+    if (typeof uiModal !== 'function') return;
+    const m = uiModal({
+      icon: '🪙', title: 'Panel de Monedas — Control Total', okLabel: 'Guardar',
+      fields: [
+        { key: 'dailyCoins', label: `Monedas gratis por día (actual: ${cfg.dailyCoins})`, type: 'number', value: cfg.dailyCoins, min: 0, max: 10000 },
+        { key: 'priceAnime', label: `Precio capítulo anime/hentai (actual: ${cfg.priceAnime})`, type: 'number', value: cfg.priceAnime, min: 0, max: 10000 },
+        { key: 'priceMovie', label: `Precio película (actual: ${cfg.priceMovie})`, type: 'number', value: cfg.priceMovie, min: 0, max: 10000 },
+        { key: 'adReward', label: `Monedas por anuncio (actual: ${cfg.adReward})`, type: 'number', value: cfg.adReward, min: 1, max: 10000 },
+        { key: 'adDuration', label: `Segundos del anuncio (actual: ${cfg.adDuration})`, type: 'number', value: cfg.adDuration, min: 3, max: 120 },
+        { key: 'adClickExtra', label: `Segundos extra tras clic (actual: ${cfg.adClickExtra})`, type: 'number', value: cfg.adClickExtra, min: 0, max: 60 },
+        { key: 'adRequireClick', label: 'Exigir clic (1=sí, 0=no)', type: 'number', value: cfg.adRequireClick ? 1 : 0, min: 0, max: 1 },
+        { key: 'grantCoins', label: '🎁 Regalar monedas a ESTE dispositivo', type: 'number', value: 0, min: 0, max: 100000 },
+      ],
+      sub: `<div style="text-align:left;font:600 11px 'JetBrains Mono';color:var(--dim);letter-spacing:.5px;line-height:1.8">
+        TU SALDO: <b style="color:var(--acid)">${st.coins} 🪙</b> ·
+        DESBLOQUEADOS: <b>${st.unlockedCount}</b> ·
+        GASTADOS: <b>${st.totalSpent}</b> ·
+        GANADOS: <b>${st.totalEarned}</b> ·
+        ANUNCIOS VISTOS: <b>${st.adsWatched}</b> ·
+        VIP: <b>${st.vip ? '👑 sí' : 'no'}</b><br>
+        <span style="font-size:10px">💡 Como admin, TÚ nunca pagas monedas — el candado se salta automáticamente.</span>
+      </div>`,
+    });
+    m.then(vals => {
+      if (!vals) return;
+      const updates = {};
+      if (vals.dailyCoins !== undefined && vals.dailyCoins !== '') updates.dailyCoins = Math.max(0, +vals.dailyCoins);
+      if (vals.priceAnime !== undefined && vals.priceAnime !== '') updates.priceAnime = Math.max(0, +vals.priceAnime);
+      if (vals.priceMovie !== undefined && vals.priceMovie !== '') updates.priceMovie = Math.max(0, +vals.priceMovie);
+      if (vals.adReward !== undefined && vals.adReward !== '') updates.adReward = Math.max(1, +vals.adReward);
+      if (vals.adDuration !== undefined && vals.adDuration !== '') updates.adDuration = Math.max(3, +vals.adDuration);
+      if (vals.adClickExtra !== undefined && vals.adClickExtra !== '') updates.adClickExtra = Math.max(0, +vals.adClickExtra);
+      if (vals.adRequireClick !== undefined && vals.adRequireClick !== '') updates.adRequireClick = !!+vals.adRequireClick;
+      if (Object.keys(updates).length) COINS.setConfig(updates);
+      if (vals.grantCoins && +vals.grantCoins > 0) COINS.grantCoins(+vals.grantCoins);
+      toast('🪙 Configuración guardada — los cambios aplican al instante');
+    }).catch(() => { });
+  });
+}
+setTimeout(buildCoinsPanel, 1500);
 
 /* marca como visto al terminar */
 els.video.addEventListener('ended', () => {

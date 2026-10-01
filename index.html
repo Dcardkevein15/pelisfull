@@ -212,6 +212,69 @@
           <button class="btn btn-acid admin-only" id="goEditBtn">Pegar enlace ahora</button>
         </div>
 
+        <!-- 🪙 overlay CANDADO DE MONEDAS — parte orgánica del reproductor -->
+        <div class="paywall hidden" id="paywall">
+          <div class="pw-shade"></div>
+          <div class="pw-card">
+            <div class="pw-icon">
+              <svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.6">
+                <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+                <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+                <circle cx="12" cy="15.5" r="1.8" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <h2 id="pwTitle">🔒 Capítulo bloqueado</h2>
+            <p id="pwSub">Necesitas <b id="pwPrice">100</b> monedas para desbloquear este capítulo.
+            Queda desbloqueado <b>para siempre</b>.</p>
+            <div class="pw-balance">
+              <span class="pw-coin">🪙</span>
+              <b id="pwCoins">50</b>
+              <span>monedas</span>
+            </div>
+            <div class="pw-actions">
+              <button class="btn pw-unlock" id="pwUnlockBtn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 10.5V7a4 4 0 0 1 7.5-2"/><rect x="5" y="10.5" width="14" height="10" rx="2.5"/></svg>
+                Desbloquear por <b id="pwPrice2">100</b> 🪙
+              </button>
+              <button class="btn pw-ad" id="pwAdBtn">📺 Ver anuncio · +50 🪙</button>
+              <button class="btn pw-vip" id="pwVipBtn">👑 Membresía $1/mes · sin límites</button>
+            </div>
+            <button class="pw-explain" id="pwExplainBtn">¿Cómo funciona? →</button>
+          </div>
+        </div>
+
+        <!-- 📺 overlay ANUNCIO (cuenta regresiva + clic obligatorio) -->
+        <div class="adwall hidden" id="adwall">
+          <div class="ad-shade"></div>
+          <div class="ad-card">
+            <div class="ad-head">
+              <span class="ad-badge">📢 ANUNCIO</span>
+              <div class="ad-timer" id="adTimer">
+                <svg viewBox="0 0 44 44" width="44" height="44">
+                  <circle cx="22" cy="22" r="19" fill="none" stroke="var(--line)" stroke-width="4"/>
+                  <circle id="adTimerRing" cx="22" cy="22" r="19" fill="none" stroke="var(--acid)" stroke-width="4"
+                    stroke-dasharray="119.4" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 22 22)"/>
+                  <text id="adTimerNum" x="22" y="27" text-anchor="middle" font-size="15" font-weight="900" fill="var(--ink)">15</text>
+                </svg>
+              </div>
+            </div>
+            <!-- zona del anuncio Adsterra (el admin pega el código en el panel) -->
+            <div class="ad-slot" id="adSlot">
+              <div class="ad-placeholder">
+                <p>📢 Espacio publicitario</p>
+                <small>El anuncio carga aquí</small>
+              </div>
+            </div>
+            <div class="ad-msg" id="adMsg">Mira el anuncio <b>15 segundos</b> y haz <b>clic en el anuncio</b></div>
+            <div class="ad-wait hidden" id="adWait">✅ ¡Clic detectado! Espera <b id="adWaitNum">10</b> segundos más…</div>
+            <div class="ad-reward hidden" id="adReward">
+              <div class="ad-reward-icon">🪙</div>
+              <h3>+50 monedas ganadas</h3>
+              <button class="btn pw-unlock" id="adCollectBtn">Recoger y volver</button>
+            </div>
+          </div>
+        </div>
+
         <!-- spinner -->
         <!-- aviso modo Drive -->
         <div class="drive-hint">▶ Google Drive — usa los controles del propio video</div>
@@ -354,6 +417,7 @@
             <button class="chat-online chip-filter" id="chatOnline" title="Usuarios en línea — toca para ver la lista">● 0</button>
             <span class="spacer"></span>
             <button class="chip-filter hidden" id="chatSettingsBtn" title="Ajustes del chat (admin)">⚙</button>
+            <button class="chip-filter hidden admin-only" id="coinsAdminBtn" title="🪙 Panel de monedas — precios, tiempos, recompensas (solo admin)" style="color:var(--acid)">🪙</button>
             <button class="chip-filter" id="chatBgBtn" title="Fondo del chat — elige una imagen (local en tu dispositivo)">🖼</button>
             <button class="chip-filter" id="chatMusicBtn" title="🎵 Música mientras chateas — listas MP3 que se arman solas">🎵</button>
             <button class="chip-filter" id="chatFavsBtn" title="Mis enlaces favoritos ❤ — se quedan aunque el chat se limpie">❤</button>
@@ -609,6 +673,7 @@
 <div class="toast hidden" id="toast"></div>
 
 <script src="auth.js"></script>
+<script src="coins.js"></script>
 <script src="app.js"></script>
 <script src="chat.js"></script>
 </body>
