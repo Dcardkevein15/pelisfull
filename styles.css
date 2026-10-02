@@ -2900,7 +2900,7 @@ body.chat-full .cmu-list{max-height:44vh}
 .vault-body{
   position:relative;z-index:2;flex:1;
   display:flex;
-  padding:10% 0 0 0;      /* 10% abajo de la imagen */
+  padding:20% 0 0 0;      /* 10% abajo de la imagen */
   min-height:0;
 }
 .vault-left{
@@ -2954,6 +2954,7 @@ body.chat-full .cmu-list{max-height:44vh}
   border-radius:999px;padding:6px 14px;
 }
 .vault-price b{font-size:clamp(15px,1.8vw,19px);color:#ff6b81;font-family:'JetBrains Mono';font-weight:900}
+.vp-label{font:600 clamp(10px,1.2vw,12px) 'JetBrains Mono';color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase	margin-right:2px}
 .vault-price span{font-size:clamp(13px,1.6vw,17px)}
 .vault-have{font:600 clamp(10px,1.2vw,12px) 'JetBrains Mono';color:rgba(255,255,255,.6)}
 .vault-have b{color:#fff;font-size:clamp(12px,1.4vw,15px)}

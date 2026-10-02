@@ -5630,7 +5630,7 @@ function showVault(s, ep) {
   document.getElementById('pwPrice').textContent = price;
   document.getElementById('pwCoins').textContent = st.coins;
   document.getElementById('pwAdReward').textContent = '+' + cfg.adReward;
-  document.getElementById('pwSub').innerHTML = `Al desbloquear, queda abierto <b>para siempre</b>.<br>Recibes <b>${cfg.dailyCoins} monedas gratis</b> cada día.`;
+  document.getElementById('pwSub').innerHTML = `Recibes <b>${cfg.dailyCoins} monedas gratis</b> cada día.`;
 
   /* ▶ REPRODUCIR AHORA — SIEMPRE a la vista, solo deshabilitado si no alcanza */
   const playBtn = document.getElementById('pwUnlockBtn');
