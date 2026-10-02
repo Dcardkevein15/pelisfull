@@ -2910,11 +2910,11 @@ body.chat-full .cmu-list{max-height:44vh}
 }
 .vl-card{
   flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  text-align:center;gap:10px;
+  text-align:center;gap:8px;
   background:linear-gradient(165deg,rgba(255,46,99,.10) 0%,rgba(180,20,60,.06) 50%,rgba(255,46,99,.12) 100%);
   border:1.5px solid rgba(255,46,99,.35);
   border-radius:18px;
-  padding:18px 16px;
+  padding:18px 16px 14px;
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   box-shadow:0 14px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);
   overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,46,99,.3) transparent;
@@ -2933,7 +2933,7 @@ body.chat-full .cmu-list{max-height:44vh}
   font-family:'Archivo Black';font-size:clamp(15px,1.9vw,19px);color:#f4f4fb;
   margin:0;letter-spacing:.4px;text-shadow:0 2px 16px rgba(0,0,0,.8);
 }
-.vault-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+.vault-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;margin:2px 0}
 .vault-price{
   display:inline-flex;align-items:center;gap:5px;
   background:rgba(255,46,99,.12);border:1.5px solid rgba(255,46,99,.4);
@@ -2943,9 +2943,9 @@ body.chat-full .cmu-list{max-height:44vh}
 .vault-price span{font-size:clamp(13px,1.6vw,17px)}
 .vault-have{font:600 clamp(10px,1.2vw,12px) 'JetBrains Mono';color:rgba(255,255,255,.6)}
 .vault-have b{color:#fff;font-size:clamp(12px,1.4vw,15px)}
-.vault-sub{font-size:clamp(10px,1.2vw,12px);color:rgba(255,255,255,.5);margin:0;line-height:1.55}
+.vault-sub{font-size:clamp(10px,1.2vw,12px);color:rgba(255,255,255,.5);margin:4px 0 0;line-height:1.55}
 .vault-sub b{color:#ff6b81}
-.vault-actions{display:flex;flex-direction:column;gap:10px;width:min(260px,85%);margin-top:4px}
+.vault-actions{display:flex;flex-direction:column;gap:8px;width:min(100%,280px);margin-top:6px;}
 .vault-play{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
   background:var(--acid);color:#111;
