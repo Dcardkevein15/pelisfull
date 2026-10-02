@@ -3161,3 +3161,21 @@ body.chat-full .cmu-list{max-height:44vh}
 }
 
 
+
+/* ✕ cerrar anuncio — círculo rojo arriba derecha */
+.ad-close{
+  width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;font-size:14px;font-weight:900;
+  background:var(--hot);color:#fff;border:none;cursor:pointer;
+  transition:.15s;line-height:1;padding:0;
+}
+.ad-close:hover{transform:scale(1.15);background:#ff1744}
+/* botón reclamar recompensa */
+.ad-collect{
+  background:var(--acid);color:#111;font-weight:900;font-size:15px;
+  border:none;border-radius:16px;padding:16px 24px;cursor:pointer;
+  box-shadow:0 10px 30px rgba(216,255,62,.35);transition:.15s;
+  animation:pwLock 1.5s ease-in-out infinite;
+}
+.ad-collect:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.ad-collect:active{transform:scale(.96)}

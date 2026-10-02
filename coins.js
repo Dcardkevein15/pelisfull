@@ -14,7 +14,7 @@ const COINS = (function () {
 
   /* ─── CONFIG (el admin la cambia en vivo desde el panel) ─── */
   const DEFAULTS = {
-    dailyCoins: 50,          /* monedas gratis por día */
+    dailyCoins: 500,         /* monedas gratis por día */
     priceAnime: 100,         /* coste de un capítulo de anime/hentai */
     priceMovie: 200,         /* coste de una película */
     adReward: 50,            /* monedas por ver un anuncio completo */
