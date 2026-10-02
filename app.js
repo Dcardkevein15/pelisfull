@@ -3021,9 +3021,8 @@ function loadEpisode(epN, autoplayNow = true) {
   current.ep = epN;
 
   /* 🪙 PAYWALL: el reproductor se CONVIERTE en caja fuerte.
-     Admin/Moderadores NUNCA pagan — solo usuarios normales.
-     ⚠ PAYWALL DESACTIVADO — activar con 'true' cuando todo esté verificado */
-  const PAYWALL_ON = false;
+     Admin/Moderadores NUNCA pagan — solo usuarios normales.        */
+  const PAYWALL_ON = true;
   if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
     const result = COINS.pay(s.id, ep.n, s);
     if (!result.ok) {
