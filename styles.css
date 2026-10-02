@@ -2909,18 +2909,31 @@ body.chat-full .cmu-list{max-height:44vh}
   margin:0 5% 10% 10%;
 }
 .vl-card{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  text-align:center;gap:8px;
+  flex:1;display:flex;flex-direction:column;align-items:stretch;
+  text-align:center;
   background:linear-gradient(165deg,rgba(255,46,99,.10) 0%,rgba(180,20,60,.06) 50%,rgba(255,46,99,.12) 100%);
   border:1.5px solid rgba(255,46,99,.35);
   border-radius:18px;
-  padding:18px 16px 14px;
+  padding:0;
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   box-shadow:0 14px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);
-  overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,46,99,.3) transparent;
+  overflow:hidden;min-height:0;
 }
-.vl-card::-webkit-scrollbar{width:3px}
-.vl-card::-webkit-scrollbar-thumb{background:rgba(255,46,99,.3);border-radius:3px}
+/* SOLO el texto hace scroll — los botones SIEMPRE visibles abajo */
+.vl-scroll{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  gap:8px;padding:14px 14px 8px;overflow-y:auto;min-height:0;
+  scrollbar-width:thin;scrollbar-color:rgba(255,46,99,.3) transparent;
+}
+.vl-scroll::-webkit-scrollbar{width:3px}
+.vl-scroll::-webkit-scrollbar-thumb{background:rgba(255,46,99,.3);border-radius:3px}
+/* los botones NUNCA se mueven — viven fuera del scroll */
+.vl-fixed{
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:10px 14px 12px;
+  border-top:1px solid rgba(255,46,99,.15);
+  background:rgba(255,46,99,.05);
+}
 .vl-icon{
   width:46px;height:46px;border-radius:14px;
   display:grid;place-items:center;color:#ff2e63;

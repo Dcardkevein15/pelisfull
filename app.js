@@ -3498,10 +3498,11 @@ const slugify = t => String(t || '').toLowerCase().normalize('NFD')
   .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'video';
 
 function buildShareUrl(s, ep) {
-  const base = location.href.split('#')[0];
   const slug = slugify(s.t);
-  if (s.kind === 'pelicula') return `${base}#/pelicula/${slug}`;
-  return `${base}#/anime/${slug}/${ep.n}`;
+  /* base SIEMPRE limpia — quita hash y search para no acumular */
+  const clean = location.pathname + location.search;
+  if (s.kind === 'pelicula') return `${clean}#/pelicula/${slug}`;
+  return `${clean}#/anime/${slug}/${ep.n}`;
 }
 function buildChannelUrl(ch) {
   return `${location.href.split('#')[0]}#/tv/${slugify(ch.name)}`;
@@ -4137,14 +4138,15 @@ window.addEventListener('hashchange', openFromHash);
    x.yapido.click/b/xxxxxx/), la barra muestra ESA página: al copiarla y
    pegarla en WhatsApp/Facebook/X el crawler ve el PÓSTER REAL del título
 /* mantiene la URL del navegador SIEMPRE COMPARTIBLE (hash con el nombre
-   de la serie — es la que te gusta, es SEO y es la oficial). Al copiarla
-   y pegarla en WhatsApp usa el botón Compartir de la app, que da el
-   enlace corto b.yapido.click/xxxxxx con su tarjeta social.            */
-async function syncAddressBar() {
+   de la serie — es la que te gusta, es SEO y es la oficial)                */
+function syncAddressBar() {
   const s = getSeries(current.seriesId);
   const ep = s && s.episodes.find(e => e.n === current.ep);
   if (!s || !ep) return;
-  try { history.replaceState(null, '', buildShareUrl(s, ep)); } catch (e) { /* file:// antiguo */ }
+  const url = buildShareUrl(s, ep);
+  if (url !== location.href) {
+    try { history.replaceState(null, '', url); } catch (e) { /* file:// antiguo */ }
+  }
 }
 
 /* ═══════════ Importador de carpetas de Google Drive ═══════════

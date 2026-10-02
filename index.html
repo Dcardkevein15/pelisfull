@@ -228,22 +228,24 @@
             <!-- ══ COLUMNA IZQUIERDA: sistema de monedas (gratis) — contenedor rojo ══ -->
             <div class="vault-left">
               <div class="vl-card">
-              <div class="vl-icon">
-                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6">
-                  <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
-                  <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
-                  <circle cx="12" cy="15.5" r="1.8" fill="currentColor" stroke="none"/>
-                </svg>
-              </div>
-                <h2 id="pwTitle">🔒 Capítulo bloqueado</h2>
-                <div class="vault-meta">
-                  <span class="vault-price">
-                    <b id="pwPrice">100</b> <span>🪙</span>
-                  </span>
-                  <span class="vault-have">tienes <b id="pwCoins">50</b> 🪙</span>
+                <div class="vl-scroll">
+                  <div class="vl-icon">
+                    <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6">
+                      <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+                      <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+                      <circle cx="12" cy="15.5" r="1.8" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </div>
+                  <h2 id="pwTitle">🔒 Capítulo bloqueado</h2>
+                  <div class="vault-meta">
+                    <span class="vault-price">
+                      <b id="pwPrice">100</b> <span>🪙</span>
+                    </span>
+                    <span class="vault-have">tienes <b id="pwCoins">50</b> 🪙</span>
+                  </div>
+                  <p class="vault-sub" id="pwSub">Al desbloquear, queda abierto <b>para siempre</b><br>Recibes <b>500 monedas gratis</b> cada día</p>
                 </div>
-                <p class="vault-sub" id="pwSub">Al desbloquear, queda abierto <b>para siempre</b><br>Recibes <b>500 monedas gratis</b> cada día</p>
-                <div class="vault-actions">
+                <div class="vl-fixed">
                   <button class="vault-play" id="pwUnlockBtn">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                     <span>Reproducir ahora</span>
@@ -252,8 +254,8 @@
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
                     <span>Ganar recompensas <b id="pwAdReward">+100</b> 🪙</span>
                   </button>
+                  <button class="vault-explain" id="pwExplainBtn">¿Cómo funciona? →</button>
                 </div>
-                <button class="vault-explain" id="pwExplainBtn">¿Cómo funciona? →</button>
               </div>
             </div>
             <!-- ══ COLUMNA DERECHA: MEMBRESÍA $1/mes (contenedor dorado) ══ -->
