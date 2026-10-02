@@ -5691,6 +5691,7 @@ function hidePaywall() { const v = document.getElementById('paywall'); if (v) v.
 function showPaywall(s, ep, result) { showVault(s, ep, result); }
 
 /* ═══════════════ 📺 ADWALL — anuncio con cuenta regresiva + clic obligatorio ═══════════════ */
+/* ═══════════════ 📺 ADWALL — anuncio con X cerrar + monedas volando ═══════════════ */
 function showAdwall(onDone) {
   const ad = document.getElementById('adwall');
   if (!ad) { if (onDone) onDone(); return; }
@@ -5709,16 +5710,16 @@ function showAdwall(onDone) {
   ad.classList.remove('hidden');
   wait.classList.add('hidden');
   reward.classList.add('hidden');
-  msg.innerHTML = `Haz <b>clic en el anuncio</b> para iniciar la cuenta regresiva de <b>${cfg.adDuration} segundos</b>`;
-  document.getElementById('adRewardAmt').textContent = `+${cfg.adReward} monedas ganadas`;
+  msg.innerHTML = `Haz <b>clic en el anuncio</b> para iniciar la cuenta de <b>${cfg.adDuration}s</b>`;
+  document.getElementById('adRewardAmt').textContent = `+${cfg.adReward} monedas`;
 
-  /* 📢 inyectar el banner REAL de Adsterra (iframe 300×250) */
+  /* 📢 inyectar el banner Adsterra 300×250 */
   if (bannerWrap && placeholder) {
     placeholder.style.display = 'none';
     bannerWrap.style.display = 'block';
     bannerWrap.innerHTML = '';
     const script = document.createElement('script');
-    script.text = `atOptions = { 'key':'ca475470056a53094594075d45570e27', 'format':'iframe', 'height':250, 'width':300, 'params':{} };`;
+    script.text = "atOptions = { 'key':'ca475470056a53094594075d45570e27', 'format':'iframe', 'height':250, 'width':300, 'params':{} };";
     bannerWrap.appendChild(script);
     const invoke = document.createElement('script');
     invoke.src = 'https://www.highrevenueformat.com/ca475470056a53094594075d45570e27/invoke.js';
@@ -5726,36 +5727,35 @@ function showAdwall(onDone) {
     bannerWrap.appendChild(invoke);
   }
 
-  /* estado del flujo */
-  let secondsLeft = cfg.adDuration;
-  let phase = 'waiting';      /* waiting → counting → post-click → reward */
+  let phase = 'waiting';        /* waiting → counting → post-click → reward */
   let timerId = null;
-
   const setCirc = pct => { ring.style.strokeDashoffset = String(119.4 * (1 - pct)); };
   setCirc(0);
-  num.textContent = secondsLeft;
+  num.textContent = cfg.adDuration;
 
-  /* ▶ EL CLIC EN EL BANNER INICIA LA CUENTA REGRESIVA */
-  const onBannerClick = () => {
+  /* ▶ el CLIC EN EL BANNER (no en el placeholder) INICIA la cuenta */
+  const startCountdown = () => {
     if (phase !== 'waiting') return;
     phase = 'counting';
     bannerWrap.style.borderColor = 'var(--acid)';
-    msg.innerHTML = '✅ <b>¡Clic registrado!</b> Espera que termine la cuenta regresiva…';
+    slot.style.borderColor = 'var(--acid)';
+    msg.innerHTML = '✅ <b>¡Clic registrado!</b> Espera la cuenta regresiva…';
+    let left = cfg.adDuration;
     timerId = setInterval(() => {
       if (phase !== 'counting') { clearInterval(timerId); return; }
-      secondsLeft--;
-      num.textContent = Math.max(0, secondsLeft);
-      setCirc((cfg.adDuration - secondsLeft) / cfg.adDuration);
-      if (secondsLeft <= 0) {
+      left--;
+      num.textContent = Math.max(0, left);
+      setCirc((cfg.adDuration - left) / cfg.adDuration);
+      if (left <= 0) {
         clearInterval(timerId);
         startPostClick();
       }
     }, 1000);
   };
-  /* escuchar clic en el área del banner (el iframe de Adsterra puede
-     interceptar el clic, pero el contenedor también lo detecta)       */
-  slot.onclick = onBannerClick;
-  if (bannerWrap) bannerWrap.onclick = onBannerClick;
+
+  /* escuchar el clic en el ÁREA del anuncio (banner + iframe) */
+  if (bannerWrap) bannerWrap.onclick = startCountdown;
+  if (slot) slot.onclick = startCountdown;
 
   /* 📅 fase post-clic: segundos extra */
   const startPostClick = () => {
@@ -5769,40 +5769,65 @@ function showAdwall(onDone) {
       waitNum.textContent = extra;
       if (extra <= 0) {
         clearInterval(extraTimer);
-        finish();
+        showReward();
       }
     }, 1000);
   };
 
-  /* 🪙 recompensa final */
-  const finish = () => {
+  /* 🪙 recompensa — monedas volando hacia el monedero */
+  const showReward = () => {
     phase = 'reward';
     wait.classList.add('hidden');
     msg.innerHTML = '';
-    COINS.earn();
     reward.classList.remove('hidden');
+
     document.getElementById('adCollectBtn').onclick = () => {
-      ad.classList.add('hidden');
-      if (onDone) onDone();
+      COINS.earn();
+      /* 🪙 ANIMACIÓN: monedas vuelan hacia la pastilla del monedero */
+      const pill = document.getElementById('coinsPill');
+      if (pill) {
+        const pillRect = pill.getBoundingClientRect();
+        const card = ad.querySelector('.ad-card');
+        const cardRect = card ? card.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 2 };
+        const n = Math.min(8, Math.ceil(cfg.adReward / 25));
+        for (let i = 0; i < n; i++) {
+          const c = document.createElement('div');
+          c.className = 'coin-fly';
+          c.textContent = '🪙';
+          c.style.left = (cardRect.left + cardRect.width / 2 + (Math.random() - .5) * 200) + 'px';
+          c.style.top = (cardRect.top + cardRect.height / 2 + (Math.random() - .5) * 100) + 'px';
+          c.style.setProperty('--fx', (pillRect.left + pillRect.width / 2 - (cardRect.left + cardRect.width / 2)) + 'px');
+          c.style.setProperty('--fy', (pillRect.top + pillRect.height / 2 - (cardRect.top + cardRect.height / 2)) + 'px');
+          c.style.animationDelay = (i * 0.08) + 's';
+          document.body.appendChild(c);
+          setTimeout(() => c.remove(), 1500 + i * 80);
+        }
+        pill.classList.add('glow');
+        setTimeout(() => pill.classList.remove('glow'), 3200);
+      }
+      /* cerrar la modal y volver */
+      setTimeout(() => {
+        ad.classList.add('hidden');
+        if (onDone) onDone();
+      }, 700);
     };
   };
 
-  /* ✕ CERRAR — si no terminó, confirmar que se va sin recompensa */
+  /* ✕ CERRAR — si no terminó, pedir confirmación */
   closeBtn.onclick = () => {
     if (phase === 'reward') {
       ad.classList.add('hidden');
       if (onDone) onDone();
       return;
     }
-    /* abandonando antes de tiempo → confirmar */
     if (typeof uiModal !== 'function') { ad.classList.add('hidden'); return; }
     uiModal({
-      icon: '⚠', title: '¿Abandonar el anuncio?', danger: true, okLabel: 'Sí, salir',
-      sub: `Si sales ahora <b>NO recibirás</b> las <b style="color:var(--acid)">+${cfg.adReward} monedas</b>.<br>¿Estás seguro?`,
+      icon: '⚠', title: '¿Cerrar el anuncio?', danger: true, okLabel: 'Sí, cerrar',
+      sub: `Si cierras ahora <b>NO recibirás</b> las <b style="color:var(--acid)">+${cfg.adReward} monedas</b>.<br>¿Seguro que quieres salir sin la recompensa?`,
     }).then(r => {
       if (r) {
         if (timerId) clearInterval(timerId);
-        phase = 'abandoned';
+        phase = 'closed';
         ad.classList.add('hidden');
       }
     }).catch(() => { });

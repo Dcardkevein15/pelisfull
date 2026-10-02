@@ -229,6 +229,13 @@
             <div class="vault-left">
               <div class="vl-card">
                 <div class="vl-scroll">
+                  <div class="vl-icon">
+                    <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6">
+                      <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+                      <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+                      <circle cx="12" cy="15.5" r="1.8" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </div>
                   <h2 id="pwTitle">🔒 Capítulo bloqueado</h2>
                 <div class="vault-meta">
                   <span class="vault-price">
@@ -273,11 +280,12 @@
           </div>
         </div>
 
-        <!-- 📺 overlay ANUNCIO — modal con banner Adsterra clickeable -->
+        <!-- 📺 overlay ANUNCIO — modal con banner Adsterra + X cerrar -->
         <div class="adwall hidden" id="adwall">
           <div class="ad-shade"></div>
           <div class="ad-card">
             <div class="ad-head">
+              <button class="ad-close" id="adCloseBtn" title="Cerrar anuncio">✕</button>
               <span class="ad-badge">📢 ANUNCIO</span>
               <div class="ad-timer" id="adTimer">
                 <svg viewBox="0 0 44 44" width="44" height="44">
@@ -287,25 +295,21 @@
                   <text id="adTimerNum" x="22" y="27" text-anchor="middle" font-size="15" font-weight="900" fill="var(--ink)">15</text>
                 </svg>
               </div>
-              <button class="ad-close" id="adCloseBtn" title="Cerrar anuncio">✕</button>
             </div>
-            <!-- banner Adsterra 300×250 — inyectado por app.js, CLIC AQUÍ = iniciar cuenta -->
             <div class="ad-slot" id="adSlot">
-              <div class="ad-banner-wrap" id="adBannerWrap" style="width:300px;height:250px;margin:0 auto;position:relative;cursor:pointer"></div>
+              <div class="ad-banner-wrap" id="adBannerWrap"></div>
               <div class="ad-placeholder" id="adPlaceholder">
-                <p>📢 Espacio publicitario</p>
-                <small>Toca el anuncio para comenzar</small>
+                <p>📢 Toca el anuncio</p>
+                <small>para iniciar la cuenta regresiva</small>
               </div>
             </div>
-            <div class="ad-msg" id="adMsg">Haz <b>clic en el anuncio</b> para iniciar la cuenta regresiva</div>
+            <div class="ad-msg" id="adMsg">Haz <b>clic en el anuncio</b> para iniciar</div>
             <div class="ad-wait hidden" id="adWait">✅ ¡Clic registrado! Espera <b id="adWaitNum">10</b> segundos más…</div>
             <div class="ad-reward hidden" id="adReward">
               <div class="ad-reward-icon">🪙</div>
-              <h3 id="adRewardAmt">+100 monedas ganadas</h3>
+              <h3 id="adRewardAmt">+100 monedas</h3>
               <button class="ad-collect" id="adCollectBtn">Reclamar recompensa</button>
             </div>
-          </div>
-        </div>
           </div>
         </div>
 
