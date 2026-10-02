@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1790893922058,
+ "v": 1790913253583,
  "by": "MortosPr #2968",
- "at": "2026-10-01T22:32:02.058Z",
- "n": 5785,
+ "at": "2026-10-02T03:54:13.583Z",
+ "n": 5806,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -44397,6 +44397,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/hoN0MKeFeE6toiKIu16PwB8cUSJ.jpg",
+   "tags": [],
    "clsManual": true,
    "hentai": false,
    "at": 1790890756669,
@@ -44767,6 +44768,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6211-2MCqBUXvmBdB.png",
+   "tags": [],
    "clsManual": true,
    "hentai": false,
    "at": 1790890869374,
@@ -44837,6 +44839,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14349-zvSfbgjZr4LW.jpg",
+   "tags": [],
    "clsManual": true,
    "hentai": false,
    "at": 1790891860494,
@@ -44977,6 +44980,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://image.tmdb.org/t/p/w500/iQreeWnckPZ0Rm9hs5t8Dum9IE0.jpg",
+   "tags": [],
    "clsManual": true,
    "hentai": false,
    "at": 1790892044903,
@@ -45247,6 +45251,7 @@
    "kind": "serie",
    "anime": true,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx171018-60q1B6GK2Ghb.jpg",
+   "tags": [],
    "clsManual": true,
    "hentai": false,
    "at": 1790892178983,
@@ -51381,17 +51386,6 @@
    "src": "iptv-org/c-do"
   },
   {
-   "id": "tv-colorvision-do",
-   "name": "Color Vision",
-   "logo": "https://i.imgur.com/rkgWToA.jpg",
-   "group": "General",
-   "url": "https://hls.tvabierta.net/hls/009.m3u8",
-   "epg": "ColorVision.do",
-   "cc": "do",
-   "quality": "1280p",
-   "src": "iptv-org/c-do"
-  },
-  {
    "id": "tv-colosaltv-cr",
    "name": "Colosal TV",
    "logo": "https://i.imgur.com/0DZB3eB.png",
@@ -52449,10 +52443,10 @@
   },
   {
    "id": "tv-disneychannel-us",
-   "name": "Disney Channel (United States) HD East",
+   "name": "Disney Channel (United States)",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/2024_Disney_Channel_text_logo.svg/960px-2024_Disney_Channel_text_logo.svg.png",
    "group": "Infantil",
-   "url": "http://4.30.180.36:8420/disneychannel/index.m3u8?token=test",
+   "url": "http://212.5.144.156/disney/index.m3u8",
    "epg": "DisneyChannel.us",
    "cc": "us",
    "quality": "720p",
@@ -54619,10 +54613,10 @@
    "name": "Guatevision",
    "logo": "https://i.imgur.com/mbmHPnO.png",
    "group": "Noticias",
-   "url": "https://mdstrm.com/live-stream-playlist/69f8df22a762c9b1ab3eabca.m3u8",
+   "url": "http://200.115.120.1:8000/play/ca066/index.m3u8",
    "epg": "Guatevision.gt",
    "cc": "gt",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/g-news"
   },
   {
@@ -73854,17 +73848,6 @@
    "src": "iptv-org/g-news"
   },
   {
-   "id": "tv-espnews-us",
-   "name": "ESPNews",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/ESPNews.svg/960px-ESPNews.svg.png",
-   "group": "News;Sports",
-   "url": "http://41.205.93.154/ESPNNEWS/index.m3u8",
-   "epg": "ESPNews.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-espresotv-ua",
    "name": "Espreso TV",
    "logo": "https://i.imgur.com/xNatV8K.png",
@@ -74078,10 +74061,10 @@
    "name": "Euronews Romania",
    "logo": "https://i.imgur.com/jUOVUXt.png",
    "group": "Noticias",
-   "url": "https://thor1.syndula1.cfd/ernews/usergenx6vkj8aqrnd.m3u8",
+   "url": "https://hls02ns.antenaplay.ro/hls/euronews-ro-sd/index.m3u8",
    "epg": "EuronewsRomania.ro",
    "cc": "ro",
-   "quality": "",
+   "quality": "576p",
    "src": "iptv-org/g-news"
   },
   {
@@ -81778,7 +81761,7 @@
    "name": "Prime (Syria)",
    "logo": "https://prime1tv.com/wp-content/uploads/2025/12/7-1.png",
    "group": "General;Sports",
-   "url": "https://mn-nl.mncdn.com/primetv/live/index.m3u8",
+   "url": "https://cdn.bestream.io/prime/prime.m3u8",
    "epg": "Prime.sy",
    "cc": "sy",
    "quality": "1080p",
@@ -82204,10 +82187,10 @@
   },
   {
    "id": "tv-sonysportsten5-in",
-   "name": "Sony Sports Ten 5 HD",
+   "name": "Sony Sports Ten 5",
    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_5/images/LOGO_HD/image.png",
    "group": "Deportes",
-   "url": "https://cloudplay-sonyliv.pages.dev/ten5hd.m3u8",
+   "url": "https://cloudplay-sonyliv.pages.dev/ten5.m3u8",
    "epg": "SonySportsTen5.in",
    "cc": "in",
    "quality": "1080p",
@@ -83755,7 +83738,7 @@
   },
   {
    "id": "tv-axnmovies-pt",
-   "name": "AXN Movies",
+   "name": "AXN Movies (Portugal)",
    "logo": "https://i.imgur.com/tJQckal.png",
    "group": "Películas",
    "url": "http://50.7.120.34:8080/AXN_BLACK/index.m3u8",
@@ -91773,17 +91756,6 @@
    "src": "iptv-org/g-series"
   },
   {
-   "id": "tv-tvpseriale-pl",
-   "name": "TVP Seriale",
-   "logo": "https://i.imgur.com/MuRtvXk.png",
-   "group": "Series",
-   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_TVPSERIALE.stream/playlist.m3u8",
-   "epg": "TVPSeriale.pl",
-   "cc": "pl",
-   "quality": "720p",
-   "src": "iptv-org/g-series"
-  },
-  {
    "id": "tv-tvrusplus-de",
    "name": "TVRUS+",
    "logo": "https://www.lyngsat.com/logo/tv/tt/tv-rus-plus-de.png",
@@ -92404,7 +92376,7 @@
    "name": "CBeebies (Poland)",
    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/16/CBeebies.svg/960px-CBeebies.svg.png",
    "group": "Infantil",
-   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_cbeebies.stream/playlist.m3u8",
+   "url": "https://xyktmobile00.s.gy/ticketview/49092",
    "epg": "CBeebies.pl",
    "cc": "pl",
    "quality": "576p",
@@ -96566,28 +96538,6 @@
    "epg": "EskaRockTV.pl",
    "cc": "pl",
    "quality": "",
-   "src": "iptv-org/g-music"
-  },
-  {
-   "id": "tv-eskatv-pl",
-   "name": "Eska TV",
-   "logo": "https://i.imgur.com/N0eH0Cg.png",
-   "group": "Música",
-   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_eskatv.stream/playlist.m3u8",
-   "epg": "EskaTV.pl",
-   "cc": "pl",
-   "quality": "1080p",
-   "src": "iptv-org/g-music"
-  },
-  {
-   "id": "tv-eskatvextra-pl",
-   "name": "Eska TV Extra",
-   "logo": "https://i.imgur.com/pZAFshQ.png",
-   "group": "Música",
-   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_eskatvextra.stream/playlist.m3u8",
-   "epg": "EskaTVExtra.pl",
-   "cc": "pl",
-   "quality": "1080p",
    "src": "iptv-org/g-music"
   },
   {
@@ -103459,10 +103409,10 @@
    "name": "ESNE TV",
    "logo": "https://i.imgur.com/bwAuFgx.png",
    "group": "Religioso",
-   "url": "http://168.196.127.137:6001/play/a071/index.m3u8",
+   "url": "http://190.217.66.92:8000/play/a0fp/index.m3u8",
    "epg": "ESNETV.us",
    "cc": "us",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/spa"
   },
   {
@@ -103552,17 +103502,6 @@
    "cc": "kr",
    "quality": "",
    "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-polsatfilm2-pl",
-   "name": "Polsat Film 2",
-   "logo": "https://i.imgur.com/19aDJjn.png",
-   "group": "Películas",
-   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_PolsatFilm2.stream/playlist.m3u8",
-   "epg": "PolsatFilm2.pl",
-   "cc": "pl",
-   "quality": "720p",
-   "src": "iptv-org/g-movies"
   },
   {
    "id": "tv-twentyseven-it",
@@ -104039,7 +103978,7 @@
   },
   {
    "id": "tv-starbharat-in",
-   "name": "Star Bharat HD",
+   "name": "Star Bharat (India) HD",
    "logo": "https://i.imgur.com/Q8ajPij.png",
    "group": "Noticias",
    "url": "http://51.75.127.199:3141/starbharathd/index.m3u8",
@@ -104412,6 +104351,325 @@
    "src": "iptv-org/g-doc"
   },
   {
+   "id": "tv-paramountnetwork-us",
+   "name": "Paramount Network",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Paramount_Network.svg/960px-Paramount_Network.svg.png",
+   "group": "Movies;Series",
+   "url": "http://193.254.245.162/PARAMOUNT-CHANNEL/index.m3u8",
+   "epg": "ParamountNetwork.us",
+   "cc": "us",
+   "quality": "432p",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-vh1-us",
+   "name": "VH1",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/VH1_logonew.svg/960px-VH1_logonew.svg.png",
+   "group": "Música",
+   "url": "http://193.254.245.162/VH1/index.m3u8",
+   "epg": "VH1.us",
+   "cc": "us",
+   "quality": "432p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-antena3-es",
+   "name": "Antena 3",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Logo_Antena_3_2025_%28Naranja%29.svg/960px-Logo_Antena_3_2025_%28Naranja%29.svg.png",
+   "group": "General",
+   "url": "https://cdn.stmify.com/zapitv/stream/ANTENA_3/test.mpd",
+   "epg": "Antena3.es",
+   "cc": "es",
+   "quality": "",
+   "src": "iptv-org/c-es"
+  },
+  {
+   "id": "tv-axn-es",
+   "name": "AXN (Spain)",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/AXN_logo_%282015%29.svg/960px-AXN_logo_%282015%29.svg.png",
+   "group": "Películas",
+   "url": "http://193.254.245.162/AXN/index.m3u8",
+   "epg": "AXN.es",
+   "cc": "es",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-axnmovies-es",
+   "name": "AXN Movies (Spain)",
+   "logo": "https://static.wikia.nocookie.net/logopedia/images/d/d2/AXN_Movies_logo.svg/revision/latest/scale-to-width-down/512",
+   "group": "Películas",
+   "url": "https://cdn.stmify.com/zapitv/stream/AXN_MOVIES/axn_white.mpd",
+   "epg": "AXNMovies.es",
+   "cc": "es",
+   "quality": "",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-azcorazon-mx",
+   "name": "Az Corazon",
+   "logo": "https://i.imgur.com/KIpSdQC.png",
+   "group": "Series",
+   "url": "http://200.115.120.1:8000/play/ca020/index.m3u8",
+   "epg": "AzCorazon.mx",
+   "cc": "mx",
+   "quality": "720p",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-canal12venadotuerto-ar",
+   "name": "Canal 12 Venado Tuerto (1080i)",
+   "logo": "https://i.imgur.com/b93YC0V.jpeg",
+   "group": "General",
+   "url": "https://nd106.republicaservers.com:4433/hls/diegologonitv/index.m3u8",
+   "epg": "Canal12VenadoTuerto.ar",
+   "cc": "ar",
+   "quality": "",
+   "src": "iptv-org/c-ar"
+  },
+  {
+   "id": "tv-clarocinema-mx",
+   "name": "Claro Cinema",
+   "logo": "https://i.imgur.com/SOLGQxQ.jpg",
+   "group": "Películas",
+   "url": "http://158.172.217.18:8000/play/a00d/index.m3u8",
+   "epg": "ClaroCinema.mx",
+   "cc": "mx",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-claromusicatv-co",
+   "name": "Claro Musica TV",
+   "logo": "https://i.imgur.com/vrSFUwv.png",
+   "group": "Música",
+   "url": "http://45.171.64.30:6060/play/a010",
+   "epg": "ClaroMusicaTV.co",
+   "cc": "co",
+   "quality": "1080p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-veacanal-gt",
+   "name": "Vea Canal",
+   "logo": "https://i.imgur.com/oPJlbNf.png",
+   "group": "Otros",
+   "url": "http://181.78.106.127:5000/play/ca090/index.m3u8",
+   "epg": "VeaCanal.gt",
+   "cc": "gt",
+   "quality": "720p",
+   "src": "iptv-org/spa"
+  },
+  {
+   "id": "tv-wapatv41-pr",
+   "name": "WAPA-TV 4.1",
+   "logo": "https://i.imgur.com/kqq7tD9.png",
+   "group": "General",
+   "url": "https://wapa-updater.onrender.com/WAPA-TV-4-1.m3u8",
+   "epg": "WAPATV41.pr",
+   "cc": "pr",
+   "quality": "1080p",
+   "src": "iptv-org/spa"
+  },
+  {
+   "id": "tv-mnadutv-in",
+   "name": "M Nadu TV",
+   "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/M_Nadu.png",
+   "group": "Noticias",
+   "url": "https://cloudcdnplayer.mslivestream.net/mslivecdn/mnadu/index.m3u8",
+   "epg": "MNaduTV.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-newsleader-in",
+   "name": "News Leader",
+   "logo": "https://img-cdn.publive.online/fit-in/360x280/filters:format(webp)/newsleaderlive/media/agency_attachments/2026/04/15/2026-04-15t100517555z-news-leader-640-480-1-sarvajeet-singh-chauhan-2026-04-15-15-35-17.png",
+   "group": "Noticias",
+   "url": "https://stream.ottlive.co.in/newsleader/index.m3u8",
+   "epg": "NewsLeader.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-tv7bharat-in",
+   "name": "TV7 Bharat",
+   "logo": "https://tv7bharat.tv/wp-content/uploads/2023/07/Logo-Bharat.jpg",
+   "group": "Noticias",
+   "url": "https://stream.ottlive.co.in/tv7bharat/index.m3u8",
+   "epg": "TV7Bharat.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-upnow-in",
+   "name": "UP NOW",
+   "logo": "https://papaji.freetvindia.com/media/channels/Upnow.png",
+   "group": "Noticias",
+   "url": "http://45.122.122.61:8080/UPNOW/video.m3u8",
+   "epg": "UPNOW.in",
+   "cc": "in",
+   "quality": "720p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-canalplussport-fr",
+   "name": "Canal+ Sport",
+   "logo": "https://i.imgur.com/EOXnU15.png",
+   "group": "Deportes",
+   "url": "http://tv.streambox.fr/live/testlivestream/testlivestream/31.m3u8",
+   "epg": "CanalPlusSport.fr",
+   "cc": "fr",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-golfplus-fr",
+   "name": "Golf +",
+   "logo": "https://i.imgur.com/WHnddkg.png",
+   "group": "Deportes",
+   "url": "http://tv.streambox.fr/live/testlivestream/testlivestream/49.m3u8",
+   "epg": "GolfPlus.fr",
+   "cc": "fr",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-filmmania-hu",
+   "name": "Film Mania",
+   "logo": "https://i.imgur.com/crhsomk.png",
+   "group": "Películas",
+   "url": "https://dokagents.site/live/filmmania/mono.m3u8",
+   "epg": "FilmMania.hu",
+   "cc": "hu",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-niledrama-eg",
+   "name": "Nile Drama",
+   "logo": "https://i.imgur.com/FasJFMM.png",
+   "group": "Películas",
+   "url": "http://185.9.2.18/chid_352/index.m3u8",
+   "epg": "NileDrama.eg",
+   "cc": "eg",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-telecineaction-br",
+   "name": "Telecine Action",
+   "logo": "https://i.imgur.com/BHYWG0h.png",
+   "group": "Películas",
+   "url": "http://46.151.196.223:14326/",
+   "epg": "TelecineAction.br",
+   "cc": "br",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-mcmpop-fr",
+   "name": "MCM Pop",
+   "logo": "https://i.imgur.com/j31lBL7.png",
+   "group": "Música",
+   "url": "http://193.254.245.162/MCM/index.m3u8",
+   "epg": "MCMPop.fr",
+   "cc": "fr",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-partymix-ro",
+   "name": "Party Mix HD",
+   "logo": "https://i.imgur.com/leF8AGo.png",
+   "group": "Música",
+   "url": "https://hls02ns.antenaplay.ro/hls/party-mix-hd/index.m3u8",
+   "epg": "PartyMix.ro",
+   "cc": "ro",
+   "quality": "1080p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-history-ro",
+   "name": "History (Romania)",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/History_%282021%29.svg/500px-History_%282021%29.svg.png",
+   "group": "Documentales",
+   "url": "https://dokagents.site/live/history/mono.m3u8",
+   "epg": "History.ro",
+   "cc": "ro",
+   "quality": "",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-colorvision-do",
+   "name": "Color Vision",
+   "logo": "https://i.imgur.com/rkgWToA.jpg",
+   "group": "General",
+   "url": "https://hls.tvabierta.net/hls/009.m3u8",
+   "epg": "ColorVision.do",
+   "cc": "do",
+   "quality": "1280p",
+   "src": "iptv-org/c-do"
+  },
+  {
+   "id": "tv-espnews-us",
+   "name": "ESPNews",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/ESPNews.svg/960px-ESPNews.svg.png",
+   "group": "News;Sports",
+   "url": "http://41.205.93.154/ESPNNEWS/index.m3u8",
+   "epg": "ESPNews.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-tvpseriale-pl",
+   "name": "TVP Seriale",
+   "logo": "https://i.imgur.com/MuRtvXk.png",
+   "group": "Series",
+   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_TVPSERIALE.stream/playlist.m3u8",
+   "epg": "TVPSeriale.pl",
+   "cc": "pl",
+   "quality": "720p",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-eskatv-pl",
+   "name": "Eska TV",
+   "logo": "https://i.imgur.com/N0eH0Cg.png",
+   "group": "Música",
+   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_eskatv.stream/playlist.m3u8",
+   "epg": "EskaTV.pl",
+   "cc": "pl",
+   "quality": "1080p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-eskatvextra-pl",
+   "name": "Eska TV Extra",
+   "logo": "https://i.imgur.com/pZAFshQ.png",
+   "group": "Música",
+   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_eskatvextra.stream/playlist.m3u8",
+   "epg": "EskaTVExtra.pl",
+   "cc": "pl",
+   "quality": "1080p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-polsatfilm2-pl",
+   "name": "Polsat Film 2",
+   "logo": "https://i.imgur.com/19aDJjn.png",
+   "group": "Películas",
+   "url": "https://lon1-y7p7cyzc7vdh.lolokoko.tv/f_PolsatFilm2.stream/playlist.m3u8",
+   "epg": "PolsatFilm2.pl",
+   "cc": "pl",
+   "quality": "720p",
+   "src": "iptv-org/g-movies"
+  },
+  {
    "id": "tv-premiersports1-ie",
    "name": "Premier Sports 1",
    "logo": "https://i.imgur.com/eOybZMU.png",
@@ -104509,28 +104767,6 @@
    "cc": "us",
    "quality": "1080p",
    "src": "iptv-org/g-series"
-  },
-  {
-   "id": "tv-paramountnetwork-us",
-   "name": "Paramount Network",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Paramount_Network.svg/960px-Paramount_Network.svg.png",
-   "group": "Movies;Series",
-   "url": "http://4.30.180.36:8420/paramount/index.m3u8?token=test",
-   "epg": "ParamountNetwork.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-series"
-  },
-  {
-   "id": "tv-vh1-us",
-   "name": "VH1",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/VH1_logonew.svg/960px-VH1_logonew.svg.png",
-   "group": "Música",
-   "url": "http://4.30.180.36:8420/vh1/index.m3u8?token=test",
-   "epg": "VH1.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-music"
   }
  ],
  "del": {
@@ -192660,6 +192896,981 @@
    "dest": "#/pelicula/oh-my-goddess",
    "t": "Oh My Goddess",
    "at": 1790890498286
+  },
+  "6934wh": {
+   "dest": "#/anime/zoids/1",
+   "t": "Zoids · E1",
+   "at": 1790913120125
+  },
+  "y42n89": {
+   "dest": "#/anime/zoids/2",
+   "t": "Zoids · E2",
+   "at": 1790913120125
+  },
+  "mvh4bk": {
+   "dest": "#/anime/zoids/3",
+   "t": "Zoids · E3",
+   "at": 1790913120125
+  },
+  "b3ccht": {
+   "dest": "#/anime/zoids/4",
+   "t": "Zoids · E4",
+   "at": 1790913120125
+  },
+  "x6zwas": {
+   "dest": "#/anime/zoids/5",
+   "t": "Zoids · E5",
+   "at": 1790913120125
+  },
+  "hs76fr": {
+   "dest": "#/anime/zoids/6",
+   "t": "Zoids · E6",
+   "at": 1790913120125
+  },
+  "xkzsgx": {
+   "dest": "#/anime/zoids/7",
+   "t": "Zoids · E7",
+   "at": 1790913120125
+  },
+  "smges2": {
+   "dest": "#/anime/zoids/8",
+   "t": "Zoids · E8",
+   "at": 1790913120125
+  },
+  "4p4rk4": {
+   "dest": "#/anime/zoids/9",
+   "t": "Zoids · E9",
+   "at": 1790913120125
+  },
+  "nxcngt": {
+   "dest": "#/anime/zoids/10",
+   "t": "Zoids · E10",
+   "at": 1790913120125
+  },
+  "cjdsev": {
+   "dest": "#/anime/zoids/11",
+   "t": "Zoids · E11",
+   "at": 1790913120125
+  },
+  "ashfhu": {
+   "dest": "#/anime/zoids/12",
+   "t": "Zoids · E12",
+   "at": 1790913120125
+  },
+  "qjrd4p": {
+   "dest": "#/anime/zoids/13",
+   "t": "Zoids · E13",
+   "at": 1790913120125
+  },
+  "bcsx62": {
+   "dest": "#/anime/zoids/14",
+   "t": "Zoids · E14",
+   "at": 1790913120125
+  },
+  "2xz9yn": {
+   "dest": "#/anime/zoids/15",
+   "t": "Zoids · E15",
+   "at": 1790913120125
+  },
+  "n7zz72": {
+   "dest": "#/anime/zoids/16",
+   "t": "Zoids · E16",
+   "at": 1790913120125
+  },
+  "yc35qp": {
+   "dest": "#/anime/zoids/17",
+   "t": "Zoids · E17",
+   "at": 1790913120125
+  },
+  "ehwba9": {
+   "dest": "#/anime/zoids/18",
+   "t": "Zoids · E18",
+   "at": 1790913120125
+  },
+  "n6uknp": {
+   "dest": "#/anime/zoids/19",
+   "t": "Zoids · E19",
+   "at": 1790913120125
+  },
+  "6nyqqj": {
+   "dest": "#/anime/zoids/20",
+   "t": "Zoids · E20",
+   "at": 1790913120125
+  },
+  "j4egmu": {
+   "dest": "#/anime/zoids/21",
+   "t": "Zoids · E21",
+   "at": 1790913120125
+  },
+  "ur66sm": {
+   "dest": "#/anime/zoids/22",
+   "t": "Zoids · E22",
+   "at": 1790913120125
+  },
+  "rpfnsy": {
+   "dest": "#/anime/zoids/23",
+   "t": "Zoids · E23",
+   "at": 1790913120125
+  },
+  "b8c73q": {
+   "dest": "#/anime/zoids/24",
+   "t": "Zoids · E24",
+   "at": 1790913120125
+  },
+  "qa5wpe": {
+   "dest": "#/anime/zoids/25",
+   "t": "Zoids · E25",
+   "at": 1790913120125
+  },
+  "4bzhqg": {
+   "dest": "#/anime/zoids/26",
+   "t": "Zoids · E26",
+   "at": 1790913120125
+  },
+  "2aaas5": {
+   "dest": "#/anime/zoids/27",
+   "t": "Zoids · E27",
+   "at": 1790913120125
+  },
+  "2sb2sa": {
+   "dest": "#/anime/zoids/28",
+   "t": "Zoids · E28",
+   "at": 1790913120125
+  },
+  "g8cebr": {
+   "dest": "#/anime/zoids/29",
+   "t": "Zoids · E29",
+   "at": 1790913120125
+  },
+  "efkgzd": {
+   "dest": "#/anime/zoids/30",
+   "t": "Zoids · E30",
+   "at": 1790913120125
+  },
+  "46xgum": {
+   "dest": "#/anime/zoids/31",
+   "t": "Zoids · E31",
+   "at": 1790913120125
+  },
+  "us4hbe": {
+   "dest": "#/anime/zoids/32",
+   "t": "Zoids · E32",
+   "at": 1790913120125
+  },
+  "5kc6k4": {
+   "dest": "#/anime/zoids/33",
+   "t": "Zoids · E33",
+   "at": 1790913120125
+  },
+  "qt6zxd": {
+   "dest": "#/anime/zoids/34",
+   "t": "Zoids · E34",
+   "at": 1790913120125
+  },
+  "z7cxba": {
+   "dest": "#/anime/zoids/35",
+   "t": "Zoids · E35",
+   "at": 1790913120125
+  },
+  "r5kcve": {
+   "dest": "#/anime/zoids/36",
+   "t": "Zoids · E36",
+   "at": 1790913120125
+  },
+  "rvwqa8": {
+   "dest": "#/anime/zoids/37",
+   "t": "Zoids · E37",
+   "at": 1790913120125
+  },
+  "7fdgpa": {
+   "dest": "#/anime/zoids/38",
+   "t": "Zoids · E38",
+   "at": 1790913120125
+  },
+  "tbgdwg": {
+   "dest": "#/anime/zoids/39",
+   "t": "Zoids · E39",
+   "at": 1790913120125
+  },
+  "hhcjyf": {
+   "dest": "#/anime/zoids/40",
+   "t": "Zoids · E40",
+   "at": 1790913120125
+  },
+  "uf9waz": {
+   "dest": "#/anime/zoids/41",
+   "t": "Zoids · E41",
+   "at": 1790913120125
+  },
+  "j343zc": {
+   "dest": "#/anime/zoids/42",
+   "t": "Zoids · E42",
+   "at": 1790913120125
+  },
+  "4msgnn": {
+   "dest": "#/anime/zoids/43",
+   "t": "Zoids · E43",
+   "at": 1790913120125
+  },
+  "j7dfya": {
+   "dest": "#/anime/zoids/44",
+   "t": "Zoids · E44",
+   "at": 1790913120125
+  },
+  "8ybkry": {
+   "dest": "#/anime/zoids/45",
+   "t": "Zoids · E45",
+   "at": 1790913120125
+  },
+  "fhuqcp": {
+   "dest": "#/anime/zoids/46",
+   "t": "Zoids · E46",
+   "at": 1790913120125
+  },
+  "6hmpjp": {
+   "dest": "#/anime/zoids/47",
+   "t": "Zoids · E47",
+   "at": 1790913120125
+  },
+  "u4wfxn": {
+   "dest": "#/anime/zoids/48",
+   "t": "Zoids · E48",
+   "at": 1790913120125
+  },
+  "vt4gak": {
+   "dest": "#/anime/zoids/49",
+   "t": "Zoids · E49",
+   "at": 1790913120125
+  },
+  "86eqe8": {
+   "dest": "#/anime/zoids/50",
+   "t": "Zoids · E50",
+   "at": 1790913120125
+  },
+  "tjwjve": {
+   "dest": "#/anime/zoids/51",
+   "t": "Zoids · E51",
+   "at": 1790913120125
+  },
+  "9aqa3a": {
+   "dest": "#/anime/zoids/52",
+   "t": "Zoids · E52",
+   "at": 1790913120125
+  },
+  "8j258k": {
+   "dest": "#/anime/zoids/53",
+   "t": "Zoids · E53",
+   "at": 1790913120125
+  },
+  "mswrdf": {
+   "dest": "#/anime/zoids/54",
+   "t": "Zoids · E54",
+   "at": 1790913120125
+  },
+  "dtsy4a": {
+   "dest": "#/anime/zoids/55",
+   "t": "Zoids · E55",
+   "at": 1790913120125
+  },
+  "9s9kmf": {
+   "dest": "#/anime/zoids/56",
+   "t": "Zoids · E56",
+   "at": 1790913120125
+  },
+  "jvhwm6": {
+   "dest": "#/anime/zoids/57",
+   "t": "Zoids · E57",
+   "at": 1790913120125
+  },
+  "cenf7x": {
+   "dest": "#/anime/zoids/58",
+   "t": "Zoids · E58",
+   "at": 1790913120125
+  },
+  "dpskuz": {
+   "dest": "#/anime/zoids/59",
+   "t": "Zoids · E59",
+   "at": 1790913120125
+  },
+  "brgqh7": {
+   "dest": "#/anime/zoids/60",
+   "t": "Zoids · E60",
+   "at": 1790913120125
+  },
+  "hpbyc4": {
+   "dest": "#/anime/zoids/61",
+   "t": "Zoids · E61",
+   "at": 1790913120125
+  },
+  "ce3dpf": {
+   "dest": "#/anime/zoids/62",
+   "t": "Zoids · E62",
+   "at": 1790913120125
+  },
+  "g76bsh": {
+   "dest": "#/anime/zoids/63",
+   "t": "Zoids · E63",
+   "at": 1790913120125
+  },
+  "66uu7f": {
+   "dest": "#/anime/zoids/64",
+   "t": "Zoids · E64",
+   "at": 1790913120125
+  },
+  "f7ddkt": {
+   "dest": "#/anime/zoids/65",
+   "t": "Zoids · E65",
+   "at": 1790913120125
+  },
+  "zupmgj": {
+   "dest": "#/anime/zoids/66",
+   "t": "Zoids · E66",
+   "at": 1790913120125
+  },
+  "g86vty": {
+   "dest": "#/anime/zoids/67",
+   "t": "Zoids · E67",
+   "at": 1790913120125
+  },
+  "ugupcp": {
+   "dest": "#/anime/zoids/68",
+   "t": "Zoids · E68",
+   "at": 1790913120125
+  },
+  "6vyvq2": {
+   "dest": "#/anime/zoids/69",
+   "t": "Zoids · E69",
+   "at": 1790913120125
+  },
+  "xxw22e": {
+   "dest": "#/anime/zoids/70",
+   "t": "Zoids · E70",
+   "at": 1790913120125
+  },
+  "2gcvcs": {
+   "dest": "#/anime/zoids/71",
+   "t": "Zoids · E71",
+   "at": 1790913120125
+  },
+  "6e5eh7": {
+   "dest": "#/anime/tokyo-magnitude-8-0/1",
+   "t": "Tokyo Magnitude 8.0 · E1",
+   "at": 1790913120125
+  },
+  "tcg8jf": {
+   "dest": "#/anime/tokyo-magnitude-8-0/2",
+   "t": "Tokyo Magnitude 8.0 · E2",
+   "at": 1790913120125
+  },
+  "qgr7uc": {
+   "dest": "#/anime/tokyo-magnitude-8-0/3",
+   "t": "Tokyo Magnitude 8.0 · E3",
+   "at": 1790913120125
+  },
+  "utv4g7": {
+   "dest": "#/anime/tokyo-magnitude-8-0/4",
+   "t": "Tokyo Magnitude 8.0 · E4",
+   "at": 1790913120125
+  },
+  "4dedzn": {
+   "dest": "#/anime/tokyo-magnitude-8-0/5",
+   "t": "Tokyo Magnitude 8.0 · E5",
+   "at": 1790913120125
+  },
+  "fgz42q": {
+   "dest": "#/anime/tokyo-magnitude-8-0/6",
+   "t": "Tokyo Magnitude 8.0 · E6",
+   "at": 1790913120125
+  },
+  "3km4ss": {
+   "dest": "#/anime/tokyo-magnitude-8-0/7",
+   "t": "Tokyo Magnitude 8.0 · E7",
+   "at": 1790913120125
+  },
+  "r7wsvn": {
+   "dest": "#/anime/tokyo-magnitude-8-0/8",
+   "t": "Tokyo Magnitude 8.0 · E8",
+   "at": 1790913120125
+  },
+  "trgz5f": {
+   "dest": "#/anime/tokyo-magnitude-8-0/9",
+   "t": "Tokyo Magnitude 8.0 · E9",
+   "at": 1790913120125
+  },
+  "sva3xw": {
+   "dest": "#/anime/tokyo-magnitude-8-0/10",
+   "t": "Tokyo Magnitude 8.0 · E10",
+   "at": 1790913120125
+  },
+  "7m3qmy": {
+   "dest": "#/anime/tokyo-magnitude-8-0/11",
+   "t": "Tokyo Magnitude 8.0 · E11",
+   "at": 1790913120125
+  },
+  "8gjbsm": {
+   "dest": "#/anime/little-witch-academia/1",
+   "t": "Little Witch Academia · E1",
+   "at": 1790913120125
+  },
+  "u3tzhq": {
+   "dest": "#/anime/little-witch-academia/2",
+   "t": "Little Witch Academia · E2",
+   "at": 1790913120125
+  },
+  "mqk26h": {
+   "dest": "#/anime/little-witch-academia/3",
+   "t": "Little Witch Academia · E3",
+   "at": 1790913120125
+  },
+  "52yn62": {
+   "dest": "#/anime/little-witch-academia/4",
+   "t": "Little Witch Academia · E4",
+   "at": 1790913120125
+  },
+  "24h6tp": {
+   "dest": "#/anime/little-witch-academia/5",
+   "t": "Little Witch Academia · E5",
+   "at": 1790913120125
+  },
+  "78wsfn": {
+   "dest": "#/anime/little-witch-academia/6",
+   "t": "Little Witch Academia · E6",
+   "at": 1790913120125
+  },
+  "e98f2d": {
+   "dest": "#/anime/little-witch-academia/7",
+   "t": "Little Witch Academia · E7",
+   "at": 1790913120125
+  },
+  "k98g4y": {
+   "dest": "#/anime/little-witch-academia/8",
+   "t": "Little Witch Academia · E8",
+   "at": 1790913120125
+  },
+  "hmkzdz": {
+   "dest": "#/anime/little-witch-academia/9",
+   "t": "Little Witch Academia · E9",
+   "at": 1790913120125
+  },
+  "qxdsad": {
+   "dest": "#/anime/little-witch-academia/10",
+   "t": "Little Witch Academia · E10",
+   "at": 1790913120125
+  },
+  "ag3s5m": {
+   "dest": "#/anime/little-witch-academia/11",
+   "t": "Little Witch Academia · E11",
+   "at": 1790913120125
+  },
+  "c38233": {
+   "dest": "#/anime/little-witch-academia/12",
+   "t": "Little Witch Academia · E12",
+   "at": 1790913120125
+  },
+  "u9q2bm": {
+   "dest": "#/anime/little-witch-academia/13",
+   "t": "Little Witch Academia · E13",
+   "at": 1790913120125
+  },
+  "3n64kh": {
+   "dest": "#/anime/little-witch-academia/14",
+   "t": "Little Witch Academia · E14",
+   "at": 1790913120125
+  },
+  "cfjvqj": {
+   "dest": "#/anime/little-witch-academia/15",
+   "t": "Little Witch Academia · E15",
+   "at": 1790913120125
+  },
+  "gzzwjt": {
+   "dest": "#/anime/little-witch-academia/16",
+   "t": "Little Witch Academia · E16",
+   "at": 1790913120125
+  },
+  "bk3qzs": {
+   "dest": "#/anime/little-witch-academia/17",
+   "t": "Little Witch Academia · E17",
+   "at": 1790913120125
+  },
+  "v43yaj": {
+   "dest": "#/anime/little-witch-academia/18",
+   "t": "Little Witch Academia · E18",
+   "at": 1790913120125
+  },
+  "qp3jkm": {
+   "dest": "#/anime/little-witch-academia/19",
+   "t": "Little Witch Academia · E19",
+   "at": 1790913120125
+  },
+  "qpt6nm": {
+   "dest": "#/anime/little-witch-academia/20",
+   "t": "Little Witch Academia · E20",
+   "at": 1790913120125
+  },
+  "b8zbj5": {
+   "dest": "#/anime/little-witch-academia/21",
+   "t": "Little Witch Academia · E21",
+   "at": 1790913120125
+  },
+  "s8mpta": {
+   "dest": "#/anime/little-witch-academia/22",
+   "t": "Little Witch Academia · E22",
+   "at": 1790913120125
+  },
+  "3fur7d": {
+   "dest": "#/anime/little-witch-academia/23",
+   "t": "Little Witch Academia · E23",
+   "at": 1790913120125
+  },
+  "sz2tmq": {
+   "dest": "#/anime/little-witch-academia/24",
+   "t": "Little Witch Academia · E24",
+   "at": 1790913120125
+  },
+  "6madkt": {
+   "dest": "#/anime/little-witch-academia/25",
+   "t": "Little Witch Academia · E25",
+   "at": 1790913120125
+  },
+  "4ze3bs": {
+   "dest": "#/anime/magical-doremi/1",
+   "t": "Magical DoReMi · E1",
+   "at": 1790913120125
+  },
+  "4ws62y": {
+   "dest": "#/anime/magical-doremi/2",
+   "t": "Magical DoReMi · E2",
+   "at": 1790913120125
+  },
+  "6mnx54": {
+   "dest": "#/anime/magical-doremi/3",
+   "t": "Magical DoReMi · E3",
+   "at": 1790913120125
+  },
+  "wkk634": {
+   "dest": "#/anime/magical-doremi/4",
+   "t": "Magical DoReMi · E4",
+   "at": 1790913120125
+  },
+  "wksa74": {
+   "dest": "#/anime/magical-doremi/5",
+   "t": "Magical DoReMi · E5",
+   "at": 1790913120125
+  },
+  "jfsr5z": {
+   "dest": "#/anime/magical-doremi/6",
+   "t": "Magical DoReMi · E6",
+   "at": 1790913120125
+  },
+  "tx8w72": {
+   "dest": "#/anime/magical-doremi/7",
+   "t": "Magical DoReMi · E7",
+   "at": 1790913120125
+  },
+  "umup9v": {
+   "dest": "#/anime/magical-doremi/8",
+   "t": "Magical DoReMi · E8",
+   "at": 1790913120125
+  },
+  "uzrcgv": {
+   "dest": "#/anime/magical-doremi/9",
+   "t": "Magical DoReMi · E9",
+   "at": 1790913120125
+  },
+  "2w9vg7": {
+   "dest": "#/anime/magical-doremi/10",
+   "t": "Magical DoReMi · E10",
+   "at": 1790913120125
+  },
+  "5u9k2e": {
+   "dest": "#/anime/magical-doremi/11",
+   "t": "Magical DoReMi · E11",
+   "at": 1790913120125
+  },
+  "apdat9": {
+   "dest": "#/anime/magical-doremi/12",
+   "t": "Magical DoReMi · E12",
+   "at": 1790913120125
+  },
+  "qt5z38": {
+   "dest": "#/anime/magical-doremi/13",
+   "t": "Magical DoReMi · E13",
+   "at": 1790913120125
+  },
+  "2te4x3": {
+   "dest": "#/anime/magical-doremi/14",
+   "t": "Magical DoReMi · E14",
+   "at": 1790913120125
+  },
+  "hw6kws": {
+   "dest": "#/anime/magical-doremi/15",
+   "t": "Magical DoReMi · E15",
+   "at": 1790913120125
+  },
+  "n5exwt": {
+   "dest": "#/anime/magical-doremi/16",
+   "t": "Magical DoReMi · E16",
+   "at": 1790913120125
+  },
+  "yuaeu3": {
+   "dest": "#/anime/magical-doremi/17",
+   "t": "Magical DoReMi · E17",
+   "at": 1790913120125
+  },
+  "2xzvcr": {
+   "dest": "#/anime/magical-doremi/18",
+   "t": "Magical DoReMi · E18",
+   "at": 1790913120125
+  },
+  "vzvpdm": {
+   "dest": "#/anime/magical-doremi/19",
+   "t": "Magical DoReMi · E19",
+   "at": 1790913120125
+  },
+  "f7fk59": {
+   "dest": "#/anime/magical-doremi/20",
+   "t": "Magical DoReMi · E20",
+   "at": 1790913120125
+  },
+  "btq93q": {
+   "dest": "#/anime/magical-doremi/21",
+   "t": "Magical DoReMi · E21",
+   "at": 1790913120125
+  },
+  "gma745": {
+   "dest": "#/anime/magical-doremi/22",
+   "t": "Magical DoReMi · E22",
+   "at": 1790913120125
+  },
+  "7jrcvk": {
+   "dest": "#/anime/magical-doremi/23",
+   "t": "Magical DoReMi · E23",
+   "at": 1790913120125
+  },
+  "qauvrk": {
+   "dest": "#/anime/magical-doremi/24",
+   "t": "Magical DoReMi · E24",
+   "at": 1790913120125
+  },
+  "whqbfu": {
+   "dest": "#/anime/magical-doremi/25",
+   "t": "Magical DoReMi · E25",
+   "at": 1790913120125
+  },
+  "texjrq": {
+   "dest": "#/anime/magical-doremi/26",
+   "t": "Magical DoReMi · E26",
+   "at": 1790913120125
+  },
+  "4t4887": {
+   "dest": "#/anime/magical-doremi/27",
+   "t": "Magical DoReMi · E27",
+   "at": 1790913120125
+  },
+  "69qeaq": {
+   "dest": "#/anime/magical-doremi/28",
+   "t": "Magical DoReMi · E28",
+   "at": 1790913120125
+  },
+  "uuun8s": {
+   "dest": "#/anime/magical-doremi/29",
+   "t": "Magical DoReMi · E29",
+   "at": 1790913120125
+  },
+  "wpt8hq": {
+   "dest": "#/anime/magical-doremi/30",
+   "t": "Magical DoReMi · E30",
+   "at": 1790913120125
+  },
+  "k8pgje": {
+   "dest": "#/anime/magical-doremi/31",
+   "t": "Magical DoReMi · E31",
+   "at": 1790913120125
+  },
+  "asvkya": {
+   "dest": "#/anime/magical-doremi/32",
+   "t": "Magical DoReMi · E32",
+   "at": 1790913120125
+  },
+  "bap97x": {
+   "dest": "#/anime/magical-doremi/33",
+   "t": "Magical DoReMi · E33",
+   "at": 1790913120125
+  },
+  "m2sqyb": {
+   "dest": "#/anime/magical-doremi/34",
+   "t": "Magical DoReMi · E34",
+   "at": 1790913120125
+  },
+  "q9859z": {
+   "dest": "#/anime/magical-doremi/35",
+   "t": "Magical DoReMi · E35",
+   "at": 1790913120125
+  },
+  "t6h6dx": {
+   "dest": "#/anime/magical-doremi/36",
+   "t": "Magical DoReMi · E36",
+   "at": 1790913120125
+  },
+  "cw9dv8": {
+   "dest": "#/anime/magical-doremi/37",
+   "t": "Magical DoReMi · E37",
+   "at": 1790913120125
+  },
+  "8j3wau": {
+   "dest": "#/anime/magical-doremi/38",
+   "t": "Magical DoReMi · E38",
+   "at": 1790913120125
+  },
+  "kbrs95": {
+   "dest": "#/anime/magical-doremi/39",
+   "t": "Magical DoReMi · E39",
+   "at": 1790913120125
+  },
+  "8dkywr": {
+   "dest": "#/anime/magical-doremi/40",
+   "t": "Magical DoReMi · E40",
+   "at": 1790913120125
+  },
+  "bzvky7": {
+   "dest": "#/anime/magical-doremi/41",
+   "t": "Magical DoReMi · E41",
+   "at": 1790913120125
+  },
+  "2wueye": {
+   "dest": "#/anime/magical-doremi/42",
+   "t": "Magical DoReMi · E42",
+   "at": 1790913120125
+  },
+  "7zvkkf": {
+   "dest": "#/anime/magical-doremi/43",
+   "t": "Magical DoReMi · E43",
+   "at": 1790913120125
+  },
+  "2p2jrp": {
+   "dest": "#/anime/magical-doremi/44",
+   "t": "Magical DoReMi · E44",
+   "at": 1790913120125
+  },
+  "7kzzjt": {
+   "dest": "#/anime/magical-doremi/45",
+   "t": "Magical DoReMi · E45",
+   "at": 1790913120125
+  },
+  "q42g4v": {
+   "dest": "#/anime/magical-doremi/46",
+   "t": "Magical DoReMi · E46",
+   "at": 1790913120125
+  },
+  "6nw7ad": {
+   "dest": "#/anime/magical-doremi/47",
+   "t": "Magical DoReMi · E47",
+   "at": 1790913120125
+  },
+  "b9pm2h": {
+   "dest": "#/anime/magical-doremi/48",
+   "t": "Magical DoReMi · E48",
+   "at": 1790913120125
+  },
+  "cthrj4": {
+   "dest": "#/anime/magical-doremi/49",
+   "t": "Magical DoReMi · E49",
+   "at": 1790913120125
+  },
+  "bnh6p6": {
+   "dest": "#/anime/magical-doremi/50",
+   "t": "Magical DoReMi · E50",
+   "at": 1790913120125
+  },
+  "q4sqhx": {
+   "dest": "#/anime/magical-doremi/51",
+   "t": "Magical DoReMi · E51",
+   "at": 1790913120125
+  },
+  "mrk27j": {
+   "dest": "#/anime/dandadan/1",
+   "t": "Dandadan · E1",
+   "at": 1790913120125
+  },
+  "bvtkej": {
+   "dest": "#/anime/dandadan/2",
+   "t": "Dandadan · E2",
+   "at": 1790913120125
+  },
+  "77gzmk": {
+   "dest": "#/anime/dandadan/3",
+   "t": "Dandadan · E3",
+   "at": 1790913120125
+  },
+  "9yzt8p": {
+   "dest": "#/anime/dandadan/4",
+   "t": "Dandadan · E4",
+   "at": 1790913120125
+  },
+  "jbqds6": {
+   "dest": "#/anime/dandadan/5",
+   "t": "Dandadan · E5",
+   "at": 1790913120125
+  },
+  "fd8eqc": {
+   "dest": "#/anime/dandadan/6",
+   "t": "Dandadan · E6",
+   "at": 1790913120125
+  },
+  "au47fd": {
+   "dest": "#/anime/dandadan/7",
+   "t": "Dandadan · E7",
+   "at": 1790913120125
+  },
+  "87nd7k": {
+   "dest": "#/anime/dandadan/8",
+   "t": "Dandadan · E8",
+   "at": 1790913120125
+  },
+  "n4ytfb": {
+   "dest": "#/anime/dandadan/9",
+   "t": "Dandadan · E9",
+   "at": 1790913120125
+  },
+  "kuc9wt": {
+   "dest": "#/anime/dandadan/10",
+   "t": "Dandadan · E10",
+   "at": 1790913120125
+  },
+  "bc5uqy": {
+   "dest": "#/anime/dandadan/11",
+   "t": "Dandadan · E11",
+   "at": 1790913120125
+  },
+  "mnqm5e": {
+   "dest": "#/anime/dandadan/12",
+   "t": "Dandadan · E12",
+   "at": 1790913120125
+  },
+  "rx7pr6": {
+   "dest": "#/anime/dandadan/13",
+   "t": "Dandadan · E13",
+   "at": 1790913120125
+  },
+  "spd8fn": {
+   "dest": "#/anime/dandadan/14",
+   "t": "Dandadan · E14",
+   "at": 1790913120125
+  },
+  "qa77ee": {
+   "dest": "#/anime/dandadan/15",
+   "t": "Dandadan · E15",
+   "at": 1790913120125
+  },
+  "2j23mt": {
+   "dest": "#/anime/dandadan/16",
+   "t": "Dandadan · E16",
+   "at": 1790913120125
+  },
+  "9wf4mw": {
+   "dest": "#/anime/dandadan/17",
+   "t": "Dandadan · E17",
+   "at": 1790913120125
+  },
+  "67w34e": {
+   "dest": "#/anime/dandadan/18",
+   "t": "Dandadan · E18",
+   "at": 1790913120125
+  },
+  "gngw3j": {
+   "dest": "#/anime/dandadan/19",
+   "t": "Dandadan · E19",
+   "at": 1790913120125
+  },
+  "ugwxd4": {
+   "dest": "#/anime/dandadan/20",
+   "t": "Dandadan · E20",
+   "at": 1790913120125
+  },
+  "cvb5rf": {
+   "dest": "#/anime/dandadan/21",
+   "t": "Dandadan · E21",
+   "at": 1790913120125
+  },
+  "s67rty": {
+   "dest": "#/anime/dandadan/22",
+   "t": "Dandadan · E22",
+   "at": 1790913120125
+  },
+  "z9kwwk": {
+   "dest": "#/anime/dandadan/23",
+   "t": "Dandadan · E23",
+   "at": 1790913120125
+  },
+  "cd3tg7": {
+   "dest": "#/anime/dandadan/24",
+   "t": "Dandadan · E24",
+   "at": 1790913120125
+  },
+  "wgff7k": {
+   "dest": "#/anime/dandadan/25",
+   "t": "Dandadan · E25",
+   "at": 1790913120125
+  },
+  "wxbf4x": {
+   "dest": "#/anime/dandadan/26",
+   "t": "Dandadan · E26",
+   "at": 1790913120125
+  },
+  "gsfw49": {
+   "dest": "#/anime/dandadan/27",
+   "t": "Dandadan · E27",
+   "at": 1790913120125
+  },
+  "rmv5yd": {
+   "dest": "#/anime/dandadan/28",
+   "t": "Dandadan · E28",
+   "at": 1790913120125
+  },
+  "nqf4u9": {
+   "dest": "#/anime/dandadan/29",
+   "t": "Dandadan · E29",
+   "at": 1790913120125
+  },
+  "ngbnfd": {
+   "dest": "#/anime/dandadan/30",
+   "t": "Dandadan · E30",
+   "at": 1790913120125
+  },
+  "8zhjbs": {
+   "dest": "#/anime/dandadan/31",
+   "t": "Dandadan · E31",
+   "at": 1790913120125
+  },
+  "ehyr9h": {
+   "dest": "#/anime/dandadan/32",
+   "t": "Dandadan · E32",
+   "at": 1790913120125
+  },
+  "9mb4ny": {
+   "dest": "#/anime/dandadan/33",
+   "t": "Dandadan · E33",
+   "at": 1790913120125
+  },
+  "femxmu": {
+   "dest": "#/anime/dandadan/34",
+   "t": "Dandadan · E34",
+   "at": 1790913120125
+  },
+  "9nnnps": {
+   "dest": "#/anime/dandadan/35",
+   "t": "Dandadan · E35",
+   "at": 1790913120125
+  },
+  "k2v4dp": {
+   "dest": "#/anime/dandadan/36",
+   "t": "Dandadan · E36",
+   "at": 1790913120125
+  },
+  "w39rfw": {
+   "dest": "#/anime/dandadan/37",
+   "t": "Dandadan · E37",
+   "at": 1790913120125
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -192672,5 +193883,5 @@
   "adClickExtra": 10,
   "adRequireClick": true
  },
- "sig": "yN4Rm2Y2ciUNbC88b0jKzEiFW8a3RDG/n/Psw9ZUL1MWrf+j6LIu+zjhpPZ6tTZggHucgHEi6lIybHf9TJwfaA=="
+ "sig": "J/84Kl8L3F3Tbxrj3+qI7RPpCvILjZdlKT7rMRJ5uXPlV3ssi+HKL6ReFcWPb7eZFlj8bQZS3HRYLrwL5W4Lqg=="
 }
