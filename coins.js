@@ -76,17 +76,11 @@ const COINS = (function () {
       const j = await r.json();
       if (j.cfg) { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
       if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); }
-      if (j.unlockLeft) {
-        /* MERGE: solo AÑADIR desbloqueos del servidor que NO existan
-           localmente. NUNCA sobreescribir los que ya están (el timestamp
-           local se puso cuando el usuario pagó — es el correcto).     */
-        for (const [k, days] of Object.entries(j.unlockLeft)) {
-          if (!unlocked[k] || (Date.now() - unlocked[k]) > unlockMs()) {
-            unlocked[k] = Date.now() + days * 86400000 - unlockMs();
-          }
-        }
-        persistUnlocked();
-      }
+      /* 🚫 NO sincronizar desbloqueos desde el servidor:
+         localStorage local es la ÚNICA fuente de verdad para los
+         desbloqueos. El servidor solo gestiona el SALDO de monedas.
+         Esto elimina TODA posibilidad de que el servidor borre o
+         corrompa un desbloqueo que el usuario ya pagó.          */
       return j;
     } catch (e) { return null; }
   }
