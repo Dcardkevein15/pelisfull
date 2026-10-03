@@ -3013,7 +3013,7 @@ function isStaff() {
   } catch (e) { return true; }
 }
 
-async function loadEpisode(epN, autoplayNow = true) {
+function loadEpisode(epN, autoplayNow = true) {
   const s = getSeries(current.seriesId);
   if (!s) return;
   const ep = s.episodes.find(e => e.n === epN);
@@ -3040,13 +3040,13 @@ async function loadEpisode(epN, autoplayNow = true) {
   els.flagBtn.classList.toggle('hidden', !ep.url);
   renderEpisodes();
 
-  /* ── 🪙 PAYWALL: si el usuario no es staff y el cap no está desbloqueado ── */
+  /* ── 🪙 PAYWALL: check SÍNCRONO con la caché local (que ya fue
+     guardada por confirmUnlock → persistUnlocked). El servidor
+     se consulta en background para sincronizar, pero la decisión
+     inmediata usa la caché local — sin awaits, sin latencia.   ── */
   const PAYWALL_ON = true;
   if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
-    /* checkAsync: primero caché local, luego servidor — nunca muestra
-       bóveda si el capítulo ya fue desbloqueado (aunque el localStorage
-       local no lo tenga, el servidor sí)                                */
-    const result = await COINS.checkAsync(s.id, ep.n, s);
+    const result = COINS.pay(s.id, ep.n, s);   /* check() síncrono con caché local */
     if (!result.ok) {
       showVault(s, ep);
       return;
@@ -7155,8 +7155,12 @@ if (window.XAUTH) {
     /* 🔗 cuando el catálogo disuelve un stub compartido, apuntamos la vista a la serie real */
     onCatalogRefreshSignal: () => {
       /* si hay un capítulo activo, lo recargamos con la URL que ya trae
-         el catálogo (transforma "sin URL" en video en vivo al instante) */
-      if (current.seriesId && current.ep != null) {
+         el catálogo (transforma "sin URL" en video en vivo al instante)
+         — PERO solo si NO hay bóveda visible (si el usuario está viendo
+         el candado, no recargar el video detrás de él)                   */
+      const vaultEl = document.getElementById('paywall');
+      const vaultVisible = vaultEl && !vaultEl.classList.contains('hidden');
+      if (!vaultVisible && current.seriesId && current.ep != null) {
         const s = getSeries(current.seriesId);
         if (s) {
           const ep = s.episodes.find(e => e.n === current.ep);
