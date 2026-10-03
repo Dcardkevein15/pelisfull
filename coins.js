@@ -21,6 +21,7 @@ const COINS = (function () {
     adDuration: 15,
     adClickExtra: 10,
     adRequireClick: true,
+    unlockDays: 7,
   };
   let cfg = { ...DEFAULTS };
   try { const c = JSON.parse(localStorage.getItem(LS_KEY + '-cfg') || 'null'); if (c) cfg = { ...cfg, ...c }; } catch (e) { }
@@ -41,17 +42,17 @@ const COINS = (function () {
   try { unlocked = JSON.parse(localStorage.getItem(LS_UNLOCKED) || '{}'); } catch (e) { }
   const persistUnlocked = () => { try { localStorage.setItem(LS_UNLOCKED, JSON.stringify(unlocked)); } catch (e) { } };
   const uk = (sid, epN) => `${sid}:${epN}`;
-  const UNLOCK_MS = 7 * 86400000;
+  const unlockMs = () => (cfg.unlockDays || 7) * 86400000;
   const isUnlocked = (sid, epN) => {
     const at = unlocked[uk(sid, epN)];
     if (!at) return false;
-    if (Date.now() - at > UNLOCK_MS) { delete unlocked[uk(sid, epN)]; persistUnlocked(); return false; }
+    if (Date.now() - at > unlockMs()) { delete unlocked[uk(sid, epN)]; persistUnlocked(); return false; }
     return true;
   };
   const unlockTimeLeft = (sid, epN) => {
     const at = unlocked[uk(sid, epN)];
     if (!at) return 0;
-    const left = UNLOCK_MS - (Date.now() - at);
+    const left = unlockMs() - (Date.now() - at);
     return left > 0 ? Math.ceil(left / 86400000) : 0;
   };
 
@@ -137,7 +138,7 @@ const COINS = (function () {
   function applyRemoteCfg(remote) {
     if (!remote || typeof remote !== 'object') return false;
     let ch = false;
-    for (const k of ['dailyCoins','priceAnime','priceMovie','adReward','adDuration','adClickExtra','adRequireClick']) {
+    for (const k of ['dailyCoins','priceAnime','priceMovie','adReward','adDuration','adClickExtra','adRequireClick','unlockDays']) {
       if (remote[k] !== undefined && cfg[k] !== remote[k]) { cfg[k] = remote[k]; ch = true; }
     }
     if (ch) saveCfg();

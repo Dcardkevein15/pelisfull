@@ -3020,25 +3020,39 @@ function loadEpisode(epN, autoplayNow = true) {
   if (!ep) return;
   current.ep = epN;
 
-  /* 🪙 PAYWALL: el reproductor se CONVIERTE en caja fuerte.
-     Admin/Moderadores NUNCA pagan — solo usuarios normales.        */
+  /* ── SIEMPRE, con o sin candado: ── */
+  /* 1. subir al reproductor al instante */
+  scrollToPlayerInstant();
+  /* 2. detener el video anterior (que no siga sonando en el fondo) */
+  destroyHls();
+  els.video.pause();
+  els.video.removeAttribute('src');
+  els.video.load();
+  if (state.currentChannel) { state.currentChannel = null; save(); }
+  /* 3. cambiar la URL del navegador YA (con el nombre del video) */
+  syncAddressBar();
+  /* 4. pintar título y chips del capítulo elegido */
+  els.empty.classList.add('hidden');
+  els.nowPlaying.textContent = `${s.t} · E${ep.n}`;
+  document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
+  els.shareBtn.classList.remove('hidden');
+  syncDownloadBtn();
+  els.flagBtn.classList.toggle('hidden', !ep.url);
+  renderEpisodes();
+
+  /* ── 🪙 PAYWALL: si el usuario no es staff y el cap no está desbloqueado ── */
   const PAYWALL_ON = true;
   if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
     const result = COINS.pay(s.id, ep.n, s);
     if (!result.ok) {
-      showVault(s, ep, result);
+      /* la bóveda aparece ENCIMA del reproductor — pero la URL ya cambió,
+         el reproductor ya está en pantalla y el video anterior YA paró      */
+      showVault(s, ep);
       return;
     }
     /* pagó o ya estaba desbloqueado → el reproductor abre normal */
   }
-
-  scrollToPlayerInstant();   /* 📈 al elegir capítulo desde abajo: el reproductor sube al instante, centrado */
-  /* salir de cualquier directo 📡 o flujo HLS anterior */
-  if (state.currentChannel) { state.currentChannel = null; save(); }
-  destroyHls();
-
-  els.empty.classList.add('hidden');
-  els.nowPlaying.textContent = `${s.t} · E${ep.n}`;
+  /* si ya estaba desbloqueado o es staff → reproducir directamente */
   /* 💊 píldora clickable: número REAL (si el título lo trae) → salto a su tarjeta */
   {
     const viejo = document.getElementById('epNowBtn');
@@ -5944,6 +5958,7 @@ function buildCoinsPanel() {
         { key: 'adReward', label: `Monedas por anuncio (actual: ${cfg.adReward})`, type: 'number', value: cfg.adReward, min: 1, max: 10000 },
         { key: 'adDuration', label: `Segundos del anuncio (actual: ${cfg.adDuration})`, type: 'number', value: cfg.adDuration, min: 3, max: 120 },
         { key: 'adClickExtra', label: `Segundos extra tras clic (actual: ${cfg.adClickExtra})`, type: 'number', value: cfg.adClickExtra, min: 0, max: 60 },
+        { key: 'unlockDays', label: `🔓 Días que dura un video desbloqueado para TODOS (actual: ${cfg.unlockDays || 7})`, type: 'number', value: cfg.unlockDays || 7, min: 1, max: 365 },
         { key: 'giftAll', label: '🎁 REGALAR monedas a TODOS los usuarios (al publicar el catálogo)', type: 'number', value: 0, min: 0, max: 100000 },
         { key: 'giftMsg', label: '📝 Mensaje del regalo (opcional)', type: 'text', value: '', maxlength: 120, placeholder: 'Ej: ¡Gracias por ver X·STREAM!' },
         { key: 'grantCoins', label: '🔧 Asignar monedas solo a ESTE dispositivo (modo prueba)', type: 'number', value: 0, min: 0, max: 100000 },
