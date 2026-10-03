@@ -3049,7 +3049,17 @@ function loadEpisode(epN, autoplayNow = true) {
   const PAYWALL_ON = true;
   if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
     const result = COINS.pay(s.id, ep.n, s);   /* check() síncrono con caché local */
+    /* DEBUG: ver exactamente qué decide el check */
+    console.log('[paywall]', s.id, 'ep', ep.n, '→', JSON.stringify(result), '| isUnlocked:', COINS.isUnlocked(s.id, ep.n), '| localStorage keys:', Object.keys(JSON.parse(localStorage.getItem('xstream-unlocked') || '{}')).join(', '));
     if (!result.ok) {
+      /* 🔑 si el servidor confirma que ya está desbloqueado, quitar la bóveda */
+      COINS.checkAsync(s.id, ep.n, s).then(serverSays => {
+        if (serverSays.ok && !result.ok) {
+          console.log('[paywall] servidor dice DESBLOQUEADO → quitando bóveda');
+          const v = document.getElementById('paywall');
+          if (v) v.classList.add('hidden');
+        }
+      });
       showVault(s, ep);
       return;
     }
