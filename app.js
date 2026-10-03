@@ -3436,7 +3436,10 @@ function scrollToPlayerInstant() {
   if (!el) return;
   const r = el.getBoundingClientRect();
   const visible = r.top >= 62 && r.bottom <= window.innerHeight - 8;
-  if (!visible) el.scrollIntoView({ behavior: 'instant', block: 'center' });
+  if (!visible) {
+    el.scrollIntoView({ block: 'center' });
+    /* behavior:'instant' no es estándar — usar el default (auto) que es inmediato */
+  }
 }
 
 /* doble click / tap zonal: rewind-forward + fullscreen */
