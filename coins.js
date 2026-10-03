@@ -34,7 +34,10 @@ const COINS = (function () {
       const raw = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
       if (raw) S = { ...S, ...raw };
     } catch (e) { }
-    if (S.day !== todayKey()) { S.day = todayKey(); S.coins = cfg.dailyCoins; persist(); }
+    /* 🚫 NO asignar monedas localmente aquí — el SERVIDOR es quien
+       decide si esta IP ya recibió su asignación del día. Localmente
+       empezamos en 0 y el servidor asigna (o dice "ya recibiste").
+       Si asignáramos aquí, un usuario en incógnito vería 500 falsas. */
   };
   const persist = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { } };
 
