@@ -5851,7 +5851,11 @@ function showAdwall(onDone) {
       if (onDone) onDone();
       return;
     }
-    if (typeof uiModal !== 'function') { ad.classList.add('hidden'); return; }
+    if (typeof uiModal !== 'function') {
+      ad.classList.add('hidden');
+      if (onDone) onDone();       /* sin uiModal → igual vuelve a la bóveda */
+      return;
+    }
     uiModal({
       icon: '⚠', title: '¿Cerrar el anuncio?', danger: true, okLabel: 'Sí, cerrar',
       sub: `Si cierras ahora <b>NO recibirás</b> las <b style="color:var(--acid)">+${cfg.adReward} monedas</b>.<br>¿Seguro que quieres salir sin la recompensa?`,
@@ -5860,6 +5864,10 @@ function showAdwall(onDone) {
         if (timerId) clearInterval(timerId);
         phase = 'closed';
         ad.classList.add('hidden');
+        /* 🔑 CRÍTICO: al abandonar, VOLVER A LA BÓVEDA con el candado
+           visible — el usuario puede volver a intentarlo en cualquier
+           momento (tiene monedas o puede reproducir otro capítulo)     */
+        if (onDone) onDone();
       }
     }).catch(() => { });
   };
