@@ -1,14 +1,1 @@
-{
-  "rewrites": [
-    {
-      "has": [{ "type": "host", "value": "b.yapido.click" }],
-      "source": "/links.json",
-      "destination": "/b/links.json"
-    },
-    {
-      "has": [{ "type": "host", "value": "b.yapido.click" }],
-      "source": "/:path*",
-      "destination": "/b/index.html"
-    }
-  ]
-}
+{"rewrites":[{"has":[{"type":"host","value":"b.yapido.click"}],"source":"/links.json","destination":"/b/links.json"},{"has":[{"type":"host","value":"b.yapido.click"}],"source":"/:path*","destination":"/b/index.html"}],"git":{"deploymentEnabled":{"chat-data":false}}}
