@@ -6404,8 +6404,12 @@ let miniPinned = false; // fijado con doble clic: sobrevive aunque el ancla sea 
 new IntersectionObserver(entries => {
   const anchorVisible = entries[0].isIntersecting;
   const playing = isDriveMode() || (els.video.src && !els.video.paused && !els.video.ended);
-  if (!anchorVisible && playing) setMini(true);
-  else if (anchorVisible && !miniPinned) setMini(false);
+  /* 🚫 si la bóveda (candado) está visible, NUNCA activar el mini-player
+     — el video está bloqueado, no tiene sentido que flote por la página  */
+  const vaultEl = document.getElementById('paywall');
+  const vaultVisible = vaultEl && !vaultEl.classList.contains('hidden');
+  if (!anchorVisible && playing && !vaultVisible) setMini(true);
+  else if ((anchorVisible || vaultVisible) && !miniPinned) setMini(false);
 }, { threshold: 0.15 }).observe(els.playerAnchor);
 els.miniX.addEventListener('click', () => {
   /* ❌ cerrar el mini NO mata el video: antes limpiaba el iframe de
