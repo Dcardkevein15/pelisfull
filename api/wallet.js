@@ -150,8 +150,9 @@ module.exports = async function handler(req, res) {
 
     if (changed) {
       prune(db);
-      /* debug: 'w' indica si la escritura en GitHub persistió */
-      resp.w = await writeWallet(db) ? 'ok' : 'fail';
+      /* debug: 'ok' o el error HTTP de GitHub (diagnóstico de persistencia) */
+      const wr = await writeWallet(db);
+      resp.w = wr === true ? 'ok' : 'fail(' + wr + ')';
     }
     return res.status(200).json(resp);
   } catch (e) {
@@ -192,7 +193,7 @@ async function ghPut(path, content, sha) {
     const t = await r.text().catch(() => '');
     console.error('wallet ghPut ' + r.status + ': ' + t.slice(0, 300));
   }
-  return r.ok;
+  return r.ok ? true : r.status;
 }
 
 async function readWallet() {
@@ -212,13 +213,14 @@ async function writeWallet(db) {
   for (let i = 1; i <= 5; i++) {
     try {
       const f = await ghGet(WALLET_PATH);
-      if (await ghPut(WALLET_PATH, JSON.stringify(db), f ? f.sha : undefined)) return true;
-      lastErr = 'ghPut not ok';
+      const r = await ghPut(WALLET_PATH, JSON.stringify(db), f ? f.sha : undefined);
+      if (r === true) return true;
+      lastErr = 'HTTP ' + r;
     } catch (e) { lastErr = e.message; }
     await new Promise(r2 => setTimeout(r2, 300 * i));
   }
   console.error('wallet writeWallet FAILED: ' + lastErr);
-  return false;
+  return lastErr;
 }
 
 /* elimina monederos abandonados (>30d sin actividad) para que
