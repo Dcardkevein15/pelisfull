@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791005890068,
+ "v": 1791041878661,
  "by": "Dcard #2968",
- "at": "2026-10-03T05:38:10.068Z",
+ "at": "2026-10-03T15:37:58.661Z",
  "n": 5808,
  "series": [
   {
@@ -194899,13 +194899,13 @@
  "linksDom": "https://x.yapido.click",
  "coinsCfg": {
   "dailyCoins": 500,
-  "priceAnime": 99,
+  "priceAnime": 100,
   "priceMovie": 200,
-  "adReward": 50,
+  "adReward": 100,
   "adDuration": 5,
   "adClickExtra": 10,
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "V/CSUnr3HtCeq2oHCYwuWt3O3EyytXjhwTTmF/4Q85OHmta8RNQkXoMVkFpsKTNpIknl7exrIzXLZ8HaLEHlRA=="
+ "sig": "Cf2jpjJIlioVIV54PwansnBzDsTUQ96OA5HSdfcGPJBYzzLqkiekZxbmXXMny+NvDppbFFgq07hfgsjt59kG9A=="
 }
