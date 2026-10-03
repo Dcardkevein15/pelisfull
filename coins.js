@@ -77,9 +77,13 @@ const COINS = (function () {
       if (j.cfg) { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
       if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); }
       if (j.unlockLeft) {
-        unlocked = {};
+        /* MERGE: los desbloqueados del servidor se SUMAN a los locales —
+           NUNCA se borran (evita que una respuesta tardía del servidor
+           pise un desbloqueo que el usuario acaba de pagar)             */
         for (const [k, days] of Object.entries(j.unlockLeft)) {
-          unlocked[k] = Date.now() + days * 86400000 - UNLOCK_MS;
+          if (!unlocked[k] || unlocked[k] < Date.now()) {
+            unlocked[k] = Date.now() + days * 86400000 - unlockMs();
+          }
         }
         persistUnlocked();
       }
@@ -92,6 +96,19 @@ const COINS = (function () {
     if (isUnlocked(sid, epN)) return { ok: true, reason: 'unlocked' };
     const price = priceOf(s);
     return { ok: false, reason: S.coins >= price ? 'confirm' : 'no-coins', coins: S.coins, price };
+  }
+  /* alias async — para loadEpisode (si el servidor confirma, mejor; si no, caché) */
+  async function checkAsync(sid, epN, s) {
+    /* si la caché local dice desbloqueado, confiar */
+    if (isUnlocked(sid, epN)) return { ok: true, reason: 'unlocked' };
+    /* consultar al servidor */
+    const r = await callWallet('check', { sid, epN, kind: s.kind });
+    if (r && r.ok && r.unlocked) {
+      unlocked[uk(sid, epN)] = Date.now();
+      persistUnlocked();
+      return { ok: true, reason: 'unlocked' };
+    }
+    return check(sid, epN, s);
   }
 
   async function confirmUnlock(sid, epN, s) {
@@ -192,7 +209,7 @@ const COINS = (function () {
   load();
   if (typeof fetch === 'function') setTimeout(() => { initWallet().catch(() => { }); }, 2000);
 
-  return { pay, earn, check, confirmUnlock, isVip, setVip, isUnlocked, unlockTimeLeft, priceOf,
+  return { pay, earn, check, checkAsync, confirmUnlock, isVip, setVip, isUnlocked, unlockTimeLeft, priceOf,
     getConfig, setConfig, getState, grantCoins, resetToday,
     applyRemoteCfg, applyGift, setTestMode, inTestMode,
     initWallet, syncFromServer, cfg };

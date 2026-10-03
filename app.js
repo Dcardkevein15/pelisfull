@@ -3013,7 +3013,7 @@ function isStaff() {
   } catch (e) { return true; }
 }
 
-function loadEpisode(epN, autoplayNow = true) {
+async function loadEpisode(epN, autoplayNow = true) {
   const s = getSeries(current.seriesId);
   if (!s) return;
   const ep = s.episodes.find(e => e.n === epN);
@@ -3043,14 +3043,14 @@ function loadEpisode(epN, autoplayNow = true) {
   /* ── 🪙 PAYWALL: si el usuario no es staff y el cap no está desbloqueado ── */
   const PAYWALL_ON = true;
   if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
-    const result = COINS.pay(s.id, ep.n, s);
+    /* checkAsync: primero caché local, luego servidor — nunca muestra
+       bóveda si el capítulo ya fue desbloqueado (aunque el localStorage
+       local no lo tenga, el servidor sí)                                */
+    const result = await COINS.checkAsync(s.id, ep.n, s);
     if (!result.ok) {
-      /* la bóveda aparece ENCIMA del reproductor — pero la URL ya cambió,
-         el reproductor ya está en pantalla y el video anterior YA paró      */
       showVault(s, ep);
       return;
     }
-    /* pagó o ya estaba desbloqueado → el reproductor abre normal */
   }
   /* si ya estaba desbloqueado o es staff → reproducir directamente */
   /* 💊 píldora clickable: número REAL (si el título lo trae) → salto a su tarjeta */
