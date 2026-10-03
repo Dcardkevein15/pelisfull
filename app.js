@@ -5914,13 +5914,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const pill = document.getElementById('coinsPill');
   if (pill) pill.addEventListener('click', () => showExplainModal());
 });
-/* actualizar al cargar y cada vez que se gaste/gane */
+/* actualizar al cargar y cada vez que se gaste/gane/desbloquee */
 setTimeout(syncCoinsPill, 1200);
-/* hook: después de cada pay/earn, refrescar la pastilla */
-const _origCoinsEarn = COINS.earn;
-COINS.earn = function() { const r = _origCoinsEarn.apply(this, arguments); syncCoinsPill(); return r; };
-const _origCoinsPay = COINS.pay;
-COINS.pay = function() { const r = _origCoinsPay.apply(this, arguments); syncCoinsPill(); return r; };
+const _origEarn = COINS.earn;
+COINS.earn = function() { const r = _origEarn.apply(this, arguments); syncCoinsPill(); return r; };
+const _origUnlock = COINS.confirmUnlock;
+COINS.confirmUnlock = function() { const r = _origUnlock.apply(this, arguments); syncCoinsPill(); return r; };
 
 /* ═══════════════ 👑 PANEL ADMIN DE MONEDAS — control total ═══════════════ */
 function buildCoinsPanel() {

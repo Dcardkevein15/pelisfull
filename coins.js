@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
    🪙 SISTEMA DE MONEDAS X·STREAM — monetización con anuncios
-   · 50 monedas gratis al día (no acumulables, reset cada 24h)
+   · 500 monedas gratis al día (no acumulables, reset cada 24h)
    · Anime/Hentai: 100 monedas · Películas: 200 monedas
-   · Al gastarlas: mira un anuncio (15s + clic + 10s) = +50 monedas
+   · Al gastarlas: mira un anuncio (15s + clic + 10s) = +100 monedas
    · Membresía $1/mes: sin límites, sin anuncios, sin candados
    · Capítulo desbloqueado = permanente (nunca se vuelve a cobrar)
    · Panel admin: control total de tiempos, precios y visualización  */
@@ -10,14 +10,13 @@ const COINS = (function () {
   const LS_KEY = 'xstream-coins';
   const LS_UNLOCKED = 'xstream-unlocked';
   const LS_VIP = 'xstream-vip';
-  const LS_ADSTATE = 'xstream-ad-state';
 
   /* ─── CONFIG (el admin la cambia en vivo desde el panel) ─── */
   const DEFAULTS = {
     dailyCoins: 500,         /* monedas gratis por día */
     priceAnime: 100,         /* coste de un capítulo de anime/hentai */
     priceMovie: 200,         /* coste de una película */
-    adReward: 50,            /* monedas por ver un anuncio completo */
+    adReward: 100,           /* monedas por ver un anuncio (1 anuncio = 1 cap) */
     adDuration: 15,          /* segundos mínimos del anuncio */
     adClickExtra: 10,         /* segundos extra tras hacer clic */
     adRequireClick: true,    /* ¿exigir clic en el anuncio? */
@@ -34,7 +33,7 @@ const COINS = (function () {
       const raw = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
       if (raw) S = { ...S, ...raw };
     } catch (e) { }
-    /* reset diario: si cambió el día, 50 monedas nuevas (no acumulables) */
+    /* reset diario: si cambió el día, monedas nuevas (no acumulables) */
     const today = todayKey();
     if (S.day !== today) {
       S.day = today;
