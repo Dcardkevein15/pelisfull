@@ -11,7 +11,9 @@ const COINS = (function () {
   const LS_KEY = 'xstream-coins';
   const LS_UNLOCKED = 'xstream-unlocked';
   const LS_VIP = 'xstream-vip';
-  const WALLET_API = '/api/wallet';
+  /* proxy dedicado con GH_TOKEN configurado — el /api/wallet del hosting
+     principal NO tiene la env var GH_TOKEN (401 al escribir en GitHub)     */
+  const WALLET_API = 'https://xstream-wallet.vercel.app/api/wallet';
 
   const DEFAULTS = {
     dailyCoins: 500,
