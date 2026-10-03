@@ -1,8 +1,14 @@
 /* ═══════════════════════════════════════════════════════════
    🪙 WALLET X·STREAM — monedas por IP (anti-abuso incógnito)
    1 IP = 1 monedero por día. Almacén: GitHub rama chat-data.
-   El cliente usa GET con query params (el POST body no llega
-   parseado en este runtime de Vercel). POST también soportado. */
+
+   CONFIG (precios, recompensas, etc.):
+   1. db.cfg  — la que el ADMIN publica desde el Panel de Monedas
+                (op adminCfg, firmada con su clave ECDSA = canal
+                INSTANTÁNEO para todos los usuarios)
+   2. coinsCfg del catálogo publicado (respaldo histórico)
+   3. defaults del código
+   El servidor NO tiene valores propios: SOLO el admin los cambia. */
 'use strict';
 
 const GH_API = 'https://api.github.com';
@@ -10,14 +16,67 @@ const REPO = process.env.GH_REPO || 'Dcardkevein15/pelisfull';
 const WALLET_PATH = 'wallet.json';
 const DATA_BRANCH = 'chat-data';
 const MAX_ADS_DAY = 30;
-const DEF_CFG = { dailyCoins: 500, priceAnime: 100, priceMovie: 200, adReward: 100, unlockDays: 7 };
+const CFG_TTL_MS = 10 * 60 * 1000;
+const DEF_CFG = { dailyCoins: 500, priceAnime: 100, priceMovie: 200, adReward: 100, adDuration: 15, adClickExtra: 10, adRequireClick: true, unlockDays: 7 };
+const RAW_CATALOG = 'https://raw.githubusercontent.com/Dcardkevein15/pelisfull/main/catalog.json';
+/* la MISMA clave pública pinneada que CONFIG.catalogPubKey (auth.js) */
+const ADMIN_PUB_B64 = process.env.ADMIN_PUB_B64
+  || 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkO2b+Vm4MNlm+97FaZdXilRkF8KCr0XfqjhtQ00wc8SCsUAz6zA60rxYqnHuRIY7fNJCL6rCYDP5W5DOaNnorA==';
 
 module.exports.config = { maxDuration: 10 };
+
+/* ── firma ECDSA del admin — patrón de api/chat.js (isAdminSig) ──
+   el cliente firma "xstream-wallet-admin:<hora-epoch>" con la MISMA
+   clave privada con la que publica el catálogo (XAUTH.signText)     */
+async function isAdminSig(sigB64) {
+  try {
+    const key = await crypto.subtle.importKey('spki', Buffer.from(ADMIN_PUB_B64, 'base64'), { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+    const sig = Buffer.from(String(sigB64 || ''), 'base64');
+    if (!sig.length) return false;
+    const hora = Math.floor(Date.now() / 3600000);
+    for (const h of [hora, hora - 1]) {
+      const data = new TextEncoder().encode('xstream-wallet-admin:' + h);
+      if (await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, key, sig, data)) return true;
+    }
+  } catch (e) { }
+  return false;
+}
+
+/* ── respaldo: coinsCfg del catálogo (cacheado 10 min) ── */
+let _catCfg = { at: 0, cfg: null };
+
+async function fetchCatalogCfg() {
+  if (_catCfg.cfg && (Date.now() - _catCfg.at) < CFG_TTL_MS) return _catCfg.cfg;
+  let ok = false;
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 6000);
+    const r = await fetch(RAW_CATALOG + '?t=' + Date.now(), { signal: ctrl.signal });
+    clearTimeout(t);
+    if (r.ok) {
+      const cat = await r.json();
+      const cc = cat && cat.coinsCfg;
+      if (cc && typeof cc === 'object' && !Array.isArray(cc)) {
+        const merged = { ...DEF_CFG };
+        for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays']) {
+          const n = +cc[k];
+          if (!isNaN(n) && n >= 0) merged[k] = n;
+        }
+        if (cc.adRequireClick !== undefined) merged.adRequireClick = !!cc.adRequireClick;
+        _catCfg = { at: Date.now(), cfg: merged };
+        ok = true;
+        return merged;
+      }
+    }
+  } catch (e) { }
+  if (!ok) _catCfg = { at: Date.now() - CFG_TTL_MS + 60000, cfg: _catCfg.cfg || DEF_CFG };
+  return _catCfg.cfg;
+}
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,x-wallet-key');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,x-wallet-sig');
   if (req.method === 'OPTIONS') return res.status(204).end();
 
   try {
@@ -25,9 +84,7 @@ module.exports = async function handler(req, res) {
       || (req.socket && req.socket.remoteAddress) || 'unknown';
     const ipKey = String(rawIp).split(',')[0].trim() || 'unknown';
 
-    /* params: query (GET) + body (POST) — el body tiene prioridad.
-       LA VERSIÓN ANTERIOR IGNORABA EL QUERY EN GET (sid/epN/kind
-       nunca llegaban) — este merge arregla unlock/check por GET  */
+    /* params: query (GET) + body (POST) — el body tiene prioridad */
     const b = Object.assign({}, req.query || {});
     if (req.body && typeof req.body === 'object') Object.assign(b, req.body);
     else if (typeof req.body === 'string' && req.body) {
@@ -35,10 +92,15 @@ module.exports = async function handler(req, res) {
     }
 
     const op = String(b.op || (req.method === 'GET' ? 'state' : ''));
-    const walletKey = String(req.headers['x-wallet-key'] || b.walletKey || '');
 
+    /* cfg efectiva: lo que el admin publicó (db.cfg) > catálogo > defaults */
     const db = await readWallet();
-    const cfg = Object.assign({}, DEF_CFG, db.cfg || {});
+    let cfg;
+    if (db.cfg && typeof db.cfg === 'object' && Object.keys(db.cfg).length) {
+      cfg = { ...DEF_CFG, ...db.cfg };
+    } else {
+      cfg = await fetchCatalogCfg();
+    }
     const today = new Date().toISOString().slice(0, 10);
 
     /* monedero de esta IP + reset diario (SOLO 1 asignación por IP/día) */
@@ -112,36 +174,25 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    else if (op === 'gift') {
-      if (!walletKey || walletKey !== process.env.WALLET_ADMIN_KEY) {
-        return res.status(403).json({ ok: false, error: 'solo el admin puede regalar' });
+    else if (op === 'adminCfg') {
+      /* 🚀 CANAL DEL ADMIN: solo la firma ECDSA del admin (la misma
+         clave del catálogo) puede cambiar la configuración           */
+      const sig = String(req.headers['x-wallet-sig'] || b.sig || '');
+      if (!(await isAdminSig(sig))) {
+        return res.status(403).json({ ok: false, error: 'solo el admin puede cambiar la configuración' });
       }
-      const amount = Math.max(1, +b.amount || 100);
-      const msg = String(b.msg || '🎁 ¡Regalo del administrador!').slice(0, 200);
-      const giftAt = Date.now();
-      let gifted = 0;
-      for (const [, wl] of Object.entries(db.wallets)) {
-        if (!wl.lastGiftAt || wl.lastGiftAt < giftAt) {
-          wl.coins += amount;
-          wl.totalEarned = (wl.totalEarned || 0) + amount;
-          wl.lastGiftAt = giftAt;
-          gifted++;
+      const next = { ...cfg };
+      for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays']) {
+        if (b[k] !== undefined && b[k] !== '') {
+          const n = +b[k];
+          if (isNaN(n) || n < 0) return res.status(400).json({ ok: false, error: 'valor inválido: ' + k });
+          next[k] = n;
         }
       }
+      if (b.adRequireClick !== undefined && b.adRequireClick !== '') next.adRequireClick = !!+b.adRequireClick;
+      db.cfg = next;
       changed = true;
-      resp = { ok: true, gifted, amount, msg };
-    }
-
-    else if (op === 'adminCfg') {
-      if (!walletKey || walletKey !== process.env.WALLET_ADMIN_KEY) {
-        return res.status(403).json({ ok: false, error: 'solo el admin' });
-      }
-      for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'unlockDays']) {
-        if (b[k] !== undefined) cfg[k] = Math.max(1, +b[k]);
-      }
-      db.cfg = cfg;
-      changed = true;
-      resp = { ok: true, cfg };
+      resp = { ok: true, cfg: next, coins: w.coins };
     }
 
     else {
@@ -204,7 +255,7 @@ async function readWallet() {
       if (parsed && typeof parsed === 'object' && parsed.wallets) return parsed;
     }
   } catch (e) { console.error('wallet readWallet: ' + e.message); }
-  return { wallets: {}, cfg: null };
+  return { wallets: {} };
 }
 
 async function writeWallet(db) {

@@ -5977,7 +5977,7 @@ function buildCoinsPanel() {
         DESBLOQUEADOS: <b>${st.unlockedCount}</b> ·
         ANUNCIOS: <b>${st.adsWatched}</b> ·
         VIP: <b>${st.vip ? '👑' : 'no'}</b><br>
-        <span style="font-size:10px">💡 Los cambios de precios/monedas aplican a TODOS al PUBLICAR el catálogo (🌐 Publicar).
+        <span style="font-size:10px">⚡ Los cambios aplican a TODOS los usuarios AL INSTANTE al guardar (push firmado con tu clave).
         El 🎁 regalo llega como lluvia de monedas animada en cada dispositivo.</span>
       </div>`,
     });
@@ -5990,14 +5990,24 @@ function buildCoinsPanel() {
       if (vals.adReward !== undefined && vals.adReward !== '') updates.adReward = Math.max(1, +vals.adReward);
       if (vals.adDuration !== undefined && vals.adDuration !== '') updates.adDuration = Math.max(3, +vals.adDuration);
       if (vals.adClickExtra !== undefined && vals.adClickExtra !== '') updates.adClickExtra = Math.max(0, +vals.adClickExtra);
-      if (Object.keys(updates).length) COINS.setConfig(updates);
+      if (Object.keys(updates).length) {
+        COINS.setConfig(updates);
+        /* 🚀 PUSH INSTANTÁNEO: firma con la clave de admin y publica al
+           servidor → aplica a TODOS los usuarios al momento (sin publicar
+           catálogo). Si falla, queda guardado localmente como respaldo.  */
+        Promise.resolve(typeof COINS.pushServerCfg === 'function' ? COINS.pushServerCfg(updates) : null).then(rr => {
+          if (rr && rr.ok) toast('🪙✅ Aplicado a TODOS los usuarios al instante');
+          else if (rr && rr.reason === 'no-key') toast('🪙 Guardado local — activa tu clave de firma (Perfil → Firma del catálogo)', true);
+          else if (rr) toast('🪙 Guardado local — no se pudo publicar al servidor', true);
+        }).catch(() => { });
+      }
       if (vals.grantCoins && +vals.grantCoins > 0) COINS.grantCoins(+vals.grantCoins);
       if (vals.giftAll !== undefined && +vals.giftAll > 0) {
         COINS._activeGift = { amount: +vals.giftAll, msg: vals.giftMsg || '', at: Date.now() };
         toast(`🎁 Regalo de ${vals.giftAll} monedas preparado — PUBLICA el catálogo para que lo reciban todos`);
       }
       if (vals.testMode !== undefined) COINS.setTestMode(!!+vals.testMode);
-      toast('🪙 Configuración guardada — publica el catálogo para sincronizar a todos');
+      toast('🪙 Configuración guardada');
     }).catch(() => { });
   });
 }

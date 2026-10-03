@@ -78,10 +78,11 @@ const COINS = (function () {
       const params = new URLSearchParams({ op, ...extra });
       const r = await fetch(`${WALLET_API}?${params}`, { method: 'GET' });
       const j = await r.json();
-      /* 🚫 NO aplicar j.cfg: la ÚNICA fuente de la configuración es el
-         CATÁLOGO PUBLICADO por el admin (coinsCfg firmado → applyRemoteCfg).
-         Si aplicáramos la cfg del servidor aquí, pisaría los valores que
-         el admin guarda en el Panel de Monedas antes de publicar.         */
+      /* ✅ aplicar j.cfg: el servidor SOLO cambia su cfg cuando el ADMIN
+         publica desde el Panel de Monedas (push firmado con su clave).
+         Esto sincroniza a TODOS los dispositivos al instante, y ya no
+         puede pisar los valores del admin (no tiene cfg propia).       */
+      if (j.cfg && typeof j.cfg === 'object') { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
       if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); }
       /* 🚫 NO sincronizar desbloqueos desde el servidor:
          localStorage local es la ÚNICA fuente de verdad para los
@@ -150,6 +151,31 @@ const COINS = (function () {
 
   function setConfig(p) { cfg = { ...cfg, ...p }; saveCfg(); return cfg; }
   function getConfig() { return { ...cfg }; }
+
+  /* ═══ PUSH INSTANTÁNEO DEL PANEL → SERVIDOR → TODOS ═══
+     Firma "xstream-wallet-admin:<hora>" con la MISMA clave privada
+     con la que el admin publica el catálogo (XAUTH.signText) y la
+     envía al wallet server, que verifica contra la clave pública
+     pinneada. Al aceptar, el servidor guarda la cfg y TODOS los
+     clientes la reciben en su próxima llamada (instantáneo).      */
+  async function pushServerCfg(patch) {
+    try {
+      if (!(window.XAUTH && typeof window.XAUTH.signText === 'function')) return { ok: false, reason: 'no-signer' };
+      const hora = Math.floor(Date.now() / 3600000);
+      const sig = await window.XAUTH.signText('xstream-wallet-admin:' + hora);
+      if (!sig) return { ok: false, reason: 'no-key' };
+      const full = { ...getConfig(), ...(patch || {}) };
+      const params = new URLSearchParams({ op: 'adminCfg' });
+      for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays']) {
+        if (full[k] !== undefined && full[k] !== null) params.set(k, String(full[k]));
+      }
+      if (full.adRequireClick !== undefined) params.set('adRequireClick', full.adRequireClick ? '1' : '0');
+      const r = await fetch(`${WALLET_API}?${params}`, { method: 'GET', headers: { 'x-wallet-sig': sig } });
+      const j = await r.json();
+      if (j && j.ok && j.cfg) { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
+      return j || { ok: false, reason: 'network' };
+    } catch (e) { return { ok: false, reason: 'network' }; }
+  }
   function getState() { return { ...S, vip: isVip(), unlockedCount: Object.keys(unlocked).length }; }
   function grantCoins(n) { S.coins += n; S.totalEarned += n; persist(); return S.coins; }
   function resetToday() { S.day = ''; load(); return S.coins; }
@@ -213,5 +239,5 @@ const COINS = (function () {
   return { pay, earn, check, checkAsync, confirmUnlock, isVip, setVip, isUnlocked, unlockTimeLeft, priceOf,
     getConfig, setConfig, getState, grantCoins, resetToday,
     applyRemoteCfg, applyGift, setTestMode, inTestMode,
-    initWallet, syncFromServer, cfg };
+    initWallet, syncFromServer, pushServerCfg, cfg };
 })();
