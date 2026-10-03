@@ -5898,20 +5898,21 @@ function showAdwall(onDone) {
 function showExplainModal() {
   const cfg = COINS.getConfig();
   const st = COINS.getState();
+  const ud = cfg.unlockDays || 7;
   if (typeof uiModal === 'function') {
     uiModal({
       icon: '🪙', title: 'Cómo funcionan las monedas', okLabel: '¡Entendido!',
       sub: `<div style="text-align:left;font-size:12px;line-height:1.7">
         <b style="color:var(--acid)">🪙 ${cfg.dailyCoins} monedas gratis cada día</b><br>
-        Se renuevan cada 24 horas — no se acumulan, al día siguiente vuelves a tener ${cfg.dailyCoins}.<br><br>
+        Se renuevan cada 24 horas — no se acumulan.<br><br>
         <b style="color:var(--acid)">📺 Precios:</b><br>
-        · Capítulo de anime/hentai: <b>${cfg.priceAnime} monedas</b><br>
-        · Película: <b>${cfg.priceMovie} monedas</b><br>
-        · Cada capítulo desbloqueado queda <b>abierto para siempre</b>.<br><br>
+        · Capítulo anime/hentai: <b>${cfg.priceAnime} 🪙</b><br>
+        · Película: <b>${cfg.priceMovie} 🪙</b><br>
+        · Desbloqueado queda abierto <b>${ud} día${ud === 1 ? '' : 's'}</b>, luego se vuelve a bloquear.<br><br>
         <b style="color:var(--acid)">📢 ¿Sin monedas?</b><br>
-        Mira un anuncio de <b>${cfg.adDuration} segundos</b>, haz clic en él, espera <b>${cfg.adClickExtra} segundos más</b> y gana <b>+${cfg.adReward} monedas</b>. Repite las veces que quieras.<br><br>
-        <b style="color:#ffd24a">👑 Membresía $1/mes:</b> sin anuncios, sin límites, todo abierto.<br><br>
-        <b>Tu saldo ahora:</b> ${st.coins} monedas ${st.vip ? '· <b style="color:#ffd24a">👑 VIP activo</b>' : ''}`,
+        Mira un anuncio de <b>${cfg.adDuration}s</b> + clic + <b>${cfg.adClickExtra}s extra</b> = <b>+${cfg.adReward} 🪙</b>.<br><br>
+        <b style="color:#ffd24a">👑 VIP $1/mes:</b> sin anuncios, sin límites, todo abierto.<br><br>
+        <b>Tu saldo:</b> ${st.coins} 🪙 ${st.vip ? '· <b style="color:#ffd24a">👑 VIP</b>' : ''}`,
     });
   }
 }
