@@ -5650,7 +5650,7 @@ function showVault(s, ep) {
   const hasEnough = st.coins >= price;
 
   /* pintar datos de la bóveda */
-  document.getElementById('pwTitle').textContent = s.kind === 'pelicula' ? '🔒 Película bloqueada' : '🔒 Capítulo bloqueado';
+  document.getElementById('pwTitle').textContent = s.kind === 'pelicula' ? 'Película bloqueada' : 'Capítulo bloqueado';
   document.getElementById('pwPrice').textContent = price;
   document.getElementById('pwCoins').textContent = st.coins;
   document.getElementById('pwAdReward').textContent = '+' + cfg.adReward;
