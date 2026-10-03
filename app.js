@@ -5948,6 +5948,24 @@ COINS.earn = async function() { const r = await _origEarn.apply(this, arguments)
 const _origUnlock = COINS.confirmUnlock;
 COINS.confirmUnlock = async function() { const r = await _origUnlock.apply(this, arguments); syncCoinsPill(); return r; };
 
+/* 🪙 EN VIVO: cuando coins.js sincroniza el saldo con el servidor (init,
+   unlock, earn, check), refresca el pill Y la bóveda si está abierta —
+   así nunca ves un saldo viejo ni tienes que recargar con F5          */
+window.addEventListener('xstream-coins-updated', () => {
+  syncCoinsPill();
+  const vault = document.getElementById('paywall');
+  if (!vault || vault.classList.contains('hidden') || typeof COINS === 'undefined') return;
+  const st = COINS.getState();
+  const cEl = document.getElementById('pwCoins');
+  if (cEl) cEl.textContent = st.coins;
+  const btn = document.getElementById('pwUnlockBtn');
+  const priceEl = document.getElementById('pwPrice');
+  if (btn && priceEl) {
+    const price = +(priceEl.textContent || 0) || 0;
+    btn.classList.toggle('cant', !st.vip && st.coins < price);
+  }
+});
+
 /* ═══════════════ 👑 PANEL ADMIN DE MONEDAS — control total ═══════════════ */
 function buildCoinsPanel() {
   const btn = document.getElementById('coinsAdminBtn');

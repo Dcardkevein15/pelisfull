@@ -43,6 +43,14 @@ const COINS = (function () {
   };
   const persist = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { } };
 
+  /* 🪙 notifica al UI que el saldo cambió — el pill se repinta al instante
+     y la bóveda abierta refresca su saldo (evento 'xstream-coins-updated') */
+  const notifyCoins = () => {
+    try { window.dispatchEvent(new CustomEvent('xstream-coins-updated', { detail: getStateSafe() })); } catch (e) { }
+    try { if (typeof window.syncCoinsPill === 'function') window.syncCoinsPill(); } catch (e) { }
+  };
+  const getStateSafe = () => ({ coins: S.coins });
+
   let unlocked = {};
   try { unlocked = JSON.parse(localStorage.getItem(LS_UNLOCKED) || '{}'); } catch (e) { }
   const persistUnlocked = () => { try { localStorage.setItem(LS_UNLOCKED, JSON.stringify(unlocked)); } catch (e) { } };
@@ -83,7 +91,7 @@ const COINS = (function () {
          Esto sincroniza a TODOS los dispositivos al instante, y ya no
          puede pisar los valores del admin (no tiene cfg propia).       */
       if (j.cfg && typeof j.cfg === 'object') { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
-      if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); }
+      if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); notifyCoins(); }
       /* 🚫 NO sincronizar desbloqueos desde el servidor:
          localStorage local es la ÚNICA fuente de verdad para los
          desbloqueos. El servidor solo gestiona el SALDO de monedas.
@@ -234,7 +242,9 @@ const COINS = (function () {
   function inTestMode() { return testMode; }
 
   load();
-  if (typeof fetch === 'function') setTimeout(() => { initWallet().catch(() => { }); }, 2000);
+  /* init INSTANTÁNEO: 400ms — el saldo del servidor llega antes de que
+     el usuario pueda abrir cualquier bóveda o mirar el monedero        */
+  if (typeof fetch === 'function') setTimeout(() => { initWallet().catch(() => { }); }, 400);
 
   return { pay, earn, check, checkAsync, confirmUnlock, isVip, setVip, isUnlocked, unlockTimeLeft, priceOf,
     getConfig, setConfig, getState, grantCoins, resetToday,
