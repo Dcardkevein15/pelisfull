@@ -3042,27 +3042,22 @@ function loadEpisode(epN, autoplayNow = true) {
   els.flagBtn.classList.toggle('hidden', !ep.url);
   renderEpisodes();
 
-  /* ── 🪙 PAYWALL: check SÍNCRONO con la caché local (que ya fue
-     guardada por confirmUnlock → persistUnlocked). El servidor
-     se consulta en background para sincronizar, pero la decisión
-     inmediata usa la caché local — sin awaits, sin latencia.   ── */
+  /* ── 🪙 PAYWALL: el check usa localStorage directamente (la fuente
+     más confiable — el objeto en memoria puede reinicializarse). ── */
   const PAYWALL_ON = true;
   if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
-    const result = COINS.pay(s.id, ep.n, s);   /* check() síncrono con caché local */
-    /* DEBUG: ver exactamente qué decide el check */
-    console.log('[paywall]', s.id, 'ep', ep.n, '→', JSON.stringify(result), '| isUnlocked:', COINS.isUnlocked(s.id, ep.n), '| localStorage keys:', Object.keys(JSON.parse(localStorage.getItem('xstream-unlocked') || '{}')).join(', '));
-    if (!result.ok) {
-      /* 🔑 si el servidor confirma que ya está desbloqueado, quitar la bóveda */
-      COINS.checkAsync(s.id, ep.n, s).then(serverSays => {
-        if (serverSays.ok && !result.ok) {
-          console.log('[paywall] servidor dice DESBLOQUEADO → quitando bóveda');
-          const v = document.getElementById('paywall');
-          if (v) v.classList.add('hidden');
-        }
-      });
+    /* leer DIRECTAMENTE del localStorage — no del objeto en memoria */
+    let rawUnlocked = {};
+    try { rawUnlocked = JSON.parse(localStorage.getItem('xstream-unlocked') || '{}'); } catch (e) { }
+    const unlockKey = `${s.id}:${ep.n}`;
+    const unlockAt = rawUnlocked[unlockKey];
+    const unlockDays = (COINS.getConfig().unlockDays || 7) * 86400000;
+    const stillUnlocked = unlockAt && (Date.now() - unlockAt) < unlockDays;
+    if (!stillUnlocked) {
       showVault(s, ep);
       return;
     }
+    /* si llegó aquí, ya está desbloqueado → reproducir sin bóveda */
   }
   /* si ya estaba desbloqueado o es staff → reproducir directamente */
   /* 💊 píldora clickable: número REAL (si el título lo trae) → salto a su tarjeta */
