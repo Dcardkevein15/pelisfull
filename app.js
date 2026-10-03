@@ -5666,6 +5666,7 @@ function showVault(s, ep) {
 /* cobrar y abrir — con animación de la bóveda desvaneciéndose */
 async function doUnlock(s, ep) {
   const r = await COINS.confirmUnlock(s.id, ep.n, s);
+  if (typeof syncCoinsPill === 'function') syncCoinsPill();   /* 🪙 refrescar monedero EN VIVO */
   if (r.ok) {
     const vault = document.getElementById('paywall');
     if (vault) {
@@ -5812,8 +5813,9 @@ function showAdwall(onDone) {
     msg.innerHTML = '';
     reward.classList.remove('hidden');
 
-    document.getElementById('adCollectBtn').onclick = () => {
-      COINS.earn();
+    document.getElementById('adCollectBtn').onclick = async () => {
+      await COINS.earn();
+      if (typeof syncCoinsPill === 'function') syncCoinsPill();   /* 🪙 en vivo */
       /* 🪙 ANIMACIÓN: monedas vuelan hacia la pastilla del monedero */
       const pill = document.getElementById('coinsPill');
       if (pill) {
@@ -5917,9 +5919,9 @@ document.addEventListener('DOMContentLoaded', () => {
 /* actualizar al cargar y cada vez que se gaste/gane/desbloquee */
 setTimeout(syncCoinsPill, 1200);
 const _origEarn = COINS.earn;
-COINS.earn = function() { const r = _origEarn.apply(this, arguments); syncCoinsPill(); return r; };
+COINS.earn = async function() { const r = await _origEarn.apply(this, arguments); syncCoinsPill(); return r; };
 const _origUnlock = COINS.confirmUnlock;
-COINS.confirmUnlock = function() { const r = _origUnlock.apply(this, arguments); syncCoinsPill(); return r; };
+COINS.confirmUnlock = async function() { const r = await _origUnlock.apply(this, arguments); syncCoinsPill(); return r; };
 
 /* ═══════════════ 👑 PANEL ADMIN DE MONEDAS — control total ═══════════════ */
 function buildCoinsPanel() {
