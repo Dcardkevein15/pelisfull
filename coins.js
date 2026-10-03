@@ -78,7 +78,10 @@ const COINS = (function () {
       const params = new URLSearchParams({ op, ...extra });
       const r = await fetch(`${WALLET_API}?${params}`, { method: 'GET' });
       const j = await r.json();
-      if (j.cfg) { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
+      /* 🚫 NO aplicar j.cfg: la ÚNICA fuente de la configuración es el
+         CATÁLOGO PUBLICADO por el admin (coinsCfg firmado → applyRemoteCfg).
+         Si aplicáramos la cfg del servidor aquí, pisaría los valores que
+         el admin guarda en el Panel de Monedas antes de publicar.         */
       if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); }
       /* 🚫 NO sincronizar desbloqueos desde el servidor:
          localStorage local es la ÚNICA fuente de verdad para los
