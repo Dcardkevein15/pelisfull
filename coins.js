@@ -4,7 +4,7 @@
    · Anime/Hentai: 100 monedas · Películas: 200 monedas
    · Al gastarlas: mira un anuncio (15s + clic + 10s) = +100 monedas
    · Membresía $1/mes: sin límites, sin anuncios, sin candados
-   · Capítulo desbloqueado = permanente (nunca se vuelve a cobrar)
+   · Capítulo desbloqueado = 7 días (luego vuelve a bloquearse)
    · Panel admin: control total de tiempos, precios y visualización  */
 const COINS = (function () {
   const LS_KEY = 'xstream-coins';
@@ -43,12 +43,30 @@ const COINS = (function () {
   };
   const persist = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { } };
 
-  /* ─── DESBLOQUEOS PERMANENTES ─── */
+  /* ─── DESBLOQUEOS (7 días, luego se vuelve a bloquear) ─── */
   let unlocked = {};
   try { unlocked = JSON.parse(localStorage.getItem(LS_UNLOCKED) || '{}'); } catch (e) { }
   const persistUnlocked = () => { try { localStorage.setItem(LS_UNLOCKED, JSON.stringify(unlocked)); } catch (e) { } };
   const unlockKey = (sid, epN) => `${sid}:${epN}`;
-  const isUnlocked = (sid, epN) => !!unlocked[unlockKey(sid, epN)];
+  const UNLOCK_MS = 7 * 24 * 3600 * 1000;   /* 7 días */
+  const isUnlocked = (sid, epN) => {
+    const at = unlocked[unlockKey(sid, epN)];
+    if (!at) return false;
+    if (Date.now() - at > UNLOCK_MS) {
+      /* expiró → limpiar silenciosamente */
+      delete unlocked[unlockKey(sid, epN)];
+      persistUnlocked();
+      return false;
+    }
+    return true;
+  };
+  /* admin: ver cuánto tiempo le queda a un desbloqueo */
+  const unlockTimeLeft = (sid, epN) => {
+    const at = unlocked[unlockKey(sid, epN)];
+    if (!at) return 0;
+    const left = UNLOCK_MS - (Date.now() - at);
+    return left > 0 ? Math.ceil(left / 86400000) : 0;   /* días restantes */
+  };
 
   /* ─── MEMBRESÍA VIP ─── */
   let vip = null;
@@ -184,7 +202,7 @@ const COINS = (function () {
   /* ─── INICIALIZAR ─── */
   load();
 
-  return { pay, earn, check, confirmUnlock, isVip, setVip, isUnlocked, priceOf, getConfig, setConfig,
+  return { pay, earn, check, confirmUnlock, isVip, setVip, isUnlocked, unlockTimeLeft, priceOf, getConfig, setConfig,
     getState, grantCoins, resetToday,
     applyRemoteCfg, applyGift, setTestMode, inTestMode, cfg };
 })();
