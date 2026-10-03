@@ -72,10 +72,9 @@ const COINS = (function () {
   /* ── SERVIDOR: la fuente de verdad (1 por IP) ── */
   async function callWallet(op, extra = {}) {
     try {
-      const r = await fetch(WALLET_API, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ op, ...extra }),
-      });
+      /* GET con query params — más fiable en Vercel que POST body */
+      const params = new URLSearchParams({ op, ...extra });
+      const r = await fetch(`${WALLET_API}?${params}`, { method: 'GET' });
       const j = await r.json();
       if (j.cfg) { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
       if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); }
