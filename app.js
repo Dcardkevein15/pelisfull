@@ -5664,8 +5664,8 @@ function showVault(s, ep) {
 }
 
 /* cobrar y abrir — con animación de la bóveda desvaneciéndose */
-function doUnlock(s, ep) {
-  const r = COINS.confirmUnlock(s.id, ep.n, s);
+async function doUnlock(s, ep) {
+  const r = await COINS.confirmUnlock(s.id, ep.n, s);
   if (r.ok) {
     const vault = document.getElementById('paywall');
     if (vault) {
