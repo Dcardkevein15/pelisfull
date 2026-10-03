@@ -77,11 +77,11 @@ const COINS = (function () {
       if (j.cfg) { cfg = { ...cfg, ...j.cfg }; saveCfg(); }
       if (j.coins !== undefined) { S.coins = j.coins; S.day = todayKey(); persist(); }
       if (j.unlockLeft) {
-        /* MERGE: los desbloqueados del servidor se SUMAN a los locales —
-           NUNCA se borran (evita que una respuesta tardía del servidor
-           pise un desbloqueo que el usuario acaba de pagar)             */
+        /* MERGE: solo AÑADIR desbloqueos del servidor que NO existan
+           localmente. NUNCA sobreescribir los que ya están (el timestamp
+           local se puso cuando el usuario pagó — es el correcto).     */
         for (const [k, days] of Object.entries(j.unlockLeft)) {
-          if (!unlocked[k] || unlocked[k] < Date.now()) {
+          if (!unlocked[k] || (Date.now() - unlocked[k]) > unlockMs()) {
             unlocked[k] = Date.now() + days * 86400000 - unlockMs();
           }
         }
