@@ -3008,9 +3008,11 @@ function isStaff() {
     if (typeof COINS !== 'undefined' && COINS.inTestMode && COINS.inTestMode()) return false;
     if (canAdmin()) return true;
     if (window.XAUTH && typeof window.XAUTH.isMod === 'function') return window.XAUTH.isMod();
-    if (!window.XAUTH) return true;
+    /* XAUTH no cargó aún → asumir NO staff (mejor un candado extra
+       que un usuario que no paga). El admin real entra con modo prueba
+       o espera a que XAUTH cargue (600ms).                              */
     return false;
-  } catch (e) { return true; }
+  } catch (e) { return false; }   /* ante cualquier error: CON candado */
 }
 
 function loadEpisode(epN, autoplayNow = true) {
