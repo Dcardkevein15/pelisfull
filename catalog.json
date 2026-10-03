@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791044403889,
+ "v": 1791044528159,
  "by": "Dcard #2968",
- "at": "2026-10-03T16:20:03.889Z",
+ "at": "2026-10-03T16:22:08.159Z",
  "n": 5808,
  "series": [
   {
@@ -194907,5 +194907,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "2bQilAoK2a9kRs/kRCWqBVOH4NecDoIqay8tRnn/lRTjgJUsH8uhS7hppfiKtJ5oAP3SQX1/Q5DZhvZVSmxsnA=="
+ "sig": "YOsvklh4q7dUTVfpB/p/T8E8a9yvCvkm94gKMItak+/oSNuicn0WlO5TIgoSVmo62w+MEUNhBBLUM0WYTHdCIw=="
 }
