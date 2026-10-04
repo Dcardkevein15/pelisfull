@@ -1,4 +1,4 @@
-﻿/* XÂ·STREAM service worker â€” cachea el app shell para carga instantÃ¡nea/offline */
+/* XÂ·STREAM service worker â€” cachea el app shell para carga instantÃ¡nea/offline */
 /* âš  IMPORTANTE: cualquier cambio visible en la app requiere subir esta versiÃ³n
    (v24 â†’ v25â€¦) para que los usuarios reciban los archivos nuevos.            */
 const CACHE = 'xstream-v149';
