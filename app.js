@@ -2571,8 +2571,13 @@ async function stapeThumbScrape(stId) {
 function renderEpisodes() {
   const s = getSeries(current.seriesId);
   els.episodesGrid.innerHTML = '';
+  /* chips de la entrada: solo tienen sentido con una serie abierta */
+  const chipsEl = document.getElementById('epChips');
+  const allBtnEl = document.getElementById('epAllBtn');
   if (!s) {
     els.episodesTitle.textContent = 'Capítulos';
+    if (chipsEl) chipsEl.classList.add('hidden');
+    if (allBtnEl) allBtnEl.classList.add('hidden');
     els.episodesGrid.innerHTML = '<div class="episodes-hint">← Selecciona una serie o película para empezar</div>';
     els.delSeriesBtn.classList.add('hidden');
     els.addEpBtn.classList.add('hidden');
@@ -2581,6 +2586,8 @@ function renderEpisodes() {
   }
   /* ── Vista PELÍCULA suelta: relacionadas… — pero una SAGA muestra sus partes ── */
   els.episodesGrid.classList.remove('rel-movies');
+  if (chipsEl) chipsEl.classList.add('hidden');
+  if (allBtnEl) allBtnEl.classList.add('hidden');
   const esSagaPeli = s.kind === 'pelicula' && (s.episodes.length > 1 || (s.seasons && Object.keys(s.seasons).length > 0));
   if (s.kind === 'pelicula' && !esSagaPeli) {
     const esOva = isOvaEntry(s);
@@ -2661,21 +2668,34 @@ function renderEpisodes() {
   }
 
   els.episodesTitle.textContent = s.kind === 'pelicula'
-    ? `${s.t} — saga · ${s.episodes.length} parte${s.episodes.length === 1 ? '' : 's'}`
-    : `${s.t} — ${s.episodes.length} capítulos`;
+    ? `🔥 ${s.t} — saga · ${s.episodes.length} parte${s.episodes.length === 1 ? '' : 's'}`
+    : `🔥 ${s.t} — ${s.episodes.length} capítulos`;
   els.delSeriesBtn.classList.remove('hidden');
   els.addEpBtn.classList.remove('hidden');
   els.insertEpBtn.classList.remove('hidden');
+
+  /* 🎯 CHIPS de la entrada: filtran el riel (Destacados/Favoritos/…) */
+  const chips = document.getElementById('epChips');
+  if (chips) chips.classList.remove('hidden');
+  const allBtn = document.getElementById('epAllBtn');
+  if (allBtn) allBtn.classList.remove('hidden');
+  const progMap = (state.progress || {})[s.id] || {};
+  let epsForView = s.episodes;
+  if (epFilter === 'favoritos') epsForView = s.episodes.filter(e => progMap[e.n] && progMap[e.n].done);
+  else if (epFilter === 'emision') epsForView = s.episodes.filter(e => e.url && !(progMap[e.n] && progMap[e.n].done));
+  else if (epFilter === 'recientes') epsForView = s.episodes.slice(-12);
+  else if (epFilter === 'recomendados') epsForView = s.episodes.filter(e => { const p = progMap[e.n]; return p && !p.done && p.t > 10; });
+  else if (epFilter === 'masvistos') epsForView = s.episodes.filter(e => progMap[e.n] && (progMap[e.n].done || progMap[e.n].t > 10));
 
   /* etiquetas de posición (los capítulos dobles ocupan dos números) */
   computeEpDisplay(s);
 
   /* cabeceras divisorias si la serie tiene varias temporadas: se mezclan con
-     las celdas de capítulo en una única lista renderable para lazyRender */
-  const hasSeasons = s.episodes.some(e => (e.season || 1) > 1);
+     las celdas de capítulo en una única lista renderizable para lazyRender */
+  const hasSeasons = epsForView.some(e => (e.season || 1) > 1);
   const itemsToRender = [];
   let lastSeason = 0;
-  for (const ep of s.episodes) {
+  for (const ep of epsForView) {
     if (hasSeasons) {
       const se = ep.season || 1;
       if (se !== lastSeason) {
@@ -2906,6 +2926,11 @@ function renderEpisodes() {
     }
     return cell;
   }, 30);
+
+  /* el filtro de chips no arrojó nada → aviso claro en el riel */
+  if (!itemsToRender.length) {
+    els.episodesGrid.innerHTML = `<div class="episodes-hint">Nada en «${epFilter}» para «${escapeHtml(s.t)}» — prueba otro filtro o «Ver todos»</div>`;
+  }
 }
 
 /* ═══════════ Selección de serie ═══════════ */
@@ -2936,9 +2961,12 @@ function selectSeries(id) {
   syncRemindBtn();
   renderSeries(els.searchInput.value);
   renderEpisodes();
-  // auto-reproduce el primer episodio con enlace (o el 1)
-  const first = s.episodes.find(e => e.url) || s.episodes[0];
-  if (first) loadEpisode(first.n, true);
+  /* 🎬 PORTADA DE LA ENTRADA: al abrir una serie se ve el CARTEL
+     (fondo, título, botones) — el reproductor aparece AL INSTANTE al
+     pulsar "Ver ahora" o tocar un capítulo. Los enlaces compartidos
+     y "Sigue viendo" llaman loadEpisode directamente y saltan al
+     reproductor sin pasar por la portada.                              */
+  showDetailHero(s);
   document.querySelector('.stage').scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -3021,6 +3049,9 @@ function loadEpisode(epN, autoplayNow = true) {
   const ep = s.episodes.find(e => e.n === epN);
   if (!ep) return;
   current.ep = epN;
+
+  /* 🎬 portada → reproductor: CAMBIO INSTANTÁNEO al cargar un capítulo */
+  hideDetailHero();
 
   /* ── SIEMPRE, con o sin candado: ── */
   /* 1. subir al reproductor al instante */
@@ -7244,3 +7275,190 @@ if (window.XAUTH) {
     epgDownload(state.epg.url).catch(() => { });
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   🎬 PORTADA DE LA ENTRADA — el diseño de la imagen, cableado 100% a
+   funciones YA EXISTENTES (cero lógica nueva de reproducción):
+   · Ver ahora      → loadEpisode (swap INSTANTÁNEO al reproductor)
+   · + Mi lista     → favBtn (favorito, la misma función de siempre)
+   · ℹ Más info     → openSynopsis (la ficha completa de siempre)
+   · ↗ Compartir    → shareBtn
+   · 👑 Premium     → showExplainModal (la misma del candado)
+   · Recomendaciones→ búsqueda por la misma colección de la entrada
+   · Descargar      → downloadBtn
+   · Sinopsis       → synopsisBtn
+   · Música         → musicBtn
+   · Chips del riel → filtro de capítulos (vistos/pendientes/…)
+   ═══════════════════════════════════════════════════════════════════════ */
+let epFilter = 'destacados';
+
+function showDetailHero(s) {
+  const shell = els.playerShell;
+  if (!shell || !s) return;
+  const dh = document.getElementById('detailHero');
+  if (!dh) { /* sin la portada en el DOM (edge) → comportamiento clásico */
+    const first = s.episodes.find(e => e.url) || s.episodes[0];
+    if (first) loadEpisode(first.n, true);
+    return;
+  }
+  /* datos básicos — instantáneos con lo que ya hay en el catálogo */
+  const $id = x => document.getElementById(x);
+  $id('dhTitle').textContent = s.t;
+  const kindTxt = s.kind === 'pelicula'
+    ? (isOvaEntry(s) ? '🎌 OVA' : (s.anime ? '🎬 PELÍCULA ANIME' : '🎬 PELÍCULA'))
+    : `📺 ${s.episodes.length} CAPÍTULOS`;
+  $id('dhBadges').innerHTML =
+    `<span class="dh-b acid">🔥 Tendencia</span><span class="dh-b">${kindTxt}</span>`;
+  const genres = [...new Set([
+    ...(s.tags || []),
+    ...(String(s.tag || '').split(/[·\-]|,/)).map(x => x.trim()).filter(Boolean),
+  ])].slice(0, 4);
+  $id('dhGenres').innerHTML = genres.map(g => `<span>${escapeHtml(g)}</span>`).join('');
+  $id('dhDesc').textContent = [s.tag, s.jp].filter(Boolean).join(' · ')
+    || 'Completa, en español y en HD — aquí en X·STREAM.';
+  /* fondo: la carátula al instante; el backdrop grande llega de TMDB */
+  const bg = $id('dhBg'), fb = $id('dhFallback');
+  fb.style.background = grad(s);
+  fb.textContent = s.jp || '🎬';
+  if (s.poster) { bg.src = s.poster; bg.style.display = ''; }
+  else { bg.removeAttribute('src'); bg.style.display = 'none'; }
+  /* miniaturas de capítulos (clic → ese capítulo, al instante) */
+  renderDhThumbs(s);
+  /* botón Mi lista en su estado real */
+  syncDhFav(s);
+  /* MODO PORTADA: el reproductor se esconde, el cartel se ve */
+  shell.classList.add('hero-on');
+  /* enriquecimiento TMDB (caché 30 min — la misma petición de la sinopsis):
+     backdrop grande + año + géneros reales + descripción oficial            */
+  if (typeof synFetch === 'function') {
+    synFetch(s).then(d => {
+      if (!d || !s || current.seriesId !== s.id) return;
+      if (d.backdrop || d.poster) { bg.src = d.backdrop || d.poster; bg.style.display = ''; }
+      if (d.year) $id('dhBadges').innerHTML += `<span class="dh-b">${d.year}</span>`;
+      if (d.overview) $id('dhDesc').textContent = d.overview;
+      if (d.genres && d.genres.length) {
+        $id('dhGenres').innerHTML = d.genres.slice(0, 4).map(g => `<span>${escapeHtml(g)}</span>`).join('');
+      }
+    }).catch(() => { });
+  }
+}
+
+function hideDetailHero() {
+  if (els.playerShell) els.playerShell.classList.remove('hero-on');
+}
+
+/* miniaturas del riel de la portada — las mismas imágenes de los capítulos */
+function renderDhThumbs(s) {
+  const track = document.getElementById('dhThumbs');
+  if (!track) return;
+  track.innerHTML = '';
+  const eps = s.episodes.filter(e => e.url).slice(0, 8);
+  if (!eps.length) { track.classList.add('hidden'); return; }
+  track.classList.remove('hidden');
+  for (const ep of eps) {
+    const b = document.createElement('button');
+    b.className = 'dh-th';
+    b.title = `${s.t} — ${ep.t || 'Capítulo ' + ep.n}`;
+    const thumb = getEpThumb(s, ep) || s.poster || '';
+    b.innerHTML = (thumb ? `<img src="${escapeHtml(thumb)}" alt="" loading="lazy" onerror="this.remove()">` : '')
+      + `<span class="dh-th-n">${ep.n}</span>`;
+    b.addEventListener('click', () => loadEpisode(ep.n, true));
+    track.appendChild(b);
+  }
+}
+
+/* estado real del botón Mi lista de la portada (espeja favBtn) */
+function syncDhFav(s) {
+  const ico = document.getElementById('dhFavIco');
+  const txt = document.getElementById('dhFavTxt');
+  if (!ico || !txt) return;
+  const on = !!(s && s.fav);
+  ico.textContent = on ? '❤' : '🤍';
+  txt.textContent = on ? 'En mi lista' : 'Mi lista';
+  document.getElementById('dhFav')?.classList.toggle('on', on);
+}
+
+/* ── wiring: todos los botones llaman a las funciones que ya existen ── */
+(function detailHeroWire() {
+  const $id = x => document.getElementById(x);
+  /* ▶ Ver ahora → swap INSTANTÁNEO al reproductor */
+  $id('dhPlay')?.addEventListener('click', () => {
+    const s = getSeries(current.seriesId);
+    if (!s) return;
+    hideDetailHero();
+    const first = s.episodes.find(e => e.url) || s.episodes[0];
+    if (first) loadEpisode(first.n, true);
+    document.querySelector('.stage')?.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  /* 🤍 + Mi lista → el favorito de siempre */
+  $id('dhFav')?.addEventListener('click', () => {
+    els.favBtn.click();
+    syncDhFav(getSeries(current.seriesId));
+  });
+  /* ℹ Más info → la sinopsis de siempre */
+  $id('dhInfo')?.addEventListener('click', () => els.synopsisBtn.click());
+  /* ↗ Compartir → compartir de siempre */
+  $id('dhShare')?.addEventListener('click', () => {
+    const s = getSeries(current.seriesId);
+    if (!s) return;
+    const ep = (s.episodes.find(e => e.url) || s.episodes[0] || {}).n;
+    openShare(s.id, ep);
+  });
+  /* 👑 Obtener membresía (portada) y el mini-card del sidebar → la misma
+     acción del candado (showExplainModal) — cero funciones nuevas       */
+  $id('dhVipBtn')?.addEventListener('click', () => $id('pwVipBtn').click());
+  $id('sidePremBtn')?.addEventListener('click', () => $id('pwVipBtn').click());
+  /* 👑 Recomendaciones → busca series de la misma colección (con IA de
+     tu biblioteca: mismas etiquetas, mismo sabor)                        */
+  $id('dhRecs')?.addEventListener('click', () => {
+    const s = getSeries(current.seriesId);
+    if (!s) return;
+    const semillas = [...new Set([...(s.tags || []),
+      ...String(s.tag || '').split(/[·\-]|,/).map(x => x.trim()).filter(Boolean)])];
+    if (semillas.length) {
+      els.searchInput.value = semillas[0];
+      renderSeries(semillas[0]);
+      els.searchInput.dispatchEvent(new Event('input'));
+    }
+    toast(`✨ Recomendaciones tipo «${semillas[0] || s.t}» en la lista`);
+  });
+  /* ⬇ Descargar / 📖 Sinopsis / 🎵 Música → los botones de siempre */
+  $id('dhDl')?.addEventListener('click', () => els.downloadBtn.click());
+  $id('dhSyn')?.addEventListener('click', () => els.synopsisBtn.click());
+  $id('dhMus')?.addEventListener('click', () => els.musicBtn.click());
+  /* ‹ › del riel de miniaturas */
+  $id('dhPrev')?.addEventListener('click', () => {
+    const t = $id('dhThumbs'); if (t) t.scrollBy({ left: -t.clientWidth * .8, behavior: 'smooth' });
+  });
+  $id('dhNext')?.addEventListener('click', () => {
+    const t = $id('dhThumbs'); if (t) t.scrollBy({ left: t.clientWidth * .8, behavior: 'smooth' });
+  });
+  /* 🎯 chips del riel de capítulos */
+  const chips = $id('epChips');
+  if (chips) chips.addEventListener('click', ev => {
+    const b = ev.target.closest('button[data-f]');
+    if (!b) return;
+    epFilter = b.dataset.f;
+    chips.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    renderEpisodes();
+  });
+  /* Ver todos › → cuadrícula completa (y de vuelta al riel) */
+  $id('epAllBtn')?.addEventListener('click', () => {
+    const panel = $id('episodesPanel');
+    const gridMode = panel?.classList.toggle('grid-all');
+    $id('epAllBtn').textContent = gridMode ? '‹ Ver menos' : 'Ver todos ›';
+  });
+  /* ‹ › del riel de capítulos */
+  $id('epsPrev')?.addEventListener('click', () => {
+    els.episodesGrid.scrollBy({ left: -els.episodesGrid.clientWidth * .75, behavior: 'smooth' });
+  });
+  $id('epsNext')?.addEventListener('click', () => {
+    els.episodesGrid.scrollBy({ left: els.episodesGrid.clientWidth * .75, behavior: 'smooth' });
+  });
+  /* 🤍 Mi lista en la columna izquierda → el filtro de favoritos */
+  $id('navFavBtn')?.addEventListener('click', () => {
+    els.favFilter.click();
+    $id('navFavBtn').classList.toggle('on', favOnly);
+    $id('countFav').textContent = favOnly ? 'ON' : '';
+  });
+})();

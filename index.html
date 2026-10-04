@@ -134,7 +134,6 @@
         <button id="migrateBtn" class="chip-filter admin-only" title="Migrar videos de Streamtape a archive.org: sin anuncios, para siempre">🚚 Migrar</button>
         <button id="trashBtn" class="chip-filter trash2 admin-only" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
       </div>
-      <div class="side-filters" id="tagChips"></div>
       <div class="side-foot">
         <button id="exportBtn" class="foot-btn" title="Exportar biblioteca completa (JSON)">⬇ Exportar</button>
         <button id="importBtn" class="foot-btn admin-only" title="Importar respaldo JSON">⬆ Importar</button>
@@ -163,6 +162,9 @@
       <button id="tabTv" class="side-tab" data-tab="tv" title="Canales de televisión en vivo">
         <span class="tab-emoji">📡</span><span class="tab-name">TV</span><b id="countTv" class="tab-count">0</b>
       </button>
+      <button id="navFavBtn" class="side-tab side-fav" title="Mi lista — solo tus favoritos">
+        <span class="tab-emoji">🤍</span><span class="tab-name">Mi lista</span><b id="countFav" class="tab-count"></b>
+      </button>
       <button id="gearBtn" class="gear-btn" title="Herramientas de la lista">⚙</button>
     </div>
     <div class="tv-tools hidden" id="tvTools">
@@ -171,7 +173,17 @@
       <button class="btn btn-mini" id="tvIptvBtn" title="Fuentes oficiales de iptv-org: elige idiomas, países y categorías que se actualizan solas">🌐 iptv-org</button>
       <button class="btn btn-mini" id="tvEpgBtn" title="Guía de programación (EPG) — qué echan ahora en cada canal">📅 Guía</button>
     </div>
+    <!-- 🎭 GÉNEROS — las colecciones de la biblioteca, siempre visibles -->
+    <div class="side-gen-label" id="sideGenLabel">GÉNEROS</div>
+    <div class="side-filters" id="tagChips"></div>
     <nav id="seriesList" class="series-list"></nav>
+    <!-- 👑 mini-card Premium al final de la columna (como en el diseño) -->
+    <div class="side-prem" id="sidePrem">
+      <div class="side-prem-crown">👑</div>
+      <b>Disfruta de X·STREAM Premium</b>
+      <p>Sin anuncios · Mayor velocidad · Contenido exclusivo</p>
+      <button id="sidePremBtn">¡Obtener ahora!</button>
+    </div>
     </div><!-- /side-scroll: pestañas + herramientas + lista ruedan juntas -->
     <div class="broken-list collapsed" id="brokenList"></div>
   </aside>
@@ -200,6 +212,76 @@
       </div>
       <!-- ✨ Sigue viendo -->
       <div class="continue-row hidden" id="continueRow"></div>
+
+      <!-- ═══════════ 🎬 PORTADA DE LA ENTRADA — diseño de la imagen ═══════════
+           Al abrir una serie se ve este CARTEL (fondo, título, botones).
+           Al pulsar "Ver ahora" cambia AL INSTANTE al reproductor real
+           (con el candado intacto). Funciones intactas, solo diseño.   -->
+      <div class="detail-hero hidden" id="detailHero">
+        <div class="dh-grid">
+          <div class="dh-hero" id="dhHero">
+            <div class="dh-bgwrap">
+              <img class="dh-bg" id="dhBg" alt="">
+              <div class="dh-fallback" id="dhFallback">🎬</div>
+              <div class="dh-shade"></div>
+            </div>
+            <div class="dh-content">
+              <div class="dh-badges" id="dhBadges"></div>
+              <h1 class="dh-title" id="dhTitle"></h1>
+              <div class="dh-genres" id="dhGenres"></div>
+              <p class="dh-desc" id="dhDesc"></p>
+              <div class="dh-actions">
+                <button class="dh-play" id="dhPlay">
+                  <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  <span>Ver ahora</span>
+                </button>
+                <button class="dh-mini" id="dhFav"><span id="dhFavIco">🤍</span> <span id="dhFavTxt">Mi lista</span></button>
+                <button class="dh-mini" id="dhInfo">ℹ <span>Más info</span></button>
+                <button class="dh-mini dh-share" id="dhShare" title="Compartir esta entrada">↗</button>
+              </div>
+              <div class="dh-thumbsrow">
+                <button class="dh-tharrow" id="dhPrev" aria-label="Anteriores">‹</button>
+                <div class="dh-thumbs" id="dhThumbs"></div>
+                <button class="dh-tharrow" id="dhNext" aria-label="Siguientes">›</button>
+              </div>
+            </div>
+          </div>
+          <aside class="dh-premium">
+            <div class="dh-prem-crown">👑</div>
+            <h3>Membresía Premium</h3>
+            <p class="dh-prem-sub">Tu experiencia anime sin límites</p>
+            <ul class="dh-prem-list">
+              <li><i>✓</i> Sin anuncios</li>
+              <li><i>✓</i> Mayor velocidad de carga</li>
+              <li><i>✓</i> Contenido exclusivo</li>
+              <li><i>✓</i> Acceso anticipado a estrenos</li>
+            </ul>
+            <button class="dh-prem-btn" id="dhVipBtn">Obtener membresía</button>
+          </aside>
+        </div>
+        <div class="dh-cardsrow">
+          <button class="dh-card c-ia" id="dhRecs" title="Series parecidas a esta">
+            <span class="dh-c-ic">👑</span>
+            <span class="dh-c-tx"><b>Generar recomendaciones</b><i>con IA — series parecidas</i></span>
+            <span class="dh-c-go">→</span>
+          </button>
+          <button class="dh-card c-dl" id="dhDl" title="Descargar el capítulo">
+            <span class="dh-c-ic">⬇</span>
+            <span class="dh-c-tx"><b>Descargar capítulo</b><i>para ver offline</i></span>
+            <span class="dh-c-go">→</span>
+          </button>
+          <button class="dh-card c-syn" id="dhSyn" title="Historia, reparto y tráiler">
+            <span class="dh-c-ic">📖</span>
+            <span class="dh-c-tx"><b>Leer sinopsis</b><i>antes de ver</i></span>
+            <span class="dh-c-go">→</span>
+          </button>
+          <button class="dh-card c-mus" id="dhMus" title="Reproductor de música">
+            <span class="dh-c-ic">🎵</span>
+            <span class="dh-c-tx"><b>Música</b><i>de tus animes favoritos</i></span>
+            <span class="dh-c-go">→</span>
+          </button>
+        </div>
+      </div>
 
       <div class="player-anchor" id="playerAnchor">
       <div class="player" id="playerArea">
@@ -428,7 +510,18 @@
         </div>
         <div class="panel-page" id="panelContent">
         <div class="episodes-head">
-          <h2 id="episodesTitle">Capítulos</h2>
+          <div class="eh-row">
+            <h2 id="episodesTitle">Capítulos</h2>
+            <button class="eh-all" id="epAllBtn" title="Ver el listado completo en cuadrícula">Ver todos ›</button>
+          </div>
+          <div class="eh-chips hidden" id="epChips">
+            <button data-f="destacados" class="on">Destacados</button>
+            <button data-f="favoritos">Favoritos</button>
+            <button data-f="emision">En Emisión</button>
+            <button data-f="recientes">Recientemente Añadidos</button>
+            <button data-f="recomendados">Recomendados</button>
+            <button data-f="masvistos">Más Vistos</button>
+          </div>
           <div class="episodes-tools">
             <button class="btn btn-mini hidden admin-only" id="undoBtn" title="Recuperar el último capítulo eliminado">↩ Deshacer</button>
             <button class="btn btn-mini" id="favBtn" title="Marcar como favorito">🤍 Favorito</button>
@@ -441,8 +534,12 @@
             <button class="btn btn-mini danger hidden admin-only" id="delSeriesBtn">Eliminar</button>
           </div>
         </div>
-        <div class="episodes-grid" id="episodesGrid">
-          <div class="episodes-hint">← Selecciona una serie para ver sus capítulos</div>
+        <div class="eps-shell" id="epsShell">
+          <button class="eps-arrow l" id="epsPrev" aria-label="Capítulos anteriores">‹</button>
+          <div class="episodes-grid" id="episodesGrid">
+            <div class="episodes-hint">← Selecciona una serie para ver sus capítulos</div>
+          </div>
+          <button class="eps-arrow r" id="epsNext" aria-label="Capítulos siguientes">›</button>
         </div>
         </div><!-- /panelContent -->
 
