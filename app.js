@@ -2776,6 +2776,14 @@ function renderEpisodes() {
     const q = epQuality(ep);
     const resume = pr && !pr.done && pr.t > 20
       ? `<span class="ep-resume" title="Continuar donde lo dejaste">▶ ${fmt(pr.t)}</span>` : '';
+    /* 🔓 MARCA DE DESBLOQUEADO: días que le quedan a este capítulo pagado */
+    let openLeft = 0;
+    if (typeof COINS !== 'undefined' && ep.url) {
+      try { openLeft = COINS.isUnlocked(s.id, ep.n) ? COINS.unlockTimeLeft(s.id, ep.n) : 0; } catch (e3) { }
+    }
+    if (openLeft > 0) cell.classList.add('is-open');
+    const openChip = openLeft > 0
+      ? `<span class="ep-open" title="Desbloqueado — quedan ${openLeft} día${openLeft === 1 ? '' : 's'}">🔓 ${openLeft}d</span>` : '';
     /* etiqueta de posición: una tarjeta DOBLE ocupa dos números (7–8) */
     const dd = epDispMap.get(ep) || { a: ep.n, b: ep.n, span: 1 };
     /* chip del número REAL si la fuente lo trae y difiere de la posición */
@@ -2785,6 +2793,7 @@ function renderEpisodes() {
     cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
       + `<span class="ep-src" title="${srcIcon.t}">${srcIcon.g}</span>`
       + `<span class="num">${dd.a}${dd.b > dd.a ? '–' + dd.b : ''}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
+      + openChip
       + realChip
       + (dd.span > 1 ? '<span class="ep-dbl" title="Capítulo doble: esta tarjeta vale por dos números">DOBLE</span>' : '')
       + resume
@@ -2908,6 +2917,37 @@ function renderEpisodes() {
   }, 30);
 }
 
+/* ═══════════ ¿Por dónde empezar al abrir una entrada? ═══════════
+   Antes SIEMPRE cargaba el primer capítulo con enlace — si habías
+   desbloqueado el cap. 97, al volver veías el candado del cap. 1 y
+   parecía que tu pago se había perdido. Ahora el orden es:
+     1. el capítulo que dejaste A MEDIAS (retomar)
+     2. el primer capítulo YA DESBLOQUEADO (el que pagaste)
+     3. el primero con enlace (como siempre)                            */
+function pickStartEpisode(s) {
+  const eps = s.episodes.filter(e => e.url);
+  if (!eps.length) return s.episodes[0];
+  /* 1 — retomar donde lo dejaste */
+  const prog = (state.progress || {})[s.id] || {};
+  let resume = null;
+  for (const e of eps) {
+    const p = prog[e.n];
+    if (p && !p.done && p.t > 15 && (!resume || (p.at || 0) > (prog[resume.n].at || 0))) resume = e;
+  }
+  if (resume) return resume;
+  /* 2 — un capítulo pagado (lectura directa de localStorage, como el paywall) */
+  let raw = {};
+  try { raw = JSON.parse(localStorage.getItem('xstream-unlocked') || '{}'); } catch (e2) { }
+  const ms = ((typeof COINS !== 'undefined' ? COINS.getConfig().unlockDays : 7) || 7) * 86400000;
+  const open = eps.find(e => {
+    const at = raw[`${s.id}:${e.n}`];
+    return at && (Date.now() - at) < ms;
+  });
+  if (open) return open;
+  /* 3 — como siempre */
+  return eps[0];
+}
+
 /* ═══════════ Selección de serie ═══════════ */
 function selectSeries(id) {
   current.seriesId = id;
@@ -2936,8 +2976,10 @@ function selectSeries(id) {
   syncRemindBtn();
   renderSeries(els.searchInput.value);
   renderEpisodes();
-  // auto-reproduce el primer episodio con enlace (o el 1)
-  const first = s.episodes.find(e => e.url) || s.episodes[0];
+  /* 🎯 abre por donde corresponde: retomar → capítulo desbloqueado → primero.
+     Así, al volver a una serie donde pagaste el cap. 97, NO te sale el
+     candado del cap. 1: entra directo a tu capítulo abierto.            */
+  const first = pickStartEpisode(s);
   if (first) loadEpisode(first.n, true);
   document.querySelector('.stage').scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -3055,6 +3097,23 @@ function loadEpisode(epN, autoplayNow = true) {
     const stillUnlocked = unlockAt && (Date.now() - unlockAt) < unlockDays;
     if (!stillUnlocked) {
       showVault(s, ep);
+      /* 🛡️ RESCATE DEL SERVIDOR: si este navegador perdió el localStorage
+         (incógnito nuevo, limpieza, otro dispositivo) pero el SERVIDOR sí
+         tiene el capítulo pagado (wallet.json — queda abierto los días que
+         el admin configuró), la bóveda se cierra sola y reproduce.
+         El pago JAMÁS se pierde.                                          */
+      if (typeof COINS.checkAsync === 'function') {
+        COINS.checkAsync(s.id, ep.n, s).then(r => {
+          if (r && r.ok && r.reason === 'unlocked') {
+            const v = document.getElementById('paywall');
+            /* solo si el usuario sigue en ESTE capítulo (no navegó a otro) */
+            if (v && !v.classList.contains('hidden') && current.seriesId === s.id && current.ep === ep.n) {
+              v.classList.add('hidden');
+              loadEpisode(ep.n, true);   /* localStorage ya fue rescrito → pasa el check */
+            }
+          }
+        }).catch(() => { });
+      }
       return;
     }
     /* si llegó aquí, ya está desbloqueado → reproducir sin bóveda */

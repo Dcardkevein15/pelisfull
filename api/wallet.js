@@ -51,7 +51,10 @@ async function fetchCatalogCfg() {
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), 6000);
-    const r = await fetch(RAW_CATALOG + '?t=' + Date.now(), { signal: ctrl.signal });
+    /* cache:'no-store' — el runtime de Vercel (Fluid) cachea los fetch()
+       según los headers de la API de GitHub e IGNORA el query string:
+       sin esto el monedero leía copias viejas de wallet.json            */
+    const r = await fetch(RAW_CATALOG + '?t=' + Date.now(), { cache: 'no-store', signal: ctrl.signal });
     clearTimeout(t);
     if (r.ok) {
       const cat = await r.json();
@@ -77,6 +80,10 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,x-wallet-sig');
+  /* ⚠️ SIN ESTO el edge de Vercel congela las respuestas GET del
+     monedero: el saldo y los desbloqueos quedaban congelados aunque
+     el archivo en GitHub ya hubiera cambiado.                        */
+  res.setHeader('Cache-Control', 'no-store, max-age=0');
   if (req.method === 'OPTIONS') return res.status(204).end();
 
   try {
@@ -212,16 +219,62 @@ module.exports = async function handler(req, res) {
 };
 
 /* ── GitHub como almacén (rama chat-data, no redespliega) ──
-   Mismo patrón que api/chat.js (que SÍ persiste en producción):
-   cache-buster en GET, Content-Type en PUT, reintentos con sha */
+   ⚠️ HALLAZGO CRÍTICO: la API de GitHub (contents, raw e incluso
+   git/blobs INMUTABLES) le servía a Vercel copias VIEJAS del archivo
+   (blob-sha correcto, contenido equivocado) — por eso los desbloqueos
+   "se perdían" y los reembolsos no aparecían.
+   LECTURA A PRUEBA DE VENENO (solo endpoints verificados en vivo):
+   1. commits API → SHA del último commit del archivo (SÍ responde fresco)
+   2. detalle del commit → sha del blob (para el PUT)
+   3. jsDelivr @commit-sha → contenido INMUTABLE desde un CDN externo
+      (no comparte capa de caché con GitHub↔Vercel)                     */
 async function ghGet(path) {
-  const r = await fetch(`${GH_API}/repos/${REPO}/contents/${path}?ref=${DATA_BRANCH}&t=${Date.now()}`, {
-    headers: { Authorization: `token ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json' },
+  const GHH = { Authorization: `token ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json' };
+  /* 1. último commit que tocó este archivo (endpoint VIVO) */
+  const cs = await fetch(`${GH_API}/repos/${REPO}/commits?path=${path}&sha=${DATA_BRANCH}&per_page=1&t=${Date.now()}`, {
+    cache: 'no-store', headers: GHH,
   });
-  if (r.status === 404) return null;
-  if (!r.ok) { console.error('wallet ghGet ' + r.status); return null; }
-  const j = await r.json();
-  return { sha: j.sha, content: Buffer.from(j.content, 'base64').toString('utf8') };
+  if (!cs.ok) { console.error('wallet ghGet commits ' + cs.status); return null; }
+  const cl = await cs.json();
+  if (!cl || !cl[0] || !cl[0].sha) return null;
+  const commitSha = cl[0].sha;
+  /* 2. sha del BLOB (para el PUT) vía el detalle del commit (endpoint VIVO) */
+  let sha = null;
+  try {
+    const cc = await fetch(`${GH_API}/repos/${REPO}/commits/${commitSha}?t=${Date.now()}`, {
+      cache: 'no-store', headers: GHH,
+    });
+    if (cc.ok) {
+      const det = await cc.json();
+      const f = (det.files || []).find(x => x.filename === path);
+      if (f) sha = f.sha;
+    }
+  } catch (e) { console.error('wallet ghGet blobsha: ' + e.message); }
+  /* 3. contenido INMUTABLE vía jsDelivr @commit (CDN externo — el
+      mismo blob-sha de GitHub aquí devuelve el contenido correcto)   */
+  let content = null;
+  try {
+    const jz = await fetch(`https://cdn.jsdelivr.net/gh/${REPO}@${commitSha}/${path}?t=${Date.now()}`, {
+      cache: 'no-store',
+    });
+    if (jz.ok) {
+      content = await jz.text();
+      /* verificación del contenido: si jsDelivr no reconoce el commit
+         (demasiado reciente), cae a GitHub raw @commit (inmutable)   */
+      if (content && content.length < 10) content = null;
+    }
+  } catch (e) { console.error('wallet ghGet jsdelivr: ' + e.message); }
+  if (content == null) {
+    try {
+      const rr = await fetch(`https://raw.githubusercontent.com/${REPO}/${commitSha}/${path}?t=${Date.now()}`, {
+        cache: 'no-store',
+      });
+      if (rr.ok) content = await rr.text();
+      else console.error('wallet ghGet raw@' + commitSha.slice(0, 8) + ' ' + rr.status);
+    } catch (e) { console.error('wallet ghGet raw: ' + e.message); }
+  }
+  if (content == null) return null;
+  return { sha, content };
 }
 
 async function ghPut(path, content, sha) {
@@ -233,6 +286,7 @@ async function ghPut(path, content, sha) {
   if (sha) body.sha = sha;
   const r = await fetch(`${GH_API}/repos/${REPO}/contents/${path}`, {
     method: 'PUT',
+    cache: 'no-store',
     headers: {
       Authorization: `token ${process.env.GH_TOKEN}`,
       Accept: 'application/vnd.github+json',

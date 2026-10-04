@@ -3089,3 +3089,20 @@ body.chat-full .cmu-list{max-height:44vh}
 }
 
 
+
+/* ═══ 🔓 MARCA DE CAPÍTULO DESBLOQUEADO — visible en la tarjeta ═══
+   Cada capítulo pagado muestra su candado abierto + los días que
+   le quedan (los que el admin configuró en el panel). Nunca más
+   dudas de qué está abierto: la tarjeta lo dice.                    */
+.ep.is-open{border-color:rgba(216,255,62,.55)}
+.ep.is-open::after{
+  content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(216,255,62,.25);
+}
+.ep-open{
+  display:inline-flex;align-items:center;gap:3px;
+  background:rgba(216,255,62,.14);border:1px solid rgba(216,255,62,.45);
+  color:var(--acid);border-radius:999px;padding:2px 8px;
+  font:800 9.5px 'JetBrains Mono';letter-spacing:.4px;
+}
+.ep.is-open .num{color:var(--acid)}
