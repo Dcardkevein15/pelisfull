@@ -1,7 +1,7 @@
-/* X·STREAM service worker — cachea el app shell para carga instantánea/offline */
-/* ⚠ IMPORTANTE: cualquier cambio visible en la app requiere subir esta versión
-   (v24 → v25…) para que los usuarios reciban los archivos nuevos.            */
-const CACHE = 'xstream-v147';
+﻿/* XÂ·STREAM service worker â€” cachea el app shell para carga instantÃ¡nea/offline */
+/* âš  IMPORTANTE: cualquier cambio visible en la app requiere subir esta versiÃ³n
+   (v24 â†’ v25â€¦) para que los usuarios reciban los archivos nuevos.            */
+const CACHE = 'xstream-v149';
 const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'chat.js', 'coins.js', 'icon.svg', 'manifest.json'];
 
 self.addEventListener('install', e => {
@@ -18,11 +18,11 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   const url = e.request.url;
-  /* 🚫 cross-origin (wallet proxy, Adsterra, fuentes, APIs): JAMÁS
-     interceptar — el SW devolvía index.html como respuesta del wallet
-     si el fetch fallaba → el cliente no parseaba el JSON → no cobraba  */
+  /* ðŸš« cross-origin (wallet proxy, Adsterra, fuentes, APIs): JAMÃS
+     interceptar â€” el SW devolvÃ­a index.html como respuesta del wallet
+     si el fetch fallaba â†’ el cliente no parseaba el JSON â†’ no cobraba  */
   if (!url.startsWith(self.location.origin)) return;
-  /* catalog.json SIEMPRE de la red: es el catálogo que el admin publica para todos */
+  /* catalog.json SIEMPRE de la red: es el catÃ¡logo que el admin publica para todos */
   if (url.includes('catalog.json')) return;
   /* videos y APIs: siempre de la red (nunca cachear streams) */
   if (url.includes('googleapis') || url.includes('drive.google') || url.includes('archive.org')
