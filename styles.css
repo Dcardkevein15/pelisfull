@@ -3114,28 +3114,33 @@ body.chat-full .cmu-list{max-height:44vh}
 }
 
 /* ═══════════ 📺 ADWALL — aviso dorado del Adblocker + margen del ✕ ═══════════ */
-/* 🚫 mensaje dorado grande cuando el anuncio no cargó (Adblocker) */
+/* 🚫 mensaje dorado cuando el anuncio no cargó (Adblocker) — ESTÁTICO
+   (sin animación: las letras no se mueven) y responsive con clamp()   */
 .ad-placeholder .ad-blocked{
   display:none;
-  margin-top:16px;
-  font-family:'Archivo Black',sans-serif;
-  font-size:16px;
-  line-height:1.5;
+  margin-top:14px;
+  font-family:Inter,system-ui,sans-serif;
+  font-weight:800;
+  font-size:clamp(11px,3.2vw,14px);
+  line-height:1.55;
   color:#ffd76a;
-  letter-spacing:.3px;
-  text-shadow:0 0 20px rgba(255,215,106,.4),0 2px 12px rgba(0,0,0,.9);
-  animation:goldPulse 2.2s ease-in-out infinite;
+  letter-spacing:.2px;
+  overflow-wrap:break-word;
+  -webkit-hyphens:auto;hyphens:auto;
+  text-shadow:0 2px 10px rgba(0,0,0,.9);
 }
 .ad-placeholder.blocked .ad-blocked{display:block}
 .ad-placeholder.blocked p,.ad-placeholder.blocked small{opacity:.5}
-@keyframes goldPulse{
-  0%,100%{text-shadow:0 0 20px rgba(255,215,106,.35),0 2px 12px rgba(0,0,0,.9)}
-  50%{text-shadow:0 0 34px rgba(255,215,106,.75),0 2px 12px rgba(0,0,0,.9)}
-}
-@media (max-width:480px){
-  .ad-placeholder .ad-blocked{font-size:13.5px;margin-top:12px}
-}
 
 /* ✕ cerrar — margen superior para que el círculo NO choque con el borde */
 .ad-card{padding-top:22px}
 .ad-head{min-height:38px}
+
+/* 📐 ALTURA FIJA de los mensajes: al cambiar el texto (Cargando… →
+   Haz clic… → ¡Clic registrado!…) la ventana NUNCA cambia de tamaño  */
+.ad-msg{
+  min-height:38px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+}
+.ad-wait{min-height:38px;display:flex;align-items:center;justify-content:center}
