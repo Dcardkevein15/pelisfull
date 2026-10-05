@@ -1106,6 +1106,34 @@
   async function publishCatalog() {
     if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
     if (!API || !API.getState) return axToast('La app aún no está lista', true);
+    /* 💡 FEEDBACK INMEDIATO desde el primer clic — antes, entre el clic y
+       el primer aviso había una descarga SILENCIOSA del catálogo en vivo
+       (varios segundos) y daba la impresión de que el botón no hacía
+       nada. Ahora el botón mismo se transforma y avisa todo el rato.   */
+    const pubBtn = document.getElementById('axPublish');
+    const pubLbl = pubBtn ? pubBtn.textContent : '';
+    if (pubBtn) {
+      pubBtn.disabled = true;
+      pubBtn.style.opacity = '.65';
+      pubBtn.style.pointerEvents = 'none';
+      pubBtn.textContent = '⏳ Publicando…';
+    }
+    axToast('🌐 Publicando: trayendo el catálogo en vivo y firmando…');
+    try {
+      await publishCatalogRun();
+    } finally {
+      if (pubBtn) {
+        pubBtn.disabled = false;
+        pubBtn.style.opacity = '';
+        pubBtn.style.pointerEvents = '';
+        pubBtn.textContent = pubLbl || '🌐 Publicar mi biblioteca para TODOS';
+      }
+    }
+  }
+
+  async function publishCatalogRun() {
+    if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
+    if (!API || !API.getState) return axToast('La app aún no está lista', true);
     /* 🔄 PRE-VUELO DE FUSIÓN (multi-PC y moderadores): trae el catálogo EN
        VIVO de la web y fusiónalo POR UNIÓN antes de armar el paquete —
        lo que publicó otra persona se SUMA y lo tuyo se conserva. Publicar
