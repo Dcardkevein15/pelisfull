@@ -3112,3 +3112,30 @@ body.chat-full .cmu-list{max-height:44vh}
   position:absolute;top:6px;left:6px;z-index:3;
   pointer-events:none;
 }
+
+/* ═══════════ 📺 ADWALL — aviso dorado del Adblocker + margen del ✕ ═══════════ */
+/* 🚫 mensaje dorado grande cuando el anuncio no cargó (Adblocker) */
+.ad-placeholder .ad-blocked{
+  display:none;
+  margin-top:16px;
+  font-family:'Archivo Black',sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:#ffd76a;
+  letter-spacing:.3px;
+  text-shadow:0 0 20px rgba(255,215,106,.4),0 2px 12px rgba(0,0,0,.9);
+  animation:goldPulse 2.2s ease-in-out infinite;
+}
+.ad-placeholder.blocked .ad-blocked{display:block}
+.ad-placeholder.blocked p,.ad-placeholder.blocked small{opacity:.5}
+@keyframes goldPulse{
+  0%,100%{text-shadow:0 0 20px rgba(255,215,106,.35),0 2px 12px rgba(0,0,0,.9)}
+  50%{text-shadow:0 0 34px rgba(255,215,106,.75),0 2px 12px rgba(0,0,0,.9)}
+}
+@media (max-width:480px){
+  .ad-placeholder .ad-blocked{font-size:13.5px;margin-top:12px}
+}
+
+/* ✕ cerrar — margen superior para que el círculo NO choque con el borde */
+.ad-card{padding-top:22px}
+.ad-head{min-height:38px}
