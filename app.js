@@ -3116,7 +3116,13 @@ function loadEpisode(epN, autoplayNow = true) {
       }
       return;
     }
-    /* si llegó aquí, ya está desbloqueado → reproducir sin bóveda */
+    /* ✅ llegamos aquí = capítulo DESBLOQUEADO → reproducir SIN bóveda.
+       CRÍTICO: quitar cualquier bóveda que hubiera quedado abierta de
+       un capítulo ANTERIOR bloqueado — sin esto, el candado viejo se
+       quedaba pegado ENCIMA del video desbloqueado (se oía el audio
+       detrás del candado). Al cerrar y reabrir la página "funcionaba"
+       porque la bóveda nacía oculta.                                      */
+    hidePaywall();
   }
   /* si ya estaba desbloqueado o es staff → reproducir directamente */
   /* 💊 píldora clickable: número REAL (si el título lo trae) → salto a su tarjeta */
