@@ -2647,8 +2647,18 @@ function renderEpisodes() {
       cell.dataset.relid = m.id;
       cell.className = 'ep movie-rel has-url' + (img ? '' : ' fallback') + (m.id === s.id ? ' playing' : '');
       const chipTxt = isOvaEntry(m) ? '🎌 OVA' : (m.anime ? '🎬 ANIME' : '🎬 PELÍCULA');
+      /* 🔓 marca de película desbloqueada — con sus días restantes */
+      let mOpen = 0;
+      const mEp = (m.episodes.find(e => e.url) || m.episodes[0] || {}).n || 1;
+      if (typeof COINS !== 'undefined') {
+        try { mOpen = COINS.isUnlocked(m.id, mEp) ? COINS.unlockTimeLeft(m.id, mEp) : 0; } catch (e) { }
+      }
+      if (mOpen > 0) cell.classList.add('is-open');
+      const openChip = mOpen > 0
+        ? `<span class="ep-open rel-open" title="Desbloqueada — quedan ${mOpen} día${mOpen === 1 ? '' : 's'}">🔓 ${mOpen}d</span>` : '';
       cell.innerHTML = `
         ${img ? `<img class="rel-bg" src="${escapeHtml(img)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="rel-emoji">${isOvaEntry(m) ? '🎌' : '🎬'}</span>`}
+        ${openChip}
         <div class="rel-body">
           <div class="rel-t">${escapeHtml(m.t)}</div>
           <div class="rel-c">${chipTxt}</div>
@@ -2921,30 +2931,35 @@ function renderEpisodes() {
    Antes SIEMPRE cargaba el primer capítulo con enlace — si habías
    desbloqueado el cap. 97, al volver veías el candado del cap. 1 y
    parecía que tu pago se había perdido. Ahora el orden es:
-     1. el capítulo que dejaste A MEDIAS (retomar)
+     1. el capítulo que dejaste A MEDIAS… PERO SOLO SI SE PUEDE VER
+        (desbloqueado — el progreso de capítulos que viste como admin
+        ya no engaña: antes "retomaba" un capítulo BLOQUEADO y su
+        bóveda tapaba tu capítulo abierto)
      2. el primer capítulo YA DESBLOQUEADO (el que pagaste)
-     3. el primero con enlace (como siempre)                            */
+     3. el primero con enlace (como siempre)                           */
 function pickStartEpisode(s) {
   const eps = s.episodes.filter(e => e.url);
   if (!eps.length) return s.episodes[0];
-  /* 1 — retomar donde lo dejaste */
+  /* ¿este capítulo se puede ver SIN candado? (staff nunca ve candado) */
+  const staff = isStaff();
+  let raw = {};
+  try { raw = JSON.parse(localStorage.getItem('xstream-unlocked') || '{}'); } catch (e2) { }
+  const ms = ((typeof COINS !== 'undefined' ? COINS.getConfig().unlockDays : 7) || 7) * 86400000;
+  const isOpen = e => { const at = raw[`${s.id}:${e.n}`]; return !!(at && (Date.now() - at) < ms); };
+  const playable = e => staff || isOpen(e);
   const prog = (state.progress || {})[s.id] || {};
+  /* 1. retomar el capítulo con progreso MÁS RECIENTE que se pueda ver */
   let resume = null;
   for (const e of eps) {
+    if (!playable(e)) continue;
     const p = prog[e.n];
     if (p && !p.done && p.t > 15 && (!resume || (p.at || 0) > (prog[resume.n].at || 0))) resume = e;
   }
   if (resume) return resume;
-  /* 2 — un capítulo pagado (lectura directa de localStorage, como el paywall) */
-  let raw = {};
-  try { raw = JSON.parse(localStorage.getItem('xstream-unlocked') || '{}'); } catch (e2) { }
-  const ms = ((typeof COINS !== 'undefined' ? COINS.getConfig().unlockDays : 7) || 7) * 86400000;
-  const open = eps.find(e => {
-    const at = raw[`${s.id}:${e.n}`];
-    return at && (Date.now() - at) < ms;
-  });
+  /* 2. el primer capítulo DESBLOQUEADO */
+  const open = eps.find(isOpen);
   if (open) return open;
-  /* 3 — como siempre */
+  /* 3. el primero con enlace (mostrará su candado si está bloqueado) */
   return eps[0];
 }
 

@@ -3106,3 +3106,9 @@ body.chat-full .cmu-list{max-height:44vh}
   font:800 9.5px 'JetBrains Mono';letter-spacing:.4px;
 }
 .ep.is-open .num{color:var(--acid)}
+
+/* 🔓 marca en las PELÍCULAS del riel de relacionadas (abajo del video) */
+.ep-open.rel-open{
+  position:absolute;top:6px;left:6px;z-index:3;
+  pointer-events:none;
+}
