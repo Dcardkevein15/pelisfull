@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791059757786,
- "by": "MortosPr #2968",
- "at": "2026-10-03T20:35:57.786Z",
- "n": 5809,
+ "v": 1791178517794,
+ "by": "Dcard #2968",
+ "at": "2026-10-05T05:35:17.794Z",
+ "n": 5812,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -20308,7 +20308,7 @@
   },
   {
    "id": "ia-1994-pompoko-la-guerra-de-los-mapaches-de-pompoko",
-   "t": "Pompoko",
+   "t": "1994 Pompoko( La Guerra De Los Mapaches De Pompoko )",
    "jp": "🎌",
    "tag": "Cine IA · Película · 1994",
    "g": 4,
@@ -22075,6 +22075,32 @@
    ]
   },
   {
+   "id": "imp-stape-Ey2RHnBPHaQ",
+   "t": "Nosewasure ",
+   "jp": "📁",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21106-VakGfsE3HILf.jpg",
+   "tags": [],
+   "order": 155,
+   "clsManual": true,
+   "hentai": true,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Nosewasure Ep 1 Sub Esp",
+     "url": "https://streamtape.com/e/aRva9p0qdjUxkrm"
+    },
+    {
+     "n": 2,
+     "t": "Nosewasure Ep 2 Sub Esp",
+     "url": "https://streamtape.com/e/eYVY8ykBjDCYVxw"
+    }
+   ]
+  },
+  {
    "id": "imp-stape-H-g2ZEcn354",
    "t": "Nuki Doki! Tenshi To akuma no Sakusei Battle",
    "jp": "📁",
@@ -22544,12 +22570,12 @@
    "tag": "Streamtape",
    "g": 3,
    "kind": "serie",
-   "anime": true,
+   "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11061-y5gsT1hoHuHw.png",
    "tags": [],
    "order": 172,
    "clsManual": true,
-   "hentai": false,
+   "hentai": true,
    "episodes": [
     {
      "n": 1,
@@ -25500,12 +25526,14 @@
     {
      "n": 1,
      "t": "Kyonyuu Hitozuma Onna Kyoushi Saimin 1",
-     "url": "https://streamtape.com/e/V08gMZmwXJcK7M6"
+     "url": "https://streamtape.com/e/V08gMZmwXJcK7M6",
+     "thumb": "https://thumb.tapecontent.net/thumb/V08gMZmwXJcK7M6/W1z62RJbKZFeLB.jpg"
     },
     {
      "n": 2,
      "t": "Kyonyuu Hitozuma Onna Kyoushi Saimin 2",
-     "url": "https://streamtape.com/e/02WglzP0lqC6GR"
+     "url": "https://streamtape.com/e/02WglzP0lqC6GR",
+     "thumb": "https://thumb.tapecontent.net/thumb/02WglzP0lqC6GR/28Z122k0AVIZlxB.jpg"
     }
    ]
   },
@@ -33870,13 +33898,13 @@
   },
   {
    "id": "ia-f-1_20260807",
-   "t": "FUTURAMA",
+   "t": "FUTURAMA 1",
    "jp": "📺",
    "tag": "Cine IA · Temporada · 2026",
    "g": 5,
    "kind": "serie",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/sqQGouRucsrFV2FgIZEKKkP5fSb.jpg",
+   "poster": "https://archive.org/services/img/f-1_20260807",
    "tags": [],
    "episodes": [
     {
@@ -37410,6 +37438,1093 @@
    ]
   },
   {
+   "id": "ia-mlp-fim-t5-latino",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 5) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2015",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662448981,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlpfim t5 latino/01 El Mapa Cutie Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/01%20El%20Mapa%20Cutie%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlpfim t5 latino/02 El Mapa Cutie Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/02%20El%20Mapa%20Cutie%20Parte%2002_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlpfim t5 latino/03 Castillo Dulce Castillo 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/03%20Castillo%20Dulce%20Castillo_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlpfim t5 latino/04 Un Descanso Agotador 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/04%20Un%20Descanso%20Agotador_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlpfim t5 latino/05 El Dilema de Tanque 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/05%20El%20Dilema%20de%20Tanque_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlpfim t5 latino/06 El Más Buscado de Appleoosa 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/06%20El%20M%C3%A1s%20Buscado%20de%20Appleoosa_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlpfim t5 latino/07 Haciendo Nuevas Amistades con Discord 48",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/07%20Haciendo%20Nuevas%20Amistades%20con%20Discord_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlpfim t5 latino/08 El Tesoro Perdido de Griffonstone 480p i",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/08%20El%20Tesoro%20Perdido%20de%20Griffonstone_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlpfim t5 latino/09 Un Bocado de Vida 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/09%20Un%20Bocado%20de%20Vida_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlpfim t5 latino/10 Princesa Spike 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/10%20Princesa%20Spike_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlpfim t5 latino/11 Fiesta Arruinada 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/11%20Fiesta%20Arruinada_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlpfim t5 latino/12 Enmendando el Pasado 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/12%20Enmendando%20el%20Pasado_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlpfim t5 latino/13 Las Princesas Sueñan Con Magia 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/13%20Las%20Princesas%20Sue%C3%B1an%20Con%20Magia_480p.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "mlpfim t5 latino/14 Boutique Canterlot 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/14%20Boutique%20Canterlot_480p.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "mlpfim t5 latino/15 Rarity Investiga 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/15%20Rarity%20Investiga_480p.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "mlpfim t5 latino/16 Visita a Ponyhattan 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/16%20Visita%20a%20Ponyhattan_480p.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "mlpfim t5 latino/17 La Convivencia 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/17%20La%20Convivencia_480p.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "mlpfim t5 latino/18 Crusaders de la Mark Perdida 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/18%20Crusaders%20de%20la%20Mark%20Perdida_480p.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "mlpfim t5 latino/19 Cuando Pinkie lo Sabe 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/19%20Cuando%20Pinkie%20lo%20Sabe_480p.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "mlpfim t5 latino/20 Arruinafiestas 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/20%20Arruinafiestas_480p.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "mlpfim t5 latino/21 Enfrentando el Temor 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/21%20Enfrentando%20el%20Temor_480p.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "mlpfim t5 latino/22 Qué pasa con Discord 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/22%20Qu%C3%A9%20pasa%20con%20Discord_480p.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "mlpfim t5 latino/23 Los Hooffields y los McColts 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/23%20Los%20Hooffields%20y%20los%20McColts_480p.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "mlpfim t5 latino/24 Fama Peligrosa 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/24%20Fama%20Peligrosa_480p.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "mlpfim t5 latino/25 Cambio de Cutie Mark Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/25%20Cambio%20de%20Cutie%20Mark%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "mlpfim t5 latino/26 Cambio de Cutie Mark Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/26%20Cambio%20de%20Cutie%20Mark%20Parte%2002_480p.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mlp-fim-t4-latino",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 4) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2013",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662461881,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlpfim t4 latino/01 La Princesa Twilight Sparkle Parte 01 48",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/01%20La%20Princesa%20Twilight%20Sparkle%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlpfim t4 latino/02 La Princesa Twilight Sparkle Parte 02 48",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/02%20La%20Princesa%20Twilight%20Sparkle%20Parte%2002_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlpfim t4 latino/03 El Castillo Embrujado 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/03%20El%20Castillo%20Embrujado_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlpfim t4 latino/04 Daring Do 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/04%20Daring%20Do_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlpfim t4 latino/05 Volando Hacia la Meta 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/05%20Volando%20Hacia%20la%20Meta_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlpfim t4 latino/06 Las Power Ponis 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/06%20Las%20Power%20Ponis_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlpfim t4 latino/07 Murciélagos 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/07%20Murci%C3%A9lagos_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlpfim t4 latino/08 Rarity Toma Ponyhattan 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/08%20Rarity%20Toma%20Ponyhattan_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlpfim t4 latino/09 Pinkie Apple Pie 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/09%20Pinkie%20Apple%20Pie_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlpfim t4 latino/10 La Caída de Rainbow 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/10%20La%20Ca%C3%ADda%20de%20Rainbow_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlpfim t4 latino/11 Tres Son Multitud 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/11%20Tres%20Son%20Multitud_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlpfim t4 latino/12 El Orgullo de Pinkie 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/12%20El%20Orgullo%20de%20Pinkie_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlpfim t4 latino/13 Costumbres Simples 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/13%20Costumbres%20Simples_480p.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "mlpfim t4 latino/14 Poni Vanilli 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/14%20Poni%20Vanilli_480p.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "mlpfim t4 latino/15 La Hora de Twilight 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/15%20La%20Hora%20de%20Twilight_480p.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "mlpfim t4 latino/16 No es fácil ser Breezie 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/16%20No%20es%20f%C3%A1cil%20ser%20Breezie_480p.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "mlpfim t4 latino/17 Una Poni para Cuidarme 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/17%20Una%20Poni%20para%20Cuidarme_480p.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "mlpfim t4 latino/18 La Visita de Maud 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/18%20La%20Visita%20de%20Maud_480p.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "mlpfim t4 latino/19 Por quién Brillan los Reflectores 480p i",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/19%20Por%20qui%C3%A9n%20Brillan%20los%20Reflectores_480p.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "mlpfim t4 latino/20 Salto de Fe 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/20%20Salto%20de%20Fe_480p.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "mlpfim t4 latino/21 Probando probando 1 2 3 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/21%20Probando%20probando%201%202%203_480p.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "mlpfim t4 latino/22 Intercambio 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/22%20Intercambio_480p.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "mlpfim t4 latino/23 Manifestación de Inspiración 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/23%20Manifestaci%C3%B3n%20de%20Inspiraci%C3%B3n_480p.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "mlpfim t4 latino/24 Los Juegos de Equestria 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/24%20Los%20Juegos%20de%20Equestria_480p.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "mlpfim t4 latino/25 El Reino de Twilight Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/25%20El%20Reino%20de%20Twilight%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "mlpfim t4 latino/26 El Reino de Twilight Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/26%20El%20Reino%20de%20Twilight%20Parte%2002_480p.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mlp-fim-t2-latino_202406",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 2) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2011",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662477909,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlpfim t2 latino/01 El Regreso de la Armonía Primera Parte 4",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/01%20El%20Regreso%20de%20la%20Armon%C3%ADa%20Primera%20Parte_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlpfim t2 latino/02 El Regreso de la Armonía Segunda Parte 4",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/02%20El%20Regreso%20de%20la%20Armon%C3%ADa%20Segunda%20Parte_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlpfim t2 latino/03 Lección Cero 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/03%20Lecci%C3%B3n%20Cero_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlpfim t2 latino/04 Luna Eclipsada 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/04%20Luna%20Eclipsada_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlpfim t2 latino/05 La Hermandad de los Cascos 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/05%20La%20Hermandad%20de%20los%20Cascos_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlpfim t2 latino/06 La Viruela Cutie 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/06%20La%20Viruela%20Cutie_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlpfim t2 latino/07 Que Gane la Mejor Mascota 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/07%20Que%20Gane%20la%20Mejor%20Mascota_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlpfim t2 latino/08 La Misteriosa Yegua Bienhechora 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/08%20La%20Misteriosa%20Yegua%20Bienhechora_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlpfim t2 latino/09 La Crema y Nata 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/09%20La%20Crema%20y%20Nata_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlpfim t2 latino/10 Ataque de Codicia 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/10%20Ataque%20de%20Codicia_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlpfim t2 latino/11 La Noche de los Corazones Cálidos 480p i",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/11%20La%20Noche%20de%20los%20Corazones%20C%C3%A1lidos_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlpfim t2 latino/12 Día de la Valoración Familiar 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/12%20D%C3%ADa%20de%20la%20Valoraci%C3%B3n%20Familiar_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlpfim t2 latino/13 Los Bebés Cake 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/13%20Los%20Beb%C3%A9s%20Cake_480p.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "mlpfim t2 latino/14 El Último Rodeo 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/14%20El%20%C3%9Altimo%20Rodeo_480p.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "mlpfim t2 latino/15 La Superveloz Exprimidora de Manzanas 60",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/15%20La%20Superveloz%20Exprimidora%20de%20Manzanas%206000_480p.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "mlpfim t2 latino/16 Ardua Lectura 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/16%20Ardua%20Lectura_480p.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "mlpfim t2 latino/17 El Día de los Corazones y los Cascos 480",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/17%20El%20D%C3%ADa%20de%20los%20Corazones%20y%20los%20Cascos_480p.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "mlpfim t2 latino/18 Una Amiga en Acción 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/18%20Una%20Amiga%20en%20Acci%C3%B3n_480p.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "mlpfim t2 latino/19 De Cascos Firmes 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/19%20De%20Cascos%20Firmes_480p.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "mlpfim t2 latino/20 Llegó la Hora 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/20%20Lleg%C3%B3%20la%20Hora_480p.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "mlpfim t2 latino/21 Misión Dragón 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/21%20Misi%C3%B3n%20Drag%C3%B3n_480p.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "mlpfim t2 latino/22 Fluttershy al Máximo 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/22%20Fluttershy%20al%20M%C3%A1ximo_480p.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "mlpfim t2 latino/23 El Cuarto Poder de Ponyville 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/23%20El%20Cuarto%20Poder%20de%20Ponyville_480p.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "mlpfim t2 latino/24 El MMMisterio en el Tren de la Amistad 4",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/24%20El%20MMMisterio%20en%20el%20Tren%20de%20la%20Amistad_480p.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "mlpfim t2 latino/25 Una Boda en Canterlot Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/25%20Una%20Boda%20en%20Canterlot%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "mlpfim t2 latino/26 Una Boda en Canterlot Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/26%20Una%20Boda%20en%20Canterlot%20Parte%2002_480p.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mlp-fim-t7-latino",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 7) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2017",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662493124,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlpfim t7 latino/01 Consejo Celestial 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/01%20Consejo%20Celestial_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlpfim t7 latino/02 Embotellada 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/02%20Embotellada_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlpfim t7 latino/03 Una Tormenta de Ternura 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/03%20Una%20Tormenta%20de%20Ternura_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlpfim t7 latino/04 Una Amistad Fuerte Como Roca 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/04%20Una%20Amistad%20Fuerte%20Como%20Roca_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlpfim t7 latino/05 Fluttershy Resuelta 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/05%20Fluttershy%20Resuelta_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlpfim t7 latino/06 Jóvenes Yeguas 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/06%20J%C3%B3venes%20Yeguas_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlpfim t7 latino/07 Padres Desbocados 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/07%20Padres%20Desbocados_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlpfim t7 latino/08 Difícil Expresar 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/08%20Dif%C3%ADcil%20Expresar_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlpfim t7 latino/09 Moda Honesta 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/09%20Moda%20Honesta_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlpfim t7 latino/10 Problema de la Realeza 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/10%20Problema%20de%20la%20Realeza_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlpfim t7 latino/11 Evitando Problemas 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/11%20Evitando%20Problemas_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlpfim t7 latino/12 Armonía Discordante 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/12%20Armon%C3%ADa%20Discordante_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlpfim t7 latino/13 La Pareja Perfecta 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/13%20La%20Pareja%20Perfecta_480p.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "mlpfim t7 latino/14 Fama y Desgracia 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/14%20Fama%20y%20Desgracia_480p.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "mlpfim t7 latino/15 Triple Amenaza 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/15%20Triple%20Amenaza_480p.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "mlpfim t7 latino/16 Historias de Fogata 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/16%20Historias%20de%20Fogata_480p.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "mlpfim t7 latino/17 Cambiando a un Cambiante 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/17%20Cambiando%20a%20un%20Cambiante_480p.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "mlpfim t7 latino/18 Adiós a Daring Do 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/18%20Adi%C3%B3s%20a%20Daring%20Do_480p.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "mlpfim t7 latino/19 La Melena no lo es Todo 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/19%20La%20Melena%20no%20lo%20es%20Todo_480p.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "mlpfim t7 latino/20 En Busca de la Cura 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/20%20En%20Busca%20de%20la%20Cura_480p.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "mlpfim t7 latino/21 El Campamento Cutie Mark 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/21%20El%20Campamento%20Cutie%20Mark_480p.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "mlpfim t7 latino/22 Aventura en Zepelín 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/22%20Aventura%20en%20Zepel%C3%ADn_480p.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "mlpfim t7 latino/23 Secretos y Pays 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/23%20Secretos%20y%20Pays_480p.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "mlpfim t7 latino/24 Un Lazo Especial 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/24%20Un%20Lazo%20Especial_480p.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "mlpfim t7 latino/25 Juego de Sombras Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/25%20Juego%20de%20Sombras%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "mlpfim t7 latino/26 Juego de Sombras Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/26%20Juego%20de%20Sombras%20Parte%2002_480p.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mlp-fim-t8-latino",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 8) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2018",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662509135,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlpfim t8 latino/01 Aventura Escolar Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/01%20Aventura%20Escolar%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlpfim t8 latino/02 Aventura Escolar Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/02%20Aventura%20Escolar%20Parte%2002_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlpfim t8 latino/03 Una Pareja Singular 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/03%20Una%20Pareja%20Singular_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlpfim t8 latino/04 Falsas Apariencias 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/04%20Falsas%20Apariencias_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlpfim t8 latino/05 Abuelitas Sin Control 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/05%20Abuelitas%20Sin%20Control_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlpfim t8 latino/06 Nadar o Trotar 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/06%20Nadar%20o%20Trotar_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlpfim t8 latino/07 Cascos a la Obra 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/07%20Cascos%20a%20la%20Obra_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlpfim t8 latino/08 Control Parental 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/08%20Control%20Parental_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlpfim t8 latino/09 La Regla de no Competir 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/09%20La%20Regla%20de%20no%20Competir_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlpfim t8 latino/10 Amor y Desamor 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/10%20Amor%20y%20Desamor_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlpfim t8 latino/11 Aprendiendo a Crecer 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/11%20Aprendiendo%20a%20Crecer_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlpfim t8 latino/12 Mérito Académico 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/12%20M%C3%A9rito%20Acad%C3%A9mico_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlpfim t8 latino/13 Las Seis Enemigas 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/13%20Las%20Seis%20Enemigas_480p.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "mlpfim t8 latino/14 Dirección en Caos 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/14%20Direcci%C3%B3n%20en%20Caos_480p.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "mlpfim t8 latino/15 El Club del Día de la Fogata 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/15%20El%20Club%20del%20D%C3%ADa%20de%20la%20Fogata_480p.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "mlpfim t8 latino/16 La Universidad de la Amistad 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/16%20La%20Universidad%20de%20la%20Amistad_480p.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "mlpfim t8 latino/17 El Fin de una Amistad 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/17%20El%20Fin%20de%20una%20Amistad_480p.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "mlpfim t8 latino/18 Desafinada 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/18%20Desafinada_480p.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "mlpfim t8 latino/19 El Camino de la Amistad 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/19%20El%20Camino%20de%20la%20Amistad_480p.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "mlpfim t8 latino/20 Los Relegados 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/20%20Los%20Relegados_480p.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "mlpfim t8 latino/21 Un Lugar para Rockhoof 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/21%20Un%20Lugar%20para%20Rockhoof_480p.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "mlpfim t8 latino/22 Bajo la Superficie 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/22%20Bajo%20la%20Superficie_480p.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "mlpfim t8 latino/23 Los Sonidos del Silencio 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/23%20Los%20Sonidos%20del%20Silencio_480p.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "mlpfim t8 latino/24 Enseñanzas Paternas 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/24%20Ense%C3%B1anzas%20Paternas_480p.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "mlpfim t8 latino/25 Caos Escolar Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/25%20Caos%20Escolar%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "mlpfim t8 latino/26 Caos Escolar Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/26%20Caos%20Escolar%20Parte%2002_480p.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mlp-fim-t3-latino",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 3) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2012",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662521500,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlpfim t3 latino/01 El Imperio de Cristal Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/01%20El%20Imperio%20de%20Cristal%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlpfim t3 latino/02 El Imperio de Cristal Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/02%20El%20Imperio%20de%20Cristal%20Parte%2002_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlpfim t3 latino/03 Demasiadas Pinkie Pies 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/03%20Demasiadas%20Pinkie%20Pies_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlpfim t3 latino/04 La Mala Semilla 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/04%20La%20Mala%20Semilla_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlpfim t3 latino/05 Duelo de Magia 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/05%20Duelo%20de%20Magia_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlpfim t3 latino/06 Insomnio en Ponyville 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/06%20Insomnio%20en%20Ponyville_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlpfim t3 latino/07 Academia Wonderbolt 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/07%20Academia%20Wonderbolt_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlpfim t3 latino/08 La Reunión De La Familia Apple 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/08%20La%20Reuni%C3%B3n%20De%20La%20Familia%20Apple_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlpfim t3 latino/09 Spike A Sus Órdenes 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/09%20Spike%20A%20Sus%20%C3%93rdenes_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlpfim t3 latino/10 Paciencia y Amistad 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/10%20Paciencia%20y%20Amistad_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlpfim t3 latino/11 Sólo Para Mascotas 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/11%20S%C3%B3lo%20Para%20Mascotas_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlpfim t3 latino/12 La Sede de los Juegos 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/12%20La%20Sede%20de%20los%20Juegos_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlpfim t3 latino/13 Cura Mágica y Misteriosa 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/13%20Cura%20M%C3%A1gica%20y%20Misteriosa_480p.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mlp-fim-t6-latino",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 6) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2016",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662532168,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlp t6 latino/01 La Cristalización Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/01%20La%20Cristalizaci%C3%B3n%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlp t6 latino/02 La Cristalización Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/02%20La%20Cristalizaci%C3%B3n%20Parte%2002_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlp t6 latino/03 El Regalo de Maud Pie 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/03%20El%20Regalo%20de%20Maud%20Pie_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlp t6 latino/04 En sus Marks 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/04%20En%20sus%20Marks_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlp t6 latino/05 El Reto de Fuego 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/05%20El%20Reto%20de%20Fuego_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlp t6 latino/06 No hay Segundas Oportunidades 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/06%20No%20hay%20Segundas%20Oportunidades_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlp t6 latino/07 Dash La Novata 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/07%20Dash%20La%20Novata_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlp t6 latino/08 Cuento del Día de la Fogata 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/08%20Cuento%20del%20D%C3%ADa%20de%20la%20Fogata_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlp t6 latino/09 Reseña de la Inauguración 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/09%20Rese%C3%B1a%20de%20la%20Inauguraci%C3%B3n_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlp t6 latino/10 El Día Libre de Applejack 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/10%20El%20D%C3%ADa%20Libre%20de%20Applejack_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlp t6 latino/11 El Hermano Incómodo 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/11%20El%20Hermano%20Inc%C3%B3modo_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlp t6 latino/12 Ponle Sabor a tu Vida 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/12%20Ponle%20Sabor%20a%20tu%20Vida_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlp t6 latino/13 Más Extraño que los Fans 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/13%20M%C3%A1s%20Extra%C3%B1o%20que%20los%20Fans_480p.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "mlp t6 latino/14 Carrera Sin Control 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/14%20Carrera%20Sin%20Control_480p.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "mlp t6 latino/15 Una Broma de Más 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/15%20Una%20Broma%20de%20M%C3%A1s_480p.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "mlp t6 latino/16 Los Tiempos son Cambiantes 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/16%20Los%20Tiempos%20son%20Cambiantes_480p.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "mlp t6 latino/17 Calabozos y Discords 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/17%20Calabozos%20y%20Discords_480p.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "mlp t6 latino/18 Temporada de Buckball 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/18%20Temporada%20de%20Buckball_480p.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "mlp t6 latino/19 Bajo la Misma Cutie Mark 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/19%20Bajo%20la%20Misma%20Cutie%20Mark_480p.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "mlp t6 latino/20 Viva Las Pegasus 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/20%20Viva%20Las%20Pegasus_480p.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "mlp t6 latino/21 Magia Desbordada 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/21%20Magia%20Desbordada_480p.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "mlp t6 latino/22 Puntos de Vista 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/22%20Puntos%20de%20Vista_480p.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "mlp t6 latino/23 Plaga de Mentiras 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/23%20Plaga%20de%20Mentiras_480p.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "mlp t6 latino/24 Top Bolt 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/24%20Top%20Bolt_480p.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "mlp t6 latino/25 De Ida y Vuelta Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/25%20De%20Ida%20y%20Vuelta%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "mlp t6 latino/26 De Ida y Vuelta Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/26%20De%20Ida%20y%20Vuelta%20Parte%2002_480p.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mlp-fim-t9-latino",
+   "t": "My Little Pony : La Magia de La Amistad (Temporada 9) [Latino]",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2019",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
+   "tags": [],
+   "at": 1790662549016,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "mlpfim t9 latino/01 El Principio del Fin Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/01%20El%20Principio%20del%20Fin%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "mlpfim t9 latino/02 El Principio del Fin Parte 2 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/02%20El%20Principio%20del%20Fin%20Parte%202_480p.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "mlpfim t9 latino/03 Sin Raíces 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/03%20Sin%20Ra%C3%ADces_480p.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "mlpfim t9 latino/04 El Plan Maestro 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/04%20El%20Plan%20Maestro_480p.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "mlpfim t9 latino/05 Sin Devolución 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/05%20Sin%20Devoluci%C3%B3n_480p.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "mlpfim t9 latino/06 Algo En Común 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/06%20Algo%20En%20Com%C3%BAn_480p.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "mlpfim t9 latino/07 Yona Es Así 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/07%20Yona%20Es%20As%C3%AD_480p.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "mlpfim t9 latino/08 Eneamigos 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/08%20Eneamigos_480p.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "mlpfim t9 latino/09 Tierno y Llameante 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/09%20Tierno%20y%20Llameante_480p.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "mlpfim t9 latino/10 El Gran Retoño 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/10%20El%20Gran%20Reto%C3%B1o_480p.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "mlpfim t9 latino/11 Consejo Académico 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/11%20Consejo%20Acad%C3%A9mico_480p.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "mlpfim t9 latino/12 La Última Cruzada 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/12%20La%20%C3%9Altima%20Cruzada_480p.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "mlpfim t9 latino/13 Entre La Noche y El Amanecer 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/13%20Entre%20La%20Noche%20y%20El%20Amanecer_480p.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "mlpfim t9 latino/14 La Última Carcajada 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/14%20La%20%C3%9Altima%20Carcajada_480p.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "mlpfim t9 latino/15 246 Genial 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/15%20246%20Genial_480p.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "mlpfim t9 latino/16 Una Meta Trivial 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/16%20Una%20Meta%20Trivial_480p.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "mlpfim t9 latino/17 El Contratiempo del Sol de Verano 480p i",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/17%20El%20Contratiempo%20del%20Sol%20de%20Verano_480p.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "mlpfim t9 latino/18 Entendiendo a Angel 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/18%20Entendiendo%20a%20Angel_480p.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "mlpfim t9 latino/19 Dilema del Dragón 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/19%20Dilema%20del%20Drag%C3%B3n_480p.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "mlpfim t9 latino/20 La Poni Ideal 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/20%20La%20Poni%20Ideal_480p.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "mlpfim t9 latino/21 Daring Que 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/21%20Daring%20Que_480p.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "mlpfim t9 latino/22 Crecer es Difícil 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/22%20Crecer%20es%20Dif%C3%ADcil_480p.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "mlpfim t9 latino/23 La Gran Declaración 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/23%20La%20Gran%20Declaraci%C3%B3n_480p.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "mlpfim t9 latino/24 El Fin del Final Parte 01 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/24%20El%20Fin%20del%20Final%20Parte%2001_480p.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "mlpfim t9 latino/25 El Fin del Final Parte 02 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/25%20El%20Fin%20del%20Final%20Parte%2002_480p.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "mlpfim t9 latino/26 El Último Problema 480p ia",
+     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/26%20El%20%C3%9Altimo%20Problema_480p.ia.mp4"
+    }
+   ]
+  },
+  {
    "id": "ia-power-rangers-dino-trueno-latino-serie",
    "t": "Power Rangers - Dino Trueno",
    "jp": "📺",
@@ -37615,7 +38730,7 @@
   },
   {
    "id": "ia-avengers--assemble--s-01",
-   "t": "Avengers Assemble",
+   "t": "Avengers Assemble temporada 1",
    "jp": "📺",
    "tag": "Cine IA · Temporada",
    "g": 5,
@@ -38263,6 +39378,423 @@
      "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E23.ia.mp4",
      "season": 4,
      "srcSeason": "ia-avengers-assemble-s-05"
+    }
+   ]
+  },
+  {
+   "id": "ia-avengers-assemble-s-03",
+   "t": "Avengers Assemble temporada 3",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
+   "tags": [],
+   "at": 1790662906785,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Avengers Assemble S03E01",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E01.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Avengers Assemble S03E02",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E02.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Avengers Assemble S03E03",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E03.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Avengers Assemble S03E04",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E04.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Avengers Assemble S03E05",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E05.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Avengers Assemble S03E06",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E06.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Avengers Assemble S03E07",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E07.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Avengers Assemble S03E08",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E08.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Avengers Assemble S03E09",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E09.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Avengers Assemble S03E10",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E10.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Avengers Assemble S03E11",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E11.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Avengers Assemble S03E12",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E12.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Avengers Assemble S03E13",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E13.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Avengers Assemble S03E14",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E14.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Avengers Assemble S03E15",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E15.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Avengers Assemble S03E16",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E16.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Avengers Assemble S03E17",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E17.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Avengers Assemble S03E18",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E18.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Avengers Assemble S03E19",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E19.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Avengers Assemble S03E20",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E20.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Avengers Assemble S03E21",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E21.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Avengers Assemble S03E22",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E22.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Avengers Assemble S03E23",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E23.mp4"
+    },
+    {
+     "n": 24,
+     "t": "Avengers Assemble S03E24",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E24.mp4"
+    },
+    {
+     "n": 25,
+     "t": "Avengers Assemble S03E25",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E25.mp4"
+    },
+    {
+     "n": 26,
+     "t": "Avengers Assemble S03E26",
+     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E26.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-avengers-assemble-s-04",
+   "t": "Avengers Assemble temporada 4",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
+   "tags": [],
+   "at": 1790662970917,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Avengers Secrets Wars 4x01",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x01.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Avengers Secrets Wars 4x02 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x02.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Avengers Secrets Wars 4x03 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x03.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Avengers Secrets Wars 4x04 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x04.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Avengers Secrets Wars 4x05 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x05.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Avengers Secrets Wars 4x06",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x06.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Avengers Secrets Wars 4x07",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x07.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Avengers Secrets Wars 4x08 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x08.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Avengers Secrets Wars 4x09",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x09.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Avengers Secrets Wars 4x10",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x10.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Avengers Secrets Wars 4x11",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x11.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Avengers Secrets Wars 4x12",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x12.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Avengers Secrets Wars 4x13",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x13.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Avengers Secrets Wars 4x14",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x14.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Avengers Secrets Wars 4x15",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x15.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Avengers Secrets Wars 4x16",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x16.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Avengers Secrets Wars 4x17",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x17.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Avengers Secrets Wars 4x18",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x18.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Avengers Secrets Wars 4x19",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x19.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Avengers Secrets Wars 4x20",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x20.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Avengers Secrets Wars 4x21",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x21.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Avengers Secrets Wars 4x22",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x22.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Avengers Secrets Wars 4x23",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x23.mp4"
+    },
+    {
+     "n": 24,
+     "t": "Avengers Secrets Wars 4x24",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x24.mp4"
+    },
+    {
+     "n": 25,
+     "t": "Avengers Secrets Wars 4x25",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x25.mp4"
+    },
+    {
+     "n": 26,
+     "t": "Avengers Secrets Wars 4x26",
+     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x26.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-avengers-assemble-s-05",
+   "t": "Avengers Assemble temporada 5",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
+   "tags": [],
+   "at": 1790662995791,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Avengers Black Panther Quest S05E01 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E01.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Avengers Black Panther Quest S05E02",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E02.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Avengers Black Panther Quest S05E03 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E03.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Avengers Black Panther Quest S05E04",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E04.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Avengers Black Panther Quest S05E05",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E05.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Avengers Black Panther Quest S05E06",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E06.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Avengers Black Panther Quest S05E07",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E07.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Avengers Black Panther Quest S05E08 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E08.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Avengers Black Panther Quest S05E09",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E09.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Avengers Black Panther Quest S05E10",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E10.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Avengers Black Panther Quest S05E11 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E11.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Avengers Black Panther Quest S05E12 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E12.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Avengers Black Panther Quest S05E13 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E13.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Avengers Black Panther Quest S05E14",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E14.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Avengers Black Panther Quest S05E15 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E15.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Avengers Black Panther Quest S05E16 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E16.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Avengers Black Panther Quest S05E17 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E17.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Avengers Black Panther Quest S05E18 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E18.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Avengers Black Panther Quest S05E19 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E19.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Avengers Black Panther Quest S05E20 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E20.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Avengers Black Panther Quest S05E21 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E21.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Avengers Black Panther Quest S05E22 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E22.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Avengers Black Panther Quest S05E23 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E23.ia.mp4"
     }
    ]
   },
@@ -38957,6 +40489,272 @@
      "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2050%5D%20Espa%C3%B1ol%20Latino%20(Final).mp4",
      "season": 2,
      "srcSeason": "ia-digimon-adventure-02-espanol-latino-etc-tv-rip-2017"
+    }
+   ]
+  },
+  {
+   "id": "ia-digimon-adventure-02-espanol-latino-etc-tv-rip-2017",
+   "t": "Digimon Adventure 2",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2017",
+   "g": 5,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/aRnUQ7rVpC2fxBz387h1Wgy02Fs.jpg",
+   "tags": [],
+   "clsManual": true,
+   "hentai": false,
+   "at": 1790663239462,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Digimon Adventure 02 [Episodio 01] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2001%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 2,
+     "t": "Digimon Adventure 02 [Episodio 02] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2002%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 3,
+     "t": "Digimon Adventure 02 [Episodio 03] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2003%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 4,
+     "t": "Digimon Adventure 02 [Episodio 04] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2004%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 5,
+     "t": "Digimon Adventure 02 [Episodio 05] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2005%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 6,
+     "t": "Digimon Adventure 02 [Episodio 06] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2006%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 7,
+     "t": "Digimon Adventure 02 [Episodio 07] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2007%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 8,
+     "t": "Digimon Adventure 02 [Episodio 08] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2008%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 9,
+     "t": "Digimon Adventure 02 [Episodio 09] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2009%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 10,
+     "t": "Digimon Adventure 02 [Episodio 10] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2010%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 11,
+     "t": "Digimon Adventure 02 [Episodio 11] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2011%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 12,
+     "t": "Digimon Adventure 02 [Episodio 12] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2012%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 13,
+     "t": "Digimon Adventure 02 [Episodio 13] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2013%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 14,
+     "t": "Digimon Adventure 02 [Episodio 14] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2014%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 15,
+     "t": "Digimon Adventure 02 [Episodio 15] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2015%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 16,
+     "t": "Digimon Adventure 02 [Episodio 16] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2016%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 17,
+     "t": "Digimon Adventure 02 [Episodio 17] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2017%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 18,
+     "t": "Digimon Adventure 02 [Episodio 18] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2018%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 19,
+     "t": "Digimon Adventure 02 [Episodio 19] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2019%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 20,
+     "t": "Digimon Adventure 02 [Episodio 20] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2020%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 21,
+     "t": "Digimon Adventure 02 [Episodio 21] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2021%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 22,
+     "t": "Digimon Adventure 02 [Episodio 22] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2022%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 23,
+     "t": "Digimon Adventure 02 [Episodio 23] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2023%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 24,
+     "t": "Digimon Adventure 02 [Episodio 24] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2024%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 25,
+     "t": "Digimon Adventure 02 [Episodio 25] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2025%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 26,
+     "t": "Digimon Adventure 02 [Episodio 26] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2026%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 27,
+     "t": "Digimon Adventure 02 [Episodio 27] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2027%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 28,
+     "t": "Digimon Adventure 02 [Episodio 28] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2028%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 29,
+     "t": "Digimon Adventure 02 [Episodio 29] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2029%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 30,
+     "t": "Digimon Adventure 02 [Episodio 30] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2030%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 31,
+     "t": "Digimon Adventure 02 [Episodio 31] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2031%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 32,
+     "t": "Digimon Adventure 02 [Episodio 32] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2032%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 33,
+     "t": "Digimon Adventure 02 [Episodio 33] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2033%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 34,
+     "t": "Digimon Adventure 02 [Episodio 34] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2034%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 35,
+     "t": "Digimon Adventure 02 [Episodio 35] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2035%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 36,
+     "t": "Digimon Adventure 02 [Episodio 36] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2036%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 37,
+     "t": "Digimon Adventure 02 [Episodio 37] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2037%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 38,
+     "t": "Digimon Adventure 02 [Episodio 38] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2038%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 39,
+     "t": "Digimon Adventure 02 [Episodio 39] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2039%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 40,
+     "t": "Digimon Adventure 02 [Episodio 40] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2040%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 41,
+     "t": "Digimon Adventure 02 [Episodio 41] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2041%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 42,
+     "t": "Digimon Adventure 02 [Episodio 42] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2042%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 43,
+     "t": "Digimon Adventure 02 [Episodio 43] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2043%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 44,
+     "t": "Digimon Adventure 02 [Episodio 44] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2044%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 45,
+     "t": "Digimon Adventure 02 [Episodio 45] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2045%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 46,
+     "t": "Digimon Adventure 02 [Episodio 46] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2046%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 47,
+     "t": "Digimon Adventure 02 [Episodio 47] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2047%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 48,
+     "t": "Digimon Adventure 02 [Episodio 48] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2048%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 49,
+     "t": "Digimon Adventure 02 [Episodio 49] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2049%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 50,
+     "t": "Digimon Adventure 02 [Episodio 50] Español Latino (Final)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2050%5D%20Espa%C3%B1ol%20Latino%20(Final).mp4"
     }
    ]
   },
@@ -40419,7 +42217,7 @@
    "tag": "Cine IA · Anime · Temporada",
    "g": 4,
    "kind": "serie",
-   "anime": false,
+   "anime": true,
    "poster": "https://archive.org/services/img/conan-el-aventurero-capitulo-3-la-estrella-de-shadizar",
    "tags": [],
    "seasons": {
@@ -40799,1802 +42597,6 @@
      "n": 7,
      "t": "Las Leyendas El Origen (2022) ia",
      "url": "https://archive.org/download/la-leyenda-del-charro-negro-2018.ia/Las%20Leyendas_El%20Origen%20(2022).ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "imp-stape-Ey2RHnBPHaQ",
-   "t": "Nosewasure ",
-   "jp": "📁",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21106-VakGfsE3HILf.jpg",
-   "tags": [],
-   "order": 155,
-   "clsManual": true,
-   "hentai": true,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Nosewasure Ep 1 Sub Esp",
-     "url": "https://streamtape.com/e/aRva9p0qdjUxkrm"
-    },
-    {
-     "n": 2,
-     "t": "Nosewasure Ep 2 Sub Esp",
-     "url": "https://streamtape.com/e/eYVY8ykBjDCYVxw"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t5-latino",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 5) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2015",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662448981,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlpfim t5 latino/01 El Mapa Cutie Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/01%20El%20Mapa%20Cutie%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlpfim t5 latino/02 El Mapa Cutie Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/02%20El%20Mapa%20Cutie%20Parte%2002_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlpfim t5 latino/03 Castillo Dulce Castillo 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/03%20Castillo%20Dulce%20Castillo_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlpfim t5 latino/04 Un Descanso Agotador 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/04%20Un%20Descanso%20Agotador_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlpfim t5 latino/05 El Dilema de Tanque 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/05%20El%20Dilema%20de%20Tanque_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlpfim t5 latino/06 El Más Buscado de Appleoosa 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/06%20El%20M%C3%A1s%20Buscado%20de%20Appleoosa_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlpfim t5 latino/07 Haciendo Nuevas Amistades con Discord 48",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/07%20Haciendo%20Nuevas%20Amistades%20con%20Discord_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlpfim t5 latino/08 El Tesoro Perdido de Griffonstone 480p i",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/08%20El%20Tesoro%20Perdido%20de%20Griffonstone_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlpfim t5 latino/09 Un Bocado de Vida 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/09%20Un%20Bocado%20de%20Vida_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlpfim t5 latino/10 Princesa Spike 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/10%20Princesa%20Spike_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlpfim t5 latino/11 Fiesta Arruinada 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/11%20Fiesta%20Arruinada_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlpfim t5 latino/12 Enmendando el Pasado 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/12%20Enmendando%20el%20Pasado_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlpfim t5 latino/13 Las Princesas Sueñan Con Magia 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/13%20Las%20Princesas%20Sue%C3%B1an%20Con%20Magia_480p.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "mlpfim t5 latino/14 Boutique Canterlot 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/14%20Boutique%20Canterlot_480p.ia.mp4"
-    },
-    {
-     "n": 15,
-     "t": "mlpfim t5 latino/15 Rarity Investiga 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/15%20Rarity%20Investiga_480p.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "mlpfim t5 latino/16 Visita a Ponyhattan 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/16%20Visita%20a%20Ponyhattan_480p.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "mlpfim t5 latino/17 La Convivencia 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/17%20La%20Convivencia_480p.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "mlpfim t5 latino/18 Crusaders de la Mark Perdida 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/18%20Crusaders%20de%20la%20Mark%20Perdida_480p.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "mlpfim t5 latino/19 Cuando Pinkie lo Sabe 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/19%20Cuando%20Pinkie%20lo%20Sabe_480p.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "mlpfim t5 latino/20 Arruinafiestas 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/20%20Arruinafiestas_480p.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "mlpfim t5 latino/21 Enfrentando el Temor 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/21%20Enfrentando%20el%20Temor_480p.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "mlpfim t5 latino/22 Qué pasa con Discord 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/22%20Qu%C3%A9%20pasa%20con%20Discord_480p.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "mlpfim t5 latino/23 Los Hooffields y los McColts 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/23%20Los%20Hooffields%20y%20los%20McColts_480p.ia.mp4"
-    },
-    {
-     "n": 24,
-     "t": "mlpfim t5 latino/24 Fama Peligrosa 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/24%20Fama%20Peligrosa_480p.ia.mp4"
-    },
-    {
-     "n": 25,
-     "t": "mlpfim t5 latino/25 Cambio de Cutie Mark Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/25%20Cambio%20de%20Cutie%20Mark%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 26,
-     "t": "mlpfim t5 latino/26 Cambio de Cutie Mark Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t5-latino/mlpfim%20t5%20latino/26%20Cambio%20de%20Cutie%20Mark%20Parte%2002_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t4-latino",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 4) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2013",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662461881,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlpfim t4 latino/01 La Princesa Twilight Sparkle Parte 01 48",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/01%20La%20Princesa%20Twilight%20Sparkle%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlpfim t4 latino/02 La Princesa Twilight Sparkle Parte 02 48",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/02%20La%20Princesa%20Twilight%20Sparkle%20Parte%2002_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlpfim t4 latino/03 El Castillo Embrujado 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/03%20El%20Castillo%20Embrujado_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlpfim t4 latino/04 Daring Do 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/04%20Daring%20Do_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlpfim t4 latino/05 Volando Hacia la Meta 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/05%20Volando%20Hacia%20la%20Meta_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlpfim t4 latino/06 Las Power Ponis 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/06%20Las%20Power%20Ponis_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlpfim t4 latino/07 Murciélagos 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/07%20Murci%C3%A9lagos_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlpfim t4 latino/08 Rarity Toma Ponyhattan 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/08%20Rarity%20Toma%20Ponyhattan_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlpfim t4 latino/09 Pinkie Apple Pie 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/09%20Pinkie%20Apple%20Pie_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlpfim t4 latino/10 La Caída de Rainbow 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/10%20La%20Ca%C3%ADda%20de%20Rainbow_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlpfim t4 latino/11 Tres Son Multitud 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/11%20Tres%20Son%20Multitud_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlpfim t4 latino/12 El Orgullo de Pinkie 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/12%20El%20Orgullo%20de%20Pinkie_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlpfim t4 latino/13 Costumbres Simples 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/13%20Costumbres%20Simples_480p.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "mlpfim t4 latino/14 Poni Vanilli 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/14%20Poni%20Vanilli_480p.ia.mp4"
-    },
-    {
-     "n": 15,
-     "t": "mlpfim t4 latino/15 La Hora de Twilight 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/15%20La%20Hora%20de%20Twilight_480p.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "mlpfim t4 latino/16 No es fácil ser Breezie 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/16%20No%20es%20f%C3%A1cil%20ser%20Breezie_480p.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "mlpfim t4 latino/17 Una Poni para Cuidarme 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/17%20Una%20Poni%20para%20Cuidarme_480p.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "mlpfim t4 latino/18 La Visita de Maud 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/18%20La%20Visita%20de%20Maud_480p.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "mlpfim t4 latino/19 Por quién Brillan los Reflectores 480p i",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/19%20Por%20qui%C3%A9n%20Brillan%20los%20Reflectores_480p.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "mlpfim t4 latino/20 Salto de Fe 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/20%20Salto%20de%20Fe_480p.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "mlpfim t4 latino/21 Probando probando 1 2 3 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/21%20Probando%20probando%201%202%203_480p.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "mlpfim t4 latino/22 Intercambio 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/22%20Intercambio_480p.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "mlpfim t4 latino/23 Manifestación de Inspiración 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/23%20Manifestaci%C3%B3n%20de%20Inspiraci%C3%B3n_480p.ia.mp4"
-    },
-    {
-     "n": 24,
-     "t": "mlpfim t4 latino/24 Los Juegos de Equestria 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/24%20Los%20Juegos%20de%20Equestria_480p.ia.mp4"
-    },
-    {
-     "n": 25,
-     "t": "mlpfim t4 latino/25 El Reino de Twilight Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/25%20El%20Reino%20de%20Twilight%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 26,
-     "t": "mlpfim t4 latino/26 El Reino de Twilight Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t4-latino/mlpfim%20t4%20latino/26%20El%20Reino%20de%20Twilight%20Parte%2002_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t2-latino_202406",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 2) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2011",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662477909,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlpfim t2 latino/01 El Regreso de la Armonía Primera Parte 4",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/01%20El%20Regreso%20de%20la%20Armon%C3%ADa%20Primera%20Parte_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlpfim t2 latino/02 El Regreso de la Armonía Segunda Parte 4",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/02%20El%20Regreso%20de%20la%20Armon%C3%ADa%20Segunda%20Parte_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlpfim t2 latino/03 Lección Cero 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/03%20Lecci%C3%B3n%20Cero_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlpfim t2 latino/04 Luna Eclipsada 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/04%20Luna%20Eclipsada_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlpfim t2 latino/05 La Hermandad de los Cascos 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/05%20La%20Hermandad%20de%20los%20Cascos_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlpfim t2 latino/06 La Viruela Cutie 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/06%20La%20Viruela%20Cutie_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlpfim t2 latino/07 Que Gane la Mejor Mascota 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/07%20Que%20Gane%20la%20Mejor%20Mascota_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlpfim t2 latino/08 La Misteriosa Yegua Bienhechora 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/08%20La%20Misteriosa%20Yegua%20Bienhechora_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlpfim t2 latino/09 La Crema y Nata 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/09%20La%20Crema%20y%20Nata_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlpfim t2 latino/10 Ataque de Codicia 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/10%20Ataque%20de%20Codicia_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlpfim t2 latino/11 La Noche de los Corazones Cálidos 480p i",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/11%20La%20Noche%20de%20los%20Corazones%20C%C3%A1lidos_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlpfim t2 latino/12 Día de la Valoración Familiar 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/12%20D%C3%ADa%20de%20la%20Valoraci%C3%B3n%20Familiar_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlpfim t2 latino/13 Los Bebés Cake 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/13%20Los%20Beb%C3%A9s%20Cake_480p.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "mlpfim t2 latino/14 El Último Rodeo 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/14%20El%20%C3%9Altimo%20Rodeo_480p.ia.mp4"
-    },
-    {
-     "n": 15,
-     "t": "mlpfim t2 latino/15 La Superveloz Exprimidora de Manzanas 60",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/15%20La%20Superveloz%20Exprimidora%20de%20Manzanas%206000_480p.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "mlpfim t2 latino/16 Ardua Lectura 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/16%20Ardua%20Lectura_480p.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "mlpfim t2 latino/17 El Día de los Corazones y los Cascos 480",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/17%20El%20D%C3%ADa%20de%20los%20Corazones%20y%20los%20Cascos_480p.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "mlpfim t2 latino/18 Una Amiga en Acción 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/18%20Una%20Amiga%20en%20Acci%C3%B3n_480p.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "mlpfim t2 latino/19 De Cascos Firmes 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/19%20De%20Cascos%20Firmes_480p.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "mlpfim t2 latino/20 Llegó la Hora 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/20%20Lleg%C3%B3%20la%20Hora_480p.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "mlpfim t2 latino/21 Misión Dragón 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/21%20Misi%C3%B3n%20Drag%C3%B3n_480p.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "mlpfim t2 latino/22 Fluttershy al Máximo 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/22%20Fluttershy%20al%20M%C3%A1ximo_480p.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "mlpfim t2 latino/23 El Cuarto Poder de Ponyville 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/23%20El%20Cuarto%20Poder%20de%20Ponyville_480p.ia.mp4"
-    },
-    {
-     "n": 24,
-     "t": "mlpfim t2 latino/24 El MMMisterio en el Tren de la Amistad 4",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/24%20El%20MMMisterio%20en%20el%20Tren%20de%20la%20Amistad_480p.ia.mp4"
-    },
-    {
-     "n": 25,
-     "t": "mlpfim t2 latino/25 Una Boda en Canterlot Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/25%20Una%20Boda%20en%20Canterlot%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 26,
-     "t": "mlpfim t2 latino/26 Una Boda en Canterlot Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t2-latino_202406/mlpfim%20t2%20latino/26%20Una%20Boda%20en%20Canterlot%20Parte%2002_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t7-latino",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 7) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2017",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662493124,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlpfim t7 latino/01 Consejo Celestial 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/01%20Consejo%20Celestial_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlpfim t7 latino/02 Embotellada 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/02%20Embotellada_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlpfim t7 latino/03 Una Tormenta de Ternura 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/03%20Una%20Tormenta%20de%20Ternura_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlpfim t7 latino/04 Una Amistad Fuerte Como Roca 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/04%20Una%20Amistad%20Fuerte%20Como%20Roca_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlpfim t7 latino/05 Fluttershy Resuelta 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/05%20Fluttershy%20Resuelta_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlpfim t7 latino/06 Jóvenes Yeguas 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/06%20J%C3%B3venes%20Yeguas_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlpfim t7 latino/07 Padres Desbocados 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/07%20Padres%20Desbocados_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlpfim t7 latino/08 Difícil Expresar 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/08%20Dif%C3%ADcil%20Expresar_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlpfim t7 latino/09 Moda Honesta 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/09%20Moda%20Honesta_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlpfim t7 latino/10 Problema de la Realeza 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/10%20Problema%20de%20la%20Realeza_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlpfim t7 latino/11 Evitando Problemas 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/11%20Evitando%20Problemas_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlpfim t7 latino/12 Armonía Discordante 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/12%20Armon%C3%ADa%20Discordante_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlpfim t7 latino/13 La Pareja Perfecta 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/13%20La%20Pareja%20Perfecta_480p.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "mlpfim t7 latino/14 Fama y Desgracia 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/14%20Fama%20y%20Desgracia_480p.ia.mp4"
-    },
-    {
-     "n": 15,
-     "t": "mlpfim t7 latino/15 Triple Amenaza 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/15%20Triple%20Amenaza_480p.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "mlpfim t7 latino/16 Historias de Fogata 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/16%20Historias%20de%20Fogata_480p.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "mlpfim t7 latino/17 Cambiando a un Cambiante 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/17%20Cambiando%20a%20un%20Cambiante_480p.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "mlpfim t7 latino/18 Adiós a Daring Do 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/18%20Adi%C3%B3s%20a%20Daring%20Do_480p.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "mlpfim t7 latino/19 La Melena no lo es Todo 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/19%20La%20Melena%20no%20lo%20es%20Todo_480p.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "mlpfim t7 latino/20 En Busca de la Cura 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/20%20En%20Busca%20de%20la%20Cura_480p.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "mlpfim t7 latino/21 El Campamento Cutie Mark 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/21%20El%20Campamento%20Cutie%20Mark_480p.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "mlpfim t7 latino/22 Aventura en Zepelín 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/22%20Aventura%20en%20Zepel%C3%ADn_480p.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "mlpfim t7 latino/23 Secretos y Pays 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/23%20Secretos%20y%20Pays_480p.ia.mp4"
-    },
-    {
-     "n": 24,
-     "t": "mlpfim t7 latino/24 Un Lazo Especial 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/24%20Un%20Lazo%20Especial_480p.ia.mp4"
-    },
-    {
-     "n": 25,
-     "t": "mlpfim t7 latino/25 Juego de Sombras Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/25%20Juego%20de%20Sombras%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 26,
-     "t": "mlpfim t7 latino/26 Juego de Sombras Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t7-latino/mlpfim%20t7%20latino/26%20Juego%20de%20Sombras%20Parte%2002_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t8-latino",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 8) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2018",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662509135,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlpfim t8 latino/01 Aventura Escolar Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/01%20Aventura%20Escolar%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlpfim t8 latino/02 Aventura Escolar Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/02%20Aventura%20Escolar%20Parte%2002_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlpfim t8 latino/03 Una Pareja Singular 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/03%20Una%20Pareja%20Singular_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlpfim t8 latino/04 Falsas Apariencias 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/04%20Falsas%20Apariencias_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlpfim t8 latino/05 Abuelitas Sin Control 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/05%20Abuelitas%20Sin%20Control_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlpfim t8 latino/06 Nadar o Trotar 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/06%20Nadar%20o%20Trotar_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlpfim t8 latino/07 Cascos a la Obra 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/07%20Cascos%20a%20la%20Obra_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlpfim t8 latino/08 Control Parental 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/08%20Control%20Parental_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlpfim t8 latino/09 La Regla de no Competir 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/09%20La%20Regla%20de%20no%20Competir_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlpfim t8 latino/10 Amor y Desamor 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/10%20Amor%20y%20Desamor_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlpfim t8 latino/11 Aprendiendo a Crecer 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/11%20Aprendiendo%20a%20Crecer_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlpfim t8 latino/12 Mérito Académico 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/12%20M%C3%A9rito%20Acad%C3%A9mico_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlpfim t8 latino/13 Las Seis Enemigas 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/13%20Las%20Seis%20Enemigas_480p.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "mlpfim t8 latino/14 Dirección en Caos 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/14%20Direcci%C3%B3n%20en%20Caos_480p.ia.mp4"
-    },
-    {
-     "n": 15,
-     "t": "mlpfim t8 latino/15 El Club del Día de la Fogata 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/15%20El%20Club%20del%20D%C3%ADa%20de%20la%20Fogata_480p.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "mlpfim t8 latino/16 La Universidad de la Amistad 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/16%20La%20Universidad%20de%20la%20Amistad_480p.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "mlpfim t8 latino/17 El Fin de una Amistad 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/17%20El%20Fin%20de%20una%20Amistad_480p.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "mlpfim t8 latino/18 Desafinada 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/18%20Desafinada_480p.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "mlpfim t8 latino/19 El Camino de la Amistad 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/19%20El%20Camino%20de%20la%20Amistad_480p.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "mlpfim t8 latino/20 Los Relegados 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/20%20Los%20Relegados_480p.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "mlpfim t8 latino/21 Un Lugar para Rockhoof 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/21%20Un%20Lugar%20para%20Rockhoof_480p.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "mlpfim t8 latino/22 Bajo la Superficie 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/22%20Bajo%20la%20Superficie_480p.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "mlpfim t8 latino/23 Los Sonidos del Silencio 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/23%20Los%20Sonidos%20del%20Silencio_480p.ia.mp4"
-    },
-    {
-     "n": 24,
-     "t": "mlpfim t8 latino/24 Enseñanzas Paternas 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/24%20Ense%C3%B1anzas%20Paternas_480p.ia.mp4"
-    },
-    {
-     "n": 25,
-     "t": "mlpfim t8 latino/25 Caos Escolar Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/25%20Caos%20Escolar%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 26,
-     "t": "mlpfim t8 latino/26 Caos Escolar Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t8-latino/mlpfim%20t8%20latino/26%20Caos%20Escolar%20Parte%2002_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t3-latino",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 3) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2012",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662521500,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlpfim t3 latino/01 El Imperio de Cristal Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/01%20El%20Imperio%20de%20Cristal%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlpfim t3 latino/02 El Imperio de Cristal Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/02%20El%20Imperio%20de%20Cristal%20Parte%2002_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlpfim t3 latino/03 Demasiadas Pinkie Pies 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/03%20Demasiadas%20Pinkie%20Pies_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlpfim t3 latino/04 La Mala Semilla 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/04%20La%20Mala%20Semilla_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlpfim t3 latino/05 Duelo de Magia 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/05%20Duelo%20de%20Magia_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlpfim t3 latino/06 Insomnio en Ponyville 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/06%20Insomnio%20en%20Ponyville_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlpfim t3 latino/07 Academia Wonderbolt 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/07%20Academia%20Wonderbolt_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlpfim t3 latino/08 La Reunión De La Familia Apple 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/08%20La%20Reuni%C3%B3n%20De%20La%20Familia%20Apple_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlpfim t3 latino/09 Spike A Sus Órdenes 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/09%20Spike%20A%20Sus%20%C3%93rdenes_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlpfim t3 latino/10 Paciencia y Amistad 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/10%20Paciencia%20y%20Amistad_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlpfim t3 latino/11 Sólo Para Mascotas 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/11%20S%C3%B3lo%20Para%20Mascotas_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlpfim t3 latino/12 La Sede de los Juegos 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/12%20La%20Sede%20de%20los%20Juegos_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlpfim t3 latino/13 Cura Mágica y Misteriosa 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t3-latino/mlpfim%20t3%20latino/13%20Cura%20M%C3%A1gica%20y%20Misteriosa_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t6-latino",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 6) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2016",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662532168,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlp t6 latino/01 La Cristalización Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/01%20La%20Cristalizaci%C3%B3n%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlp t6 latino/02 La Cristalización Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/02%20La%20Cristalizaci%C3%B3n%20Parte%2002_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlp t6 latino/03 El Regalo de Maud Pie 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/03%20El%20Regalo%20de%20Maud%20Pie_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlp t6 latino/04 En sus Marks 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/04%20En%20sus%20Marks_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlp t6 latino/05 El Reto de Fuego 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/05%20El%20Reto%20de%20Fuego_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlp t6 latino/06 No hay Segundas Oportunidades 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/06%20No%20hay%20Segundas%20Oportunidades_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlp t6 latino/07 Dash La Novata 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/07%20Dash%20La%20Novata_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlp t6 latino/08 Cuento del Día de la Fogata 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/08%20Cuento%20del%20D%C3%ADa%20de%20la%20Fogata_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlp t6 latino/09 Reseña de la Inauguración 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/09%20Rese%C3%B1a%20de%20la%20Inauguraci%C3%B3n_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlp t6 latino/10 El Día Libre de Applejack 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/10%20El%20D%C3%ADa%20Libre%20de%20Applejack_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlp t6 latino/11 El Hermano Incómodo 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/11%20El%20Hermano%20Inc%C3%B3modo_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlp t6 latino/12 Ponle Sabor a tu Vida 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/12%20Ponle%20Sabor%20a%20tu%20Vida_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlp t6 latino/13 Más Extraño que los Fans 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/13%20M%C3%A1s%20Extra%C3%B1o%20que%20los%20Fans_480p.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "mlp t6 latino/14 Carrera Sin Control 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/14%20Carrera%20Sin%20Control_480p.ia.mp4"
-    },
-    {
-     "n": 15,
-     "t": "mlp t6 latino/15 Una Broma de Más 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/15%20Una%20Broma%20de%20M%C3%A1s_480p.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "mlp t6 latino/16 Los Tiempos son Cambiantes 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/16%20Los%20Tiempos%20son%20Cambiantes_480p.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "mlp t6 latino/17 Calabozos y Discords 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/17%20Calabozos%20y%20Discords_480p.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "mlp t6 latino/18 Temporada de Buckball 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/18%20Temporada%20de%20Buckball_480p.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "mlp t6 latino/19 Bajo la Misma Cutie Mark 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/19%20Bajo%20la%20Misma%20Cutie%20Mark_480p.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "mlp t6 latino/20 Viva Las Pegasus 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/20%20Viva%20Las%20Pegasus_480p.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "mlp t6 latino/21 Magia Desbordada 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/21%20Magia%20Desbordada_480p.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "mlp t6 latino/22 Puntos de Vista 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/22%20Puntos%20de%20Vista_480p.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "mlp t6 latino/23 Plaga de Mentiras 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/23%20Plaga%20de%20Mentiras_480p.ia.mp4"
-    },
-    {
-     "n": 24,
-     "t": "mlp t6 latino/24 Top Bolt 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/24%20Top%20Bolt_480p.ia.mp4"
-    },
-    {
-     "n": 25,
-     "t": "mlp t6 latino/25 De Ida y Vuelta Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/25%20De%20Ida%20y%20Vuelta%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 26,
-     "t": "mlp t6 latino/26 De Ida y Vuelta Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t6-latino/mlp%20t6%20latino/26%20De%20Ida%20y%20Vuelta%20Parte%2002_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-mlp-fim-t9-latino",
-   "t": "My Little Pony : La Magia de La Amistad (Temporada 9) [Latino]",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2019",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uvCchgn7uUUE2MJfhzg39M4RaZW.jpg",
-   "tags": [],
-   "at": 1790662549016,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "mlpfim t9 latino/01 El Principio del Fin Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/01%20El%20Principio%20del%20Fin%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "mlpfim t9 latino/02 El Principio del Fin Parte 2 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/02%20El%20Principio%20del%20Fin%20Parte%202_480p.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "mlpfim t9 latino/03 Sin Raíces 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/03%20Sin%20Ra%C3%ADces_480p.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "mlpfim t9 latino/04 El Plan Maestro 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/04%20El%20Plan%20Maestro_480p.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "mlpfim t9 latino/05 Sin Devolución 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/05%20Sin%20Devoluci%C3%B3n_480p.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "mlpfim t9 latino/06 Algo En Común 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/06%20Algo%20En%20Com%C3%BAn_480p.ia.mp4"
-    },
-    {
-     "n": 7,
-     "t": "mlpfim t9 latino/07 Yona Es Así 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/07%20Yona%20Es%20As%C3%AD_480p.ia.mp4"
-    },
-    {
-     "n": 8,
-     "t": "mlpfim t9 latino/08 Eneamigos 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/08%20Eneamigos_480p.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "mlpfim t9 latino/09 Tierno y Llameante 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/09%20Tierno%20y%20Llameante_480p.ia.mp4"
-    },
-    {
-     "n": 10,
-     "t": "mlpfim t9 latino/10 El Gran Retoño 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/10%20El%20Gran%20Reto%C3%B1o_480p.ia.mp4"
-    },
-    {
-     "n": 11,
-     "t": "mlpfim t9 latino/11 Consejo Académico 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/11%20Consejo%20Acad%C3%A9mico_480p.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "mlpfim t9 latino/12 La Última Cruzada 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/12%20La%20%C3%9Altima%20Cruzada_480p.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "mlpfim t9 latino/13 Entre La Noche y El Amanecer 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/13%20Entre%20La%20Noche%20y%20El%20Amanecer_480p.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "mlpfim t9 latino/14 La Última Carcajada 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/14%20La%20%C3%9Altima%20Carcajada_480p.ia.mp4"
-    },
-    {
-     "n": 15,
-     "t": "mlpfim t9 latino/15 246 Genial 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/15%20246%20Genial_480p.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "mlpfim t9 latino/16 Una Meta Trivial 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/16%20Una%20Meta%20Trivial_480p.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "mlpfim t9 latino/17 El Contratiempo del Sol de Verano 480p i",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/17%20El%20Contratiempo%20del%20Sol%20de%20Verano_480p.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "mlpfim t9 latino/18 Entendiendo a Angel 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/18%20Entendiendo%20a%20Angel_480p.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "mlpfim t9 latino/19 Dilema del Dragón 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/19%20Dilema%20del%20Drag%C3%B3n_480p.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "mlpfim t9 latino/20 La Poni Ideal 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/20%20La%20Poni%20Ideal_480p.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "mlpfim t9 latino/21 Daring Que 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/21%20Daring%20Que_480p.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "mlpfim t9 latino/22 Crecer es Difícil 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/22%20Crecer%20es%20Dif%C3%ADcil_480p.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "mlpfim t9 latino/23 La Gran Declaración 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/23%20La%20Gran%20Declaraci%C3%B3n_480p.ia.mp4"
-    },
-    {
-     "n": 24,
-     "t": "mlpfim t9 latino/24 El Fin del Final Parte 01 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/24%20El%20Fin%20del%20Final%20Parte%2001_480p.ia.mp4"
-    },
-    {
-     "n": 25,
-     "t": "mlpfim t9 latino/25 El Fin del Final Parte 02 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/25%20El%20Fin%20del%20Final%20Parte%2002_480p.ia.mp4"
-    },
-    {
-     "n": 26,
-     "t": "mlpfim t9 latino/26 El Último Problema 480p ia",
-     "url": "https://archive.org/download/mlp-fim-t9-latino/mlpfim%20t9%20latino/26%20El%20%C3%9Altimo%20Problema_480p.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-avengers-assemble-s-03",
-   "t": "Avengers Assemble temporada 3",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
-   "tags": [],
-   "at": 1790662906785,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Avengers Assemble S03E01",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E01.mp4"
-    },
-    {
-     "n": 2,
-     "t": "Avengers Assemble S03E02",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E02.mp4"
-    },
-    {
-     "n": 3,
-     "t": "Avengers Assemble S03E03",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E03.mp4"
-    },
-    {
-     "n": 4,
-     "t": "Avengers Assemble S03E04",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E04.mp4"
-    },
-    {
-     "n": 5,
-     "t": "Avengers Assemble S03E05",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E05.mp4"
-    },
-    {
-     "n": 6,
-     "t": "Avengers Assemble S03E06",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E06.mp4"
-    },
-    {
-     "n": 7,
-     "t": "Avengers Assemble S03E07",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E07.mp4"
-    },
-    {
-     "n": 8,
-     "t": "Avengers Assemble S03E08",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E08.mp4"
-    },
-    {
-     "n": 9,
-     "t": "Avengers Assemble S03E09",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E09.mp4"
-    },
-    {
-     "n": 10,
-     "t": "Avengers Assemble S03E10",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E10.mp4"
-    },
-    {
-     "n": 11,
-     "t": "Avengers Assemble S03E11",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E11.mp4"
-    },
-    {
-     "n": 12,
-     "t": "Avengers Assemble S03E12",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E12.mp4"
-    },
-    {
-     "n": 13,
-     "t": "Avengers Assemble S03E13",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E13.mp4"
-    },
-    {
-     "n": 14,
-     "t": "Avengers Assemble S03E14",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E14.mp4"
-    },
-    {
-     "n": 15,
-     "t": "Avengers Assemble S03E15",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E15.mp4"
-    },
-    {
-     "n": 16,
-     "t": "Avengers Assemble S03E16",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E16.mp4"
-    },
-    {
-     "n": 17,
-     "t": "Avengers Assemble S03E17",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E17.mp4"
-    },
-    {
-     "n": 18,
-     "t": "Avengers Assemble S03E18",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E18.mp4"
-    },
-    {
-     "n": 19,
-     "t": "Avengers Assemble S03E19",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E19.mp4"
-    },
-    {
-     "n": 20,
-     "t": "Avengers Assemble S03E20",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E20.mp4"
-    },
-    {
-     "n": 21,
-     "t": "Avengers Assemble S03E21",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E21.mp4"
-    },
-    {
-     "n": 22,
-     "t": "Avengers Assemble S03E22",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E22.mp4"
-    },
-    {
-     "n": 23,
-     "t": "Avengers Assemble S03E23",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E23.mp4"
-    },
-    {
-     "n": 24,
-     "t": "Avengers Assemble S03E24",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E24.mp4"
-    },
-    {
-     "n": 25,
-     "t": "Avengers Assemble S03E25",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E25.mp4"
-    },
-    {
-     "n": 26,
-     "t": "Avengers Assemble S03E26",
-     "url": "https://archive.org/download/avengers-assemble-s-03/Avengers.Assemble.S03E26.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-avengers-assemble-s-04",
-   "t": "Avengers Assemble temporada 4",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
-   "tags": [],
-   "at": 1790662970917,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Avengers Secrets Wars 4x01",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x01.mp4"
-    },
-    {
-     "n": 2,
-     "t": "Avengers Secrets Wars 4x02 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x02.ia.mp4"
-    },
-    {
-     "n": 3,
-     "t": "Avengers Secrets Wars 4x03 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x03.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "Avengers Secrets Wars 4x04 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x04.ia.mp4"
-    },
-    {
-     "n": 5,
-     "t": "Avengers Secrets Wars 4x05 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x05.ia.mp4"
-    },
-    {
-     "n": 6,
-     "t": "Avengers Secrets Wars 4x06",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x06.mp4"
-    },
-    {
-     "n": 7,
-     "t": "Avengers Secrets Wars 4x07",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x07.mp4"
-    },
-    {
-     "n": 8,
-     "t": "Avengers Secrets Wars 4x08 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x08.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "Avengers Secrets Wars 4x09",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x09.mp4"
-    },
-    {
-     "n": 10,
-     "t": "Avengers Secrets Wars 4x10",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x10.mp4"
-    },
-    {
-     "n": 11,
-     "t": "Avengers Secrets Wars 4x11",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x11.mp4"
-    },
-    {
-     "n": 12,
-     "t": "Avengers Secrets Wars 4x12",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x12.mp4"
-    },
-    {
-     "n": 13,
-     "t": "Avengers Secrets Wars 4x13",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x13.mp4"
-    },
-    {
-     "n": 14,
-     "t": "Avengers Secrets Wars 4x14",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x14.mp4"
-    },
-    {
-     "n": 15,
-     "t": "Avengers Secrets Wars 4x15",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x15.mp4"
-    },
-    {
-     "n": 16,
-     "t": "Avengers Secrets Wars 4x16",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x16.mp4"
-    },
-    {
-     "n": 17,
-     "t": "Avengers Secrets Wars 4x17",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x17.mp4"
-    },
-    {
-     "n": 18,
-     "t": "Avengers Secrets Wars 4x18",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x18.mp4"
-    },
-    {
-     "n": 19,
-     "t": "Avengers Secrets Wars 4x19",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x19.mp4"
-    },
-    {
-     "n": 20,
-     "t": "Avengers Secrets Wars 4x20",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x20.mp4"
-    },
-    {
-     "n": 21,
-     "t": "Avengers Secrets Wars 4x21",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x21.mp4"
-    },
-    {
-     "n": 22,
-     "t": "Avengers Secrets Wars 4x22",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x22.mp4"
-    },
-    {
-     "n": 23,
-     "t": "Avengers Secrets Wars 4x23",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x23.mp4"
-    },
-    {
-     "n": 24,
-     "t": "Avengers Secrets Wars 4x24",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x24.mp4"
-    },
-    {
-     "n": 25,
-     "t": "Avengers Secrets Wars 4x25",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x25.mp4"
-    },
-    {
-     "n": 26,
-     "t": "Avengers Secrets Wars 4x26",
-     "url": "https://archive.org/download/avengers-assemble-s-04/Avengers%20Secrets%20Wars%204x26.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-avengers-assemble-s-05",
-   "t": "Avengers Assemble temporada 5",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
-   "tags": [],
-   "at": 1790662995791,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Avengers Black Panther Quest S05E01 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E01.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "Avengers Black Panther Quest S05E02",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E02.mp4"
-    },
-    {
-     "n": 3,
-     "t": "Avengers Black Panther Quest S05E03 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E03.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "Avengers Black Panther Quest S05E04",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E04.mp4"
-    },
-    {
-     "n": 5,
-     "t": "Avengers Black Panther Quest S05E05",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E05.mp4"
-    },
-    {
-     "n": 6,
-     "t": "Avengers Black Panther Quest S05E06",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E06.mp4"
-    },
-    {
-     "n": 7,
-     "t": "Avengers Black Panther Quest S05E07",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E07.mp4"
-    },
-    {
-     "n": 8,
-     "t": "Avengers Black Panther Quest S05E08 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E08.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "Avengers Black Panther Quest S05E09",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E09.mp4"
-    },
-    {
-     "n": 10,
-     "t": "Avengers Black Panther Quest S05E10",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E10.mp4"
-    },
-    {
-     "n": 11,
-     "t": "Avengers Black Panther Quest S05E11 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E11.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "Avengers Black Panther Quest S05E12 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E12.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "Avengers Black Panther Quest S05E13 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E13.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "Avengers Black Panther Quest S05E14",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E14.mp4"
-    },
-    {
-     "n": 15,
-     "t": "Avengers Black Panther Quest S05E15 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E15.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "Avengers Black Panther Quest S05E16 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E16.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "Avengers Black Panther Quest S05E17 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E17.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "Avengers Black Panther Quest S05E18 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E18.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "Avengers Black Panther Quest S05E19 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E19.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "Avengers Black Panther Quest S05E20 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E20.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "Avengers Black Panther Quest S05E21 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E21.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "Avengers Black Panther Quest S05E22 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E22.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "Avengers Black Panther Quest S05E23 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E23.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-digimon-adventure-02-espanol-latino-etc-tv-rip-2017",
-   "t": "Digimon Adventure 2",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2017",
-   "g": 5,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://image.tmdb.org/t/p/w500/aRnUQ7rVpC2fxBz387h1Wgy02Fs.jpg",
-   "tags": [],
-   "clsManual": true,
-   "hentai": false,
-   "at": 1790663239462,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Digimon Adventure 02 [Episodio 01] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2001%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 2,
-     "t": "Digimon Adventure 02 [Episodio 02] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2002%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 3,
-     "t": "Digimon Adventure 02 [Episodio 03] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2003%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 4,
-     "t": "Digimon Adventure 02 [Episodio 04] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2004%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 5,
-     "t": "Digimon Adventure 02 [Episodio 05] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2005%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 6,
-     "t": "Digimon Adventure 02 [Episodio 06] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2006%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 7,
-     "t": "Digimon Adventure 02 [Episodio 07] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2007%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 8,
-     "t": "Digimon Adventure 02 [Episodio 08] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2008%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 9,
-     "t": "Digimon Adventure 02 [Episodio 09] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2009%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 10,
-     "t": "Digimon Adventure 02 [Episodio 10] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2010%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 11,
-     "t": "Digimon Adventure 02 [Episodio 11] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2011%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 12,
-     "t": "Digimon Adventure 02 [Episodio 12] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2012%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 13,
-     "t": "Digimon Adventure 02 [Episodio 13] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2013%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 14,
-     "t": "Digimon Adventure 02 [Episodio 14] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2014%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 15,
-     "t": "Digimon Adventure 02 [Episodio 15] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2015%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 16,
-     "t": "Digimon Adventure 02 [Episodio 16] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2016%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 17,
-     "t": "Digimon Adventure 02 [Episodio 17] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2017%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 18,
-     "t": "Digimon Adventure 02 [Episodio 18] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2018%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 19,
-     "t": "Digimon Adventure 02 [Episodio 19] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2019%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 20,
-     "t": "Digimon Adventure 02 [Episodio 20] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2020%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 21,
-     "t": "Digimon Adventure 02 [Episodio 21] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2021%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 22,
-     "t": "Digimon Adventure 02 [Episodio 22] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2022%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 23,
-     "t": "Digimon Adventure 02 [Episodio 23] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2023%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 24,
-     "t": "Digimon Adventure 02 [Episodio 24] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2024%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 25,
-     "t": "Digimon Adventure 02 [Episodio 25] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2025%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 26,
-     "t": "Digimon Adventure 02 [Episodio 26] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2026%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 27,
-     "t": "Digimon Adventure 02 [Episodio 27] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2027%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 28,
-     "t": "Digimon Adventure 02 [Episodio 28] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2028%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 29,
-     "t": "Digimon Adventure 02 [Episodio 29] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2029%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 30,
-     "t": "Digimon Adventure 02 [Episodio 30] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2030%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 31,
-     "t": "Digimon Adventure 02 [Episodio 31] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2031%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 32,
-     "t": "Digimon Adventure 02 [Episodio 32] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2032%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 33,
-     "t": "Digimon Adventure 02 [Episodio 33] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2033%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 34,
-     "t": "Digimon Adventure 02 [Episodio 34] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2034%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 35,
-     "t": "Digimon Adventure 02 [Episodio 35] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2035%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 36,
-     "t": "Digimon Adventure 02 [Episodio 36] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2036%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 37,
-     "t": "Digimon Adventure 02 [Episodio 37] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2037%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 38,
-     "t": "Digimon Adventure 02 [Episodio 38] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2038%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 39,
-     "t": "Digimon Adventure 02 [Episodio 39] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2039%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 40,
-     "t": "Digimon Adventure 02 [Episodio 40] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2040%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 41,
-     "t": "Digimon Adventure 02 [Episodio 41] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2041%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 42,
-     "t": "Digimon Adventure 02 [Episodio 42] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2042%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 43,
-     "t": "Digimon Adventure 02 [Episodio 43] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2043%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 44,
-     "t": "Digimon Adventure 02 [Episodio 44] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2044%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 45,
-     "t": "Digimon Adventure 02 [Episodio 45] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2045%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 46,
-     "t": "Digimon Adventure 02 [Episodio 46] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2046%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 47,
-     "t": "Digimon Adventure 02 [Episodio 47] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2047%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 48,
-     "t": "Digimon Adventure 02 [Episodio 48] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2048%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 49,
-     "t": "Digimon Adventure 02 [Episodio 49] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2049%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 50,
-     "t": "Digimon Adventure 02 [Episodio 50] Español Latino (Final)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2050%5D%20Espa%C3%B1ol%20Latino%20(Final).mp4"
     }
    ]
   },
@@ -45485,13 +45487,13 @@
   },
   {
    "id": "imp-drv-1nT_lYtJSftA-LEdY9uX8x1eHe99d-xGr",
-   "t": "Películas Barbie",
+   "t": "Barbie",
    "jp": "📁",
    "tag": "Google Drive",
    "g": 4,
    "kind": "pelicula",
    "anime": true,
-   "poster": null,
+   "poster": "https://image.tmdb.org/t/p/w500/fNtqD4BTFj0Bgo9lyoAtmNFzxHN.jpg",
    "tags": [],
    "clsManual": true,
    "hentai": false,
@@ -47085,17 +47087,6 @@
    "src": "iptv-org/c-pe"
   },
   {
-   "id": "tv-artv-cl",
-   "name": "ARTV (Chile)",
-   "logo": "https://i.imgur.com/rKP1ihL.png",
-   "group": "Cultura",
-   "url": "http://45.162.193.35/ARTV/index.m3u8",
-   "epg": "ARTV.cl",
-   "cc": "cl",
-   "quality": "720p",
-   "src": "iptv-org/c-cl"
-  },
-  {
    "id": "tv-arubatv-aw",
    "name": "Aruba.TV",
    "logo": "https://i.imgur.com/9fWY09U.png",
@@ -48244,10 +48235,10 @@
    "name": "Canal 1 (Colombia)",
    "logo": "https://i.imgur.com/YFywPLC.png",
    "group": "General",
-   "url": "http://38.134.250.110:8000/play/a014/index.m3u8",
+   "url": "http://190.109.2.92:8000/play/a010/index.m3u8",
    "epg": "Canal1.co",
    "cc": "co",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/c-co"
   },
   {
@@ -51269,7 +51260,7 @@
    "name": "CineLatino",
    "logo": "https://i.imgur.com/2V0R0xT.png",
    "group": "Películas",
-   "url": "http://45.162.193.35/CINELATINO_HD/index.m3u8",
+   "url": "http://206.135.11.174:8010/play/a0lq/index.m3u8",
    "epg": "CineLatino.mx",
    "cc": "mx",
    "quality": "720p",
@@ -52803,17 +52794,6 @@
    "cc": "cl",
    "quality": "720p",
    "src": "iptv-org/c-cl"
-  },
-  {
-   "id": "tv-docu-cl",
-   "name": "Docu.",
-   "logo": "https://i.imgur.com/7xvQ7jR.png",
-   "group": "Documentales",
-   "url": "http://45.162.193.35/DOCU/index.m3u8",
-   "epg": "Docu.cl",
-   "cc": "cl",
-   "quality": "1080p",
-   "src": "iptv-org/g-doc"
   },
   {
    "id": "tv-dreamworkschannellatinamerica-us",
@@ -56514,7 +56494,7 @@
   {
    "id": "tv-lamil35tv-ar",
    "name": "LAMIL35 TV",
-   "logo": "https://www.appcreator24.com/srv/imgs/gen/3544498_ico.png",
+   "logo": "https://i.pinimg.com/736x/2d/fa/25/2dfa25f5d2e4d5c19886a3a263706317.jpg",
    "group": "Animation;Classic;Entertainment",
    "url": "https://streamingvideo.com.ar/hls/eea3c96df781e0a3.m3u8",
    "epg": "LAMIL35TV.ar",
@@ -59211,10 +59191,10 @@
    "name": "NTN24",
    "logo": "https://i.imgur.com/UoKmSAP.png",
    "group": "Noticias",
-   "url": "http://181.78.12.119:16123/play/ch80/index.m3u8",
+   "url": "https://stream1.bitred.cl/ntn24/index.m3u8",
    "epg": "NTN24.co",
    "cc": "co",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/g-news"
   },
   {
@@ -63270,7 +63250,7 @@
    "name": "Rumba TV",
    "logo": "https://i.imgur.com/WtVpWwI.png",
    "group": "Música",
-   "url": "http://45.162.193.35/RUMBATV/index.m3u8",
+   "url": "http://186.148.196.100:8000/play/a02h",
    "epg": "RumbaTV.co",
    "cc": "co",
    "quality": "1080p",
@@ -65448,10 +65428,10 @@
    "name": "TeleHit",
    "logo": "https://i.imgur.com/NVxHxJn.png",
    "group": "Música",
-   "url": "http://200.115.120.1:8000/play/ca048/index.m3u8",
+   "url": "http://190.61.47.54:8000/play/a029/index.m3u8",
    "epg": "TeleHit.mx",
    "cc": "mx",
-   "quality": "576p",
+   "quality": "1080p",
    "src": "iptv-org/g-music"
   },
   {
@@ -68539,10 +68519,10 @@
    "name": "UCL",
    "logo": "https://i.imgur.com/BzQphbw.png",
    "group": "Cultura",
-   "url": "https://livedelta.cdn.antel.net.uy/out/u/url_canalu.m3u8",
+   "url": "https://livedelta.cdn.antel.net.uy/out/u/url_canalu_2.m3u8?m=1670250741",
    "epg": "UCL.uy",
    "cc": "uy",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/spa"
   },
   {
@@ -69723,17 +69703,6 @@
    "src": "iptv-org/c-pe"
   },
   {
-   "id": "tv-wdwl581-pr",
-   "name": "WDWL 58.1",
-   "logo": "https://i.imgur.com/B7lqYZe.png",
-   "group": "Religioso",
-   "url": "https://67acccf130420.streamlock.net/enlacepr1/enlacepr1/playlist.m3u8",
-   "epg": "WDWL581.pr",
-   "cc": "pr",
-   "quality": "720p",
-   "src": "iptv-org/spa"
-  },
-  {
    "id": "tv-weatherspy-mx",
    "name": "WeatherSpy (Mexico)",
    "logo": "https://i.imgur.com/KIEKOt1.png",
@@ -70244,10 +70213,10 @@
    "name": "Zona Latina",
    "logo": "https://i.imgur.com/lMyZZtk.png",
    "group": "Otros",
-   "url": "http://45.162.193.35/ZONALATINA/index.m3u8",
+   "url": "http://45.170.130.224:8000/play/a00x/index.m3u8",
    "epg": "ZonaLatina.cl",
    "cc": "cl",
-   "quality": "720p",
+   "quality": "576p",
    "src": "iptv-org/c-cl"
   },
   {
@@ -72503,17 +72472,6 @@
    "epg": "Astrahan24.ru",
    "cc": "ru",
    "quality": "720p",
-   "src": "iptv-org/g-news"
-  },
-  {
-   "id": "tv-atv-xk",
-   "name": "ATV (Kosovo)",
-   "logo": "https://i.imgur.com/lX6sekx.png",
-   "group": "Noticias",
-   "url": "http://5.254.89.106/8709/index.m3u8",
-   "epg": "ATV.xk",
-   "cc": "xk",
-   "quality": "1080p",
    "src": "iptv-org/g-news"
   },
   {
@@ -75425,7 +75383,7 @@
    "name": "Kohavision",
    "logo": "https://i.imgur.com/LOi9yma.png",
    "group": "Noticias",
-   "url": "http://5.254.89.106/8705/index.m3u8",
+   "url": "https://gjirafa-video-live.gjirafa.net/gjvideo-livestream/lj9-pxm-o53-rp0/tracks-v4a1/mono.m3u8",
    "epg": "Kohavision.xk",
    "cc": "xk",
    "quality": "720p",
@@ -77746,10 +77704,10 @@
    "name": "PRO TV Chisinau",
    "logo": "https://i.imgur.com/X5PYRxF.png",
    "group": "General;News",
-   "url": "https://stream.protv.md/live/sursa-1/index.m3u8",
+   "url": "http://178.76.68.60:7441/15/mpegts",
    "epg": "PROTVChisinau.md",
    "cc": "md",
-   "quality": "480p",
+   "quality": "576p",
    "src": "iptv-org/g-news"
   },
   {
@@ -81979,7 +81937,7 @@
   {
    "id": "tv-primasport5-ro",
    "name": "Prima Sport 5",
-   "logo": "",
+   "logo": "https://www.media-max.ro/wp-content/uploads/2022/11/Prima-Sport-5-HD-disponibil-in-grila-Vodafone.jpg",
    "group": "Deportes",
    "url": "https://dokagents.site/live/pr5/mono.m3u8",
    "epg": "PrimaSport5.ro",
@@ -83906,10 +83864,10 @@
    "name": "AXN (Portugal)",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/AXN_logo_%282015%29.svg/960px-AXN_logo_%282015%29.svg.png",
    "group": "Películas",
-   "url": "http://znty.dyndns.org:5010/hls/axn.m3u8",
+   "url": "http://188.115.15.121:8000/play/a02z",
    "epg": "AXN.pt",
    "cc": "pt",
-   "quality": "",
+   "quality": "1080p",
    "src": "iptv-org/g-movies"
   },
   {
@@ -86289,17 +86247,6 @@
    "src": "iptv-org/g-movies"
   },
   {
-   "id": "tv-max-al",
-   "name": "Max",
-   "logo": "https://i.imgur.com/bJ13Rmt.png",
-   "group": "Películas",
-   "url": "http://5.254.89.106:80/8882/index.m3u8",
-   "epg": "Max.al",
-   "cc": "al",
-   "quality": "576p",
-   "src": "iptv-org/g-movies"
-  },
-  {
    "id": "tv-mbcbollywood-ae",
    "name": "MBC Bollywood",
    "logo": "https://i.imgur.com/TTAGFHG.png",
@@ -86396,17 +86343,6 @@
    "epg": "MNPlus.mn",
    "cc": "mn",
    "quality": "",
-   "src": "iptv-org/g-movies"
-  },
-  {
-   "id": "tv-mnx-in",
-   "name": "MNX",
-   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_MNX/images/LOGO_HD/image.png",
-   "group": "Películas",
-   "url": "http://59.103.38.46:8000/play/a052/index.m3u8",
-   "epg": "MNX.in",
-   "cc": "in",
-   "quality": "576p",
    "src": "iptv-org/g-movies"
   },
   {
@@ -87951,13 +87887,13 @@
   },
   {
    "id": "tv-procinema-ro",
-   "name": "Pro Cinema (576i)",
+   "name": "Pro Cinema",
    "logo": "https://i.imgur.com/TvHFGwZ.png",
    "group": "Películas",
-   "url": "https://dokagents.site/live/procinema/mono.m3u8",
+   "url": "http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-ro-procinema/live_fullhd?offsetSeconds=0",
    "epg": "ProCinema.ro",
    "cc": "ro",
-   "quality": "",
+   "quality": "1080p",
    "src": "iptv-org/g-movies"
   },
   {
@@ -88262,7 +88198,7 @@
    "name": "Sony Max 2",
    "logo": "https://i.imgur.com/gqUYk6C.png",
    "group": "Películas",
-   "url": "http://149.71.34.166:8000/play/a00z/index.m3u8",
+   "url": "http://107.167.16.138/sonymax2/index.m3u8?token=test",
    "epg": "SonyMax2.in",
    "cc": "in",
    "quality": "576p",
@@ -92834,17 +92770,6 @@
    "src": "iptv-org/g-kids"
   },
   {
-   "id": "tv-disneyinternationalhd-in",
-   "name": "Disney International HD",
-   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_DISNEY_INTERNATIONAL_HD/images/LOGO_HD/image.png",
-   "group": "Infantil",
-   "url": "http://202.70.146.135:8000/play/a04p/index.m3u8",
-   "epg": "DisneyInternationalHD.in",
-   "cc": "in",
-   "quality": "1080p",
-   "src": "iptv-org/g-kids"
-  },
-  {
    "id": "tv-disneyjr-fr",
    "name": "Disney Jr. (France)",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2024_Disney_Jr._Logo.svg",
@@ -95210,17 +95135,6 @@
    "src": "iptv-org/g-kids"
   },
   {
-   "id": "tv-tringkids-al",
-   "name": "Tring Kids",
-   "logo": "https://i.imgur.com/osJ3IrI.png",
-   "group": "Infantil",
-   "url": "http://5.254.89.106/8777/index.m3u8",
-   "epg": "TringKids.al",
-   "cc": "al",
-   "quality": "576p",
-   "src": "iptv-org/g-kids"
-  },
-  {
    "id": "tv-trtcocuk-tr",
    "name": "TRT Cocuk",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/TRT_%C3%87ocuk_logo_%282021%29.svg/960px-TRT_%C3%87ocuk_logo_%282021%29.svg.png",
@@ -96728,17 +96642,6 @@
    "src": "iptv-org/g-music"
   },
   {
-   "id": "tv-elroditv-al",
-   "name": "Elrodi TV",
-   "logo": "https://i.imgur.com/9oSm30W.png",
-   "group": "Música",
-   "url": "http://5.254.89.106/8718/index.m3u8",
-   "epg": "ElrodiTV.al",
-   "cc": "al",
-   "quality": "576p",
-   "src": "iptv-org/g-music"
-  },
-  {
    "id": "tv-emitv-ro",
    "name": "EMI TV",
    "logo": "https://i.imgur.com/B5zssCz.png",
@@ -97092,7 +96995,7 @@
   },
   {
    "id": "tv-htmusicchannel-hu",
-   "name": "H!t Music Channel",
+   "name": "H!t Music Channel (Hungary)",
    "logo": "https://i.imgur.com/sqC2hqV.png",
    "group": "Música",
    "url": "http://hitmusic.hu/hitmusic.m3u8",
@@ -98320,17 +98223,6 @@
    "epg": "MuzzOne.kz",
    "cc": "kz",
    "quality": "",
-   "src": "iptv-org/g-music"
-  },
-  {
-   "id": "tv-mymusic-al",
-   "name": "My Music",
-   "logo": "https://i.imgur.com/7cvPvOx.png",
-   "group": "Música",
-   "url": "http://5.254.89.106:80/8821/index.m3u8",
-   "epg": "MyMusic.al",
-   "cc": "al",
-   "quality": "576p",
    "src": "iptv-org/g-music"
   },
   {
@@ -102668,17 +102560,6 @@
    "src": "iptv-org/g-doc"
   },
   {
-   "id": "tv-sonybbcearth-in",
-   "name": "Sony BBC Earth HD",
-   "logo": "https://dtil.tmsimg.com/assets/s143800_ld_h15_aa.png?lock=720x540",
-   "group": "Documentales",
-   "url": "https://cloudplay-sonyliv.pages.dev/bbcearthhd.m3u8",
-   "epg": "SonyBBCEarth.in",
-   "cc": "in",
-   "quality": "1080p",
-   "src": "iptv-org/g-doc"
-  },
-  {
    "id": "tv-spektrum-cz",
    "name": "Spektrum (Czech Republic)",
    "logo": "https://i.imgur.com/F5Uosum.png",
@@ -102797,17 +102678,6 @@
    "epg": "TotalCrime.ca",
    "cc": "ca",
    "quality": "1080p",
-   "src": "iptv-org/g-doc"
-  },
-  {
-   "id": "tv-tringhistory-al",
-   "name": "Tring History",
-   "logo": "https://i.imgur.com/9wc2Wpt.png",
-   "group": "Documentales",
-   "url": "http://5.254.89.106/8765/index.m3u8",
-   "epg": "TringHistory.al",
-   "cc": "al",
-   "quality": "720p",
    "src": "iptv-org/g-doc"
   },
   {
@@ -104806,10 +104676,10 @@
    "name": "MCM Pop",
    "logo": "https://i.imgur.com/j31lBL7.png",
    "group": "Música",
-   "url": "http://193.254.245.162/MCM/index.m3u8",
+   "url": "http://188.115.15.121:8000/play/a014",
    "epg": "MCMPop.fr",
    "cc": "fr",
-   "quality": "576p",
+   "quality": "580p",
    "src": "iptv-org/g-music"
   },
   {
@@ -104832,6 +104702,182 @@
    "epg": "History.ro",
    "cc": "ro",
    "quality": "",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-usanetwork-us",
+   "name": "USA Network",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/USA_Network_logo_%282016%29.svg/960px-USA_Network_logo_%282016%29.svg.png",
+   "group": "Comedy;Movies;Series;Sports",
+   "url": "http://190.197.41.183/USA_NETWORK/index.m3u8",
+   "epg": "USANetwork.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-htmusicchannel-ro",
+   "name": "H!t Music Channel (Romania)",
+   "logo": "https://i.imgur.com/sqC2hqV.png",
+   "group": "Música",
+   "url": "http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-ro-mooz-dance/live_hq?offsetSeconds=0",
+   "epg": "HtMusicChannel.ro",
+   "cc": "ro",
+   "quality": "",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-musicchannel-ro",
+   "name": "Music Channel",
+   "logo": "https://i.imgur.com/nadVCxM.png",
+   "group": "Música",
+   "url": "http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-ro-ncn/live_hq?offsetSeconds=0",
+   "epg": "MusicChannel.ro",
+   "cc": "ro",
+   "quality": "",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-radiobrunotv-it",
+   "name": "Radio Bruno TV",
+   "logo": "https://i.imgur.com/WBcwDb7.png",
+   "group": "Música",
+   "url": "http://stream7.xdevel.com/video0s975758-1051/stream/playlist.m3u8",
+   "epg": "RadioBrunoTV.it",
+   "cc": "it",
+   "quality": "720p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-artv-cl",
+   "name": "ARTV (Chile)",
+   "logo": "https://i.imgur.com/rKP1ihL.png",
+   "group": "Cultura",
+   "url": "http://45.162.193.35/ARTV/index.m3u8",
+   "epg": "ARTV.cl",
+   "cc": "cl",
+   "quality": "720p",
+   "src": "iptv-org/c-cl"
+  },
+  {
+   "id": "tv-docu-cl",
+   "name": "Docu.",
+   "logo": "https://i.imgur.com/7xvQ7jR.png",
+   "group": "Documentales",
+   "url": "http://45.162.193.35/DOCU/index.m3u8",
+   "epg": "Docu.cl",
+   "cc": "cl",
+   "quality": "1080p",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-wdwl581-pr",
+   "name": "WDWL 58.1",
+   "logo": "https://i.imgur.com/B7lqYZe.png",
+   "group": "Religioso",
+   "url": "https://67acccf130420.streamlock.net/enlacepr1/enlacepr1/playlist.m3u8",
+   "epg": "WDWL581.pr",
+   "cc": "pr",
+   "quality": "720p",
+   "src": "iptv-org/spa"
+  },
+  {
+   "id": "tv-atv-xk",
+   "name": "ATV (Kosovo)",
+   "logo": "https://i.imgur.com/lX6sekx.png",
+   "group": "Noticias",
+   "url": "http://5.254.89.106/8709/index.m3u8",
+   "epg": "ATV.xk",
+   "cc": "xk",
+   "quality": "1080p",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-max-al",
+   "name": "Max",
+   "logo": "https://i.imgur.com/bJ13Rmt.png",
+   "group": "Películas",
+   "url": "http://5.254.89.106:80/8882/index.m3u8",
+   "epg": "Max.al",
+   "cc": "al",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-mnx-in",
+   "name": "MNX",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_MNX/images/LOGO_HD/image.png",
+   "group": "Películas",
+   "url": "http://59.103.38.46:8000/play/a052/index.m3u8",
+   "epg": "MNX.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-disneyinternationalhd-in",
+   "name": "Disney International HD",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_DISNEY_INTERNATIONAL_HD/images/LOGO_HD/image.png",
+   "group": "Infantil",
+   "url": "http://202.70.146.135:8000/play/a04p/index.m3u8",
+   "epg": "DisneyInternationalHD.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-tringkids-al",
+   "name": "Tring Kids",
+   "logo": "https://i.imgur.com/osJ3IrI.png",
+   "group": "Infantil",
+   "url": "http://5.254.89.106/8777/index.m3u8",
+   "epg": "TringKids.al",
+   "cc": "al",
+   "quality": "576p",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-elroditv-al",
+   "name": "Elrodi TV",
+   "logo": "https://i.imgur.com/9oSm30W.png",
+   "group": "Música",
+   "url": "http://5.254.89.106/8718/index.m3u8",
+   "epg": "ElrodiTV.al",
+   "cc": "al",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-mymusic-al",
+   "name": "My Music",
+   "logo": "https://i.imgur.com/7cvPvOx.png",
+   "group": "Música",
+   "url": "http://5.254.89.106:80/8821/index.m3u8",
+   "epg": "MyMusic.al",
+   "cc": "al",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-sonybbcearth-in",
+   "name": "Sony BBC Earth HD",
+   "logo": "https://dtil.tmsimg.com/assets/s143800_ld_h15_aa.png?lock=720x540",
+   "group": "Documentales",
+   "url": "https://cloudplay-sonyliv.pages.dev/bbcearthhd.m3u8",
+   "epg": "SonyBBCEarth.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-tringhistory-al",
+   "name": "Tring History",
+   "logo": "https://i.imgur.com/9wc2Wpt.png",
+   "group": "Documentales",
+   "url": "http://5.254.89.106/8765/index.m3u8",
+   "epg": "TringHistory.al",
+   "cc": "al",
+   "quality": "720p",
    "src": "iptv-org/g-doc"
   },
   {
@@ -104987,17 +105033,6 @@
    "cc": "us",
    "quality": "720p",
    "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-usanetwork-us",
-   "name": "USA Network",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/USA_Network_logo_%282016%29.svg/960px-USA_Network_logo_%282016%29.svg.png",
-   "group": "Comedy;Movies;Series;Sports",
-   "url": "http://190.11.225.124:5000/live/usa_hd/playlist.m3u8",
-   "epg": "USANetwork.us",
-   "cc": "us",
-   "quality": "1080p",
-   "src": "iptv-org/g-series"
   }
  ],
  "del": {
@@ -105010,6 +105045,7 @@
   "mp-stape-root-17BOA8DWeGTeaGd": 1790571264773,
   "imp-drv-1O8Uw4-e6c89UOEsaH6xx10fc9DMGjqCZ": 1790630720036,
   "ia-depredador-2-1990-espanol-latino-tv-rip-fullscreen": 1790633579912,
+  "ia-depredador-1987-espanol-latino-dvd-fullscreen": 1790740758965,
   "ia-terminator_202403": 1790633644942,
   "ia-PatchAdamLatino1080p": 1790635955309,
   "ia-yt-la-filmoteca-maldita-MATzIN7eMrY": 1790636312622,
@@ -105023,11 +105059,10 @@
   "ia-caballeros-del-zodiaco-alma-de-oro-final-emotivo": 1790663700103,
   "ia-los-caballeros-del-zodiaco-alma-de-oro-capitulo-1-audio-m": 1790663735695,
   "ia-adult-swim-mexico-01-02-2024": 1790663824790,
+  "ia-conan-el-aventurero-capitulo-39-las-ultimas-horas-de-cona": 1790664336515,
   "ia-evo-share-armitage-iii-ova-01-sangre-electrica-dvd-vhs-du": 1790740636318,
-  "ia-depredador-1987-espanol-latino-dvd-fullscreen": 1790740758965,
   "ia-pooh-west": 1790741282507,
   "ia-south-park-mas-grande-mas-largo-y-sin-cortes-la-madre-de-": 1790751915972,
-  "ia-conan-el-aventurero-capitulo-39-las-ultimas-horas-de-cona": 1790664336515,
   "ia-angel-la-nina-de-las-flores-capitulo-1-lat": 1790752259723,
   "ia-trigun_episodio_2": 1790752333279,
   "ia-frasier-07x-23-24-algo-prestado-algo-azul": 1790793244197,
@@ -105039,87 +105074,87 @@
   "iptv-org/spa": {
    "url": "https://iptv-org.github.io/iptv/languages/spa.m3u",
    "name": "iptv-org: Español (todo)",
-   "at": 1788630185369
+   "at": 1791002007619
   },
   "iptv-org/c-es": {
    "url": "https://iptv-org.github.io/iptv/countries/es.m3u",
    "name": "iptv-org: España",
-   "at": 1788630185916
+   "at": 1791002008429
   },
   "iptv-org/c-mx": {
    "url": "https://iptv-org.github.io/iptv/countries/mx.m3u",
    "name": "iptv-org: México",
-   "at": 1788630186453
+   "at": 1791002009310
   },
   "iptv-org/c-ar": {
    "url": "https://iptv-org.github.io/iptv/countries/ar.m3u",
    "name": "iptv-org: Argentina",
-   "at": 1788630186984
+   "at": 1791002010043
   },
   "iptv-org/c-co": {
    "url": "https://iptv-org.github.io/iptv/countries/co.m3u",
    "name": "iptv-org: Colombia",
-   "at": 1788630187499
+   "at": 1791002010803
   },
   "iptv-org/c-cl": {
    "url": "https://iptv-org.github.io/iptv/countries/cl.m3u",
    "name": "iptv-org: Chile",
-   "at": 1788630188368
+   "at": 1791002011619
   },
   "iptv-org/c-pe": {
    "url": "https://iptv-org.github.io/iptv/countries/pe.m3u",
    "name": "iptv-org: Perú",
-   "at": 1788630188968
+   "at": 1791002012492
   },
   "iptv-org/c-ve": {
    "url": "https://iptv-org.github.io/iptv/countries/ve.m3u",
    "name": "iptv-org: Venezuela",
-   "at": 1788630189552
+   "at": 1791002013251
   },
   "iptv-org/c-do": {
    "url": "https://iptv-org.github.io/iptv/countries/do.m3u",
    "name": "iptv-org: Rep. Dominicana",
-   "at": 1788563090808
+   "at": 1791002014060
   },
   "iptv-org/g-news": {
    "url": "https://iptv-org.github.io/iptv/categories/news.m3u",
    "name": "iptv-org: Noticias",
-   "at": 1788630190192
+   "at": 1791002014860
   },
   "iptv-org/g-sports": {
    "url": "https://iptv-org.github.io/iptv/categories/sports.m3u",
    "name": "iptv-org: Deportes",
-   "at": 1788630190766
+   "at": 1791002015773
   },
   "iptv-org/g-movies": {
    "url": "https://iptv-org.github.io/iptv/categories/movies.m3u",
    "name": "iptv-org: Películas",
-   "at": 1788630191460
+   "at": 1791002016722
   },
   "iptv-org/g-series": {
    "url": "https://iptv-org.github.io/iptv/categories/series.m3u",
    "name": "iptv-org: Series",
-   "at": 1788630192099
+   "at": 1791002017585
   },
   "iptv-org/g-kids": {
    "url": "https://iptv-org.github.io/iptv/categories/kids.m3u",
    "name": "iptv-org: Infantil",
-   "at": 1788630192649
+   "at": 1791002018378
   },
   "iptv-org/g-music": {
    "url": "https://iptv-org.github.io/iptv/categories/music.m3u",
    "name": "iptv-org: Música",
-   "at": 1788630193270
+   "at": 1791002018826
   },
   "iptv-org/g-doc": {
    "url": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
    "name": "iptv-org: Documentales",
-   "at": 1788630193811
+   "at": 1791002019043
   },
   "iptv-org/g-anime": {
    "url": "https://iptv-org.github.io/iptv/categories/animation.m3u",
    "name": "iptv-org: Animación",
-   "at": 1788630194628
+   "at": 1791002019283
   }
  },
  "links": {
@@ -195272,6 +195307,11 @@
    "dest": "#/pelicula/peliculas-barbie",
    "t": "Películas Barbie",
    "at": 1791046788200
+  },
+  "g4nqnk": {
+   "dest": "#/pelicula/barbie",
+   "t": "Barbie",
+   "at": 1791178440488
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -195285,5 +195325,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "TDYyBCo7vMMNyosX0xxqgoac8xb2i/6Ditni6pj/UeRJRcMP4dB9KOXAYllcoZKY+lI/kVUSSaHP6YwTPd8o5w=="
+ "sig": "n0RPT6BmQruGmjnqqV9pJEuW24MfpfdUvSZVw2P5tUR82Tt606ppEMegvfeuHeRfCILhXvnL4l6UkISxNykIFQ=="
 }
