@@ -111,6 +111,12 @@ function load() {
         });
         state.links = state.links && !Array.isArray(state.links) ? state.links : {};
         state.linksDom = state.linksDom || 'https://x.yapido.click';
+        /* 🎬 GÉNEROS: organizar las películas que YA existen (una sola vez
+           por película — idempotente: solo rellena s.genre si falta)        */
+        try {
+          const nGen = backfillMovieGenres();
+          if (nGen) console.info(`[xstream] 🎬 ${nGen} película(s) organizadas por género automáticamente`);
+        } catch (e) { console.warn('[xstream] backfill géneros:', e); }
         /* 🧹 Limpieza retroactiva: capítulos gemelos heredados del viejo importador
            de archive.org (el mismo video vía .mp4 + .ia.mp4/_512kb entraba 2 veces).
            Clave conservadora: mismo archivo archive.org (nombre base) o misma URL exacta. */
@@ -694,6 +700,109 @@ function renderTagChips() {
 function watchedCount(s) {
   const p = (state.progress || {})[s.id];
   return p ? Object.values(p).filter(x => x.done).length : 0;
+}
+
+/* ═══════════════ 🎬 GÉNEROS DE PELÍCULAS — vocabulario + detección ═══════════════
+   Cada género tiene su propia VIBRA visual (tarjetas diseñadas a medida).
+   La detección busca por keywords en español e inglés (sin acentos),
+   tanto en el nombre de la CARPETA de Drive/Streamtape como en el
+   nombre del archivo de la película. La más específica gana.            */
+const MOVIE_GENRES = [
+  { id: 'scifi',      label: 'Ciencia Ficción', icon: '🚀', kw: ['ciencia ficcion', 'sci fi', 'sci-fi', 'scifi', 'espacial', 'espacio', 'futurista', 'robot', 'androide', 'alien', 'galaxia', 'interestelar', 'cyberpunk', 'distopia', 'dystopia', 'maquina del tiempo', 'star wars', 'star trek'] },
+  { id: 'terror',     label: 'Terror',          icon: '👻', kw: ['terror', 'horror', 'miedo', 'slasher', 'zombi', 'zombie', 'monstruo', 'pesadilla', 'dracula', 'exorcista', 'posesion', 'maldicion', 'paranormal', 'sobrenatural', 'diabolica', 'infernal', 'casa embrujada'] },
+  { id: 'suspenso',   label: 'Suspenso',        icon: '🔪', kw: ['suspenso', 'suspense', 'thriller', 'misterio', 'asesino', 'asesinato', 'detective', 'investigacion', 'psicologica', 'enigma'] },
+  { id: 'crimen',     label: 'Crimen',          icon: '🕵️', kw: ['crimen', 'criminal', 'mafia', 'golpe', 'robo', 'ladron', 'policial', 'gangster', 'cartel', 'narcos', 'secuestro', 'atraco'] },
+  { id: 'romance',    label: 'Romance',         icon: '❤️', kw: ['romance', 'romantica', 'romantico', 'comedia romantica', 'historia de amor', 'love story'] },
+  { id: 'comedia',    label: 'Comedia',         icon: '😂', kw: ['comedia', 'comedy', 'humor', 'risa', 'parodia', 'comica', 'stand up'] },
+  { id: 'drama',      label: 'Drama',           icon: '🎭', kw: ['drama', 'dramatica', 'melodrama', 'tragedia'] },
+  { id: 'aventura',   label: 'Aventura',        icon: '🗺️', kw: ['aventura', 'adventure', 'expedicion', 'tesoro', 'jungla', 'pirata', 'safari', 'busqueda'] },
+  { id: 'fantasia',   label: 'Fantasía',        icon: '🐉', kw: ['fantasia', 'fantasy', 'magia', 'dragon', 'mago', 'hechizo', 'mitologica', 'reino', 'epica', 'espada'] },
+  { id: 'infantil',   label: 'Infantil',        icon: '🧒', kw: ['infantil', 'ninos', 'kids', 'familia', 'familiar', 'animada', 'dibujos', 'pixar', 'disney', 'cuento', 'cartoon'] },
+  { id: 'documental', label: 'Documental',      icon: '🎓', kw: ['documental', 'documentary', 'docu', 'naturaleza', 'biografia', 'wildlife'] },
+  { id: 'deportes',   label: 'Deportes',        icon: '⚽', kw: ['deporte', 'futbol', 'soccer', 'basquet', 'boxeo', 'beisbol', 'competencia', 'olimpica'] },
+  { id: 'musical',    label: 'Musical',         icon: '🎵', kw: ['musical', 'concierto', 'cantando', 'opera', 'bailar', 'banda sonora'] },
+  { id: 'western',    label: 'Western',         icon: '🤠', kw: ['western', 'vaquero', 'cowboy', 'lejano oeste'] },
+  { id: 'guerra',     label: 'Guerra',          icon: '⚔️', kw: ['guerra', 'war', 'militar', 'soldado', 'ejercito', 'batalla', 'combate', 'trench'] },
+  { id: 'hentai',     label: 'Hentai',          icon: '💗', kw: ['hentai'] },
+  { id: 'accion',     label: 'Acción',          icon: '💥', kw: ['accion', 'action', 'pelea', 'peleas', 'artes marciales', 'marcial', 'destruccion', 'persecucion', 'explosiones', 'adrenalina'] },
+];
+const normTxt = t => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+function detectMovieGenre(text) {
+  const s = normTxt(text);
+  if (!s) return null;
+  for (const g of MOVIE_GENRES) if (g.kw.some(k => s.includes(k))) return g.id;
+  return null;
+}
+function genreById(id) { return MOVIE_GENRES.find(g => g.id === id) || null; }
+/* ¿el nombre de la CARPETA es un género? → todos sus archivos son películas sueltas de ese género */
+function isGenreFolder(name) {
+  const id = detectMovieGenre(name);
+  return id && normTxt(name).trim().length < 26 ? id : null;
+}
+/* asigna el género a una película: campo s.genre + etiqueta en s.tags
+   (así también aparece en los GÉNEROS de la columna izquierda)           */
+function applyMovieGenre(s, genreId) {
+  if (!s || !genreId) return;
+  const g = genreById(genreId);
+  if (!g) return;
+  s.genre = g.id;
+  s.tags = s.tags || [];
+  if (!s.tags.includes(g.label)) s.tags.push(g.label);
+  if (g.id === 'hentai') s.hentai = true;   /* va a su pestaña propia */
+}
+
+/* 🧹 organización de lo que YA existe: al arrancar, cada película sin
+   género recibe el suyo si el nombre lo delata (idempotente: solo
+   rellena los que faltan — jamás toca lo que ya tiene género)           */
+function backfillMovieGenres() {
+  let n = 0;
+  for (const s of state.series) {
+    if (s.kind !== 'pelicula' || s.genre) continue;
+    const gen = detectMovieGenre(s.t)
+      || detectMovieGenre((s.tags || []).join(' '))
+      || detectMovieGenre(s.tag || '')
+      || (s.episodes[0] ? detectMovieGenre(s.episodes[0].t) : null);
+    if (gen) { applyMovieGenre(s, gen); n++; }
+  }
+  if (n) save();
+  return n;
+}
+
+/* ═══════════ 🎴 TARJETAS DE GÉNERO — la galería de Películas ═══════════
+   Al entrar a la pestaña Películas, aparece AL INSTANTE (encima de
+   «Sigue viendo») un riel de tarjetas grandes, cada una con su VIBRA
+   propia: gradiente + icono + diseño a medida por género. Clic →
+   filtra la lista a ese género; clic de nuevo → limpia.                */
+let genreFilter = null;
+function renderGenreRow() {
+  const row = document.getElementById('genreRow');
+  if (!row) return;
+  if (state.tab !== 'peliculas') { row.classList.add('hidden'); return; }
+  const pelis = state.series.filter(s => s.kind === 'pelicula' && !s.hentai);
+  if (!pelis.length) { row.classList.add('hidden'); return; }
+  const counts = {};
+  for (const s of pelis) if (s.genre) counts[s.genre] = (counts[s.genre] || 0) + 1;
+  const otros = pelis.filter(s => !s.genre).length;
+  const present = MOVIE_GENRES.filter(g => counts[g.id]);
+  if (!present.length && !otros) { row.classList.add('hidden'); return; }
+  row.classList.remove('hidden');
+  row.innerHTML = '';
+  const mkCard = (id, icon, label, count, title) => {
+    const b = document.createElement('button');
+    b.className = 'genre-card gc-' + id + (genreFilter === id ? ' on' : '');
+    b.title = title || label;
+    b.innerHTML = `<span class="gc-icon">${icon}</span>
+      <span class="gc-txt"><b>${label}</b><i>${count} ${count === 1 ? 'película' : 'películas'}</i></span>`;
+    b.addEventListener('click', () => {
+      genreFilter = genreFilter === id ? null : id;
+      renderGenreRow();
+      renderSeries(els.searchInput.value);
+    });
+    row.appendChild(b);
+  };
+  mkCard('__todas', '🎬', 'Todas', pelis.length, 'Ver todas las películas sin filtro');
+  for (const g of present) mkCard(g.id, g.icon, g.label, counts[g.id]);
+  if (otros) mkCard('__otros', '🗂️', 'Sin género', otros, 'Películas todavía sin categoría');
 }
 
 function coverHtml(s) {
@@ -2090,7 +2199,13 @@ function renderSeries(filter = '') {
   let list = state.series.slice();
   /* pestaña activa: Anime · Series (no anime) · Películas (las OVAs sueltas viven en Películas hasta integrarse) */
   /* pestaña activa: Anime · Series (no anime) · Hentai · Películas */
-  if (state.tab === 'peliculas') list = list.filter(s => s.kind === 'pelicula' && !s.hentai);
+  if (state.tab === 'peliculas') {
+    list = list.filter(s => s.kind === 'pelicula' && !s.hentai);
+    /* 🎬 filtro por la tarjeta de género clicada (solo en Películas) */
+    if (genreFilter) list = genreFilter === '__otros'
+      ? list.filter(s => !s.genre)
+      : list.filter(s => s.genre === genreFilter);
+  }
   else if (state.tab === 'hentai') list = list.filter(s => s.hentai === true);
   else if (state.tab === 'series') list = list.filter(s => s.kind !== 'pelicula' && s.anime === false && !s.hentai);
   else list = list.filter(s => s.kind !== 'pelicula' && s.anime !== false && !s.hentai);
@@ -2164,6 +2279,8 @@ function renderSeries(filter = '') {
     requestAnimationFrame(rest);
   }
   els.seriesList._skey = skey;
+  /* 🎴 tarjetas de género: visibles (y al día) solo en la pestaña Películas */
+  try { renderGenreRow(); } catch (e) { }
 }
 
 /* ═══════════ Reordenar / fundir series como temporadas ═══════════ */
@@ -4523,7 +4640,7 @@ async function importStreamtapeAll() {
     if (skip.deep.length) avisos.push(`⚠ ${skip.deep.length} carpeta(s) están a más de 6 niveles y no se leyeron: ${skip.deep.slice(0, 4).join(', ')}${skip.deep.length > 4 ? '…' : ''}`);
     if (skip.full) avisos.push('⚠ Se llegó al tope de 4000 videos — el resto no entró');
 
-    let nSeries = 0, nMovies = 0, nFolders = 0, firstId = null, nAbsorb = 0;
+    let nSeries = 0, nMovies = 0, nFolders = 0, firstId = null, nAbsorb = 0, nGenres = 0;
     const keepIds = new Set(); // todo lo que SÍ existe ahora en tu cuenta
     for (const g of groups) {
       if (!g.files.length) continue;
@@ -4531,7 +4648,16 @@ async function importStreamtapeAll() {
          una carpeta con nombre se auto-detecta: serie si sus archivos lo parecen.
          Las subcarpetas (temporadas) nacen como entrada propia; TÚ las unes
          a mano con arrastrar/soltar cuando quieras (mergeSeason intacto).   */
-      const { items } = buildImportedItems(g.name, g.files, g.name ? 'auto' : 'peliculas');
+      /* 🎬 GÉNERO: carpeta llamada «Terror», «Acción»… → películas individuales */
+      const gFolder = isGenreFolder(g.name);
+      const { items } = buildImportedItems(g.name, g.files, gFolder ? 'peliculas' : (g.name ? 'auto' : 'peliculas'));
+      if (gFolder) {
+        for (const it of items) {
+          if (it.kind !== 'pelicula') continue;
+          it.genre = gFolder || detectMovieGenre(it.t) || null;
+        }
+        nGenres++;
+      }
 
       /* 🧠 ¿esta carpeta YA la uniste a otra serie a mano? → no resucitar:
          los videos nuevos entran directos a su temporada en la serie madre */
@@ -4601,7 +4727,7 @@ async function importStreamtapeAll() {
     if (nAbsorb) parts.push(`🧷 ${nAbsorb} carpeta${nAbsorb > 1 ? 's' : ''} ya unida${nAbsorb > 1 ? 's' : ''} a mano se actualizó en su serie`);
     if (podados.length) parts.push(`🧹 ${podados.length} retirado${podados.length > 1 ? 's' : ''} (ya borrados en Streamtape)`);
     if (!scanCompleto) parts.push('⚠ escaneo parcial: no se retiró nada');
-    toast(`☁ Streamtape: ${parts.join(' + ') || 'todo al día ✓'} · ${nFolders} carpeta${nFolders !== 1 ? 's' : ''}`);
+    toast(`☁ Streamtape: ${parts.join(' + ') || 'todo al día ✓'} · ${nFolders} carpeta${nFolders !== 1 ? 's' : ''}${nGenres ? ` · ${nGenres} de género` : ''}`);
     if (firstId) selectSeries(firstId);
   } catch (e) {
     setDriveStatus('⚠ ' + (e.message || e), 'err');
@@ -4640,15 +4766,19 @@ function importSingleFile(videoUrl, name, tag) {
   if (!t) t = 'Video externo (renómbrame ✎)';
   const id = 'file-' + videoUrl.replace(/[^\w]+/g, '-').slice(0, 60);
   const dId = parseDriveId(videoUrl);
+  /* 🎬 género por el nombre del archivo («La Casa del Terror.mp4» → Terror) */
+  const gen = detectMovieGenre(t) || detectMovieGenre(tag || '') || null;
   let s = getSeries(id);
   if (!s) {
     s = { id, t, jp: '🎬', tag: tag || 'Archivo externo', g: 6, kind: 'pelicula', poster: dId ? driveThumbUrl(dId, 1000) : null, episodes: [{ n: 1, t: '▶ Ver', url: videoUrl }] };
+    if (gen) applyMovieGenre(s, gen);
     liftTombstone(s);
     state.series.push(s);
     freshIds.add(id);
   } else {
     s.t = t; s.episodes[0].url = videoUrl;
     if (!s.poster && dId) s.poster = driveThumbUrl(dId, 1000);
+    if (gen) applyMovieGenre(s, gen);
   }
   save();
   renderSeries(els.searchInput.value);
@@ -4887,8 +5017,11 @@ function addImportedItems(items, srcId, srcTag, g) {
          lo demás (películas sueltas, que son entradas de 1 solo video) se refresca */
       if (it.kind === 'serie' && /^imp-stape-/.test(id)) mergeStapeEpisodes(s, it.episodes);
       else s.episodes = it.episodes;
+      /* 🎬 género detectado en la importación */
+      if (it.genre) applyMovieGenre(s, it.genre);
     } else {
       s = { id, t: it.t, jp: it.kind === 'pelicula' ? '🎬' : '📁', tag: srcTag, g, kind: it.kind, episodes: it.episodes, poster: it.poster || null };
+      if (it.genre) applyMovieGenre(s, it.genre);
       liftTombstone(s); /* reimportar a propósito revive lo borrado */
       state.series.push(s);
       freshIds.add(id); // entra con shimmer
@@ -4957,15 +5090,25 @@ async function importFromUrl() {
       if (gName && rootName && /^(temporada|season|temp|t)?\s*\d{1,2}$/i.test(gName.trim())) {
         gName = `${rootName} · Temporada ${(gName.match(/\d+/) || [''])[0]}`;
       }
+      /* 🎬 GÉNERO: si la subcarpeta se llama «Terror», «Acción», «Comedia»…
+         NO es una serie: cada archivo es una PELÍCULA individual de ese género  */
+      const gFolder = isGenreFolder(gName);
       const { detected, items } = buildImportedItems(
         gName,
         g.files.map(f => ({ name: f.name, key: f.id, url: `https://drive.google.com/file/d/${f.id}/view`, thumb: driveThumbUrl(f.id, 1000) })),
-        mode
+        gFolder ? 'peliculas' : mode
       );
+      /* asignar el género a cada película: primero la carpeta, si no, el nombre del archivo */
+      if (gFolder || mode === 'peliculas') {
+        for (const it of items) {
+          if (it.kind !== 'pelicula') continue;
+          it.genre = gFolder || detectMovieGenre(it.t) || detectMovieGenre(gName) || null;
+        }
+      }
       const r = addImportedItems(items, 'drv-' + g.folderId, 'Google Drive', 4);
       if (!firstId) firstId = r.firstId;
       nSeries += r.nSeries; nMovies += r.nMovies;
-      resumen.push(`«${(gName || '?').slice(0, 30)}» → ${items[0].kind === 'serie' ? '📺' : '🎬'} (${g.files.length})`);
+      resumen.push(`«${(gName || '?').slice(0, 30)}» → ${items[0].kind === 'serie' ? '📺' : '🎬'} (${g.files.length})${gFolder ? ' · ' + (genreById(gFolder) || {}).label : ''}`);
     }
     if (!firstId) throw new Error('No se encontraron videos.\nVerifica que la carpeta sea PÚBLICA\n(Compartir → Cualquiera con el enlace).');
 
