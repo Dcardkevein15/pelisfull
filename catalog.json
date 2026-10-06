@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791324633120,
+ "v": 1791324896505,
  "by": "Dcard #2968",
- "at": "2026-10-06T22:10:33.120Z",
+ "at": "2026-10-06T22:14:56.505Z",
  "n": 5815,
  "series": [
   {
@@ -32995,7 +32995,8 @@
     "2": "Parte 2 — En Busca del Valle Encantado 2 Ave",
     "3": "Parte 3 — En Busca del Valle Encantado 3 La ",
     "4": "Parte 4 — En Busca del Valle Encantado 5 La ",
-    "5": "Parte 5 — En Busca del Valle Encantado 6 El "
+    "5": "Parte 5 — En Busca del Valle Encantado 6 El ",
+    "6": "Parte 6 — En busca del valle encantado 7 La "
    },
    "episodes": [
     {
@@ -33034,27 +33035,13 @@
      "season": 5,
      "srcSeason": "mp-stape-root-Rq9O61ypDxudwP9",
      "thumb": "https://thumb.tapecontent.net/thumb/Rq9O61ypDxudwP9/DomZpmy4zvUkp7z.jpg"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-RDJKz7AWOlTdye0",
-   "t": "En busca del valle encantado 7 La misteriosa roca de fuego 2000",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/bOfZKSPxdMl2jKlwIV16j6ReQY3.jpg",
-   "tags": [
-    "Suspenso"
-   ],
-   "genre": "suspenso",
-   "episodes": [
+    },
     {
-     "n": 1,
+     "n": 6,
      "t": "En busca del valle encantado 7 La misteriosa roca de fuego 2",
-     "url": "https://streamtape.com/e/RDJKz7AWOlTdye0"
+     "url": "https://streamtape.com/e/RDJKz7AWOlTdye0",
+     "season": 6,
+     "srcSeason": "mp-stape-root-RDJKz7AWOlTdye0"
     }
    ]
   },
@@ -46165,6 +46152,27 @@
      "n": 1,
      "t": "En Busca del Valle Encantado 6 El Secreto de La Roca del Sau",
      "url": "https://streamtape.com/e/Rq9O61ypDxudwP9"
+    }
+   ]
+  },
+  {
+   "id": "mp-stape-root-RDJKz7AWOlTdye0",
+   "t": "En busca del valle encantado 7 La misteriosa roca de fuego 2000",
+   "jp": "🎬",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/bOfZKSPxdMl2jKlwIV16j6ReQY3.jpg",
+   "tags": [
+    "Suspenso"
+   ],
+   "genre": "suspenso",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "En busca del valle encantado 7 La misteriosa roca de fuego 2",
+     "url": "https://streamtape.com/e/RDJKz7AWOlTdye0"
     }
    ]
   }
@@ -195850,5 +195858,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "9E4kMxpCMfbwIM50wFikUVNfplby/lp/qE9wTS6AKfeZAoqCWGz6qhpa05sy0pzyee1vw6Dg4E3CyXh3e3TMFA=="
+ "sig": "oaqaGv0H+YXxK4OuwGT7s+v9jL6GjFittSjSutepFV7U4Cxc0AxmN5ZWPjtkH9S0TGJk48QUN5DZrXk7wG2/RA=="
 }
