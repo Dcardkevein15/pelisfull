@@ -778,13 +778,26 @@ function backfillMovieGenres() {
   return n;
 }
 
-/* 🧠 Enriquecimiento con TMDB («Leer sinopsis» ya sabe la categoría real):
-   TODAS las películas sin género reciben la suya de TMDB en segundo plano.
-   - Si TMDB las encuentra: usa su género oficial
-   - Si TMDB NO las encuentra (título raro, película poco conocida): usa el
-     género detectado del propio título como respaldo
-   - Solo marca genreTmdbDone cuando OBTIENE un género → las fallidas
-     se reintentan en la próxima visita                              */
+/* 🧠 Enriquecimiento con TMDB: TODAS las películas sin género reciben la
+   suya (géneros oficiales de TMDB o respaldo del propio título).
+   ⚠️ NO usa synFetch de auth.js (es privado del closure) — hace su
+   propia consulta directa a la API de TMDB desde aquí.              */
+async function fetchTmdbGenreNames(title) {
+  try {
+    const q = encodeURIComponent(String(title).trim());
+    const r = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY_APP}&language=es-ES&query=${q}&page=1`);
+    if (!r.ok) return null;
+    const j = await r.json();
+    const top = (j.results || [])[0];
+    if (!top) return null;
+    const d = await fetch(`https://api.themoviedb.org/3/movie/${top.id}?api_key=${TMDB_KEY_APP}&language=es-ES`);
+    if (!d.ok) return null;
+    const det = await d.json();
+    if (det.genres && det.genres.length) return det.genres.map(g => g.name);
+    return null;
+  } catch (e) { return null; }
+}
+
 async function enrichMovieGenresFromTmdb() {
   const pendientes = state.series.filter(s =>
     s.kind === 'pelicula' && !s.hentai && !s.genre);
@@ -792,21 +805,20 @@ async function enrichMovieGenresFromTmdb() {
   let total = 0;
   for (const s of pendientes) {
     try {
-      const d = await synFetch(s);
-      if (d && Array.isArray(d.genres) && d.genres.length) {
-        for (const gName of d.genres) {
+      const genreNames = await fetchTmdbGenreNames(s.t);
+      if (genreNames) {
+        for (const gName of genreNames) {
           const id = detectMovieGenre(gName);
           if (id) { applyMovieGenre(s, id); total++; break; }
         }
       }
-      /* si TMDB no encontró el género, intenta respaldo del propio título */
+      /* respaldo: género detectado del propio título */
       if (!s.genre) {
         const fallback = detectMovieGenre(s.t) || detectMovieGenre(s.tag || '');
         if (fallback) { applyMovieGenre(s, fallback); total++; }
       }
-      /* SOLO marca done si obtuvo género → las fallidas reintentan */
       if (s.genre) s.genreTmdbDone = true;
-    } catch (e) { /* sin red: no marca done, reintenta después */ }
+    } catch (e) { /* sin red: reintenta en la próxima */ }
     await new Promise(r => setTimeout(r, 120));
   }
   if (total) {
