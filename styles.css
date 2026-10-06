@@ -3320,3 +3320,8 @@ body.chat-full .cmu-list{max-height:44vh}
   .genre-card .gc-txt i{font-size:9.5px}
 }
 
+
+/* 🗂️ tarjeta «Sin categoría» — para ver las pendientes de TMDB */
+.gc-__sin{background:linear-gradient(150deg,#3a2222 0%,#1e1111 52%,#4d2e2e 100%)}
+.gc-__sin::before{content:'';position:absolute;inset:0;z-index:0;opacity:.35;
+  background:repeating-linear-gradient(45deg,transparent 0 8px,rgba(255,160,100,.06) 8px 12px)}

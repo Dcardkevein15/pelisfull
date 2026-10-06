@@ -879,8 +879,9 @@ function renderGenreRow() {
   if (!pelis.length) { row.classList.add('hidden'); return; }
   const counts = {};
   for (const s of pelis) if (s.genre) counts[s.genre] = (counts[s.genre] || 0) + 1;
+  const sinCategoria = pelis.filter(s => !s.genre).length;
   const genres = allGenres().filter(g => counts[g.id]);
-  if (!genres.length) { row.classList.add('hidden'); return; }
+  if (!genres.length && !sinCategoria) { row.classList.add('hidden'); return; }
   row.classList.remove('hidden');
   row.innerHTML = '';
 
@@ -905,8 +906,9 @@ function renderGenreRow() {
     row.appendChild(b);
   };
 
-  /* solo las categorías REALES (sin «Todas» ni «Sin género») */
+  /* solo las categorías REALES + «Sin categoría» para ver las pendientes */
   for (const g of genres) mkCard(g.id, g.icon, g.label, counts[g.id], { custom: g.custom });
+  if (sinCategoria) mkCard('__sin', '🗂️', 'Sin categoría', sinCategoria, {});
 
   /* ➕ añadir categoría (solo admin) */
   if (canAdmin()) {
@@ -2440,7 +2442,8 @@ function renderSeries(filter = '') {
   if (state.tab === 'peliculas') {
     list = list.filter(s => s.kind === 'pelicula' && !s.hentai);
     /* 🎬 filtro por la tarjeta de género clicada (solo en Películas) */
-    if (genreFilter) list = list.filter(s => s.genre === genreFilter);
+    if (genreFilter === '__sin') list = list.filter(s => !s.genre);
+    else if (genreFilter) list = list.filter(s => s.genre === genreFilter);
   }
   else if (state.tab === 'hentai') list = list.filter(s => s.hentai === true);
   else if (state.tab === 'series') list = list.filter(s => s.kind !== 'pelicula' && s.anime === false && !s.hentai);
@@ -2565,7 +2568,17 @@ function mergeSeason(dragged, target) {
   state.broken = (state.broken || []).filter(b => b.sid !== dragged.id);
   if (!target.poster) refetchPoster(target);
   save();
-  renderSeries(els.searchInput.value);
+  /* 📌 SCROLL QUIETO: NO re-renderizar toda la columna (que resetea el
+     scroll arriba) — solo quitar LA tarjeta fusionada del DOM y actualizar
+     contadores. La columna se queda exactamente donde estaba.           */
+  const cardEl = els.seriesList.querySelector(`[data-sid="${CSS.escape(dragged.id)}"]`);
+  if (cardEl) cardEl.remove();
+  els.seriesList._skey = null;   /* fuerza render completo la PRÓXIMA vez (cambio de pestaña, búsqueda…) */
+  els.countAnime.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime !== false && !s.hentai).length;
+  els.countSeries.textContent = state.series.filter(s => s.kind !== 'pelicula' && s.anime === false && !s.hentai).length;
+  els.countHentai.textContent = state.series.filter(s => s.hentai === true).length;
+  els.countPelis.textContent = state.series.filter(s => s.kind === 'pelicula' && !s.hentai).length;
+  try { renderGenreRow(); } catch (e) { }
   renderEpisodes();
   selectSeries(target.id);
   toast(esSaga
