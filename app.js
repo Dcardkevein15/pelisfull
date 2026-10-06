@@ -2497,20 +2497,20 @@ function renderSeries(filter = '') {
   /* render completo (pestaña/filtro/búsqueda nuevos o set distinto) */
   const sx = els.sideScroll ? els.sideScroll.scrollLeft : 0;
   const sy = els.sideScroll ? els.sideScroll.scrollTop : 0;
-  const back = els.seriesList._skey === skey;     /* ¿venimos del MISMO listado? */
   /* ⚡ render perezoso: solo se crean las primeras tarjetas visibles
      y el resto se agrega automáticamente al hacer scroll.
      (en PC el nº de series puede ser enorme; esto hace la app instantánea) */
   lazyRender(els.seriesList, list, (s, idx) => buildSeriesCard(s, idx));
-  if (back) {
-    /* estaba en ESTE listado (p.ej. acabó de editar y el set cambió):
-       el lazyRender va creando hasta que el scroll aterriza donde estaba */
+  /* 📌 SIEMPRE restaura el scroll — fusionar/renombrar/borrar una
+     película NO debe saltar la columna arriba. Antes solo se restauraba
+     si el set era idéntico, y al fusionar (una menos) saltaba.        */
+  {
     let tries = 0;
     const rest = () => {
       if (!els.sideScroll) return;
       els.sideScroll.scrollLeft = sx;
       els.sideScroll.scrollTop = sy;
-      if (++tries < 60 && Math.abs(els.sideScroll.scrollTop - sy) > 4) requestAnimationFrame(rest);
+      if (++tries < 90 && Math.abs(els.sideScroll.scrollTop - sy) > 4) requestAnimationFrame(rest);
     };
     requestAnimationFrame(rest);
   }
