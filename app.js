@@ -781,30 +781,40 @@ function backfillMovieGenres() {
 /* 🧠 Enriquecimiento con TMDB («Leer sinopsis» ya sabe la categoría real,
    el año y todo): las películas que SIGUEN sin género tras el backfill se
    consultan en segundo plano y reciben su categoría oficial de TMDB.
-   Máx 8 por arranque (poco a poco se completan todas), sin bloquear nada. */
+   TODAS de una vez: procesa en lotes encadenados hasta que no quede
+   ninguna pendiente. Sin bloquear la navegación.                       */
 async function enrichMovieGenresFromTmdb() {
-  const pendientes = state.series.filter(s =>
-    s.kind === 'pelicula' && !s.hentai && !s.genre && !s.genreTmdbDone);
-  if (!pendientes.length) return 0;
-  const lote = pendientes.slice(0, 8);
-  let n = 0;
-  for (const s of lote) {
-    try {
-      const d = await synFetch(s);
-      s.genreTmdbDone = true;         /* consultada: no se repite jamás */
-      if (d && Array.isArray(d.genres) && d.genres.length) {
-        /* el PRIMER género de TMDB es el principal → mapearlo al nuestro */
-        for (const gName of d.genres) {
-          const id = detectMovieGenre(gName);
-          if (id) { applyMovieGenre(s, id); n++; break; }
+  let total = 0, ronda = 0;
+  while (ronda < 200) {             /* 200 rondas de 25 = 5000 películas máx */
+    const pendientes = state.series.filter(s =>
+      s.kind === 'pelicula' && !s.hentai && !s.genre && !s.genreTmdbDone);
+    if (!pendientes.length) break;
+    const lote = pendientes.slice(0, 25);
+    let n = 0;
+    for (const s of lote) {
+      try {
+        const d = await synFetch(s);
+        s.genreTmdbDone = true;         /* consultada: no se repite jamás */
+        if (d && Array.isArray(d.genres) && d.genres.length) {
+          /* el PRIMER género de TMDB es el principal → mapearlo al nuestro */
+          for (const gName of d.genres) {
+            const id = detectMovieGenre(gName);
+            if (id) { applyMovieGenre(s, id); n++; break; }
+          }
         }
-      }
-    } catch (e) { s.genreTmdbDone = true; }
-    await new Promise(r => setTimeout(r, 400));
+      } catch (e) { s.genreTmdbDone = true; }
+      await new Promise(r => setTimeout(r, 150));
+    }
+    total += n;
+    ronda++;
+    if (n) { save(); try { renderSeries(els.searchInput.value); } catch (e) { } }
+    if (n === 0 && lote.length <= 25) break;   /* el lote actual no logró nada → fin */
   }
-  if (n) { save(); try { renderSeries(els.searchInput.value); } catch (e) { } }
-  if (n) console.info(`[xstream] 🧠 TMDB categorizó ${n} película(s) más`);
-  return n;
+  if (total) {
+    console.info(`[xstream] 🧠 TMDB categorizó ${total} película(s)`);
+    try { renderSeries(els.searchInput.value); } catch (e) { }
+  }
+  return total;
 }
 
 /* ═══════════ 🎴 TARJETAS DE GÉNERO — la galería de Películas ═══════════
@@ -857,9 +867,8 @@ function renderGenreRow() {
   if (!pelis.length) { row.classList.add('hidden'); return; }
   const counts = {};
   for (const s of pelis) if (s.genre) counts[s.genre] = (counts[s.genre] || 0) + 1;
-  const otros = pelis.filter(s => !s.genre).length;
   const genres = allGenres().filter(g => counts[g.id]);
-  if (!genres.length && !otros) { row.classList.add('hidden'); return; }
+  if (!genres.length) { row.classList.add('hidden'); return; }
   row.classList.remove('hidden');
   row.innerHTML = '';
 
@@ -873,9 +882,9 @@ function renderGenreRow() {
       ${art ? `<img class="gc-bg" src="${escapeHtml(art)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
       <span class="gc-icon">${icon}</span>
       <span class="gc-txt"><b>${escapeHtml(label)}</b><i>${count} ${count === 1 ? 'película' : 'películas'}</i></span>
-      ${canAdmin() ? `<span class="gc-edit" title="Cambiar imagen de fondo">✏️</span>` : ''}`;
+      ${canAdmin() ? `<span class="gc-edit" title="Cambiar imagen / eliminar categoría">✏️</span>` : ''}`;
     b.addEventListener('click', ev => {
-      /* ✏️ editar la imagen (solo admin, y no filtra) */
+      /* ✏️ editar/eliminar (solo admin, y no filtra) */
       if (ev.target.closest('.gc-edit')) { ev.stopPropagation(); editGenreArt(id, label, opts.custom); return; }
       genreFilter = genreFilter === id ? null : id;
       renderGenreRow();
@@ -884,9 +893,8 @@ function renderGenreRow() {
     row.appendChild(b);
   };
 
-  mkCard('__todas', '🎬', 'Todas', pelis.length, {});
+  /* solo las categorías REALES (sin «Todas» ni «Sin género») */
   for (const g of genres) mkCard(g.id, g.icon, g.label, counts[g.id], { custom: g.custom });
-  if (otros) mkCard('__otros', '🗂️', 'Sin género', otros, {});
 
   /* ➕ añadir categoría (solo admin) */
   if (canAdmin()) {
@@ -932,7 +940,7 @@ function renderGenreRow() {
   });
 }
 
-/* ✏️ cambiar la imagen de fondo de una categoría (o crear/editar la custom) */
+/* ✏️ cambiar la imagen de fondo de una categoría (o crear/editar/eliminar la custom) */
 async function editGenreArt(genreId, label, isCustom) {
   const g = allGenres().find(x => x.id === genreId);
   const fields = [
@@ -941,6 +949,7 @@ async function editGenreArt(genreId, label, isCustom) {
   if (isCustom) {
     fields.unshift({ key: 'label', label: 'Nombre de la categoría', type: 'text', maxlength: 24, value: label });
     fields.push({ key: 'icon', label: 'Icono (un emoji)', type: 'text', maxlength: 4, value: (g && g.icon) || '🎬' });
+    fields.push({ key: 'eliminar', label: 'Escribe ELIMINAR para borrar esta categoría', type: 'text', maxlength: 10, placeholder: 'ELIMINAR' });
   }
   const r = await uiModal({
     icon: '✏️', title: isCustom ? 'Editar categoría' : 'Cambiar imagen de fondo', okLabel: 'Guardar',
@@ -951,13 +960,36 @@ async function editGenreArt(genreId, label, isCustom) {
   });
   if (!r) return;
   state.genreArt = state.genreArt || {};
+
+  /* 🗑️ ELIMINAR categoría custom (escribiendo ELIMINAR) */
+  if (isCustom && (r.eliminar || '').trim().toUpperCase() === 'ELIMINAR') {
+    state.customGenres = (state.customGenres || []).filter(x => x.id !== genreId);
+    delete state.genreArt[genreId];
+    /* las películas de esa categoría vuelven a «sin género» (re-categorizables) */
+    for (const s of state.series) {
+      if (s.genre === genreId) { s.genre = undefined; }
+    }
+    if (genreFilter === genreId) genreFilter = null;
+    save();
+    renderGenreRow();
+    renderSeries(els.searchInput.value);
+    toast(`🗑 Categoría «${label}» eliminada — sus películas quedan sin género (TMDB las reclasificará)`);
+    return;
+  }
+
   if (isCustom) {
     state.customGenres = state.customGenres || [];
     const cg = state.customGenres.find(x => x.id === genreId);
     if (cg) {
       cg.label = (r.label || cg.label).trim().slice(0, 24) || cg.label;
       cg.icon = (r.icon || cg.icon || '🎬').trim().slice(0, 4);
-      cg.id = normTxt(cg.label).replace(/\s+/g, '-').slice(0, 20);
+      const nuevoId = normTxt(cg.label).replace(/\s+/g, '-').slice(0, 20);
+      if (nuevoId !== genreId) {
+        /* renombrada → las películas migran al nuevo id */
+        cg.id = nuevoId;
+        for (const s of state.series) if (s.genre === genreId) s.genre = nuevoId;
+        if (state.genreArt[genreId]) { state.genreArt[nuevoId] = state.genreArt[genreId]; delete state.genreArt[genreId]; }
+      }
     }
   }
   const url = (r.url || '').trim();
@@ -2396,9 +2428,7 @@ function renderSeries(filter = '') {
   if (state.tab === 'peliculas') {
     list = list.filter(s => s.kind === 'pelicula' && !s.hentai);
     /* 🎬 filtro por la tarjeta de género clicada (solo en Películas) */
-    if (genreFilter) list = genreFilter === '__otros'
-      ? list.filter(s => !s.genre)
-      : list.filter(s => s.genre === genreFilter);
+    if (genreFilter) list = list.filter(s => s.genre === genreFilter);
   }
   else if (state.tab === 'hentai') list = list.filter(s => s.hentai === true);
   else if (state.tab === 'series') list = list.filter(s => s.kind !== 'pelicula' && s.anime === false && !s.hentai);
