@@ -3148,44 +3148,91 @@ body.chat-full .cmu-list{max-height:44vh}
    Riel horizontal de tarjetas GRANDES encima de Â«Sigue viendoÂ». Cada
    gÃ©nero tiene su propia VIBRA: gradiente, icono y patrÃ³n a medida.   */
 .genre-row{
-  display:flex;gap:12px;overflow-x:auto;scrollbar-width:thin;
+  display:flex;gap:12px;overflow-x:auto;
   padding:4px 2px 10px;margin-bottom:6px;
   scroll-snap-type:x proximity;
+  scrollbar-width:none;                      /* scroll invisible */
+  -ms-overflow-style:none;
 }
-.genre-row::-webkit-scrollbar{height:5px}
-.genre-row::-webkit-scrollbar-thumb{background:rgba(216,255,62,.2);border-radius:3px}
+.genre-row::-webkit-scrollbar{display:none}   /* scroll invisible */
 .genre-row.hidden{display:none}
 
-/* base de la tarjeta */
+/* base de la tarjeta — cinematográfica */
 .genre-card{
-  position:relative;flex:0 0 168px;min-height:92px;border:none;cursor:pointer;
-  border-radius:16px;overflow:hidden;padding:14px 13px;text-align:left;color:#fff;
-  display:flex;flex-direction:column;justify-content:flex-end;gap:4px;
+  position:relative;flex:0 0 190px;min-height:112px;border:none;cursor:pointer;
+  border-radius:18px;overflow:hidden;padding:16px 15px;text-align:left;color:#fff;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:5px;
   scroll-snap-align:start;
-  transition:transform .18s cubic-bezier(.2,1.2,.4,1),box-shadow .18s;
+  transition:transform .22s cubic-bezier(.2,1.3,.4,1),box-shadow .22s;
   isolation:isolate;
+  box-shadow:0 8px 24px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.08);
 }
-.genre-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 16px 38px rgba(0,0,0,.5)}
-.genre-card:active{transform:translateY(-1px) scale(.99)}
+.genre-card:hover{
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:0 22px 48px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.15);
+  border-color:rgba(255,255,255,.18);
+}
+.genre-card:active{transform:translateY(-2px) scale(.99)}
+/* 🖼 imagen de fondo real */
+.genre-card .gc-bg{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  transition:transform .35s ease;
+}
+.genre-card:hover .gc-bg{transform:scale(1.08)}
+/* capa de legibilidad sobre la imagen */
+.genre-card.has-art::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,5,10,.15) 0%,rgba(5,5,10,.38) 45%,rgba(5,5,10,.88) 100%);
+}
+/* marco interior sutil */
+.genre-card.has-art::after{
+  content:'';position:absolute;inset:7px;z-index:1;pointer-events:none;
+  border:1px solid rgba(255,255,255,.22);border-radius:12px;
+}
 /* icono grande como marca de agua */
 .genre-card .gc-icon{
-  position:absolute;right:-4px;top:-6px;font-size:52px;line-height:1;
-  opacity:.28;transform:rotate(-8deg);pointer-events:none;z-index:1;
-  transition:.2s;
+  position:absolute;right:-2px;top:-8px;font-size:56px;line-height:1;
+  opacity:.3;transform:rotate(-8deg);pointer-events:none;z-index:2;
+  transition:.25s;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.6));
 }
-.genre-card:hover .gc-icon{opacity:.5;transform:rotate(0) scale(1.15)}
-.genre-card .gc-txt{position:relative;z-index:2;display:flex;flex-direction:column;gap:2px}
-.genre-card .gc-txt b{font-family:'Archivo Black';font-size:15.5px;letter-spacing:.4px;text-shadow:0 2px 10px rgba(0,0,0,.7);line-height:1.1}
-.genre-card .gc-txt i{font:600 10px 'JetBrains Mono';opacity:.85;font-style:normal;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.genre-card:hover .gc-icon{opacity:.65;transform:rotate(0) scale(1.18)}
+.genre-card .gc-txt{position:relative;z-index:3;display:flex;flex-direction:column;gap:3px}
+.genre-card .gc-txt b{
+  font-family:'Archivo Black';font-size:17px;letter-spacing:.4px;line-height:1.05;
+  text-shadow:0 2px 12px rgba(0,0,0,.85);
+}
+.genre-card .gc-txt i{font:600 10px 'JetBrains Mono';opacity:.9;font-style:normal;text-shadow:0 1px 8px rgba(0,0,0,.85)}
+/* ✏️ botón de editar imagen (aparece al hover, solo admin) */
+.genre-card .gc-edit{
+  position:absolute;top:8px;right:8px;z-index:4;
+  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(8,8,14,.78);border:1px solid rgba(255,255,255,.25);
+  font-size:14px;cursor:pointer;opacity:0;transform:scale(.8);transition:.18s;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.genre-card:hover .gc-edit{opacity:1;transform:scale(1)}
+.genre-card .gc-edit:hover{background:var(--acid);border-color:var(--acid)}
 /* estado activo (filtro aplicado) */
 .genre-card.on{
   box-shadow:0 0 0 2.5px var(--acid),0 12px 34px rgba(0,0,0,.5);
 }
-.genre-card.on::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);pointer-events:none}
 .genre-card.on .gc-txt b{color:var(--acid)}
+.genre-card.on .gc-edit{display:none}   /* filtrando no se edita */
+/* ➕ tarjeta de añadir */
+.genre-card.gc-add{
+  border:2px dashed rgba(216,255,62,.4);background:rgba(216,255,62,.04);
+  display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;
+}
+.genre-card.gc-add:hover{border-color:var(--acid);background:rgba(216,255,62,.08)}
+.genre-card .gc-plus{font-size:30px;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}
+.genre-card.gc-add .gc-txt b{color:var(--acid);font-size:13.5px}
+.genre-card.gc-add .gc-txt i{color:var(--dim)}
+.genre-card.gc-add::before,.genre-card.gc-add::after{display:none}
 
-/* â”€â”€ ðŸŽ¨ VIBRA ÃšNICA por gÃ©nero â€” cada uno con su personalidad â”€â”€ */
-/* ðŸš€ Ciencia FicciÃ³n â€” deep space */
+/* ── 🎨 VIBRA de respaldo por género (visible si aún no hay imagen) ── */
+/* 🚀 Ciencia Ficción — deep space */
 .gc-scifi{background:linear-gradient(150deg,#1a1f4e 0%,#0d0d24 55%,#2d1b69 100%)}
 .gc-scifi::before{content:'';position:absolute;inset:0;z-index:0;opacity:.35;
   background-image:radial-gradient(1.5px 1.5px at 12% 22%,#fff 60%,transparent),
@@ -3193,76 +3240,79 @@ body.chat-full .cmu-list{max-height:44vh}
   radial-gradient(1.5px 1.5px at 84% 60%,#fff 60%,transparent),
   radial-gradient(1px 1px at 30% 78%,#88f 60%,transparent),
   radial-gradient(1.5px 1.5px at 52% 42%,#fff 60%,transparent)}
-/* ðŸ‘» Terror â€” blood night */
+/* 👻 Terror — blood night */
 .gc-terror{background:linear-gradient(160deg,#2b0a0a 0%,#120404 52%,#3d0c0c 100%)}
 .gc-terror::before{content:'';position:absolute;inset:0;z-index:0;opacity:.5;
   background:radial-gradient(ellipse 90px 60px at 88% 8%,rgba(190,30,30,.5),transparent)}
-/* ðŸ”ª Suspenso â€” noir */
+/* 🔪 Suspenso — noir */
 .gc-suspenso{background:linear-gradient(155deg,#23262e 0%,#101318 50%,#1c222c 100%)}
 .gc-suspenso::before{content:'';position:absolute;inset:0;z-index:0;opacity:.4;
   background:repeating-linear-gradient(115deg,transparent 0 12px,rgba(255,255,255,.03) 12px 14px)}
-/* ðŸ•µï¸ Crimen â€” money green */
+/* 🕵️ Crimen — money green */
 .gc-crimen{background:linear-gradient(160deg,#12261a 0%,#081209 52%,#1c3a24 100%)}
 .gc-crimen::before{content:'';position:absolute;inset:0;z-index:0;opacity:.4;
   background:repeating-linear-gradient(45deg,transparent 0 9px,rgba(120,200,130,.06) 9px 18px)}
-/* â¤ï¸ Romance â€” pink dusk */
+/* ❤️ Romance — pink dusk */
 .gc-romance{background:linear-gradient(150deg,#4a1530 0%,#2b0c1e 52%,#6d2144 100%)}
 .gc-romance::before{content:'';position:absolute;inset:0;z-index:0;opacity:.4;
   background:radial-gradient(ellipse 120px 70px at 80% 90%,rgba(255,90,140,.35),transparent)}
-/* ðŸ˜‚ Comedia â€” yellow pop */
+/* 😂 Comedia — yellow pop */
 .gc-comedia{background:linear-gradient(150deg,#4d3f0a 0%,#2e2405 52%,#6b550f 100%)}
 .gc-comedia::before{content:'';position:absolute;inset:0;z-index:0;opacity:.35;
   background:repeating-radial-gradient(circle at 90% 10%,rgba(255,215,0,.14) 0 6px,transparent 6px 16px)}
-/* ðŸŽ­ Drama â€” deep teal */
+/* 🎭 Drama — deep teal */
 .gc-drama{background:linear-gradient(155deg,#0d2b33 0%,#071820 52%,#123a44 100%)}
 .gc-drama::before{content:'';position:absolute;inset:0;z-index:0;opacity:.35;
   background:linear-gradient(180deg,transparent 40%,rgba(80,180,200,.12))}
-/* ðŸ—ºï¸ Aventura â€” jungle gold */
+/* 🗺️ Aventura — jungle gold */
 .gc-aventura{background:linear-gradient(150deg,#2c3d12 0%,#1a2409 52%,#4a5c1e 100%)}
 .gc-aventura::before{content:'';position:absolute;inset:0;z-index:0;opacity:.3;
   background:repeating-linear-gradient(95deg,transparent 0 14px,rgba(255,220,120,.05) 14px 20px)}
-/* ðŸ‰ FantasÃ­a â€” purple magic */
+/* 🐉 Fantasía — purple magic */
 .gc-fantasia{background:linear-gradient(150deg,#3b1668 0%,#1e0a3d 52%,#5a2391 100%)}
 .gc-fantasia::before{content:'';position:absolute;inset:0;z-index:0;opacity:.45;
   background:radial-gradient(circle 40px at 20% 80%,rgba(190,120,255,.3),transparent)}
-/* ðŸ§’ Infantil â€” candy bright */
+/* 🧒 Infantil — candy bright */
 .gc-infantil{background:linear-gradient(150deg,#0d4765 0%,#093249 52%,#1b6b8f 100%)}
 .gc-infantil::before{content:'';position:absolute;inset:0;z-index:0;opacity:.3;
   background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(120,220,255,.07) 10px 16px)}
-/* ðŸŽ“ Documental â€” earth */
+/* 🎓 Documental — earth */
 .gc-documental{background:linear-gradient(155deg,#3a3122 0%,#211c11 52%,#524532 100%)}
 .gc-documental::before{content:'';position:absolute;inset:0;z-index:0;opacity:.3;
   background:repeating-linear-gradient(0deg,transparent 0 8px,rgba(230,210,160,.04) 8px 11px)}
-/* âš½ Deportes â€” stadium */
+/* ⚽ Deportes — stadium */
 .gc-deportes{background:linear-gradient(150deg,#0c3346 0%,#07202e 52%,#124a63 100%)}
 .gc-deportes::before{content:'';position:absolute;inset:0;z-index:0;opacity:.35;
   background:repeating-linear-gradient(90deg,transparent 0 18px,rgba(120,240,180,.04) 18px 24px)}
-/* ðŸŽµ Musical â€” stage purple */
+/* 🎵 Musical — stage purple */
 .gc-musical{background:linear-gradient(150deg,#3a1553 0%,#1e0930 52%,#5c2183 100%)}
 .gc-musical::before{content:'';position:absolute;inset:0;z-index:0;opacity:.35;
   background:repeating-linear-gradient(75deg,transparent 0 11px,rgba(240,140,255,.06) 11px 15px)}
-/* ðŸ¤  Western â€” desert */
+/* 🤠 Western — desert */
 .gc-western{background:linear-gradient(155deg,#4a2c10 0%,#2a1708 52%,#6b3f18 100%)}
 .gc-western::before{content:'';position:absolute;inset:0;z-index:0;opacity:.3;
   background:linear-gradient(180deg,transparent 60%,rgba(255,180,90,.14))}
-/* âš”ï¸ Guerra â€” olive */
+/* ⚔️ Guerra — olive */
 .gc-guerra{background:linear-gradient(155deg,#33341e 0%,#1c1d0f 52%,#4a4c2a 100%)}
 .gc-guerra::before{content:'';position:absolute;inset:0;z-index:0;opacity:.3;
   background:repeating-linear-gradient(135deg,transparent 0 13px,rgba(200,200,140,.05) 13px 18px)}
-/* ðŸ’¥ AcciÃ³n â€” fire */
+/* 💗 Hentai — velvet */
+.gc-hentai{background:linear-gradient(150deg,#4a1538 0%,#2b0a20 52%,#6d2150 100%)}
+.gc-hentai::before{content:'';position:absolute;inset:0;z-index:0;opacity:.4;
+  background:radial-gradient(ellipse 100px 60px at 85% 85%,rgba(255,100,170,.3),transparent)}
+/* 💥 Acción — fire */
 .gc-accion{background:linear-gradient(150deg,#4d1605 0%,#2b0a02 52%,#7a2408 100%)}
 .gc-accion::before{content:'';position:absolute;inset:0;z-index:0;opacity:.45;
   background:radial-gradient(ellipse 110px 70px at 15% 92%,rgba(255,110,20,.4),transparent)}
-/* ðŸŽ¬ Todas â€” cine clÃ¡sico */
+/* 🎬 Todas — cine clásico */
 .gc-__todas{background:linear-gradient(150deg,#242438 0%,#131320 52%,#33334f 100%)}
 .gc-__todas::before{content:'';position:absolute;inset:0;z-index:0;opacity:.25;
   background:repeating-linear-gradient(90deg,transparent 0 20px,rgba(255,255,255,.03) 20px 23px)}
-/* ðŸ—‚ï¸ Sin gÃ©nero â€” neutral */
+/* 🗂️ Sin género — neutral */
 .gc-__otros{background:linear-gradient(150deg,#2e2e3c 0%,#1a1a26 52%,#3e3e50 100%)}
 .gc-__otros::before{content:'';position:absolute;inset:0;z-index:0;opacity:.2;
   background:repeating-linear-gradient(45deg,transparent 0 10px,rgba(255,255,255,.02) 10px 14px)}
 
-/* ðŸ“± mÃ³vil: tarjetas un punto mÃ¡s pequeÃ±as */
 @media (max-width:640px){
   .genre-card{flex:0 0 148px;min-height:84px;padding:11px 11px}
   .genre-card .gc-icon{font-size:42px}

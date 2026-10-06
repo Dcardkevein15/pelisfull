@@ -117,6 +117,11 @@ function load() {
           const nGen = backfillMovieGenres();
           if (nGen) console.info(`[xstream] 🎬 ${nGen} película(s) organizadas por género automáticamente`);
         } catch (e) { console.warn('[xstream] backfill géneros:', e); }
+        /* 🧠 TMDB en segundo plano: categoriza las que el nombre no delata
+           (máx 8 por arranque — se completan solas en sucesivas visitas)   */
+        setTimeout(() => {
+          try { enrichMovieGenresFromTmdb().catch(() => { }); } catch (e) { }
+        }, 6000);
         /* 🧹 Limpieza retroactiva: capítulos gemelos heredados del viejo importador
            de archive.org (el mismo video vía .mp4 + .ia.mp4/_512kb entraba 2 veces).
            Clave conservadora: mismo archivo archive.org (nombre base) o misma URL exacta. */
@@ -730,7 +735,12 @@ const normTxt = t => String(t || '').toLowerCase().normalize('NFD').replace(/[\u
 function detectMovieGenre(text) {
   const s = normTxt(text);
   if (!s) return null;
+  /* primero las del sistema (keywords ES/EN)… */
   for (const g of MOVIE_GENRES) if (g.kw.some(k => s.includes(k))) return g.id;
+  /* …luego las categorías que el admin creó (detectadas por su nombre) */
+  for (const cg of (state.customGenres || [])) {
+    if (s.includes(normTxt(cg.label))) return cg.id;
+  }
   return null;
 }
 function genreById(id) { return MOVIE_GENRES.find(g => g.id === id) || null; }
@@ -768,12 +778,77 @@ function backfillMovieGenres() {
   return n;
 }
 
+/* 🧠 Enriquecimiento con TMDB («Leer sinopsis» ya sabe la categoría real,
+   el año y todo): las películas que SIGUEN sin género tras el backfill se
+   consultan en segundo plano y reciben su categoría oficial de TMDB.
+   Máx 8 por arranque (poco a poco se completan todas), sin bloquear nada. */
+async function enrichMovieGenresFromTmdb() {
+  const pendientes = state.series.filter(s =>
+    s.kind === 'pelicula' && !s.hentai && !s.genre && !s.genreTmdbDone);
+  if (!pendientes.length) return 0;
+  const lote = pendientes.slice(0, 8);
+  let n = 0;
+  for (const s of lote) {
+    try {
+      const d = await synFetch(s);
+      s.genreTmdbDone = true;         /* consultada: no se repite jamás */
+      if (d && Array.isArray(d.genres) && d.genres.length) {
+        /* el PRIMER género de TMDB es el principal → mapearlo al nuestro */
+        for (const gName of d.genres) {
+          const id = detectMovieGenre(gName);
+          if (id) { applyMovieGenre(s, id); n++; break; }
+        }
+      }
+    } catch (e) { s.genreTmdbDone = true; }
+    await new Promise(r => setTimeout(r, 400));
+  }
+  if (n) { save(); try { renderSeries(els.searchInput.value); } catch (e) { } }
+  if (n) console.info(`[xstream] 🧠 TMDB categorizó ${n} película(s) más`);
+  return n;
+}
+
 /* ═══════════ 🎴 TARJETAS DE GÉNERO — la galería de Películas ═══════════
    Al entrar a la pestaña Películas, aparece AL INSTANTE (encima de
-   «Sigue viendo») un riel de tarjetas grandes, cada una con su VIBRA
-   propia: gradiente + icono + diseño a medida por género. Clic →
-   filtra la lista a ese género; clic de nuevo → limpia.                */
+   «Sigue viendo») un riel de tarjetas grandes con IMAGEN REAL de fondo
+   (fanart de películas de ese género, vía TMDB) + capa de legibilidad.
+   ✏️ (admin) cambia la imagen de fondo cuando quieras — queda guardada.
+   ➕ (admin) añade categorías nuevas. Clic → filtra; clic de nuevo → limpia. */
 let genreFilter = null;
+
+/* 🎨 imágenes de fondo por género: guardadas en state.genreArt (persisten).
+   Si no hay guardada → se busca automáticamente en TMDB: la película MÁS
+   POPULAR de ese género y su fanart (backdrop w780).                              */
+const TMDB_GENRE_IDS = {
+  accion: 28, aventura: 12, fantasia: 14, terror: 27, romance: 10749,
+  documental: 99, drama: 18, crimen: 80, comedia: 35, scifi: 878,
+  suspenso: 53, guerra: 10752, western: 37, musical: 10402, infantil: 10751,
+  deportes: 18, hentai: null,
+};
+async function fetchGenreArtFromTmdb(genreId) {
+  const tmdbId = TMDB_GENRE_IDS[genreId];
+  if (!tmdbId) return null;
+  try {
+    const r = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_KEY_APP}&language=es-ES&with_genres=${tmdbId}&sort_by=popularity.desc&vote_count.gte=200&page=1`);
+    const j = await r.json();
+    const top = (j.results || []).find(x => x.backdrop_path) || (j.results || [])[0];
+    return top && top.backdrop_path ? `https://image.tmdb.org/t/p/w780${top.backdrop_path}` : null;
+  } catch (e) { return null; }
+}
+async function ensureGenreArt(genreId) {
+  state.genreArt = state.genreArt || {};
+  if (state.genreArt[genreId]) return state.genreArt[genreId];
+  const url = await fetchGenreArtFromTmdb(genreId);
+  if (url) { state.genreArt[genreId] = url; save(); }
+  return url;
+}
+
+/* 🏷 lista COMPLETA de géneros: los del sistema + los que el admin añadió */
+function allGenres() {
+  return MOVIE_GENRES.concat((state.customGenres || []).map(g => ({
+    id: g.id, label: g.label, icon: g.icon || '🎬', custom: true, kw: [normTxt(g.label)],
+  })));
+}
+
 function renderGenreRow() {
   const row = document.getElementById('genreRow');
   if (!row) return;
@@ -783,26 +858,130 @@ function renderGenreRow() {
   const counts = {};
   for (const s of pelis) if (s.genre) counts[s.genre] = (counts[s.genre] || 0) + 1;
   const otros = pelis.filter(s => !s.genre).length;
-  const present = MOVIE_GENRES.filter(g => counts[g.id]);
-  if (!present.length && !otros) { row.classList.add('hidden'); return; }
+  const genres = allGenres().filter(g => counts[g.id]);
+  if (!genres.length && !otros) { row.classList.add('hidden'); return; }
   row.classList.remove('hidden');
   row.innerHTML = '';
-  const mkCard = (id, icon, label, count, title) => {
+
+  const mkCard = (id, icon, label, count, opts = {}) => {
+    const art = (state.genreArt || {})[id] || '';
     const b = document.createElement('button');
-    b.className = 'genre-card gc-' + id + (genreFilter === id ? ' on' : '');
-    b.title = title || label;
-    b.innerHTML = `<span class="gc-icon">${icon}</span>
-      <span class="gc-txt"><b>${label}</b><i>${count} ${count === 1 ? 'película' : 'películas'}</i></span>`;
-    b.addEventListener('click', () => {
+    b.className = 'genre-card gc-' + id + (genreFilter === id ? ' on' : '')
+      + (art ? ' has-art' : '') + (opts.custom ? ' is-custom' : '');
+    b.dataset.g = id;
+    b.innerHTML = `
+      ${art ? `<img class="gc-bg" src="${escapeHtml(art)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+      <span class="gc-icon">${icon}</span>
+      <span class="gc-txt"><b>${escapeHtml(label)}</b><i>${count} ${count === 1 ? 'película' : 'películas'}</i></span>
+      ${canAdmin() ? `<span class="gc-edit" title="Cambiar imagen de fondo">✏️</span>` : ''}`;
+    b.addEventListener('click', ev => {
+      /* ✏️ editar la imagen (solo admin, y no filtra) */
+      if (ev.target.closest('.gc-edit')) { ev.stopPropagation(); editGenreArt(id, label, opts.custom); return; }
       genreFilter = genreFilter === id ? null : id;
       renderGenreRow();
       renderSeries(els.searchInput.value);
     });
     row.appendChild(b);
   };
-  mkCard('__todas', '🎬', 'Todas', pelis.length, 'Ver todas las películas sin filtro');
-  for (const g of present) mkCard(g.id, g.icon, g.label, counts[g.id]);
-  if (otros) mkCard('__otros', '🗂️', 'Sin género', otros, 'Películas todavía sin categoría');
+
+  mkCard('__todas', '🎬', 'Todas', pelis.length, {});
+  for (const g of genres) mkCard(g.id, g.icon, g.label, counts[g.id], { custom: g.custom });
+  if (otros) mkCard('__otros', '🗂️', 'Sin género', otros, {});
+
+  /* ➕ añadir categoría (solo admin) */
+  if (canAdmin()) {
+    const add = document.createElement('button');
+    add.className = 'genre-card gc-add';
+    add.title = 'Crear una categoría nueva';
+    add.innerHTML = `<span class="gc-plus">➕</span><span class="gc-txt"><b>Añadir categoría</b><i>crea la tuya</i></span>`;
+    add.addEventListener('click', addCustomGenre);
+    row.appendChild(add);
+  }
+
+  /* 🖼 fondo automático de TMDB para las tarjetas sin imagen (en vivo) */
+  const auto = genres.filter(g => g.id !== 'hentai' && !(state.genreArt || {})[g.id]);
+  auto.slice(0, 4).forEach((g, i) => {
+    setTimeout(async () => {
+      const url = await ensureGenreArt(g.id);
+      if (url) {
+        const card = row.querySelector(`.genre-card[data-g="${g.id}"]`);
+        if (card && !card.querySelector('.gc-bg')) {
+          const img = document.createElement('img');
+          img.className = 'gc-bg'; img.src = url; img.alt = ''; img.loading = 'lazy';
+          img.onerror = () => img.remove();
+          card.prepend(img);
+          card.classList.add('has-art');
+        }
+      }
+    }, 600 + i * 350);
+  });
+}
+
+/* ✏️ cambiar la imagen de fondo de una categoría (o crear/editar la custom) */
+async function editGenreArt(genreId, label, isCustom) {
+  const g = allGenres().find(x => x.id === genreId);
+  const fields = [
+    { key: 'url', label: `Imagen de fondo de «${label}»`, type: 'text', maxlength: 400, placeholder: 'Pega el enlace de la imagen (https://…jpg o png)' },
+  ];
+  if (isCustom) {
+    fields.unshift({ key: 'label', label: 'Nombre de la categoría', type: 'text', maxlength: 24, value: label });
+    fields.push({ key: 'icon', label: 'Icono (un emoji)', type: 'text', maxlength: 4, value: (g && g.icon) || '🎬' });
+  }
+  const r = await uiModal({
+    icon: '✏️', title: isCustom ? 'Editar categoría' : 'Cambiar imagen de fondo', okLabel: 'Guardar',
+    sub: isCustom
+      ? 'Puedes renombrarla, cambiar su icono o su imagen. Deja la imagen vacía para buscarla sola en TMDB.'
+      : 'Pega el enlace de la imagen que quieras de fondo. Déjalo vacío y pulsa <b>Buscar con TMDB</b> para traer el fanart de la película más popular del género.',
+    fields,
+  });
+  if (!r) return;
+  state.genreArt = state.genreArt || {};
+  if (isCustom) {
+    state.customGenres = state.customGenres || [];
+    const cg = state.customGenres.find(x => x.id === genreId);
+    if (cg) {
+      cg.label = (r.label || cg.label).trim().slice(0, 24) || cg.label;
+      cg.icon = (r.icon || cg.icon || '🎬').trim().slice(0, 4);
+      cg.id = normTxt(cg.label).replace(/\s+/g, '-').slice(0, 20);
+    }
+  }
+  const url = (r.url || '').trim();
+  if (url) {
+    state.genreArt[isCustom ? ((state.customGenres.find(x => x.id === genreId) || {}).id || genreId) : genreId] = url;
+  } else if (!isCustom) {
+    /* vacío → buscar en TMDB automáticamente (si falla, se conserva la actual) */
+    toast('🖼 Buscando imagen en TMDB…');
+    const auto = await fetchGenreArtFromTmdb(genreId);
+    if (auto) state.genreArt[genreId] = auto;
+  }
+  save();
+  renderGenreRow();
+  toast(url ? '🖼 Imagen actualizada' : (isCustom ? '✏️ Categoría actualizada' : '🖼 Imagen automática aplicada'));
+}
+
+/* ➕ crear una categoría nueva (solo admin) */
+async function addCustomGenre() {
+  const r = await uiModal({
+    icon: '➕', title: 'Nueva categoría de películas', okLabel: 'Crear',
+    sub: 'Se añade como tarjeta al final de la galería. Las películas la reciben con 🏷 Etiquetas o por el nombre del archivo.',
+    fields: [
+      { key: 'label', label: 'Nombre (ej: «Cortos», «Navideñas»…)', type: 'text', maxlength: 24, placeholder: 'Mi categoría' },
+      { key: 'icon', label: 'Icono (un emoji)', type: 'text', maxlength: 4, placeholder: '🎬' },
+      { key: 'url', label: 'Imagen de fondo (opcional — vacío = TMDB)', type: 'text', maxlength: 400, placeholder: 'https://…jpg' },
+    ],
+  });
+  if (!r || !(r.label || '').trim()) return;
+  const label = r.label.trim().slice(0, 24);
+  const id = normTxt(label).replace(/\s+/g, '-').slice(0, 20);
+  state.customGenres = state.customGenres || [];
+  if (state.customGenres.some(x => x.id === id) || MOVIE_GENRES.some(g => g.id === id)) {
+    return toast('⚠ Ya existe una categoría con ese nombre', true);
+  }
+  state.customGenres.push({ id, label, icon: (r.icon || '🎬').trim().slice(0, 4) });
+  if ((r.url || '').trim()) { state.genreArt = state.genreArt || {}; state.genreArt[id] = r.url.trim(); }
+  save();
+  toast(`✅ Categoría «${label}» creada — asígnala con 🏷 Etiquetas`);
+  renderGenreRow();
 }
 
 function coverHtml(s) {
