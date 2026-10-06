@@ -898,6 +898,21 @@ function renderGenreRow() {
     row.appendChild(add);
   }
 
+  /* 🖱️ scroll VERTICAL del mouse = desplazamiento HORIZONTAL del riel
+     (mismo patrón que las películas relacionadas)                       */
+  if (!row._wheel) {
+    row._wheel = true;
+    row.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;   /* trackpad horizontal nativo */
+      const can = e.deltaY > 0
+        ? row.scrollLeft < row.scrollWidth - row.clientWidth - 2
+        : row.scrollLeft > 0;
+      if (!can) return;                                       /* al borde: la página baja normal */
+      e.preventDefault();
+      row.scrollLeft += e.deltaY * 1.4;
+    }, { passive: false });
+  }
+
   /* 🖼 fondo automático de TMDB para las tarjetas sin imagen (en vivo) */
   const auto = genres.filter(g => g.id !== 'hentai' && !(state.genreArt || {})[g.id]);
   auto.slice(0, 4).forEach((g, i) => {
