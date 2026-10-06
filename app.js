@@ -778,41 +778,41 @@ function backfillMovieGenres() {
   return n;
 }
 
-/* 🧠 Enriquecimiento con TMDB («Leer sinopsis» ya sabe la categoría real,
-   el año y todo): las películas que SIGUEN sin género tras el backfill se
-   consultan en segundo plano y reciben su categoría oficial de TMDB.
-   TODAS de una vez: procesa en lotes encadenados hasta que no quede
-   ninguna pendiente. Sin bloquear la navegación.                       */
+/* 🧠 Enriquecimiento con TMDB («Leer sinopsis» ya sabe la categoría real):
+   TODAS las películas sin género reciben la suya de TMDB en segundo plano.
+   - Si TMDB las encuentra: usa su género oficial
+   - Si TMDB NO las encuentra (título raro, película poco conocida): usa el
+     género detectado del propio título como respaldo
+   - Solo marca genreTmdbDone cuando OBTIENE un género → las fallidas
+     se reintentan en la próxima visita                              */
 async function enrichMovieGenresFromTmdb() {
-  let total = 0, ronda = 0;
-  while (ronda < 200) {             /* 200 rondas de 25 = 5000 películas máx */
-    const pendientes = state.series.filter(s =>
-      s.kind === 'pelicula' && !s.hentai && !s.genre && !s.genreTmdbDone);
-    if (!pendientes.length) break;
-    const lote = pendientes.slice(0, 25);
-    let n = 0;
-    for (const s of lote) {
-      try {
-        const d = await synFetch(s);
-        s.genreTmdbDone = true;         /* consultada: no se repite jamás */
-        if (d && Array.isArray(d.genres) && d.genres.length) {
-          /* el PRIMER género de TMDB es el principal → mapearlo al nuestro */
-          for (const gName of d.genres) {
-            const id = detectMovieGenre(gName);
-            if (id) { applyMovieGenre(s, id); n++; break; }
-          }
+  const pendientes = state.series.filter(s =>
+    s.kind === 'pelicula' && !s.hentai && !s.genre);
+  if (!pendientes.length) return 0;
+  let total = 0;
+  for (const s of pendientes) {
+    try {
+      const d = await synFetch(s);
+      if (d && Array.isArray(d.genres) && d.genres.length) {
+        for (const gName of d.genres) {
+          const id = detectMovieGenre(gName);
+          if (id) { applyMovieGenre(s, id); total++; break; }
         }
-      } catch (e) { s.genreTmdbDone = true; }
-      await new Promise(r => setTimeout(r, 150));
-    }
-    total += n;
-    ronda++;
-    if (n) { save(); try { renderSeries(els.searchInput.value); } catch (e) { } }
-    if (n === 0 && lote.length <= 25) break;   /* el lote actual no logró nada → fin */
+      }
+      /* si TMDB no encontró el género, intenta respaldo del propio título */
+      if (!s.genre) {
+        const fallback = detectMovieGenre(s.t) || detectMovieGenre(s.tag || '');
+        if (fallback) { applyMovieGenre(s, fallback); total++; }
+      }
+      /* SOLO marca done si obtuvo género → las fallidas reintentan */
+      if (s.genre) s.genreTmdbDone = true;
+    } catch (e) { /* sin red: no marca done, reintenta después */ }
+    await new Promise(r => setTimeout(r, 120));
   }
   if (total) {
-    console.info(`[xstream] 🧠 TMDB categorizó ${total} película(s)`);
+    save();
     try { renderSeries(els.searchInput.value); } catch (e) { }
+    console.info(`[xstream] 🧠 TMDB categorizó ${total} película(s)`);
   }
   return total;
 }
@@ -7637,6 +7637,8 @@ if (window.XAUTH) {
     renderEpisodes,
     renderContinue,
     renderTagChips,
+    /* 🎬 categorización de películas — el admin la usa ANTES de publicar */
+    enrichGenres: enrichMovieGenresFromTmdb,
     /* cuando cambia el rol (lector ⇄ admin) hay que repintar pestañas y herramientas */
     onRoleChange: () => { syncTabs(); renderSeries(els.searchInput.value); },
     /* 🔗 cuando el catálogo disuelve un stub compartido, apuntamos la vista a la serie real */

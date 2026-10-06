@@ -1134,6 +1134,21 @@
   async function publishCatalogRun() {
     if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
     if (!API || !API.getState) return axToast('La app aún no está lista', true);
+    /* 🎬 PASO 1 — CATEGORIZAR: antes de publicar, toda película sin género
+       recibe la suya (TMDB + respaldo del título). El catálogo sale con
+       TODAS las películas clasificadas.                                      */
+    const state0 = API.getState();
+    const sinGenero = state0.series.filter(s => s.kind === 'pelicula' && !s.hentai && !s.genre).length;
+    if (sinGenero > 0) {
+      axToast(`🎬 Categorizando ${sinGenero} película(s) antes de publicar…`);
+      try {
+        if (API.enrichGenres) await API.enrichGenres();
+        else if (typeof enrichMovieGenresFromTmdb === 'function') await enrichMovieGenresFromTmdb();
+      } catch (e) { console.warn('[xstream] categorización al publicar:', e); }
+      const quedan = API.getState().series.filter(s => s.kind === 'pelicula' && !s.genre).length;
+      if (quedan) axToast(`⚠ ${quedan} película(s) sin categoría definida`);
+      else axToast('✅ Todas las películas categorizadas');
+    }
     /* 🔄 PRE-VUELO DE FUSIÓN (multi-PC y moderadores): trae el catálogo EN
        VIVO de la web y fusiónalo POR UNIÓN antes de armar el paquete —
        lo que publicó otra persona se SUMA y lo tuyo se conserva. Publicar
