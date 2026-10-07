@@ -3325,3 +3325,89 @@ body.chat-full .cmu-list{max-height:44vh}
 .gc-__sin{background:linear-gradient(150deg,#3a2222 0%,#1e1111 52%,#4d2e2e 100%)}
 .gc-__sin::before{content:'';position:absolute;inset:0;z-index:0;opacity:.35;
   background:repeating-linear-gradient(45deg,transparent 0 8px,rgba(255,160,100,.06) 8px 12px)}
+
+/* ═══════ ADWALL INMERSIVO — experiencia a pantalla completa ═══════ */
+/* modo inmersivo: la tarjeta se expande casi a pantalla completa */
+.ad-card.ad-immersive{
+  width:min(520px,96vw);
+  min-height:auto;
+  padding:0;
+  display:flex;flex-direction:column;
+}
+.ad-card.ad-immersive .ad-head{
+  padding:14px 16px 10px;
+  border-bottom:1px solid var(--line);
+}
+/* barra inmersiva con branding */
+.ad-immersive-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 20px 14px;gap:12px;
+  background:linear-gradient(90deg,rgba(216,255,62,.06),transparent 60%,rgba(216,255,62,.04));
+  border-bottom:1px solid rgba(216,255,62,.15);
+}
+.ad-immersive-bar.hidden{display:none}
+.ad-top-brand{display:flex;align-items:center;gap:6px;flex:0 0 auto}
+.ad-brand-x{
+  font-family:'Archivo Black';font-size:20px;color:var(--acid);
+  text-shadow:0 0 16px rgba(216,255,62,.4);
+}
+.ad-brand-name{
+  font:800 13px 'Archivo Black';color:#fff;letter-spacing:.8px;
+  display:flex;flex-direction:column;line-height:1;
+}
+.ad-brand-name small{font:600 9px 'JetBrains Mono';color:var(--dim);letter-spacing:.3px;margin-top:3px}
+.ad-top-msg{
+  flex:1;text-align:center;font-size:13px;color:#fff;
+  text-shadow:0 1px 8px rgba(0,0,0,.8);line-height:1.4;
+}
+.ad-top-msg b{color:var(--acid)}
+.ad-top-msg #adTimerNum2{
+  font-family:'JetBrains Mono';font-weight:900;font-size:17px;color:var(--acid);
+  text-shadow:0 0 10px rgba(216,255,62,.4);
+}
+.ad-top-favicon{
+  flex:0 0 auto;display:flex;align-items:center;gap:4px;
+  font:600 10px 'JetBrains Mono';color:var(--dim);
+}
+.ad-top-favicon small{color:rgba(255,255,255,.5)}
+/* barra de progreso superior */
+.ad-top-progress{
+  height:4px;background:rgba(255,255,255,.06);overflow:hidden;
+}
+.ad-top-progress.hidden{display:none}
+.ad-top-progress #adTopBar{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--acid),#d8ff3e);
+  box-shadow:0 0 12px rgba(216,255,62,.5);
+  transition:width .3s ease;
+}
+/* en modo inmersivo el timer del header se hace GIGANTE */
+.ad-card.ad-immersive .ad-timer{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  z-index:10;
+}
+.ad-card.ad-immersive .ad-timer svg{width:120px;height:120px}
+.ad-card.ad-immersive .ad-timer text{font-size:34px}
+.ad-card.ad-immersive .ad-slot{
+  min-height:280px;aspect-ratio:auto;
+  display:grid;place-items:center;
+  position:relative;
+}
+.ad-card.ad-immersive .ad-msg,
+.ad-card.ad-immersive .ad-wait{display:none!important}
+.ad-card.ad-immersive .ad-badge{
+  position:absolute;top:14px;left:16px;z-index:11;
+  background:rgba(8,8,14,.8);
+}
+.ad-card.ad-immersive .ad-close{
+  position:absolute;top:14px;right:14px;z-index:12;
+}
+/* móvil */
+@media (max-width:640px){
+  .ad-top-brand{display:none}   /* en móvil el branding no cabe */
+  .ad-top-msg{font-size:12px}
+  .ad-top-msg #adTimerNum2{font-size:15px}
+  .ad-top-favicon{display:none}
+  .ad-card.ad-immersive .ad-timer svg{width:100px;height:100px}
+  .ad-card.ad-immersive .ad-timer text{font-size:28px}
+}

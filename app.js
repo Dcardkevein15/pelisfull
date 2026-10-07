@@ -6227,8 +6227,8 @@ function showAdwall(onDone) {
     const checkFrame = setInterval(() => {
       if (adLoaded) { clearInterval(checkFrame); return; }
       if (bannerWrap.querySelector('iframe')) { clearInterval(checkFrame); adOk(); }
-    }, 250);
-    setTimeout(() => { clearInterval(checkFrame); if (!adLoaded) adBlocked(); }, 2500);
+    }, 300);
+    setTimeout(() => { clearInterval(checkFrame); if (!adLoaded) adBlocked(); }, 8000);
   }
 
   const adOk = () => {
@@ -6249,24 +6249,38 @@ function showAdwall(onDone) {
   let adClicked = false;
 
   /* ▶ el CLIC EN EL ÁREA DEL ANUNCIO INICIA la cuenta — SIEMPRE.
-     bannerWrap es el área de 300×250 donde vive el iframe de Adsterra.
-     El placeholder (sin anuncio) está FUERA de bannerWrap, así que un
-     clic en bannerWrap = clic en el anuncio real.                        */
+     Al clicar, el adwall se transforma en una experiencia INMERSIVA a
+     pantalla completa: nuestro branding arriba, contador gigante,
+     y el usuario entiende exactamente que está esperando.             */
   const startCountdown = () => {
     if (phase !== 'waiting') return;
     phase = 'counting';
-    bannerWrap.style.borderColor = 'var(--acid)';
-    slot.style.borderColor = 'var(--acid)';
-    msg.innerHTML = '✅ <b>¡Clic registrado!</b> Espera la cuenta regresiva…';
-    let left = cfg.adDuration;
+    const card = ad.querySelector('.ad-card');
+    if (card) card.classList.add('ad-immersive');
+    /* barra inmersiva arriba: branding + mensaje grande */
+    const bar = document.getElementById('adImmersiveBar');
+    const prog = document.getElementById('adTopProgress');
+    const num2 = document.getElementById('adTimerNum2');
+    if (bar) bar.classList.remove('hidden');
+    if (prog) prog.classList.remove('hidden');
+    msg.innerHTML = '';
+    wait.classList.add('hidden');
+    let left = cfg.adDuration + cfg.adClickExtra;
+    const total = left;
+    num.textContent = left;
+    if (num2) num2.textContent = left;
+    setCirc(0);
     timerId = setInterval(() => {
       if (phase !== 'counting') { clearInterval(timerId); return; }
       left--;
       num.textContent = Math.max(0, left);
-      setCirc((cfg.adDuration - left) / cfg.adDuration);
+      if (num2) num2.textContent = Math.max(0, left);
+      setCirc((total - left) / total);
+      const barEl = document.getElementById('adTopBar');
+      if (barEl) barEl.style.width = ((total - left) / total * 100) + '%';
       if (left <= 0) {
         clearInterval(timerId);
-        startPostClick();
+        autoReward();
       }
     }, 1000);
   };
@@ -6353,6 +6367,12 @@ function showAdwall(onDone) {
     }
     toast(`🪙 +${cfg.adReward} monedas ganadas`);
     setTimeout(() => {
+      const card = ad.querySelector('.ad-card');
+      if (card) card.classList.remove('ad-immersive');
+      const bar2 = document.getElementById('adImmersiveBar');
+      const prog2 = document.getElementById('adTopProgress');
+      if (bar2) bar2.classList.add('hidden');
+      if (prog2) prog2.classList.add('hidden');
       ad.classList.add('hidden');
       if (onDone) onDone();
     }, 1400);
@@ -6363,6 +6383,12 @@ function showAdwall(onDone) {
   closeBtn.onclick = () => {
     if (timerId) clearInterval(timerId);
     phase = 'closed';
+    const card = ad.querySelector('.ad-card');
+    if (card) card.classList.remove('ad-immersive');
+    const bar = document.getElementById('adImmersiveBar');
+    const prog = document.getElementById('adTopProgress');
+    if (bar) bar.classList.add('hidden');
+    if (prog) prog.classList.add('hidden');
     ad.classList.add('hidden');
     if (onDone) onDone();
   };
