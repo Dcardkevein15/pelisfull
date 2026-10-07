@@ -299,10 +299,6 @@
                 </svg>
               </div>
             </div>
-            <div class="ad-immersive-bar hidden" id="adImmersiveBar">
-              <div class="ad-top-msg">✅ <b>¡Clic registrado!</b> Esperando <b id="adTimerNum2">15</b>s…</div>
-            </div>
-            <div class="ad-top-progress hidden" id="adTopProgress"><div id="adTopBar"></div></div>
             <div class="ad-slot" id="adSlot">
               <div class="ad-banner-wrap" id="adBannerWrap"></div>
               <div class="ad-placeholder" id="adPlaceholder">
@@ -316,7 +312,6 @@
               </div>
             </div>
             <div class="ad-msg" id="adMsg">Cargando el anuncio…</div>
-            <div class="ad-wait hidden" id="adWait">✅ ¡Clic registrado! Espera <b id="adWaitNum">10</b> segundos más…</div>
           </div>
         </div>
 
@@ -538,19 +533,16 @@
   <div class="syn-shell" id="synShell"></div>
 </div>
 
-<!-- ══════════ MODAL IMPORTAR CARPETA DE GOOGLE DRIVE ══════════ -->
+<!-- ══════════ MODAL IMPORTAR — multi-enlace + cola en la nube ══════════ -->
 <div class="modal-backdrop hidden" id="modalDrive">
-  <div class="modal modal-wide">
-    <h3>📁 Importar — Drive · Streamtape · enlaces</h3>
-    <p class="modal-sub">Pega lo que tengas. La app detecta solo:<br>
-      ☁ <b>Streamtape</b> — conecta tu API abajo y carga TODA tu cuenta con un clic<br>
-      🎬 <b>Archivo suelto</b> (…/file/d/… o streamtape.com/v/…) → lo crea como película<br>
-      📺 <b>Carpeta</b> (…/folders/…) → serie o películas según su contenido<br>
-      📂 <b>Carpeta con subcarpetas</b> → recorre cada subcarpeta y crea una entrada por cada una<br>
-      🔗 <b>Mega / otros</b> → se cataloga y se reproduce desde la fuente</p>
-    <label>Tu enlace
-      <input type="text" id="driveFolderUrl" placeholder="Pega aquí un enlace de Drive, Streamtape, Mega o video directo…" autocomplete="off">
+  <div class="modal modal-import">
+    <h3>📁 Importar — Drive · Streamtape · Mega · enlaces</h3>
+    <p class="modal-sub">Pega <b>todos los enlaces que quieras</b> — uno por línea.<br>La app detecta el tipo de cada uno y los procesa en segundo plano.<br>
+      📺 Puedes cerrar este panel y seguir navegando — <b>la importación continúa sola</b> y al terminar <b>publica automáticamente</b>.</p>
+    <label>Tus enlaces (uno por línea o separados por espacios)
+      <textarea id="driveFolderUrl" rows="6" placeholder="Pega aquí tus enlaces de Drive, Streamtape, Mega o video directo…&#10;&#10;https://drive.google.com/drive/folders/…&#10;https://drive.google.com/file/d/…&#10;https://streamtape.com/v/…&#10;https://mega.nz/file/…" autocomplete="off" spellcheck="false"></textarea>
     </label>
+    <div class="import-detect hidden" id="importDetect"></div>
     <div class="drive-status hidden" id="driveStatus"></div>
     <div class="import-mode">
       <span class="import-mode-label">Tratar como:</span>
@@ -571,26 +563,38 @@
         </label>
       </div>
       <button class="btn btn-acid stape-go" id="stImportBtn">☁ Cargar TODO mi Streamtape</button>
-      <p class="modal-sub stape-hint">Lee todas tus carpetas y crea las series/películas según el nombre de cada carpeta. Al volver a cargar se sincroniza: <b>se añaden los videos nuevos y se retiran los que ya borraste</b> de tu cuenta. Las OVAs sueltas se integran solas en su serie.</p>
+      <p class="modal-sub stape-hint">Lee todas tus carpetas y crea las series/películas según el nombre de cada carpeta.</p>
     </div>
     <details class="drive-adv">
       <summary>⚙ Avanzado: API key de Google Drive (opcional · más fiable)</summary>
       <input type="text" id="driveApiKey" placeholder="AIzaSy…" autocomplete="off">
-      <p class="modal-sub">Sin clave, la carpeta se lee mediante lectores públicos. Con una <b>API key</b> gratis es instantánea, 100% fiable y NUNCA se satura. La clave se guarda solo en tu navegador.</p>
-    </details>
-    <details class="drive-adv">
-      <summary>❓ ¿Cómo consigo la API key gratis? (2 min)</summary>
-      <ol class="api-steps">
-        <li>Entra a <b>console.cloud.google.com</b> con tu cuenta de Google.</li>
-        <li>Arriba a la izquierda: crea un proyecto nuevo (nombre cualquiera, ej. "xstream").</li>
-        <li>Menú ☰ → <b>APIs y servicios → Biblioteca</b> → busca <b>"Google Drive API"</b> → <b>Habilitar</b>.</li>
-        <li>Menú ☰ → <b>APIs y servicios → Credenciales</b> → <b>+ Crear credenciales → Clave de API</b>.</li>
-        <li>Copia la clave (empieza por <code>AIza…</code>) y pégala aquí arriba. ¡Listo!</li>
-      </ol>
+      <p class="modal-sub">Sin clave, la carpeta se lee mediante lectores públicos. Con una <b>API key</b> gratis es instantánea, 100% fiable y NUNCA se satura.</p>
     </details>
     <div class="modal-actions">
       <button class="btn btn-ghost" id="cancelDrive">Cancelar</button>
-      <button class="btn btn-acid" id="confirmDrive">⚡ Importar serie</button>
+      <button class="btn btn-acid" id="confirmDrive">⚡ Importar</button>
+    </div>
+  </div>
+</div>
+
+<!-- 🔔 PILA DE IMPORTACIÓN — indicador flotante mientras procesa -->
+<div class="import-queue-pill hidden" id="importQueuePill" title="Ver progreso">
+  <span class="iq-spin">⏳</span>
+  <span class="iq-label" id="iqLabel">Importando…</span>
+  <b class="iq-count" id="iqCount">0/0</b>
+</div>
+
+<!-- 🎉 MODAL IMPORTACIÓN COMPLETA -->
+<div class="modal-backdrop hidden" id="modalImportDone">
+  <div class="modal">
+    <div class="import-done-icon">✅</div>
+    <h3>¡Importación completada!</h3>
+    <p class="modal-sub" id="importDoneSummary"></p>
+    <div class="import-done-list" id="importDoneList"></div>
+    <div class="import-done-dups hidden" id="importDoneDups"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="importDoneClose">Cerrar</button>
+      <button class="btn btn-acid" id="importDoneView">🎬 Ver resultados</button>
     </div>
   </div>
 </div>
