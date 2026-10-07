@@ -6248,9 +6248,12 @@ function showAdwall(onDone) {
   let timerId = null;
   let adClicked = false;
 
-  /* ▶ el CLIC EN EL ANUNCIO REAL (iframe cargado) INICIA la cuenta */
+  /* ▶ el CLIC EN EL ÁREA DEL ANUNCIO INICIA la cuenta — SIEMPRE.
+     bannerWrap es el área de 300×250 donde vive el iframe de Adsterra.
+     El placeholder (sin anuncio) está FUERA de bannerWrap, así que un
+     clic en bannerWrap = clic en el anuncio real.                        */
   const startCountdown = () => {
-    if (phase !== 'waiting' || !adLoaded) return;
+    if (phase !== 'waiting') return;
     phase = 'counting';
     bannerWrap.style.borderColor = 'var(--acid)';
     slot.style.borderColor = 'var(--acid)';
@@ -6268,17 +6271,10 @@ function showAdwall(onDone) {
     }, 1000);
   };
   const adClick = () => {
-    if (adClicked || phase !== 'waiting' || !adLoaded) return;
+    if (adClicked || phase !== 'waiting') return;
     adClicked = true;
     startCountdown();
   };
-  /* escuchar el clic DENTRO del anuncio:
-     los iframes de terceros capturan el click y no lo propagan al
-     contenedor. Por eso usamos DOS vías (ambas SOLO con anuncio cargado):
-     1) pointerdown en el contenedor (capture phase, antes de que el
-        iframe se lo trague — solo si el puntero está sobre el iframe)
-     2) window.blur: al clicar un iframe de anuncios, la ventana
-        principal pierde el foco → señal inequívoca del clic          */
   if (bannerWrap) {
     bannerWrap.addEventListener('pointerdown', ev => {
       const r = bannerWrap.getBoundingClientRect();
@@ -6287,8 +6283,9 @@ function showAdwall(onDone) {
       }
     }, true);
   }
+  /* vía 2: el iframe de Adsterra abre una pestaña nueva o roba el foco */
   window.addEventListener('blur', () => {
-    if (phase === 'waiting' && !adClicked && adLoaded) {
+    if (phase === 'waiting' && !adClicked) {
       setTimeout(() => { if (document.visibilityState === 'hidden' || document.hasFocus() === false) adClick(); }, 200);
     }
   }, { once: false });
