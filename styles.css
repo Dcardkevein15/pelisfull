@@ -3381,13 +3381,7 @@ body.chat-full .cmu-list{max-height:44vh}
   box-shadow:0 0 12px rgba(216,255,62,.5);
   transition:width .3s ease;
 }
-/* en modo inmersivo el timer del header se hace GIGANTE */
-.ad-card.ad-immersive .ad-timer{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  z-index:10;
-}
-.ad-card.ad-immersive .ad-timer svg{width:120px;height:120px}
-.ad-card.ad-immersive .ad-timer text{font-size:34px}
+/* en modo inmersivo el timer queda pequeño arriba (sin contador grande) */
 .ad-card.ad-immersive .ad-slot{
   min-height:280px;aspect-ratio:auto;
   display:grid;place-items:center;
@@ -3404,10 +3398,6 @@ body.chat-full .cmu-list{max-height:44vh}
 }
 /* móvil */
 @media (max-width:640px){
-  .ad-top-brand{display:none}   /* en móvil el branding no cabe */
   .ad-top-msg{font-size:12px}
   .ad-top-msg #adTimerNum2{font-size:15px}
-  .ad-top-favicon{display:none}
-  .ad-card.ad-immersive .ad-timer svg{width:100px;height:100px}
-  .ad-card.ad-immersive .ad-timer text{font-size:28px}
 }
