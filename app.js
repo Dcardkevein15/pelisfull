@@ -6255,29 +6255,17 @@ function showAdwall(onDone) {
   const startCountdown = () => {
     if (phase !== 'waiting') return;
     phase = 'counting';
-    const card = ad.querySelector('.ad-card');
-    if (card) card.classList.add('ad-immersive');
-    /* barra inmersiva arriba: branding + mensaje grande */
-    const bar = document.getElementById('adImmersiveBar');
-    const prog = document.getElementById('adTopProgress');
-    const num2 = document.getElementById('adTimerNum2');
-    if (bar) bar.classList.remove('hidden');
-    if (prog) prog.classList.remove('hidden');
-    msg.innerHTML = '';
+    msg.innerHTML = '✅ <b>¡Clic registrado!</b> Espera la cuenta regresiva…';
     wait.classList.add('hidden');
     let left = cfg.adDuration + cfg.adClickExtra;
     const total = left;
     num.textContent = left;
-    if (num2) num2.textContent = left;
     setCirc(0);
     timerId = setInterval(() => {
       if (phase !== 'counting') { clearInterval(timerId); return; }
       left--;
       num.textContent = Math.max(0, left);
-      if (num2) num2.textContent = Math.max(0, left);
       setCirc((total - left) / total);
-      const barEl = document.getElementById('adTopBar');
-      if (barEl) barEl.style.width = ((total - left) / total * 100) + '%';
       if (left <= 0) {
         clearInterval(timerId);
         autoReward();
@@ -6367,12 +6355,6 @@ function showAdwall(onDone) {
     }
     toast(`🪙 +${cfg.adReward} monedas ganadas`);
     setTimeout(() => {
-      const card = ad.querySelector('.ad-card');
-      if (card) card.classList.remove('ad-immersive');
-      const bar2 = document.getElementById('adImmersiveBar');
-      const prog2 = document.getElementById('adTopProgress');
-      if (bar2) bar2.classList.add('hidden');
-      if (prog2) prog2.classList.add('hidden');
       ad.classList.add('hidden');
       if (onDone) onDone();
     }, 1400);
@@ -6383,12 +6365,6 @@ function showAdwall(onDone) {
   closeBtn.onclick = () => {
     if (timerId) clearInterval(timerId);
     phase = 'closed';
-    const card = ad.querySelector('.ad-card');
-    if (card) card.classList.remove('ad-immersive');
-    const bar = document.getElementById('adImmersiveBar');
-    const prog = document.getElementById('adTopProgress');
-    if (bar) bar.classList.add('hidden');
-    if (prog) prog.classList.add('hidden');
     ad.classList.add('hidden');
     if (onDone) onDone();
   };
