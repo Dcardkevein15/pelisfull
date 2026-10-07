@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791324896505,
+ "v": 1791333640113,
  "by": "Dcard #2968",
- "at": "2026-10-06T22:14:56.505Z",
- "n": 5815,
+ "at": "2026-10-07T00:40:40.113Z",
+ "n": 5811,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -32991,26 +32991,32 @@
    ],
    "genre": "infantil",
    "seasons": {
-    "1": "En Busca del Valle Encantado 1 1988 mkv",
-    "2": "Parte 2 — En Busca del Valle Encantado 2 Ave",
-    "3": "Parte 3 — En Busca del Valle Encantado 3 La ",
-    "4": "Parte 4 — En Busca del Valle Encantado 5 La ",
-    "5": "Parte 5 — En Busca del Valle Encantado 6 El ",
-    "6": "Parte 6 — En busca del valle encantado 7 La "
+    "1": "En Busca del Valle Encantado 1",
+    "2": "En Busca del Valle Encantado 2",
+    "3": "En Busca del Valle Encantado 3",
+    "4": "En Busca del Valle Encantado 5",
+    "5": "En Busca del Valle Encantado 6",
+    "6": "En busca del valle encantado 7",
+    "7": "En Busca del Valle Encantado 8",
+    "8": "En Busca del Valle Encantado 10",
+    "9": "En busca del valle encantado 9",
+    "10": "En busca del valle encantado 14"
    },
    "episodes": [
     {
      "n": 1,
      "t": "En Busca del Valle Encantado 1 1988 mkv",
      "url": "https://streamtape.com/e/JK1w8KrKl9sjWx4",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/JK1w8KrKl9sjWx4/bKd73R8JQJSPyJp.jpg"
     },
     {
      "n": 2,
      "t": "En Busca del Valle Encantado 2 Aventuras en El Gran Valle 19",
      "url": "https://streamtape.com/e/6aBQ2ARl1Bf9Dkz",
      "season": 2,
-     "srcSeason": "mp-stape-root-6aBQ2ARl1Bf9Dkz"
+     "srcSeason": "mp-stape-root-6aBQ2ARl1Bf9Dkz",
+     "thumb": "https://thumb.tapecontent.net/thumb/6aBQ2ARl1Bf9Dkz/m1VyZG1bb8FbP4R.jpg"
     },
     {
      "n": 3,
@@ -33041,91 +33047,39 @@
      "t": "En busca del valle encantado 7 La misteriosa roca de fuego 2",
      "url": "https://streamtape.com/e/RDJKz7AWOlTdye0",
      "season": 6,
-     "srcSeason": "mp-stape-root-RDJKz7AWOlTdye0"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-D9d4J7jOzDik0Y2",
-   "t": "En Busca del Valle Encantado 8 La Gran Helada 2001",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/3O0cXPXrFLz55OoeNYpE94E5UBi.jpg",
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "episodes": [
+     "srcSeason": "mp-stape-root-RDJKz7AWOlTdye0",
+     "thumb": "https://thumb.tapecontent.net/thumb/RDJKz7AWOlTdye0/xZbX9yJ4yAtw7O.jpg"
+    },
     {
-     "n": 1,
+     "n": 7,
      "t": "En Busca del Valle Encantado 8 La Gran Helada 2001",
-     "url": "https://streamtape.com/e/D9d4J7jOzDik0Y2"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-d3LxYgaJBBikqW2",
-   "t": "En busca del valle encantado 9 Travesia en el oseano 2002",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/cyVlm6lvjsCr3PtWHBq8VCHupwt.jpg",
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "episodes": [
+     "url": "https://streamtape.com/e/D9d4J7jOzDik0Y2",
+     "season": 7,
+     "srcSeason": "mp-stape-root-D9d4J7jOzDik0Y2"
+    },
     {
-     "n": 1,
-     "t": "En busca del valle encantado 9 Travesia en el oseano 2002",
-     "url": "https://streamtape.com/e/d3LxYgaJBBikqW2"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-V8kXLlbQgphPW0",
-   "t": "En Busca del Valle Encantado 10 El viaje de los Cuellilargos 2003",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/8pE1rOeUyQYwvIIXGwCXZOo18Go.jpg",
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "episodes": [
-    {
-     "n": 1,
+     "n": 8,
      "t": "En Busca del Valle Encantado 10 El viaje de los Cuellilargos",
-     "url": "https://streamtape.com/e/V8kXLlbQgphPW0"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-gq2rW9Ba1duqeaB",
-   "t": "En busca del valle encantado 14 Viaje de los valientes 2016",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/xJo1l6m7Lw8xbB8iEw9nqjP0D7J.jpg",
-   "tags": [
-    "Ciencia Ficción"
-   ],
-   "genre": "scifi",
-   "episodes": [
+     "url": "https://streamtape.com/e/V8kXLlbQgphPW0",
+     "season": 8,
+     "srcSeason": "mp-stape-root-V8kXLlbQgphPW0",
+     "thumb": "https://thumb.tapecontent.net/thumb/V8kXLlbQgphPW0/46Pq3BYYryTrxq.jpg"
+    },
     {
-     "n": 1,
+     "n": 9,
+     "t": "En busca del valle encantado 9 Travesia en el oseano 2002",
+     "url": "https://streamtape.com/e/d3LxYgaJBBikqW2",
+     "season": 9,
+     "srcSeason": "mp-stape-root-d3LxYgaJBBikqW2",
+     "thumb": "https://thumb.tapecontent.net/thumb/d3LxYgaJBBikqW2/KGXqQpDkDLtAxl.jpg"
+    },
+    {
+     "n": 10,
      "t": "En busca del valle encantado 14 Viaje de los valientes 2016",
-     "url": "https://streamtape.com/e/gq2rW9Ba1duqeaB"
+     "url": "https://streamtape.com/e/gq2rW9Ba1duqeaB",
+     "season": 10,
+     "srcSeason": "mp-stape-root-gq2rW9Ba1duqeaB",
+     "thumb": "https://thumb.tapecontent.net/thumb/gq2rW9Ba1duqeaB/Ky9Abk4pBXS09Zd.jpg"
     }
    ]
   },
@@ -46072,14 +46026,14 @@
    ]
   },
   {
-   "id": "mp-stape-root-6aBQ2ARl1Bf9Dkz",
-   "t": "En Busca del Valle Encantado 2 Aventuras en El Gran Valle 1994",
+   "id": "mp-stape-root-D9d4J7jOzDik0Y2",
+   "t": "En Busca del Valle Encantado 8 La Gran Helada 2001",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/1lC7oGqh9zhd55W4naq1niu6Z1M.jpg",
+   "poster": "https://image.tmdb.org/t/p/w500/3O0cXPXrFLz55OoeNYpE94E5UBi.jpg",
    "tags": [
     "Aventura"
    ],
@@ -46087,8 +46041,71 @@
    "episodes": [
     {
      "n": 1,
-     "t": "En Busca del Valle Encantado 2 Aventuras en El Gran Valle 19",
-     "url": "https://streamtape.com/e/6aBQ2ARl1Bf9Dkz"
+     "t": "En Busca del Valle Encantado 8 La Gran Helada 2001",
+     "url": "https://streamtape.com/e/D9d4J7jOzDik0Y2"
+    }
+   ]
+  },
+  {
+   "id": "mp-stape-root-d3LxYgaJBBikqW2",
+   "t": "En busca del valle encantado 9 Travesia en el oseano 2002",
+   "jp": "🎬",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/cyVlm6lvjsCr3PtWHBq8VCHupwt.jpg",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "En busca del valle encantado 9 Travesia en el oseano 2002",
+     "url": "https://streamtape.com/e/d3LxYgaJBBikqW2"
+    }
+   ]
+  },
+  {
+   "id": "mp-stape-root-V8kXLlbQgphPW0",
+   "t": "En Busca del Valle Encantado 10 El viaje de los Cuellilargos 2003",
+   "jp": "🎬",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8pE1rOeUyQYwvIIXGwCXZOo18Go.jpg",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "En Busca del Valle Encantado 10 El viaje de los Cuellilargos",
+     "url": "https://streamtape.com/e/V8kXLlbQgphPW0"
+    }
+   ]
+  },
+  {
+   "id": "mp-stape-root-gq2rW9Ba1duqeaB",
+   "t": "En busca del valle encantado 14 Viaje de los valientes 2016",
+   "jp": "🎬",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/xJo1l6m7Lw8xbB8iEw9nqjP0D7J.jpg",
+   "tags": [
+    "Ciencia Ficción"
+   ],
+   "genre": "scifi",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "En busca del valle encantado 14 Viaje de los valientes 2016",
+     "url": "https://streamtape.com/e/gq2rW9Ba1duqeaB"
     }
    ]
   },
@@ -46110,69 +46127,6 @@
      "n": 1,
      "t": "En Busca del Valle Encantado 3 La Fuente de La Vida 1995",
      "url": "https://streamtape.com/e/9bZzP8ozlOUaMxY"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-Y6BAOrMzJbivJAL",
-   "t": "En Busca del Valle Encantado 5 La Isla Misteriosa 1997",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/amNdOyHW9qFurPApnIwiV7LYlO8.jpg",
-   "tags": [
-    "Infantil"
-   ],
-   "genre": "infantil",
-   "episodes": [
-    {
-     "n": 1,
-     "t": "En Busca del Valle Encantado 5 La Isla Misteriosa 1997",
-     "url": "https://streamtape.com/e/Y6BAOrMzJbivJAL"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-Rq9O61ypDxudwP9",
-   "t": "En Busca del Valle Encantado 6 El Secreto de La Roca del Saurio 1998",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/ac47Ub1d4sz3bumHHMZ7CfZB3Pw.jpg",
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "episodes": [
-    {
-     "n": 1,
-     "t": "En Busca del Valle Encantado 6 El Secreto de La Roca del Sau",
-     "url": "https://streamtape.com/e/Rq9O61ypDxudwP9"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-RDJKz7AWOlTdye0",
-   "t": "En busca del valle encantado 7 La misteriosa roca de fuego 2000",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/bOfZKSPxdMl2jKlwIV16j6ReQY3.jpg",
-   "tags": [
-    "Suspenso"
-   ],
-   "genre": "suspenso",
-   "episodes": [
-    {
-     "n": 1,
-     "t": "En busca del valle encantado 7 La misteriosa roca de fuego 2",
-     "url": "https://streamtape.com/e/RDJKz7AWOlTdye0"
     }
    ]
   }
@@ -105601,7 +105555,11 @@
   "ia-frasier-07x-23-24-algo-prestado-algo-azul": 1790793244197,
   "ia-los-gatos-samurai-capitulo-01-al-18": 1790890055246,
   "ia-oh-my-goddess-ovas-espanol-latino": 1790890607936,
-  "ia-zoids-ep-01-720p": 1790890743511
+  "ia-zoids-ep-01-720p": 1790890743511,
+  "mp-stape-root-Rq9O61ypDxudwP9": 1791325354850,
+  "mp-stape-root-RDJKz7AWOlTdye0": 1791325372931,
+  "mp-stape-root-Y6BAOrMzJbivJAL": 1791325382568,
+  "mp-stape-root-6aBQ2ARl1Bf9Dkz": 1791326082506
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -195858,5 +195816,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "oaqaGv0H+YXxK4OuwGT7s+v9jL6GjFittSjSutepFV7U4Cxc0AxmN5ZWPjtkH9S0TGJk48QUN5DZrXk7wG2/RA=="
+ "sig": "YjrWtSoCVgbGBmuvBwCinxsDsi/vgxpccd3oJBp3XEa8YJEaVYLgWBs/X71sbbIIrg1Qxe7bCrdl8a5cxonBaQ=="
 }
