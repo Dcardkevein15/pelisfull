@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791391103923,
+ "v": 1791397045164,
  "by": "Dcard #2968",
- "at": "2026-10-07T16:38:23.923Z",
+ "at": "2026-10-07T18:17:25.164Z",
  "n": 5868,
  "series": [
   {
@@ -196677,6 +196677,91 @@
    "dest": "#/pelicula/2017-zona-hostil-lo-de-jose",
    "t": "2017 - Zona hostil - lo de jose",
    "at": 1791390020882
+  },
+  "uh2vyk": {
+   "dest": "#/pelicula/la-guerra-de-los-mapaches-de-pompoko",
+   "t": "La Guerra De Los Mapaches De Pompoko",
+   "at": 1791392871724
+  },
+  "qpummz": {
+   "dest": "#/pelicula/mad-max",
+   "t": "Mad Max",
+   "at": 1791392871724
+  },
+  "xsg9n4": {
+   "dest": "#/pelicula/volver-al-futuro",
+   "t": "Volver Al Futuro",
+   "at": 1791392871724
+  },
+  "9nwhst": {
+   "dest": "#/pelicula/transformers-animada",
+   "t": "Transformers, Animada",
+   "at": 1791392871727
+  },
+  "8ajhs4": {
+   "dest": "#/pelicula/barbie-cascanueces",
+   "t": "Barbie Cascanueces",
+   "at": 1791392871728
+  },
+  "9ggtxu": {
+   "dest": "#/pelicula/el-balon-de-oro",
+   "t": "El Balon De Oro",
+   "at": 1791392871731
+  },
+  "fy39sa": {
+   "dest": "#/pelicula/la-delgada-linea-roja",
+   "t": "La Delgada Linea Roja",
+   "at": 1791392871731
+  },
+  "x3695r": {
+   "dest": "#/pelicula/salvar-al-soldado-ryan",
+   "t": "Salvar al soldado Ryan",
+   "at": 1791392871731
+  },
+  "q62saz": {
+   "dest": "#/pelicula/la-caida-del-halcon-negro",
+   "t": "La Caida del Halcon Negro",
+   "at": 1791392871731
+  },
+  "d3cj2x": {
+   "dest": "#/pelicula/la-conquista-de-honor",
+   "t": "La Conquista de Honor",
+   "at": 1791392871731
+  },
+  "g84v4n": {
+   "dest": "#/pelicula/corazones-de-hierro",
+   "t": "Corazones de Hierro",
+   "at": 1791392871731
+  },
+  "ndn7xj": {
+   "dest": "#/pelicula/hombre-muerto",
+   "t": "hombre muerto",
+   "at": 1791392871731
+  },
+  "c8eznv": {
+   "dest": "#/pelicula/hasta-el-ultimo-hombre",
+   "t": "Hasta el último hombre",
+   "at": 1791392871731
+  },
+  "2ugasz": {
+   "dest": "#/pelicula/dunkerque",
+   "t": "Dunkerque",
+   "at": 1791392871731
+  },
+  "uat4pt": {
+   "dest": "#/pelicula/maquina-de-guerra",
+   "t": "Máquina de guerra",
+   "at": 1791392871731
+  },
+  "ygvuvh": {
+   "dest": "#/pelicula/renegades",
+   "t": "Renegades",
+   "at": 1791392871731
+  },
+  "7q2jvk": {
+   "dest": "#/pelicula/zona-hostil",
+   "t": "Zona hostil",
+   "at": 1791392871731
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -196690,5 +196775,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "+4d7VRmc6LgvhbIINWleq69Wlf2myr++AFs6XFyRUA+YX/BbrwiAx5AftJGqH7x1XWV1wCRl6yehwTZytCW6Mw=="
+ "sig": "zwuPIOBELIv6FIE/w9Ae/DyaG7foVmxfcW/Qw68dJDcWTFl/y1nUeyoSUSTR0vYanCNZ9Ou+45vJCCKLNDhmbg=="
 }
