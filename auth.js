@@ -1103,6 +1103,74 @@
     };
   }
 
+  /* ═══ 🌐 PANEL VISUAL DE PUBLICACIÓN — pasos en vivo ═══
+     Quien publica ve EXACTAMENTE por dónde va: categorizando → trayendo el
+     catálogo en vivo → firmando → subiendo (con % REAL de bytes) → listo.
+     Nunca más la sensación de «no está pasando nada» mientras sube.       */
+  const PUB_STEPS = [
+    ['🎬', 'Categorizando películas (TMDB)'],
+    ['🌐', 'Trayendo el catálogo en vivo'],
+    ['🔐', 'Firmando el catálogo (ECDSA)'],
+    ['🚀', 'Subiendo a GitHub'],
+    ['✅', 'Publicado para todos'],
+  ];
+  function pubProgress(step, detail) {
+    let st = document.getElementById('axPubPanelStyle');
+    if (!st) {
+      st = document.createElement('style');
+      st.id = 'axPubPanelStyle';
+      st.textContent = `
+#axPubPanel{position:fixed;bottom:18px;right:18px;z-index:9999;min-width:280px;max-width:340px;
+  background:rgba(10,10,18,.96);border:1.5px solid rgba(216,255,62,.45);border-radius:14px;
+  padding:14px 16px;font-size:12px;color:#e2e2ee;box-shadow:0 14px 44px rgba(0,0,0,.55);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:pubIn .25s cubic-bezier(.2,1.3,.4,1)}
+@keyframes pubIn{from{transform:translateY(50px);opacity:0}}
+#axPubPanel.err{border-color:rgba(255,92,92,.5)}
+#axPubPanel .pp-t{font-weight:900;letter-spacing:.5px;color:var(--acid);margin-bottom:9px;font-size:11.5px}
+#axPubPanel.err .pp-t{color:#ff8a8a}
+#axPubPanel .pp-row{display:flex;align-items:center;gap:9px;padding:4px 0;color:#9a9ab0}
+#axPubPanel .pp-row.done{color:#8aff8a}
+#axPubPanel .pp-row.now{color:#fff;font-weight:700}
+#axPubPanel .pp-row.now .ic{animation:pubSpin 1.1s linear infinite;display:inline-block}
+@keyframes pubSpin{to{transform:rotate(360deg)}}
+#axPubPanel .pp-bar{height:6px;border-radius:99px;background:#1a1a28;border:1px solid var(--line);margin-top:9px;overflow:hidden}
+#axPubPanel .pp-bar > div{height:100%;background:linear-gradient(90deg,var(--acid),#aef25c);transition:width .25s}
+#axPubPanel .pp-detail{color:var(--dim);font-size:10.5px;margin-top:7px;font-family:'JetBrains Mono'}
+@media(max-width:640px){#axPubPanel{left:10px;right:10px;bottom:10px;min-width:0;max-width:none}}`;
+      document.head.appendChild(st);
+    }
+    let el = document.getElementById('axPubPanel');
+    if (!el) { el = document.createElement('div'); el.id = 'axPubPanel'; document.body.appendChild(el); }
+    el.classList.remove('err');
+    el.style.opacity = '1';
+    let html = `<div class="pp-t">🌐 PUBLICANDO CATÁLOGO</div>`;
+    PUB_STEPS.forEach((s, i) => {
+      if (i > step) return;
+      if (i === PUB_STEPS.length - 1) html += `<div class="pp-row done"><span class="ic">✅</span><span>${s[1]}</span></div>`;
+      else if (i < step) html += `<div class="pp-row done"><span class="ic">✓</span><span>${s[1]}</span></div>`;
+      else html += `<div class="pp-row now"><span class="ic">⏳</span><span>${s[1]}</span></div>`;
+    });
+    if (detail) html += `<div class="pp-detail">${detail}</div>`;
+    /* barra de progreso si el detail trae porcentaje */
+    const m = detail ? String(detail).match(/(\d+)%/) : null;
+    if (m) html += `<div class="pp-bar"><div style="width:${m[1]}%"></div></div>`;
+    el.innerHTML = html;
+  }
+  function pubProgressEnd(ok, msg) {
+    const el = document.getElementById('axPubPanel');
+    if (!el) return;
+    const fade = () => { el.style.transition = 'opacity .5s'; el.style.opacity = '0'; setTimeout(() => el.remove(), 550); };
+    if (ok) {
+      pubProgress(PUB_STEPS.length - 1);
+      setTimeout(fade, 2400);
+    } else {
+      el.classList.add('err');
+      el.innerHTML = `<div class="pp-t">⚠ LA PUBLICACIÓN NO SALIÓ</div>
+        <div style="font-size:11.5px;line-height:1.65">${axEsc(msg || 'Revisa el aviso en la pantalla.')}</div>`;
+      setTimeout(fade, 7000);
+    }
+  }
+
   async function publishCatalog() {
     if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
     if (!API || !API.getState) return axToast('La app aún no está lista', true);
@@ -1130,6 +1198,7 @@
         pubBtn.textContent = pubLbl || '🌐 Publicar mi biblioteca para TODOS';
       }
     }
+    pubProgressEnd(!!(result && result.ok), result && result.msg);
     return result;
   }
 
@@ -1142,6 +1211,7 @@
     const state0 = API.getState();
     const sinGenero = state0.series.filter(s => s.kind === 'pelicula' && !s.hentai && !s.genre).length;
     if (sinGenero > 0) {
+      pubProgress(0, `${sinGenero} película(s) sin género — consultando TMDB…`);
       axToast(`🎬 Categorizando ${sinGenero} película(s) antes de publicar…`);
       try {
         if (API.enrichGenres) await API.enrichGenres();
@@ -1152,13 +1222,15 @@
       else axToast('✅ Todas las películas categorizadas');
     }
     /* 🔄 PRE-VUELO DE FUSIÓN (multi-PC y moderadores): trae el catálogo EN
-       VIVO de la web y fusiónalo POR UNIÓN antes de armar el paquete —
-       lo que publicó otra persona se SUMA y lo tuyo se conserva. Publicar
-       desde aquí jamás borra el trabajo de nadie.                      */
+        VIVO de la web y fusiónalo POR UNIÓN antes de armar el paquete —
+        lo que publicó otra persona se SUMA y lo tuyo se conserva. Publicar
+        desde aquí jamás borra el trabajo de nadie.                      */
+    pubProgress(1, 'descargando la última versión publicada…');
     const live = await fetchRemoteCatalog();
     if (live) mergeLiveCatalog(live);
     const state = API.getState();
     let payload = buildCatalogPayload(state);
+    pubProgress(2, 'verificando y firmando…');
 
     /* 🧯 Candado anti-apagón: valida el payload EXACTAMENTE como haría un
        lector. Un solo registro inválido (p. ej. un id demasiado largo) hace
@@ -1218,6 +1290,7 @@
       let publicado = false, errFinal = null;
       for (let intento = 0; intento < 2 && !publicado; intento++) {
         if (intento) {
+          pubProgress(3, 'otro publicador ganó el turno — fusionando su versión y reintentando…');
           axToast('⚡ Alguien más publicó hace un segundo — fusionando su versión y reintentando…');
           const again = await fetchRemoteCatalog();
           if (again) mergeLiveCatalog(again);
@@ -1228,7 +1301,12 @@
             if (s2) payload.sig = s2;
           } catch (e2) { }
         }
-        try { await ghPublishCatalog(payload, token); publicado = true; }
+        try {
+          const mb = (JSON.stringify(payload).length / 1048576).toFixed(1);
+          pubProgress(3, `subiendo ${mb} MB — 0%`);
+          await ghPublishCatalog(payload, token, pct => pubProgress(3, `subiendo ${mb} MB — ${pct}%`));
+          publicado = true;
+        }
         catch (e) { errFinal = e; if (!e || e.code !== 'CONFLICT') break; }
       }
       if (publicado) {
@@ -1376,7 +1454,7 @@
     axToast('⚠ Token no válido tras 3 intentos — GitHub → Settings → Developer settings → Tokens (classic) → genera uno NUEVO con scope «repo»', true);
     return tokLoad();
   }
-  async function ghPublishCatalog(payload, token) {
+  async function ghPublishCatalog(payload, token, onPct) {
     const base = `https://api.github.com/repos/${CONFIG.ghRepo}/contents/catalog.json`;
     const headers = { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' };
     /* necesitamos el SHA actual del archivo para poder sobreescribirlo */
@@ -1385,30 +1463,34 @@
     if (get.ok) { sha = (await get.json()).sha; }
     /* UTF-8 → base64 sin romper tildes/emoji */
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 1))));
-    const res = await fetch(base, {
-      method: 'PUT', headers,
-      body: JSON.stringify({
-        message: `📡 catálogo ${new Date().toISOString()}`,
-        content, branch: CONFIG.ghBranch,
-        ...(sha ? { sha } : {}),
-      }),
+    const body = JSON.stringify({ message: `📡 catálogo ${new Date().toISOString()}`, content, branch: CONFIG.ghBranch, ...(sha ? { sha } : {}) });
+    /* ⏫ XHR con progreso REAL de bytes: fetch no puede reportar la subida,
+       y este es el paso más largo (MBs) — el % en vivo evita la sensación
+       de «no está pasando nada» justo cuando más tarda                     */
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('PUT', base);
+      for (const [k, v] of Object.entries(headers)) xhr.setRequestHeader(k, v);
+      xhr.upload.onprogress = ev => {
+        if (ev.lengthComputable && onPct) onPct(Math.min(100, Math.round(ev.loaded / ev.total * 100)));
+      };
+      xhr.onload = () => {
+        if (xhr.status >= 200 && xhr.status < 300) return resolve(true);
+        let err = {};
+        try { err = JSON.parse(xhr.responseText); } catch (e) { }
+        if (xhr.status === 401) {
+          tokSave('');
+          const t = new Error('Tu token de GitHub expiró o ya no es válido — se borró de este equipo. Vuelve a dar «Publicar» y pega el token nuevo (GitHub → Settings → Developer settings → Tokens).');
+          t.code = 'TOKEN';
+          return reject(t);
+        }
+        if (xhr.status === 409) { const c = new Error('otro publicador ganó el turno (409)'); c.code = 'CONFLICT'; return reject(c); }
+        reject(new Error(err.message || ('HTTP ' + xhr.status)));
+      };
+      xhr.onerror = () => reject(new Error('sin red al subir'));
+      xhr.ontimeout = () => reject(new Error('timeout al subir'));
+      xhr.send(body);
     });
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      /* 🔑 401 = el token guardado en ESTE dispositivo expiró o lo revocaste:
-          se borra de TODAS las capas y el próximo «Publicar» pedirá uno nuevo */
-      if (res.status === 401) {
-        tokSave('');
-        const t = new Error('Tu token de GitHub expiró o ya no es válido — se borró de este equipo. Vuelve a dar «Publicar» y pega el token nuevo (GitHub → Settings → Developer settings → Tokens).');
-        t.code = 'TOKEN';
-        throw t;
-      }
-      /* ⚡ 409 = alguien más publicó en este instante (sha quedó viejo):
-         publishCatalog lo atrapa, fusiona la versión ganadora y reintenta */
-      if (res.status === 409) { const c = new Error('otro publicador ganó el turno (409)'); c.code = 'CONFLICT'; throw c; }
-      throw new Error(err.message || ('HTTP ' + res.status));
-    }
-    return true;
   }
 
   /* 📦 escritura genérica de archivos a GitHub (misma vía del catálogo):
