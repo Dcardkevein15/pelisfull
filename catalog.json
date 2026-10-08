@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791421436948,
+ "v": 1791428190138,
  "by": "MortosPr #2968",
- "at": "2026-10-08T01:03:56.948Z",
- "n": 5894,
+ "at": "2026-10-08T02:56:30.138Z",
+ "n": 5895,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -45655,6 +45655,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/j2xcicPNXzNex47EYOfw45Dl1o0.jpg",
    "tags": [
     "Acción"
@@ -45671,12 +45672,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1-8Mcge-jGzUhotLHpddEPIQ4rFqIW",
-   "t": "arthur 2",
+   "t": "Arthur y el regreso de los minimoys",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/x8xJdxTsJOJ1pOQVplZarOng0GO.jpg",
    "tags": [
     "Comedia"
    ],
@@ -45697,7 +45699,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/y2FwChmqk1twjhslQNtgBA3Oik6.jpg",
    "tags": [
     "Aventura"
    ],
@@ -45713,12 +45716,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
-   "t": "E5CU4DR0N 5U1C1D4",
+   "t": "Escuadron Suicida",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/fPJWlhXA2VXf4MlQ3JenVsz1iba.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
    "at": 1791420644655,
    "episodes": [
     {
@@ -45735,7 +45743,9 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/1m6JsSmBa4X1Kp35YW3QPbMpByF.jpg",
+   "tags": [],
    "at": 1791420943251,
    "episodes": [
     {
@@ -45752,7 +45762,9 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/oP09KA2lP5SluKVf8AmRsf38X7q.jpg",
+   "tags": [],
    "at": 1791420960899,
    "episodes": [
     {
@@ -45769,7 +45781,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=17pOT828OddAZOTlMYlEpSBNsIsRU71r6&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/yHa2I7qxZvZUASLHrIR8vQLmZ4B.jpg",
    "tags": [
     "Fantasía"
    ],
@@ -45790,7 +45803,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/pkxle3iqeacvt3NC716YflfWxa2.jpg",
    "tags": [
     "Fantasía"
    ],
@@ -45811,7 +45825,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/jAwbyTKDbw7iqYptPMSlPfFsbPU.jpg",
    "tags": [
     "Documental"
    ],
@@ -45832,7 +45847,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=140FaEXAENyFIvbKN5_xORkORXEcxvPQm&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/vKSyaptSA7zZ9H8mSfaDnvyQl9k.jpg",
    "tags": [
     "Comedia"
    ],
@@ -45853,7 +45869,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=12paturmR6xXcliyd3xo1DgJikPzwwx_Y&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/p7H6r0SN0BqMY3ZNuJxaOHDVFut.jpg",
    "tags": [
     "Musical"
    ],
@@ -45874,7 +45891,9 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/78olDfo1tQmI1OtyBPovWb98wLD.jpg",
+   "tags": [],
    "at": 1791421230355,
    "episodes": [
     {
@@ -45891,7 +45910,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/5rWT1jJD5NJmbt0bJXDb3vKOQsh.jpg",
    "tags": [
     "Infantil"
    ],
@@ -45902,6 +45922,23 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1JgaDCBdOCOWCyxom7dCXnsEioXnLO",
+   "t": "La casa Guchi",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1JgaDCBdOCOWCyxom7dCXnsEioXnLO2_s&sz=w1000",
+   "at": 1791428183483,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1JgaDCBdOCOWCyxom7dCXnsEioXnLO2_s/view"
     }
    ]
   }
@@ -196767,6 +196804,116 @@
    "dest": "#/pelicula/pinocho-disney",
    "t": "Pinocho disney",
    "at": 1791420090812
+  },
+  "wc6wwm": {
+   "dest": "#/pelicula/ga-hoole-la-leyenda-de-los-guardianes",
+   "t": "Ga Hoole - La Leyenda De Los Guardianes",
+   "at": 1791428078472
+  },
+  "8se5js": {
+   "dest": "#/pelicula/coyote-vs-acme",
+   "t": "Coyote vs Acme",
+   "at": 1791428078472
+  },
+  "wumhtb": {
+   "dest": "#/pelicula/spider-man-un-nuevo-dia",
+   "t": "Spider-Man Un nuevo día",
+   "at": 1791428078472
+  },
+  "3g78hz": {
+   "dest": "#/pelicula/in-time",
+   "t": "In Time",
+   "at": 1791428078472
+  },
+  "jahe5f": {
+   "dest": "#/pelicula/robocop-4",
+   "t": "Robocop 4",
+   "at": 1791428078472
+  },
+  "mcuq5z": {
+   "dest": "#/pelicula/el-cuervo",
+   "t": "el cuervo",
+   "at": 1791428078472
+  },
+  "x7835y": {
+   "dest": "#/pelicula/bumblebee",
+   "t": "Bumblebee",
+   "at": 1791428078472
+  },
+  "3sacs3": {
+   "dest": "#/pelicula/si-tuviera-30",
+   "t": "si tuviera 30",
+   "at": 1791428078472
+  },
+  "gkhvm8": {
+   "dest": "#/pelicula/pearl-harbor",
+   "t": "Pearl Harbor",
+   "at": 1791428078472
+  },
+  "dmqk8e": {
+   "dest": "#/pelicula/espias-a-escondidas",
+   "t": "Espias a escondidas",
+   "at": 1791428078472
+  },
+  "rgqvrs": {
+   "dest": "#/pelicula/arthur-y-el-regreso-de-los-minimoys",
+   "t": "Arthur y el regreso de los minimoys",
+   "at": 1791428078472
+  },
+  "7qrz7c": {
+   "dest": "#/pelicula/arthur-3",
+   "t": "arthur 3",
+   "at": 1791428078472
+  },
+  "fvpnvx": {
+   "dest": "#/pelicula/escuadron-suicida",
+   "t": "Escuadron Suicida",
+   "at": 1791428078472
+  },
+  "vjctb2": {
+   "dest": "#/pelicula/la-sirenita-2-regreso-al-mar-2000",
+   "t": "la sirenita 2 regreso al mar (2000)",
+   "at": 1791428078472
+  },
+  "ztvhm8": {
+   "dest": "#/pelicula/el-origen-de-la-sirenita-2008",
+   "t": "el origen de la sirenita (2008)",
+   "at": 1791428078472
+  },
+  "u25pmh": {
+   "dest": "#/pelicula/jurassic-world-el-reino-caido",
+   "t": "Jurassic World: el reino caído",
+   "at": 1791428078472
+  },
+  "akntb2": {
+   "dest": "#/pelicula/inframundo-4",
+   "t": "Inframundo 4",
+   "at": 1791428078472
+  },
+  "ces3wb": {
+   "dest": "#/pelicula/harry-potter-20-aniversario",
+   "t": "harry potter 20° aniversario",
+   "at": 1791428078472
+  },
+  "uezm7t": {
+   "dest": "#/pelicula/erase-una-vez-en-hollywood",
+   "t": "Erase una vez en hollywood",
+   "at": 1791428078472
+  },
+  "vca62c": {
+   "dest": "#/pelicula/operacion-feliz-navidad-la-estafa-de-los-duendes",
+   "t": "operacion feliz navidad la estafa de los duendes",
+   "at": 1791428078472
+  },
+  "euzuyp": {
+   "dest": "#/pelicula/no-mires-arriba-2021",
+   "t": "no mires arriba (2021)",
+   "at": 1791428078472
+  },
+  "rm7z4g": {
+   "dest": "#/pelicula/clifford-el-gran-perro-rojo",
+   "t": "clifford el gran perro rojo",
+   "at": 1791428078472
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -196780,5 +196927,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "QJRGfq9ZS34i6M8e3yFH+6wRTss7K2UKjqVWL4JRpcY6+PLNhzTqLQj/AJD+QLhcVy/vxZftXhZztz2pFQr73w=="
+ "sig": "RW8MPfClR6JqapgRAy7nt/0vjm1n8KyGOzht1E3s80lIjMz2LRwg5b4elzHOasbG3TTfAjKTYMksMB5xXFbgrA=="
 }
