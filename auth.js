@@ -2425,14 +2425,44 @@
      rapidísimo); abriendo el HTML en LOCAL (file://, localhost) jala el
      catálogo PUBLICADO en la web. Devuelve el catálogo o null.         */
   async function fetchRemoteCatalog() {
-    /* anti-caché agresivo: el mismo archivo pedido 2 veces seguidas
-       puede servirse viejo desde el CDN de GitHub Pages, así que
-       añadimos un parámetro único cada vez */
+    /* 🛰 FUENTE 1 — SIEMPRE EXACTA Y FRESCA: commit-sha + jsDelivr inmutable.
+       El admin publica al repo en el segundo X; el catálogo del SHA de ese
+       commit existe YA (no espera al redeploy de Vercel ni sufre el cache
+       del CDN: la URL @sha es inmutable y jsDelivr la sirve recién creada). */
+    const cat = await fetchCatalogBySha().catch(() => null);
+    if (cat) return verifyAndAdopt(cat);
+    /* FUENTE 2 (respaldo) — la copia desplegada del sitio con anti-caché
+       agresivo (parámetro único en cada petición)                     */
     const onProd = /^https?:$/.test(location.protocol) && !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
     const base = onProd ? CONFIG.catalogUrl : (CONFIG.catalogUrlRemote || CONFIG.catalogUrl);
     const r = await fetch(base + (base.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) return null;
-    const cat = await r.json();
+    return verifyAndAdopt(await r.json().catch(() => null));
+  }
+
+  /* estado del sha del catálogo (evita martillar la API en cada re-chequeo) */
+  let _catSha = null, _catShaAt = 0;
+  async function fetchCatalogBySha() {
+    const now = Date.now();
+    if (!_catSha || now - _catShaAt > 90e3) {
+      const cr = await fetch(`https://api.github.com/repos/${CONFIG.ghRepo}/commits?path=catalog.json&sha=${CONFIG.ghBranch}&per_page=1&t=${now}`, { cache: 'no-store' });
+      if (cr.status === 403 || cr.status === 429) return null;   /* rate-limit → respaldo */
+      if (cr.ok) {
+        const commits = await cr.json().catch(() => null);
+        const sha = commits && commits[0] && commits[0].sha;
+        if (sha) { _catSha = sha; _catShaAt = now; }
+      }
+      if (!_catSha) return null;
+    }
+    const jr = await fetch(`https://cdn.jsdelivr.net/gh/${CONFIG.ghRepo}@${_catSha}/catalog.json`, { cache: 'no-store' });
+    if (!jr.ok) return null;
+    const cat = await jr.json().catch(() => null);
+    if (!cat || typeof cat.v !== 'number' || !Array.isArray(cat.series) || !cat.series.length) return null;
+    return cat;
+  }
+
+  /* validación compartida por ambas fuentes: esquema + firma ECDSA */
+  async function verifyAndAdopt(cat) {
     if (!cat || typeof cat.v !== 'number' || !Array.isArray(cat.series) || !cat.series.length) return null;
     /* 🔒 Candado 1: esquema — si no tiene EXACTAMENTE la forma esperada,
        se descarta entero (protege de archivos corruptos o inyectados)  */
@@ -2467,16 +2497,24 @@
     if (syncing) { if (opts.fresh && syncInflight) await syncInflight.catch(() => { }); if (syncing) return; }
     syncing = true;
     const job = (async () => {
+    let syncedToast = '';
     try {
       const cat = await fetchRemoteCatalog();
       if (!cat) return;
       const st = API.getState();
       const cur = (st.catalogMeta && st.catalogMeta.v) || 0;
-      if (cat.v <= cur) return;            /* ya está aplicada esta versión */
+      if (cat.v <= cur) {
+        /* ya tenías la última: confirmarlo sutilmente solo al ENTRAR */
+        const t = new Date(cat.v).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        syncedToast = `📡 Sincronizado con la última versión (${t})`;
+        return;
+      }
       /* 👑 ADMIN/STAFF: FUSIÓN por unión — tu trabajo aún no publicado en
          este PC sobrevive al llegar lo del otro PC/moderadores.
          👤 Lector: la web manda (reemplazo clásico de applyCatalog).    */
       if (isAdmin()) mergeLiveCatalog(cat); else applyCatalog(cat);
+      const t = new Date(cat.v).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      syncedToast = `📡 Catálogo actualizado a la última versión (${t} · ${cat.series.length} títulos)`;
       /* 🪙 SISTEMA DE MONEDAS: sincroniza la config del admin (dailyCoins,
          precios, recompensas) y aplica los regalos a todos los usuarios */
       if (typeof COINS !== 'undefined' && cat.coinsCfg) {
@@ -2487,7 +2525,10 @@
         } catch (e) { }
       }
     } catch (e) { /* sin archivo o sin red: sigue con lo local */ }
-    finally { syncing = false; }
+    finally {
+      syncing = false;
+      if (opts.toast && syncedToast) axToast(syncedToast);
+    }
     })();
     syncInflight = job;
     await job;
@@ -2653,8 +2694,9 @@
     API = api || {};
     applyRole();   /* por si app.js creó elementos tras el boot */
     renderChip();
-    /* al entrar: si soy lector, descargo y aplico el catálogo del admin */
-    syncCatalog().catch(() => { });
+    /* al entrar: SIEMPRE se sincroniza con la última publicación del admin —
+       con aviso sutil de que quedó hecho */
+    syncCatalog({ toast: true }).catch(() => { });
     /* re-chequeo automático: al volver a la pestaña, al recuperar red, y cada 2 min.
        Si no hay nada nuevo, el usuario no percibe absolutamente nada. */
     document.addEventListener('visibilitychange', () => {
