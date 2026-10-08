@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791467917366,
+ "v": 1791468445610,
  "by": "Dcard #2968",
- "at": "2026-10-08T13:58:37.366Z",
- "n": 5959,
+ "at": "2026-10-08T14:07:25.610Z",
+ "n": 5960,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49508,6 +49508,27 @@
      "n": 1,
      "t": "La gran aventura de Pee-wee",
      "url": "https://archive.org/download/pwhla_202509/PWHLA.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1jZLd4KI0QkgzmloDFljKB-VVmHrlD",
+   "t": "El Mago de Oz",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu&sz=w1000",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791468438086,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu/view"
     }
    ]
   }
@@ -200914,5 +200935,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "QuYgh3mLmwTlN20+5sQaF8eC7hZiSKfDE+KBpaVpla9mhHZZQy8xawmFowMi0PAddfuv6V676wPz7LEjjbNOYQ=="
+ "sig": "UwJDlOEDOhZV7+UH0odmGuJ/pOmX2LdFxWaoNF0m+YVW3qbe7FaMdOFymUOmuoHw3vF3EzmLl8LuCnJMg71RWw=="
 }
