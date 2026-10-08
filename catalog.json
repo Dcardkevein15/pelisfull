@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791468445610,
+ "v": 1791472839200,
  "by": "Dcard #2968",
- "at": "2026-10-08T14:07:25.610Z",
- "n": 5960,
+ "at": "2026-10-08T15:20:39.200Z",
+ "n": 5979,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49518,6 +49518,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu&sz=w1000",
    "tags": [
     "Fantasía"
@@ -49529,6 +49530,50 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-VmwBC6fYxW-QTf5e1910hzkmmchf",
+   "t": "Rompe Ralph",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1-VmwBC6fYxW-QTf5e1910hzkmmchfonr&sz=w1000",
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
+   "at": 1791472295145,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-VmwBC6fYxW-QTf5e1910hzkmmchfonr/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1McZFJetkTwFAb2kHR_df-_y13wP7Z",
+   "t": "El Mejor Verano De Mi Vida",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1McZFJetkTwFAb2kHR_df-_y13wP7ZLIC&sz=w1000",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791472375493,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1McZFJetkTwFAb2kHR_df-_y13wP7ZLIC/view"
     }
    ]
   }
@@ -59978,10 +60023,10 @@
    "name": "La Kalle",
    "logo": "https://www.tdtparatodos.tv/sites/default/files/la_kalle.png",
    "group": "Música",
-   "url": "https://mdstrm.com/live-stream-playlist/58d191f07290fbb058025843.m3u8",
+   "url": "http://200.122.223.13:55000/play/la-kalle-tdt/index.m3u8",
    "epg": "LaKalle.co",
    "cc": "co",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/g-music"
   },
   {
@@ -61012,10 +61057,10 @@
    "name": "Maria Vision",
    "logo": "https://i.imgur.com/GylOPxE.png",
    "group": "Religioso",
-   "url": "https://1601580044.rsc.cdn77.org/live/_jcn_/amlst:Mariavision/master.m3u8",
+   "url": "http://200.122.223.13:55000/play/a022/index.m3u8",
    "epg": "MariaVision.mx",
    "cc": "mx",
-   "quality": "360p",
+   "quality": "1080p",
    "src": "iptv-org/c-mx"
   },
   {
@@ -68514,10 +68559,10 @@
    "name": "Tele Amiga",
    "logo": "https://i.imgur.com/gBZFZNv.png",
    "group": "Cultura",
-   "url": "https://liveingesta118.cdnmedia.tv/teleamigatvlive/smil:dvrlive.smil/playlist.m3u8",
+   "url": "http://200.122.223.13:55000/play/tele-amiga-ses-6/index.m3u8",
    "epg": "TeleAmiga.co",
    "cc": "co",
-   "quality": "480p",
+   "quality": "720p",
    "src": "iptv-org/c-co"
   },
   {
@@ -70208,7 +70253,7 @@
    "name": "Tigo Sports (Paraguay)",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tigo_Sports_2025.png/960px-Tigo_Sports_2025.png",
    "group": "Deportes",
-   "url": "http://45.170.130.224:8000/play/a04k/index.m3u8?hls",
+   "url": "http://45.134.141.161:2200/ARG/Tigo_Sports/tracks-v1a1/mono.m3u8",
    "epg": "TigoSports.py",
    "cc": "py",
    "quality": "1080p",
@@ -81747,10 +81792,10 @@
    "name": "Republic Bangla",
    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_RSYMDOT_BANGLA/images/LOGO_HD/image.png",
    "group": "Noticias",
-   "url": "https://vg-republictvlive.akamaized.net/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-456368/main.m3u8",
+   "url": "https://streams.tangotv.in/RBANGLA/ORIGIN/index.m3u8",
    "epg": "RepublicBangla.in",
    "cc": "in",
-   "quality": "1080p",
+   "quality": "576p",
    "src": "iptv-org/g-news"
   },
   {
@@ -83890,7 +83935,7 @@
   {
    "id": "tv-arenasport5premium-rs",
    "name": "Arena Sport 5 Premium",
-   "logo": "",
+   "logo": "https://static.wikia.nocookie.net/logopedia/images/d/de/Arena_Sport_5_Premium_%282025%2C_short%29.png/revision/latest?cb=20260619135051",
    "group": "Deportes",
    "url": "https://nl1.nghk.ai/SK2SRHD/index.m3u8",
    "epg": "ArenaSport5Premium.rs",
@@ -86803,17 +86848,6 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-tvmsportplus-mt",
-   "name": "TVMsport+",
-   "logo": "https://i.imgur.com/YIreFti.png",
-   "group": "Deportes",
-   "url": "https://stream.smashmalta.com:25463/live/webplayer/livestream/29.m3u8",
-   "epg": "TVMsportPlus.mt",
-   "cc": "mt",
-   "quality": "1080p",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-tvrsport-ro",
    "name": "TVR Sport",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/TVR_Sport_Logo_2023.svg/960px-TVR_Sport_Logo_2023.svg.png",
@@ -86910,17 +86944,6 @@
    "epg": "TVSWomenSports.us",
    "cc": "us",
    "quality": "720p",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-udar-ru",
-   "name": "UDAR",
-   "logo": "https://mt.media/upload/iblock/2b3/2b3cf99141bf7f99cda377eec62ec084.png",
-   "group": "Deportes",
-   "url": "http://5.188.159.128:8070/udar/index.m3u8",
-   "epg": "UDAR.ru",
-   "cc": "ru",
-   "quality": "1080p",
    "src": "iptv-org/g-sports"
   },
   {
@@ -98948,10 +98971,10 @@
   },
   {
    "id": "tv-4funtv-pl",
-   "name": "4 Fun TV (576i)",
+   "name": "4 Fun TV",
    "logo": "https://i.imgur.com/rI1wo2l.png",
    "group": "Música",
-   "url": "https://stream.4fun.tv:8888/hls/4f_high/index.m3u8",
+   "url": "https://stream.4fun.tv:8888/sd/4fun_sd_high.m3u8",
    "epg": "4FunTV.pl",
    "cc": "pl",
    "quality": "",
@@ -105177,10 +105200,10 @@
    "name": "History TV18 HD",
    "logo": "https://dtil.tmsimg.com/assets/s143133_ld_h15_aa.png?lock=720x540",
    "group": "Documentales",
-   "url": "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelenglish-samsungin/playlist.m3u8",
+   "url": "https://techtraveleat.in/stream.m3u8?id=historytv18eng",
    "epg": "HistoryTV18.in",
    "cc": "in",
-   "quality": "1080p",
+   "quality": "576p",
    "src": "iptv-org/g-doc"
   },
   {
@@ -107175,17 +107198,6 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-axnpoland-pl",
-   "name": "AXN Poland",
-   "logo": "https://i.imgur.com/i5wOhkf.png",
-   "group": "Películas",
-   "url": "https://2203.weebvideo.stream/hls/1288486/s/DI_yOeqLvqKFgnP7nYS18cjzG8MYtfk13VVnqo8DPkw/current/high/index.m3u8",
-   "epg": "AXNPoland.pl",
-   "cc": "pl",
-   "quality": "",
-   "src": "iptv-org/g-movies"
-  },
-  {
    "id": "tv-musicbox80s-cz",
    "name": "Music Box 80s",
    "logo": "https://musicboxtv.net/logo_music_box_80s.png",
@@ -108845,6 +108857,226 @@
    "cc": "pl",
    "quality": "",
    "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-aztecauno-mx",
+   "name": "Azteca Uno",
+   "logo": "https://i.imgur.com/rRxgBtI.png",
+   "group": "General",
+   "url": "http://38.44.109.41:8003/play/a033/index.m3u8",
+   "epg": "AztecaUno.mx",
+   "cc": "mx",
+   "quality": "1080p",
+   "src": "iptv-org/c-mx"
+  },
+  {
+   "id": "tv-cartoonnetworklatinamerica-us",
+   "name": "Cartoon Network Latin America South Atlantic",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/960px-Cartoon_Network_2010_logo.svg.png",
+   "group": "Animation;Kids",
+   "url": "http://158.172.217.18:8000/play/a03a/index.m3u8",
+   "epg": "CartoonNetworkLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-anime"
+  },
+  {
+   "id": "tv-cinemax-us",
+   "name": "Cinemax West",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Cinemax_2016.svg/960px-Cinemax_2016.svg.png",
+   "group": "Películas",
+   "url": "http://23.237.104.106:8080/USA_CINEMAX_WEST/index.m3u8",
+   "epg": "Cinemax.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-cinemaxlatinamerica-us",
+   "name": "Cinemax Latin America HD",
+   "logo": "https://i.imgur.com/cZWoJWD.png",
+   "group": "Películas",
+   "url": "http://38.65.175.84:8000/play/a093/index.m3u8",
+   "epg": "CinemaxLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-discoverychannellatinamerica-us",
+   "name": "Discovery Channel Latin America",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2019_Discovery_logo.svg/960px-2019_Discovery_logo.svg.png",
+   "group": "Entretenimiento",
+   "url": "http://45.171.64.30:6060/play/a032/index.m3u8",
+   "epg": "DiscoveryChannelLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/c-pe"
+  },
+  {
+   "id": "tv-discoverykidslatinamerica-us",
+   "name": "Discovery Kids Latin America Mexico",
+   "logo": "",
+   "group": "Infantil",
+   "url": "http://38.65.175.84:8000/play/a0an/index.m3u8",
+   "epg": "DiscoveryKidsLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-investigationdiscoverylatinamerica-us",
+   "name": "Investigation Discovery Latin America South",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/InvestigationDiscoveryLogo2020.svg/960px-InvestigationDiscoveryLogo2020.svg.png",
+   "group": "Documentales",
+   "url": "http://38.65.175.84:8000/play/a0ch/index.m3u8",
+   "epg": "InvestigationDiscoveryLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-tbs-us",
+   "name": "TBS",
+   "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/TBS_2020.svg/960px-TBS_2020.svg.png",
+   "group": "General",
+   "url": "http://193.254.245.162/TBS/index.m3u8",
+   "epg": "TBS.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/spa"
+  },
+  {
+   "id": "tv-tcmlatinamerica-us",
+   "name": "TCM Latin America South",
+   "logo": "https://i.imgur.com/QpDkrmT.png",
+   "group": "Otros",
+   "url": "http://45.171.64.30:6060/play/a014/index.m3u8",
+   "epg": "TCMLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/c-ar"
+  },
+  {
+   "id": "tv-tnt-us",
+   "name": "TNT (United States)",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/TNT_Logo_2016.svg/960px-TNT_Logo_2016.svg.png",
+   "group": "General",
+   "url": "http://193.254.245.162/TNT-HD/index.m3u8",
+   "epg": "TNT.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/spa"
+  },
+  {
+   "id": "tv-tntlatinamerica-us",
+   "name": "TNT Latin America",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/TNT_Logo_2016.svg/960px-TNT_Logo_2016.svg.png",
+   "group": "Otros",
+   "url": "http://45.171.64.30:6060/play/a03i/index.m3u8",
+   "epg": "TNTLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/c-ve"
+  },
+  {
+   "id": "tv-tntserieslatinamerica-us",
+   "name": "TNT Series Latin America",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/7/75/TNT_Series_Logo_2016.png",
+   "group": "Series",
+   "url": "http://168.196.127.137:6001/play/a095/index.m3u8",
+   "epg": "TNTSeriesLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-tooncast-us",
+   "name": "Tooncast",
+   "logo": "https://i.imgur.com/3yXRbQy.png",
+   "group": "Animation;Kids",
+   "url": "http://38.134.250.110:8000/play/a01t/index.m3u8",
+   "epg": "Tooncast.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-anime"
+  },
+  {
+   "id": "tv-tves-ve",
+   "name": "TVes",
+   "logo": "https://i.imgur.com/QX5DVUB.png",
+   "group": "General",
+   "url": "https://vs20.live.opencaster.com/tves_5fd18b1e/index.m3u8",
+   "epg": "TVes.ve",
+   "cc": "ve",
+   "quality": "1080p",
+   "src": "iptv-org/c-ve"
+  },
+  {
+   "id": "tv-raizaltv-co",
+   "name": "Raizal TV",
+   "logo": "https://i.imgur.com/qWNSxq8.png",
+   "group": "Cultura",
+   "url": "http://200.122.223.13:55000/play/raizal-tv-ses-6/index.m3u8",
+   "epg": "RaizalTV.co",
+   "cc": "co",
+   "quality": "1080p",
+   "src": "iptv-org/c-co"
+  },
+  {
+   "id": "tv-dongguancomprehensivenewschannel-cn",
+   "name": "Dongguan Comprehensive News Channel",
+   "logo": "https://www.tvchinese.net/uploads/tv/dgtv1.jpg",
+   "group": "Noticias",
+   "url": "https://stream.sun0769.com/dgrtv1/mp4tv1_800/index.m3u8",
+   "epg": "DongguanComprehensiveNewsChannel.cn",
+   "cc": "cn",
+   "quality": "",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-militaryhistory-us",
+   "name": "Military History",
+   "logo": "https://i.imgur.com/S1SnpoA.png",
+   "group": "Documentales",
+   "url": "https://frndly.keralive.workers.dev/v1/master/840a24ccd7c75076211d060179b3ad0c64fdc6ca/militaryhistory_live_nr/ab44a8245afe413db1169317ee5cda08/index.m3u8?type=ae2",
+   "epg": "MilitaryHistory.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-tvmsportplus-mt",
+   "name": "TVMsport+",
+   "logo": "https://i.imgur.com/YIreFti.png",
+   "group": "Deportes",
+   "url": "https://stream.smashmalta.com:25463/live/webplayer/livestream/29.m3u8",
+   "epg": "TVMsportPlus.mt",
+   "cc": "mt",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-udar-ru",
+   "name": "UDAR",
+   "logo": "https://mt.media/upload/iblock/2b3/2b3cf99141bf7f99cda377eec62ec084.png",
+   "group": "Deportes",
+   "url": "http://5.188.159.128:8070/udar/index.m3u8",
+   "epg": "UDAR.ru",
+   "cc": "ru",
+   "quality": "1080p",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-axnpoland-pl",
+   "name": "AXN Poland",
+   "logo": "https://i.imgur.com/i5wOhkf.png",
+   "group": "Películas",
+   "url": "https://2203.weebvideo.stream/hls/1288486/s/DI_yOeqLvqKFgnP7nYS18cjzG8MYtfk13VVnqo8DPkw/current/high/index.m3u8",
+   "epg": "AXNPoland.pl",
+   "cc": "pl",
+   "quality": "",
+   "src": "iptv-org/g-movies"
   },
   {
    "id": "tv-azcinema-mx",
@@ -200922,6 +201154,21 @@
    "dest": "#/pelicula/la-gran-aventura-de-pee-wee",
    "t": "La gran aventura de Pee-wee",
    "at": 1791467903498
+  },
+  "pg6n3v": {
+   "dest": "#/pelicula/el-mago-de-oz",
+   "t": "El Mago de Oz",
+   "at": 1791468910601
+  },
+  "xhf6hg": {
+   "dest": "#/pelicula/rompe-ralph",
+   "t": "Rompe Ralph",
+   "at": 1791472420620
+  },
+  "dfb29d": {
+   "dest": "#/pelicula/el-mejor-verano-de-mi-vida",
+   "t": "El Mejor Verano De Mi Vida",
+   "at": 1791472420620
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -200935,5 +201182,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "UwJDlOEDOhZV7+UH0odmGuJ/pOmX2LdFxWaoNF0m+YVW3qbe7FaMdOFymUOmuoHw3vF3EzmLl8LuCnJMg71RWw=="
+ "sig": "kEh//U0BCFvbnJw8kSNSysLMRvfLFa7pZI81Cx/VyzhnkIx7CcWUZTleEYi6Lhp2rqAnwntPz9LKL7BXurKFhg=="
 }
