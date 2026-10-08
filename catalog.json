@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791499933696,
+ "v": 1791500545326,
  "by": "MortosPr #2968",
- "at": "2026-10-08T22:52:13.696Z",
+ "at": "2026-10-08T23:02:25.326Z",
  "n": 6027,
  "series": [
   {
@@ -48498,7 +48498,7 @@
    "g": 1,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://archive.org/services/img/LaHistoriaOficial",
+   "poster": "https://image.tmdb.org/t/p/w500/aUpMovE1AS9UHm893e3YsFLR2aB.jpg",
    "tags": [],
    "at": 1791497688916,
    "episodes": [
@@ -49039,14 +49039,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1NIYIkSv2VaZRRHsOsMNfwWiRkwd5M",
-   "t": "Video externo (renómbrame ✎)",
+   "t": "Prison Break: Evasión final",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1NIYIkSv2VaZRRHsOsMNfwWiRkwd5MNp9&sz=w1000",
-   "tags": [],
+   "poster": "https://image.tmdb.org/t/p/w500/xSpSJJnth3RZ2BL0Eyy9keBE24.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
    "at": 1791499213967,
    "episodes": [
     {
@@ -201225,5 +201228,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "K20Zk3mGczX66ZuqKXxNU9hsCXUv7ipdweJjSCxBgrxnIQswSvoFHKBKLinydoiQBb9Iy5Yqq2vKRJGDiXMlwA=="
+ "sig": "+vlA/o41pqHuzXzd91ECjNCx6yh+YUe47sdLyHBQ3o2j9wTXcpf42xmAsPVUysC3fAY6JTURG6keDGpyAbDPRg=="
 }
