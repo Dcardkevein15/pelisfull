@@ -7444,7 +7444,8 @@ function showExplainModal() {
       icon: '🪙', title: 'Cómo funcionan las monedas', okLabel: '¡Entendido!',
       sub: `<div style="text-align:left;font-size:12px;line-height:1.7">
         <b style="color:var(--acid)">🪙 ${cfg.dailyCoins} monedas gratis cada día</b><br>
-        Se renuevan cada 24 horas — no se acumulan.<br><br>
+        Se repone a ${cfg.dailyCoins} cada 24h (la parte no gastada no se acumula).<br>
+        <b style="color:#8aff8a">Las que ganas con 📺 anuncios son TUYAS para siempre</b> — jamás se reinician.<br><br>
         <b style="color:var(--acid)">📺 Precios:</b><br>
         · Capítulo anime/hentai: <b>${cfg.priceAnime} 🪙</b><br>
         · Película: <b>${cfg.priceMovie} 🪙</b><br>

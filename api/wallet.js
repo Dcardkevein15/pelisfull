@@ -109,13 +109,38 @@ module.exports = async function handler(req, res) {
       cfg = await fetchCatalogCfg();
     }
     const today = new Date().toISOString().slice(0, 10);
+    let changed = false;
 
     /* monedero de esta IP + reset diario (SOLO 1 asignación por IP/día) */
     if (!db.wallets[ipKey]) {
-      db.wallets[ipKey] = { coins: 0, day: '', unlocked: {}, adsWatched: 0, totalSpent: 0, totalEarned: 0, createdAt: Date.now() };
+      db.wallets[ipKey] = { coins: 0, day: '', grant: 0, earned: 0, unlocked: {}, adsWatched: 0, totalSpent: 0, totalEarned: 0, createdAt: Date.now() };
     }
     const w = db.wallets[ipKey];
-    if (w.day !== today) { w.day = today; w.coins = cfg.dailyCoins; }
+
+    /* 🧳 MIGRACIÓN de monederos viejos (todo mezclado en coins):
+       🪙 DOS BOLSILLOS — «grant» = la beca diaria (500) que se repone cada
+       día y NO acumula sobras; «earned» = lo ganado con anuncios/regalos,
+       PERMANENTE y jamás tocado por el reset.
+       Para separar retroactivamente: si el monedero tuvo actividad (gastó
+       o ganó), lo que tiene se considera EARNED (regla de oro: NUNCA se
+       quitan monedas ganadas); si nunca se usó, todo es grant sin gastar. */
+    if (w.grant === undefined || w.earned === undefined) {
+      const had = (w.totalSpent || 0) > 0 || (w.totalEarned || 0) > 0 || (w.adsWatched || 0) > 0;
+      w.earned = had ? Math.max(0, w.coins || 0) : 0;
+      w.grant = Math.max(0, (w.coins || 0) - w.earned);
+    }
+
+    if (w.day !== today) {
+      w.day = today;
+      /* la beca se REPONE a su valor (la sobra de ayer NO se acumula) y
+         lo ganado se conserva SIEMPRE:
+         · tenía 200 (beca sin gastar)      → 500  (se completa la beca)
+         · tenía 600 (beca 500 + 100 ganados) → 600  (beca nueva 500 + 100)
+         · tenía 1000 ganados (beca gastada)  → 1500 (beca nueva + lo ganado) */
+      w.grant = cfg.dailyCoins;
+      w.coins = (w.grant || 0) + (w.earned || 0);
+      changed = true;   /* persistir la asignación del día */
+    }
 
     const priceOf = (kind) => kind === 'pelicula' ? cfg.priceMovie : cfg.priceAnime;
     const isUnlockedSrv = (key) => {
@@ -123,8 +148,7 @@ module.exports = async function handler(req, res) {
       return ts > 0 && (Date.now() - ts) < cfg.unlockDays * 86400000;
     };
 
-    let changed = false;
-    let resp = { ok: true, coins: w.coins, cfg };
+    let resp = { ok: true, coins: w.coins, cfg, grant: w.grant, earned: w.earned };
 
     if (op === 'state' || op === '') {
       const now = Date.now(); const unlockLeft = {};
@@ -132,7 +156,7 @@ module.exports = async function handler(req, res) {
         const left = Math.ceil((cfg.unlockDays * 86400000 - (now - ts)) / 86400000);
         if (left > 0) unlockLeft[k] = left;
       }
-      resp = { ok: true, coins: w.coins, cfg, day: w.day, unlockedCount: Object.keys(unlockLeft).length, unlockLeft };
+      resp = { ok: true, coins: w.coins, cfg, day: w.day, grant: w.grant, earned: w.earned, unlockedCount: Object.keys(unlockLeft).length, unlockLeft };
     }
 
     else if (op === 'init') {
@@ -158,11 +182,18 @@ module.exports = async function handler(req, res) {
       } else if (w.coins < price) {
         resp = { ok: false, reason: 'no-coins', coins: w.coins, price };
       } else {
-        w.coins -= price;
+        /* se gasta PRIMERO la beca del día; las ganadas solo si la beca
+           no alcanza — así el dinero gratis se consume antes que el
+           que el usuario se ganó viendo anuncios                      */
+        const fromGrant = Math.min(price, w.grant || 0);
+        const fromEarned = price - fromGrant;
+        w.grant = (w.grant || 0) - fromGrant;
+        if (fromEarned > 0) w.earned = Math.max(0, (w.earned || 0) - fromEarned);
+        w.coins = (w.grant || 0) + (w.earned || 0);
         w.totalSpent = (w.totalSpent || 0) + price;
         w.unlocked[key] = Date.now();
         changed = true;
-        resp = { ok: true, unlocked: true, coins: w.coins, price };
+        resp = { ok: true, unlocked: true, coins: w.coins, price, fromGrant, fromEarned };
       }
     }
 
@@ -173,7 +204,10 @@ module.exports = async function handler(req, res) {
         resp = { ok: false, reason: 'ads-limit', coins: w.coins };
       } else {
         w.adsDay = today; w.adsToday = adsToday + 1;
-        w.coins += cfg.adReward;
+        /* lo ganado con anuncios va al bolsillo PERMANENTE — el reset
+           diario jamás lo toca                                             */
+        w.earned = (w.earned || 0) + cfg.adReward;
+        w.coins = (w.grant || 0) + (w.earned || 0);
         w.adsWatched = (w.adsWatched || 0) + 1;
         w.totalEarned = (w.totalEarned || 0) + cfg.adReward;
         changed = true;
