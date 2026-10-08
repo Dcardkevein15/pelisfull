@@ -4657,12 +4657,16 @@ const DRIVE_PROXIES = [
   u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
   u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
   u => `https://api.cors.lol/?url=${encodeURIComponent(u)}`,
+  u => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+  u => `https://test.cors.workers.dev/?${u}`,
   u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`, // envuelve en JSON
+  u => `https://whateverorigin.org/get?url=${encodeURIComponent(u)}`,  // envuelve en JSON
+  u => `https://cors.isomorphic-git.org/${u}`,
 ];
 async function fetchTextViaProxies(url) {
   const problemas = [];
   for (const wrap of DRIVE_PROXIES) {
-    for (let intento = 1; intento <= 2; intento++) {
+    for (let intento = 1; intento <= 3; intento++) {
       try {
         const ctrl = new AbortController();
         const to = setTimeout(() => ctrl.abort(), 20000);
@@ -5379,17 +5383,37 @@ async function importFromUrl() {
   }
 }
 
-/* ═══════════════ 📦 COLA DE IMPORTACIÓN EN SEGUNDO PLANO ═══════════════
-   Pega N enlaces → se encolan → procesa uno por uno sin bloquear la
-   navegación → dedup automático → al terminar PUBLICA el catálogo y
-   muestra una notificación con sonido. La cola persiste en localStorage
-   (si cierras la pestaña, al volver retoma donde iba).                    */
+/* ═══════════════ 📦 COLA DE IMPORTACIÓN EN LA NUBE ═══════════════
+   Pega N enlaces → cola persistente (localStorage + GitHub rama
+   chat-data) → el trabajo lo hace GitHub Actions EN LA NUBE (puedes
+   apagar el celular) con reintentos automáticos; la web local actúa
+   de respaldo mientras esté abierta → dedup → sagas → al terminar
+   VENTANA DE REVISIÓN OBLIGATORIA (miniaturas + editar títulos ahí
+   mismo) → SOLO al guardar se publica el catálogo.                     */
 const IQ_KEY = 'xstream-import-queue';
+const IQ_REMOTE_URL = 'https://raw.githubusercontent.com/Dcardkevein15/pelisfull/chat-data/import-queue.json';
+const IQ_MAX_ATTEMPTS = 6;
+const IQ_BACKOFF = [2 * 60e3, 5 * 60e3, 15 * 60e3, 60 * 60e3, 4 * 3600e3, 24 * 3600e3];
 let importQueue = [];
 let importRunning = false;
 let iqBackground = false;   /* true mientras la cola trabaja: los import NO roban el foco */
+let iqMerged = 0;
 try { importQueue = JSON.parse(localStorage.getItem(IQ_KEY) || '[]'); } catch (e) { importQueue = []; }
 const iqPersist = () => { try { localStorage.setItem(IQ_KEY, JSON.stringify(importQueue)); } catch (e) { } };
+
+/* ⚠ explicación de errores: POR QUÉ pasó + CÓMO solucionarlo */
+function iqExplainError(raw) {
+  const s = String(raw || '');
+  if (/saturados|lectores/i.test(s)) return { why: 'Los lectores públicos gratuitos de Drive están ocupados (demasiado tráfico a la vez).', fix: 'Tranquilo: se reintenta solo en minutos. Para que NUNCA falle usa la ☁ nube (GitHub) o la API key gratis de Drive en «⚙ Avanzado».' };
+  if (/\b(429|502|503)\b/.test(s)) return { why: 'El servidor que lee Drive está ocupado (HTTP ' + s.match(/\b(429|502|503)\b/)[0] + ').', fix: 'Reintento automático en marcha — con ☁ nube o API key no ocurre.' };
+  if (/privada|públic|403|compartir/i.test(s)) return { why: 'La carpeta de Drive NO es pública: Drive no deja leerla.', fix: 'Drive → clic derecho en la carpeta → Compartir → General access → «Cualquiera con el enlace».' };
+  if (/404|no se encontraron|vacía|sin videos/i.test(s)) return { why: 'El enlace está caído o la carpeta no tiene videos.', fix: 'Abre el enlace en el navegador: si se borró o cambió, pega el enlace nuevo.' };
+  if (/timeout|abort/i.test(s)) return { why: 'La conexión tardó demasiado.', fix: 'Reintento automático. Si se repite, ☁ nube o API key lo resuelven.' };
+  if (/TOKEN/i.test(s)) return { why: 'Tu token de GitHub expiró o fue revocado.', fix: 'GitHub → Settings → Developer settings → Tokens (classic) → genera uno con scope «repo» y pégalo al publicar.' };
+  if (/sin red|failed to fetch|network/i.test(s)) return { why: 'Sin conexión a internet.', fix: 'Se reintenta solo en cuanto haya red (la ☁ nube sigue aunque apagues el celular).' };
+  if (/mega.*carpet/i.test(s)) return { why: 'Mega cifra las carpetas dentro del propio enlace — ninguna app web puede leerlas.', fix: 'Pega archivos de Mega uno a uno, o usa carpetas de Google Drive.' };
+  return { why: s.slice(0, 160) || 'Error desconocido.', fix: 'Se reintenta solo. Si persiste, verifica el enlace en el navegador.' };
+}
 
 /* extraer todos los enlaces del textarea (uno por línea o separados) */
 function parseImportLinks(text) {
@@ -5450,19 +5474,36 @@ function findSagaRoot(title) {
   return state.series.find(s => normTitle(s.t) === normTitle(root) && s.kind === 'pelicula') || null;
 }
 
-/* ⏳ pila flotante con progreso */
+/* ⏳ pila flotante: progreso mientras importa · 🎬 aviso de revisión pendiente */
 function renderQueuePill() {
   const pill = document.getElementById('importQueuePill');
   const lbl = document.getElementById('iqLabel');
   const cnt = document.getElementById('iqCount');
   if (!pill || !lbl || !cnt) return;
-  const next = importQueue.find(q => q.status === 'queued');
-  if (!importRunning || !next) { pill.classList.add('hidden'); return; }
-  const idx = importQueue.indexOf(next);
-  pill.classList.remove('hidden');
-  lbl.textContent = 'Importando en 2º plano…';
-  cnt.textContent = `${idx + 1}/${importQueue.length}`;
+  const next = importQueue.find(q => q.status === 'queued' && (q.nextRetryAt || 0) <= Date.now());
+  if (importRunning && next) {
+    const idx = importQueue.indexOf(next);
+    pill.classList.remove('hidden');
+    pill.classList.remove('review-mode');
+    pill.querySelector('.iq-spin').textContent = '⏳';
+    lbl.textContent = 'Importando en 2º plano…';
+    cnt.textContent = `${idx + 1}/${importQueue.length}`;
+    return;
+  }
+  const pendReview = importQueue.filter(q => q.status === 'done').length;
+  if (pendReview) {
+    pill.classList.remove('hidden');
+    pill.classList.add('review-mode');
+    pill.querySelector('.iq-spin').textContent = '🎬';
+    lbl.textContent = `${pendReview} listo${pendReview > 1 ? 's' : ''} para revisar — clic aquí`;
+    cnt.textContent = 'REVISAR';
+    return;
+  }
+  pill.classList.add('hidden');
 }
+document.getElementById('importQueuePill')?.addEventListener('click', () => {
+  if (importQueue.some(q => q.status === 'done')) iqOpenReview();
+});
 
 /* 🔊 sonido de notificación ( generado con WebAudio — sin archivos ) */
 function playDoneSound() {
@@ -5488,19 +5529,20 @@ function playDoneSound() {
 /* 🔢 nº de parte de una saga («Parte 3», «Part III»…) */
 const romanToInt = r => { const map = { i: 1, ii: 2, iii: 3, iv: 4, v: 5, vi: 6, vii: 7, viii: 8, ix: 9, x: 10 }; return map[String(r).toLowerCase()] || parseInt(r) || 0; };
 
-/* ▶️ procesador de la cola: un enlace a la vez, sin bloquear la navegación.
-   Dedup automático por título normalizado y detección de sagas al final. */
+/* ▶️ procesador LOCAL (respaldo de la nube): un enlace a la vez, con
+   reintentos automáticos (backoff 2m→5m→15m→1h→4h→24h) y dedup.       */
 async function processImportQueue() {
   if (importRunning) return;
   /* sin sesión del equipo la cola queda congelada (retoma al volver) */
   if (!canAdmin()) return;
+  if (!importQueue.some(q => q.status === 'queued' && (q.nextRetryAt || 0) <= Date.now())) return;
   importRunning = true;
   iqBackground = true;
   let processedAny = false;
   const createdMovies = [];   /* películas creadas en la tanda → detección de sagas */
   try {
     while (true) {
-      const next = importQueue.find(q => q.status === 'queued');
+      const next = importQueue.find(q => q.status === 'queued' && (q.nextRetryAt || 0) <= Date.now());
       if (!next) break;
       renderQueuePill();
       /* instantánea ANTES: ids + firma (título|nº episodios) de cada serie */
@@ -5528,6 +5570,7 @@ async function processImportQueue() {
       if (kept.length) {
         next.status = 'done';
         next.name = kept.map(s => s.t).join(' · ');
+        next.payload = kept.map(s => JSON.parse(JSON.stringify(s)));
       } else if (dups.length) {
         next.status = 'dup';
         next.name = dups.join(' · ');
@@ -5535,11 +5578,16 @@ async function processImportQueue() {
         next.status = 'done';
         next.name = updated.map(s => s.t).join(' · ');
       } else {
-        next.status = 'error';
-        /* importFromUrl traga el error en el status del modal (oculto): lo recuperamos */
+        /* falló → reintento automático con backoff (o «failed-final» con explicación) */
+        next.attempts = (next.attempts || 0) + 1;
         const st = els.driveStatus.classList.contains('err') ? (els.driveStatus.innerText || '').trim() : '';
         next.error = (st && st.length < 200) ? st : 'no se pudo importar (¿enlace caído o carpeta privada?)';
-        next.name = '';
+        if (next.attempts >= IQ_MAX_ATTEMPTS) {
+          next.status = 'failed-final';
+        } else {
+          next.status = 'queued';
+          next.nextRetryAt = Date.now() + IQ_BACKOFF[Math.min(next.attempts - 1, IQ_BACKOFF.length - 1)];
+        }
       }
       processedAny = processedAny || next.status === 'done' || next.status === 'dup';
       iqPersist();
@@ -5553,16 +5601,17 @@ async function processImportQueue() {
     iqBackground = false;
     renderQueuePill();
     iqPersist();
+    iqSyncRemote();
   }
-  /* 🎉 ¿terminó la tanda? → notificar + publicar */
+  /* 🎉 ¿terminó la tanda? → notificar (la publicación espera la REVISIÓN) */
   if (processedAny) {
     els.modalDrive.classList.add('hidden');
     showImportDone();
   }
+  iqScheduleRetry();
 }
 
 /* 🔗 fusiona películas «Título Parte N» con su raíz en UNA entrada con todas las partes */
-let iqMerged = 0;
 function mergeImportedSagas(newMovies) {
   const sagaMovies = newMovies.filter(m => SAGA_RE.test(m.t) && state.series.includes(m));
   if (!sagaMovies.length) return 0;
@@ -5609,53 +5658,55 @@ function mergeImportedSagas(newMovies) {
   return merged;
 }
 
-/* 🎉 modal de importación completada */
+/* 🎉 modal de importación completada — la publicación espera la REVISIÓN obligatoria */
 function showImportDone() {
   const modal = document.getElementById('modalImportDone');
   const summary = document.getElementById('importDoneSummary');
   const list = document.getElementById('importDoneList');
   const dups = document.getElementById('importDoneDups');
+  const retryBtn = document.getElementById('importDoneRetry');
   if (!modal) return;
   const done = importQueue.filter(q => q.status === 'done');
-  const errors = importQueue.filter(q => q.status === 'error');
+  const errors = importQueue.filter(q => q.status === 'queued' && q.attempts > 0);
+  const finals = importQueue.filter(q => q.status === 'failed-final');
   const dupsFound = importQueue.filter(q => q.status === 'dup');
   summary.innerHTML = done.length
     ? `<b style="color:var(--acid)">${done.length} enlace${done.length > 1 ? 's' : ''} importado${done.length > 1 ? 's' : ''} correctamente</b>`
-      + (errors.length ? ` · <b style="color:#ff9460">${errors.length} con error</b>` : '')
       + (dupsFound.length ? ` · <b style="color:var(--dim)">${dupsFound.length} duplicado${dupsFound.length > 1 ? 's' : ''} eliminado${dupsFound.length > 1 ? 's' : ''}</b>` : '')
       + (iqMerged ? ` · <b style="color:#7ec8ff">🔗 ${iqMerged} parte${iqMerged > 1 ? 's' : ''} unida${iqMerged > 1 ? 's' : ''} a su saga</b>` : '')
-      + `<br><small style="color:var(--dim)">Publicando el catálogo automáticamente…</small>`
-    : 'No se importó nada nuevo.';
+      + (errors.length ? ` · <b style="color:#ff9460">${errors.length} reintentando…</b>` : '')
+      + (finals.length ? ` · <b style="color:#ff5c5c">${finals.length} fallido${finals.length > 1 ? 's' : ''}</b>` : '')
+      + `<br><small style="color:var(--dim)">⚠ Obligatorio revisar los títulos antes de publicar en la web.<br>La ☁ nube sigue reintentando los fallidos sola.</small>`
+    : (finals.length || errors.length
+      ? '<b style="color:#ff9460">Nada importado todavía</b><br><small style="color:var(--dim)">Los enlaces fallidos se reintentan automáticamente (2m→5m→15m→1h→4h→24h).</small>'
+      : 'No se importó nada nuevo.');
   if (list) {
     list.innerHTML = '';
-    for (const q of importQueue) {
+    const mkRow = (icon, name, kindTxt, cls, why, fix) => {
       const d = document.createElement('div');
       d.className = 'idl-item';
-      const icon = q.status === 'done' ? '✅' : q.status === 'dup' ? '🗑' : '⚠';
-      const kind = q.status === 'dup' ? 'DUPLICADO' : q.status === 'done' ? 'OK'
-        : (q.error || 'ERROR').replace(/\s+/g, ' ').slice(0, 30);
-      const cls = q.status === 'dup' ? 'idl-dup' : q.status === 'error' ? 'idl-dup' : 'idl-kind';
-      d.innerHTML = `<span>${icon}</span><b>${escapeHtml((q.name || q.url || '').slice(0, 40))}</b><span class="${cls}">${escapeHtml(kind)}</span>`;
+      d.innerHTML = `<span>${icon}</span><b>${escapeHtml((name || '').slice(0, 46))}</b><span class="${cls}">${escapeHtml(kindTxt.slice(0, 30))}</span>`
+        + (why ? `<div class="idl-why">⚠ ${escapeHtml(why)}<br>💡 ${escapeHtml(fix || '')}</div>` : '');
       list.appendChild(d);
+    };
+    for (const q of importQueue) {
+      if (q.status === 'done') mkRow('✅', q.name || q.url, 'LISTO PARA REVISAR', 'idl-kind');
+      else if (q.status === 'dup') mkRow('🗑', q.name || q.url, 'DUPLICADO', 'idl-dup');
+      else if (q.status === 'failed-final') { const ex = iqExplainError(q.error); mkRow('⛔', q.name || q.url, 'FALLIDO', 'idl-dup', ex.why, ex.fix); }
+      else if (q.status === 'queued' && q.attempts > 0) { const ex = iqExplainError(q.error); mkRow('⏳', q.name || q.url, `REINTENTO ${q.attempts}/${IQ_MAX_ATTEMPTS}`, 'idl-dup', ex.why, ex.fix); }
+      else if (q.status === 'queued') mkRow('…', q.url, 'EN COLA', 'idl-dup');
     }
   }
   if (dups) {
     if (dupsFound.length) {
       dups.classList.remove('hidden');
-      dups.textContent = `🗑 ${dupsFound.length} duplicado${dupsFound.length > 1 ? 's' : ''} detectado${dupsFound.length > 1 ? 's' : ''} y eliminado${dupsFound.length > 1 ? 's' : ''} automáticamente — ya existían en tu biblioteca.`;
+      dups.textContent = `🗑 ${dupsFound.length} duplicado${dupsFound.length > 1 ? 's' : ''} detectado${dupsFound.length > 1 ? 's' : ''} y eliminado${dupsFound.length > 1 ? 's' : ''} — ya existían en tu biblioteca.`;
     } else { dups.classList.add('hidden'); }
   }
+  if (retryBtn) retryBtn.classList.toggle('hidden', !(finals.length || errors.length));
   modal.classList.remove('hidden');
+  renderQueuePill();
   playDoneSound();
-  /* auto-publicar el catálogo tras importar */
-  setTimeout(() => {
-    if (window.XAUTH && XAUTH.publishCatalog) {
-      try { XAUTH.publishCatalog(); } catch (e) { }
-    }
-  }, 2000);
-  /* limpiar la cola tras mostrar el resultado */
-  importQueue = [];
-  iqPersist();
 }
 
 /* botones del modal de completado */
@@ -5664,12 +5715,27 @@ document.getElementById('importDoneClose')?.addEventListener('click', () => {
 });
 document.getElementById('importDoneView')?.addEventListener('click', () => {
   document.getElementById('modalImportDone').classList.add('hidden');
-  const first = state.series.find(s => freshIds.has(s.id));
-  if (first) selectSeries(first.id);
+  iqOpenReview();
+});
+document.getElementById('importDoneRetry')?.addEventListener('click', async () => {
+  /* reintento manual AHORA: reinicia los contadores de los fallidos */
+  let n = 0;
+  for (const q of importQueue) {
+    if (q.status === 'failed-final' || (q.status === 'queued' && (q.attempts || 0) > 0)) {
+      q.status = 'queued'; q.nextRetryAt = 0; q.attempts = 0; n++;
+    }
+  }
+  if (!n) return;
+  iqPersist();
+  await iqSyncRemote();
+  const disp = await iqDispatchCloud();
+  toast(disp.ok ? `☁ ${n} enlace${n > 1 ? 's' : ''} reintentando en la nube` : `🔁 ${n} enlace${n > 1 ? 's' : ''} reintentando localmente`);
+  document.getElementById('modalImportDone').classList.add('hidden');
+  processImportQueue();
 });
 
-/* ⚡ botón Importar: ahora encola TODOS los enlaces del textarea */
-els.confirmDrive.addEventListener('click', () => {
+/* ⚡ botón Importar: encola TODO y lo manda a la ☁ NUBE (GitHub Actions) */
+els.confirmDrive.addEventListener('click', async () => {
   if (!needAdmin()) return;
   const text = els.driveFolderUrl.value;
   const links = parseImportLinks(text);
@@ -5677,26 +5743,327 @@ els.confirmDrive.addEventListener('click', () => {
   const invalid = links.filter(l => !l.type);
   if (!links.length) { setDriveStatus('⚠ Pega al menos un enlace.', 'err'); return; }
   if (!valid.length) { setDriveStatus('⚠ Ningún enlace reconocido.\nSoportados: Drive (archivo/carpeta), Streamtape /v/ o /e/, Mega archivo, enlace directo.', 'err'); return; }
-  /* encolar */
+  /* encolar (con campos de reintento) */
   for (const l of valid) {
-    importQueue.push({ url: l.url, type: l.type, status: 'queued', name: '', error: '' });
+    importQueue.push({ url: l.url, type: l.type, status: 'queued', name: '', error: '', attempts: 0, nextRetryAt: 0, addedAt: Date.now(), payload: null });
   }
   iqPersist();
-  /* cerrar el modal — la cola sigue en segundo plano */
   els.modalDrive.classList.add('hidden');
-  toast(`⏳ ${valid.length} enlace${valid.length > 1 ? 's' : ''} en cola — puedes seguir navegando, te aviso al terminar`);
   if (invalid.length) toast(`⚠ ${invalid.length} enlace${invalid.length > 1 ? 's' : ''} no reconocido${invalid.length > 1 ? 's' : ''} — saltado${invalid.length > 1 ? 's' : ''}`, true);
-  /* arrancar el procesador (si no está corriendo ya) */
+  /* ☁ 1. sincroniza la cola a GitHub (rama chat-data) 2. dispara el workflow.
+     Si algo falla → respaldo local en 2º plano.                          */
+  const synced = await iqSyncRemote();
+  if (synced) {
+    const disp = await iqDispatchCloud();
+    if (disp.ok) {
+      toast(`☁ ${valid.length} enlace${valid.length > 1 ? 's' : ''} importándose EN LA NUBE — puedes APAGAR el celular y descansar tranquilo`);
+      renderQueuePill();
+      return;
+    }
+    const ex = iqExplainError(disp.reason);
+    toast(`☁ Nube no disponible: ${ex.why} — importando localmente`, true);
+  } else {
+    toast(`⏳ ${valid.length} enlace${valid.length > 1 ? 's' : ''} en cola — procesando en 2º plano local`);
+  }
   processImportQueue();
 });
 
-/* reanudar la cola si quedó pendiente de una visita anterior */
-if (importQueue.some(q => q.status === 'queued')) {
-  setTimeout(() => {
-    toast('⏳ Retomando importación pendiente…');
-    processImportQueue();
-  }, 4000);
+/* ☁ sincroniza la cola con GitHub (rama chat-data — no dispara redeploys) */
+async function iqSyncRemote() {
+  if (!window.XAUTH || !XAUTH.ghWriteFile) return false;
+  try {
+    const r = await XAUTH.ghWriteFile('import-queue.json', { v: 1, at: Date.now(), queue: importQueue }, '⏳ cola de importación', 'chat-data');
+    return !!(r && r.ok);
+  } catch (e) { return false; }
 }
+async function iqDispatchCloud() {
+  if (!window.XAUTH || !XAUTH.ghDispatchWorkflow) return { ok: false, reason: 'sin XAUTH' };
+  return XAUTH.ghDispatchWorkflow();
+}
+
+/* 🛰 trae la cola de la nube: adopta lo procesado mientras estabas fuera
+   (incluso desde otro dispositivo) y los reintentos pendientes.           */
+async function iqPollRemote() {
+  try {
+    const r = await fetch(IQ_REMOTE_URL + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) return;
+    const data = await r.json();
+    const remote = (data && data.queue) || [];
+    let changed = false;
+    const newDone = [];
+    for (const rq of remote) {
+      if (!['done', 'failed-final', 'queued', 'published', 'dup'].includes(rq.status)) continue;
+      const lq = importQueue.find(q => q.url === rq.url);
+      if (!lq) {
+        /* nació en la nube u otro dispositivo → adoptar tal cual */
+        importQueue.push(rq);
+        changed = true;
+        if (rq.status === 'done' && rq.payload && rq.payload.length) newDone.push(rq);
+        continue;
+      }
+      if (lq.status === 'published') continue;
+      if ((lq.status || '') !== (rq.status || '')) {
+        lq.status = rq.status;
+        lq.name = rq.name || lq.name;
+        lq.error = rq.error || lq.error;
+        lq.attempts = Math.max(lq.attempts || 0, rq.attempts || 0);
+        lq.nextRetryAt = rq.nextRetryAt || lq.nextRetryAt;
+        lq.payload = rq.payload || lq.payload;
+        changed = true;
+        if (rq.status === 'done' && rq.payload && rq.payload.length) newDone.push(lq);
+      }
+    }
+    if (changed) iqPersist();
+    if (newDone.length) iqAdoptCloud(newDone);
+  } catch (e) { /* sin red o aún no existe el archivo: silencio */ }
+}
+
+/* 🛬 aplica a TU biblioteca lo que la nube importó (idempotente por id) */
+function iqAdoptCloud(items) {
+  const applied = [];
+  for (const q of items) {
+    for (const s of (q.payload || [])) {
+      const live = getSeries(s.id);
+      if (live) {
+        /* ya estaba (importado local antes): actualiza episodios/título */
+        live.t = s.t || live.t;
+        if ((s.episodes || []).length > (live.episodes || []).length) live.episodes = s.episodes;
+        if (s.genre && !live.genre) applyMovieGenre(live, s.genre);
+        if (s.poster && !live.poster) live.poster = s.poster;
+      } else {
+        state.series.push(s);
+        freshIds.add(s.id);
+        applied.push(s);
+      }
+    }
+  }
+  if (applied.length || items.length) {
+    save();
+    renderSeries(els.searchInput.value);
+    mergeImportedSagas(applied.filter(s => s.kind === 'pelicula'));
+  }
+  showImportDone();
+}
+
+/* ⏰ programa el próximo reintento local exacto */
+let iqRetryTimer = null;
+function iqScheduleRetry() {
+  clearTimeout(iqRetryTimer);
+  const pending = importQueue.filter(q => q.status === 'queued' && (q.nextRetryAt || 0) > Date.now());
+  if (!pending.length) return;
+  const next = Math.min(...pending.map(q => q.nextRetryAt));
+  iqRetryTimer = setTimeout(() => processImportQueue(), Math.max(5000, next - Date.now()));
+}
+
+/* ═══════════════ 🎬 VENTANA DE REVISIÓN OBLIGATORIA (nueva pestaña) ═══════════════
+   Todo lo recién importado pasa por aquí ANTES de publicarse: miniatura,
+   título editable ahí mismo, género, carátula TMDB con un clic, excluir.
+   Solo el botón «Guardar y PUBLICAR» publica el catálogo.                  */
+
+/* datos para la ventana (vía window.opener, mismo origen) */
+function iqReviewData() {
+  const items = [];
+  for (const q of importQueue) {
+    if (q.status !== 'done') continue;
+    for (const s of (q.payload || [])) {
+      const live = getSeries(s.id) || s;
+      items.push({
+        id: live.id, t: live.t, genre: live.genre || null,
+        kind: live.kind || 'pelicula', poster: live.poster || null,
+        eps: (live.episodes || []).length, tag: live.tag || q.type || '', jp: live.jp || '🎬',
+      });
+    }
+  }
+  const genres = MOVIE_GENRES.map(g => ({ id: g.id, label: g.label, icon: g.icon }))
+    .concat((state.customGenres || []).map(g => ({ id: g.id, label: g.label, icon: '⭐' })));
+  return { items, genres };
+}
+
+/* aplicar los cambios y PUBLICAR (el paso que estaba bloqueado) */
+async function iqReviewApply(edits) {
+  /* edits: [{t, genre, remove}] en el MISMO orden que iqReviewData().items */
+  const data = iqReviewData();
+  let changed = 0, removed = 0;
+  for (let i = 0; i < data.items.length && i < edits.length; i++) {
+    const it = data.items[i], e = edits[i];
+    const s = getSeries(it.id);
+    if (!s) continue;
+    if (e.remove) { const ix = state.series.indexOf(s); if (ix > -1) state.series.splice(ix, 1); freshIds.delete(it.id); removed++; continue; }
+    if (e.t && e.t.trim() && e.t.trim() !== s.t) { s.t = e.t.trim().slice(0, 120); changed++; }
+    const g = e.genre || null;
+    if (g !== (s.genre || null)) {
+      if (g) applyMovieGenre(s, g);
+      else s.genre = null;
+      changed++;
+    }
+  }
+  save();
+  renderSeries(els.searchInput.value);
+  /* re-categorizar con TMDB lo que siguió sin género (títulos recién corregidos) */
+  try { await enrichMovieGenresFromTmdb(); } catch (e) { }
+  /* marcar revisado y limpiar payloads (el trabajo ya está en la web) */
+  for (const q of importQueue) {
+    if (q.status === 'done') { q.status = 'published'; q.payload = null; }
+  }
+  iqPersist();
+  await iqSyncRemote();
+  renderQueuePill();
+  let pubOk = false;
+  if (window.XAUTH && XAUTH.publishCatalog) { try { await XAUTH.publishCatalog(); pubOk = true; } catch (e) { } }
+  return { changed, removed, published: pubOk };
+}
+
+/* 🔄 recupera carátula + género reales de TMDB para el título ya corregido */
+async function iqReviewRefresh(id, title) {
+  const s = getSeries(id);
+  if (!s) return { ok: false, msg: 'La entrada ya no existe' };
+  try {
+    const q = encodeURIComponent(String(title || s.t).trim());
+    const r = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY_APP}&language=es-ES&query=${q}&page=1`);
+    if (!r.ok) throw 0;
+    const j = await r.json();
+    const hit = (j.results || [])[0];
+    if (!hit) return { ok: false, msg: 'TMDB no reconoce ese título — pon el género a mano' };
+    if (hit.poster_path) s.poster = 'https://image.tmdb.org/t/p/w500' + hit.poster_path;
+    const d = await fetch(`https://api.themoviedb.org/3/movie/${hit.id}?api_key=${TMDB_KEY_APP}&language=es-ES`).then(x => x.json()).catch(() => null);
+    if (d && d.genres) for (const g of d.genres) { const gid = detectMovieGenre(g.name); if (gid) { applyMovieGenre(s, gid); break; } }
+    save();
+    return { ok: true, poster: s.poster || null, genre: s.genre || null };
+  } catch (e) { return { ok: false, msg: 'Sin conexión con TMDB' }; }
+}
+
+/* puente para la ventana hija (mismo origen → puede usar window.opener) */
+window.iqReview = { data: iqReviewData, apply: iqReviewApply, refresh: iqReviewRefresh };
+
+function iqOpenReview() {
+  const data = iqReviewData();
+  if (!data.items.length) { toast('No hay nada pendiente de revisar'); return; }
+  const w = window.open('', '_blank');
+  if (!w) { toast('⚠ El navegador bloqueó la ventana — permite ventanas emergentes para este sitio', true); return; }
+  const doc = w.document;
+  doc.title = '🎬 Revisar y publicar — X·STREAM';
+  const st = doc.createElement('style');
+  st.textContent = `
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0a0a12;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;padding:0 0 96px}
+    .hd{position:sticky;top:0;z-index:10;background:rgba(10,10,18,.96);backdrop-filter:blur(8px);padding:16px 22px;border-bottom:2px solid #d8ff3e}
+    .hd h1{font-size:16px;letter-spacing:.4px}
+    .hd h1 b{color:#d8ff3e}
+    .hd .sub{font-size:11px;color:#9a9ab0;margin-top:4px;line-height:1.55}
+    .wrap{max-width:980px;margin:0 auto;padding:18px 16px}
+    .card{display:flex;gap:14px;background:#14141f;border:1px solid #26263a;border-radius:14px;padding:12px;margin-bottom:12px;align-items:flex-start;transition:opacity .2s}
+    .card.removing{opacity:.3;filter:grayscale(1)}
+    .thumb{width:92px;height:132px;border-radius:9px;object-fit:cover;background:#1e1e2e;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:34px;border:1px solid #26263a}
+    .col{flex:1;min-width:0}
+    .col input.tt{width:100%;background:#0a0a14;border:1.5px solid #26263a;border-radius:9px;color:#fff;font-size:13.5px;font-weight:700;padding:9px 11px;outline:none;transition:border-color .15s}
+    .col input.tt:focus{border-color:#d8ff3e}
+    .meta{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+    .badge{font-size:10px;font-weight:800;letter-spacing:.4px;padding:3px 9px;border-radius:999px;border:1px solid #3a3a52;color:#b0b0c8;white-space:nowrap}
+    select{background:#0a0a14;border:1.5px solid #26263a;color:#fff;font-size:11.5px;border-radius:9px;padding:6px 9px;outline:none;max-width:190px}
+    .btnrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+    .mbtn{cursor:pointer;border:1px solid #3a3a52;background:#191926;color:#cfcfe4;font-size:11px;font-weight:700;border-radius:9px;padding:6px 11px;transition:all .15s}
+    .mbtn:hover{border-color:#d8ff3e;color:#d8ff3e}
+    .mbtn.del:hover{border-color:#ff5c5c;color:#ff5c5c}
+    .msg{font-size:10.5px;margin-top:2px;display:none}
+    .ft{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,18,.97);border-top:2px solid #d8ff3e;padding:13px 20px;display:flex;justify-content:center;gap:12px;z-index:20;flex-wrap:wrap}
+    .big{cursor:pointer;border:none;border-radius:12px;padding:13px 28px;font-size:14px;font-weight:900;letter-spacing:.4px;transition:all .15s}
+    .big.save{background:#d8ff3e;color:#0a0a12}
+    .big.save:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(216,255,62,.3)}
+    .big.save:disabled{opacity:.5;cursor:wait}
+    .big.ghost{background:transparent;color:#9a9ab0;border:1px solid #3a3a52}
+    .ok{position:fixed;inset:0;background:rgba(10,10,18,.95);z-index:50;display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;padding:20px}
+    .ok .ic{font-size:62px;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+    @keyframes pop{from{transform:scale(0)}}
+    @media(max-width:620px){.card{flex-wrap:wrap}.thumb{width:100%;height:190px}.ft .big{width:100%}}
+  `;
+  doc.head.appendChild(st);
+
+  const hd = doc.createElement('div'); hd.className = 'hd';
+  hd.innerHTML = `<h1>🎬 Revisar antes de publicar — <b>${data.items.length} entrada${data.items.length > 1 ? 's' : ''}</b></h1>
+    <div class="sub">✎ Corrige los <b>títulos</b> y <b>géneros</b> AHORA — esto es el paso obligatorio antes de publicar en la web.<br>
+    🔄 recupera la carátula real de TMDB con el título ya corregido · 🗑 marca lo que NO quieras publicar.</div>`;
+  doc.body.appendChild(hd);
+
+  const wrap = doc.createElement('div'); wrap.className = 'wrap';
+  doc.body.appendChild(wrap);
+  const edits = [];
+  for (const it of data.items) {
+    const e = { t: it.t, genre: it.genre, remove: false };
+    edits.push(e);
+    const card = doc.createElement('div'); card.className = 'card';
+    const thumb = doc.createElement('div'); thumb.className = 'thumb';
+    if (it.poster) { const im = doc.createElement('img'); im.className = 'thumb'; im.src = it.poster; im.referrerPolicy = 'no-referrer'; im.loading = 'lazy'; card.appendChild(im); }
+    else { thumb.textContent = it.jp || '🎬'; card.appendChild(thumb); }
+    const col = doc.createElement('div'); col.className = 'col';
+    const tt = doc.createElement('input'); tt.className = 'tt'; tt.value = it.t; tt.placeholder = 'Título correcto…';
+    tt.addEventListener('input', () => { e.t = tt.value; });
+    const meta = doc.createElement('div'); meta.className = 'meta';
+    const kind = doc.createElement('span'); kind.className = 'badge';
+    kind.textContent = (it.kind === 'serie' ? '📺 SERIE' : '🎬 PELÍCULA') + (it.eps ? ` · ${it.eps} ep.` : '');
+    const sel = doc.createElement('select');
+    const opt0 = doc.createElement('option'); opt0.value = ''; opt0.textContent = '— Sin categoría —'; sel.appendChild(opt0);
+    for (const g of data.genres) { const o = doc.createElement('option'); o.value = g.id; o.textContent = `${g.icon} ${g.label}`; if (it.genre === g.id) o.selected = true; sel.appendChild(o); }
+    sel.addEventListener('change', () => { e.genre = sel.value || null; });
+    meta.appendChild(kind); meta.appendChild(sel);
+    if (it.tag) { const tg = doc.createElement('span'); tg.className = 'badge'; tg.textContent = String(it.tag).slice(0, 22); meta.appendChild(tg); }
+    const row = doc.createElement('div'); row.className = 'btnrow';
+    const msg = doc.createElement('div'); msg.className = 'msg';
+    const rf = doc.createElement('button'); rf.className = 'mbtn'; rf.textContent = '🔄 Carátula + género (TMDB)';
+    rf.addEventListener('click', async () => {
+      rf.disabled = true; rf.textContent = '⏳ Buscando en TMDB…';
+      const res = await w.opener.iqReview.refresh(it.id, e.t);
+      rf.disabled = false; rf.textContent = '🔄 Carátula + género (TMDB)';
+      msg.style.display = 'block';
+      if (res.ok) {
+        if (res.poster) { const im2 = card.querySelector('img.thumb'); if (im2) im2.src = res.poster; else { const nim = doc.createElement('img'); nim.className = 'thumb'; nim.src = res.poster; nim.referrerPolicy = 'no-referrer'; card.replaceChild(nim, card.querySelector('.thumb')); } }
+        if (res.genre) { sel.value = res.genre; e.genre = res.genre; }
+        msg.style.color = '#8f8'; msg.textContent = '✓ Carátula' + (res.genre ? ' y género' : '') + ' actualizados';
+      } else { msg.style.color = '#ff9460'; msg.textContent = '⚠ ' + res.msg; }
+    });
+    const del = doc.createElement('button'); del.className = 'mbtn del'; del.textContent = '🗑 No publicar';
+    del.addEventListener('click', () => {
+      e.remove = !e.remove;
+      card.classList.toggle('removing', e.remove);
+      del.textContent = e.remove ? '↩ Restaurar' : '🗑 No publicar';
+    });
+    row.appendChild(rf); row.appendChild(del); row.appendChild(msg);
+    col.appendChild(tt); col.appendChild(meta); col.appendChild(row);
+    card.appendChild(col);
+    wrap.appendChild(card);
+  }
+
+  const ft = doc.createElement('div'); ft.className = 'ft';
+  const gh = doc.createElement('button'); gh.className = 'big ghost'; gh.textContent = '✖ Cerrar sin publicar';
+  gh.addEventListener('click', () => { w.close(); });
+  const sv = doc.createElement('button'); sv.className = 'big save'; sv.textContent = '💾 Guardar y PUBLICAR ahora';
+  sv.addEventListener('click', async () => {
+    sv.disabled = true; sv.textContent = '⏳ Guardando y publicando…';
+    const res = await w.opener.iqReview.apply(edits);
+    const ok = doc.createElement('div'); ok.className = 'ok';
+    ok.innerHTML = `<div class="ic">${res.published ? '✅' : '☑'}</div>
+      <div style="font-size:16px;font-weight:900">${res.published ? '¡Publicado en la web!' : 'Guardado — publicación pendiente'}</div>
+      <div style="font-size:12px;color:#9a9ab0">${res.changed} cambio${res.changed !== 1 ? 's' : ''} aplicado${res.changed !== 1 ? 's' : ''} · ${res.removed} excluido${res.removed !== 1 ? 's' : ''}</div>`;
+    doc.body.appendChild(ok);
+    ok.style.display = 'flex';
+    setTimeout(() => w.close(), 2800);
+  });
+  ft.appendChild(gh); ft.appendChild(sv);
+  doc.body.appendChild(ft);
+  try { playDoneSound(); } catch (e) { }
+}
+
+/* al arrancar: sincroniza con la nube, retoma pendientes y vigila el reloj */
+setTimeout(async () => {
+  await iqPollRemote();
+  if (importQueue.some(q => q.status === 'queued')) {
+    if (importQueue.some(q => (q.nextRetryAt || 0) <= Date.now())) processImportQueue();
+    else iqScheduleRetry();
+  }
+  renderQueuePill();
+}, 5000);
+/* latido: cada 30s mira si la nube terminó algo · cada 2min retoma vencidos */
+setInterval(() => { if (!importRunning) iqPollRemote(); }, 30e3);
+setInterval(() => { if (!importRunning && canAdmin()) processImportQueue(); }, 120e3);
 
 els.driveFolderBtn.addEventListener('click', () => {
   els.modalDrive.classList.remove('hidden');

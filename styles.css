@@ -3499,3 +3499,20 @@ body.chat-full .cmu-list{max-height:44vh}
   .import-queue-pill{bottom:12px;padding:8px 14px;gap:8px}
   .import-queue-pill .iq-label{font-size:11px}
 }
+
+/* ── errores explicados en el modal de importación ── */
+.import-done-list .idl-why{
+  flex-basis:100%;font:500 10.5px/1.6 inherit;color:rgba(255,148,96,.85);
+  padding:6px 0 2px 24px;border-top:1px dashed rgba(255,148,96,.2);margin-top:4px;
+}
+.import-done-list .idl-item{flex-wrap:wrap}
+
+/* ── pill en modo «listo para revisar» ── */
+.import-queue-pill.review-mode{
+  border-color:rgba(216,255,62,.65);cursor:pointer;
+  box-shadow:0 12px 40px rgba(216,255,62,.15);
+  animation:iqPulse 1.6s ease-in-out infinite;
+}
+@keyframes iqPulse{0%,100%{box-shadow:0 12px 40px rgba(216,255,62,.12)}50%{box-shadow:0 12px 52px rgba(216,255,62,.3)}}
+.import-queue-pill.review-mode .iq-spin{animation:none;font-size:20px}
+.import-queue-pill.review-mode .iq-count{color:#0a0a12;background:var(--acid)}

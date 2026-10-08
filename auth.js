@@ -1329,6 +1329,50 @@
     return true;
   }
 
+  /* 📦 escritura genérica de archivos a GitHub (misma vía del catálogo):
+     usada por la cola de importación en la nube — rama chat-data.       */
+  async function ghWriteFile(path, obj, msg, branch) {
+    const token = ghToken();
+    if (!token) return { ok: false, reason: 'sin token' };
+    const br = branch || CONFIG.ghBranch;
+    const base = `https://api.github.com/repos/${CONFIG.ghRepo}/contents/${path}`;
+    const headers = { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' };
+    try {
+      const get = await fetch(`${base}?ref=${br}`, { headers });
+      let sha = null;
+      if (get.ok) sha = (await get.json()).sha;
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(obj, null, 1))));
+      const res = await fetch(base, {
+        method: 'PUT', headers,
+        body: JSON.stringify({ message: msg || ('📦 ' + path + ' ' + new Date().toISOString()), content, branch: br, ...(sha ? { sha } : {}) }),
+      });
+      if (!res.ok) {
+        if (res.status === 401) { try { localStorage.removeItem(CONFIG.ghTokenKey); } catch (e2) { } return { ok: false, reason: 'TOKEN' }; }
+        const err = await res.json().catch(() => ({}));
+        return { ok: false, reason: err.message || ('HTTP ' + res.status) };
+      }
+      return { ok: true };
+    } catch (e) { return { ok: false, reason: e.message || 'sin red' }; }
+  }
+
+  /* ☁ dispara el workflow del importador en la nube (GitHub Actions) */
+  async function ghDispatchWorkflow() {
+    const token = ghToken();
+    if (!token) return { ok: false, reason: 'sin token' };
+    try {
+      const res = await fetch(`https://api.github.com/repos/${CONFIG.ghRepo}/actions/workflows/importer.yml/dispatches`, {
+        method: 'POST',
+        headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' },
+        body: JSON.stringify({ ref: CONFIG.ghBranch }),
+      });
+      if (res.status === 204) return { ok: true };
+      if (res.status === 401) { try { localStorage.removeItem(CONFIG.ghTokenKey); } catch (e2) { } return { ok: false, reason: 'TOKEN' }; }
+      if (res.status === 404) return { ok: false, reason: 'el workflow importer.yml no existe aún en el repo (haz push primero)' };
+      if (res.status === 422) return { ok: false, reason: 'GitHub no permite lanzarlo ahora (422)' };
+      return { ok: false, reason: 'HTTP ' + res.status };
+    } catch (e) { return { ok: false, reason: e.message || 'sin red' }; }
+  }
+
   /* ═══════════ 📢 TELEGRAM — anuncios automáticos al publicar ═══════════
      Sin RSS ni servidores: al publicar el catálogo se compara con la foto
      del último anuncio y se publica SOLO lo nuevo (series y películas; la
@@ -2525,6 +2569,10 @@
     vaultOpen,
     openProfile,
     publishCatalog,
+    ghWriteFile,
+    ghDispatchWorkflow,
+    ghToken,
+    ghAskToken,
     lockAdmin,
     unlockAdmin,
     sha256,
