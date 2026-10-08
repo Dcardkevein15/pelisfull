@@ -5395,9 +5395,10 @@ const IQ_REMOTE_URL = 'https://raw.githubusercontent.com/Dcardkevein15/pelisfull
 const IQ_MAX_ATTEMPTS = 10;
 const IQ_RETRY_MS = 2 * 60e3;          /* SIEMPRE cada 2 minutos, sin backoff */
 /* errores PERMANENTES: no se arreglan solos → descartar YA, sin reintentar
-   (carpeta privada, carpetas de Mega). ⚠ «públicos» (lectores) NO matchea
-   porque el patrón exige la «A» final — la saturación sigue siendo reintentable. */
-const IQ_PERM_RE = /PÚBLICA|sea pública|carpetas de Mega|Mega cifra|no es pública/i;
+   (carpeta/archivo privado, carpeta vacía sin videos, carpetas de Mega,
+   enlace borrado). ⚠ «públicos» (lectores saturados) NO matchea porque el
+   patrón exige la «A» final — la saturación sigue siendo reintentable.    */
+const IQ_PERM_RE = /PÚBLICA|sea pública|no es pública|no se encontraron videos|carpetas de Mega|Mega cifra|fue borrado/i;
 let importQueue = [];
 let importRunning = false;
 let iqBackground = false;   /* true mientras la cola trabaja: los import NO roban el foco */
@@ -5521,11 +5522,22 @@ function iqMonitorRow(q, runLive) {
     dotCls = 'fail'; sCls = 'f';
     const ex = iqExplainError(q.error);
     t.textContent = name ? name.slice(0, 70) : shortUrl;
-    s.innerHTML = `⛔ Falló tras ${IQ_MAX_ATTEMPTS} intentos`;
+    s.innerHTML = `⛔ Descartado — reintentar no lo arregla`;
     const why = document.createElement('div');
     why.className = 'clr-s why';
     why.innerHTML = `⚠ <b>${escapeHtml(ex.why)}</b><br>💡 ${escapeHtml(ex.fix)}`;
     txt.appendChild(t); txt.appendChild(s); txt.appendChild(why);
+    /* acciones por enlace: reintentar a mano (si ya lo hiciste público) o eliminar */
+    const acts = document.createElement('div');
+    acts.className = 'clr-acts';
+    const bRetry = document.createElement('button');
+    bRetry.className = 'mbtn'; bRetry.textContent = '🔁 Ya lo hice público — reintentar';
+    bRetry.addEventListener('click', () => iqRetryOne(q));
+    const bDel = document.createElement('button');
+    bDel.className = 'mbtn del'; bDel.textContent = '🗑 Eliminar de la cola';
+    bDel.addEventListener('click', () => iqDeleteOne(q));
+    acts.appendChild(bRetry); acts.appendChild(bDel);
+    txt.appendChild(acts);
     dot.className = 'cl-dot ' + dotCls;
     row.appendChild(dot); row.appendChild(txt);
     return row;
@@ -5568,8 +5580,11 @@ function iqRenderMonitor(run) {
   const st = document.getElementById('clStatus');
   const title = document.getElementById('clTitle');
   const sub = document.getElementById('clSub');
+  const clean = document.getElementById('clClean');
   if (!list || !barFill) return;
   const runLive = !!(run && run.status === 'in_progress');
+  /* botón 🧹 visible solo si hay descartados que limpiar */
+  if (clean) clean.classList.toggle('hidden', !importQueue.some(q => q.status === 'failed-final'));
   /* encabezado según estado real del workflow */
   if (st) {
     if (runLive) { st.className = 'cl-status live'; st.textContent = '● GitHub activo ahora'; }
@@ -5603,6 +5618,38 @@ async function iqMonitorRefresh() {
   renderQueuePill();
 }
 
+/* 🔁⏳🗑 gestión de descartados: reintentar UN enlace a mano (si ya lo
+   hiciste público en Drive) o eliminarlo de la cola para siempre.     */
+async function iqRetryOne(q) {
+  q.status = 'queued'; q.attempts = 0; q.nextRetryAt = 0; q.error = '';
+  iqPersist();
+  await iqSyncRemote();
+  const disp = await iqDispatchCloud();
+  if (disp.ok) { iqCloudActive = true; toast('☁ Reintentando en la nube — el enlace ahora ya puede ser leído'); }
+  else { toast('🔁 Reintentando localmente'); processImportQueue(); }
+  renderQueuePill();
+  iqMonitorRefresh();
+}
+async function iqDeleteOne(q) {
+  const i = importQueue.indexOf(q);
+  if (i > -1) importQueue.splice(i, 1);
+  iqPersist();
+  await iqSyncRemote();
+  toast('🗑 Enlace eliminado de la cola');
+  iqMonitorRefresh();
+  renderQueuePill();
+}
+async function iqCleanDiscarded() {
+  const before = importQueue.length;
+  importQueue = importQueue.filter(q => q.status !== 'failed-final');
+  const n = before - importQueue.length;
+  iqPersist();
+  await iqSyncRemote();
+  toast(n ? `🧹 ${n} enlace${n > 1 ? 's' : ''} descartado${n > 1 ? 's' : ''} eliminado${n > 1 ? 's' : ''}` : 'No hay descartados que limpiar');
+  iqMonitorRefresh();
+  renderQueuePill();
+}
+
 function iqOpenMonitor() {
   const m = document.getElementById('modalCloud');
   if (!m) return;
@@ -5612,6 +5659,7 @@ function iqOpenMonitor() {
   clearInterval(iqMonitorTimer);
   iqMonitorTimer = setInterval(iqMonitorRefresh, 8000);
 }
+document.getElementById('clClean')?.addEventListener('click', () => iqCleanDiscarded());
 document.getElementById('clClose')?.addEventListener('click', () => {
   document.getElementById('modalCloud').classList.add('hidden');
   clearInterval(iqMonitorTimer);
@@ -5728,7 +5776,10 @@ async function processImportQueue() {
         /* falló → ¿es un error PERMANENTE? (carpeta privada / Mega carpeta:
            reintentar es inútil, NUNCA va a cambiar solo) → descartar YA  */
         const st = els.driveStatus.classList.contains('err') ? (els.driveStatus.innerText || '').trim() : '';
-        const raw = (st && st.length < 200) ? st : 'no se pudo importar (¿enlace caído o carpeta privada?)';
+        /* la 1ª línea del mensaje es la clave del error (el texto largo de
+           saturación traía un título claro + consejos que tapaban la causa) */
+        const firstLine = st ? (st.split('\n')[0] || st).slice(0, 160) : '';
+        const raw = firstLine || 'no se pudo importar (¿enlace caído o carpeta privada?)';
         if (IQ_PERM_RE.test(raw)) {
           next.status = 'failed-final';
           next.attempts = 1;
@@ -5996,7 +6047,8 @@ async function iqPollRemote() {
         lq.name = rq.name || lq.name;
         lq.error = rq.error || lq.error;
         lq.attempts = Math.max(lq.attempts || 0, rq.attempts || 0);
-        lq.nextRetryAt = rq.nextRetryAt || lq.nextRetryAt;
+        /* clamp: timestamps escritos por el backoff viejo nunca deben atascar */
+        lq.nextRetryAt = Math.min(rq.nextRetryAt || lq.nextRetryAt || 0, Date.now() + IQ_RETRY_MS);
         lq.payload = rq.payload || lq.payload;
         changed = true;
         if (rq.status === 'done' && rq.payload && rq.payload.length) newDone.push(lq);
@@ -6042,6 +6094,27 @@ function iqScheduleRetry() {
   if (!pending.length) return;
   const next = Math.min(...pending.map(q => q.nextRetryAt));
   iqRetryTimer = setTimeout(() => processImportQueue(), Math.max(5000, next - Date.now()));
+}
+
+/* 🧹 MIGRACIÓN de enlaces atascados por el backoff viejo (2m→…→24h):
+   - nextRetryAt a años luz → se trae a ≤2 min (el intervalo actual)
+   - agotó los intentos y sigue «queued» → failed-final YA
+   El proceso NUNCA se queda esperando a un enlace muerto.              */
+function iqSanitize() {
+  const now = Date.now();
+  let changed = false;
+  for (const q of importQueue) {
+    if (q.status === 'queued' && (q.nextRetryAt || 0) > now + IQ_RETRY_MS) {
+      q.nextRetryAt = now + IQ_RETRY_MS;
+      changed = true;
+    }
+    if (q.status === 'queued' && (q.attempts || 0) >= IQ_MAX_ATTEMPTS) {
+      q.status = 'failed-final';
+      changed = true;
+    }
+  }
+  if (changed) iqPersist();
+  return changed;
 }
 
 /* ═══════════════ 🎬 VENTANA DE REVISIÓN OBLIGATORIA (nueva pestaña) ═══════════════
@@ -6090,10 +6163,9 @@ async function iqReviewApply(edits) {
   renderSeries(els.searchInput.value);
   /* re-categorizar con TMDB lo que siguió sin género (títulos recién corregidos) */
   try { await enrichMovieGenresFromTmdb(); } catch (e) { }
-  /* marcar revisado y limpiar payloads (el trabajo ya está en la web) */
-  for (const q of importQueue) {
-    if (q.status === 'done') { q.status = 'published'; q.payload = null; }
-  }
+  /* lo revisado y publicado SALE de la cola para siempre — el proceso
+     termina de verdad y el monitor no acumula historial muerto        */
+  importQueue = importQueue.filter(q => q.status !== 'done');
   iqPersist();
   await iqSyncRemote();
   renderQueuePill();
@@ -6244,7 +6316,9 @@ function iqOpenReview() {
 /* al arrancar: sincroniza con la nube, retoma pendientes y vigila el reloj.
    Si ya hay algo listo sin revisar → aviso directo (una sola vez).          */
 setTimeout(async () => {
+  iqSanitize();          /* migra enlaces atascados con timestamps del backoff viejo */
   await iqPollRemote();
+  iqSanitize();          /* y también lo que venga de la nube con timestamps viejos  */
   if (importQueue.some(q => q.status === 'queued')) {
     if (importQueue.some(q => (q.nextRetryAt || 0) <= Date.now())) processImportQueue();
     else iqScheduleRetry();

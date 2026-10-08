@@ -3541,6 +3541,13 @@ body.chat-full .cmu-list{max-height:44vh}
 .clr-s.f{color:#ff9d9d}
 .clr-s.why{color:#ffb896;margin-top:5px;padding:6px 9px;border-radius:7px;background:rgba(255,120,80,.06);border-left:3px solid rgba(255,140,90,.5)}
 .clr-s.d{color:#a8a8c0}
+.clr-acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.clr-acts .mbtn,.id-know .mbtn{
+  cursor:pointer;border:1px solid #3a3a52;background:#191926;color:#cfcfe4;
+  font:700 11px inherit;border-radius:9px;padding:6px 12px;transition:all .15s;
+}
+.clr-acts .mbtn:hover{border-color:var(--acid);color:var(--acid)}
+.clr-acts .mbtn.del:hover{border-color:#ff5c5c;color:#ff5c5c}
 .cl-note{
   margin:12px 22px 14px;padding:12px 15px;border-radius:12px;font-size:12px;line-height:1.7;
   color:#c9e8ff;background:rgba(90,170,255,.06);border:1px solid rgba(90,170,255,.2);

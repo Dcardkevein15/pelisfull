@@ -182,12 +182,12 @@ async function collectDriveDeep(folderId, depth = 0, seen = new Set(), budget = 
   return groups;
 }
 async function getDriveFileName(fileId) {
-  try {
-    const html = await fetchText(`https://drive.google.com/file/d/${fileId}/view`);
-    const tm = html.match(/<title>([\s\S]*?)<\/title>/i);
-    let t = tm ? decodeHTMLEntities(tm[1]).replace(/\s*[-–—]\s*Google (Drive|Docs)\s*$/i, '').trim() : '';
-    if (t && !/^google drive$/i.test(t)) return t;
-  } catch (e) { }
+  /* lanza si la red falla (reintentable) o si Google responde 404/403 (permanente).
+     Devuelve null SOLO si la página cargó pero no reveló nombre real → privado. */
+  const html = await fetchText(`https://drive.google.com/file/d/${fileId}/view`);
+  const tm = html.match(/<title>([\s\S]*?)<\/title>/i);
+  let t = tm ? decodeHTMLEntities(tm[1]).replace(/\s*[-–—]\s*Google (Drive|Docs)\s*$/i, '').trim() : '';
+  if (t && !/^google drive$/i.test(t) && !/^acceso|sign in|iniciar sesión/i.test(t)) return t;
   return null;
 }
 
@@ -288,8 +288,16 @@ async function processItem(item) {
     }
     if (!any) throw new Error(PERM + 'la carpeta y sus subcarpetas no contienen videos — nada que importar');
   } else if (link.type === 'drive-file') {
-    const name = await getDriveFileName(link.id);
-    if (!name) throw new Error('no se pudo leer el nombre del archivo — ¿es público? (Compartir → Cualquiera con el enlace)');
+    let name = null;
+    try {
+      name = await getDriveFileName(link.id);
+    } catch (e) {
+      /* 404/403 = archivo borrado o privado → PERMANENTE desde el 1er intento */
+      if (e.code === 404 || e.code === 403) throw new Error(PERM + 'el archivo no existe o fue borrado (HTTP ' + e.code + ') — pega el enlace correcto');
+      throw e;   /* fallo de red → reintentable */
+    }
+    /* la página cargó pero no hay nombre real → el archivo NO es público */
+    if (!name) throw new Error(PERM + 'el archivo NO es público — en Drive: Compartir → «Cualquiera con el enlace». Reintentar no lo arregla; hazlo público y dale a 🔁');
     const videoUrl = `https://drive.google.com/file/d/${link.id}/view`;
     const id = 'file-' + videoUrl.replace(/[^\w]+/g, '-').slice(0, 60);
     const s = { id, t: cleanEpTitle(name, 'Video importado').slice(0, 80), jp: '🎬', tag: 'Google Drive · Archivo', g: 6, kind: 'pelicula', poster: driveThumbUrl(link.id, 1000), episodes: [{ n: 1, t: '▶ Ver', url: videoUrl }] };
@@ -362,9 +370,21 @@ async function ghWriteQueue(queue) {
 async function main() {
   if (!TOKEN) { console.log('sin GITHUB_TOKEN — nada que hacer'); return; }
   const queue = await ghFetchQueue();
+  /* 🧹 MIGRACIÓN de enlaces atascados por el backoff viejo (→24h):
+     - nextRetryAt lejano → se trae a ≤2 min (el intervalo actual)
+     - agotó los 10 intentos y sigue «queued» → failed-final YA           */
+  let migrated = 0;
+  for (const q of queue) {
+    if (q.status === 'queued' && (q.nextRetryAt || 0) > Date.now() + IQ_RETRY_MS) { q.nextRetryAt = Date.now() + IQ_RETRY_MS; migrated++; }
+    if (q.status === 'queued' && (q.attempts || 0) >= IQ_MAX_ATTEMPTS) { q.status = 'failed-final'; migrated++; }
+  }
   const now = Date.now();
   const due = queue.filter(q => q.status === 'queued' && (q.nextRetryAt || 0) <= now).slice(0, MAX_ITEMS_PER_RUN);
-  if (!due.length) { console.log('☁ nada pendiente — cola al día'); return; }
+  if (!due.length) {
+    console.log('☁ nada pendiente — cola al día' + (migrated ? ` (migrados ${migrated} enlaces atascados)` : ''));
+    if (migrated) await ghWriteQueue(queue);
+    return;
+  }
   console.log(`☁ procesando ${due.length} enlace(s)…`);
   let nDone = 0, nFail = 0;
   for (const item of due) {
