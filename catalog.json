@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791472839200,
+ "v": 1791474604966,
  "by": "Dcard #2968",
- "at": "2026-10-08T15:20:39.200Z",
- "n": 5979,
+ "at": "2026-10-08T15:50:04.966Z",
+ "n": 5980,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49574,6 +49574,27 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/1McZFJetkTwFAb2kHR_df-_y13wP7ZLIC/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1vDS4t4KSaJy8f98mjVjzNxEJDwL7L",
+   "t": "Cariño, He Encogido A Los Niños",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA&sz=w1000",
+   "tags": [
+    "Infantil",
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view"
     }
    ]
   }
@@ -201182,5 +201203,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "kEh//U0BCFvbnJw8kSNSysLMRvfLFa7pZI81Cx/VyzhnkIx7CcWUZTleEYi6Lhp2rqAnwntPz9LKL7BXurKFhg=="
+ "sig": "wY9l9Jd5YTTzsGcrgw063P84By3XM9gp6YPYi5UyLb60mQgjO4L9x5CrfQYlq9yUKHklRvXMSS6ikE+7Fzl65g=="
 }
