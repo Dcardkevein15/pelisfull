@@ -3501,7 +3501,7 @@ body.chat-full .cmu-list{max-height:44vh}
 .modal-done .modal-actions{padding:0 18px}
 
 /* ═══════════ ☁ MONITOR DE LA NUBE — proceso en vivo ═══════════ */
-.modal-cloud{width:min(620px,94vw);max-height:90vh;overflow-y:auto;text-align:left;padding:0 0 16px}
+.modal-cloud{width:min(900px,95vw);max-height:92vh;overflow-y:auto;text-align:left;padding:0 0 16px}
 .cl-head{display:flex;align-items:center;gap:16px;padding:20px 22px 16px;border-bottom:1px solid var(--line)}
 .cl-cloud{font-size:40px;animation:cloudFloat 2.6s ease-in-out infinite;flex-shrink:0}
 @keyframes cloudFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
@@ -3519,8 +3519,8 @@ body.chat-full .cmu-list{max-height:44vh}
 .cl-bar{flex:1;height:8px;border-radius:99px;background:var(--panel);border:1px solid var(--line);overflow:hidden}
 .cl-bar > div{height:100%;background:linear-gradient(90deg,var(--acid),#aef25c);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
 .cl-progress b{font:900 12px 'JetBrains Mono';color:var(--acid)}
-.cl-list{margin:10px 22px;padding:4px 12px;max-height:300px;overflow-y:auto;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
-.cl-row{display:flex;align-items:flex-start;gap:11px;padding:10px 4px;border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
+.cl-list{margin:10px 22px;padding:8px 16px;height:58vh;overflow-y:auto;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
+.cl-row{display:flex;align-items:flex-start;gap:12px;padding:13px 6px;border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
 .cl-row:last-child{border-bottom:none}
 .cl-dot{
   width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;
@@ -3533,8 +3533,8 @@ body.chat-full .cmu-list{max-height:44vh}
 .cl-dot.pub{background:#5ade5a;opacity:.4}
 @keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 rgba(216,255,62,.5)}50%{box-shadow:0 0 0 6px rgba(216,255,62,0)}}
 .cl-row .clr-name{flex:1;min-width:0}
-.clr-t{font-size:12.5px;font-weight:700;color:#fff;word-break:break-word;line-height:1.35}
-.clr-s{font-size:11px;line-height:1.5;margin-top:2px}
+.clr-t{font-size:13.5px;font-weight:700;color:#fff;word-break:break-word;line-height:1.4}
+.clr-s{font-size:12px;line-height:1.6;margin-top:3px}
 .clr-s.q{color:#9a9ab0}
 .clr-s.ok{color:#8aff8a}
 .clr-s.r{color:#ffc46b}
@@ -3549,7 +3549,7 @@ body.chat-full .cmu-list{max-height:44vh}
 .clr-acts .mbtn:hover{border-color:var(--acid);color:var(--acid)}
 .clr-acts .mbtn.del:hover{border-color:#ff5c5c;color:#ff5c5c}
 .cl-note{
-  margin:12px 22px 14px;padding:12px 15px;border-radius:12px;font-size:12px;line-height:1.7;
+  margin:22px 22px 14px;padding:12px 15px;border-radius:12px;font-size:12px;line-height:1.7;
   color:#c9e8ff;background:rgba(90,170,255,.06);border:1px solid rgba(90,170,255,.2);
 }
 .cl-note b{color:#fff}
@@ -3585,6 +3585,7 @@ body.chat-full .cmu-list{max-height:44vh}
   .id-hero{padding:18px 14px 14px}
   .id-list,.id-know{margin-left:12px;margin-right:12px}
   .cl-list,.cl-note,.cl-progress{margin-left:14px;margin-right:14px;padding-left:14px;padding-right:14px}
+  .cl-list{height:52vh;padding:6px 10px}
   .import-queue-pill{bottom:12px;padding:8px 14px;gap:8px}
   .import-queue-pill .iq-label{font-size:11px}
   .cl-status{display:none}
