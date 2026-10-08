@@ -1,1 +1,75 @@
-{"v":1,"at":1791481058828,"queue":[{"url":"https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view","type":"drive-file","status":"queued","name":"Hop","error":"","attempts":0,"nextRetryAt":1791482006694,"addedAt":1791478190772,"payload":[{"id":"file-https-drive-google-com-file-d-1H8FwTjXRGJ54Ma06j81pfYmHtexXG","t":"Hop","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view"}],"at":1791478250041}]},{"url":"https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view","type":"drive-file","status":"queued","name":"Pokemon - Detective Pikachu","error":"","attempts":0,"nextRetryAt":1791482006694,"addedAt":1791478190772,"payload":[{"id":"file-https-drive-google-com-file-d-1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a","t":"Pokemon - Detective Pikachu","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view"}],"genre":"suspenso","tags":["Suspenso"],"at":1791478255542}]}]}
+{
+ "v": 1,
+ "at": 1791482392005,
+ "queue": [
+  {
+   "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Hop",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 1791482006694,
+   "addedAt": 1791478190772,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1H8FwTjXRGJ54Ma06j81pfYmHtexXG",
+     "t": "Hop",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Pokemon - Detective Pikachu",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 1791482006694,
+   "addedAt": 1791478190772,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a",
+     "t": "Pokemon - Detective Pikachu",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Suspenso",
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  }
+ ]
+}
