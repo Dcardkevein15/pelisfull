@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791440257801,
+ "v": 1791440626777,
  "by": "MortosPr #2968",
- "at": "2026-10-08T06:17:37.801Z",
- "n": 5961,
+ "at": "2026-10-08T06:23:46.777Z",
+ "n": 5960,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49501,23 +49501,6 @@
      "n": 1,
      "t": "La gran aventura de Pee-wee",
      "url": "https://archive.org/download/pwhla_202509/PWHLA.ia.mp4"
-    }
-   ]
-  },
-  {
-   "id": "file-https-archive-org-details-ed-wood-1994_20251029",
-   "t": "ed-wood-1994 20251029",
-   "jp": "🎬",
-   "tag": "Enlace directo",
-   "g": 6,
-   "kind": "pelicula",
-   "poster": null,
-   "at": 1791440249993,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://archive.org/details/ed-wood-1994_20251029"
     }
    ]
   }
@@ -109565,7 +109548,8 @@
   "file-https-archive-org-details-mentiras-verdaderas-1-El-rey-le-C3": 1791439717304,
   "ia-mentiras-verdaderas-1": 1791439838630,
   "ia-el-joven-manos-de-tijera-1990_202606": 1791440090267,
-  "ia-ed-wood-1995-vhs": 1791440186466
+  "ia-ed-wood-1995-vhs": 1791440186466,
+  "file-https-archive-org-details-ed-wood-1994_20251029": 1791440290513
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -200887,5 +200871,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "CR5scQoDPILDhs1Gueo3GRg+hoFXRHnVQFH0Ks4ivhsIfw9moIFH7x0IHfpRYJaFePZhz8l7P6bJIFBWIkh8/w=="
+ "sig": "5bblRvYFqSRDdLkjKXqg9msgdmKJo3Zv0CjHjXn5MnL/qJQxyrR4FSEQN6Uu7o4gTJ6imDsKrTfc8VIqKheuBg=="
 }
