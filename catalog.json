@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791440626777,
+ "v": 1791440706812,
  "by": "MortosPr #2968",
- "at": "2026-10-08T06:23:46.777Z",
+ "at": "2026-10-08T06:25:06.812Z",
  "n": 5960,
  "series": [
   {
@@ -200871,5 +200871,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "5bblRvYFqSRDdLkjKXqg9msgdmKJo3Zv0CjHjXn5MnL/qJQxyrR4FSEQN6Uu7o4gTJ6imDsKrTfc8VIqKheuBg=="
+ "sig": "2VuBmyfDZIBLx7ARC0dh3f2FJWmAdKAsfkogr9Iks7Hr/QIK1C+xCTtO2OEmyrbVwHXSORqa5P0tsQJoFH5w9g=="
 }
