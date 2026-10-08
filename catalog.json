@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791440706812,
- "by": "MortosPr #2968",
- "at": "2026-10-08T06:25:06.812Z",
- "n": 5960,
+ "v": 1791467917366,
+ "by": "Dcard #2968",
+ "at": "2026-10-08T13:58:37.366Z",
+ "n": 5959,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -20446,7 +20446,7 @@
   },
   {
    "id": "ia-1994-pompoko-la-guerra-de-los-mapaches-de-pompoko",
-   "t": "Pompoko",
+   "t": "La Guerra De Los Mapaches De Pompoko",
    "jp": "🎌",
    "tag": "Cine IA · Película · 1994",
    "g": 4,
@@ -20776,13 +20776,13 @@
   },
   {
    "id": "ia-mad-max-1_202407",
-   "t": "Mad Max 1",
+   "t": "Mad Max",
    "jp": "🎌",
    "tag": "Cine IA · Película · 1980",
    "g": 4,
    "kind": "pelicula",
    "anime": true,
-   "poster": "https://image.tmdb.org/t/p/w500/vWa1DEwV5RbAOiuAm0WNXD3Aydw.jpg",
+   "poster": "https://image.tmdb.org/t/p/w500/fnY0VRsb31A5RLVCBjuR6EFUlo2.jpg",
    "tags": [
     "Acción"
    ],
@@ -20798,7 +20798,7 @@
   },
   {
    "id": "ia-volver-al-futuro-1_202509",
-   "t": "Volver Al Futuro 1",
+   "t": "Volver Al Futuro",
    "jp": "🎬",
    "tag": "Cine IA · Película · 1985",
    "g": 1,
@@ -20835,50 +20835,6 @@
      "url": "https://archive.org/download/volver-al-futuro-3-1990_202510/Volver%20al%20Futuro%203%20(1990).mp4",
      "season": 3,
      "srcSeason": "ia-volver-al-futuro-3-1990_202510"
-    }
-   ]
-  },
-  {
-   "id": "ia-volver-al-futuro-3-1990_202510",
-   "t": "Volver Al Futuro 3",
-   "jp": "🎬",
-   "tag": "Cine IA · Película · 1990",
-   "g": 1,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/yamBr3ihlWFF9jh3oOODSvjDY2e.jpg",
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "order": 109,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Volver Al Futuro 3 ( 1990)",
-     "url": "https://archive.org/download/volver-al-futuro-3-1990_202510/Volver%20al%20Futuro%203%20(1990).mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus",
-   "t": "Regreso Al Futuro 2",
-   "jp": "🎬",
-   "tag": "Cine IA · Película",
-   "g": 1,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/t9CbcNU7zsBfmjYLccrv6TLccve.jpg",
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "order": 107,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Ver Regreso Al Futuro II ( 1989) Online Latino HD Pelisplus",
-     "url": "https://archive.org/download/ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus/Ver%20Regreso%20al%20futuro%20II%20(1989)%20Online%20Latino%20HD%20-%20Pelisplus.mp4"
     }
    ]
   },
@@ -22308,6 +22264,32 @@
    ]
   },
   {
+   "id": "imp-stape-Ey2RHnBPHaQ",
+   "t": "Nosewasure ",
+   "jp": "📁",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21106-VakGfsE3HILf.jpg",
+   "tags": [],
+   "order": 155,
+   "clsManual": true,
+   "hentai": true,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Nosewasure Ep 1 Sub Esp",
+     "url": "https://streamtape.com/e/aRva9p0qdjUxkrm"
+    },
+    {
+     "n": 2,
+     "t": "Nosewasure Ep 2 Sub Esp",
+     "url": "https://streamtape.com/e/eYVY8ykBjDCYVxw"
+    }
+   ]
+  },
+  {
    "id": "imp-stape-H-g2ZEcn354",
    "t": "Nuki Doki! Tenshi To akuma no Sakusei Battle",
    "jp": "📁",
@@ -22777,12 +22759,12 @@
    "tag": "Streamtape",
    "g": 3,
    "kind": "serie",
-   "anime": true,
+   "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11061-y5gsT1hoHuHw.png",
    "tags": [],
    "order": 172,
    "clsManual": true,
-   "hentai": false,
+   "hentai": true,
    "episodes": [
     {
      "n": 1,
@@ -24556,50 +24538,6 @@
    ]
   },
   {
-   "id": "ia-candyman-2_202504",
-   "t": "Candyman 2",
-   "jp": "🎌",
-   "tag": "Cine IA · Película · 1995",
-   "g": 4,
-   "kind": "pelicula",
-   "anime": true,
-   "poster": "https://image.tmdb.org/t/p/w500/cBBkrylShdQryKKxaPNBYS5ssMy.jpg",
-   "tags": [
-    "Terror"
-   ],
-   "genre": "terror",
-   "order": 121,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Candyman 2",
-     "url": "https://archive.org/download/candyman-2_202504/Candyman%202.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-candyman-3_202504",
-   "t": "Candyman 3",
-   "jp": "🎌",
-   "tag": "Cine IA · Película · 1999",
-   "g": 4,
-   "kind": "pelicula",
-   "anime": true,
-   "poster": "https://image.tmdb.org/t/p/w500/p9U8lqwRDLhrU9TnLQylfdBmeNl.jpg",
-   "tags": [
-    "Terror"
-   ],
-   "genre": "terror",
-   "order": 122,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Candyman 3",
-     "url": "https://archive.org/download/candyman-3_202504/Candyman%203.mp4"
-    }
-   ]
-  },
-  {
    "id": "ia-the-dog-pony-show-s-01-e-01-baile-de-la-basura-globomania",
    "t": "The Dog y Pony Show",
    "jp": "📺",
@@ -25741,6 +25679,37 @@
      "n": 1,
      "t": "Koinaka Koinaka de Hatsukoi x Nakadashi Sexual Life",
      "url": "https://streamtape.com/e/LDMLpdjyAquv0v"
+    }
+   ]
+  },
+  {
+   "id": "imp-stape-Gw3l231w4-0",
+   "t": "Kowaremono Risa",
+   "jp": "📁",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21521-qpf2UqZJaCio.png",
+   "tags": [],
+   "order": 235,
+   "clsManual": true,
+   "hentai": true,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Kowaremono Risa 1",
+     "url": "https://streamtape.com/e/06vbr20PaySmL9"
+    },
+    {
+     "n": 2,
+     "t": "Kowaremono Risa 2",
+     "url": "https://streamtape.com/e/KwVM3vYB1rFgAA"
+    },
+    {
+     "n": 3,
+     "t": "Kowaremono Risa 3",
+     "url": "https://streamtape.com/e/lAdKKPd3yVhdj2"
     }
    ]
   },
@@ -31859,7 +31828,7 @@
   },
   {
    "id": "ia-transformers-la-pelicula_202406",
-   "t": "TRANSFORMERS LA PELICULA",
+   "t": "Transformers, Animada",
    "jp": "🎬",
    "tag": "Cine IA · Película · 2024",
    "g": 1,
@@ -32944,14 +32913,17 @@
   },
   {
    "id": "mp-stape-root-1abvYDlgzateZox",
-   "t": "El Tiempo Contigo 2019 --Lat",
+   "t": "El Tiempo Contigo",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
    "kind": "pelicula",
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/18lF2eTWAO0tloyBW39fob5ALAW.jpg",
-   "tags": [],
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
    "episodes": [
     {
      "n": 1,
@@ -32962,21 +32934,28 @@
   },
   {
    "id": "mp-stape-root-JK1w8KrKl9sjWx4",
-   "t": "En Busca del Valle Encantado 1 1988 mkv",
+   "t": "En Busca del Valle Encantado",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
    "kind": "pelicula",
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/jsxGmtUe06AAhfWihGiLDukI0QS.jpg",
-   "tags": [],
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
    "seasons": {
-    "1": "En Busca del Valle Encantado 1 1988 mkv",
-    "2": "Parte 2 — En Busca del Valle Encantado 2 Ave",
-    "3": "Parte 3 — En Busca del Valle Encantado 3 La ",
-    "4": "Parte 4 — En Busca del Valle Encantado 5 La ",
-    "5": "Parte 5 — En Busca del Valle Encantado 6 El ",
-    "6": "Parte 6 — En busca del valle encantado 7 La "
+    "1": "En Busca del Valle Encantado 1",
+    "2": "En Busca del Valle Encantado 2",
+    "3": "En Busca del Valle Encantado 3",
+    "4": "En Busca del Valle Encantado 5",
+    "5": "En Busca del Valle Encantado 6",
+    "6": "En busca del valle encantado 7",
+    "7": "En Busca del Valle Encantado 8",
+    "8": "En Busca del Valle Encantado 10",
+    "9": "En busca del valle encantado 9",
+    "10": "En busca del valle encantado 14"
    },
    "episodes": [
     {
@@ -34073,13 +34052,13 @@
   },
   {
    "id": "ia-f-1_20260807",
-   "t": "FUTURAMA",
+   "t": "FUTURAMA 1",
    "jp": "📺",
    "tag": "Cine IA · Temporada · 2026",
    "g": 5,
    "kind": "serie",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/sqQGouRucsrFV2FgIZEKKkP5fSb.jpg",
+   "poster": "https://archive.org/services/img/f-1_20260807",
    "tags": [],
    "episodes": [
     {
@@ -34927,7 +34906,7 @@
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98528-Jd8RwFB9U67T.jpg",
    "tags": [],
@@ -34976,7 +34955,7 @@
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98527-lOSLruME0vsP.jpg",
    "tags": [],
@@ -34998,7 +34977,7 @@
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/97810-dMrtUmtec3Nc.jpg",
    "tags": [],
@@ -35047,7 +35026,7 @@
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/99347-WTLu5SsoPU97.png",
    "tags": [],
@@ -35154,11 +35133,11 @@
   },
   {
    "id": "mp-stape-CDNjUE3f7Oo-m3bR1lPArlcM6l",
-   "t": "Seiso de Majime na Kanojo ga Saikyou Yaricir ni Kanyuu Saretara",
+   "t": "Seiso de Majime na Kanojo ga Saikyou",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98212-j91wotXlSLdc.jpg",
    "tags": [],
@@ -35268,7 +35247,7 @@
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx99268-J1v6ZKSgiAQ6.jpg",
    "tags": [],
@@ -35357,7 +35336,7 @@
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21443-cpJu1n0fvD2F.jpg",
    "tags": [],
@@ -35378,7 +35357,7 @@
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
-   "kind": "pelicula",
+   "kind": "serie",
    "anime": false,
    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98433-x81xwH5N5YnU.jpg",
    "tags": [],
@@ -35390,6 +35369,27 @@
      "n": 1,
      "t": "Yarimoku Beach ni Shuugakuryokou de!!",
      "url": "https://streamtape.com/e/61ZyY9mByYI9MeG"
+    }
+   ]
+  },
+  {
+   "id": "mp-stape-AD-oa6PzjCE-oDrwxbJOaWtJo64",
+   "t": "Ecchi na Shintai Sokutei",
+   "jp": "🎬",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/97810-dMrtUmtec3Nc.jpg",
+   "tags": [],
+   "order": 206,
+   "clsManual": true,
+   "hentai": true,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ecchi na Shintai Sokutei",
+     "url": "https://streamtape.com/e/oDrwxbJOaWtJo64"
     }
    ]
   },
@@ -35439,14 +35439,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1vgewyc6PCpkGLHshb7qSAwI3sO7ue",
-   "t": "Barbie Cascanueces (2001)",
+   "t": "Barbie Cascanueces",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/3M5fjV6Pze7zC6suGQAG2MWI2fk.jpg",
-   "tags": [],
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
    "at": 1790630823676,
    "episodes": [
     {
@@ -35539,47 +35542,6 @@
      "url": "https://archive.org/download/terminator-3-la-rebelion-de-las-maquinas/Terminator%203%20La%20Rebeli%C3%B3n%20de%20las%20M%C3%A1quinas.mp4",
      "season": 3,
      "srcSeason": "ia-terminator-3-la-rebelion-de-las-maquinas"
-    }
-   ]
-  },
-  {
-   "id": "ia-terminator-2_202409",
-   "t": "Terminator 2",
-   "jp": "🎬",
-   "tag": "Cine IA · Película · 1991",
-   "g": 1,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/10xtoK2SFv6ADIeWxr3mcrjko72.jpg",
-   "tags": [
-    "Acción"
-   ],
-   "genre": "accion",
-   "at": 1790633693926,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Terminator 2",
-     "url": "https://archive.org/download/terminator-2_202409/Terminator%202.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-terminator-3-la-rebelion-de-las-maquinas",
-   "t": "Terminator: 3 La Rebelión De Las Máquinas",
-   "jp": "🎬",
-   "tag": "Cine IA · Película",
-   "g": 1,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/ugVNhnnH3DKUZZ3JtzRkViIh4L9.jpg",
-   "tags": [],
-   "at": 1790633718061,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Terminator: 3 La Rebelión De Las Máquinas",
-     "url": "https://archive.org/download/terminator-3-la-rebelion-de-las-maquinas/Terminator%203%20La%20Rebeli%C3%B3n%20de%20las%20M%C3%A1quinas.mp4"
     }
    ]
   },
@@ -37857,7 +37819,7 @@
   },
   {
    "id": "ia-avengers--assemble--s-01",
-   "t": "Avengers Assemble",
+   "t": "Avengers Assemble temporada 1",
    "jp": "📺",
    "tag": "Cine IA · Temporada",
    "g": 5,
@@ -37869,8 +37831,7 @@
     "1": "Avengers Assemble",
     "2": "Temporada 2 — Avengers Assemble",
     "3": "Temporada 3 — Avengers Assemble",
-    "4": "Temporada 4 — Avengers Assemble",
-    "5": "Avengers Assemble temporada 5"
+    "4": "Temporada 4 — Avengers Assemble"
    },
    "at": 1790662853699,
    "episodes": [
@@ -38506,6 +38467,135 @@
      "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E23.ia.mp4",
      "season": 4,
      "srcSeason": "ia-avengers-assemble-s-05"
+    }
+   ]
+  },
+  {
+   "id": "ia-avengers-assemble-s-05",
+   "t": "Avengers Assemble temporada 5",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
+   "tags": [],
+   "at": 1790662995791,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Avengers Black Panther Quest S05E01 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E01.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Avengers Black Panther Quest S05E02",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E02.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Avengers Black Panther Quest S05E03 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E03.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Avengers Black Panther Quest S05E04",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E04.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Avengers Black Panther Quest S05E05",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E05.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Avengers Black Panther Quest S05E06",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E06.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Avengers Black Panther Quest S05E07",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E07.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Avengers Black Panther Quest S05E08 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E08.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Avengers Black Panther Quest S05E09",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E09.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Avengers Black Panther Quest S05E10",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E10.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Avengers Black Panther Quest S05E11 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E11.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Avengers Black Panther Quest S05E12 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E12.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Avengers Black Panther Quest S05E13 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E13.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Avengers Black Panther Quest S05E14",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E14.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Avengers Black Panther Quest S05E15 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E15.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Avengers Black Panther Quest S05E16 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E16.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Avengers Black Panther Quest S05E17 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E17.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Avengers Black Panther Quest S05E18 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E18.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Avengers Black Panther Quest S05E19 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E19.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Avengers Black Panther Quest S05E20 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E20.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Avengers Black Panther Quest S05E21 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E21.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Avengers Black Panther Quest S05E22 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E22.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Avengers Black Panther Quest S05E23 ia",
+     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E23.ia.mp4"
     }
    ]
   },
@@ -39200,6 +39290,272 @@
      "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2050%5D%20Espa%C3%B1ol%20Latino%20(Final).mp4",
      "season": 2,
      "srcSeason": "ia-digimon-adventure-02-espanol-latino-etc-tv-rip-2017"
+    }
+   ]
+  },
+  {
+   "id": "ia-digimon-adventure-02-espanol-latino-etc-tv-rip-2017",
+   "t": "Digimon Adventure 2",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2017",
+   "g": 5,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/aRnUQ7rVpC2fxBz387h1Wgy02Fs.jpg",
+   "tags": [],
+   "clsManual": true,
+   "hentai": false,
+   "at": 1790663239462,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Digimon Adventure 02 [Episodio 01] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2001%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 2,
+     "t": "Digimon Adventure 02 [Episodio 02] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2002%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 3,
+     "t": "Digimon Adventure 02 [Episodio 03] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2003%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 4,
+     "t": "Digimon Adventure 02 [Episodio 04] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2004%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 5,
+     "t": "Digimon Adventure 02 [Episodio 05] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2005%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 6,
+     "t": "Digimon Adventure 02 [Episodio 06] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2006%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 7,
+     "t": "Digimon Adventure 02 [Episodio 07] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2007%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 8,
+     "t": "Digimon Adventure 02 [Episodio 08] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2008%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 9,
+     "t": "Digimon Adventure 02 [Episodio 09] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2009%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 10,
+     "t": "Digimon Adventure 02 [Episodio 10] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2010%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 11,
+     "t": "Digimon Adventure 02 [Episodio 11] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2011%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 12,
+     "t": "Digimon Adventure 02 [Episodio 12] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2012%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 13,
+     "t": "Digimon Adventure 02 [Episodio 13] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2013%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 14,
+     "t": "Digimon Adventure 02 [Episodio 14] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2014%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 15,
+     "t": "Digimon Adventure 02 [Episodio 15] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2015%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 16,
+     "t": "Digimon Adventure 02 [Episodio 16] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2016%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 17,
+     "t": "Digimon Adventure 02 [Episodio 17] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2017%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 18,
+     "t": "Digimon Adventure 02 [Episodio 18] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2018%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 19,
+     "t": "Digimon Adventure 02 [Episodio 19] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2019%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 20,
+     "t": "Digimon Adventure 02 [Episodio 20] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2020%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 21,
+     "t": "Digimon Adventure 02 [Episodio 21] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2021%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 22,
+     "t": "Digimon Adventure 02 [Episodio 22] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2022%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 23,
+     "t": "Digimon Adventure 02 [Episodio 23] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2023%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 24,
+     "t": "Digimon Adventure 02 [Episodio 24] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2024%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 25,
+     "t": "Digimon Adventure 02 [Episodio 25] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2025%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 26,
+     "t": "Digimon Adventure 02 [Episodio 26] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2026%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 27,
+     "t": "Digimon Adventure 02 [Episodio 27] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2027%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 28,
+     "t": "Digimon Adventure 02 [Episodio 28] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2028%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 29,
+     "t": "Digimon Adventure 02 [Episodio 29] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2029%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 30,
+     "t": "Digimon Adventure 02 [Episodio 30] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2030%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 31,
+     "t": "Digimon Adventure 02 [Episodio 31] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2031%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 32,
+     "t": "Digimon Adventure 02 [Episodio 32] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2032%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 33,
+     "t": "Digimon Adventure 02 [Episodio 33] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2033%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 34,
+     "t": "Digimon Adventure 02 [Episodio 34] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2034%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 35,
+     "t": "Digimon Adventure 02 [Episodio 35] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2035%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 36,
+     "t": "Digimon Adventure 02 [Episodio 36] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2036%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 37,
+     "t": "Digimon Adventure 02 [Episodio 37] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2037%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 38,
+     "t": "Digimon Adventure 02 [Episodio 38] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2038%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 39,
+     "t": "Digimon Adventure 02 [Episodio 39] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2039%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 40,
+     "t": "Digimon Adventure 02 [Episodio 40] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2040%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 41,
+     "t": "Digimon Adventure 02 [Episodio 41] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2041%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 42,
+     "t": "Digimon Adventure 02 [Episodio 42] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2042%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 43,
+     "t": "Digimon Adventure 02 [Episodio 43] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2043%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 44,
+     "t": "Digimon Adventure 02 [Episodio 44] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2044%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 45,
+     "t": "Digimon Adventure 02 [Episodio 45] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2045%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 46,
+     "t": "Digimon Adventure 02 [Episodio 46] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2046%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 47,
+     "t": "Digimon Adventure 02 [Episodio 47] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2047%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 48,
+     "t": "Digimon Adventure 02 [Episodio 48] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2048%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 49,
+     "t": "Digimon Adventure 02 [Episodio 49] Español Latino (ETC TV)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2049%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
+    },
+    {
+     "n": 50,
+     "t": "Digimon Adventure 02 [Episodio 50] Español Latino (Final)",
+     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2050%5D%20Espa%C3%B1ol%20Latino%20(Final).mp4"
     }
    ]
   },
@@ -40671,7 +41027,7 @@
    "tag": "Cine IA · Anime · Temporada",
    "g": 4,
    "kind": "serie",
-   "anime": false,
+   "anime": true,
    "poster": "https://archive.org/services/img/conan-el-aventurero-capitulo-3-la-estrella-de-shadizar",
    "tags": [],
    "seasons": {
@@ -40940,34 +41296,24 @@
     "Acción"
    ],
    "genre": "accion",
+   "seasons": {
+    "1": "Matrix",
+    "2": "Parte 2 — Matrix Recargado"
+   },
    "at": 1790740532223,
    "episodes": [
     {
      "n": 1,
      "t": "Matrix ( 1999) Español Latino 4x 3",
-     "url": "https://archive.org/download/matrix-1999-espanol-latino-4x-3/Matrix%20(1999)%20Espa%C3%B1ol%20Latino%204x3.mp4"
-    }
-   ]
-  },
-  {
-   "id": "ia-matrix-recargado-2003-espanol-latino-4x-3",
-   "t": "Matrix Recargado",
-   "jp": "🎬",
-   "tag": "Cine IA · Película · 2003",
-   "g": 1,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/7IZk3Xp3HIpRJGXFYNvzmyRwDlt.jpg",
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "at": 1790740577513,
-   "episodes": [
+     "url": "https://archive.org/download/matrix-1999-espanol-latino-4x-3/Matrix%20(1999)%20Espa%C3%B1ol%20Latino%204x3.mp4",
+     "season": 1
+    },
     {
-     "n": 1,
+     "n": 2,
      "t": "Matrix Recargado ( 2003) Español Latino 4x 3",
-     "url": "https://archive.org/download/matrix-recargado-2003-espanol-latino-4x-3/Matrix%20Recargado%20(2003)%20Espa%C3%B1ol%20Latino%204x3.mp4"
+     "url": "https://archive.org/download/matrix-recargado-2003-espanol-latino-4x-3/Matrix%20Recargado%20(2003)%20Espa%C3%B1ol%20Latino%204x3.mp4",
+     "season": 2,
+     "srcSeason": "ia-matrix-recargado-2003-espanol-latino-4x-3"
     }
    ]
   },
@@ -41070,272 +41416,6 @@
    ]
   },
   {
-   "id": "ia-digimon-adventure-02-espanol-latino-etc-tv-rip-2017",
-   "t": "Digimon Adventure 2",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada · 2017",
-   "g": 5,
-   "kind": "serie",
-   "anime": true,
-   "poster": "https://image.tmdb.org/t/p/w500/aRnUQ7rVpC2fxBz387h1Wgy02Fs.jpg",
-   "tags": [],
-   "clsManual": true,
-   "hentai": false,
-   "at": 1790663239462,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Digimon Adventure 02 [Episodio 01] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2001%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 2,
-     "t": "Digimon Adventure 02 [Episodio 02] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2002%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 3,
-     "t": "Digimon Adventure 02 [Episodio 03] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2003%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 4,
-     "t": "Digimon Adventure 02 [Episodio 04] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2004%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 5,
-     "t": "Digimon Adventure 02 [Episodio 05] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2005%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 6,
-     "t": "Digimon Adventure 02 [Episodio 06] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2006%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 7,
-     "t": "Digimon Adventure 02 [Episodio 07] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2007%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 8,
-     "t": "Digimon Adventure 02 [Episodio 08] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2008%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 9,
-     "t": "Digimon Adventure 02 [Episodio 09] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2009%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 10,
-     "t": "Digimon Adventure 02 [Episodio 10] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2010%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 11,
-     "t": "Digimon Adventure 02 [Episodio 11] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2011%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 12,
-     "t": "Digimon Adventure 02 [Episodio 12] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2012%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 13,
-     "t": "Digimon Adventure 02 [Episodio 13] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2013%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 14,
-     "t": "Digimon Adventure 02 [Episodio 14] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2014%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 15,
-     "t": "Digimon Adventure 02 [Episodio 15] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2015%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 16,
-     "t": "Digimon Adventure 02 [Episodio 16] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2016%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 17,
-     "t": "Digimon Adventure 02 [Episodio 17] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2017%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 18,
-     "t": "Digimon Adventure 02 [Episodio 18] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2018%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 19,
-     "t": "Digimon Adventure 02 [Episodio 19] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2019%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 20,
-     "t": "Digimon Adventure 02 [Episodio 20] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2020%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 21,
-     "t": "Digimon Adventure 02 [Episodio 21] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2021%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 22,
-     "t": "Digimon Adventure 02 [Episodio 22] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2022%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 23,
-     "t": "Digimon Adventure 02 [Episodio 23] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2023%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 24,
-     "t": "Digimon Adventure 02 [Episodio 24] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2024%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 25,
-     "t": "Digimon Adventure 02 [Episodio 25] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2025%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 26,
-     "t": "Digimon Adventure 02 [Episodio 26] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2026%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 27,
-     "t": "Digimon Adventure 02 [Episodio 27] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2027%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 28,
-     "t": "Digimon Adventure 02 [Episodio 28] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2028%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 29,
-     "t": "Digimon Adventure 02 [Episodio 29] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2029%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 30,
-     "t": "Digimon Adventure 02 [Episodio 30] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2030%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 31,
-     "t": "Digimon Adventure 02 [Episodio 31] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2031%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 32,
-     "t": "Digimon Adventure 02 [Episodio 32] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2032%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 33,
-     "t": "Digimon Adventure 02 [Episodio 33] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2033%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 34,
-     "t": "Digimon Adventure 02 [Episodio 34] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2034%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 35,
-     "t": "Digimon Adventure 02 [Episodio 35] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2035%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 36,
-     "t": "Digimon Adventure 02 [Episodio 36] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2036%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 37,
-     "t": "Digimon Adventure 02 [Episodio 37] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2037%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 38,
-     "t": "Digimon Adventure 02 [Episodio 38] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2038%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 39,
-     "t": "Digimon Adventure 02 [Episodio 39] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2039%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 40,
-     "t": "Digimon Adventure 02 [Episodio 40] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2040%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 41,
-     "t": "Digimon Adventure 02 [Episodio 41] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2041%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 42,
-     "t": "Digimon Adventure 02 [Episodio 42] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2042%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 43,
-     "t": "Digimon Adventure 02 [Episodio 43] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2043%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 44,
-     "t": "Digimon Adventure 02 [Episodio 44] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2044%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 45,
-     "t": "Digimon Adventure 02 [Episodio 45] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2045%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 46,
-     "t": "Digimon Adventure 02 [Episodio 46] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2046%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 47,
-     "t": "Digimon Adventure 02 [Episodio 47] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2047%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 48,
-     "t": "Digimon Adventure 02 [Episodio 48] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2048%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 49,
-     "t": "Digimon Adventure 02 [Episodio 49] Español Latino (ETC TV)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2049%5D%20Espa%C3%B1ol%20Latino%20(ETC%20TV).mp4"
-    },
-    {
-     "n": 50,
-     "t": "Digimon Adventure 02 [Episodio 50] Español Latino (Final)",
-     "url": "https://archive.org/download/digimon-adventure-02-espanol-latino-etc-tv-rip-2017/Digimon%20Adventure%2002%20%5BEpisodio%2050%5D%20Espa%C3%B1ol%20Latino%20(Final).mp4"
-    }
-   ]
-  },
-  {
    "id": "ia-le-seguian-llamando-trinidad-peli-cula-del-oeste-espanol-",
    "t": "Le Seguían Llamando Trinidad",
    "jp": "🎬",
@@ -41388,28 +41468,6 @@
      "url": "https://archive.org/download/todos-los-perros-van-al-cielo-2/los%20perros%20van%20al%20cielo%202.mp4",
      "season": 2,
      "srcSeason": "ia-todos-los-perros-van-al-cielo-2"
-    }
-   ]
-  },
-  {
-   "id": "ia-todos-los-perros-van-al-cielo-2",
-   "t": "All Dogs Go To Heaven 2",
-   "jp": "🎬",
-   "tag": "Cine IA · Película · 1996",
-   "g": 1,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/hFsadSrksu8Kt4CJ2spNKsozRjx.jpg",
-   "tags": [
-    "Romance"
-   ],
-   "genre": "romance",
-   "at": 1790888989881,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "All Dogs Go To Heaven 2 (Español Latino)",
-     "url": "https://archive.org/download/todos-los-perros-van-al-cielo-2/los%20perros%20van%20al%20cielo%202.mp4"
     }
    ]
   },
@@ -44205,14 +44263,17 @@
   },
   {
    "id": "ia-el-balon-de-oro-1994_202307",
-   "t": "El Balon De Oro ( 1994)",
+   "t": "El Balon De Oro",
    "jp": "🎬",
    "tag": "Cine IA · Película · 1994",
    "g": 1,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://archive.org/services/img/el-balon-de-oro-1994_202307",
-   "tags": [],
+   "poster": "https://image.tmdb.org/t/p/w500/1lyViLswwR5768sjV3YY4t4W8l8.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
    "at": 1790913957189,
    "episodes": [
     {
@@ -44246,7 +44307,7 @@
   },
   {
    "id": "imp-drv-1nT_lYtJSftA-LEdY9uX8x1eHe99d-xGr",
-   "t": "Películas Barbie",
+   "t": "Barbie",
    "jp": "📁",
    "tag": "Google Drive",
    "g": 4,
@@ -44435,505 +44496,6 @@
      "n": 35,
      "t": "El diario de barbie",
      "url": "https://drive.google.com/file/d/1_5y1J25WFEfwh4Wru7tdIR8gjFzIFm5w/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1-CUmzj00Cu6LioH3qjaTYorVlM0QU",
-   "t": "Robot Salvaje",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/a0a7RC01aTa7pOnskgJb3mCD2Ba.jpg",
-   "tags": [
-    "Ciencia Ficción"
-   ],
-   "genre": "scifi",
-   "at": 1791300222961,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1-CUmzj00Cu6LioH3qjaTYorVlM0QUd2_/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1-cuqSVFeEn0djbp_qbwXNd2pUk8vn",
-   "t": "John Wick - Chapter 4",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/mj2Z9HnRSIEk3n7yVPoOY4Uzzfh.jpg",
-   "tags": [
-    "Acción"
-   ],
-   "genre": "accion",
-   "at": 1791301035981,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1-cuqSVFeEn0djbp_qbwXNd2pUk8vniJQ/view"
-    }
-   ]
-  },
-  {
-   "id": "imp-drv-18CnLMgF0_SN8p7qOkapDEbVbR82JAmQA",
-   "t": "Pacific Rim The Black",
-   "jp": "📁",
-   "tag": "Google Drive",
-   "g": 4,
-   "kind": "serie",
-   "anime": true,
-   "poster": null,
-   "tags": [],
-   "at": 1791301106948,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Pacific Rim The Black S02E01",
-     "url": "https://drive.google.com/file/d/1TJDtJp985Q0rImwoj1QHwgE8ued1KcAs/view"
-    },
-    {
-     "n": 2,
-     "t": "Pacific Rim The Black S02E02",
-     "url": "https://drive.google.com/file/d/11oJBNjLomlYWhsTGm-9OLlcg9j4ikJIr/view"
-    },
-    {
-     "n": 3,
-     "t": "Pacific Rim The Black S02E03",
-     "url": "https://drive.google.com/file/d/1_zmZRK67zN4I_zYO0trLhyWULwE0Eoq5/view"
-    },
-    {
-     "n": 4,
-     "t": "Pacific Rim The Black S02E04",
-     "url": "https://drive.google.com/file/d/1sKxynuoDcWlxKw5hwY61QOxAJohCjudb/view"
-    },
-    {
-     "n": 5,
-     "t": "Pacific Rim The Black S02E05",
-     "url": "https://drive.google.com/file/d/1KLuGb6ZWCDpSFHZcL0vFuDOTGUu01mNu/view"
-    },
-    {
-     "n": 6,
-     "t": "Pacific Rim The Black S02E06",
-     "url": "https://drive.google.com/file/d/1MfXc5JGX_eS_zX36cRYZUvMiYISi0mlq/view"
-    },
-    {
-     "n": 7,
-     "t": "Pacific Rim The Black S02E07",
-     "url": "https://drive.google.com/file/d/1mjJPtDX0YrcHhM4MpEQwXUkTROTH5uEv/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1wCJ-T18fOGwcDgLy7xtoLAje4LoAM",
-   "t": "La Delgada Linea Roja",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/234oXaXKIcyXpWMMFISsZ94tas9.jpg",
-   "tags": [
-    "Drama"
-   ],
-   "genre": "drama",
-   "at": 1791301594610,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1wCJ-T18fOGwcDgLy7xtoLAje4LoAM3wQ/view"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-17BOA8DWeGTeaGd",
-   "t": "Tensei Kendo no Harem Colosseum 4",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98434-EWdEnjvizlbH.jpg",
-   "tags": [],
-   "clsManual": true,
-   "hentai": true,
-   "at": 1791406243230,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Tensei Kendo no Harem Colosseum 4",
-     "url": "https://streamtape.com/e/17BOA8DWeGTeaGd"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-Gw3l231w4-0-06vbr20PaySmL9",
-   "t": "Kowaremono Risa 1",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21521-qpf2UqZJaCio.png",
-   "tags": [
-    "Comedia"
-   ],
-   "genre": "comedia",
-   "seasons": {
-    "1": "Kowaremono Risa 1",
-    "2": "Temporada 2 — Kowaremono Risa 2",
-    "3": "Temporada 3 — Kowaremono Risa 3"
-   },
-   "clsManual": true,
-   "hentai": true,
-   "at": 1791406244556,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Kowaremono Risa 1",
-     "url": "https://streamtape.com/e/06vbr20PaySmL9"
-    }
-   ]
-  },
-  {
-   "id": "imp-drv-1-1lpiTu-UOGJoZnxDg1pntbGX5sGfCnV",
-   "t": "GODZILLA Punto Singular",
-   "jp": "📁",
-   "tag": "Google Drive",
-   "g": 4,
-   "kind": "serie",
-   "anime": true,
-   "poster": null,
-   "tags": [],
-   "at": 1791407445718,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "GODZILLA Punto Singular Episodio 1",
-     "url": "https://drive.google.com/file/d/1-TyBkR9aLEVsrY-bRIO3Y4v_FqluBR82/view"
-    },
-    {
-     "n": 2,
-     "t": "GODZILLA Punto Singular Episodio 2",
-     "url": "https://drive.google.com/file/d/1efbipWTcQ8ZwqPZTmqSSQwbg5zd9kJgT/view"
-    },
-    {
-     "n": 3,
-     "t": "GODZILLA Punto Singular Episodio 3",
-     "url": "https://drive.google.com/file/d/1VaTU6SJsoLcKNekQitKIrcVp526NTazr/view"
-    },
-    {
-     "n": 4,
-     "t": "GODZILLA Punto Singular Episodio 4",
-     "url": "https://drive.google.com/file/d/17sgjLMdwQh38gUvq1BiNpd1F4Myk7NW0/view"
-    },
-    {
-     "n": 5,
-     "t": "GODZILLA Punto Singular Episodio 5",
-     "url": "https://drive.google.com/file/d/1w9YArnTod25UNDYFkmOvI7T-DGufHKNu/view"
-    },
-    {
-     "n": 6,
-     "t": "GODZILLA Punto Singular Episodio 6",
-     "url": "https://drive.google.com/file/d/1-LRGRvU-TS8bZ_a06ftiJSjFayXhGurQ/view"
-    },
-    {
-     "n": 7,
-     "t": "GODZILLA Punto Singular Episodio 7",
-     "url": "https://drive.google.com/file/d/1FvKaTvNxfR0EenL8g2_6rF_Kow_xXGII/view"
-    },
-    {
-     "n": 8,
-     "t": "GODZILLA Punto Singular Episodio 8",
-     "url": "https://drive.google.com/file/d/1y0Q-qT4a4v8BIBfhucNt-BmqZI_t9ELQ/view"
-    },
-    {
-     "n": 9,
-     "t": "GODZILLA Punto Singular Episodio 9",
-     "url": "https://drive.google.com/file/d/1rOWvJFFFt5yfb1X0uQEVFew0CTOEvH5d/view"
-    },
-    {
-     "n": 10,
-     "t": "GODZILLA Punto Singular Episodio 10",
-     "url": "https://drive.google.com/file/d/1VFowdgJBl9X649j09oRU6Y2VvndBDz5K/view"
-    },
-    {
-     "n": 11,
-     "t": "GODZILLA Punto Singular Episodio 11",
-     "url": "https://drive.google.com/file/d/1jPOMH9AwX4ykM2yoCQGYrsoqccUKV_cV/view"
-    },
-    {
-     "n": 12,
-     "t": "GODZILLA Punto Singular Episodio 12",
-     "url": "https://drive.google.com/file/d/1n_I_GRKrVo5R9AJKGbbpID0a0G-MTjR4/view"
-    },
-    {
-     "n": 13,
-     "t": "GODZILLA Punto Singular Episodio 13",
-     "url": "https://drive.google.com/file/d/1GGV3-4_VhKRLTKL_YgUjr9AYuZv_9Y8u/view"
-    }
-   ]
-  },
-  {
-   "id": "imp-drv-1S2Qv1yuEColTwPDxQuh2tAa2u-RNVCKk",
-   "t": "Marvels Agents Of S.H.I.E.L.D",
-   "jp": "📁",
-   "tag": "Google Drive",
-   "g": 4,
-   "kind": "serie",
-   "anime": false,
-   "poster": null,
-   "tags": [],
-   "clsManual": true,
-   "hentai": false,
-   "at": 1791407699814,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Marvels Agentes De S H I E L D S01E01 - Piloto [1080p Lat-In",
-     "url": "https://drive.google.com/file/d/1c9Nv6TN1LgMhCEKTpAP9iVWgkX9o6Yu5/view"
-    },
-    {
-     "n": 2,
-     "t": "Marvels Agentes De S H I E L D S01E02 - 0-8-4 [1080p Lat-Ing",
-     "url": "https://drive.google.com/file/d/1xg4ey_YXloU7r853krm1PLMRH2zYXu9Y/view"
-    },
-    {
-     "n": 3,
-     "t": "Marvels Agentes De S H I E L D S01E03 - El Activo [1080p Lat",
-     "url": "https://drive.google.com/file/d/1HerhupWZGmcv3wYf_aCh6PsUfy9Cow4x/view"
-    },
-    {
-     "n": 4,
-     "t": "Marvels Agentes De S H I E L D S01E04 - Ojo Espia [1080p Lat",
-     "url": "https://drive.google.com/file/d/1wB7f-Kkfi_3bHnBOoZPSqAmSdA9a0sMo/view"
-    },
-    {
-     "n": 5,
-     "t": "Marvels Agentes De S H I E L D S01E05 - La Chica Del Vestido",
-     "url": "https://drive.google.com/file/d/1gg5OjYp0sXQ1GmwSff8VF8AxfC2mSsbC/view"
-    },
-    {
-     "n": 6,
-     "t": "Marvels Agentes De S H I E L D S01E06 - Zumbidos [1080p Lat-",
-     "url": "https://drive.google.com/file/d/1tlXtB7Y58DTSFGBBxmHT1o__9ikZz1vu/view"
-    },
-    {
-     "n": 7,
-     "t": "Marvels Agentes De S H I E L D S01E07 - El Hub [1080p Lat-In",
-     "url": "https://drive.google.com/file/d/1EUauqBiyRfROhiTO1ml7n30wasRILNSY/view"
-    },
-    {
-     "n": 8,
-     "t": "Marvels Agentes De S H I E L D S01E08 - El Pozo [1080p Lat-I",
-     "url": "https://drive.google.com/file/d/19Be8bTzVfDDoRD5d2aqymozfaFLttiYP/view"
-    },
-    {
-     "n": 9,
-     "t": "Marvels Agentes De S H I E L D S01E09 - Reparaciones [1080p ",
-     "url": "https://drive.google.com/file/d/1vtWHLKUSCOtgMHm2if-nZChGwh-hTW-f/view"
-    },
-    {
-     "n": 10,
-     "t": "Marvels Agentes De S H I E L D S01E10 - El Puente [1080p Lat",
-     "url": "https://drive.google.com/file/d/1daGJE9y2tJBKUACkzn_aAusVPNtaov6t/view"
-    },
-    {
-     "n": 11,
-     "t": "Marvels Agentes De S H I E L D S01E11 - El Lugar Magico [108",
-     "url": "https://drive.google.com/file/d/1t0gHtWjxqs0bjfbEQ2a4Xa1_zUSs3rQ2/view"
-    },
-    {
-     "n": 12,
-     "t": "Marvels Agentes De S H I E L D S01E12 - Semillas [1080p Lat-",
-     "url": "https://drive.google.com/file/d/1liWEfg_4iq0COUfMnE_x_ZoHUo7kf9Am/view"
-    },
-    {
-     "n": 13,
-     "t": "Marvels Agentes De S H I E L D S01E13 - VIAS [1080p Lat-Ing]",
-     "url": "https://drive.google.com/file/d/1OSnQn60aI5CbeM84HsT0s9l3i0lLsuqm/view"
-    },
-    {
-     "n": 14,
-     "t": "Marvels Agentes De S H I E L D S01E14 - TAHITI [1080p Lat-In",
-     "url": "https://drive.google.com/file/d/1d-0wOM7AKQ4DxRo_h9lhqXqpAjVTfODD/view"
-    },
-    {
-     "n": 15,
-     "t": "Marvels Agentes De S H I E L D S01E15 - Hombres Faciles [108",
-     "url": "https://drive.google.com/file/d/1hMT3EWSe8QS3RndK32HikPVILmJEjfzp/view"
-    },
-    {
-     "n": 16,
-     "t": "Marvels Agentes De S H I E L D S01E16 - Fin del Comienzo [10",
-     "url": "https://drive.google.com/file/d/1lKXHwCpzBA5kvPgAAdUy4Terl_QSgQH3/view"
-    },
-    {
-     "n": 17,
-     "t": "Marvels Agentes De S H I E L D S01E17 - Cambio, Cambio, Camb",
-     "url": "https://drive.google.com/file/d/1cHBMmUn7wMKQH7xIBOrk2cANTR6gWLjO/view"
-    },
-    {
-     "n": 18,
-     "t": "Marvels Agentes De S H I E L D S01E18 - Providencia [1080p L",
-     "url": "https://drive.google.com/file/d/1iaUQnVv8-OqzizMIi0R2sx1F5V4-JodE/view"
-    },
-    {
-     "n": 19,
-     "t": "Marvels Agentes De S H I E L D S01E19 - La Unica Luz en la O",
-     "url": "https://drive.google.com/file/d/1dbPDcsR5z7H0wkjRTYL8JwglVmwcQqzw/view"
-    },
-    {
-     "n": 20,
-     "t": "Marvels Agentes De S H I E L D S01E20 - Nada Personal [1080p",
-     "url": "https://drive.google.com/file/d/1dd-c3UIV5QqX6zINgDjSBk6em13jgdbK/view"
-    },
-    {
-     "n": 21,
-     "t": "Marvels Agentes De S H I E L D S01E21 - Chusma [1080p Lat-In",
-     "url": "https://drive.google.com/file/d/1irQNnjmlKfEU-Ch_Es3-sCwF89zU7B-h/view"
-    },
-    {
-     "n": 22,
-     "t": "Marvels Agentes De S H I E L D S01E22 - El Principio Del Fin",
-     "url": "https://drive.google.com/file/d/1-EfNfxEZbiDLIgywrMLHIXHbHPnGLRX_/view"
-    }
-   ]
-  },
-  {
-   "id": "ia-avengers-assemble-s-05",
-   "t": "Avengers Assemble temporada 5",
-   "jp": "📺",
-   "tag": "Cine IA · Temporada",
-   "g": 5,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/r7C5c5Un1zsiAfixa8HEd5ebYmM.jpg",
-   "tags": [],
-   "at": 1790662995791,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Avengers Black Panther Quest S05E01 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E01.ia.mp4"
-    },
-    {
-     "n": 2,
-     "t": "Avengers Black Panther Quest S05E02",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E02.mp4"
-    },
-    {
-     "n": 3,
-     "t": "Avengers Black Panther Quest S05E03 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E03.ia.mp4"
-    },
-    {
-     "n": 4,
-     "t": "Avengers Black Panther Quest S05E04",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E04.mp4"
-    },
-    {
-     "n": 5,
-     "t": "Avengers Black Panther Quest S05E05",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E05.mp4"
-    },
-    {
-     "n": 6,
-     "t": "Avengers Black Panther Quest S05E06",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E06.mp4"
-    },
-    {
-     "n": 7,
-     "t": "Avengers Black Panther Quest S05E07",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E07.mp4"
-    },
-    {
-     "n": 8,
-     "t": "Avengers Black Panther Quest S05E08 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E08.ia.mp4"
-    },
-    {
-     "n": 9,
-     "t": "Avengers Black Panther Quest S05E09",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E09.mp4"
-    },
-    {
-     "n": 10,
-     "t": "Avengers Black Panther Quest S05E10",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E10.mp4"
-    },
-    {
-     "n": 11,
-     "t": "Avengers Black Panther Quest S05E11 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E11.ia.mp4"
-    },
-    {
-     "n": 12,
-     "t": "Avengers Black Panther Quest S05E12 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E12.ia.mp4"
-    },
-    {
-     "n": 13,
-     "t": "Avengers Black Panther Quest S05E13 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E13.ia.mp4"
-    },
-    {
-     "n": 14,
-     "t": "Avengers Black Panther Quest S05E14",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E14.mp4"
-    },
-    {
-     "n": 15,
-     "t": "Avengers Black Panther Quest S05E15 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E15.ia.mp4"
-    },
-    {
-     "n": 16,
-     "t": "Avengers Black Panther Quest S05E16 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E16.ia.mp4"
-    },
-    {
-     "n": 17,
-     "t": "Avengers Black Panther Quest S05E17 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E17.ia.mp4"
-    },
-    {
-     "n": 18,
-     "t": "Avengers Black Panther Quest S05E18 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E18.ia.mp4"
-    },
-    {
-     "n": 19,
-     "t": "Avengers Black Panther Quest S05E19 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E19.ia.mp4"
-    },
-    {
-     "n": 20,
-     "t": "Avengers Black Panther Quest S05E20 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E20.ia.mp4"
-    },
-    {
-     "n": 21,
-     "t": "Avengers Black Panther Quest S05E21 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E21.ia.mp4"
-    },
-    {
-     "n": 22,
-     "t": "Avengers Black Panther Quest S05E22 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E22.ia.mp4"
-    },
-    {
-     "n": 23,
-     "t": "Avengers Black Panther Quest S05E23 ia",
-     "url": "https://archive.org/download/avengers-assemble-s-05/Avengers%20Black%20Panther%20Quest%20S05E23.ia.mp4"
     }
    ]
   },
@@ -45155,407 +44717,68 @@
    ]
   },
   {
-   "id": "file-https-drive-google-com-file-d-1qdjnTS9x7wt5jPLr7m0qTZ8aHLnON",
-   "t": "Ga Hoole - La Leyenda De Los Guardianes",
+   "id": "ia-volver-al-futuro-3-1990_202510",
+   "t": "Volver Al Futuro 3",
    "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
+   "tag": "Cine IA · Película · 1990",
+   "g": 1,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/dsOfwuOYnXUzOORTwYr9aKiKqtL.jpg",
+   "poster": "https://image.tmdb.org/t/p/w500/yamBr3ihlWFF9jh3oOODSvjDY2e.jpg",
    "tags": [
     "Aventura"
    ],
    "genre": "aventura",
-   "at": 1791417607815,
+   "order": 109,
    "episodes": [
     {
      "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1qdjnTS9x7wt5jPLr7m0qTZ8aHLnONadB/view"
+     "t": "Volver Al Futuro 3 ( 1990)",
+     "url": "https://archive.org/download/volver-al-futuro-3-1990_202510/Volver%20al%20Futuro%203%20(1990).mp4"
     }
    ]
   },
   {
-   "id": "file-https-drive-google-com-file-d-1-s8nFGwp8gEpwfgwr3DftLXnsTmLD",
-   "t": "Pinocho disney",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
+   "id": "ia-candyman-2_202504",
+   "t": "Candyman 2",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 1995",
+   "g": 4,
    "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/76MYNTMpbiZYqzNArPXmXnPsQce.jpg",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/cBBkrylShdQryKKxaPNBYS5ssMy.jpg",
    "tags": [
-    "Fantasía"
+    "Terror"
    ],
-   "genre": "fantasia",
-   "at": 1791417610258,
+   "genre": "terror",
+   "order": 121,
    "episodes": [
     {
      "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1-s8nFGwp8gEpwfgwr3DftLXnsTmLDK_2/view"
+     "t": "Candyman 2",
+     "url": "https://archive.org/download/candyman-2_202504/Candyman%202.mp4"
     }
    ]
   },
   {
-   "id": "file-https-drive-google-com-file-d-189wk-2TYJxMTN_YI0HRQBAS3TIhbj",
-   "t": "Coyote vs Acme",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
+   "id": "ia-candyman-3_202504",
+   "t": "Candyman 3",
+   "jp": "🎌",
+   "tag": "Cine IA · Película · 1999",
+   "g": 4,
    "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/vWFz9spZFBkJvForuYrKK2ntOLB.jpg",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/p9U8lqwRDLhrU9TnLQylfdBmeNl.jpg",
    "tags": [
-    "Comedia"
+    "Terror"
    ],
-   "genre": "comedia",
-   "at": 1791417612650,
+   "genre": "terror",
+   "order": 122,
    "episodes": [
     {
      "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/189wk-2TYJxMTN_YI0HRQBAS3TIhbj-hH/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1UpeprPYJChte0SjvbWg8hIH3hf5Ql",
-   "t": "Spider-Man Un nuevo día",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/9g0sEFhmvmK4nGhXj8DHuv2noYI.jpg",
-   "tags": [
-    "Ciencia Ficción"
-   ],
-   "genre": "scifi",
-   "at": 1791417615180,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1UpeprPYJChte0SjvbWg8hIH3hf5QlQ0n/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1OyfNV24aTui99FHn9QerZwGdJyEdO",
-   "t": "El Padrino (1972)",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/5HlLUsmsv60cZVTzVns9ICZD6zU.jpg",
-   "tags": [],
-   "at": 1791417617693,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1OyfNV24aTui99FHn9QerZwGdJyEdOz5d/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1tdtIb-bdH_z5IvC3srq8Oa7smExnb",
-   "t": "La Mujer Maravilla",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1tdtIb-bdH_z5IvC3srq8Oa7smExnbI8i&sz=w1000",
-   "tags": [
-    "Documental"
-   ],
-   "genre": "documental",
-   "at": 1791417620062,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1tdtIb-bdH_z5IvC3srq8Oa7smExnbI8i/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1LuTTsf3XhGpG7ZHGPw3WQ2WcAkePC",
-   "t": "In Time",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/2cX5gY6FFsJW6ZXi6PLB3zm0vHr.jpg",
-   "tags": [
-    "Documental"
-   ],
-   "genre": "documental",
-   "at": 1791417622544,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1LuTTsf3XhGpG7ZHGPw3WQ2WcAkePCpO6/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1GbD5EXCVhcNMcprVTYEIZn8954Sdl",
-   "t": "MONSTER HUNTER",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/la7nc6pG4vmPJEzl3gV08jboQWX.jpg",
-   "tags": [
-    "Acción"
-   ],
-   "genre": "accion",
-   "at": 1791417625040,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1GbD5EXCVhcNMcprVTYEIZn8954Sdlr5_/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-16jptnMbvtuP8ihu2NqHyYwS2M2HNf",
-   "t": "Los Tres Chiflados",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/2rP8vjVp5nx4c9TxVW14jWlffW.jpg",
-   "tags": [
-    "Comedia"
-   ],
-   "genre": "comedia",
-   "at": 1791417627588,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/16jptnMbvtuP8ihu2NqHyYwS2M2HNfJTE/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1g-lyE7mHhpnzA-rCgjo191Tc4I2A-",
-   "t": "Máquina de guerra",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/5C18uOTbDZRvVIZcVRO747k2fUi.jpg",
-   "tags": [
-    "Guerra"
-   ],
-   "genre": "guerra",
-   "at": 1791417630095,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1g-lyE7mHhpnzA-rCgjo191Tc4I2A-oBp/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1gaZAdaNRt6SMlc9xTQVDjLjKkZ-1y",
-   "t": "Robocop 4",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/8wQzAAMhO0kEhJMdkfsh7HKBO7P.jpg",
-   "tags": [
-    "Crimen"
-   ],
-   "genre": "crimen",
-   "at": 1791417632685,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1gaZAdaNRt6SMlc9xTQVDjLjKkZ-1ypDR/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-10R9Ehqo8_PFMHxj4eLLxXaE_IDhaR",
-   "t": "el cuervo",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/uUUx4kN6uCvXnjGWOv79gUBxdYE.jpg",
-   "tags": [
-    "Acción"
-   ],
-   "genre": "accion",
-   "at": 1791417635061,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/10R9Ehqo8_PFMHxj4eLLxXaE_IDhaRImK/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-13ufcKILV2BV3CJX_yLEMB2hBCJ_3r",
-   "t": "Bumblebee",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/lOW8vBMJqWHWcMxHbigVAytqiBn.jpg",
-   "tags": [
-    "Acción"
-   ],
-   "genre": "accion",
-   "at": 1791417637506,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/13ufcKILV2BV3CJX_yLEMB2hBCJ_3rqEL/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1wQaDzJcn2qLPnkocTMVHqaSC98Fqn",
-   "t": "si tuviera 30",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/sgiY4CxDEFDcCfsLWLqLr4ezs6n.jpg",
-   "tags": [
-    "Comedia"
-   ],
-   "genre": "comedia",
-   "at": 1791417640309,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1wQaDzJcn2qLPnkocTMVHqaSC98FqnbHZ/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-1aVVC_04MNqYQHetjdRPALxVbKd-qB",
-   "t": "Pearl Harbor",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/ftkKVbk4sQEcekuaGJvpvXcNs32.jpg",
-   "tags": [
-    "Drama"
-   ],
-   "genre": "drama",
-   "at": 1791417642873,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1aVVC_04MNqYQHetjdRPALxVbKd-qB8-1/view"
-    }
-   ]
-  },
-  {
-   "id": "imp-stape-Ey2RHnBPHaQ",
-   "t": "Nosewasure ",
-   "jp": "📁",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21106-VakGfsE3HILf.jpg",
-   "tags": [],
-   "order": 155,
-   "clsManual": true,
-   "hentai": true,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Nosewasure Ep 1 Sub Esp",
-     "url": "https://streamtape.com/e/aRva9p0qdjUxkrm"
-    },
-    {
-     "n": 2,
-     "t": "Nosewasure Ep 2 Sub Esp",
-     "url": "https://streamtape.com/e/eYVY8ykBjDCYVxw"
-    }
-   ]
-  },
-  {
-   "id": "imp-stape-Gw3l231w4-0",
-   "t": "Kowaremono Risa",
-   "jp": "📁",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "serie",
-   "anime": false,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21521-qpf2UqZJaCio.png",
-   "tags": [],
-   "order": 235,
-   "clsManual": true,
-   "hentai": true,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Kowaremono Risa 1",
-     "url": "https://streamtape.com/e/06vbr20PaySmL9"
-    },
-    {
-     "n": 2,
-     "t": "Kowaremono Risa 2",
-     "url": "https://streamtape.com/e/KwVM3vYB1rFgAA"
-    },
-    {
-     "n": 3,
-     "t": "Kowaremono Risa 3",
-     "url": "https://streamtape.com/e/lAdKKPd3yVhdj2"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-AD-oa6PzjCE-oDrwxbJOaWtJo64",
-   "t": "Ecchi na Shintai Sokutei",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/97810-dMrtUmtec3Nc.jpg",
-   "tags": [],
-   "order": 206,
-   "clsManual": true,
-   "hentai": true,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "Ecchi na Shintai Sokutei",
-     "url": "https://streamtape.com/e/oDrwxbJOaWtJo64"
+     "t": "Candyman 3",
+     "url": "https://archive.org/download/candyman-3_202504/Candyman%203.mp4"
     }
    ]
   },
@@ -45626,6 +44849,790 @@
    ]
   },
   {
+   "id": "ia-terminator-2_202409",
+   "t": "Terminator 2",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1991",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/10xtoK2SFv6ADIeWxr3mcrjko72.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1790633693926,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Terminator 2",
+     "url": "https://archive.org/download/terminator-2_202409/Terminator%202.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-terminator-3-la-rebelion-de-las-maquinas",
+   "t": "Terminator: 3 La Rebelión De Las Máquinas",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/ugVNhnnH3DKUZZ3JtzRkViIh4L9.jpg",
+   "tags": [],
+   "at": 1790633718061,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Terminator: 3 La Rebelión De Las Máquinas",
+     "url": "https://archive.org/download/terminator-3-la-rebelion-de-las-maquinas/Terminator%203%20La%20Rebeli%C3%B3n%20de%20las%20M%C3%A1quinas.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-todos-los-perros-van-al-cielo-2",
+   "t": "All Dogs Go To Heaven 2",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1996",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/hFsadSrksu8Kt4CJ2spNKsozRjx.jpg",
+   "tags": [
+    "Romance"
+   ],
+   "genre": "romance",
+   "at": 1790888989881,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "All Dogs Go To Heaven 2 (Español Latino)",
+     "url": "https://archive.org/download/todos-los-perros-van-al-cielo-2/los%20perros%20van%20al%20cielo%202.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-matrix-recargado-2003-espanol-latino-4x-3",
+   "t": "Matrix Recargado",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2003",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/7IZk3Xp3HIpRJGXFYNvzmyRwDlt.jpg",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1790740577513,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Matrix Recargado ( 2003) Español Latino 4x 3",
+     "url": "https://archive.org/download/matrix-recargado-2003-espanol-latino-4x-3/Matrix%20Recargado%20(2003)%20Espa%C3%B1ol%20Latino%204x3.mp4"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-CUmzj00Cu6LioH3qjaTYorVlM0QU",
+   "t": "Robot Salvaje",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/a0a7RC01aTa7pOnskgJb3mCD2Ba.jpg",
+   "tags": [
+    "Ciencia Ficción"
+   ],
+   "genre": "scifi",
+   "at": 1791300222961,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-CUmzj00Cu6LioH3qjaTYorVlM0QUd2_/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-cuqSVFeEn0djbp_qbwXNd2pUk8vn",
+   "t": "John Wick - Chapter 4",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/mj2Z9HnRSIEk3n7yVPoOY4Uzzfh.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791301035981,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-cuqSVFeEn0djbp_qbwXNd2pUk8vniJQ/view"
+    }
+   ]
+  },
+  {
+   "id": "imp-drv-18CnLMgF0_SN8p7qOkapDEbVbR82JAmQA",
+   "t": "Pacific Rim The Black",
+   "jp": "📁",
+   "tag": "Google Drive",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": null,
+   "tags": [],
+   "at": 1791301106948,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Pacific Rim The Black S02E01",
+     "url": "https://drive.google.com/file/d/1TJDtJp985Q0rImwoj1QHwgE8ued1KcAs/view"
+    },
+    {
+     "n": 2,
+     "t": "Pacific Rim The Black S02E02",
+     "url": "https://drive.google.com/file/d/11oJBNjLomlYWhsTGm-9OLlcg9j4ikJIr/view"
+    },
+    {
+     "n": 3,
+     "t": "Pacific Rim The Black S02E03",
+     "url": "https://drive.google.com/file/d/1_zmZRK67zN4I_zYO0trLhyWULwE0Eoq5/view"
+    },
+    {
+     "n": 4,
+     "t": "Pacific Rim The Black S02E04",
+     "url": "https://drive.google.com/file/d/1sKxynuoDcWlxKw5hwY61QOxAJohCjudb/view"
+    },
+    {
+     "n": 5,
+     "t": "Pacific Rim The Black S02E05",
+     "url": "https://drive.google.com/file/d/1KLuGb6ZWCDpSFHZcL0vFuDOTGUu01mNu/view"
+    },
+    {
+     "n": 6,
+     "t": "Pacific Rim The Black S02E06",
+     "url": "https://drive.google.com/file/d/1MfXc5JGX_eS_zX36cRYZUvMiYISi0mlq/view"
+    },
+    {
+     "n": 7,
+     "t": "Pacific Rim The Black S02E07",
+     "url": "https://drive.google.com/file/d/1mjJPtDX0YrcHhM4MpEQwXUkTROTH5uEv/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1wCJ-T18fOGwcDgLy7xtoLAje4LoAM",
+   "t": "La Delgada Linea Roja",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/234oXaXKIcyXpWMMFISsZ94tas9.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791301594610,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1wCJ-T18fOGwcDgLy7xtoLAje4LoAM3wQ/view"
+    }
+   ]
+  },
+  {
+   "id": "mp-stape-root-17BOA8DWeGTeaGd",
+   "t": "Tensei Kendo no Harem Colosseum 4",
+   "jp": "🎬",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98434-EWdEnjvizlbH.jpg",
+   "tags": [],
+   "clsManual": true,
+   "hentai": true,
+   "at": 1791406243230,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Tensei Kendo no Harem Colosseum 4",
+     "url": "https://streamtape.com/e/17BOA8DWeGTeaGd",
+     "thumb": "https://thumb.tapecontent.net/thumb/17BOA8DWeGTeaGd/vWXpOyyeVVHDaW.jpg"
+    }
+   ]
+  },
+  {
+   "id": "mp-stape-Gw3l231w4-0-06vbr20PaySmL9",
+   "t": "Kowaremono Risa 1",
+   "jp": "🎬",
+   "tag": "Streamtape",
+   "g": 3,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/21521-qpf2UqZJaCio.png",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "seasons": {
+    "1": "Kowaremono Risa 1",
+    "2": "Temporada 2 — Kowaremono Risa 2",
+    "3": "Temporada 3 — Kowaremono Risa 3"
+   },
+   "clsManual": true,
+   "hentai": true,
+   "at": 1791406244556,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Kowaremono Risa 1",
+     "url": "https://streamtape.com/e/06vbr20PaySmL9",
+     "thumb": "https://thumb.tapecontent.net/thumb/06vbr20PaySmL9/GbreA99r90flJo.jpg"
+    }
+   ]
+  },
+  {
+   "id": "imp-drv-1-1lpiTu-UOGJoZnxDg1pntbGX5sGfCnV",
+   "t": "GODZILLA Punto Singular",
+   "jp": "📁",
+   "tag": "Google Drive",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": null,
+   "tags": [],
+   "at": 1791407445718,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "GODZILLA Punto Singular Episodio 1",
+     "url": "https://drive.google.com/file/d/1-TyBkR9aLEVsrY-bRIO3Y4v_FqluBR82/view"
+    },
+    {
+     "n": 2,
+     "t": "GODZILLA Punto Singular Episodio 2",
+     "url": "https://drive.google.com/file/d/1efbipWTcQ8ZwqPZTmqSSQwbg5zd9kJgT/view"
+    },
+    {
+     "n": 3,
+     "t": "GODZILLA Punto Singular Episodio 3",
+     "url": "https://drive.google.com/file/d/1VaTU6SJsoLcKNekQitKIrcVp526NTazr/view"
+    },
+    {
+     "n": 4,
+     "t": "GODZILLA Punto Singular Episodio 4",
+     "url": "https://drive.google.com/file/d/17sgjLMdwQh38gUvq1BiNpd1F4Myk7NW0/view"
+    },
+    {
+     "n": 5,
+     "t": "GODZILLA Punto Singular Episodio 5",
+     "url": "https://drive.google.com/file/d/1w9YArnTod25UNDYFkmOvI7T-DGufHKNu/view"
+    },
+    {
+     "n": 6,
+     "t": "GODZILLA Punto Singular Episodio 6",
+     "url": "https://drive.google.com/file/d/1-LRGRvU-TS8bZ_a06ftiJSjFayXhGurQ/view"
+    },
+    {
+     "n": 7,
+     "t": "GODZILLA Punto Singular Episodio 7",
+     "url": "https://drive.google.com/file/d/1FvKaTvNxfR0EenL8g2_6rF_Kow_xXGII/view"
+    },
+    {
+     "n": 8,
+     "t": "GODZILLA Punto Singular Episodio 8",
+     "url": "https://drive.google.com/file/d/1y0Q-qT4a4v8BIBfhucNt-BmqZI_t9ELQ/view"
+    },
+    {
+     "n": 9,
+     "t": "GODZILLA Punto Singular Episodio 9",
+     "url": "https://drive.google.com/file/d/1rOWvJFFFt5yfb1X0uQEVFew0CTOEvH5d/view"
+    },
+    {
+     "n": 10,
+     "t": "GODZILLA Punto Singular Episodio 10",
+     "url": "https://drive.google.com/file/d/1VFowdgJBl9X649j09oRU6Y2VvndBDz5K/view"
+    },
+    {
+     "n": 11,
+     "t": "GODZILLA Punto Singular Episodio 11",
+     "url": "https://drive.google.com/file/d/1jPOMH9AwX4ykM2yoCQGYrsoqccUKV_cV/view"
+    },
+    {
+     "n": 12,
+     "t": "GODZILLA Punto Singular Episodio 12",
+     "url": "https://drive.google.com/file/d/1n_I_GRKrVo5R9AJKGbbpID0a0G-MTjR4/view"
+    },
+    {
+     "n": 13,
+     "t": "GODZILLA Punto Singular Episodio 13",
+     "url": "https://drive.google.com/file/d/1GGV3-4_VhKRLTKL_YgUjr9AYuZv_9Y8u/view"
+    }
+   ]
+  },
+  {
+   "id": "imp-drv-1S2Qv1yuEColTwPDxQuh2tAa2u-RNVCKk",
+   "t": "Marvels Agents Of S.H.I.E.L.D",
+   "jp": "📁",
+   "tag": "Google Drive",
+   "g": 4,
+   "kind": "serie",
+   "anime": false,
+   "poster": null,
+   "tags": [],
+   "clsManual": true,
+   "hentai": false,
+   "at": 1791407699814,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Marvels Agentes De S H I E L D S01E01 - Piloto [1080p Lat-In",
+     "url": "https://drive.google.com/file/d/1c9Nv6TN1LgMhCEKTpAP9iVWgkX9o6Yu5/view"
+    },
+    {
+     "n": 2,
+     "t": "Marvels Agentes De S H I E L D S01E02 - 0-8-4 [1080p Lat-Ing",
+     "url": "https://drive.google.com/file/d/1xg4ey_YXloU7r853krm1PLMRH2zYXu9Y/view"
+    },
+    {
+     "n": 3,
+     "t": "Marvels Agentes De S H I E L D S01E03 - El Activo [1080p Lat",
+     "url": "https://drive.google.com/file/d/1HerhupWZGmcv3wYf_aCh6PsUfy9Cow4x/view"
+    },
+    {
+     "n": 4,
+     "t": "Marvels Agentes De S H I E L D S01E04 - Ojo Espia [1080p Lat",
+     "url": "https://drive.google.com/file/d/1wB7f-Kkfi_3bHnBOoZPSqAmSdA9a0sMo/view"
+    },
+    {
+     "n": 5,
+     "t": "Marvels Agentes De S H I E L D S01E05 - La Chica Del Vestido",
+     "url": "https://drive.google.com/file/d/1gg5OjYp0sXQ1GmwSff8VF8AxfC2mSsbC/view"
+    },
+    {
+     "n": 6,
+     "t": "Marvels Agentes De S H I E L D S01E06 - Zumbidos [1080p Lat-",
+     "url": "https://drive.google.com/file/d/1tlXtB7Y58DTSFGBBxmHT1o__9ikZz1vu/view"
+    },
+    {
+     "n": 7,
+     "t": "Marvels Agentes De S H I E L D S01E07 - El Hub [1080p Lat-In",
+     "url": "https://drive.google.com/file/d/1EUauqBiyRfROhiTO1ml7n30wasRILNSY/view"
+    },
+    {
+     "n": 8,
+     "t": "Marvels Agentes De S H I E L D S01E08 - El Pozo [1080p Lat-I",
+     "url": "https://drive.google.com/file/d/19Be8bTzVfDDoRD5d2aqymozfaFLttiYP/view"
+    },
+    {
+     "n": 9,
+     "t": "Marvels Agentes De S H I E L D S01E09 - Reparaciones [1080p ",
+     "url": "https://drive.google.com/file/d/1vtWHLKUSCOtgMHm2if-nZChGwh-hTW-f/view"
+    },
+    {
+     "n": 10,
+     "t": "Marvels Agentes De S H I E L D S01E10 - El Puente [1080p Lat",
+     "url": "https://drive.google.com/file/d/1daGJE9y2tJBKUACkzn_aAusVPNtaov6t/view"
+    },
+    {
+     "n": 11,
+     "t": "Marvels Agentes De S H I E L D S01E11 - El Lugar Magico [108",
+     "url": "https://drive.google.com/file/d/1t0gHtWjxqs0bjfbEQ2a4Xa1_zUSs3rQ2/view"
+    },
+    {
+     "n": 12,
+     "t": "Marvels Agentes De S H I E L D S01E12 - Semillas [1080p Lat-",
+     "url": "https://drive.google.com/file/d/1liWEfg_4iq0COUfMnE_x_ZoHUo7kf9Am/view"
+    },
+    {
+     "n": 13,
+     "t": "Marvels Agentes De S H I E L D S01E13 - VIAS [1080p Lat-Ing]",
+     "url": "https://drive.google.com/file/d/1OSnQn60aI5CbeM84HsT0s9l3i0lLsuqm/view"
+    },
+    {
+     "n": 14,
+     "t": "Marvels Agentes De S H I E L D S01E14 - TAHITI [1080p Lat-In",
+     "url": "https://drive.google.com/file/d/1d-0wOM7AKQ4DxRo_h9lhqXqpAjVTfODD/view"
+    },
+    {
+     "n": 15,
+     "t": "Marvels Agentes De S H I E L D S01E15 - Hombres Faciles [108",
+     "url": "https://drive.google.com/file/d/1hMT3EWSe8QS3RndK32HikPVILmJEjfzp/view"
+    },
+    {
+     "n": 16,
+     "t": "Marvels Agentes De S H I E L D S01E16 - Fin del Comienzo [10",
+     "url": "https://drive.google.com/file/d/1lKXHwCpzBA5kvPgAAdUy4Terl_QSgQH3/view"
+    },
+    {
+     "n": 17,
+     "t": "Marvels Agentes De S H I E L D S01E17 - Cambio, Cambio, Camb",
+     "url": "https://drive.google.com/file/d/1cHBMmUn7wMKQH7xIBOrk2cANTR6gWLjO/view"
+    },
+    {
+     "n": 18,
+     "t": "Marvels Agentes De S H I E L D S01E18 - Providencia [1080p L",
+     "url": "https://drive.google.com/file/d/1iaUQnVv8-OqzizMIi0R2sx1F5V4-JodE/view"
+    },
+    {
+     "n": 19,
+     "t": "Marvels Agentes De S H I E L D S01E19 - La Unica Luz en la O",
+     "url": "https://drive.google.com/file/d/1dbPDcsR5z7H0wkjRTYL8JwglVmwcQqzw/view"
+    },
+    {
+     "n": 20,
+     "t": "Marvels Agentes De S H I E L D S01E20 - Nada Personal [1080p",
+     "url": "https://drive.google.com/file/d/1dd-c3UIV5QqX6zINgDjSBk6em13jgdbK/view"
+    },
+    {
+     "n": 21,
+     "t": "Marvels Agentes De S H I E L D S01E21 - Chusma [1080p Lat-In",
+     "url": "https://drive.google.com/file/d/1irQNnjmlKfEU-Ch_Es3-sCwF89zU7B-h/view"
+    },
+    {
+     "n": 22,
+     "t": "Marvels Agentes De S H I E L D S01E22 - El Principio Del Fin",
+     "url": "https://drive.google.com/file/d/1-EfNfxEZbiDLIgywrMLHIXHbHPnGLRX_/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1qdjnTS9x7wt5jPLr7m0qTZ8aHLnON",
+   "t": "Ga Hoole - La Leyenda De Los Guardianes (2010) Dvdrip [Aventura]",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1qdjnTS9x7wt5jPLr7m0qTZ8aHLnONadB&sz=w1000",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1791417607815,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1qdjnTS9x7wt5jPLr7m0qTZ8aHLnONadB/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-s8nFGwp8gEpwfgwr3DftLXnsTmLD",
+   "t": "02 - Pinocho",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1-s8nFGwp8gEpwfgwr3DftLXnsTmLDK_2&sz=w1000",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791417610258,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-s8nFGwp8gEpwfgwr3DftLXnsTmLDK_2/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-189wk-2TYJxMTN_YI0HRQBAS3TIhbj",
+   "t": "Coyote vs Acme (2026)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=189wk-2TYJxMTN_YI0HRQBAS3TIhbj-hH&sz=w1000",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791417612650,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/189wk-2TYJxMTN_YI0HRQBAS3TIhbj-hH/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1UpeprPYJChte0SjvbWg8hIH3hf5Ql",
+   "t": "Spider-Man Un nuevo día (2026)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1UpeprPYJChte0SjvbWg8hIH3hf5QlQ0n&sz=w1000",
+   "tags": [
+    "Ciencia Ficción"
+   ],
+   "genre": "scifi",
+   "at": 1791417615180,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1UpeprPYJChte0SjvbWg8hIH3hf5QlQ0n/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1OyfNV24aTui99FHn9QerZwGdJyEdO",
+   "t": "El Padrino (1972)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1OyfNV24aTui99FHn9QerZwGdJyEdOz5d&sz=w1000",
+   "tags": [],
+   "at": 1791417617693,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1OyfNV24aTui99FHn9QerZwGdJyEdOz5d/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1tdtIb-bdH_z5IvC3srq8Oa7smExnb",
+   "t": "La Mujer Maravilla",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1tdtIb-bdH_z5IvC3srq8Oa7smExnbI8i&sz=w1000",
+   "tags": [
+    "Documental"
+   ],
+   "genre": "documental",
+   "at": 1791417620062,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1tdtIb-bdH_z5IvC3srq8Oa7smExnbI8i/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1LuTTsf3XhGpG7ZHGPw3WQ2WcAkePC",
+   "t": "El Precio del Mañana",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1LuTTsf3XhGpG7ZHGPw3WQ2WcAkePCpO6&sz=w1000",
+   "tags": [
+    "Documental"
+   ],
+   "genre": "documental",
+   "at": 1791417622544,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1LuTTsf3XhGpG7ZHGPw3WQ2WcAkePCpO6/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1GbD5EXCVhcNMcprVTYEIZn8954Sdl",
+   "t": "MONSTER HUNTER",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1GbD5EXCVhcNMcprVTYEIZn8954Sdlr5_&sz=w1000",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791417625040,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1GbD5EXCVhcNMcprVTYEIZn8954Sdlr5_/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-16jptnMbvtuP8ihu2NqHyYwS2M2HNf",
+   "t": "Los Tres Chiflados",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=16jptnMbvtuP8ihu2NqHyYwS2M2HNfJTE&sz=w1000",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791417627588,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/16jptnMbvtuP8ihu2NqHyYwS2M2HNfJTE/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1g-lyE7mHhpnzA-rCgjo191Tc4I2A-",
+   "t": "2017 - Máquina de guerra - lo de jose",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1g-lyE7mHhpnzA-rCgjo191Tc4I2A-oBp&sz=w1000",
+   "tags": [
+    "Guerra"
+   ],
+   "genre": "guerra",
+   "at": 1791417630095,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1g-lyE7mHhpnzA-rCgjo191Tc4I2A-oBp/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1gaZAdaNRt6SMlc9xTQVDjLjKkZ-1y",
+   "t": "Robocop 4 (2014)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1gaZAdaNRt6SMlc9xTQVDjLjKkZ-1ypDR&sz=w1000",
+   "tags": [
+    "Crimen"
+   ],
+   "genre": "crimen",
+   "at": 1791417632685,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1gaZAdaNRt6SMlc9xTQVDjLjKkZ-1ypDR/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-10R9Ehqo8_PFMHxj4eLLxXaE_IDhaR",
+   "t": "el cuervo español HD 360p",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=10R9Ehqo8_PFMHxj4eLLxXaE_IDhaRImK&sz=w1000",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791417635061,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/10R9Ehqo8_PFMHxj4eLLxXaE_IDhaRImK/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-13ufcKILV2BV3CJX_yLEMB2hBCJ_3r",
+   "t": "Bumblebee (2018)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=13ufcKILV2BV3CJX_yLEMB2hBCJ_3rqEL&sz=w1000",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791417637506,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/13ufcKILV2BV3CJX_yLEMB2hBCJ_3rqEL/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1wQaDzJcn2qLPnkocTMVHqaSC98Fqn",
+   "t": "Telegram @Pelisdrive si tuv 30",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1wQaDzJcn2qLPnkocTMVHqaSC98FqnbHZ&sz=w1000",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791417640309,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1wQaDzJcn2qLPnkocTMVHqaSC98FqnbHZ/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1aVVC_04MNqYQHetjdRPALxVbKd-qB",
+   "t": "P ear l Har bor",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1aVVC_04MNqYQHetjdRPALxVbKd-qB8-1&sz=w1000",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791417642873,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1aVVC_04MNqYQHetjdRPALxVbKd-qB8-1/view"
+    }
+   ]
+  },
+  {
    "id": "file-https-drive-google-com-file-d-17qUrrqyF_ognYJ_yzlmz2pyQlB9Ax",
    "t": "Espias a escondidas",
    "jp": "🎬",
@@ -45633,7 +45640,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/j2xcicPNXzNex47EYOfw45Dl1o0.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=17qUrrqyF_ognYJ_yzlmz2pyQlB9AxZaL&sz=w1000",
    "tags": [
     "Acción"
    ],
@@ -45649,13 +45656,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1-8Mcge-jGzUhotLHpddEPIQ4rFqIW",
-   "t": "Arthur y el regreso de los minimoys",
+   "t": "arthur 2",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/x8xJdxTsJOJ1pOQVplZarOng0GO.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H&sz=w1000",
    "tags": [
     "Comedia"
    ],
@@ -45677,7 +45684,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/y2FwChmqk1twjhslQNtgBA3Oik6.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9&sz=w1000",
    "tags": [
     "Aventura"
    ],
@@ -45693,13 +45700,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
-   "t": "Escuadron Suicida",
+   "t": "E5CU4DR0N 5U1C1D4",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/fPJWlhXA2VXf4MlQ3JenVsz1iba.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q&sz=w1000",
    "tags": [
     "Acción"
    ],
@@ -45721,7 +45728,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/1m6JsSmBa4X1Kp35YW3QPbMpByF.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs&sz=w1000",
    "tags": [],
    "at": 1791420943251,
    "episodes": [
@@ -45740,7 +45747,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/oP09KA2lP5SluKVf8AmRsf38X7q.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u&sz=w1000",
    "tags": [],
    "at": 1791420960899,
    "episodes": [
@@ -45759,7 +45766,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/yHa2I7qxZvZUASLHrIR8vQLmZ4B.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=17pOT828OddAZOTlMYlEpSBNsIsRU71r6&sz=w1000",
    "tags": [
     "Fantasía"
    ],
@@ -45781,7 +45788,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/pkxle3iqeacvt3NC716YflfWxa2.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63&sz=w1000",
    "tags": [
     "Fantasía"
    ],
@@ -45803,7 +45810,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/jAwbyTKDbw7iqYptPMSlPfFsbPU.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ&sz=w1000",
    "tags": [
     "Documental"
    ],
@@ -45825,7 +45832,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/vKSyaptSA7zZ9H8mSfaDnvyQl9k.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=140FaEXAENyFIvbKN5_xORkORXEcxvPQm&sz=w1000",
    "tags": [
     "Comedia"
    ],
@@ -45847,7 +45854,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/p7H6r0SN0BqMY3ZNuJxaOHDVFut.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=12paturmR6xXcliyd3xo1DgJikPzwwx_Y&sz=w1000",
    "tags": [
     "Musical"
    ],
@@ -45869,7 +45876,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/78olDfo1tQmI1OtyBPovWb98wLD.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O&sz=w1000",
    "tags": [],
    "at": 1791421230355,
    "episodes": [
@@ -45888,7 +45895,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/5rWT1jJD5NJmbt0bJXDb3vKOQsh.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L&sz=w1000",
    "tags": [
     "Infantil"
    ],
@@ -45904,13 +45911,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1JgaDCBdOCOWCyxom7dCXnsEioXnLO",
-   "t": "La casa Gucci",
+   "t": "La casa Guchi",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/8GloCFzS8Pjtad26dJEVDax5WUC.jpg",
+   "poster": "https://drive.google.com/thumbnail?id=1JgaDCBdOCOWCyxom7dCXnsEioXnLO2_s&sz=w1000",
    "tags": [
     "Drama"
    ],
@@ -52360,10 +52367,10 @@
    "name": "Canal 4 Posadas",
    "logo": "https://i.imgur.com/tElJr3e.png",
    "group": "Otros",
-   "url": "https://iptv.ixfo.com.ar:30443/live/C4POS/playlist.m3u8",
+   "url": "http://190.128.214.97:64333/play/a06l/index.m3u8",
    "epg": "Canal4Posadas.ar",
    "cc": "ar",
-   "quality": "576p",
+   "quality": "1080p",
    "src": "iptv-org/c-ar"
   },
   {
@@ -53608,17 +53615,6 @@
    "cc": "cl",
    "quality": "720p",
    "src": "iptv-org/c-cl"
-  },
-  {
-   "id": "tv-canalchvnoticias-cl",
-   "name": "Canal CHV Noticias",
-   "logo": "https://i.imgur.com/sx8Aaxr.png",
-   "group": "Noticias",
-   "url": "https://xyktmobile00.s.gy/PPV929_CIV_NOTICIAS",
-   "epg": "CanalCHVNoticias.cl",
-   "cc": "cl",
-   "quality": "1080p",
-   "src": "iptv-org/g-news"
   },
   {
    "id": "tv-canalcinedios-co",
@@ -56602,17 +56598,6 @@
    "src": "iptv-org/c-cl"
   },
   {
-   "id": "tv-dreamworkschannellatinamerica-us",
-   "name": "DreamWorks Channel Latin America",
-   "logo": "",
-   "group": "Animación",
-   "url": "https://xyktmobile00.s.gy/PPV913_DREAMWO",
-   "epg": "DreamWorksChannelLatinAmerica.us",
-   "cc": "us",
-   "quality": "",
-   "src": "iptv-org/g-anime"
-  },
-  {
    "id": "tv-dreikotv-pa",
    "name": "Dreiko TV",
    "logo": "https://i.imgur.com/k8U0e0b.png",
@@ -58659,17 +58644,6 @@
    "src": "iptv-org/c-es"
   },
   {
-   "id": "tv-hbodrama-us",
-   "name": "HBO Drama",
-   "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/HBO_Drama_Logo.svg/960px-HBO_Drama_Logo.svg.png",
-   "group": "Movies;Series",
-   "url": "https://sra72yz.s.gy/HBO_DRAMA_HD.m3u8",
-   "epg": "HBODrama.us",
-   "cc": "us",
-   "quality": "1080p",
-   "src": "iptv-org/g-series"
-  },
-  {
    "id": "tv-hbomovies-us",
    "name": "HBO Movies",
    "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/HBO_Movies_Logo.svg/960px-HBO_Movies_Logo.svg.png",
@@ -60258,10 +60232,10 @@
    "name": "LAMIL35 TV",
    "logo": "https://i.pinimg.com/736x/2d/fa/25/2dfa25f5d2e4d5c19886a3a263706317.jpg",
    "group": "Animation;Classic;Entertainment",
-   "url": "https://streamingvideo.com.ar/hls/eea3c96df781e0a3.m3u8",
+   "url": "https://vtm2.msinteractiva.com/lamil35/lamil35/playlist.m3u8",
    "epg": "LAMIL35TV.ar",
    "cc": "ar",
-   "quality": "480p",
+   "quality": "720p",
    "src": "iptv-org/g-anime"
   },
   {
@@ -61297,6 +61271,17 @@
    "cc": "do",
    "quality": "1080p",
    "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-megaficcion-cl",
+   "name": "Mega Ficcion",
+   "logo": "https://i.imgur.com/aQdhJie.png",
+   "group": "Series",
+   "url": "http://15.204.196.147:22880/MEGAFICCION-MEGAMEDIA-EE.UU-PROVEEDOR/index.m3u8",
+   "epg": "MegaFiccion.cl",
+   "cc": "cl",
+   "quality": "1080p",
+   "src": "iptv-org/g-series"
   },
   {
    "id": "tv-megatv-py",
@@ -66253,7 +66238,7 @@
    "name": "RCC TV",
    "logo": "https://i.imgur.com/qdjBnRl.png",
    "group": "Religioso",
-   "url": "https://xyktmobile00.s.gy/TICK_RCC",
+   "url": "https://copacoradios.desdeparaguay.net/rcctv/rcctv/playlist.m3u8?admin=nacion",
    "epg": "RCCTV.py",
    "cc": "py",
    "quality": "1080p",
@@ -70851,10 +70836,10 @@
    "name": "TV Aire",
    "logo": "https://i.imgur.com/7gHFKPZ.png",
    "group": "General",
-   "url": "https://video.hostingcaaguazu.com:19360/tvairepy/tvairepy.m3u8",
+   "url": "http://190.128.214.97:64333/play/a05y/index.m3u8",
    "epg": "TVAire.py",
    "cc": "py",
-   "quality": "",
+   "quality": "1080p",
    "src": "iptv-org/spa"
   },
   {
@@ -78782,10 +78767,10 @@
    "name": "iNews HD",
    "logo": "https://i.imgur.com/M2R3lfg.png",
    "group": "Noticias",
-   "url": "https://mncmedia.malingtv.workers.dev/inews.m3u8",
+   "url": "http://202.150.172.59/iNews/index.m3u8",
    "epg": "iNews.id",
    "cc": "id",
-   "quality": "720p",
+   "quality": "1080p",
    "src": "iptv-org/g-news"
   },
   {
@@ -83893,39 +83878,6 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-arenasportpremiumm1-mk",
-   "name": "Arena Sport Premium M1",
-   "logo": "https://tvarenasport.mk/wp-content/themes/tvarenasport-mk/assets/channels/arena-m1.png",
-   "group": "Deportes",
-   "url": "https://racitonsen.s.gy/AM1P",
-   "epg": "ArenaSportPremiumM1.mk",
-   "cc": "mk",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-arenasportpremiumm2-mk",
-   "name": "Arena Sport Premium M2",
-   "logo": "https://tvarenasport.mk/wp-content/themes/tvarenasport-mk/assets/channels/arena-m2.png",
-   "group": "Deportes",
-   "url": "https://racitonsen.s.gy/AM2P",
-   "epg": "ArenaSportPremiumM2.mk",
-   "cc": "mk",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-arenasportpremiumm3-mk",
-   "name": "Arena Sport Premium M3",
-   "logo": "https://tvarenasport.mk/wp-content/themes/tvarenasport-mk/assets/channels/arena-m3.png",
-   "group": "Deportes",
-   "url": "https://racitonsen.s.gy/AM3P",
-   "epg": "ArenaSportPremiumM3.mk",
-   "cc": "mk",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-arryadia-ma",
    "name": "Arryadia",
    "logo": "https://i.imgur.com/XjzK3gZ.png",
@@ -84894,17 +84846,6 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-kbsnsports-kr",
-   "name": "KBS N Sports",
-   "logo": "https://i.imgur.com/xZ2s9eY.png",
-   "group": "Deportes",
-   "url": "https://xyktmobile00.s.gy/PPV919_KBSNSPO_SD",
-   "epg": "KBSNSports.kr",
-   "cc": "kr",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-khl-ru",
    "name": "KHL",
    "logo": "https://i.imgur.com/RgdHdOV.png",
@@ -85620,33 +85561,22 @@
    "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-premierfootball-ph",
-   "name": "Premier Football",
-   "logo": "https://i.imgur.com/lKjXwtG.png",
-   "group": "Deportes",
-   "url": "https://racitonsen.s.gy/PREMIER_FOOTBALL",
-   "epg": "PremierFootball.ph",
-   "cc": "ph",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-premiersports2-ph",
    "name": "Premier Sports 2",
    "logo": "https://i.imgur.com/UQeXWd2.png",
    "group": "Deportes",
-   "url": "https://racitonsen.s.gy/PS2PH",
+   "url": "https://amg19223-amg19223c4-amgplt0351.playout.now3.amagi.tv/playlist/amg19223-amg19223c4-amgplt0351/playlist.m3u8",
    "epg": "PremierSports2.ph",
    "cc": "ph",
-   "quality": "1086p",
+   "quality": "1080p",
    "src": "iptv-org/g-sports"
   },
   {
    "id": "tv-premiersports-ph",
-   "name": "Premier Sports HD",
+   "name": "Premier Sports",
    "logo": "https://i.imgur.com/BURPHzI.png",
    "group": "Deportes",
-   "url": "https://racitonsen.s.gy/PS1PH",
+   "url": "https://amg19223-amg19223c3-amgplt0351.playout.now3.amagi.tv/playlist/amg19223-amg19223c3-amgplt0351/playlist.m3u8",
    "epg": "PremierSports.ph",
    "cc": "ph",
    "quality": "1080p",
@@ -85859,17 +85789,6 @@
    "epg": "SanMarinoRTVSport.sm",
    "cc": "sm",
    "quality": "720p",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-sbsgolf-kr",
-   "name": "SBS Golf",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/SBS_Golf_logo_2018.svg/960px-SBS_Golf_logo_2018.svg.png",
-   "group": "Deportes",
-   "url": "https://xyktmobile00.s.gy/PPV922_GOLF_TV",
-   "epg": "SBSGolf.kr",
-   "cc": "kr",
-   "quality": "",
    "src": "iptv-org/g-sports"
   },
   {
@@ -86889,10 +86808,10 @@
    "name": "TVRI Sport",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/960px-TVRI_Sport_2022.svg.png",
    "group": "Deportes",
-   "url": "https://op-group1-swiftservesd-1.dens.tv/s/s107/index.m3u8",
+   "url": "http://202.150.172.59/TVRISport/index.m3u8",
    "epg": "TVRISport.id",
    "cc": "id",
-   "quality": "",
+   "quality": "1080p",
    "src": "iptv-org/g-sports"
   },
   {
@@ -87315,10 +87234,10 @@
   },
   {
    "id": "tv-andtv-in",
-   "name": "&TV HD",
+   "name": "&TV International",
    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SYMANDTV/images/LOGO_HD/LOGO_HD_image.png",
    "group": "Películas",
-   "url": "http://202.70.146.135:8000/play/a06c/index.m3u8",
+   "url": "https://amg01117-amg01117c1-amgplt0029.playout.now3.amagi.tv/playlist/amg01117-amg01117c1-amgplt0029/playlist.m3u8",
    "epg": "AndTV.in",
    "cc": "in",
    "quality": "1080p",
@@ -88810,17 +88729,6 @@
    "src": "iptv-org/g-movies"
   },
   {
-   "id": "tv-filmboxplusaction-pl",
-   "name": "FILMBOX+ Action",
-   "logo": "https://spiintl.com/data/files/kcfinderUploadDir/images/filmboxplus/filmbox%2Baction.png",
-   "group": "Películas",
-   "url": "https://racitonsen.s.gy/FB_ACTION_PL",
-   "epg": "FILMBOXPlusAction.pl",
-   "cc": "pl",
-   "quality": "",
-   "src": "iptv-org/g-movies"
-  },
-  {
    "id": "tv-filmboxpluscomedy-pl",
    "name": "FILMBOX+ Comedy Romania",
    "logo": "https://spiintl.com/data/files/kcfinderUploadDir/images/filmboxplus/filmbox%2Bcomedy.png",
@@ -88847,7 +88755,7 @@
    "name": "FILMBOX+ Festival Poland",
    "logo": "https://spiintl.com/data/files/kcfinderUploadDir/images/filmboxplus/filmbox%2Bfestival.png",
    "group": "Películas",
-   "url": "https://racitonsen.s.gy/FB_FESTIVAL_PL",
+   "url": "http://92.114.85.87:8018/play/a009/index.m3u8",
    "epg": "FILMBOXPlusFestival.pl",
    "cc": "pl",
    "quality": "1080p",
@@ -96401,10 +96309,10 @@
   },
   {
    "id": "tv-disneychannel-nl",
-   "name": "Disney Channel (Netherlands) HD (1080i)",
+   "name": "Disney Channel (Netherlands)",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/3/3d/2022_Disney_Channel_logo.svg",
    "group": "Infantil",
-   "url": "https://masterofiptv.s.gy/iptv2/disney_channel_nl_uhd.m3u8",
+   "url": "http://86.87.15.10:8004/play/a02g/index.m3u8",
    "epg": "DisneyChannel.nl",
    "cc": "nl",
    "quality": "",
@@ -97130,7 +97038,7 @@
    "name": "MBC 3 USA",
    "logo": "https://i.imgur.com/PVt8OPN.png",
    "group": "Infantil",
-   "url": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-3-usa/5d58265a862a476dc7f97694addb5ded/index.m3u8",
+   "url": "https://sh.cdn1-stmify.workers.dev/out/v1/MBC_3_USA/index.m3u8",
    "epg": "MBC3USA.us",
    "cc": "us",
    "quality": "1080p",
@@ -97405,10 +97313,10 @@
    "name": "Nick Jr. (United States) East HD",
    "logo": "https://i.imgur.com/KT4tdQs.png",
    "group": "Infantil",
-   "url": "https://sra72yz.s.gy/NICK_JR_HD.m3u8",
+   "url": "http://107.167.16.138/nickjr/index.m3u8?token=test",
    "epg": "NickJr.us",
    "cc": "us",
-   "quality": "1080p",
+   "quality": "720p",
    "src": "iptv-org/g-kids"
   },
   {
@@ -97705,7 +97613,7 @@
    "url": "https://jmp2.uk/plu-654ca7f92c1d3300086b608c.m3u8",
    "epg": "Nicktoons.us",
    "cc": "us",
-   "quality": "1080p",
+   "quality": "720p",
    "src": "iptv-org/g-kids"
   },
   {
@@ -97940,19 +97848,8 @@
    "src": "iptv-org/g-anime"
   },
   {
-   "id": "tv-pixeltv-pl",
-   "name": "Pixel TV (Poland)",
-   "logo": "https://i.ibb.co/S4jM2WXk/pixeltv.png",
-   "group": "Animation;Kids",
-   "url": "https://jmp2.uk/plu-66bb374ba4ee27000841a62c.m3u8",
-   "epg": "PixelTV.pl",
-   "cc": "pl",
-   "quality": "720p",
-   "src": "iptv-org/g-anime"
-  },
-  {
    "id": "tv-pixeltv-ua",
-   "name": "Pixel TV (Ukraine)",
+   "name": "Pixel TV",
    "logo": "https://i.imgur.com/ECro8Ah.png",
    "group": "Infantil",
    "url": "http://stream.mcquack.net/323/index.m3u8",
@@ -98168,17 +98065,6 @@
    "epg": "PopUp.uk",
    "cc": "uk",
    "quality": "1080p",
-   "src": "iptv-org/g-kids"
-  },
-  {
-   "id": "tv-poyotv-kr",
-   "name": "Poyo TV",
-   "logo": "https://i.imgur.com/5UiSqE5.png",
-   "group": "Infantil",
-   "url": "https://xyktmobile00.s.gy/PPV936_PORORO_HD",
-   "epg": "PoyoTV.kr",
-   "cc": "kr",
-   "quality": "",
    "src": "iptv-org/g-kids"
   },
   {
@@ -98697,17 +98583,6 @@
    "cc": "us",
    "quality": "720p",
    "src": "iptv-org/g-kids"
-  },
-  {
-   "id": "tv-tooniverse-kr",
-   "name": "Tooniverse",
-   "logo": "https://i.imgur.com/Fesm8M3.png",
-   "group": "Animation;Kids",
-   "url": "https://xyktmobile00.s.gy/PPV939_TOONCAST",
-   "epg": "Tooniverse.kr",
-   "cc": "kr",
-   "quality": "",
-   "src": "iptv-org/g-anime"
   },
   {
    "id": "tv-tortuesninjatv-de",
@@ -105167,19 +105042,8 @@
    "src": "iptv-org/g-doc"
   },
   {
-   "id": "tv-history2-pl",
-   "name": "History 2 (Poland)",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/History2_logo_%282022%29.svg/500px-History2_logo_%282022%29.svg.png",
-   "group": "Documentales",
-   "url": "https://racitonsen.s.gy/H2_PL",
-   "epg": "History2.pl",
-   "cc": "pl",
-   "quality": "",
-   "src": "iptv-org/g-doc"
-  },
-  {
    "id": "tv-history2-ru",
-   "name": "History 2 (Russia)",
+   "name": "History 2",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/History2_logo_%282022%29.svg/500px-History2_logo_%282022%29.svg.png",
    "group": "Documentales",
    "url": "http://str2.iptvhd.ru:8080/H2_HD/index.m3u8",
@@ -105240,17 +105104,6 @@
    "url": "http://88.212.15.19/live/history_hun/index.m3u8",
    "epg": "History.hu",
    "cc": "hu",
-   "quality": "",
-   "src": "iptv-org/g-doc"
-  },
-  {
-   "id": "tv-history-pl",
-   "name": "History (Poland)",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/History_%282021%29.svg/500px-History_%282021%29.svg.png",
-   "group": "Documentales",
-   "url": "https://racitonsen.s.gy/HISTORY_PL",
-   "epg": "History.pl",
-   "cc": "pl",
    "quality": "",
    "src": "iptv-org/g-doc"
   },
@@ -107213,28 +107066,6 @@
    "src": "iptv-org/g-series"
   },
   {
-   "id": "tv-kanalzerotv-pl",
-   "name": "Kanal ZERO TV",
-   "logo": "https://i.ibb.co/LzgJ7hzR/KANA-ZERO.jpg",
-   "group": "Noticias",
-   "url": "https://racitonsen.s.gy/ZERO_PL",
-   "epg": "KanalZEROTV.pl",
-   "cc": "pl",
-   "quality": "",
-   "src": "iptv-org/g-news"
-  },
-  {
-   "id": "tv-billiardstv-kr",
-   "name": "Billiards TV",
-   "logo": "https://i.imgur.com/fo1k0Oj.png",
-   "group": "Deportes",
-   "url": "https://xyktmobile00.s.gy/PPV942_BILLIARD",
-   "epg": "BilliardsTV.kr",
-   "cc": "kr",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
    "id": "tv-twentyseven-it",
    "name": "Twentyseven HD",
    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Twentyseven_logo.svg/960px-Twentyseven_logo.svg.png",
@@ -107266,17 +107097,6 @@
    "cc": "ar",
    "quality": "720p",
    "src": "iptv-org/c-ar"
-  },
-  {
-   "id": "tv-hbohits-us",
-   "name": "HBO Hits West HD",
-   "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/HBO_Hits_Logo.svg/960px-HBO_Hits_Logo.svg.png",
-   "group": "Movies;Series",
-   "url": "https://sra72yz.s.gy/HBO_HITS_WEST_HD.m3u8",
-   "epg": "HBOHits.us",
-   "cc": "us",
-   "quality": "1080p",
-   "src": "iptv-org/g-series"
   },
   {
    "id": "tv-tigosports-sv",
@@ -108357,6 +108177,61 @@
    "src": "iptv-org/g-music"
   },
   {
+   "id": "tv-disneyinternationalhd-in",
+   "name": "Disney International HD",
+   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_DISNEY_INTERNATIONAL_HD/images/LOGO_HD/image.png",
+   "group": "Infantil",
+   "url": "http://103.151.60.162:2122/play/a018/index.m3u8?hls",
+   "epg": "DisneyInternationalHD.in",
+   "cc": "in",
+   "quality": "576p",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-sonybbcearth-in",
+   "name": "Sony BBC Earth HD",
+   "logo": "https://dtil.tmsimg.com/assets/s143800_ld_h15_aa.png?lock=720x540",
+   "group": "Documentales",
+   "url": "http://103.185.24.134:3001/SONY-BBC/index.m3u8",
+   "epg": "SonyBBCEarth.in",
+   "cc": "in",
+   "quality": "1080p",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-colorvision-do",
+   "name": "Color Vision",
+   "logo": "https://i.imgur.com/rkgWToA.jpg",
+   "group": "General",
+   "url": "https://cdn4.wind.do/streams/colorvision/colorvision_master.m3u8",
+   "epg": "ColorVision.do",
+   "cc": "do",
+   "quality": "720p",
+   "src": "iptv-org/c-do"
+  },
+  {
+   "id": "tv-eskatv-pl",
+   "name": "Eska TV",
+   "logo": "https://i.imgur.com/N0eH0Cg.png",
+   "group": "Música",
+   "url": "http://92.114.85.87:8018/play/a00h/index.m3u8",
+   "epg": "EskaTV.pl",
+   "cc": "pl",
+   "quality": "1080p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-eskatvextra-pl",
+   "name": "Eska TV Extra",
+   "logo": "https://i.imgur.com/pZAFshQ.png",
+   "group": "Música",
+   "url": "http://92.114.85.87:8016/play/a008/index.m3u8",
+   "epg": "EskaTVExtra.pl",
+   "cc": "pl",
+   "quality": "1080p",
+   "src": "iptv-org/g-music"
+  },
+  {
    "id": "tv-canalmas-uy",
    "name": "Canal Mas",
    "logo": "https://i.imgur.com/gs1L1mW.png",
@@ -108386,6 +108261,94 @@
    "url": "http://158.172.217.18:8000/play/a01k/index.m3u8",
    "epg": "RadiolaTV.co",
    "cc": "co",
+   "quality": "1080p",
+   "src": "iptv-org/g-music"
+  },
+  {
+   "id": "tv-amcserieslatinamerica-us",
+   "name": "AMC Series Latin America",
+   "logo": "https://amc-series.s3.amazonaws.com/menu/hbfen1Gom0_k1cyqi7rw4-amc-series-train-w.png",
+   "group": "Series",
+   "url": "http://45.171.64.30:6060/play/a005/index.m3u8",
+   "epg": "AMCSeriesLatinAmerica.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-aunar-ar",
+   "name": "Aunar",
+   "logo": "https://i.imgur.com/BfaCaZF.png",
+   "group": "Culture;Travel",
+   "url": "http://190.128.214.97:64333/play/a057/index.m3u8",
+   "epg": "Aunar.ar",
+   "cc": "ar",
+   "quality": "1080p",
+   "src": "iptv-org/c-ar"
+  },
+  {
+   "id": "tv-maxcine2-us",
+   "name": "Maxcine 2",
+   "logo": "https://gia.tv/streams/pptv/209163.png",
+   "group": "Películas",
+   "url": "https://live20.bozztv.com/giatvplayout7/giatv-209163/playlist.m3u8",
+   "epg": "Maxcine2.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-maxcine-us",
+   "name": "Maxcine",
+   "logo": "https://gia.tv/streams/pptv/208138.png",
+   "group": "Películas",
+   "url": "https://live20.bozztv.com/giatvplayout7/giatv-208138/playlist.m3u8",
+   "epg": "Maxcine.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-maxcinecomedy-us",
+   "name": "Maxcine Comedy",
+   "logo": "https://gia.tv/streams/pptv/208730.png",
+   "group": "Películas",
+   "url": "https://live20.bozztv.com/giatvplayout7/giatv-208730/playlist.m3u8",
+   "epg": "MaxcineComedy.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-maxcinefamily-us",
+   "name": "Maxcine Family",
+   "logo": "https://gia.tv/streams/pptv/208817.png",
+   "group": "Películas",
+   "url": "https://live20.bozztv.com/giatvplayout7/giatv-208817/playlist.m3u8",
+   "epg": "MaxcineFamily.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-maxcinekids-us",
+   "name": "Maxcine Kids",
+   "logo": "https://gia.tv/streams/pptv/209909.png",
+   "group": "Películas",
+   "url": "https://live20.bozztv.com/giatvplayout7/giatv-209909/playlist.m3u8",
+   "epg": "MaxcineKids.us",
+   "cc": "us",
+   "quality": "720p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-rockpop-ar",
+   "name": "Rock & Pop",
+   "logo": "https://fmrockandpop.com/images/ryp/R&P_Logo_web_207x112px.png",
+   "group": "Música",
+   "url": "http://190.128.214.97:64333/play/a032/index.m3u8",
+   "epg": "RockPop.ar",
+   "cc": "ar",
    "quality": "1080p",
    "src": "iptv-org/g-music"
   },
@@ -108528,28 +108491,6 @@
    "group": "Deportes",
    "url": "http://92.114.85.87:8016/play/a00b/index.m3u8",
    "epg": "PolsatSportFight.pl",
-   "cc": "pl",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-polsatsportpremium1-pl",
-   "name": "Polsat Sport Premium 1",
-   "logo": "https://i.imgur.com/hy1SKE0.png",
-   "group": "Deportes",
-   "url": "https://racitonsen.s.gy/PSP1_SHD",
-   "epg": "PolsatSportPremium1.pl",
-   "cc": "pl",
-   "quality": "",
-   "src": "iptv-org/g-sports"
-  },
-  {
-   "id": "tv-polsatsportpremium2-pl",
-   "name": "Polsat Sport Premium 2",
-   "logo": "https://i.imgur.com/myyWeXY.png",
-   "group": "Deportes",
-   "url": "https://racitonsen.s.gy/PSP2_SHD",
-   "epg": "PolsatSportPremium2.pl",
    "cc": "pl",
    "quality": "",
    "src": "iptv-org/g-sports"
@@ -108698,13 +108639,46 @@
    "src": "iptv-org/g-movies"
   },
   {
-   "id": "tv-disneyinternationalhd-in",
-   "name": "Disney International HD",
-   "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_DISNEY_INTERNATIONAL_HD/images/LOGO_HD/image.png",
-   "group": "Infantil",
-   "url": "http://103.151.60.162:2122/play/a018/index.m3u8?hls",
-   "epg": "DisneyInternationalHD.in",
-   "cc": "in",
+   "id": "tv-vijutv1000novella-ru",
+   "name": "viju TV1000 novella HD",
+   "logo": "https://www.cableman.ru/sites/default/files/viju_TV1000_%D0%BD%D0%BE%D0%B2%D0%B5%D0%BB%D0%BB%D0%B0_color_rgb_02%20%281%29.png",
+   "group": "Películas",
+   "url": "http://46.53.200.153:7777/play/VIJU_TV_1000_novella/index.m3u8",
+   "epg": "vijuTV1000novella.ru",
+   "cc": "ru",
+   "quality": "1080p",
+   "src": "iptv-org/g-movies"
+  },
+  {
+   "id": "tv-axnspin-pl",
+   "name": "AXN Spin (Poland)",
+   "logo": "https://i.imgur.com/LGEbwnT.png",
+   "group": "Series",
+   "url": "http://92.114.85.87:8010/play/a00b/index.m3u8",
+   "epg": "AXNSpin.pl",
+   "cc": "pl",
+   "quality": "",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-vijutv1000romantica-ru",
+   "name": "viju TV1000 romantica HD",
+   "logo": "https://rnnxdki1nv.a.trbcdn.net/viasat/production/tvchannels/dc243048-c5ad-4ccc-86c6-3a480874ec29/logos/flo59mr6lh1jf68g3021urgwtd5k",
+   "group": "Series",
+   "url": "http://46.53.200.153:7777/play/Viju_Drama/index.m3u8",
+   "epg": "vijuTV1000romantica.ru",
+   "cc": "ru",
+   "quality": "1080p",
+   "src": "iptv-org/g-series"
+  },
+  {
+   "id": "tv-deparintiro-ro",
+   "name": "DeParinti.ro",
+   "logo": "https://assets.antenaplay.ro/2023/11/21/EO57SfnF8caVPEaQFs4Z.png",
+   "group": "Education;Kids",
+   "url": "https://live77cdn2.antenaplay.ro/live2_fast/ch4/stream.m3u8",
+   "epg": "DeParintiro.ro",
+   "cc": "ro",
    "quality": "576p",
    "src": "iptv-org/g-kids"
   },
@@ -108739,28 +108713,6 @@
    "epg": "4FunDance.pl",
    "cc": "pl",
    "quality": "",
-   "src": "iptv-org/g-music"
-  },
-  {
-   "id": "tv-eskatv-pl",
-   "name": "Eska TV",
-   "logo": "https://i.imgur.com/N0eH0Cg.png",
-   "group": "Música",
-   "url": "http://92.114.85.87:8018/play/a00h/index.m3u8",
-   "epg": "EskaTV.pl",
-   "cc": "pl",
-   "quality": "1080p",
-   "src": "iptv-org/g-music"
-  },
-  {
-   "id": "tv-eskatvextra-pl",
-   "name": "Eska TV Extra",
-   "logo": "https://i.imgur.com/pZAFshQ.png",
-   "group": "Música",
-   "url": "http://92.114.85.87:8016/play/a008/index.m3u8",
-   "epg": "EskaTVExtra.pl",
-   "cc": "pl",
-   "quality": "1080p",
    "src": "iptv-org/g-music"
   },
   {
@@ -108819,6 +108771,17 @@
    "src": "iptv-org/g-music"
   },
   {
+   "id": "tv-radioromaniaresita-ro",
+   "name": "Radio Romania Resita",
+   "logo": "https://www.radioresita.ro/wp-content/themes/radioresita/images/custom/logo-main.svg",
+   "group": "General;Music",
+   "url": "https://stream3.srr.ro/RadioResita/live/playlist.m3u8",
+   "epg": "RadioRomaniaResita.ro",
+   "cc": "ro",
+   "quality": "576p",
+   "src": "iptv-org/g-music"
+  },
+  {
    "id": "tv-voxmusictv-pl",
    "name": "VOX Music TV",
    "logo": "https://i.imgur.com/N993msF.png",
@@ -108863,17 +108826,6 @@
    "src": "iptv-org/g-doc"
   },
   {
-   "id": "tv-sonybbcearth-in",
-   "name": "Sony BBC Earth HD",
-   "logo": "https://dtil.tmsimg.com/assets/s143800_ld_h15_aa.png?lock=720x540",
-   "group": "Documentales",
-   "url": "http://103.185.24.134:3001/SONY-BBC/index.m3u8",
-   "epg": "SonyBBCEarth.in",
-   "cc": "in",
-   "quality": "1080p",
-   "src": "iptv-org/g-doc"
-  },
-  {
    "id": "tv-azcinema-mx",
    "name": "Az Cinema",
    "logo": "https://i.imgur.com/B5UN7C8.png",
@@ -108885,6 +108837,17 @@
    "src": "iptv-org/g-movies"
   },
   {
+   "id": "tv-canalchvnoticias-cl",
+   "name": "Canal CHV Noticias",
+   "logo": "https://i.imgur.com/sx8Aaxr.png",
+   "group": "Noticias",
+   "url": "https://xyktmobile00.s.gy/PPV929_CIV_NOTICIAS",
+   "epg": "CanalCHVNoticias.cl",
+   "cc": "cl",
+   "quality": "1080p",
+   "src": "iptv-org/c-cl"
+  },
+  {
    "id": "tv-cdo-cl",
    "name": "CDO",
    "logo": "https://i.imgur.com/zH3jHIT.png",
@@ -108894,6 +108857,17 @@
    "cc": "cl",
    "quality": "1080p",
    "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-dreamworkschannellatinamerica-us",
+   "name": "DreamWorks Channel Latin America",
+   "logo": "",
+   "group": "Animación",
+   "url": "https://xyktmobile00.s.gy/PPV913_DREAMWO",
+   "epg": "DreamWorksChannelLatinAmerica.us",
+   "cc": "us",
+   "quality": "",
+   "src": "iptv-org/spa"
   },
   {
    "id": "tv-etctv-cl",
@@ -108929,15 +108903,15 @@
    "src": "iptv-org/g-movies"
   },
   {
-   "id": "tv-megaficcion-cl",
-   "name": "Mega Ficcion",
-   "logo": "https://i.imgur.com/aQdhJie.png",
-   "group": "Series",
-   "url": "http://cdn1tlinkgo.tlink.cl/megaficcion/mono.m3u8",
-   "epg": "MegaFiccion.cl",
-   "cc": "cl",
+   "id": "tv-hbodrama-us",
+   "name": "HBO Drama",
+   "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/HBO_Drama_Logo.svg/960px-HBO_Drama_Logo.svg.png",
+   "group": "Movies;Series",
+   "url": "https://sra72yz.s.gy/HBO_DRAMA_HD.m3u8",
+   "epg": "HBODrama.us",
+   "cc": "us",
    "quality": "1080p",
-   "src": "iptv-org/g-series"
+   "src": "iptv-org/spa"
   },
   {
    "id": "tv-skynews-ie",
@@ -108949,6 +108923,72 @@
    "cc": "ie",
    "quality": "1080p",
    "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-arenasportpremiumm1-mk",
+   "name": "Arena Sport Premium M1",
+   "logo": "https://tvarenasport.mk/wp-content/themes/tvarenasport-mk/assets/channels/arena-m1.png",
+   "group": "Deportes",
+   "url": "https://racitonsen.s.gy/AM1P",
+   "epg": "ArenaSportPremiumM1.mk",
+   "cc": "mk",
+   "quality": "",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-arenasportpremiumm2-mk",
+   "name": "Arena Sport Premium M2",
+   "logo": "https://tvarenasport.mk/wp-content/themes/tvarenasport-mk/assets/channels/arena-m2.png",
+   "group": "Deportes",
+   "url": "https://racitonsen.s.gy/AM2P",
+   "epg": "ArenaSportPremiumM2.mk",
+   "cc": "mk",
+   "quality": "",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-arenasportpremiumm3-mk",
+   "name": "Arena Sport Premium M3",
+   "logo": "https://tvarenasport.mk/wp-content/themes/tvarenasport-mk/assets/channels/arena-m3.png",
+   "group": "Deportes",
+   "url": "https://racitonsen.s.gy/AM3P",
+   "epg": "ArenaSportPremiumM3.mk",
+   "cc": "mk",
+   "quality": "",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-kbsnsports-kr",
+   "name": "KBS N Sports",
+   "logo": "https://i.imgur.com/xZ2s9eY.png",
+   "group": "Deportes",
+   "url": "https://xyktmobile00.s.gy/PPV919_KBSNSPO_SD",
+   "epg": "KBSNSports.kr",
+   "cc": "kr",
+   "quality": "",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-premierfootball-ph",
+   "name": "Premier Football",
+   "logo": "https://i.imgur.com/lKjXwtG.png",
+   "group": "Deportes",
+   "url": "https://racitonsen.s.gy/PREMIER_FOOTBALL",
+   "epg": "PremierFootball.ph",
+   "cc": "ph",
+   "quality": "",
+   "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-sbsgolf-kr",
+   "name": "SBS Golf",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/SBS_Golf_logo_2018.svg/960px-SBS_Golf_logo_2018.svg.png",
+   "group": "Deportes",
+   "url": "https://xyktmobile00.s.gy/PPV922_GOLF_TV",
+   "epg": "SBSGolf.kr",
+   "cc": "kr",
+   "quality": "",
+   "src": "iptv-org/g-sports"
   },
   {
    "id": "tv-skysportscricket-uk",
@@ -108995,6 +109035,17 @@
    "src": "iptv-org/g-sports"
   },
   {
+   "id": "tv-filmboxplusaction-pl",
+   "name": "FILMBOX+ Action",
+   "logo": "https://spiintl.com/data/files/kcfinderUploadDir/images/filmboxplus/filmbox%2Baction.png",
+   "group": "Películas",
+   "url": "https://racitonsen.s.gy/FB_ACTION_PL",
+   "epg": "FILMBOXPlusAction.pl",
+   "cc": "pl",
+   "quality": "",
+   "src": "iptv-org/g-movies"
+  },
+  {
    "id": "tv-gloobinho-br",
    "name": "Gloobinho",
    "logo": "https://i.imgur.com/UWkHErt.png",
@@ -109017,6 +109068,39 @@
    "src": "iptv-org/g-anime"
   },
   {
+   "id": "tv-pixeltv-pl",
+   "name": "Pixel TV (Poland)",
+   "logo": "https://i.ibb.co/S4jM2WXk/pixeltv.png",
+   "group": "Animation;Kids",
+   "url": "https://jmp2.uk/plu-66bb374ba4ee27000841a62c.m3u8",
+   "epg": "PixelTV.pl",
+   "cc": "pl",
+   "quality": "720p",
+   "src": "iptv-org/g-anime"
+  },
+  {
+   "id": "tv-poyotv-kr",
+   "name": "Poyo TV",
+   "logo": "https://i.imgur.com/5UiSqE5.png",
+   "group": "Infantil",
+   "url": "https://xyktmobile00.s.gy/PPV936_PORORO_HD",
+   "epg": "PoyoTV.kr",
+   "cc": "kr",
+   "quality": "",
+   "src": "iptv-org/g-kids"
+  },
+  {
+   "id": "tv-tooniverse-kr",
+   "name": "Tooniverse",
+   "logo": "https://i.imgur.com/Fesm8M3.png",
+   "group": "Animation;Kids",
+   "url": "https://xyktmobile00.s.gy/PPV939_TOONCAST",
+   "epg": "Tooniverse.kr",
+   "cc": "kr",
+   "quality": "",
+   "src": "iptv-org/g-anime"
+  },
+  {
    "id": "tv-zonam-md",
    "name": "Zona M",
    "logo": "https://i.imgur.com/a6Dy3ao.png",
@@ -109028,6 +109112,28 @@
    "src": "iptv-org/g-music"
   },
   {
+   "id": "tv-history2-pl",
+   "name": "History 2 (Poland)",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/History2_logo_%282022%29.svg/500px-History2_logo_%282022%29.svg.png",
+   "group": "Documentales",
+   "url": "https://racitonsen.s.gy/H2_PL",
+   "epg": "History2.pl",
+   "cc": "pl",
+   "quality": "",
+   "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-history-pl",
+   "name": "History (Poland)",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/History_%282021%29.svg/500px-History_%282021%29.svg.png",
+   "group": "Documentales",
+   "url": "https://racitonsen.s.gy/HISTORY_PL",
+   "epg": "History.pl",
+   "cc": "pl",
+   "quality": "",
+   "src": "iptv-org/g-doc"
+  },
+  {
    "id": "tv-skynature-uk",
    "name": "Sky Nature",
    "logo": "https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1194.png",
@@ -109037,6 +109143,28 @@
    "cc": "uk",
    "quality": "576p",
    "src": "iptv-org/g-doc"
+  },
+  {
+   "id": "tv-kanalzerotv-pl",
+   "name": "Kanal ZERO TV",
+   "logo": "https://i.ibb.co/LzgJ7hzR/KANA-ZERO.jpg",
+   "group": "Noticias",
+   "url": "https://racitonsen.s.gy/ZERO_PL",
+   "epg": "KanalZEROTV.pl",
+   "cc": "pl",
+   "quality": "",
+   "src": "iptv-org/g-news"
+  },
+  {
+   "id": "tv-billiardstv-kr",
+   "name": "Billiards TV",
+   "logo": "https://i.imgur.com/fo1k0Oj.png",
+   "group": "Deportes",
+   "url": "https://xyktmobile00.s.gy/PPV942_BILLIARD",
+   "epg": "BilliardsTV.kr",
+   "cc": "kr",
+   "quality": "",
+   "src": "iptv-org/g-sports"
   },
   {
    "id": "tv-cinear-ar",
@@ -109059,6 +109187,17 @@
    "cc": "ar",
    "quality": "1080p",
    "src": "iptv-org/g-sports"
+  },
+  {
+   "id": "tv-hbohits-us",
+   "name": "HBO Hits West HD",
+   "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/HBO_Hits_Logo.svg/960px-HBO_Hits_Logo.svg.png",
+   "group": "Movies;Series",
+   "url": "https://sra72yz.s.gy/HBO_HITS_WEST_HD.m3u8",
+   "epg": "HBOHits.us",
+   "cc": "us",
+   "quality": "1080p",
+   "src": "iptv-org/spa"
   },
   {
    "id": "tv-docu-cl",
@@ -109147,17 +109286,6 @@
    "cc": "al",
    "quality": "720p",
    "src": "iptv-org/g-doc"
-  },
-  {
-   "id": "tv-colorvision-do",
-   "name": "Color Vision",
-   "logo": "https://i.imgur.com/rkgWToA.jpg",
-   "group": "General",
-   "url": "https://hls.tvabierta.net/hls/009.m3u8",
-   "epg": "ColorVision.do",
-   "cc": "do",
-   "quality": "1280p",
-   "src": "iptv-org/c-do"
   },
   {
    "id": "tv-espnews-us",
@@ -109336,153 +109464,39 @@
    "src": "iptv-org/spa"
   },
   {
-   "id": "tv-amcserieslatinamerica-us",
-   "name": "AMC Series Latin America",
-   "logo": "https://amc-series.s3.amazonaws.com/menu/hbfen1Gom0_k1cyqi7rw4-amc-series-train-w.png",
-   "group": "Series",
-   "url": "http://45.171.64.30:6060/play/a005/index.m3u8",
-   "epg": "AMCSeriesLatinAmerica.us",
-   "cc": "us",
-   "quality": "1080p",
-   "src": "iptv-org/g-series"
-  },
-  {
-   "id": "tv-aunar-ar",
-   "name": "Aunar",
-   "logo": "https://i.imgur.com/BfaCaZF.png",
-   "group": "Culture;Travel",
-   "url": "http://190.128.214.97:64333/play/a057/index.m3u8",
-   "epg": "Aunar.ar",
-   "cc": "ar",
-   "quality": "1080p",
-   "src": "iptv-org/c-ar"
-  },
-  {
-   "id": "tv-maxcine2-us",
-   "name": "Maxcine 2",
-   "logo": "https://gia.tv/streams/pptv/209163.png",
-   "group": "Películas",
-   "url": "https://live20.bozztv.com/giatvplayout7/giatv-209163/playlist.m3u8",
-   "epg": "Maxcine2.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-movies"
-  },
-  {
-   "id": "tv-maxcine-us",
-   "name": "Maxcine",
-   "logo": "https://gia.tv/streams/pptv/208138.png",
-   "group": "Películas",
-   "url": "https://live20.bozztv.com/giatvplayout7/giatv-208138/playlist.m3u8",
-   "epg": "Maxcine.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-movies"
-  },
-  {
-   "id": "tv-maxcinecomedy-us",
-   "name": "Maxcine Comedy",
-   "logo": "https://gia.tv/streams/pptv/208730.png",
-   "group": "Películas",
-   "url": "https://live20.bozztv.com/giatvplayout7/giatv-208730/playlist.m3u8",
-   "epg": "MaxcineComedy.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-movies"
-  },
-  {
-   "id": "tv-maxcinefamily-us",
-   "name": "Maxcine Family",
-   "logo": "https://gia.tv/streams/pptv/208817.png",
-   "group": "Películas",
-   "url": "https://live20.bozztv.com/giatvplayout7/giatv-208817/playlist.m3u8",
-   "epg": "MaxcineFamily.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-movies"
-  },
-  {
-   "id": "tv-maxcinekids-us",
-   "name": "Maxcine Kids",
-   "logo": "https://gia.tv/streams/pptv/209909.png",
-   "group": "Películas",
-   "url": "https://live20.bozztv.com/giatvplayout7/giatv-209909/playlist.m3u8",
-   "epg": "MaxcineKids.us",
-   "cc": "us",
-   "quality": "720p",
-   "src": "iptv-org/g-movies"
-  },
-  {
-   "id": "tv-rockpop-ar",
-   "name": "Rock & Pop",
-   "logo": "https://fmrockandpop.com/images/ryp/R&P_Logo_web_207x112px.png",
-   "group": "Música",
-   "url": "http://190.128.214.97:64333/play/a032/index.m3u8",
-   "epg": "RockPop.ar",
-   "cc": "ar",
-   "quality": "1080p",
-   "src": "iptv-org/g-music"
-  },
-  {
-   "id": "tv-vijutv1000novella-ru",
-   "name": "viju TV1000 novella HD",
-   "logo": "https://www.cableman.ru/sites/default/files/viju_TV1000_%D0%BD%D0%BE%D0%B2%D0%B5%D0%BB%D0%BB%D0%B0_color_rgb_02%20%281%29.png",
-   "group": "Películas",
-   "url": "http://46.53.200.153:7777/play/VIJU_TV_1000_novella/index.m3u8",
-   "epg": "vijuTV1000novella.ru",
-   "cc": "ru",
-   "quality": "1080p",
-   "src": "iptv-org/g-movies"
-  },
-  {
-   "id": "tv-axnspin-pl",
-   "name": "AXN Spin (Poland)",
-   "logo": "https://i.imgur.com/LGEbwnT.png",
-   "group": "Series",
-   "url": "http://92.114.85.87:8010/play/a00b/index.m3u8",
-   "epg": "AXNSpin.pl",
+   "id": "tv-polsatsportpremium1-pl",
+   "name": "Polsat Sport Premium 1",
+   "logo": "https://i.imgur.com/hy1SKE0.png",
+   "group": "Deportes",
+   "url": "https://racitonsen.s.gy/PSP1_SHD",
+   "epg": "PolsatSportPremium1.pl",
    "cc": "pl",
    "quality": "",
-   "src": "iptv-org/g-series"
+   "src": "iptv-org/g-sports"
   },
   {
-   "id": "tv-vijutv1000romantica-ru",
-   "name": "viju TV1000 romantica HD",
-   "logo": "https://rnnxdki1nv.a.trbcdn.net/viasat/production/tvchannels/dc243048-c5ad-4ccc-86c6-3a480874ec29/logos/flo59mr6lh1jf68g3021urgwtd5k",
-   "group": "Series",
-   "url": "http://46.53.200.153:7777/play/Viju_Drama/index.m3u8",
-   "epg": "vijuTV1000romantica.ru",
-   "cc": "ru",
-   "quality": "1080p",
-   "src": "iptv-org/g-series"
-  },
-  {
-   "id": "tv-deparintiro-ro",
-   "name": "DeParinti.ro",
-   "logo": "https://assets.antenaplay.ro/2023/11/21/EO57SfnF8caVPEaQFs4Z.png",
-   "group": "Education;Kids",
-   "url": "https://live77cdn2.antenaplay.ro/live2_fast/ch4/stream.m3u8",
-   "epg": "DeParintiro.ro",
-   "cc": "ro",
-   "quality": "576p",
-   "src": "iptv-org/g-kids"
-  },
-  {
-   "id": "tv-radioromaniaresita-ro",
-   "name": "Radio Romania Resita",
-   "logo": "https://www.radioresita.ro/wp-content/themes/radioresita/images/custom/logo-main.svg",
-   "group": "General;Music",
-   "url": "https://stream3.srr.ro/RadioResita/live/playlist.m3u8",
-   "epg": "RadioRomaniaResita.ro",
-   "cc": "ro",
-   "quality": "576p",
-   "src": "iptv-org/g-music"
+   "id": "tv-polsatsportpremium2-pl",
+   "name": "Polsat Sport Premium 2",
+   "logo": "https://i.imgur.com/myyWeXY.png",
+   "group": "Deportes",
+   "url": "https://racitonsen.s.gy/PSP2_SHD",
+   "epg": "PolsatSportPremium2.pl",
+   "cc": "pl",
+   "quality": "",
+   "src": "iptv-org/g-sports"
   }
  ],
  "del": {
+  "mp-stape-root-k9jarjoox7Hya0": 1791413989631,
+  "mp-stape-root-yBbe9oaV1bu184g": 1791413995911,
+  "mp-stape-root-me0kK39wxoUbaYA": 1791414002784,
+  "mp-stape-root-JkJgjyyGpvfjWgy": 1791414072705,
+  "mp-stape-root-BkRX864K2lIyaxv": 1791414009223,
   "custom-1789930507081": 1790570983022,
+  "mp-stape-root-17BOA8DWeGTeaGd": 1790571264773,
   "imp-drv-1O8Uw4-e6c89UOEsaH6xx10fc9DMGjqCZ": 1790630720036,
   "ia-depredador-2-1990-espanol-latino-tv-rip-fullscreen": 1790633579912,
+  "ia-depredador-1987-espanol-latino-dvd-fullscreen": 1790740758965,
   "ia-terminator_202403": 1790633644942,
   "ia-PatchAdamLatino1080p": 1790635955309,
   "ia-yt-la-filmoteca-maldita-MATzIN7eMrY": 1790636312622,
@@ -109496,11 +109510,10 @@
   "ia-caballeros-del-zodiaco-alma-de-oro-final-emotivo": 1790663700103,
   "ia-los-caballeros-del-zodiaco-alma-de-oro-capitulo-1-audio-m": 1790663735695,
   "ia-adult-swim-mexico-01-02-2024": 1790663824790,
+  "ia-conan-el-aventurero-capitulo-39-las-ultimas-horas-de-cona": 1790664336515,
   "ia-evo-share-armitage-iii-ova-01-sangre-electrica-dvd-vhs-du": 1790740636318,
-  "ia-depredador-1987-espanol-latino-dvd-fullscreen": 1790740758965,
   "ia-pooh-west": 1790741282507,
   "ia-south-park-mas-grande-mas-largo-y-sin-cortes-la-madre-de-": 1790751915972,
-  "ia-conan-el-aventurero-capitulo-39-las-ultimas-horas-de-cona": 1790664336515,
   "ia-angel-la-nina-de-las-flores-capitulo-1-lat": 1790752259723,
   "ia-trigun_episodio_2": 1790752333279,
   "ia-frasier-07x-23-24-algo-prestado-algo-azul": 1790793244197,
@@ -109511,6 +109524,12 @@
   "mp-stape-root-RDJKz7AWOlTdye0": 1791325372931,
   "mp-stape-root-Y6BAOrMzJbivJAL": 1791325382568,
   "mp-stape-root-6aBQ2ARl1Bf9Dkz": 1791326082506,
+  "mp-stape-root-9bZzP8ozlOUaMxY": 1791390040613,
+  "mp-stape-root-V8kXLlbQgphPW0": 1791390053565,
+  "mp-stape-root-gq2rW9Ba1duqeaB": 1791390070231,
+  "mp-stape-root-d3LxYgaJBBikqW2": 1791390083174,
+  "mp-stape-root-D9d4J7jOzDik0Y2": 1791390107774,
+  "ia-ver-regreso-al-futuro-ii-1989-online-latino-hd-pelisplus": 1791403492530,
   "ia-avengers-assemble-s-03": 1791406820387,
   "ia-avengers-assemble-s-04": 1791406825916,
   "ia-mlp-fim-t5-latino": 1791406862029,
@@ -109521,18 +109540,7 @@
   "ia-mlp-fim-t6-latino": 1791406874551,
   "ia-mlp-fim-t3-latino": 1791406876676,
   "ia-mlp-fim-t9-latino": 1791406879319,
-  "mp-stape-root-17BOA8DWeGTeaGd": 1790571264773,
-  "mp-stape-root-9bZzP8ozlOUaMxY": 1791390040613,
-  "mp-stape-root-V8kXLlbQgphPW0": 1791390053565,
-  "mp-stape-root-gq2rW9Ba1duqeaB": 1791390070231,
-  "mp-stape-root-d3LxYgaJBBikqW2": 1791390083174,
-  "mp-stape-root-D9d4J7jOzDik0Y2": 1791390107774,
   "mp-stape-root-ZrMABlJWdlTgMd": 1791413981835,
-  "mp-stape-root-k9jarjoox7Hya0": 1791413989631,
-  "mp-stape-root-yBbe9oaV1bu184g": 1791413995911,
-  "mp-stape-root-me0kK39wxoUbaYA": 1791414002784,
-  "mp-stape-root-BkRX864K2lIyaxv": 1791414009223,
-  "mp-stape-root-JkJgjyyGpvfjWgy": 1791414072705,
   "mp-stape-root-P8Z1WVBjgycba7": 1791414371811,
   "mp-stape-root-46BAPdjQkghK44x": 1791414377694,
   "mp-stape-root-W17vOXa1a4tpZG": 1791414382350,
@@ -109555,87 +109563,87 @@
   "iptv-org/spa": {
    "url": "https://iptv-org.github.io/iptv/languages/spa.m3u",
    "name": "iptv-org: Español (todo)",
-   "at": 1788630185369
+   "at": 1791002007619
   },
   "iptv-org/c-es": {
    "url": "https://iptv-org.github.io/iptv/countries/es.m3u",
    "name": "iptv-org: España",
-   "at": 1788630185916
+   "at": 1791002008429
   },
   "iptv-org/c-mx": {
    "url": "https://iptv-org.github.io/iptv/countries/mx.m3u",
    "name": "iptv-org: México",
-   "at": 1788630186453
+   "at": 1791002009310
   },
   "iptv-org/c-ar": {
    "url": "https://iptv-org.github.io/iptv/countries/ar.m3u",
    "name": "iptv-org: Argentina",
-   "at": 1788630186984
+   "at": 1791002010043
   },
   "iptv-org/c-co": {
    "url": "https://iptv-org.github.io/iptv/countries/co.m3u",
    "name": "iptv-org: Colombia",
-   "at": 1788630187499
+   "at": 1791002010803
   },
   "iptv-org/c-cl": {
    "url": "https://iptv-org.github.io/iptv/countries/cl.m3u",
    "name": "iptv-org: Chile",
-   "at": 1788630188368
+   "at": 1791002011619
   },
   "iptv-org/c-pe": {
    "url": "https://iptv-org.github.io/iptv/countries/pe.m3u",
    "name": "iptv-org: Perú",
-   "at": 1788630188968
+   "at": 1791002012492
   },
   "iptv-org/c-ve": {
    "url": "https://iptv-org.github.io/iptv/countries/ve.m3u",
    "name": "iptv-org: Venezuela",
-   "at": 1788630189552
+   "at": 1791002013251
   },
   "iptv-org/c-do": {
    "url": "https://iptv-org.github.io/iptv/countries/do.m3u",
    "name": "iptv-org: Rep. Dominicana",
-   "at": 1788563090808
+   "at": 1791002014060
   },
   "iptv-org/g-news": {
    "url": "https://iptv-org.github.io/iptv/categories/news.m3u",
    "name": "iptv-org: Noticias",
-   "at": 1788630190192
+   "at": 1791002014860
   },
   "iptv-org/g-sports": {
    "url": "https://iptv-org.github.io/iptv/categories/sports.m3u",
    "name": "iptv-org: Deportes",
-   "at": 1788630190766
+   "at": 1791002015773
   },
   "iptv-org/g-movies": {
    "url": "https://iptv-org.github.io/iptv/categories/movies.m3u",
    "name": "iptv-org: Películas",
-   "at": 1788630191460
+   "at": 1791002016722
   },
   "iptv-org/g-series": {
    "url": "https://iptv-org.github.io/iptv/categories/series.m3u",
    "name": "iptv-org: Series",
-   "at": 1788630192099
+   "at": 1791002017585
   },
   "iptv-org/g-kids": {
    "url": "https://iptv-org.github.io/iptv/categories/kids.m3u",
    "name": "iptv-org: Infantil",
-   "at": 1788630192649
+   "at": 1791002018378
   },
   "iptv-org/g-music": {
    "url": "https://iptv-org.github.io/iptv/categories/music.m3u",
    "name": "iptv-org: Música",
-   "at": 1788630193270
+   "at": 1791002018826
   },
   "iptv-org/g-doc": {
    "url": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
    "name": "iptv-org: Documentales",
-   "at": 1788630193811
+   "at": 1791002019043
   },
   "iptv-org/g-anime": {
    "url": "https://iptv-org.github.io/iptv/categories/animation.m3u",
    "name": "iptv-org: Animación",
-   "at": 1788630194628
+   "at": 1791002019283
   }
  },
  "links": {
@@ -200858,6 +200866,41 @@
    "dest": "#/anime/mentiras-verdaderas-1/1",
    "t": "Mentiras Verdaderas~ 1 · E1",
    "at": 1791439790076
+  },
+  "5e9g46": {
+   "dest": "#/pelicula/arthur-2",
+   "t": "arthur 2",
+   "at": 1791467903496
+  },
+  "m3pga9": {
+   "dest": "#/pelicula/e5cu4dr0n-5u1c1d4",
+   "t": "E5CU4DR0N 5U1C1D4",
+   "at": 1791467903496
+  },
+  "66ajd3": {
+   "dest": "#/pelicula/la-casa-guchi",
+   "t": "La casa Guchi",
+   "at": 1791467903496
+  },
+  "b8gx5z": {
+   "dest": "#/pelicula/beetlejuice",
+   "t": "Beetlejuice",
+   "at": 1791467903498
+  },
+  "9vvqv5": {
+   "dest": "#/pelicula/dark-shadows",
+   "t": "Dark Shadows",
+   "at": 1791467903498
+  },
+  "6dj498": {
+   "dest": "#/pelicula/el-joven-manos-de-tijera",
+   "t": "El Joven Manos De Tijera",
+   "at": 1791467903498
+  },
+  "vhsjwy": {
+   "dest": "#/pelicula/la-gran-aventura-de-pee-wee",
+   "t": "La gran aventura de Pee-wee",
+   "at": 1791467903498
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -200871,5 +200914,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "2VuBmyfDZIBLx7ARC0dh3f2FJWmAdKAsfkogr9Iks7Hr/QIK1C+xCTtO2OEmyrbVwHXSORqa5P0tsQJoFH5w9g=="
+ "sig": "QuYgh3mLmwTlN20+5sQaF8eC7hZiSKfDE+KBpaVpla9mhHZZQy8xawmFowMi0PAddfuv6V676wPz7LEjjbNOYQ=="
 }
