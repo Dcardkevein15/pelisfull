@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791487671823,
+ "at": 1791487766822,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ/view",
@@ -183,7 +183,7 @@
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "dup",
    "name": "Video externo (renómbrame ✎)",
    "error": "",
    "attempts": 0,
@@ -762,18 +762,41 @@
   {
    "url": "https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "clifford el gran perro rojo",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
    "attempts": 1,
    "nextRetryAt": 1791487758990,
    "addedAt": 1791485718203,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12eJYVRi1jVwpUCu8XKwZOK1EioTsq",
+     "t": "clifford el gran perro rojo",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L&sz=w1000",
+     "tags": [
+      "Infantil"
+     ],
+     "genre": "infantil",
+     "at": 1791421336473,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/10ojwPaRtnqNRmiM1l6mQufrg2sBTnZuA/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "dup",
    "name": "Video externo (renómbrame ✎)",
    "error": "",
    "attempts": 0,
