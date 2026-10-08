@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791478364957,
+ "at": 1791478485822,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view",
@@ -59,8 +59,8 @@
    "status": "queued",
    "name": "Pokemon - Detective Pikachu",
    "error": "no se pudo importar (¿enlace caído o carpeta privada?)",
-   "attempts": 1,
-   "nextRetryAt": 1791478484056,
+   "attempts": 2,
+   "nextRetryAt": 1791478784916,
    "addedAt": 1791478190772,
    "payload": [
     {
