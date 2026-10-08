@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791439649016,
+ "v": 1791440257801,
  "by": "MortosPr #2968",
- "at": "2026-10-08T06:07:29.016Z",
- "n": 5957,
+ "at": "2026-10-08T06:17:37.801Z",
+ "n": 5961,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -46762,6 +46762,7 @@
    "kind": "serie",
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/lG83nWVT7cHl3nSxonaYhOjqyWH.jpg",
+   "tags": [],
    "at": 1791437027094,
    "episodes": [
     {
@@ -46847,6 +46848,7 @@
    "kind": "serie",
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/ruLBbIX15HrECgLJ3uZPo6X3YCN.jpg",
+   "tags": [],
    "at": 1791437245321,
    "episodes": [
     {
@@ -47515,6 +47517,7 @@
    "kind": "serie",
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/ogH4r9HsimigseBNLzHn4uVNOxh.jpg",
+   "tags": [],
    "at": 1791437351379,
    "episodes": [
     {
@@ -49181,6 +49184,7 @@
    "kind": "pelicula",
    "anime": false,
    "poster": "https://image.tmdb.org/t/p/w500/xspcpzfsFSRQZPL80QOHQheVvhB.jpg",
+   "tags": [],
    "at": 1791438364732,
    "episodes": [
     {
@@ -49413,23 +49417,107 @@
    ]
   },
   {
-   "id": "file-https-archive-org-details-mentiras-verdaderas-1-El-rey-le-C3",
-   "t": "El+rey+león+2,+El+tesoro+de+Simba~1",
+   "id": "ia-beetlejuice-1988_202610",
+   "t": "Beetlejuice",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1988",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/kWJw7dCWHcfMLr0irTHAPIKrJ4I.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791439890011,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Beetlejuice 1988",
+     "url": "https://archive.org/download/beetlejuice-1988_202610/Beetlejuice%201988.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-dark-shadows_202610",
+   "t": "Dark Shadows",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2012",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/4MVwKquR2GgLXWAR4cyvKUBBYP2.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791439985864,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Dark Shadows",
+     "url": "https://archive.org/download/dark-shadows_202610/Dark%20Shadows.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-el-joven-manos-de-tijera-1990_202610",
+   "t": "El Joven Manos De Tijera",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1990",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/vd8tCekihFx82bzmENaASvbhNmx.jpg",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791440093018,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El Joven Manos De Tijera 1990",
+     "url": "https://archive.org/download/el-joven-manos-de-tijera-1990_202610/El%20Joven%20Manos%20De%20Tijera%201990.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-pwhla_202509",
+   "t": "La gran aventura de Pee-wee",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1985",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/djl2qdhPkUr5O1M9NDq8tDGHKHp.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791440126700,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La gran aventura de Pee-wee",
+     "url": "https://archive.org/download/pwhla_202509/PWHLA.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "file-https-archive-org-details-ed-wood-1994_20251029",
+   "t": "ed-wood-1994 20251029",
    "jp": "🎬",
    "tag": "Enlace directo",
    "g": 6,
    "kind": "pelicula",
    "poster": null,
-   "tags": [
-    "Aventura"
-   ],
-   "genre": "aventura",
-   "at": 1791439631995,
+   "at": 1791440249993,
    "episodes": [
     {
      "n": 1,
      "t": "▶ Ver",
-     "url": "https://archive.org/details/mentiras-verdaderas-1/El+rey+le%C3%B3n+2%2C+El+tesoro+de+Simba~1.mp4"
+     "url": "https://archive.org/details/ed-wood-1994_20251029"
     }
    ]
   }
@@ -109473,7 +109561,11 @@
   "ia-10000000-883586758738048-5253153845239873536-n": 1791437115892,
   "ia-tesoro-del-amazonas-1985": 1791438339908,
   "ia-y-2mate-com-aullidos-7-480p": 1791439021391,
-  "ia-mirmo-zibang-01-mp-4": 1791439501748
+  "ia-mirmo-zibang-01-mp-4": 1791439501748,
+  "file-https-archive-org-details-mentiras-verdaderas-1-El-rey-le-C3": 1791439717304,
+  "ia-mentiras-verdaderas-1": 1791439838630,
+  "ia-el-joven-manos-de-tijera-1990_202606": 1791440090267,
+  "ia-ed-wood-1995-vhs": 1791440186466
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -200582,6 +200674,206 @@
    "dest": "#/pelicula/trollhunters-el-despertar-de-los-titanes",
    "t": "Trollhunters El Despertar De Los Titanes",
    "at": 1791436559095
+  },
+  "j6kzqz": {
+   "dest": "#/pelicula/la-chica-que-saltaba-a-traves-del-tiempo",
+   "t": "La chica que saltaba a través del tiempo",
+   "at": 1791439682550
+  },
+  "sxyw5f": {
+   "dest": "#/pelicula/pesadilla-en-la-calle-del-infierno-5-el-nino-de-los-suenos",
+   "t": "Pesadilla En La Calle Del Infierno 5 El Niño De Los Sueños",
+   "at": 1791439682550
+  },
+  "eb3et6": {
+   "dest": "#/pelicula/pesadilla-en-la-calle-del-infierno-2-la-revancha-de-freddy",
+   "t": "Pesadilla En La Calle Del Infierno 2 La Revancha De Freddy",
+   "at": 1791439682550
+  },
+  "3bnzgt": {
+   "dest": "#/pelicula/pesadilla-en-la-calle-del-infierno-4-el-amo-de-los-suenos",
+   "t": "Pesadilla En La Calle Del Infierno 4 El Amo De Los Sueños",
+   "at": 1791439682550
+  },
+  "x7ua88": {
+   "dest": "#/pelicula/blade-cazador-de-vampiros",
+   "t": "Blade Cazador De Vampiros",
+   "at": 1791439682550
+  },
+  "xgf29a": {
+   "dest": "#/pelicula/lo-mejor-de-mis-bodas",
+   "t": "Lo Mejor De Mis Bodas",
+   "at": 1791439682550
+  },
+  "ysesnn": {
+   "dest": "#/pelicula/goofy-la-pelicula",
+   "t": "Goofy La Pelicula",
+   "at": 1791439682550
+  },
+  "62sd64": {
+   "dest": "#/anime/asi-aprenderas/1",
+   "t": "Asi aprenderas · E1",
+   "at": 1791439682550
+  },
+  "4zqqj6": {
+   "dest": "#/anime/asi-aprenderas/2",
+   "t": "Asi aprenderas · E2",
+   "at": 1791439682550
+  },
+  "tufmea": {
+   "dest": "#/anime/asi-aprenderas/3",
+   "t": "Asi aprenderas · E3",
+   "at": 1791439682550
+  },
+  "bbzseg": {
+   "dest": "#/anime/asi-aprenderas/4",
+   "t": "Asi aprenderas · E4",
+   "at": 1791439682550
+  },
+  "j8te8d": {
+   "dest": "#/anime/asi-aprenderas/5",
+   "t": "Asi aprenderas · E5",
+   "at": 1791439682550
+  },
+  "wy6xme": {
+   "dest": "#/anime/asi-aprenderas/6",
+   "t": "Asi aprenderas · E6",
+   "at": 1791439682550
+  },
+  "phstk9": {
+   "dest": "#/anime/asi-aprenderas/7",
+   "t": "Asi aprenderas · E7",
+   "at": 1791439682550
+  },
+  "xnvjz3": {
+   "dest": "#/anime/asi-aprenderas/8",
+   "t": "Asi aprenderas · E8",
+   "at": 1791439682550
+  },
+  "ttymzd": {
+   "dest": "#/anime/asi-aprenderas/9",
+   "t": "Asi aprenderas · E9",
+   "at": 1791439682550
+  },
+  "x9g5tc": {
+   "dest": "#/anime/asi-aprenderas/10",
+   "t": "Asi aprenderas · E10",
+   "at": 1791439682550
+  },
+  "yada5w": {
+   "dest": "#/pelicula/estacion-zombie",
+   "t": "Estacion zombie",
+   "at": 1791439682550
+  },
+  "xgzzka": {
+   "dest": "#/pelicula/taken",
+   "t": "Taken",
+   "at": 1791439682550
+  },
+  "djaqkv": {
+   "dest": "#/pelicula/taken-2",
+   "t": "Taken 2",
+   "at": 1791439682550
+  },
+  "6cfysw": {
+   "dest": "#/pelicula/taken-3",
+   "t": "Taken 3",
+   "at": 1791439682550
+  },
+  "xmkufd": {
+   "dest": "#/pelicula/amor-explosivo",
+   "t": "Amor explosivo",
+   "at": 1791439682550
+  },
+  "m3j7zw": {
+   "dest": "#/pelicula/los-picapiedra-en-a-hollyroca-por-un-bebe",
+   "t": "Los Picapiedra en: a Hollyroca por un bebé",
+   "at": 1791439682550
+  },
+  "b8yqar": {
+   "dest": "#/pelicula/maximo-riesgo",
+   "t": "Maximo Riesgo",
+   "at": 1791439682550
+  },
+  "g7we6r": {
+   "dest": "#/pelicula/adios-a-las-vegas",
+   "t": "Adios A Las Vegas",
+   "at": 1791439682550
+  },
+  "bwsre4": {
+   "dest": "#/pelicula/el-pianista",
+   "t": "El Pianista",
+   "at": 1791439682550
+  },
+  "mwbgse": {
+   "dest": "#/pelicula/el-codigo-enigma",
+   "t": "El Código Enigma",
+   "at": 1791439682550
+  },
+  "2ndqng": {
+   "dest": "#/pelicula/mediterraneo-sub-espanol",
+   "t": "Mediterráneo- Sub español",
+   "at": 1791439682550
+  },
+  "r38qst": {
+   "dest": "#/pelicula/dracula-de-bram-stoker",
+   "t": "Drácula De Bram Stoker",
+   "at": 1791439682550
+  },
+  "3ss6f5": {
+   "dest": "#/pelicula/van-helsing-mision-londres",
+   "t": "Van Helsing - Mision Londres",
+   "at": 1791439682550
+  },
+  "ttkcvm": {
+   "dest": "#/pelicula/gladiator",
+   "t": "Gladiator",
+   "at": 1791439682550
+  },
+  "nptgab": {
+   "dest": "#/pelicula/lolita-una-pasion-prohibida",
+   "t": "Lolita: Una pasión prohibida",
+   "at": 1791439682550
+  },
+  "8nygvz": {
+   "dest": "#/pelicula/ricky-ricon",
+   "t": "Ricky Ricón",
+   "at": 1791439682550
+  },
+  "e9q9t8": {
+   "dest": "#/pelicula/chip-y-dale-al-rescate",
+   "t": "Chip y Dale: Al rescate",
+   "at": 1791439682550
+  },
+  "x97bvb": {
+   "dest": "#/pelicula/aullidos",
+   "t": "Aullidos",
+   "at": 1791439682550
+  },
+  "mm6m6p": {
+   "dest": "#/pelicula/aullidos-2-stirba-la-mujer-lobo",
+   "t": "Aullidos 2: Stirba, la mujer lobo",
+   "at": 1791439682550
+  },
+  "xfjkfz": {
+   "dest": "#/pelicula/azumi",
+   "t": "Azumi",
+   "at": 1791439682550
+  },
+  "3vdy67": {
+   "dest": "#/pelicula/azumi-2",
+   "t": "Azumi 2",
+   "at": 1791439682550
+  },
+  "mbrdk2": {
+   "dest": "#/pelicula/el-rey-leon-2-el-tesoro-de-simba",
+   "t": "El rey león 2 El tesoro de Simba",
+   "at": 1791439682550
+  },
+  "we6jqh": {
+   "dest": "#/anime/mentiras-verdaderas-1/1",
+   "t": "Mentiras Verdaderas~ 1 · E1",
+   "at": 1791439790076
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -200595,5 +200887,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "T06oewXsEolxnOKwo6UdmRKiaiwwfmPsAbqW2RDpd0ZRZiNrQjd0m2ntI8D9ZVUaTmPaPD4wGP6Qg4AYxnQN/A=="
+ "sig": "CR5scQoDPILDhs1Gueo3GRg+hoFXRHnVQFH0Ks4ivhsIfw9moIFH7x0IHfpRYJaFePZhz8l7P6bJIFBWIkh8/w=="
 }
