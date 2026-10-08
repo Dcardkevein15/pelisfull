@@ -1,15 +1,15 @@
 {
  "v": 1,
- "at": 1791499881913,
+ "at": 1791499939192,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
    "type": "drive-file",
    "status": "dup",
    "name": "Video externo (renómbrame ✎)",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "attempts": 3,
+   "nextRetryAt": 1791488959248,
    "addedAt": 1791485718203,
    "payload": null
   },
