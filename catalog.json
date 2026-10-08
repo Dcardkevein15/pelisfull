@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791428190138,
+ "v": 1791439649016,
  "by": "MortosPr #2968",
- "at": "2026-10-08T02:56:30.138Z",
- "n": 5895,
+ "at": "2026-10-08T06:07:29.016Z",
+ "n": 5957,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -34356,7 +34356,7 @@
   },
   {
    "id": "mp-stape-root-greAZPybVyi9zV",
-   "t": "3 Iron man",
+   "t": "Iron man",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34377,7 +34377,8 @@
      "n": 1,
      "t": "3 Iron man",
      "url": "https://streamtape.com/e/greAZPybVyi9zV",
-     "season": 1
+     "season": 1,
+     "thumb": "https://thumb.tapecontent.net/thumb/greAZPybVyi9zV/Joe7y8YKadtjjlm.jpg"
     },
     {
      "n": 2,
@@ -34390,7 +34391,7 @@
   },
   {
    "id": "mp-stape-root-eGmp4gbrM0UYG7k",
-   "t": "5 The Incredible Hulk",
+   "t": "The Incredible Hulk",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34412,7 +34413,7 @@
   },
   {
    "id": "mp-stape-root-3wbKBjxzGOCdoRO",
-   "t": "6 Thor",
+   "t": "Thor",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34434,7 +34435,7 @@
   },
   {
    "id": "mp-stape-root-ePXLAPXko2iYWzq",
-   "t": "7 The avengers",
+   "t": "The avengers",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34468,7 +34469,7 @@
   },
   {
    "id": "mp-stape-root-Okb3WgrG3quZll9",
-   "t": "8 Iron man 3",
+   "t": "Iron man 3",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34490,7 +34491,7 @@
   },
   {
    "id": "mp-stape-root-a7gb1wor0WS09P",
-   "t": "9 Thor the dark world",
+   "t": "Thor the dark world",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34512,7 +34513,7 @@
   },
   {
    "id": "mp-stape-root-jWpVR4RoPMTgYX",
-   "t": "11 Guardians of the galaxy",
+   "t": "Guardians of the galaxy",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34534,7 +34535,7 @@
   },
   {
    "id": "mp-stape-root-Melxe0gPWPUe4W",
-   "t": "14 Ant-man",
+   "t": "Ant-man",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34556,7 +34557,7 @@
   },
   {
    "id": "mp-stape-root-Q1elY36qVwc0bee",
-   "t": "15 Captain america civil war",
+   "t": "Captain america civil war",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34578,7 +34579,7 @@
   },
   {
    "id": "mp-stape-root-LvGjwGKKDXTZkP",
-   "t": "17 Spider-man homecoming",
+   "t": "Spider-man homecoming",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34600,7 +34601,7 @@
   },
   {
    "id": "mp-stape-root-9Wg2bGVYYlUadOO",
-   "t": "19 Doctor strange",
+   "t": "Doctor strange",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34622,7 +34623,7 @@
   },
   {
    "id": "mp-stape-root-lO8QWrDRGdi73wy",
-   "t": "20 Thor ragnarok",
+   "t": "Thor ragnarok",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34644,7 +34645,7 @@
   },
   {
    "id": "mp-stape-root-K9R2rboZXKfJQz",
-   "t": "21 Ant-man and the wasp",
+   "t": "Ant-man and the wasp",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34666,7 +34667,7 @@
   },
   {
    "id": "mp-stape-root-yGeL0wRdXLUdwQ",
-   "t": "22 Avengers infinity war",
+   "t": "Avengers infinity war",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34702,7 +34703,7 @@
   },
   {
    "id": "mp-stape-root-4xpMmpj4ArhGv4",
-   "t": "25 Shang-chi and the legend of the ten rings",
+   "t": "Shang-chi and the legend of the ten rings",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34724,7 +34725,7 @@
   },
   {
    "id": "mp-stape-root-BvbpDKvxV2uWel",
-   "t": "26 Eternals",
+   "t": "Eternals",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34746,7 +34747,7 @@
   },
   {
    "id": "mp-stape-root-2bOkr4LL13iZyKY",
-   "t": "29 Thor love and thunder",
+   "t": "Thor love and thunder",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34768,7 +34769,7 @@
   },
   {
    "id": "mp-stape-root-GPgw126dDDtAaa",
-   "t": "30 Black Panter Wakanda Forever",
+   "t": "Black Panter Wakanda Forever",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34790,7 +34791,7 @@
   },
   {
    "id": "mp-stape-root-1WZBMxPrWVid9l",
-   "t": "31 Ant-man and the wasp quantumania",
+   "t": "Ant-man and the wasp quantumania",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34812,7 +34813,7 @@
   },
   {
    "id": "mp-stape-root-7G8BDkbRbAUJew",
-   "t": "33 The Marvels mkv",
+   "t": "The Marvels",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34834,7 +34835,7 @@
   },
   {
    "id": "mp-stape-root-m6Dk0l9xWWUbbG9",
-   "t": "35 Captain America brave new world",
+   "t": "Captain America brave new world",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34856,7 +34857,7 @@
   },
   {
    "id": "mp-stape-root-PG2Orx3Xo9U0qDx",
-   "t": "36 Thunderbolts mkv",
+   "t": "Thunderbolts",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34878,7 +34879,7 @@
   },
   {
    "id": "mp-stape-root-zVVdvmWdYKCYBbl",
-   "t": "37 The Fantastic Four First Steps",
+   "t": "The Fantastic Four First Steps",
    "jp": "🎬",
    "tag": "Streamtape",
    "g": 3,
@@ -34917,28 +34918,6 @@
      "n": 1,
      "t": "Kung Pow",
      "url": "https://streamtape.com/e/LqzB2MaWAvc7kg"
-    }
-   ]
-  },
-  {
-   "id": "mp-stape-root-RD8V4wO3m8uZGW",
-   "t": "new upload",
-   "jp": "🎬",
-   "tag": "Streamtape",
-   "g": 3,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/9g0sEFhmvmK4nGhXj8DHuv2noYI.jpg",
-   "tags": [
-    "Ciencia Ficción"
-   ],
-   "genre": "scifi",
-   "at": 1790537526969,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "new upload",
-     "url": "https://streamtape.com/e/RD8V4wO3m8uZGW"
     }
    ]
   },
@@ -44591,8 +44570,7 @@
     {
      "n": 1,
      "t": "Tensei Kendo no Harem Colosseum 4",
-     "url": "https://streamtape.com/e/17BOA8DWeGTeaGd",
-     "thumb": "https://thumb.tapecontent.net/thumb/17BOA8DWeGTeaGd/vWXpOyyeVVHDaW.jpg"
+     "url": "https://streamtape.com/e/17BOA8DWeGTeaGd"
     }
    ]
   },
@@ -44621,8 +44599,7 @@
     {
      "n": 1,
      "t": "Kowaremono Risa 1",
-     "url": "https://streamtape.com/e/06vbr20PaySmL9",
-     "thumb": "https://thumb.tapecontent.net/thumb/06vbr20PaySmL9/GbreA99r90flJo.jpg"
+     "url": "https://streamtape.com/e/06vbr20PaySmL9"
     }
    ]
   },
@@ -45927,18 +45904,3532 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1JgaDCBdOCOWCyxom7dCXnsEioXnLO",
-   "t": "La casa Guchi",
+   "t": "La casa Gucci",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1JgaDCBdOCOWCyxom7dCXnsEioXnLO2_s&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8GloCFzS8Pjtad26dJEVDax5WUC.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
    "at": 1791428183483,
    "episodes": [
     {
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/1JgaDCBdOCOWCyxom7dCXnsEioXnLO2_s/view"
+    }
+   ]
+  },
+  {
+   "id": "ia-la-naranja-mecanica--latino",
+   "t": "La Naranja Mecánica",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1971",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/p40pYh2EBPoyVyqw6qy2PAZkFVA.jpg",
+   "tags": [
+    "Ciencia Ficción"
+   ],
+   "genre": "scifi",
+   "at": 1791433850232,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La Naranja Mecánica. Latino",
+     "url": "https://archive.org/download/la-naranja-mecanica.-latino/La%20naranja%20mec%C3%A1nica.%20Latino.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mi-pobre-diablillo-3-1995-espanol-latino_202604",
+   "t": "Adorable  Criatura",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8wvEUjgtlKbrTJQG2xtzA7C4naE.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791433964411,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Mi Pobre Diablillo (1990-1995) (Con Audio Español Latino)",
+     "url": "https://archive.org/download/mi-pobre-diablillo-3-1995-espanol-latino_202604/Mi%20Pobre%20Diablillo%20(1990)%20(Espa%C3%B1ol%20Latino).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-okko-y-los-fantasmas-2018-la-pelicula-espanol-latino",
+   "t": "Okko Y Los Fantasmas",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/dHm7Aynb2r3kbGZzJBp5ZLJwdl3.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791434272407,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Okko Y Los Fantasmas 2018 La Pelicula Español Latino",
+     "url": "https://archive.org/download/okko-y-los-fantasmas-2018-la-pelicula-espanol-latino/Okko%20y%20los%20fantasmas%202018%20la%20pelicula%20espa%C3%B1ol%20Latino.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-31-minutos-calurosa-navidad-2025",
+   "t": "31 Minutos: Calurosa Navidad (2025)",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2025",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/dv9UrOoicRiMGkzr2oj2YwSFY2K.jpg",
+   "tags": [],
+   "at": 1791434402555,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "31 Minutos: Calurosa Navidad (2025)",
+     "url": "https://archive.org/download/31-minutos-calurosa-navidad-2025/31%20Minutos_%20Calurosa%20Navidad%20(2025).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-31-minutos-la-pelicula-iso",
+   "t": "31 Minutos la pelicula",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2008",
+   "g": 5,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/9kB4DmISmLMsXcNw4I84eNXyO8B.jpg",
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
+   "clsManual": true,
+   "hentai": false,
+   "at": 1791434465582,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "31 minutos La Pelcula",
+     "url": "https://archive.org/download/31-minutos-la-pelicula-iso/31%20minutos%20La%20Pelcula.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-frankenweenie-2012-espanol-latino-c-nando-urhopelis-toky-",
+   "t": "Frankenweenie",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2012",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/4WZaUjHswR2mak767GEXgiWYxeq.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791434741596,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Frankenweenie ( 2012) Español Latino © Nando Urhopelis Toky ",
+     "url": "https://archive.org/download/frankenweenie-2012-espanol-latino-c-nando-urhopelis-toky-video/Frankenweenie%20(2012)%20Espa%C3%B1ol%20Latino%20_%20%C2%A9%20Nando%20-%20urhopelis%20-%20TokyVideo.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-9-2009-1080-p-latino-ver-peliculas-online-org",
+   "t": "Numero 9",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2009",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/hRzsKmr3NxRIbKwr4myGKylMaXB.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791434810995,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Numero 9 (2009) Español Latino Tim Burton",
+     "url": "https://archive.org/download/9-2009-1080-p-latino-ver-peliculas-online.org/9%20(2009)%20%5B1080P%5D%5BLatino%5D%5BVerPeliculasOnline.org%5D.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-el-cadaver-de-la-novia-2005-espanol-latino-c-nando-urhope",
+   "t": "El Cadáver De La Novia",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2005",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/3ALM0VeZjGUryAqWo6pqohzbLDh.jpg",
+   "tags": [
+    "Romance"
+   ],
+   "genre": "romance",
+   "at": 1791434918709,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El Cadáver De La Novia ( 2005) Español Latino © Nando Urhope",
+     "url": "https://archive.org/download/el-cadaver-de-la-novia-2005-espanol-latino-c-nando-urhopelis-toky-video/El%20cad%C3%A1ver%20de%20la%20novia%20(2005)%20Espa%C3%B1ol%20Latino%20_%20%C2%A9%20Nando%20-%20urhopelis%20-%20TokyVideo.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-el-extrano-mundo-de-jack-1993-espanol-latino-c-nando-urho",
+   "t": "El Extraño Mundo De Jack",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1993",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/pqFPpQ77VZ0moRgRRsxx7p39CS3.jpg",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791434949498,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El Extraño Mundo De Jack ( 1993) Español Latino © Nando Urho",
+     "url": "https://archive.org/download/el-extrano-mundo-de-jack-1993-espanol-latino-c-nando-urhopelis-toky-video/El%20extra%C3%B1o%20mundo%20de%20Jack%20(1993)%20Espa%C3%B1ol%20Latino%20_%20%C2%A9%20Nando%20-%20urhopelis%20-%20TokyVideo.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-la-leyenda-de-hei-espanol-latino-pelicula-que-deberias-ve",
+   "t": "La Leyenda De Hei Español",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2019",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/ogqmdo6Vuofr1FkDQgwB1PHw4ZC.jpg",
+   "tags": [],
+   "at": 1791435085927,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La Leyenda De Hei Español Latino (película Que Deberías Ver)",
+     "url": "https://archive.org/download/la-leyenda-de-hei-espanol-latino-pelicula-que-deberias-ver-720-p-hd/La%20leyenda%20de%20Hei%20Espa%C3%B1ol%20latino%20(pel%C3%ADcula%20que%20deber%C3%ADas%20ver)(720P_HD).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-dia-de-muertos-2019-online-gratis-en-espanol-latino-o",
+   "t": "Día De Muertos",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2019",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/auuAjNOBr5vlgrWTQgYarExuplw.jpg",
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
+   "at": 1791435148883,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Día De Muertos 2019 Online Gratis En Español, Latino O S",
+     "url": "https://archive.org/download/ver-dia-de-muertos-2019-online-gratis-en-espanol-latino-o-subtitulada-f/Ver_D%C3%ADa_De_Muertos_2019_Online_Gratis_en_Espa%C3%B1ol%2C_Latino_o_Subtitulada_f_.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-coraline-y-la-puerta-secreta-2009-espanol-latino-c-nando-",
+   "t": "Coraline Y La Puerta Secreta",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2009",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/6SToEuWU2BCI1PRnMdpnzF5FaSW.jpg",
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
+   "at": 1791435205580,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Coraline Y La Puerta Secreta ( 2009) Español Latino © Nando ",
+     "url": "https://archive.org/download/coraline-y-la-puerta-secreta-2009-espanol-latino-c-nando-urhopelis-toky-video/Coraline%20y%20la%20Puerta%20secreta%20(2009)%20Espa%C3%B1ol%20Latino%20_%20%C2%A9%20Nando%20-%20urhopelis%20-%20TokyVideo.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-los-hermanos-willoughby-the-willoughbys-2020-online-g",
+   "t": "Los Hermanos Willoughby",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2020",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/v1W9uSS3W7oil0Lo9QUJesey0i5.jpg",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1791435269982,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Los Hermanos Willoughby ( The Willoughbys) 2020 Online G",
+     "url": "https://archive.org/download/ver-los-hermanos-willoughby-the-willoughbys-2020-online-gratis-en-espanol-latino-o-subtitulada-f/Ver_Los_Hermanos_Willoughby_(The_Willoughbys)_2020_Online_Gratis_en_Espa%C3%B1ol%2C_Latino_o_Subtitulada_f_.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-veronika-decide-morir-2009-latino-doblaje-mexicano-veroni",
+   "t": "Veronika Decide Morir",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2009",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/oUo9CNSKz4ELnxAh4l3BPcXcxKq.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791435334161,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Veronika Decide Morir | Veronika Decides to Die (2009) [Cali",
+     "url": "https://archive.org/download/veronika-decide-morir-2009-latino-doblaje-mexicano-veronik/Veronika%20Decide%20Morir%202009%20Latino%20Doblaje%20Mexicano%20Veronik.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-academia-de-modelos-en-bikini-2015-esp-latino-hd",
+   "t": "Academia De Modelos",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2015",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/66qXXo4Io3i4UfcLExcSNZW1Xes.jpg",
+   "tags": [],
+   "at": 1791435386390,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Academia De Modelos En Bikinis / Bikini Model Academy [2015]",
+     "url": "https://archive.org/download/academia-de-modelos-en-bikini-2015-esp-latino-hd/Academia%20de%20Modelos%20en%20Bikini%202015%20Esp%20Latino%20HD.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-minority-report-sentencia-previa-2002-espanol-latino-dvd-",
+   "t": "Minority Report Sentencia Previa",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2002",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/q5qipy536mgsejg6AWPP9lmkGkG.jpg",
+   "tags": [
+    "Ciencia Ficción"
+   ],
+   "genre": "scifi",
+   "at": 1791435443414,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Minority Report Sentencia Previa ( 2002) Español Latino DVD ",
+     "url": "https://archive.org/download/minority-report-sentencia-previa-2002-espanol-latino-dvd-fullscreen/Minority%20report%20Sentencia%20previa%20(2002)%20Espa%C3%B1ol%20Latino%20DVD%20Fullscreen.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-taxi-driver-1976_202512",
+   "t": "Taxi Driver",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/9G26DnAeMbA4sp58Gi0Vze6eQv4.jpg",
+   "tags": [
+    "Crimen"
+   ],
+   "genre": "crimen",
+   "at": 1791435682349,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Taxi Driver 1976 1080p 35mm Latino 1er Mex 2do Mex 4to Arg",
+     "url": "https://archive.org/download/taxi-driver-1976_202512/Taxi%20Driver%201976%201080p%2035mm%20Latino%201er%20Mex%20-%202do%20Mex%20-%204to%20Arg.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-vecinos-invasores-2006-espanol-mexicano",
+   "t": "Vecinos Invasores",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2006",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/5lHMB2jwlQV43RBfT5g3BRGN0Tm.jpg",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1791435729290,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Vecinos Invasores (2006) Español Mexicano",
+     "url": "https://archive.org/download/vecinos-invasores-2006-espanol-mexicano/Vecinos%20Invasores%20(2006)%20Espa%C3%B1ol%20Mexicano.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-la-monja-mavlada-2015-espanol-latino-bad-sist",
+   "t": "Bad Sister / Mala Hermana",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2015",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/n7jx03EnD2eyob8ld07bOD5XOcl.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791435765784,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Bad Sister / Mala Hermana (2015) [Calidad HD / Español Latin",
+     "url": "https://archive.org/download/la-monja-mavlada-2015-espanol-latino-bad-sist/la-monja-mavlada-2015-espa%C3%B1ol-latino-bad-sist.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-la-bella-durmiente-1959-espanol-latino-c-nando-urhopelis-",
+   "t": "La Bella Durmiente",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1959",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/ofoVXR8gBYhV4e0MpRQtSpeXLiK.jpg",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791435820315,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La Bella Durmiente ( 1959) Español Latino © Nando Urhopelis ",
+     "url": "https://archive.org/download/la-bella-durmiente-1959-espanol-latino-c-nando-urhopelis-toky-video/La%20bella%20durmiente%20(1959)%20Espa%C3%B1ol%20Latino%20_%20%C2%A9%20Nando%20-%20urhopelis%20-%20TokyVideo.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-4137-shutter-2004-1080p-d-t-s-spa-eng-por-fre-v-1-ok-ru",
+   "t": "Shutter / Están entre nosotros",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2004",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/57xbx7NywWIOGYzmm1JjRTHP2AP.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791435870894,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Shutter / Están entre nosotros (2004) [Calidad HD / Español ",
+     "url": "https://archive.org/download/4137-shutter-2004-1080p-d-t-s-spa-eng-por-fre-v-1-ok-ru/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%204137-Shutter%202004%201080p%20D%20t%20S%20spa%20eng%20por%20fre%20v%201%20OK%20RU.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-2004-troya",
+   "t": "Troya",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2004",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/mBiDQT28DnuYaJSL4nDD43ORE6p.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791435909956,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Troya 2004 theatrical cut latino",
+     "url": "https://archive.org/download/2004-troya/(2004)%20Troya.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-la-reliquia-del-futuro-das-jesus-video-espanol-latino",
+   "t": "El enigma de Jerusalén",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2002",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/la-reliquia-del-futuro-das-jesus-video-espanol-latino",
+   "tags": [
+    "Suspenso"
+   ],
+   "genre": "suspenso",
+   "at": 1791435967905,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La Reliquia Del Futuro ( Das Jesus Video) Español Latino",
+     "url": "https://archive.org/download/la-reliquia-del-futuro-das-jesus-video-espanol-latino/La%20Reliquia%20del%20Futuro%20(Das%20Jesus%20Video)%20Espa%C3%B1ol%20Latino.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-tropa-de-elite-2007-calidad-hd-espanol-latino",
+   "t": "Tropa de Elite",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2007",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uNmhgNiUzZAknt4sjY1id8nbFCG.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791436074088,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Tropa de Elite (2007) [Calidad HD / Español Latino]",
+     "url": "https://archive.org/download/tropa-de-elite-2007-calidad-hd-espanol-latino/Tropa%20de%20Elite%20(2007)%20%5BCalidad%20HD%20%20Espa%C3%B1ol%20Latino%5D.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-tropa-de-elite-2-2010-online-latino-hd",
+   "t": "Tropa de Elite 2",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2010",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/geK5X7cIWap06q7J2ZiyQr2scrc.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791436084927,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Tropa de Elite 2 : el enemigo ahora es otro / Tropa de elite",
+     "url": "https://archive.org/download/tropa-de-elite-2-2010-online-latino-hd/Tropa%20de%20Elite%202%202010%20Online%20Latino%20HD.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-instinto-siniestro-VerCine-Online-com",
+   "t": "Instinto Siniestro",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2007",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/2HHsyLowHNPUYKIs18iTgpRyPHa.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791436142798,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Instinto Siniestro (À l'intérieur) (2007) [Español Latino]",
+     "url": "https://archive.org/download/instinto.siniestro.VerCine-Online.com/instinto.siniestro.VerCine-Online.com.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-marabunta-1998",
+   "t": "Marabunta",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/icX3Xi5k7BnbtKBE1qUxc6EHW42.jpg",
+   "tags": [
+    "Documental"
+   ],
+   "genre": "documental",
+   "at": 1791436214886,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Marabunta (1998) Latino",
+     "url": "https://archive.org/download/marabunta-1998/Marabunta%20(1998).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-muchas-mas-hormigas-entre-las-piernas-pelicula-alemana-18",
+   "t": "Muchas Mas Hormigas Entre Las Piernas",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/9PuK45DWcRlp47v7hbOO0IZZSi6.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791436259612,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Muchas Mas Hormigas Entre Las Piernas Pelicula Alemana + 18 ",
+     "url": "https://archive.org/download/muchas-mas-hormigas-entre-las-piernas-pelicula-alemana-18-espanol-latino-netflix-2023/muchas%20mas%20hormigas%20entre%20las%20piernas%20pelicula%20alemana%20%2B18%20espa%C3%B1ol%20latino%20netflix%202023.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-an-educ-4ti-0n-latino",
+   "t": "An Education / Enseñanza de vida",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2009",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/gLIvvUdlocGjm8XVLxhWHAKWrRq.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791436356243,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "An Education / Enseñanza de vida [2009] Película en Español ",
+     "url": "https://archive.org/download/an-educ-4ti-0n.latino/An%20Educ4ti0n.latino.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ver-pelicula-el-angel-en-el-reloj-2017-online-gratis-en-e",
+   "t": "El Ángel En El Reloj",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2018",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/hsOIbxeBdoSC3BrpIqbukHMQx6A.jpg",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791436396972,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ver Película El Ángel En El Reloj 2017 Online Gratis En Espa",
+     "url": "https://archive.org/download/ver-pelicula-el-angel-en-el-reloj-2017-online-gratis-en-espanol-latino-o-subtitulada-4/Ver_Pel%C3%ADcula_El_%C3%81ngel_En_El_Reloj_2017_Online_Gratis_en_Espa%C3%B1ol%2C_Latino_o_Subtitulada_4.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-5989511399978-1",
+   "t": "La masacre de Texas",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime · 1974",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/l5LDUW8fYdDR5B1yJimZ1bAhqCl.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791436469071,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La masacre de Texas (The Texas Chainsaw Massacre, 1974) (dub",
+     "url": "https://archive.org/download/5989511399978-1/5989511399978%20(1).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-la-chica-que-saltaba-a-traves-del-tiempo-2006-latino",
+   "t": "La chica que saltaba a través del tiempo",
+   "jp": "🎌",
+   "tag": "Cine IA · Película anime · 2006",
+   "g": 4,
+   "kind": "pelicula",
+   "anime": true,
+   "poster": "https://image.tmdb.org/t/p/w500/fTWFUDt9r6KOf3GYxh40NjEMklx.jpg",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791436651994,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La chica que saltaba a través del tiempo / Toki wo Kakeru Sh",
+     "url": "https://archive.org/download/la-chica-que-saltaba-a-traves-del-tiempo-2006-latino/La%20Chica%20Que%20Saltaba%20A%20Traves%20Del%20Tiempo%202006%20Latino%20-%20Video%20Dai.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-pesadilla-en-la-calle-del-infierno-5-el-nino-de-los-sueno",
+   "t": "Pesadilla En La Calle Del Infierno 5 El Niño De Los Sueños",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1989",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/vUEPnN7ZkW3buaTDmosFubwC7ZH.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791436706677,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Pesadilla En La Calle Del Infierno 5 El Niño De Los Sueños (",
+     "url": "https://archive.org/download/pesadilla-en-la-calle-del-infierno-5-el-nino-de-los-suenos-1989-espanol-latino-dvd-fullscreen/Pesadilla%20en%20la%20calle%20del%20infierno%205%20El%20ni%C3%B1o%20de%20los%20sue%C3%B1os%20(1989)%20Espa%C3%B1ol%20Latino%20DVD%20Fullscreen.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-pesadilla-en-la-calle-del-infierno-2-la-revancha-de-fredd",
+   "t": "Pesadilla En La Calle Del Infierno 2 La Revancha De Freddy",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1985",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/54JsC5uy6l9HTeDmW1DGQ76dsc4.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791436726164,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Pesadilla En La Calle Del Infierno 2 La Revancha De Freddy (",
+     "url": "https://archive.org/download/pesadilla-en-la-calle-del-infierno-2-la-revancha-de-freddy-1985-espanol-latino-dvd-fullscreen/Pesadilla%20en%20la%20calle%20del%20infierno%202%20La%20revancha%20de%20Freddy%20(1985)%20Espa%C3%B1ol%20Latino%20DVD%20Fullscreen.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-pesadilla-en-la-calle-del-infierno-4-el-amo-de-los-suenos",
+   "t": "Pesadilla En La Calle Del Infierno 4 El Amo De Los Sueños",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1988",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/waLzjguZwn83nCtSuG22l87eHZx.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791436740244,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Pesadilla En La Calle Del Infierno 4 El Amo De Los Sueños ( ",
+     "url": "https://archive.org/download/pesadilla-en-la-calle-del-infierno-4-el-amo-de-los-suenos-1988-espanol-latino-dvd-fullscreen/Pesadilla%20en%20la%20calle%20del%20infierno%204%20El%20amo%20de%20los%20sue%C3%B1os%20(1988)%20Espa%C3%B1ol%20Latino%20DVD%20Fullscreen.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-blade-1-cazador-de-vampiros-1998-espanol-latino-full-scre",
+   "t": "Blade Cazador De Vampiros",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1998",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/dCsTsFX4PT9wewpKYaddwPHYI3A.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791436828459,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Blade 1 Cazador De Vampiros ( 1998) Español Latino Full Scre",
+     "url": "https://archive.org/download/blade-1-cazador-de-vampiros-1998-espanol-latino-full-screen/Blade%201%20Cazador%20de%20Vampiros%20(1998)%20Espa%C3%B1ol%20Latino%20Full%20Screen.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-lo-mejor-de-mis-bodas-1998-fullscreen-espanol-latino-vhs-",
+   "t": "Lo Mejor De Mis Bodas",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1998",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/tzDJ7QqogUYa5pVAMHdq6HHFLjQ.jpg",
+   "tags": [
+    "Romance"
+   ],
+   "genre": "romance",
+   "at": 1791436858587,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Lo Mejor De Mis Bodas ( 1998, Fullscreen) Español Latino VHS",
+     "url": "https://archive.org/download/lo-mejor-de-mis-bodas-1998-fullscreen-espanol-latino-vhs-rip/Lo%20mejor%20de%20mis%20bodas%20(1998%2C%20Fullscreen)%20Espa%C3%B1ol%20Latino%20VHS%20Rip.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-2074-goofy-la-pelicula-1995-d-s-spa-eng-v",
+   "t": "Goofy La Pelicula",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1995",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/2074-goofy-la-pelicula-1995-d-s-spa-eng-v",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1791436964531,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Goofy La Pelicula (1995) Dual",
+     "url": "https://archive.org/download/2074-goofy-la-pelicula-1995-d-s-spa-eng-v/2074-Goofy%20La%20Pelicula%20(1995)%20D%20S%20spa%20eng%20v.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-asi-aprenderas",
+   "t": "Asi aprenderas",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/lG83nWVT7cHl3nSxonaYhOjqyWH.jpg",
+   "at": 1791437027094,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Asi aprenderas S01E01 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E01.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Asi aprenderas S01E02 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E02.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Asi aprenderas S01E03 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E03.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Asi aprenderas S01E04 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E04.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Asi aprenderas S01E05 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E05.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Asi aprenderas S01E06 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E06.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Asi aprenderas S01E07 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E07.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Asi aprenderas S01E08 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E08.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Asi aprenderas S01E09 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E09.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Asi aprenderas S01E10 2026 WEB-DL 1080p-Dual-Lat",
+     "url": "https://archive.org/download/asi.aprenderas/Asi.aprenderas.S01E10.2026.WEB-DL.1080p-Dual-Lat.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-estcnzmbtab-1080",
+   "t": "Estacion zombie",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/wj2ktqf6hSgZG0MwIrkAarKGRBV.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791437124794,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Estacion zombie 1 1080",
+     "url": "https://archive.org/download/estcnzmbtab-1080/ESTCNZMBTAB-1080.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-dbs-latino",
+   "t": "Dragon Ball Super",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/ruLBbIX15HrECgLJ3uZPo6X3YCN.jpg",
+   "at": 1791437245321,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "DBS 001 - ¡El Premio Mundial de la Paz! Quién se quedará con",
+     "url": "https://archive.org/download/dbs-latino/DBS%20001%20-%20%C2%A1El%20Premio%20Mundial%20de%20la%20Paz!%20Qui%C3%A9n%20se%20quedar%C3%A1%20con%20los%20100%20millones%20de%20Zenis%20Latino.ia.mp4"
+    },
+    {
+     "n": 2,
+     "t": "DBS 002 - ¡Vacaciones en un resort! Vegeta irá a un viaje fa",
+     "url": "https://archive.org/download/dbs-latino/DBS%20002%20-%20%C2%A1Vacaciones%20en%20un%20resort!%20Vegeta%20ir%C3%A1%20a%20un%20viaje%20familiar%20Latino.ia.mp4"
+    },
+    {
+     "n": 3,
+     "t": "DBS 003 - En dónde está la otra mitad del sueño ¡Buscando al",
+     "url": "https://archive.org/download/dbs-latino/DBS%20003%20-%20En%20d%C3%B3nde%20est%C3%A1%20la%20otra%20mitad%20del%20sue%C3%B1o%20%C2%A1Buscando%20al%20S%C3%BAper%20Saiyajin%20Fase%20Dios!%20Latino.ia.mp4"
+    },
+    {
+     "n": 4,
+     "t": "DBS 004 - ¡Vamos por las Esferas del Dragón! ¡La pandilla de",
+     "url": "https://archive.org/download/dbs-latino/DBS%20004%20-%20%C2%A1Vamos%20por%20las%20Esferas%20del%20Drag%C3%B3n!%20%C2%A1La%20pandilla%20de%20Pilaf%20hace%20de%20las%20suyas!%20Latino.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "DBS 005 - ¡La pelea decisiva en el planeta Kaio sama! ¡Gokú ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20005%20-%20%C2%A1La%20pelea%20decisiva%20en%20el%20planeta%20Kaio%20sama!%20%C2%A1Gok%C3%BA%20contra%20el%20Dios%20de%20la%20Destrucci%C3%B3n%2C%20Bills!%20Latino.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "DBS 006 - ¡No enfurezcan al Dios de la Destrucción! ¡Una div",
+     "url": "https://archive.org/download/dbs-latino/DBS%20006%20-%20%C2%A1No%20enfurezcan%20al%20Dios%20de%20la%20Destrucci%C3%B3n!%20%C2%A1Una%20divertida%20fiesta%20de%20cumplea%C3%B1os!%20Latino.ia.mp4"
+    },
+    {
+     "n": 7,
+     "t": "DBS 007 - Cómo te atreves a tocar a mi Bulma ¡El repentino a",
+     "url": "https://archive.org/download/dbs-latino/DBS%20007%20-%20C%C3%B3mo%20te%20atreves%20a%20tocar%20a%20mi%20Bulma%20%C2%A1El%20repentino%20ataque%20de%20ira%20de%20Vegeta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 8,
+     "t": "DBS 008 - ¡Gokú regresa! La última oportunidad otorgada por ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20008%20-%20%C2%A1Gok%C3%BA%20regresa!%20La%20%C3%BAltima%20oportunidad%20otorgada%20por%20el%20Se%C3%B1or%20Bills%20Latino.ia.mp4"
+    },
+    {
+     "n": 9,
+     "t": "DBS 009 - ¡Lamento la espera, Señor Bills! ¡El Super Saiyaji",
+     "url": "https://archive.org/download/dbs-latino/DBS%20009%20-%20%C2%A1Lamento%20la%20espera%2C%20Se%C3%B1or%20Bills!%20%C2%A1El%20Super%20Saiyajin%20Fase%20Dios%20ha%20aparecido!%20Latino.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "DBS 010 - ¡Desata tu poder Gokú! ¡El poder del Super Saiyaji",
+     "url": "https://archive.org/download/dbs-latino/DBS%20010%20-%20%C2%A1Desata%20tu%20poder%20Gok%C3%BA!%20%C2%A1El%20poder%20del%20Super%20Saiyajin%20Fase%20Dios!%20Latino.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "DBS 011 - ¡Continuemos Señor Bills! ¡Una pelea entre Dioses!",
+     "url": "https://archive.org/download/dbs-latino/DBS%20011%20-%20%C2%A1Continuemos%20Se%C3%B1or%20Bills!%20%C2%A1Una%20pelea%20entre%20Dioses!.mp4.crdownload.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "DBS 012 - ¡El Universo se derrumba! ¡Colisión entre el Dios ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20012%20-%20%C2%A1El%20Universo%20se%20derrumba!%20%C2%A1Colisi%C3%B3n%20entre%20el%20Dios%20de%20la%20Destrucci%C3%B3n%20y%20el%20Super%20Saiyajin%20Fase%20Dios!%20Latino.ia.mp4"
+    },
+    {
+     "n": 13,
+     "t": "DBS 013 - ¡Vamos Gokú! ¡Sobrepasa el Super Saiyajin Fase Dio",
+     "url": "https://archive.org/download/dbs-latino/DBS%20013%20-%20%C2%A1Vamos%20Gok%C3%BA!%20%C2%A1Sobrepasa%20el%20Super%20Saiyajin%20Fase%20Dios!%20Latino.ia.mp4"
+    },
+    {
+     "n": 14,
+     "t": "DBS 014 - ¡Este es todo el poder que me queda! ¡El desenlace",
+     "url": "https://archive.org/download/dbs-latino/DBS%20014%20-%20%C2%A1Este%20es%20todo%20el%20poder%20que%20me%20queda!%20%C2%A1El%20desenlace%20de%20la%20batalla%20entre%20Dioses!%20Latino.ia.mp4"
+    },
+    {
+     "n": 15,
+     "t": "DBS 015 - ¡Satán el Héroe, crea un milagro! ¡Un desafío fuer",
+     "url": "https://archive.org/download/dbs-latino/DBS%20015%20-%20%C2%A1Sat%C3%A1n%20el%20H%C3%A9roe%2C%20crea%20un%20milagro!%20%C2%A1Un%20desaf%C3%ADo%20fuera%20de%20este%20mundo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 16,
+     "t": "DBS 016 - ¡Vegeta se vuelve un discípulo! ¡A convencer a Whi",
+     "url": "https://archive.org/download/dbs-latino/DBS%20016%20-%20%C2%A1Vegeta%20se%20vuelve%20un%20disc%C3%ADpulo!%20%C2%A1A%20convencer%20a%20Whis!%20Latino.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "DBS 017 - ¡Pan ha nacido! Gokú se va a entrenar Latino ia",
+     "url": "https://archive.org/download/dbs-latino/DBS%20017%20-%20%C2%A1Pan%20ha%20nacido!%20Gok%C3%BA%20se%20va%20a%20entrenar%20Latino.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "DBS 018 - ¡Ya llegué! ¡Que comience el entrenamiento en el p",
+     "url": "https://archive.org/download/dbs-latino/DBS%20018%20-%20%C2%A1Ya%20llegu%C3%A9!%20%C2%A1Que%20comience%20el%20entrenamiento%20en%20el%20planeta%20de%20Bills!%20Latino.ia.mp4"
+    },
+    {
+     "n": 19,
+     "t": "DBS 019 - ¡La angustia regresa! ¡El emperador del mal, la re",
+     "url": "https://archive.org/download/dbs-latino/DBS%20019%20-%20%C2%A1La%20angustia%20regresa!%20%C2%A1El%20emperador%20del%20mal%2C%20la%20resurrecci%C3%B3n%20de%20Freezer!%20Latino.ia.mp4"
+    },
+    {
+     "n": 20,
+     "t": "DBS 020 -¡La advertencia de Jacko! ¡Freezer y sus 1000 solda",
+     "url": "https://archive.org/download/dbs-latino/DBS%20020%20-%C2%A1La%20advertencia%20de%20Jacko!%20%C2%A1Freezer%20y%20sus%201000%20soldados%20se%20acercan!%20Latino.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "DBS 021 - ¡Que comience la venganza! ¡El ejército maligno de",
+     "url": "https://archive.org/download/dbs-latino/DBS%20021%20-%20%C2%A1Que%20comience%20la%20venganza!%20%C2%A1El%20ej%C3%A9rcito%20maligno%20de%20Freezer%20ataca%20a%20Gohan!%20Latino.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "DBS 022 - ¡Cambio! ¡Un inesperado regreso y su nombre es Gin",
+     "url": "https://archive.org/download/dbs-latino/DBS%20022%20-%20%C2%A1Cambio!%20%C2%A1Un%20inesperado%20regreso%20y%20su%20nombre%20es%20Ginyu!%20Latino.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "DBS 023 - ¡La Tierra!, ¡Gohan! ¡Corren peligro! ¡Date prisa ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20023%20-%20%C2%A1La%20Tierra!%2C%20%C2%A1Gohan!%20%C2%A1Corren%20peligro!%20%C2%A1Date%20prisa%20y%20regresa%20Gok%C3%BA!%20Latino.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "DBS 024 - ¡El enfrentamiento entre Freezer y Gokú! ¡Este es ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20024%20-%20%C2%A1El%20enfrentamiento%20entre%20Freezer%20y%20Gok%C3%BA!%20%C2%A1Este%20es%20el%20resultado%20de%20mi%20entrenamiento!%20Latino.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "DBS 025 - ¡Una batalla a muerte! ¡La venganza de Golden Free",
+     "url": "https://archive.org/download/dbs-latino/DBS%20025%20-%20%C2%A1Una%20batalla%20a%20muerte!%20%C2%A1La%20venganza%20de%20Golden%20Freezer!s%20Latino.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "DBS 026 - ¡La última oportunidad en un momento difícil! ¡Es ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20026%20-%20%C2%A1La%20%C3%BAltima%20oportunidad%20en%20un%20momento%20dif%C3%ADcil!%20%C2%A1Es%20hora%20de%20contraatacar%2C%20Gok%C3%BA!%20Latino.ia.mp4"
+    },
+    {
+     "n": 27,
+     "t": "DBS 027 - La Tierra va a estallar ¡El Kame Hame Ha definitiv",
+     "url": "https://archive.org/download/dbs-latino/DBS%20027%20-%20La%20Tierra%20va%20a%20estallar%20%C2%A1El%20Kame%20Hame%20Ha%20definitivo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 28,
+     "t": "DBS 028 - ¡El Dios de la Destrucción del Universo 6! ¡Y su n",
+     "url": "https://archive.org/download/dbs-latino/DBS%20028%20-%20%C2%A1El%20Dios%20de%20la%20Destrucci%C3%B3n%20del%20Universo%206!%20%C2%A1Y%20su%20nombre%20es%20Champa!%20Latino.ia.mp4"
+    },
+    {
+     "n": 29,
+     "t": "DBS 029 - ¡El Torneo de Artes Marciales da inicio! El capitá",
+     "url": "https://archive.org/download/dbs-latino/DBS%20029%20-%20%C2%A1El%20Torneo%20de%20Artes%20Marciales%20da%20inicio!%20El%20capit%C3%A1n%20del%20equipo%20es%20m%C3%A1s%20fuerte%20que%20Gok%C3%BA%20Latino.ia.mp4"
+    },
+    {
+     "n": 30,
+     "t": "DBS 030 - ¡Los últimos detalles para el Torneo de Artes Marc",
+     "url": "https://archive.org/download/dbs-latino/DBS%20030%20-%20%C2%A1Los%20%C3%BAltimos%20detalles%20para%20el%20Torneo%20de%20Artes%20Marciales!%20Qui%C3%A9nes%20ser%C3%A1n%20los%20otros%20dos%20miembros%20Latino.ia.mp4"
+    },
+    {
+     "n": 31,
+     "t": "DBS 031 - ¡Vayamos con el Gran Zuno! ¡Preguntémosle en dónde",
+     "url": "https://archive.org/download/dbs-latino/DBS%20031%20-%20%C2%A1Vayamos%20con%20el%20Gran%20Zuno!%20%C2%A1Pregunt%C3%A9mosle%20en%20d%C3%B3nde%20est%C3%A1n%20las%20S%C3%BAper%20Esferas%20del%20Drag%C3%B3n!%20Latino.ia.mp4"
+    },
+    {
+     "n": 32,
+     "t": "DBS 032 - ¡Comienza el torneo! ¡Vayamos todos al planeta don",
+     "url": "https://archive.org/download/dbs-latino/DBS%20032%20-%20%C2%A1Comienza%20el%20torneo!%20%C2%A1Vayamos%20todos%20al%20planeta%20donde%20no%20hay%20nada!%20Latino.ia.mp4"
+    },
+    {
+     "n": 33,
+     "t": "DBS 033 - ¡Prepárense, Universo 6! ¡Este es el Súper Saiyaji",
+     "url": "https://archive.org/download/dbs-latino/DBS%20033%20-%20%C2%A1Prep%C3%A1rense%2C%20Universo%206!%20%C2%A1Este%20es%20el%20S%C3%BAper%20Saiyajin%20Gok%C3%BA!!%20Latino.ia.mp4"
+    },
+    {
+     "n": 34,
+     "t": "DBS 034 - ¡Piccoro enfrenta a Frost! ¡Concentra todo tu pode",
+     "url": "https://archive.org/download/dbs-latino/DBS%20034%20-%20%C2%A1Piccoro%20enfrenta%20a%20Frost!%20%C2%A1Concentra%20todo%20tu%20poder%20en%20el%20Makankou%20Sappo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 35,
+     "t": "DBS 035 -¡Transforma tu ira en fuerza! ¡Vegeta utiliza su má",
+     "url": "https://archive.org/download/dbs-latino/DBS%20035%20-%C2%A1Transforma%20tu%20ira%20en%20fuerza!%20%C2%A1Vegeta%20utiliza%20su%20m%C3%A1ximo%20poder%20en%20la%20pelea!%20Latino.ia.mp4"
+    },
+    {
+     "n": 36,
+     "t": "DBS 036 - ¡Una batalla imposible de ganar! ¡El estallido de ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20036%20-%20%C2%A1Una%20batalla%20imposible%20de%20ganar!%20%C2%A1El%20estallido%20de%20furia%20de%20Vegeta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 37,
+     "t": "DBS 037 - ¡No olvides tu orgullo como Saiyajin! ¡Vegeta cont",
+     "url": "https://archive.org/download/dbs-latino/DBS%20037%20-%20%C2%A1No%20olvides%20tu%20orgullo%20como%20Saiyajin!%20%C2%A1Vegeta%20contra%20el%20Saiyajin%20del%20Universo%206!%20Latino.ia.mp4"
+    },
+    {
+     "n": 38,
+     "t": "DBS 038 -¡El mejor guerrero del Universo 6! ¡El asesino Hit ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20038%20-%C2%A1El%20mejor%20guerrero%20del%20Universo%206!%20%C2%A1El%20asesino%20Hit%20aparece!%20Latino.ia.mp4"
+    },
+    {
+     "n": 39,
+     "t": "DBS 039 - ¡El salto en el tiempo mejorado y la nueva técnica",
+     "url": "https://archive.org/download/dbs-latino/DBS%20039%20-%20%C2%A1El%20salto%20en%20el%20tiempo%20mejorado%20y%20la%20nueva%20t%C3%A9cnica%20de%20Gok%C3%BA!%20Latino.ia.mp4"
+    },
+    {
+     "n": 40,
+     "t": "DBS 040 - ¡El Torneo se termina! El ganador será Bills o Cha",
+     "url": "https://archive.org/download/dbs-latino/DBS%20040%20-%20%C2%A1El%20Torneo%20se%20termina!%20El%20ganador%20ser%C3%A1%20Bills%20o%20Champa%20Latino.ia.mp4"
+    },
+    {
+     "n": 41,
+     "t": "DBS 041 - ¡Sal de ahí, Dios de los dragones, no seas malo y ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20041%20-%20%C2%A1Sal%20de%20ah%C3%AD%2C%20Dios%20de%20los%20dragones%2C%20no%20seas%20malo%20y%20cumple%20mi%20deseo!%C2%A1Chonmague!%20Latino.ia.mp4"
+    },
+    {
+     "n": 42,
+     "t": "DBS 042 - ¡Un festejo lleno de confusión! Al fin van a pelea",
+     "url": "https://archive.org/download/dbs-latino/DBS%20042%20-%20%C2%A1Un%20festejo%20lleno%20de%20confusi%C3%B3n!%20Al%20fin%20van%20a%20pelear%2C%20%C2%A1Monaka%20contra%20Gok%C3%BA!%20Latino.ia.mp4"
+    },
+    {
+     "n": 43,
+     "t": "DBS 043 - El ki de Gokú está fuera de control ¡La terrible t",
+     "url": "https://archive.org/download/dbs-latino/DBS%20043%20-%20El%20ki%20de%20Gok%C3%BA%20est%C3%A1%20fuera%20de%20control%20%C2%A1La%20terrible%20tarea%20de%20cuidar%20a%20Pan!%20Latino.ia.mp4"
+    },
+    {
+     "n": 44,
+     "t": "DBS 044 - ¡El sello del planeta Pot-Au-Feu! ¡El secreto del ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20044%20-%20%C2%A1El%20sello%20del%20planeta%20Pot-Au-Feu!%20%C2%A1El%20secreto%20del%20agua%20sobrenatural%20es%20descubierto!%20Latino.ia.mp4"
+    },
+    {
+     "n": 45,
+     "t": "DBS 045 - Vegeta está desapareciendo ¡La copia de Vegeta se ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20045%20-%20Vegeta%20est%C3%A1%20desapareciendo%20%C2%A1La%20copia%20de%20Vegeta%20se%20vuelve%20una%20amenaza!%20Latino.ia.mp4"
+    },
+    {
+     "n": 46,
+     "t": "DBS 046 - ¡Gokú contra la copia de Vegeta! Quién de los dos ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20046%20-%20%C2%A1Gok%C3%BA%20contra%20la%20copia%20de%20Vegeta!%20Qui%C3%A9n%20de%20los%20dos%20ganar%C3%A1%20Latino.ia.mp4"
+    },
+    {
+     "n": 47,
+     "t": "DBS 047 - ¡Llamada de auxilio del futuro! ¡Un nuevo enemigo ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20047%20-%20%C2%A1Llamada%20de%20auxilio%20del%20futuro!%20%C2%A1Un%20nuevo%20enemigo%20aparece!%20Latino.ia.mp4"
+    },
+    {
+     "n": 48,
+     "t": "DBS 048 - ¡Una vez más surge la esperanza! ¡Trunks despierta",
+     "url": "https://archive.org/download/dbs-latino/DBS%20048%20-%20%C2%A1Una%20vez%20m%C3%A1s%20surge%20la%20esperanza!%20%C2%A1Trunks%20despierta%20en%20el%20presente!%20Latino.ia.mp4"
+    },
+    {
+     "n": 49,
+     "t": "DBS 049 - ¡Un mensaje del futuro! ¡Gokú Black ataca! Latino ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20049%20-%20%C2%A1Un%20mensaje%20del%20futuro!%20%C2%A1Gok%C3%BA%20Black%20ataca!%20Latino.ia.mp4"
+    },
+    {
+     "n": 50,
+     "t": "DBS 050 - ¡Gokú contra Black! ¡El camino al futuro es obstru",
+     "url": "https://archive.org/download/dbs-latino/DBS%20050%20-%20%C2%A1Gok%C3%BA%20contra%20Black!%20%C2%A1El%20camino%20al%20futuro%20es%20obstruido!%20Latino.ia.mp4"
+    },
+    {
+     "n": 51,
+     "t": "DBS 051 - ¡Sentimientos que superan el tiempo! ¡Trunks y Mai",
+     "url": "https://archive.org/download/dbs-latino/DBS%20051%20-%20%C2%A1Sentimientos%20que%20superan%20el%20tiempo!%20%C2%A1Trunks%20y%20Mai!%20Latino.ia.mp4"
+    },
+    {
+     "n": 52,
+     "t": "DBS 052 - ¡La reunión entre el maestro y su discípulo! ¡Goha",
+     "url": "https://archive.org/download/dbs-latino/DBS%20052%20-%20%C2%A1La%20reuni%C3%B3n%20entre%20el%20maestro%20y%20su%20disc%C3%ADpulo!%20%C2%A1Gohan%20y%20Trunks%20del%20Futuro!%20Latino.ia.mp4"
+    },
+    {
+     "n": 53,
+     "t": "DBS 053 - ¡La identidad de Black ha sido descubierta! ¡Vayam",
+     "url": "https://archive.org/download/dbs-latino/DBS%20053%20-%20%C2%A1La%20identidad%20de%20Black%20ha%20sido%20descubierta!%20%C2%A1Vayamos%20al%20mundo%20de%20los%20Supremos%20Kaio-Sama%20del%20Universo%2010!%20Latino.ia.mp4"
+    },
+    {
+     "n": 54,
+     "t": "DBS 054 - ¡Aquel que hereda el linaje saiyajin! ¡La decisión",
+     "url": "https://archive.org/download/dbs-latino/DBS%20054%20-%20%C2%A1Aquel%20que%20hereda%20el%20linaje%20saiyajin!%20%C2%A1La%20decisi%C3%B3n%20de%20Trunks!%20Latino.ia.mp4"
+    },
+    {
+     "n": 55,
+     "t": "DBS 055 - ¡Quiero ver a Son Gokú, sí! ¡La orden de Zenosama ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20055%20-%20%C2%A1Quiero%20ver%20a%20Son%20Gok%C3%BA%2C%20s%C3%AD!%20%C2%A1La%20orden%20de%20Zenosama%20Latino.ia.mp4"
+    },
+    {
+     "n": 56,
+     "t": "DBS 056 - ¡La revancha contra Gokú Black! ¡El Súper Saiyajin",
+     "url": "https://archive.org/download/dbs-latino/DBS%20056%20-%20%C2%A1La%20revancha%20contra%20Gok%C3%BA%20Black!%20%C2%A1El%20S%C3%BAper%20Saiyajin%20Ros%C3%A9%20aparece!%20Latino.ia.mp4"
+    },
+    {
+     "n": 57,
+     "t": "DBS 057 - ¡El Dios con un cuerpo inmortal! ¡Zamas desciende!",
+     "url": "https://archive.org/download/dbs-latino/DBS%20057%20-%20%C2%A1El%20Dios%20con%20un%20cuerpo%20inmortal!%20%C2%A1Zamas%20desciende!%20Latino.ia.mp4"
+    },
+    {
+     "n": 58,
+     "t": "DBS 058 - ¡Zamas y Black! ¡El misterio de los dos aumenta! L",
+     "url": "https://archive.org/download/dbs-latino/DBS%20058%20-%20%C2%A1Zamas%20y%20Black!%20%C2%A1El%20misterio%20de%20los%20dos%20aumenta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 59,
+     "t": "DBS 059 - ¡Hay que proteger al Supremo Kaio-Sama, Gowas! ¡Ac",
+     "url": "https://archive.org/download/dbs-latino/DBS%20059%20-%20%C2%A1Hay%20que%20proteger%20al%20Supremo%20Kaio-Sama%2C%20Gowas!%20%C2%A1Acabemos%20con%20Zamas!%20Latino.ia.mp4"
+    },
+    {
+     "n": 60,
+     "t": "DBS 060 - ¡De nuevo al futuro! ¡La verdadera identidad de Go",
+     "url": "https://archive.org/download/dbs-latino/DBS%20060%20-%20%C2%A1De%20nuevo%20al%20futuro!%20%C2%A1La%20verdadera%20identidad%20de%20Gok%C3%BA%20Black%20es%20descubierta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 61,
+     "t": "DBS 061 - ¡La ambición de Zamas! ¡El terrorífico Plan Cero H",
+     "url": "https://archive.org/download/dbs-latino/DBS%20061%20-%20%C2%A1La%20ambici%C3%B3n%20de%20Zamas!%20%C2%A1El%20terror%C3%ADfico%20Plan%20Cero%20Humanos%20es%20descubierto!%20Latino.ia.mp4"
+    },
+    {
+     "n": 62,
+     "t": "DBS 062 - ¡Protegeré al mundo! ¡El super poder de la furia d",
+     "url": "https://archive.org/download/dbs-latino/DBS%20062%20-%20%C2%A1Proteger%C3%A9%20al%20mundo!%20%C2%A1El%20super%20poder%20de%20la%20furia%20de%20Trunks%20estalla!%20Latino.ia.mp4"
+    },
+    {
+     "n": 63,
+     "t": "DBS 063 - ¡Jamás le faltes el respeto a las células de un sa",
+     "url": "https://archive.org/download/dbs-latino/DBS%20063%20-%20%C2%A1Jam%C3%A1s%20le%20faltes%20el%20respeto%20a%20las%20c%C3%A9lulas%20de%20un%20saiyajin!%20%C2%A1Que%20comience%20la%20batalla%20%C3%A9pica%20de%20Vegeta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 64,
+     "t": "DBS 064 - ¡Venérenlo! ¡Adórenlo! ¡La fusión estremecedora de",
+     "url": "https://archive.org/download/dbs-latino/DBS%20064%20-%20%C2%A1Ven%C3%A9renlo!%20%C2%A1Ad%C3%B3renlo!%20%C2%A1La%20fusi%C3%B3n%20estremecedora%20de%20Zamas!%20Latino.ia.mp4"
+    },
+    {
+     "n": 65,
+     "t": "DBS 065 -El juicio final ¡El supremo poder de un Dios absolu",
+     "url": "https://archive.org/download/dbs-latino/DBS%20065%20-El%20juicio%20final%20%C2%A1El%20supremo%20poder%20de%20un%20Dios%20absoluto!%20Latino.ia.mp4"
+    },
+    {
+     "n": 66,
+     "t": "DBS 066 - ¡La batalla llega a su fin! ¡El milagroso poder de",
+     "url": "https://archive.org/download/dbs-latino/DBS%20066%20-%20%C2%A1La%20batalla%20llega%20a%20su%20fin!%20%C2%A1El%20milagroso%20poder%20de%20los%20guerreros%20incansables!%20Latino.ia.mp4"
+    },
+    {
+     "n": 67,
+     "t": "DBS 067 - ¡Una nueva esperanza! ¡Siempre estarán en nuestro ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20067%20-%20%C2%A1Una%20nueva%20esperanza!%20%C2%A1Siempre%20estar%C3%A1n%20en%20nuestro%20coraz%C3%B3n!%20%C2%A1Adi%C3%B3s%20Trunks!%20Latino.ia.mp4"
+    },
+    {
+     "n": 68,
+     "t": "DBS 068 - ¡Sal de ahí Shenlong! Cuál de todos los deseos ser",
+     "url": "https://archive.org/download/dbs-latino/DBS%20068%20-%20%C2%A1Sal%20de%20ah%C3%AD%20Shenlong!%20Cu%C3%A1l%20de%20todos%20los%20deseos%20ser%C3%A1%20cumplido%20Latino.ia.mp4"
+    },
+    {
+     "n": 69,
+     "t": "DBS 069 - ¡Gokú contra Aralé! ¡Una batalla desastroza que ac",
+     "url": "https://archive.org/download/dbs-latino/DBS%20069%20-%20%C2%A1Gok%C3%BA%20contra%20Aral%C3%A9!%20%C2%A1Una%20batalla%20desastroza%20que%20acabar%C3%A1%20con%20la%20Tierra!%20Latino.ia.mp4"
+    },
+    {
+     "n": 70,
+     "t": "DBS 070 - ¡El desafío de Champa! ¡Esta vez nos enfrentaremos",
+     "url": "https://archive.org/download/dbs-latino/DBS%20070%20-%20%C2%A1El%20desaf%C3%ADo%20de%20Champa!%20%C2%A1Esta%20vez%20nos%20enfrentaremos%20en%20un%20juego%20de%20baseball!%20Latino.ia.mp4"
+    },
+    {
+     "n": 71,
+     "t": "DBS 071 - ¡La Muerte de Gokú! Una Misión de Asesinato Garant",
+     "url": "https://archive.org/download/dbs-latino/DBS%20071%20-%20%C2%A1La%20Muerte%20de%20Gok%C3%BA!%20Una%20Misi%C3%B3n%20de%20Asesinato%20Garantizada%20Latino.ia.mp4"
+    },
+    {
+     "n": 72,
+     "t": "DBS 072 - ¡Habrá un Contraataque! ¡El Golpe Mortal Invisible",
+     "url": "https://archive.org/download/dbs-latino/DBS%20072%20-%20%C2%A1Habr%C3%A1%20un%20Contraataque!%20%C2%A1El%20Golpe%20Mortal%20Invisible!%20Latino.ia.mp4"
+    },
+    {
+     "n": 73,
+     "t": "DBS 073 - ¡La mala suerte de Gohan! ¡El Gran Saiyaman tendrá",
+     "url": "https://archive.org/download/dbs-latino/DBS%20073%20-%20%C2%A1La%20mala%20suerte%20de%20Gohan!%20%C2%A1El%20Gran%20Saiyaman%20tendr%C3%A1%20su%20propia%20pel%C3%ADcula!%20Latino.ia.mp4"
+    },
+    {
+     "n": 74,
+     "t": "DBS 074 - ¡Lucha por tus seres queridos! ¡El Gran Saiyaman e",
+     "url": "https://archive.org/download/dbs-latino/DBS%20074%20-%20%C2%A1Lucha%20por%20tus%20seres%20queridos!%20%C2%A1El%20Gran%20Saiyaman%20es%20invencible!%20Latino.ia.mp4"
+    },
+    {
+     "n": 75,
+     "t": "DBS 075 - Gokú y Krillin de vuelta al antiguo lugar de entre",
+     "url": "https://archive.org/download/dbs-latino/DBS%20075%20-%20Gok%C3%BA%20y%20Krillin%20de%20vuelta%20al%20antiguo%20lugar%20de%20entrenamiento%20Latino.ia.mp4"
+    },
+    {
+     "n": 76,
+     "t": "DBS 076 - ¡Derrotemos a los temibles enemigos! ¡Krillin recu",
+     "url": "https://archive.org/download/dbs-latino/DBS%20076%20-%20%C2%A1Derrotemos%20a%20los%20temibles%20enemigos!%20%C2%A1Krillin%20recupera%20su%20esp%C3%ADritu%20guerrero!%20Latino.ia.mp4"
+    },
+    {
+     "n": 77,
+     "t": "DBS 077 - ¡Manos a la obra Zen Oo Sama! ¡El Torneo de las Ar",
+     "url": "https://archive.org/download/dbs-latino/DBS%20077%20-%20%C2%A1Manos%20a%20la%20obra%20Zen%20Oo%20Sama!%20%C2%A1El%20Torneo%20de%20las%20Artes%20Marciales%20de%20todos%20los%20universos!%20Latino.ia.mp4"
+    },
+    {
+     "n": 78,
+     "t": "DBS 078 - ¡Los dioses de cada universo están impactados! Los",
+     "url": "https://archive.org/download/dbs-latino/DBS%20078%20-%20%C2%A1Los%20dioses%20de%20cada%20universo%20est%C3%A1n%20impactados!%20Los%20perdedores%20del%20Torneo%20de%20la%20Fuerza%20ser%C3%A1n%20aniquilados%20Latino.ia.mp4"
+    },
+    {
+     "n": 79,
+     "t": "DBS 079 - ¡¡Basil el pateador del Universo 9 contra Majin Bu",
+     "url": "https://archive.org/download/dbs-latino/DBS%20079%20-%20%C2%A1%C2%A1Basil%20el%20pateador%20del%20Universo%209%20contra%20Majin%20Buu%20del%20Universo%207!!%20Latino.ia.mp4"
+    },
+    {
+     "n": 80,
+     "t": "DBS 080 - ¡Despierta tu Espíritu Guerrero! ¡¡La pelea de Son",
+     "url": "https://archive.org/download/dbs-latino/DBS%20080%20-%20%C2%A1Despierta%20tu%20Esp%C3%ADritu%20Guerrero!%20%C2%A1%C2%A1La%20pelea%20de%20Son%20Gohan!!%20Latino.ia.mp4"
+    },
+    {
+     "n": 81,
+     "t": "DBS 081 - ¡Bergamo el demoledor contra Son Gokú! ¡Quién de l",
+     "url": "https://archive.org/download/dbs-latino/DBS%20081%20-%20%C2%A1Bergamo%20el%20demoledor%20contra%20Son%20Gok%C3%BA!%20%C2%A1Qui%C3%A9n%20de%20los%20dos%20posee%20un%20poder%20ilimitado!%20Latino.ia.mp4"
+    },
+    {
+     "n": 82,
+     "t": "DBS 082 - ¡No perdonaré a Gokú! ¡¡Toppo el guerrero de la ju",
+     "url": "https://archive.org/download/dbs-latino/DBS%20082%20-%20%C2%A1No%20perdonar%C3%A9%20a%20Gok%C3%BA!%20%C2%A1%C2%A1Toppo%20el%20guerrero%20de%20la%20justicia%20se%20entromete!!%20Latino.ia.mp4"
+    },
+    {
+     "n": 83,
+     "t": "DBS 083 - ¡A Reunir el equipo que representará al Universo 7",
+     "url": "https://archive.org/download/dbs-latino/DBS%20083%20-%20%C2%A1A%20Reunir%20el%20equipo%20que%20representar%C3%A1%20al%20Universo%207!%20%C2%A1Qui%C3%A9nes%20son%20los%2010%20m%C3%A1s%20fuertes!%20Latino.ia.mp4"
+    },
+    {
+     "n": 84,
+     "t": "DBS 084 - El reclutador Gokú invita a Krillin y a 18 Latino ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20084%20-%20El%20reclutador%20Gok%C3%BA%20invita%20a%20Krillin%20y%20a%2018%20Latino.ia.mp4"
+    },
+    {
+     "n": 85,
+     "t": "DBS 085 - ¡Los universos mueven sus piezas! ¡Los motivos de ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20085%20-%20%C2%A1Los%20universos%20mueven%20sus%20piezas!%20%C2%A1Los%20motivos%20de%20cada%20uno!%20Latino.ia.mp4"
+    },
+    {
+     "n": 86,
+     "t": "DBS 086 - ¡Nuestros puños se cruzan por primera vez! ¡El And",
+     "url": "https://archive.org/download/dbs-latino/DBS%20086%20-%20%C2%A1Nuestros%20pu%C3%B1os%20se%20cruzan%20por%20primera%20vez!%20%C2%A1El%20Androide%2017%20contra%20Gok%C3%BA!%20Latino.ia.mp4"
+    },
+    {
+     "n": 87,
+     "t": "DBS 087 - ¡Cazando a los cazadores! ¡Gokú y 17 unen fuerzas!",
+     "url": "https://archive.org/download/dbs-latino/DBS%20087%20-%20%C2%A1Cazando%20a%20los%20cazadores!%20%C2%A1Gok%C3%BA%20y%2017%20unen%20fuerzas!%20Latino.ia.mp4"
+    },
+    {
+     "n": 88,
+     "t": "DBS 088 - Gohan y Piccoro  ¡El maestro y su discípulo tienen",
+     "url": "https://archive.org/download/dbs-latino/DBS%20088%20-%20Gohan%20y%20Piccoro.%20%C2%A1El%20maestro%20y%20su%20disc%C3%ADpulo%20tienen%20un%20entrenamiento%20extremo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 89,
+     "t": "DBS 089 - ¡Una misteriosa belleza aparece! ¡Los dojos del es",
+     "url": "https://archive.org/download/dbs-latino/DBS%20089%20-%20%C2%A1Una%20misteriosa%20belleza%20aparece!%20%C2%A1Los%20dojos%20del%20estilo%20Ten%20Shin%20guardan%20un%20secreto!%20Latino.ia.mp4"
+    },
+    {
+     "n": 90,
+     "t": "DBS 090 -¡Observa el muro que debes superar! ¡Gokú contra Go",
+     "url": "https://archive.org/download/dbs-latino/DBS%20090%20-%C2%A1Observa%20el%20muro%20que%20debes%20superar!%20%C2%A1Gok%C3%BA%20contra%20Gohan!%20Latino.ia.mp4"
+    },
+    {
+     "n": 91,
+     "t": "DBS 091 - ¡Qué Universo sobrevivirá! ¡Los guerreros más fuer",
+     "url": "https://archive.org/download/dbs-latino/DBS%20091%20-%20%C2%A1Qu%C3%A9%20Universo%20sobrevivir%C3%A1!%20%C2%A1Los%20guerreros%20m%C3%A1s%20fuertes%20se%20re%C3%BAnen!%20Latino.ia.mp4"
+    },
+    {
+     "n": 92,
+     "t": "DBS 092 - ¡Situación de emergencia! ¡El equipo de 10 miembro",
+     "url": "https://archive.org/download/dbs-latino/DBS%20092%20-%20%C2%A1Situaci%C3%B3n%20de%20emergencia!%20%C2%A1El%20equipo%20de%2010%20miembros%20est%C3%A1%20incompleto!%20Latino.ia.mp4"
+    },
+    {
+     "n": 93,
+     "t": "DBS 093 - ¡Tú eres el décimo miembro! ¡Gokú visita a Freezer",
+     "url": "https://archive.org/download/dbs-latino/DBS%20093%20-%20%C2%A1T%C3%BA%20eres%20el%20d%C3%A9cimo%20miembro!%20%C2%A1Gok%C3%BA%20visita%20a%20Freezer!%20Latino.ia.mp4"
+    },
+    {
+     "n": 94,
+     "t": "DBS 094 - ¡El emperador del mal está de vuelta! ¡Unos mister",
+     "url": "https://archive.org/download/dbs-latino/DBS%20094%20-%20%C2%A1El%20emperador%20del%20mal%20est%C3%A1%20de%20vuelta!%20%C2%A1Unos%20misteriosos%20asesinos%20nos%20dan%20la%20bienvenida!%20Latino.ia.mp4"
+    },
+    {
+     "n": 95,
+     "t": "DBS 095 - ¡El cruel, el despiadado! ¡Freezer provoca un exte",
+     "url": "https://archive.org/download/dbs-latino/DBS%20095%20-%20%C2%A1El%20cruel%2C%20el%20despiadado!%20%C2%A1Freezer%20provoca%20un%20exterminio!%20Latino.ia.mp4"
+    },
+    {
+     "n": 96,
+     "t": "DBS 096 - ¡Llegó la hora! ¡Hacia el mundo de la nada, donde ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20096%20-%20%C2%A1Lleg%C3%B3%20la%20hora!%20%C2%A1Hacia%20el%20mundo%20de%20la%20nada%2C%20donde%20se%20decidir%C3%A1%20el%20destino%20del%20universo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 97,
+     "t": "DBS 097 - ¡Sobrevive! ¡Al fin empieza el Torneo de la Fuerza",
+     "url": "https://archive.org/download/dbs-latino/DBS%20097%20-%20%C2%A1Sobrevive!%20%C2%A1Al%20fin%20empieza%20el%20Torneo%20de%20la%20Fuerza!%20Latino.ia.mp4"
+    },
+    {
+     "n": 98,
+     "t": "DBS 098 - ¡Ah, la incertidumbre! ¡La desesperación de un uni",
+     "url": "https://archive.org/download/dbs-latino/DBS%20098%20-%20%C2%A1Ah%2C%20la%20incertidumbre!%20%C2%A1La%20desesperaci%C3%B3n%20de%20un%20universo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 99,
+     "t": "DBS 099 - ¡Demuéstrales! ¡El verdadero poder de Krillin! Lat",
+     "url": "https://archive.org/download/dbs-latino/DBS%20099%20-%20%C2%A1Demu%C3%A9strales!%20%C2%A1El%20verdadero%20poder%20de%20Krillin!%20Latino.ia.mp4"
+    },
+    {
+     "n": 100,
+     "t": "DBS 100 - ¡Fuera de control! ¡El despertar de la furia total",
+     "url": "https://archive.org/download/dbs-latino/DBS%20100%20-%20%C2%A1Fuera%20de%20control!%20%C2%A1El%20despertar%20de%20la%20furia%20total%20de%20una%20guerrera!%20Latino.ia.mp4"
+    },
+    {
+     "n": 101,
+     "t": "DBS 101 - ¡Los implacables guerreros de la justicia! ¡Las Tr",
+     "url": "https://archive.org/download/dbs-latino/DBS%20101%20-%20%C2%A1Los%20implacables%20guerreros%20de%20la%20justicia!%20%C2%A1Las%20Tropas%20del%20Orgullo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 102,
+     "t": "DBS 102 - ¡El poder del amor estalla! ¡Las brujitas guerrera",
+     "url": "https://archive.org/download/dbs-latino/DBS%20102%20-%20%C2%A1El%20poder%20del%20amor%20estalla!%20%C2%A1Las%20brujitas%20guerreras%20del%20Universo%202!%20Latino.ia.mp4"
+    },
+    {
+     "n": 103,
+     "t": "DBS 103 - ¡Gohan se vuelve despiadado! ¡El enfrentamiento co",
+     "url": "https://archive.org/download/dbs-latino/DBS%20103%20-%20%C2%A1Gohan%20se%20vuelve%20despiadado!%20%C2%A1El%20enfrentamiento%20contra%20el%20Universo%2010!%20Latino.ia.mp4"
+    },
+    {
+     "n": 104,
+     "t": "DBS 104 - ¡La genuina batalla de ultra velocidad empieza! ¡G",
+     "url": "https://archive.org/download/dbs-latino/DBS%20104%20-%20%C2%A1La%20genuina%20batalla%20de%20ultra%20velocidad%20empieza!%20%C2%A1Gok%C3%BA%20y%20Hit%20unen%20fuerzas!%20Latino.ia.mp4"
+    },
+    {
+     "n": 105,
+     "t": "DBS 105 - ¡Una ardua batalla! ¡El maestro Roshi se arriesga!",
+     "url": "https://archive.org/download/dbs-latino/DBS%20105%20-%20%C2%A1Una%20ardua%20batalla!%20%C2%A1El%20maestro%20Roshi%20se%20arriesga!%20Latino.ia.mp4"
+    },
+    {
+     "n": 106,
+     "t": "DBS 106 - ¡Hay que encontrarlo! ¡Una batalla a muerte en con",
+     "url": "https://archive.org/download/dbs-latino/DBS%20106%20-%20%C2%A1Hay%20que%20encontrarlo!%20%C2%A1Una%20batalla%20a%20muerte%20en%20contra%20de%20un%20atacante%20invisible!%20Latino.ia.mp4"
+    },
+    {
+     "n": 107,
+     "t": "DBS 107 - ¡Venganza de F! ¡Una trampa ingeniosa! Latino ia",
+     "url": "https://archive.org/download/dbs-latino/DBS%20107%20-%20%C2%A1Venganza%20de%20F!%20%C2%A1Una%20trampa%20ingeniosa!%20Latino.ia.mp4"
+    },
+    {
+     "n": 108,
+     "t": "DBS 108 - ¡Freezer y Frost! ¡Una alianza malvada! Latino ia",
+     "url": "https://archive.org/download/dbs-latino/DBS%20108%20-%20%C2%A1Freezer%20y%20Frost!%20%C2%A1Una%20alianza%20malvada!%20Latino.ia.mp4"
+    },
+    {
+     "n": 109,
+     "t": "DBS 109 - ¡El oponente más poderoso se acerca a Gokú! ¡Es ho",
+     "url": "https://archive.org/download/dbs-latino/DBS%20109%20-%20%C2%A1El%20oponente%20m%C3%A1s%20poderoso%20se%20acerca%20a%20Gok%C3%BA!%20%C2%A1Es%20hora%20de%20lanzar%20la%20t%C3%A9cnica%20especial%20Genki-Dama!%20Latino.ia.mp4"
+    },
+    {
+     "n": 110,
+     "t": "DBS 110 - ¡El despertar de Gokú! ¡Una nueva habilidad secret",
+     "url": "https://archive.org/download/dbs-latino/DBS%20110%20-%20%C2%A1El%20despertar%20de%20Gok%C3%BA!%20%C2%A1Una%20nueva%20habilidad%20secreta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 111,
+     "t": "DBS 111 - ¡Una batalla de otra dimensión! ¡Hit contra Jiren!",
+     "url": "https://archive.org/download/dbs-latino/DBS%20111%20-%20%C2%A1Una%20batalla%20de%20otra%20dimensi%C3%B3n!%20%C2%A1Hit%20contra%20Jiren!%20Latino.ia.mp4"
+    },
+    {
+     "n": 112,
+     "t": "DBS 112 - ¡El juramento de un Saiyajin! ¡La osadía de Vegeta",
+     "url": "https://archive.org/download/dbs-latino/DBS%20112%20-%20%C2%A1El%20juramento%20de%20un%20Saiyajin!%20%C2%A1La%20osad%C3%ADa%20de%20Vegeta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 113,
+     "t": "DBS 113 - ¡Qué emoción! ¡Una batalla descabellada entre los ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20113%20-%20%C2%A1Qu%C3%A9%20emoci%C3%B3n!%20%C2%A1Una%20batalla%20descabellada%20entre%20los%20saiyajin%20se%20repite!%20Latino.ia.mp4"
+    },
+    {
+     "n": 114,
+     "t": "DBS 114 - ¡Un poder abrumador se acerca! ¡El nacimiento de u",
+     "url": "https://archive.org/download/dbs-latino/DBS%20114%20-%20%C2%A1Un%20poder%20abrumador%20se%20acerca!%20%C2%A1El%20nacimiento%20de%20una%20nueva%20s%C3%BAper%20guerrera!%20Latino.ia.mp4"
+    },
+    {
+     "n": 115,
+     "t": "DBS 115 - ¡Goku contra Kefla! ¡El Súper Saiyajin Blue es der",
+     "url": "https://archive.org/download/dbs-latino/DBS%20115%20-%20%C2%A1Goku%20contra%20Kefla!%20%C2%A1El%20S%C3%BAper%20Saiyajin%20Blue%20es%20derrotado!%20Latino.ia.mp4"
+    },
+    {
+     "n": 116,
+     "t": "DBS 116 - ¡La señal de un contraataque! ¡El Ultra Instinto e",
+     "url": "https://archive.org/download/dbs-latino/DBS%20116%20-%20%C2%A1La%20se%C3%B1al%20de%20un%20contraataque!%20%C2%A1El%20Ultra%20Instinto%20estalla!%20Latino.ia.mp4"
+    },
+    {
+     "n": 117,
+     "t": "DBS 117 - ¡La confrontación del amor! ¡Androides contra el U",
+     "url": "https://archive.org/download/dbs-latino/DBS%20117%20-%20%C2%A1La%20confrontaci%C3%B3n%20del%20amor!%20%C2%A1Androides%20contra%20el%20Universo%202!%20Latino.ia.mp4"
+    },
+    {
+     "n": 118,
+     "t": "DBS 118 - ¡Una tragedia precipitada! Los Universos que desap",
+     "url": "https://archive.org/download/dbs-latino/DBS%20118%20-%20%C2%A1Una%20tragedia%20precipitada!%20Los%20Universos%20que%20desaparecen...%20Latino.ia.mp4"
+    },
+    {
+     "n": 119,
+     "t": "DBS 119 - ¡Ineludible! ¡Un ataque sigiloso y feroz! Latino i",
+     "url": "https://archive.org/download/dbs-latino/DBS%20119%20-%20%C2%A1Ineludible!%20%C2%A1Un%20ataque%20sigiloso%20y%20feroz!%20Latino.ia.mp4"
+    },
+    {
+     "n": 120,
+     "t": "DBS 120 - ¡La estrategia perfecta para sobrevivir! ¡El temib",
+     "url": "https://archive.org/download/dbs-latino/DBS%20120%20-%20%C2%A1La%20estrategia%20perfecta%20para%20sobrevivir!%20%C2%A1El%20temible%20asesino%20del%20Universo%203!%20Latino.ia.mp4"
+    },
+    {
+     "n": 121,
+     "t": "DBS 121 - ¡Asalto total! ¡La gran fusión cuádruple contra el",
+     "url": "https://archive.org/download/dbs-latino/DBS%20121%20-%20%C2%A1Asalto%20total!%20%C2%A1La%20gran%20fusi%C3%B3n%20cu%C3%A1druple%20contra%20el%20ataque%20del%20Universo%207!%20Latino.ia.mp4"
+    },
+    {
+     "n": 122,
+     "t": "DBS 122 - ¡Por mi orgullo! ¡El desafío de Vegeta para ser el",
+     "url": "https://archive.org/download/dbs-latino/DBS%20122%20-%20%C2%A1Por%20mi%20orgullo!%20%C2%A1El%20desaf%C3%ADo%20de%20Vegeta%20para%20ser%20el%20m%C3%A1s%20fuerte!%20Latino.ia.mp4"
+    },
+    {
+     "n": 123,
+     "t": "DBS 123 - ¡El máximo poder del cuerpo y alma liberado! ¡Gokú",
+     "url": "https://archive.org/download/dbs-latino/DBS%20123%20-%20%C2%A1El%20m%C3%A1ximo%20poder%20del%20cuerpo%20y%20alma%20liberado!%20%C2%A1Gok%C3%BA%20y%20Vegeta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 124,
+     "t": "DBS 124 - ¡El feroz asalto abrumador! ¡El último recurso de ",
+     "url": "https://archive.org/download/dbs-latino/DBS%20124%20-%20%C2%A1El%20feroz%20asalto%20abrumador!%20%C2%A1El%20%C3%BAltimo%20recurso%20de%20Gohan!%20Latino.ia.mp4"
+    },
+    {
+     "n": 125,
+     "t": "DBS 125 - Una presencia imponente! ¡El despertar del Dios de",
+     "url": "https://archive.org/download/dbs-latino/DBS%20125%20-%20Una%20presencia%20imponente!%20%C2%A1El%20despertar%20del%20Dios%20de%20la%20Destrucci%C3%B3n%20Toppo!%20Latino.ia.mp4"
+    },
+    {
+     "n": 126,
+     "t": "DBS 126 - ¡Superar a un Dios! ¡El sacrificio de Vegeta! Lati",
+     "url": "https://archive.org/download/dbs-latino/DBS%20126%20-%20%C2%A1Superar%20a%20un%20Dios!%20%C2%A1El%20sacrificio%20de%20Vegeta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 127,
+     "t": "DBS 127 - ¡El obstáculo se acerca! ¡La barrera final de la e",
+     "url": "https://archive.org/download/dbs-latino/DBS%20127%20-%20%C2%A1El%20obst%C3%A1culo%20se%20acerca!%20%C2%A1La%20barrera%20final%20de%20la%20esperanza!%20Latino.ia.mp4"
+    },
+    {
+     "n": 128,
+     "t": "DBS 128 - ¡Mantén tu orgullo hasta el final! ¡La última pele",
+     "url": "https://archive.org/download/dbs-latino/DBS%20128%20-%20%C2%A1Mant%C3%A9n%20tu%20orgullo%20hasta%20el%20final!%20%C2%A1La%20%C3%BAltima%20pelea%20de%20Vegeta!%20Latino.ia.mp4"
+    },
+    {
+     "n": 129,
+     "t": "DBS 129 - ¡Supera todos los límites! ¡El Ultra Instinto domi",
+     "url": "https://archive.org/download/dbs-latino/DBS%20129%20-%20%C2%A1Supera%20todos%20los%20l%C3%ADmites!%20%C2%A1El%20Ultra%20Instinto%20dominado!%20Latino.ia.mp4"
+    },
+    {
+     "n": 130,
+     "t": "DBS 130 - ¡Una pelea nunca antes vista! ¡La última batalla p",
+     "url": "https://archive.org/download/dbs-latino/DBS%20130%20-%20%C2%A1Una%20pelea%20nunca%20antes%20vista!%20%C2%A1La%20%C3%BAltima%20batalla%20por%20la%20supervivencia!%20Latino.ia.mp4"
+    },
+    {
+     "n": 131,
+     "t": "DBS 131 Final - ¡Un final milagroso! ¡Adiós Gokú, hasta nues",
+     "url": "https://archive.org/download/dbs-latino/DBS%20131%20Final%20-%20%C2%A1Un%20final%20milagroso!%20%C2%A1Adi%C3%B3s%20Gok%C3%BA%2C%20hasta%20nuestro%20pr%C3%B3ximo%20encuentro!%20Latino.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-dbz-en-espanol-latino",
+   "t": "Dragon Ball Z",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/ogH4r9HsimigseBNLzHn4uVNOxh.jpg",
+   "at": 1791437351379,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "DBZ 001 - Aparece un Mini Gokū, Su Nombre es Gohan",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20001%20-%20Aparece%20un%20Mini%20Gok%C5%AB%2C%20Su%20Nombre%20es%20Gohan.mp4"
+    },
+    {
+     "n": 2,
+     "t": "DBZ 002 - Un Guerrero muy Fuerte con Antecedentes Históricos",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20002%20-%20Un%20Guerrero%20muy%20Fuerte%20con%20Antecedentes%20Hist%C3%B3ricos%2C%20Se%20Trata%20del%20Hermano%20Mayor%20de%20Gok%C5%AB.mp4"
+    },
+    {
+     "n": 3,
+     "t": "DBZ 003 - La Combinación más Fuerte de este Mundo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20003%20-%20La%20Combinaci%C3%B3n%20m%C3%A1s%20Fuerte%20de%20este%20Mundo.mp4"
+    },
+    {
+     "n": 4,
+     "t": "DBZ 004 - ¡Piccolo Saca su mejor Carta! Gohan es un Niño Llo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20004%20-%20%C2%A1Piccolo%20Saca%20su%20mejor%20Carta!%20Gohan%20es%20un%20Ni%C3%B1o%20Llor%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 5,
+     "t": "DBZ 005 - Gokū Muere, Solo hay una Oportunidad ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20005%20-%20Gok%C5%AB%20Muere%2C%20Solo%20hay%20una%20Oportunidad.ia.mp4"
+    },
+    {
+     "n": 6,
+     "t": "DBZ 006 - Enma-sama también se Sorprende  Habrá que Luchar e",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20006%20-%20Enma-sama%20tambi%C3%A9n%20se%20Sorprende.%20Habr%C3%A1%20que%20Luchar%20en%20el%20Otro%20Mundo.mp4"
+    },
+    {
+     "n": 7,
+     "t": "DBZ 007 - Hay que Sobrevivir a los Dinosaurios  El Duro Entr",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20007%20-%20Hay%20que%20Sobrevivir%20a%20los%20Dinosaurios.%20El%20Duro%20Entrenamiento%20de%20Gohan.mp4"
+    },
+    {
+     "n": 8,
+     "t": "DBZ 008 - Una Transformación a Causa del Resplandor de la Lu",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20008%20-%20Una%20Transformaci%C3%B3n%20a%20Causa%20del%20Resplandor%20de%20la%20Luna%2C%20El%20Poder%20Secreto%20de%20Gohan.mp4"
+    },
+    {
+     "n": 9,
+     "t": "DBZ 009 - Perdóneme Señor Robot  Lágrimas que Desaparecen en",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20009%20-%20Perd%C3%B3neme%20Se%C3%B1or%20Robot.%20L%C3%A1grimas%20que%20Desaparecen%20en%20el%20Desierto.ia.mp4"
+    },
+    {
+     "n": 10,
+     "t": "DBZ 010 - No llores Gohan  Es la Primera Batalla",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20010%20-%20No%20llores%20Gohan.%20Es%20la%20Primera%20Batalla.mp4"
+    },
+    {
+     "n": 11,
+     "t": "DBZ 011 - Los Guerreros más Fuertes del Universo, El Despert",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20011%20-%20Los%20Guerreros%20m%C3%A1s%20Fuertes%20del%20Universo%2C%20El%20Despertar%20de%20los%20Saiyajin.mp4"
+    },
+    {
+     "n": 12,
+     "t": "DBZ 012 - Una Pequeña Siesta, Gokū cae del Camino de la Serp",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20012%20-%20Una%20Peque%C3%B1a%20Siesta%2C%20Gok%C5%AB%20cae%20del%20Camino%20de%20la%20Serpiente.mp4"
+    },
+    {
+     "n": 13,
+     "t": "DBZ 013 - ¡No Toques Eso! La Fruta Secreta de Enma-Sama",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20013%20-%20%C2%A1No%20Toques%20Eso!%20La%20Fruta%20Secreta%20de%20Enma-Sama.mp4"
+    },
+    {
+     "n": 14,
+     "t": "DBZ 014 - Una Dulce Tentación; La Hospitalidad de la Princes",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20014%20-%20Una%20Dulce%20Tentaci%C3%B3n%3B%20La%20Hospitalidad%20de%20la%20Princesa%20Serpiente.mp4"
+    },
+    {
+     "n": 15,
+     "t": "DBZ 015 - ¡Escapa de Piccolo! Gohan llama a una Tormenta",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20015%20-%20%C2%A1Escapa%20de%20Piccolo!%20Gohan%20llama%20a%20una%20Tormenta.mp4"
+    },
+    {
+     "n": 16,
+     "t": "DBZ 016 - ¡Corre Gohan! Milk te Espera en la Montaña Paoz ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20016%20-%20%C2%A1Corre%20Gohan!%20Milk%20te%20Espera%20en%20la%20Monta%C3%B1a%20Paoz.ia.mp4"
+    },
+    {
+     "n": 17,
+     "t": "DBZ 017 - ¡Una Ciudad sin Futuro! Un Largo Camino hacia la V",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20017%20-%20%C2%A1Una%20Ciudad%20sin%20Futuro!%20Un%20Largo%20Camino%20hacia%20la%20Victoria.ia.mp4"
+    },
+    {
+     "n": 18,
+     "t": "DBZ 018 - El Final del Camino de la Serpiente  Tú eres Kaio-",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20018%20-%20El%20Final%20del%20Camino%20de%20la%20Serpiente.%20T%C3%BA%20eres%20Kaio-sama.mp4"
+    },
+    {
+     "n": 19,
+     "t": "DBZ 019 - ¡Domina la Fuerza de Gravedad! Atrapa a Bubbles",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20019%20-%20%C2%A1Domina%20la%20Fuerza%20de%20Gravedad!%20Atrapa%20a%20Bubbles.mp4"
+    },
+    {
+     "n": 20,
+     "t": "DBZ 020 - ¡La Leyenda Revive! Los Antepasados de Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20020%20-%20%C2%A1La%20Leyenda%20Revive!%20Los%20Antepasados%20de%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 21,
+     "t": "DBZ 021 - ¡Sal de ahí Shen Long! Los Saiyajin han Llegado a ",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20021%20-%20%C2%A1Sal%20de%20ah%C3%AD%20Shen%20Long!%20Los%20Saiyajin%20han%20Llegado%20a%20la%20Tierra.ia.mp4"
+    },
+    {
+     "n": 22,
+     "t": "DBZ 022 - Imposible; Sai-bai-man nacidos de la Tierra ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20022%20-%20Imposible%3B%20Sai-bai-man%20nacidos%20de%20la%20Tierra.ia.mp4"
+    },
+    {
+     "n": 23,
+     "t": "DBZ 023 - Yamcha Muere! Los Temibles Sai-bai-man ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20023%20-%20Yamcha%20Muere!%20Los%20Temibles%20Sai-bai-man.ia.mp4"
+    },
+    {
+     "n": 24,
+     "t": "DBZ 024 - ¡Adiós Ten! La Táctica de Sacrificio de Chaos ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20024%20-%20%C2%A1Adi%C3%B3s%20Ten!%20La%20T%C3%A1ctica%20de%20Sacrificio%20de%20Chaos.ia.mp4"
+    },
+    {
+     "n": 25,
+     "t": "DBZ 025 - ¡El Sacrificio de Ten-Shin-Han! El Último Ki-Ko-Ho",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20025%20-%20%C2%A1El%20Sacrificio%20de%20Ten-Shin-Han!%20El%20%C3%9Altimo%20Ki-Ko-Ho-Da.ia.mp4"
+    },
+    {
+     "n": 26,
+     "t": "DBZ 026 - ¡Solo nos quedan Tres Horas de Vida! ¡Apresúrate G",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20026%20-%20%C2%A1Solo%20nos%20quedan%20Tres%20Horas%20de%20Vida!%20%C2%A1Apres%C3%BArate%20Gok%C5%AB!.ia.mp4"
+    },
+    {
+     "n": 27,
+     "t": "DBZ 027 - La Furia de Gohan Estalla ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20027%20-%20La%20Furia%20de%20Gohan%20Estalla.ia.mp4"
+    },
+    {
+     "n": 28,
+     "t": "DBZ 028 - El Ataque de los Saiyajin; Kami y Picoro Mueren ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20028%20-%20El%20Ataque%20de%20los%20Saiyajin%3B%20Kami%20y%20Picoro%20Mueren.ia.mp4"
+    },
+    {
+     "n": 29,
+     "t": "DBZ 029 - ¡Papá eres Increíble! Una Técnica Mortal llamada K",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20029%20-%20%C2%A1Pap%C3%A1%20eres%20Incre%C3%ADble!%20Una%20T%C3%A9cnica%20Mortal%20llamada%20Kaio-ken.ia.mp4"
+    },
+    {
+     "n": 30,
+     "t": "DBZ 030 - Una Pelea Fuera del Límite; Gokū contra Vegeta ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20030%20-%20Una%20Pelea%20Fuera%20del%20L%C3%ADmite%3B%20Gok%C5%AB%20contra%20Vegeta.ia.mp4"
+    },
+    {
+     "n": 31,
+     "t": "DBZ 031 - ¡Arriesga tu Vida Gokū! La Última Opción ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20031%20-%20%C2%A1Arriesga%20tu%20Vida%20Gok%C5%AB!%20La%20%C3%9Altima%20Opci%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 32,
+     "t": "DBZ 032 - ¡Su Poder de Pelea ha Aumentado Diez Veces Más! La",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20032%20-%20%C2%A1Su%20Poder%20de%20Pelea%20ha%20Aumentado%20Diez%20Veces%20M%C3%A1s!%20La%20Trasformaci%C3%B3n%20de%20Vegeta.ia.mp4"
+    },
+    {
+     "n": 33,
+     "t": "DBZ 033 - ¡No te Mueras Papá! El Poder Escondido de Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20033%20-%20%C2%A1No%20te%20Mueras%20Pap%C3%A1!%20El%20Poder%20Escondido%20de%20Gohan.ia.mp4"
+    },
+    {
+     "n": 34,
+     "t": "DBZ 034 - ¡Pégale Krilin! Una Genki-dama llena de Esperanza ",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20034%20-%20%C2%A1P%C3%A9gale%20Krilin!%20Una%20Genki-dama%20llena%20de%20Esperanza.ia.mp4"
+    },
+    {
+     "n": 35,
+     "t": "DBZ 035 - ¡Ocurre un Milagro! La Trasformación de Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20035%20-%20%C2%A1Ocurre%20un%20Milagro!%20La%20Trasformaci%C3%B3n%20de%20Gohan.ia.mp4"
+    },
+    {
+     "n": 36,
+     "t": "DBZ 036 - ¡Vayamos al Planeta de Pícoro! ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20036%20-%20%C2%A1Vayamos%20al%20Planeta%20de%20P%C3%ADcoro!.ia.mp4"
+    },
+    {
+     "n": 37,
+     "t": "DBZ 037 - Un lugar Misterioso llamado Yunzabit  ¡Busquemos l",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20037%20-%20Un%20lugar%20Misterioso%20llamado%20Yunzabit.%20%C2%A1Busquemos%20la%20Nave%20Espacial%20de%20Kami-sama!.mp4"
+    },
+    {
+     "n": 38,
+     "t": "DBZ 038 - ¡Vamos Rumbo a Namekku-sei! Algo Extraño los está ",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20038%20-%20%C2%A1Vamos%20Rumbo%20a%20Namekku-sei!%20Algo%20Extra%C3%B1o%20los%20est%C3%A1%20Esperando.mp4"
+    },
+    {
+     "n": 39,
+     "t": "DBZ 039 - Serán Amigos o Enemigos Los Niños de Aquella Miste",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20039%20-%20Ser%C3%A1n%20Amigos%20o%20Enemigos%20Los%20Ni%C3%B1os%20de%20Aquella%20Misteriosa%20Nave%20Espacial.ia.mp4"
+    },
+    {
+     "n": 40,
+     "t": "DBZ 040 - ¿Es ese Namekusei ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20040%20-%20%C2%BFEs%20ese%20Namekusei.ia.mp4"
+    },
+    {
+     "n": 41,
+     "t": "DBZ 041 - Unos Extraterrestres muy Amables ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20041%20-%20Unos%20Extraterrestres%20muy%20Amables.ia.mp4"
+    },
+    {
+     "n": 42,
+     "t": "DBZ 042 - El Planeta Freezer No  79; Vegeta ha sido Revivido",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20042%20-%20El%20Planeta%20Freezer%20No.%2079%3B%20Vegeta%20ha%20sido%20Revivido.ia.mp4"
+    },
+    {
+     "n": 43,
+     "t": "DBZ 043 - ¡Hemos Reunido las Esferas del Dragón! ¡Ahora podr",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20043%20-%20%C2%A1Hemos%20Reunido%20las%20Esferas%20del%20Drag%C3%B3n!%20%C2%A1Ahora%20podremos%20Revivir%20a%20Piccolo!.ia.mp4"
+    },
+    {
+     "n": 44,
+     "t": "DBZ 044 - ¡Un Nuevo Enemigo! El Emperador del Universo Freez",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20044%20-%20%C2%A1Un%20Nuevo%20Enemigo!%20El%20Emperador%20del%20Universo%20Freezer.ia.mp4"
+    },
+    {
+     "n": 45,
+     "t": "DBZ 045 - ¡La Ambición de Vegeta! ¡Yo soy el Guerrero más Fu",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20045%20-%20%C2%A1La%20Ambici%C3%B3n%20de%20Vegeta!%20%C2%A1Yo%20soy%20el%20Guerrero%20m%C3%A1s%20Fuerte%20del%20Universo!.ia.mp4"
+    },
+    {
+     "n": 46,
+     "t": "DBZ 046 - El Viaje de Gokū a Namekusei ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20046%20-%20El%20Viaje%20de%20Gok%C5%AB%20a%20Namekusei.ia.mp4"
+    },
+    {
+     "n": 47,
+     "t": "DBZ 047 - ¡Un Ataque Sorpresivo! El Anciano Destruye los Ras",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20047%20-%20%C2%A1Un%20Ataque%20Sorpresivo!%20El%20Anciano%20Destruye%20los%20Rastreadores.ia.mp4"
+    },
+    {
+     "n": 48,
+     "t": "DBZ 048 - ¡Gohan se Arriesga! El Perseguidor Dodoria",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20048%20-%20%C2%A1Gohan%20se%20Arriesga!%20El%20Perseguidor%20Dodoria.mp4"
+    },
+    {
+     "n": 49,
+     "t": "DBZ 049 - La Muerte de Dodoria ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20049%20-%20La%20Muerte%20de%20Dodoria.ia.mp4"
+    },
+    {
+     "n": 50,
+     "t": "DBZ 050 - Gokū Utiliza un Kame-Hame-Ha para Salvar su Vida i",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20050%20-%20Gok%C5%AB%20Utiliza%20un%20Kame-Hame-Ha%20para%20Salvar%20su%20Vida.ia.mp4"
+    },
+    {
+     "n": 51,
+     "t": "DBZ 051 - Los Grandes Peleadores se Reúnen con Kaio-Sama ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20051%20-%20Los%20Grandes%20Peleadores%20se%20Re%C3%BAnen%20con%20Kaio-Sama.ia.mp4"
+    },
+    {
+     "n": 52,
+     "t": "DBZ 052 - ¡Escúchame Gokū! No te Acerques a Freezer ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20052%20-%20%C2%A1Esc%C3%BAchame%20Gok%C5%AB!%20No%20te%20Acerques%20a%20Freezer.ia.mp4"
+    },
+    {
+     "n": 53,
+     "t": "DBZ 053 - La Horrible Transformación de Zarbon ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20053%20-%20La%20Horrible%20Transformaci%C3%B3n%20de%20Zarbon.ia.mp4"
+    },
+    {
+     "n": 54,
+     "t": "DBZ 054 - Hay que Proteger al Planeta de la Esperanza! Krili",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20054%20-%20Hay%20que%20Proteger%20al%20Planeta%20de%20la%20Esperanza!%20Krilin%20Incrementa%20su%20Poder.ia.mp4"
+    },
+    {
+     "n": 55,
+     "t": "DBZ 055 - Vegeta Revive Milagrosamente",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20055%20-%20Vegeta%20Revive%20Milagrosamente.mp4"
+    },
+    {
+     "n": 56,
+     "t": "DBZ 056 - El Complot de Freezer se ha Desvanecido ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20056%20-%20El%20Complot%20de%20Freezer%20se%20ha%20Desvanecido.ia.mp4"
+    },
+    {
+     "n": 57,
+     "t": "DBZ 057 - Gokū Entrena Bajo la Gravedad de Cien ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20057%20-%20Gok%C5%AB%20Entrena%20Bajo%20la%20Gravedad%20de%20Cien.ia.mp4"
+    },
+    {
+     "n": 58,
+     "t": "DBZ 058 - El Grupo Secreto de Freezer  Las Terribles Fuerzas",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20058%20-%20El%20Grupo%20Secreto%20de%20Freezer.%20Las%20Terribles%20Fuerzas%20Especiales%20Ginyu.ia.mp4"
+    },
+    {
+     "n": 59,
+     "t": "DBZ 059 -  ¡Ten Cuidado Bulma! La Esfera de 4 Estrellas podr",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20059%20-%20%20%C2%A1Ten%20Cuidado%20Bulma!%20La%20Esfera%20de%204%20Estrellas%20podr%C3%ADa%20caer%20en%20Manos%20de%20Freezer.mp4"
+    },
+    {
+     "n": 60,
+     "t": "DBZ 060 - La Inquebrantable Voluntad de Gokū",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20060%20-%20La%20Inquebrantable%20Voluntad%20de%20Gok%C5%AB.mp4"
+    },
+    {
+     "n": 61,
+     "t": "DBZ 061 - La Batalla se Acerca, Han Llegado las Fuerzas Espe",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20061%20-%20La%20Batalla%20se%20Acerca%2C%20Han%20Llegado%20las%20Fuerzas%20Especiales%20Ginyu.ia.mp4"
+    },
+    {
+     "n": 62,
+     "t": "DBZ 062 - ¡Gokū se Acerca! Los Temibles Hombres de Freezer",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20062%20-%20%C2%A1Gok%C5%AB%20se%20Acerca!%20Los%20Temibles%20Hombres%20de%20Freezer.mp4"
+    },
+    {
+     "n": 63,
+     "t": "DBZ 063 - El Señor Gurdo se Enfada y Utiliza un Truco de Mag",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20063%20-%20El%20Se%C3%B1or%20Gurdo%20se%20Enfada%20y%20Utiliza%20un%20Truco%20de%20Magia.ia.mp4"
+    },
+    {
+     "n": 64,
+     "t": "DBZ 064 - El Terrible Recoome ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20064%20-%20El%20Terrible%20Recoome.ia.mp4"
+    },
+    {
+     "n": 65,
+     "t": "DBZ 065 - ¡No te Mueras Gohan! Gokū Finalmente Llega al Camp",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20065%20-%20%C2%A1No%20te%20Mueras%20Gohan!%20Gok%C5%AB%20Finalmente%20Llega%20al%20Campo%20de%20Batalla.mp4"
+    },
+    {
+     "n": 66,
+     "t": "DBZ 066 - El Legendario Super Saiyajin Gokū",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20066%20-%20El%20Legendario%20Super%20Saiyajin%20Gok%C5%AB..mp4"
+    },
+    {
+     "n": 67,
+     "t": "DBZ 067 - ¡Jeice y Burter Atacan a Gokū! ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20067%20-%20%C2%A1Jeice%20y%20Burter%20Atacan%20a%20Gok%C5%AB!.ia.mp4"
+    },
+    {
+     "n": 68,
+     "t": "DBZ 068 - La Aparición del Capitán Ginyu ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20068%20-%20La%20Aparici%C3%B3n%20del%20Capit%C3%A1n%20Ginyu.ia.mp4"
+    },
+    {
+     "n": 69,
+     "t": "DBZ 069 - Ya Viste el Verdadero Poder de Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20069%20-%20Ya%20Viste%20el%20Verdadero%20Poder%20de%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 70,
+     "t": "DBZ 070 - Freezer Llega con el Patriarca ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20070%20-%20Freezer%20Llega%20con%20el%20Patriarca.ia.mp4"
+    },
+    {
+     "n": 71,
+     "t": "DBZ 071 - Gokū es Ginyu y Ginyu es Gokū",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20071%20-%20Gok%C5%AB%20es%20Ginyu%20y%20Ginyu%20es%20Gok%C5%AB.mp4"
+    },
+    {
+     "n": 72,
+     "t": "DBZ 072 - ¡Sal de Ahí Super Shen Long, y Cumple mi Deseo! ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20072%20-%20%C2%A1Sal%20de%20Ah%C3%AD%20Super%20Shen%20Long%2C%20y%20Cumple%20mi%20Deseo!.ia.mp4"
+    },
+    {
+     "n": 73,
+     "t": "DBZ 073 - ¡Yo no soy Él! Gohan, Ataca a tu Padre sin Temor i",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20073%20-%20%C2%A1Yo%20no%20soy%20%C3%89l!%20Gohan%2C%20Ataca%20a%20tu%20Padre%20sin%20Temor.ia.mp4"
+    },
+    {
+     "n": 74,
+     "t": "DBZ 074 - Ginyu se Convierte en Rana",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20074%20-%20Ginyu%20se%20Convierte%20en%20Rana.mp4"
+    },
+    {
+     "n": 75,
+     "t": "DBZ 075 - Di la Clave Secreta de las Esferas del Dragón",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20075%20-%20Di%20la%20Clave%20Secreta%20de%20las%20Esferas%20del%20Drag%C3%B3n.mp4"
+    },
+    {
+     "n": 76,
+     "t": "DBZ 076 - Piccolo y Kami Reviven con la Ayuda de Super Shen ",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20076%20-%20Piccolo%20y%20Kami%20Reviven%20con%20la%20Ayuda%20de%20Super%20Shen%20Long.ia.mp4"
+    },
+    {
+     "n": 77,
+     "t": "DBZ 077 - La Aparición de un Nuevo Guerrero Piccolo y Neil s",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20077%20-%20La%20Aparici%C3%B3n%20de%20un%20Nuevo%20Guerrero%20Piccolo%20y%20Neil%20se%20Fusionan.ia.mp4"
+    },
+    {
+     "n": 78,
+     "t": "DBZ 078 - ¡Una Trasformación de Pesadilla! Freezer Tiene un ",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20078%20-%20%C2%A1Una%20Trasformaci%C3%B3n%20de%20Pesadilla!%20Freezer%20Tiene%20un%20Poder%20de%20un%20Mill%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 79,
+     "t": "DBZ 079 - Gohan es Atacado por el Malvado Freezer ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20079%20-%20Gohan%20es%20Atacado%20por%20el%20Malvado%20Freezer.ia.mp4"
+    },
+    {
+     "n": 80,
+     "t": "DBZ 080 - La Llegada de Piccolo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20080%20-%20La%20Llegada%20de%20Piccolo.ia.mp4"
+    },
+    {
+     "n": 81,
+     "t": "DBZ 081 - Piccolo se Encarga de Derrotar a Freezer ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20081%20-%20Piccolo%20se%20Encarga%20de%20Derrotar%20a%20Freezer.ia.mp4"
+    },
+    {
+     "n": 82,
+     "t": "DBZ 082 - La Segunda Trasformación de Freezer",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20082%20-%20La%20Segunda%20Trasformaci%C3%B3n%20de%20Freezer.mp4"
+    },
+    {
+     "n": 83,
+     "t": "DBZ 083 - Freezer tiene Ganada la Batalla con su Tercera Tra",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20083%20-%20Freezer%20tiene%20Ganada%20la%20Batalla%20con%20su%20Tercera%20Trasformaci%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 84,
+     "t": "DBZ 084 - La Muerte de Dende ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20084%20-%20La%20Muerte%20de%20Dende.ia.mp4"
+    },
+    {
+     "n": 85,
+     "t": "DBZ 085 - Gokū se Recupera ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20085%20-%20Gok%C5%AB%20se%20Recupera.ia.mp4"
+    },
+    {
+     "n": 86,
+     "t": "DBZ 086 - Muere un Orgulloso Saiyajin, Vegeta ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20086%20-%20Muere%20un%20Orgulloso%20Saiyajin%2C%20Vegeta.ia.mp4"
+    },
+    {
+     "n": 87,
+     "t": "DBZ 087 - La Batalla Final Comienza",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20087%20-%20La%20Batalla%20Final%20Comienza.mp4"
+    },
+    {
+     "n": 88,
+     "t": "DBZ 088 - Un Combate de Cuerpo a Cuerpo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20088%20-%20Un%20Combate%20de%20Cuerpo%20a%20Cuerpo.ia.mp4"
+    },
+    {
+     "n": 89,
+     "t": "DBZ 089 - Freezer Pelea sin Usar las dos Manos ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20089%20-%20Freezer%20Pelea%20sin%20Usar%20las%20dos%20Manos.ia.mp4"
+    },
+    {
+     "n": 90,
+     "t": "DBZ 090 - Gokū es un Sujeto muy Audaz",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20090%20-%20Gok%C5%AB%20es%20un%20Sujeto%20muy%20Audaz.mp4"
+    },
+    {
+     "n": 91,
+     "t": "DBZ 091 - Gokū hace el Kaio Ken Aumentado a Veinte Veces ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20091%20-%20Gok%C5%AB%20hace%20el%20Kaio%20Ken%20Aumentado%20a%20Veinte%20Veces.ia.mp4"
+    },
+    {
+     "n": 92,
+     "t": "DBZ 092 - La Gigantesca Genki-dama; Esta es la Última Espera",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20092%20-%20La%20Gigantesca%20Genki-dama%3B%20Esta%20es%20la%20%C3%9Altima%20Esperanza.ia.mp4"
+    },
+    {
+     "n": 93,
+     "t": "DBZ 093 - ¡No Dejes escapar esta Oportunidad! Piccolo Ayuda ",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20093%20-%20%C2%A1No%20Dejes%20escapar%20esta%20Oportunidad!%20Piccolo%20Ayuda%20a%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 94,
+     "t": "DBZ 094 - El Poder Destructivo de la Genki-dama",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20094%20-%20El%20Poder%20Destructivo%20de%20la%20Genki-dama.mp4"
+    },
+    {
+     "n": 95,
+     "t": "DBZ 095 - Finalmente Gokū se Transforma en el Legendario Sup",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20095%20-%20Finalmente%20Gok%C5%AB%20se%20Transforma%20en%20el%20Legendario%20Super%20Saiyajin.ia.mp4"
+    },
+    {
+     "n": 96,
+     "t": "DBZ 096 - Gokū Vengará la Muerte de Todos ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20096%20-%20Gok%C5%AB%20Vengar%C3%A1%20la%20Muerte%20de%20Todos.ia.mp4"
+    },
+    {
+     "n": 97,
+     "t": "DBZ 097 - Un Gran Destello Atraviesa Namekusein ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20097%20-%20Un%20Gran%20Destello%20Atraviesa%20Namekusein.ia.mp4"
+    },
+    {
+     "n": 98,
+     "t": "DBZ 098 - Freezer Utiliza su Máximo Poder ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20098%20-%20Freezer%20Utiliza%20su%20M%C3%A1ximo%20Poder.ia.mp4"
+    },
+    {
+     "n": 99,
+     "t": "DBZ 099 - Namekusei está a Punto de Estallar; Shen Long, Cum",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20099%20-%20Namekusei%20est%C3%A1%20a%20Punto%20de%20Estallar%3B%20Shen%20Long%2C%20Cumple%20Nuestro%20Deseo.ia.mp4"
+    },
+    {
+     "n": 100,
+     "t": "DBZ 100 - Yo soy el Hijo de Gokū - Gohan Vuelve a Aparecer e",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20100%20-%20Yo%20soy%20el%20Hijo%20de%20Gok%C5%AB%20-%20Gohan%20Vuelve%20a%20Aparecer%20en%20el%20Campo%20de%20Batalla.ia.mp4"
+    },
+    {
+     "n": 101,
+     "t": "DBZ 101 - El Último Deseo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20101%20-%20El%20%C3%9Altimo%20Deseo.ia.mp4"
+    },
+    {
+     "n": 102,
+     "t": "DBZ 102 - Una Extraordinaria Batalla",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20102%20-%20Una%20Extraordinaria%20Batalla.mp4"
+    },
+    {
+     "n": 103,
+     "t": "DBZ 103 - La Desesperación de Freezer ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20103%20-%20La%20Desesperaci%C3%B3n%20de%20Freezer.ia.mp4"
+    },
+    {
+     "n": 104,
+     "t": "DBZ 104 - La Autodestrucción de Freezer ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20104%20-%20La%20Autodestrucci%C3%B3n%20de%20Freezer.ia.mp4"
+    },
+    {
+     "n": 105,
+     "t": "DBZ 105 - Freezer Pierde la Pelea ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20105%20-%20Freezer%20Pierde%20la%20Pelea.ia.mp4"
+    },
+    {
+     "n": 106,
+     "t": "DBZ 106 - Namekusei Explota ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20106%20-%20Namekusei%20Explota.ia.mp4"
+    },
+    {
+     "n": 107,
+     "t": "DBZ 107 - Los Guerreros Z han Revivido ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20107%20-%20Los%20Guerreros%20Z%20han%20Revivido.ia.mp4"
+    },
+    {
+     "n": 108,
+     "t": "DBZ 108 - El Templo Sagrado está en Problemas",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20108%20-%20El%20Templo%20Sagrado%20est%C3%A1%20en%20Problemas.mp4"
+    },
+    {
+     "n": 109,
+     "t": "DBZ 109 - La Neblina del Mal ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20109%20-%20La%20Neblina%20del%20Mal.ia.mp4"
+    },
+    {
+     "n": 110,
+     "t": "DBZ 110 - Piccolo Forma Parte de la Familia del Mal ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20110%20-%20Piccolo%20Forma%20Parte%20de%20la%20Familia%20del%20Mal.ia.mp4"
+    },
+    {
+     "n": 111,
+     "t": "DBZ 111 - Piccolo Enfrenta a Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20111%20-%20Piccolo%20Enfrenta%20a%20Gohan.ia.mp4"
+    },
+    {
+     "n": 112,
+     "t": "DBZ 112 - El Plan de Piccolo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20112%20-%20El%20Plan%20de%20Piccolo.mp4"
+    },
+    {
+     "n": 113,
+     "t": "DBZ 113 - Kamisama y Mr  Popo van al Lugar Sagrado ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20113%20-%20Kamisama%20y%20Mr.%20Popo%20van%20al%20Lugar%20Sagrado.ia.mp4"
+    },
+    {
+     "n": 114,
+     "t": "DBZ 114 - La Vida de Kami está en Peligro ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20114%20-%20La%20Vida%20de%20Kami%20est%C3%A1%20en%20Peligro.ia.mp4"
+    },
+    {
+     "n": 115,
+     "t": "DBZ 115 - El Agua Ultra Sagrada Salva al Mundo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20115%20-%20El%20Agua%20Ultra%20Sagrada%20Salva%20al%20Mundo.ia.mp4"
+    },
+    {
+     "n": 116,
+     "t": "DBZ 116 - Gohan Destruye el Planeta Maligno",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20116%20-%20Gohan%20Destruye%20el%20Planeta%20Maligno.mp4"
+    },
+    {
+     "n": 117,
+     "t": "DBZ 117 - Krilin le Propone Matrimonio a Maron",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20117%20-%20Krilin%20le%20Propone%20Matrimonio%20a%20Maron.mp4"
+    },
+    {
+     "n": 118,
+     "t": "DBZ 118 - Ese es el Planeta Tierra Papá",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20118%20-%20Ese%20es%20el%20Planeta%20Tierra%20Pap%C3%A1.mp4"
+    },
+    {
+     "n": 119,
+     "t": "DBZ 119 - Yo Me Encargaré de Derrotar a Freezer",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20119%20-%20Yo%20Me%20Encargar%C3%A9%20de%20Derrotar%20a%20Freezer.mp4"
+    },
+    {
+     "n": 120,
+     "t": "DBZ 120 - El Final de Freezer ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20120%20-%20El%20Final%20de%20Freezer.ia.mp4"
+    },
+    {
+     "n": 121,
+     "t": "DBZ 121 - Gokū ha Regresado ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20121%20-%20Gok%C5%AB%20ha%20Regresado.ia.mp4"
+    },
+    {
+     "n": 122,
+     "t": "DBZ 122 - La Identidad del Joven Misterioso ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20122%20-%20La%20Identidad%20del%20Joven%20Misterioso.ia.mp4"
+    },
+    {
+     "n": 123,
+     "t": "DBZ 123 - La Técnica Especial de Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20123%20-%20La%20T%C3%A9cnica%20Especial%20de%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 124,
+     "t": "DBZ 124 - Superaré a Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20124%20-%20Superar%C3%A9%20a%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 125,
+     "t": "DBZ 125 - Una Prueba muy Difícil para Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20125%20-%20Una%20Prueba%20muy%20Dif%C3%ADcil%20para%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 126,
+     "t": "DBZ 126 - Quienes son los Androides ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20126%20-%20Quienes%20son%20los%20Androides.ia.mp4"
+    },
+    {
+     "n": 127,
+     "t": "DBZ 127 - Los Terribles Androides Número 19 y 20 ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20127%20-%20Los%20Terribles%20Androides%20N%C3%BAmero%2019%20y%2020.ia.mp4"
+    },
+    {
+     "n": 128,
+     "t": "DBZ 128 - Gokū tiene dos Problemas ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20128%20-%20Gok%C5%AB%20tiene%20dos%20Problemas.ia.mp4"
+    },
+    {
+     "n": 129,
+     "t": "DBZ 129 - Vegeta se Convierte en Super Saiyajin ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20129%20-%20Vegeta%20se%20Convierte%20en%20Super%20Saiyajin.ia.mp4"
+    },
+    {
+     "n": 130,
+     "t": "DBZ 130 - El Secreto del Doctor Maki",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20130%20-%20El%20Secreto%20del%20Doctor%20Maki.mp4"
+    },
+    {
+     "n": 131,
+     "t": "DBZ 131 - La Realidad es Acaso Mucho Peor que el Futuro ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20131%20-%20La%20Realidad%20es%20Acaso%20Mucho%20Peor%20que%20el%20Futuro.ia.mp4"
+    },
+    {
+     "n": 132,
+     "t": "DBZ 132 - Hay que Buscar el Laboratorio del Doctor Maki",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20132%20-%20Hay%20que%20Buscar%20el%20Laboratorio%20del%20Doctor%20Maki.mp4"
+    },
+    {
+     "n": 133,
+     "t": "DBZ 133 - Los Androides 17 y 18 Despiertan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20133%20-%20Los%20Androides%2017%20y%2018%20Despiertan.ia.mp4"
+    },
+    {
+     "n": 134,
+     "t": "DBZ 134 - El Ejército Encargado de Matar a Gokū",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20134%20-%20El%20Ej%C3%A9rcito%20Encargado%20de%20Matar%20a%20Gok%C5%AB.mp4"
+    },
+    {
+     "n": 135,
+     "t": "DBZ 135 - Las Habilidades del Androide Número 18 ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20135%20-%20Las%20Habilidades%20del%20Androide%20N%C3%BAmero%2018.ia.mp4"
+    },
+    {
+     "n": 136,
+     "t": "DBZ 136 - Será este el Fin de los Guerreros Z ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20136%20-%20Ser%C3%A1%20este%20el%20Fin%20de%20los%20Guerreros%20Z.ia.mp4"
+    },
+    {
+     "n": 137,
+     "t": "DBZ 137 - La Decisión de Piccolo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20137%20-%20La%20Decisi%C3%B3n%20de%20Piccolo.mp4"
+    },
+    {
+     "n": 138,
+     "t": "DBZ 138 - Los Androides Destructores ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20138%20-%20Los%20Androides%20Destructores.ia.mp4"
+    },
+    {
+     "n": 139,
+     "t": "DBZ 139 - Bulma se Entera de un Gran Misterio ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20139%20-%20Bulma%20se%20Entera%20de%20un%20Gran%20Misterio.ia.mp4"
+    },
+    {
+     "n": 140,
+     "t": "DBZ 140 - Un Misterioso Huevo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20140%20-%20Un%20Misterioso%20Huevo.ia.mp4"
+    },
+    {
+     "n": 141,
+     "t": "DBZ 141 - El Nacimiento de un Nuevo Guerrero",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20141%20-%20El%20Nacimiento%20de%20un%20Nuevo%20Guerrero.mp4"
+    },
+    {
+     "n": 142,
+     "t": "DBZ 142 - El Monstruo que Tiene el Ki de Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20142%20-%20El%20Monstruo%20que%20Tiene%20el%20Ki%20de%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 143,
+     "t": "DBZ 143 - El Androide Cell ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20143%20-%20El%20Androide%20Cell.ia.mp4"
+    },
+    {
+     "n": 144,
+     "t": "DBZ 144 - Cell se Escapa de las Manos de Piccolo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20144%20-%20Cell%20se%20Escapa%20de%20las%20Manos%20de%20Piccolo.ia.mp4"
+    },
+    {
+     "n": 145,
+     "t": "DBZ 145 - La Habitación Secreta del Laboratorio del Doctor G",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20145%20-%20La%20Habitaci%C3%B3n%20Secreta%20del%20Laboratorio%20del%20Doctor%20Gero.ia.mp4"
+    },
+    {
+     "n": 146,
+     "t": "DBZ 146 - Goku se Recupera  Hispanoamérica, Gokū se Recupera",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20146%20-%20Goku%20se%20Recupera.%20Hispanoam%C3%A9rica%2C%20Gok%C5%AB%20se%20Recupera.mp4"
+    },
+    {
+     "n": 147,
+     "t": "DBZ 147 - ¡Vamos a la Habitación del Tiempo! ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20147%20-%20%C2%A1Vamos%20a%20la%20Habitaci%C3%B3n%20del%20Tiempo!.ia.mp4"
+    },
+    {
+     "n": 148,
+     "t": "DBZ 148 - Piccolo contra el Androide Número 17 ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20148%20-%20Piccolo%20contra%20el%20Androide%20N%C3%BAmero%2017.ia.mp4"
+    },
+    {
+     "n": 149,
+     "t": "DBZ 149 - Cell está a punto de perfeccionar su cuerpo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20149%20-%20Cell%20est%C3%A1%20a%20punto%20de%20perfeccionar%20su%20cuerpo.ia.mp4"
+    },
+    {
+     "n": 150,
+     "t": "DBZ 150 - Piccolo Pelea con Todas sus Fuerzas ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20150%20-%20Piccolo%20Pelea%20con%20Todas%20sus%20Fuerzas.ia.mp4"
+    },
+    {
+     "n": 151,
+     "t": "DBZ 151 - La Última Esperanza, El Androide Número 16 ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20151%20-%20La%20%C3%9Altima%20Esperanza%2C%20El%20Androide%20N%C3%BAmero%2016.ia.mp4"
+    },
+    {
+     "n": 152,
+     "t": "DBZ 152 - Cell Absorbe a Número 17 ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20152%20-%20Cell%20Absorbe%20a%20N%C3%BAmero%2017.ia.mp4"
+    },
+    {
+     "n": 153,
+     "t": "DBZ 153 - El Nuevo Desafío de Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20153%20-%20El%20Nuevo%20Desaf%C3%ADo%20de%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 154,
+     "t": "DBZ 154 - ¡Sal de Ahí, Número 18!",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20154%20-%20%C2%A1Sal%20de%20Ah%C3%AD%2C%20N%C3%BAmero%2018!.mp4"
+    },
+    {
+     "n": 155,
+     "t": "DBZ 155 - El Super Poder de Vegeta ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20155%20-%20El%20Super%20Poder%20de%20Vegeta.ia.mp4"
+    },
+    {
+     "n": 156,
+     "t": "DBZ 156 - ¡Yo Soy Super Vegeta!",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20156%20-%20%C2%A1Yo%20Soy%20Super%20Vegeta!.mp4"
+    },
+    {
+     "n": 157,
+     "t": "DBZ 157 - Un Guerrero Orgulloso ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20157%20-%20Un%20Guerrero%20Orgulloso.ia.mp4"
+    },
+    {
+     "n": 158,
+     "t": "DBZ 158 - La Decisión de Krilin ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20158%20-%20La%20Decisi%C3%B3n%20de%20Krilin.ia.mp4"
+    },
+    {
+     "n": 159,
+     "t": "DBZ 159 - Cell Busca Perfeccionar su Cuerpo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20159%20-%20Cell%20Busca%20Perfeccionar%20su%20Cuerpo.ia.mp4"
+    },
+    {
+     "n": 160,
+     "t": "DBZ 160 - Cell, El Dios de la Destrucción",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20160%20-%20Cell%2C%20El%20Dios%20de%20la%20Destrucci%C3%B3n.mp4"
+    },
+    {
+     "n": 161,
+     "t": "DBZ 161 - Super Vegeta Corre Peligro",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20161%20-%20Super%20Vegeta%20Corre%20Peligro.mp4"
+    },
+    {
+     "n": 162,
+     "t": "DBZ 162 - Trunks se Pone Furioso ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20162%20-%20Trunks%20se%20Pone%20Furioso.ia.mp4"
+    },
+    {
+     "n": 163,
+     "t": "DBZ 163 - Salva a Papá ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20163%20-%20Salva%20a%20Pap%C3%A1.ia.mp4"
+    },
+    {
+     "n": 164,
+     "t": "DBZ 164 - La Desesperación de Vivir en un Futuro Infernal ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20164%20-%20La%20Desesperaci%C3%B3n%20de%20Vivir%20en%20un%20Futuro%20Infernal.ia.mp4"
+    },
+    {
+     "n": 165,
+     "t": "DBZ 165 - El Punto Débil de Super Trunks ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20165%20-%20El%20Punto%20D%C3%A9bil%20de%20Super%20Trunks.ia.mp4"
+    },
+    {
+     "n": 166,
+     "t": "DBZ 166 - El Misterio del Nuevo Torneo de Artes Marciales",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20166%20-%20El%20Misterio%20del%20Nuevo%20Torneo%20de%20Artes%20Marciales.mp4"
+    },
+    {
+     "n": 167,
+     "t": "DBZ 167 - El Aviso del Torneo de Cell",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20167%20-%20El%20Aviso%20del%20Torneo%20de%20Cell.mp4"
+    },
+    {
+     "n": 168,
+     "t": "DBZ 168 - Los Nuevos Poderes de Gokū y Gohan",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20168%20-%20Los%20Nuevos%20Poderes%20de%20Gok%C5%AB%20y%20Gohan.mp4"
+    },
+    {
+     "n": 169,
+     "t": "DBZ 169 - La Tranquilidad de Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20169%20-%20La%20Tranquilidad%20de%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 170,
+     "t": "DBZ 170 - El Descanso de los Guerreros ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20170%20-%20El%20Descanso%20de%20los%20Guerreros.ia.mp4"
+    },
+    {
+     "n": 171,
+     "t": "DBZ 171 - Cuando Gohan era un Bebé ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20171%20-%20Cuando%20Gohan%20era%20un%20Beb%C3%A9.ia.mp4"
+    },
+    {
+     "n": 172,
+     "t": "DBZ 172 - ¡Busquemos a un Nuevo Kami-sama!",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20172%20-%20%C2%A1Busquemos%20a%20un%20Nuevo%20Kami-sama!.mp4"
+    },
+    {
+     "n": 173,
+     "t": "DBZ 173 - Las Esferas del Dragón Vuelven a Existir",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20173%20-%20Las%20Esferas%20del%20Drag%C3%B3n%20Vuelven%20a%20Existir.mp4"
+    },
+    {
+     "n": 174,
+     "t": "DBZ 174 - El Sufrimiento de Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20174%20-%20El%20Sufrimiento%20de%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 175,
+     "t": "DBZ 175 - El Torneo de Cell Comienza ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20175%20-%20El%20Torneo%20de%20Cell%20Comienza.ia.mp4"
+    },
+    {
+     "n": 176,
+     "t": "DBZ 176 - El Ejército de Mr  Satán",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20176%20-%20El%20Ej%C3%A9rcito%20de%20Mr.%20Sat%C3%A1n.mp4"
+    },
+    {
+     "n": 177,
+     "t": "DBZ 177 - Gokū contra Cell ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20177%20-%20Gok%C5%AB%20contra%20Cell.ia.mp4"
+    },
+    {
+     "n": 178,
+     "t": "DBZ 178 - El Super KameHameHa de Cell ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20178%20-%20El%20Super%20KameHameHa%20de%20Cell.ia.mp4"
+    },
+    {
+     "n": 179,
+     "t": "DBZ 179 - Cell Cambia las Reglas del Torneo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20179%20-%20Cell%20Cambia%20las%20Reglas%20del%20Torneo.ia.mp4"
+    },
+    {
+     "n": 180,
+     "t": "DBZ 180 - Gokū se Rinde ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20180%20-%20Gok%C5%AB%20se%20Rinde.ia.mp4"
+    },
+    {
+     "n": 181,
+     "t": "DBZ 181 - Gohan, El Joven más Fuerte ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20181%20-%20Gohan%2C%20El%20Joven%20m%C3%A1s%20Fuerte.ia.mp4"
+    },
+    {
+     "n": 182,
+     "t": "DBZ 182 - Gohan, ¡Expulsa Todo tu Poder! ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20182%20-%20Gohan%2C%20%C2%A1Expulsa%20Todo%20tu%20Poder!.ia.mp4"
+    },
+    {
+     "n": 183,
+     "t": "DBZ 183 - El Ataque de los Cell Juniors ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20183%20-%20El%20Ataque%20de%20los%20Cell%20Juniors.ia.mp4"
+    },
+    {
+     "n": 184,
+     "t": "DBZ 184 - Gohan se Enfada ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20184%20-%20Gohan%20se%20Enfada.ia.mp4"
+    },
+    {
+     "n": 185,
+     "t": "DBZ 185 - La Destrucción de los Cell Juniors ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20185%20-%20La%20Destrucci%C3%B3n%20de%20los%20Cell%20Juniors.ia.mp4"
+    },
+    {
+     "n": 186,
+     "t": "DBZ 186 - Cell es Golpeado ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20186%20-%20Cell%20es%20Golpeado.ia.mp4"
+    },
+    {
+     "n": 187,
+     "t": "DBZ 187 - La Transformación de Cell ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20187%20-%20La%20Transformaci%C3%B3n%20de%20Cell.ia.mp4"
+    },
+    {
+     "n": 188,
+     "t": "DBZ 188 - Adiós a Todos ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20188%20-%20Adi%C3%B3s%20a%20Todos.ia.mp4"
+    },
+    {
+     "n": 189,
+     "t": "DBZ 189 - Una Terrible Pesadilla en Pleno Día ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20189%20-%20Una%20Terrible%20Pesadilla%20en%20Pleno%20D%C3%ADa.ia.mp4"
+    },
+    {
+     "n": 190,
+     "t": "DBZ 190 - Un Mensaje para Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20190%20-%20Un%20Mensaje%20para%20Gohan.ia.mp4"
+    },
+    {
+     "n": 191,
+     "t": "DBZ 191 - La Pelea ha Terminado  Gracias, Gokū ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20191%20-%20La%20Pelea%20ha%20Terminado...%20Gracias%2C%20Gok%C5%AB.ia.mp4"
+    },
+    {
+     "n": 192,
+     "t": "DBZ 192 - Gokū se Va a Entrenar al Más Allá ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20192%20-%20Gok%C5%AB%20se%20Va%20a%20Entrenar%20al%20M%C3%A1s%20All%C3%A1.ia.mp4"
+    },
+    {
+     "n": 193,
+     "t": "DBZ 193 - ¡Papá, Jamás me Daré por Vencido! ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20193%20-%20%C2%A1Pap%C3%A1%2C%20Jam%C3%A1s%20me%20Dar%C3%A9%20por%20Vencido!.ia.mp4"
+    },
+    {
+     "n": 194,
+     "t": "DBZ 194 - Otro Final Feliz ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20194%20-%20Otro%20Final%20Feliz.ia.mp4"
+    },
+    {
+     "n": 195,
+     "t": "DBZ 195 - El Peleador más Fuerte del Otro Mundo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20195%20-%20El%20Peleador%20m%C3%A1s%20Fuerte%20del%20Otro%20Mundo.ia.mp4"
+    },
+    {
+     "n": 196,
+     "t": "DBZ 196 - La Reunión de los Peleadores más Valientes ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20196%20-%20La%20Reuni%C3%B3n%20de%20los%20Peleadores%20m%C3%A1s%20Valientes.ia.mp4"
+    },
+    {
+     "n": 197,
+     "t": "DBZ 197 - El Torneo se Pone Emocionante ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20197%20-%20El%20Torneo%20se%20Pone%20Emocionante.ia.mp4"
+    },
+    {
+     "n": 198,
+     "t": "DBZ 198 - Quién Ganará, Gokū o Paikuhan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20198%20-%20Qui%C3%A9n%20Ganar%C3%A1%2C%20Gok%C5%AB%20o%20Paikuhan.ia.mp4"
+    },
+    {
+     "n": 199,
+     "t": "DBZ 199 - Gokū hace un Kame-Hame-Ha a Toda Velocidad",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20199%20-%20Gok%C5%AB%20hace%20un%20Kame-Hame-Ha%20a%20Toda%20Velocidad.mp4"
+    },
+    {
+     "n": 200,
+     "t": "DBZ 200 - Gohan Asíste a la Preparatoria ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20200%20-%20Gohan%20As%C3%ADste%20a%20la%20Preparatoria.ia.mp4"
+    },
+    {
+     "n": 201,
+     "t": "DBZ 201 - El Guerrero que Lucha por el Amor y la Justicia, E",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20201%20-%20El%20Guerrero%20que%20Lucha%20por%20el%20Amor%20y%20la%20Justicia%2C%20El%20Gran%20Saiyaman.ia.mp4"
+    },
+    {
+     "n": 202,
+     "t": "DBZ 202 - La Primera Cita de Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20202%20-%20La%20Primera%20Cita%20de%20Gohan.ia.mp4"
+    },
+    {
+     "n": 203,
+     "t": "DBZ 203 - Gohan Salva a Videl ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20203%20-%20Gohan%20Salva%20a%20Videl.ia.mp4"
+    },
+    {
+     "n": 204,
+     "t": "DBZ 204 - El Ladrón es el Gran Saiyaman ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20204%20-%20El%20Ladr%C3%B3n%20es%20el%20Gran%20Saiyaman.ia.mp4"
+    },
+    {
+     "n": 205,
+     "t": "DBZ 205 - Gokū Regresa ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20205%20-%20Gok%C5%AB%20Regresa.ia.mp4"
+    },
+    {
+     "n": 206,
+     "t": "DBZ 206 - El sorprendente poder de Goten ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20206%20-%20El%20sorprendente%20poder%20de%20Goten.ia.mp4"
+    },
+    {
+     "n": 207,
+     "t": "DBZ 207 - El entrenamiento para volar ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20207%20-%20El%20entrenamiento%20para%20volar.ia.mp4"
+    },
+    {
+     "n": 208,
+     "t": "DBZ 208 - Los Guerreros Z se reúnen de nuevo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20208%20-%20Los%20Guerreros%20Z%20se%20re%C3%BAnen%20de%20nuevo.mp4"
+    },
+    {
+     "n": 209,
+     "t": "DBZ 209 - Ten cuidado Gran Saiyaman ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20209%20-%20Ten%20cuidado%20Gran%20Saiyaman.ia.mp4"
+    },
+    {
+     "n": 210,
+     "t": "DBZ 210 - El pequeño Trunks",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20210%20-%20El%20peque%C3%B1o%20Trunks.mp4"
+    },
+    {
+     "n": 211,
+     "t": "DBZ 211 - Goten se pone nervioso",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20211%20-%20Goten%20se%20pone%20nervioso.mp4"
+    },
+    {
+     "n": 212,
+     "t": "DBZ 212 - El campeón del torneo infantil",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20212%20-%20El%20campe%C3%B3n%20del%20torneo%20infantil.mp4"
+    },
+    {
+     "n": 213,
+     "t": "DBZ 213 - Qué vas a hacer Mr  Satán",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20213%20-%20Qu%C3%A9%20vas%20a%20hacer%20Mr.%20Sat%C3%A1n.mp4"
+    },
+    {
+     "n": 214,
+     "t": "DBZ 214 - Los combates del Torneo de Artes Marciales",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20214%20-%20Los%20combates%20del%20Torneo%20de%20Artes%20Marciales.mp4"
+    },
+    {
+     "n": 215,
+     "t": "DBZ 215 - Qué sucede Piccolo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20215%20-%20Qu%C3%A9%20sucede%20Piccolo.mp4"
+    },
+    {
+     "n": 216,
+     "t": "DBZ 216 - El misterio de Spopovich",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20216%20-%20El%20misterio%20de%20Spopovich.mp4"
+    },
+    {
+     "n": 217,
+     "t": "DBZ 217 - Gohan se enfurece ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20217%20-%20Gohan%20se%20enfurece.ia.mp4"
+    },
+    {
+     "n": 218,
+     "t": "DBZ 218 - Gohan es el Gran Saiyaman ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20218%20-%20Gohan%20es%20el%20Gran%20Saiyaman.ia.mp4"
+    },
+    {
+     "n": 219,
+     "t": "DBZ 219 - El poder de Gohan es robado ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20219%20-%20El%20poder%20de%20Gohan%20es%20robado.ia.mp4"
+    },
+    {
+     "n": 220,
+     "t": "DBZ 220 - El malvado mago Babidi ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20220%20-%20El%20malvado%20mago%20Babidi.ia.mp4"
+    },
+    {
+     "n": 221,
+     "t": "DBZ 221 - Una bestia del infierno",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20221%20-%20Una%20bestia%20del%20infierno.mp4"
+    },
+    {
+     "n": 222,
+     "t": "DBZ 222 - El enfado de Vegeta ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20222%20-%20El%20enfado%20de%20Vegeta.ia.mp4"
+    },
+    {
+     "n": 223,
+     "t": "DBZ 223 - El máximo poder de Gokū",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20223%20-%20El%20m%C3%A1ximo%20poder%20de%20Gok%C5%AB.mp4"
+    },
+    {
+     "n": 224,
+     "t": "DBZ 224 - Mr  Satán vs  tres super guerreros ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20224%20-%20Mr.%20Sat%C3%A1n%20vs.%20tres%20super%20guerreros.ia.mp4"
+    },
+    {
+     "n": 225,
+     "t": "DBZ 225 - Una pelea difícil contra el N°18",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20225%20-%20Una%20pelea%20dif%C3%ADcil%20contra%20el%20N%C2%B018.mp4"
+    },
+    {
+     "n": 226,
+     "t": "DBZ 226 - Es tu turno Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20226%20-%20Es%20tu%20turno%20Gohan.ia.mp4"
+    },
+    {
+     "n": 227,
+     "t": "DBZ 227 - La idea de Dabura ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20227%20-%20La%20idea%20de%20Dabura.ia.mp4"
+    },
+    {
+     "n": 228,
+     "t": "DBZ 228 - El rey de la destrucción, Vegeta",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20228%20-%20El%20rey%20de%20la%20destrucci%C3%B3n%2C%20Vegeta.mp4"
+    },
+    {
+     "n": 229,
+     "t": "DBZ 229 - Gokū vs Vegeta",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20229%20-%20Gok%C5%AB%20vs%20Vegeta.mp4"
+    },
+    {
+     "n": 230,
+     "t": "DBZ 230 - Espera Babidi",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20230%20-%20Espera%20Babidi.mp4"
+    },
+    {
+     "n": 231,
+     "t": "DBZ 231 - Buu aparece ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20231%20-%20Buu%20aparece.ia.mp4"
+    },
+    {
+     "n": 232,
+     "t": "DBZ 232 - No dejaremos que Buu despierte",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20232%20-%20No%20dejaremos%20que%20Buu%20despierte.mp4"
+    },
+    {
+     "n": 233,
+     "t": "DBZ 233 - El lamento de Supremo Kaio-sama ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20233%20-%20El%20lamento%20de%20Supremo%20Kaio-sama.ia.mp4"
+    },
+    {
+     "n": 234,
+     "t": "DBZ 234 - Gohan se encuentra en peligro",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20234%20-%20Gohan%20se%20encuentra%20en%20peligro.mp4"
+    },
+    {
+     "n": 235,
+     "t": "DBZ 235 - ¡Te voy a comer! ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20235%20-%20%C2%A1Te%20voy%20a%20comer!.ia.mp4"
+    },
+    {
+     "n": 236,
+     "t": "DBZ 236 - Yo acabaré con Buu ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20236%20-%20Yo%20acabar%C3%A9%20con%20Buu.ia.mp4"
+    },
+    {
+     "n": 237,
+     "t": "DBZ 237 - Vegeta pelea por sus seres queridos",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20237%20-%20Vegeta%20pelea%20por%20sus%20seres%20queridos.mp4"
+    },
+    {
+     "n": 238,
+     "t": "DBZ 238 - Buu sigue con vida",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20238%20-%20Buu%20sigue%20con%20vida.mp4"
+    },
+    {
+     "n": 239,
+     "t": "DBZ 239 - Busquen las esferas del dragón",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20239%20-%20Busquen%20las%20esferas%20del%20drag%C3%B3n.mp4"
+    },
+    {
+     "n": 240,
+     "t": "DBZ 240 - La técnica especial para Goten y Trunks ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20240%20-%20La%20t%C3%A9cnica%20especial%20para%20Goten%20y%20Trunks.ia.mp4"
+    },
+    {
+     "n": 241,
+     "t": "DBZ 241 - Goten y Trunks, las esperanzas de salvar al mundo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20241%20-%20Goten%20y%20Trunks%2C%20las%20esperanzas%20de%20salvar%20al%20mundo.mp4"
+    },
+    {
+     "n": 242,
+     "t": "DBZ 242 - Gohan revive ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20242%20-%20Gohan%20revive.ia.mp4"
+    },
+    {
+     "n": 243,
+     "t": "DBZ 243 - La legendaria Espada Z",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20243%20-%20La%20legendaria%20Espada%20Z.mp4"
+    },
+    {
+     "n": 244,
+     "t": "DBZ 244 - Detente Buu ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20244%20-%20Detente%20Buu.ia.mp4"
+    },
+    {
+     "n": 245,
+     "t": "DBZ 245 - El Super Saiyajin 3",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20245%20-%20El%20Super%20Saiyajin%203.mp4"
+    },
+    {
+     "n": 246,
+     "t": "DBZ 246 - Hasta nunca Babidi ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20246%20-%20Hasta%20nunca%20Babidi.ia.mp4"
+    },
+    {
+     "n": 247,
+     "t": "DBZ 247 - La técnica de la fusión ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20247%20-%20La%20t%C3%A9cnica%20de%20la%20fusi%C3%B3n.ia.mp4"
+    },
+    {
+     "n": 248,
+     "t": "DBZ 248 - Gokū regresa al otro mundo",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20248%20-%20Gok%C5%AB%20regresa%20al%20otro%20mundo.mp4"
+    },
+    {
+     "n": 249,
+     "t": "DBZ 249 - En dónde está Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20249%20-%20En%20d%C3%B3nde%20est%C3%A1%20Gohan.ia.mp4"
+    },
+    {
+     "n": 250,
+     "t": "DBZ 250 - La Espada Z se ha roto ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20250%20-%20La%20Espada%20Z%20se%20ha%20roto.ia.mp4"
+    },
+    {
+     "n": 251,
+     "t": "DBZ 251 - Un nuevo guerrero nace, su nombre es Gotenks",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20251%20-%20Un%20nuevo%20guerrero%20nace%2C%20su%20nombre%20es%20Gotenks.mp4"
+    },
+    {
+     "n": 252,
+     "t": "DBZ 252 - Mr  Satán salva a la Tierra ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20252%20-%20Mr.%20Sat%C3%A1n%20salva%20a%20la%20Tierra.ia.mp4"
+    },
+    {
+     "n": 253,
+     "t": "DBZ 253 - Buu deja de matar gente ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20253%20-%20Buu%20deja%20de%20matar%20gente.ia.mp4"
+    },
+    {
+     "n": 254,
+     "t": "DBZ 254 - La furia de Majin Buu",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20254%20-%20La%20furia%20de%20Majin%20Buu.mp4"
+    },
+    {
+     "n": 255,
+     "t": "DBZ 255 - Quién de los dos ganará",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20255%20-%20Qui%C3%A9n%20de%20los%20dos%20ganar%C3%A1.mp4"
+    },
+    {
+     "n": 256,
+     "t": "DBZ 256 - El final de la raza humana ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20256%20-%20El%20final%20de%20la%20raza%20humana.ia.mp4"
+    },
+    {
+     "n": 257,
+     "t": "DBZ 257 - El entrenamiento fue todo un éxito",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20257%20-%20El%20entrenamiento%20fue%20todo%20un%20%C3%A9xito.mp4"
+    },
+    {
+     "n": 258,
+     "t": "DBZ 258 - El poder de Super Gotenks",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20258%20-%20El%20poder%20de%20Super%20Gotenks.mp4"
+    },
+    {
+     "n": 259,
+     "t": "DBZ 259 - La técnica de los fantasmas ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20259%20-%20La%20t%C3%A9cnica%20de%20los%20fantasmas.ia.mp4"
+    },
+    {
+     "n": 260,
+     "t": "DBZ 260 - Super Gotenks tres ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20260%20-%20Super%20Gotenks%20tres.ia.mp4"
+    },
+    {
+     "n": 261,
+     "t": "DBZ 261 - El voleibol de Buu",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20261%20-%20El%20voleibol%20de%20Buu.mp4"
+    },
+    {
+     "n": 262,
+     "t": "DBZ 262 - Gohan regresa a la Tierra ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20262%20-%20Gohan%20regresa%20a%20la%20Tierra.ia.mp4"
+    },
+    {
+     "n": 263,
+     "t": "DBZ 263 - El poder milagroso de Gohan ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20263%20-%20El%20poder%20milagroso%20de%20Gohan.ia.mp4"
+    },
+    {
+     "n": 264,
+     "t": "DBZ 264 - La gran explosión de Buu",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20264%20-%20La%20gran%20explosi%C3%B3n%20de%20Buu.mp4"
+    },
+    {
+     "n": 265,
+     "t": "DBZ 265 - Gotenks es absorbido ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20265%20-%20Gotenks%20es%20absorbido.ia.mp4"
+    },
+    {
+     "n": 266,
+     "t": "DBZ 266 - Gokū regresa a la vida ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20266%20-%20Gok%C5%AB%20regresa%20a%20la%20vida.ia.mp4"
+    },
+    {
+     "n": 267,
+     "t": "DBZ 267 - Ocurre otro milagro",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20267%20-%20Ocurre%20otro%20milagro.mp4"
+    },
+    {
+     "n": 268,
+     "t": "DBZ 268 - El orgullo de Vegeta y la furia de Gokū",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20268%20-%20El%20orgullo%20de%20Vegeta%20y%20la%20furia%20de%20Gok%C5%AB.mp4"
+    },
+    {
+     "n": 269,
+     "t": "DBZ 269 - El poder del gran Vegitto ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20269%20-%20El%20poder%20del%20gran%20Vegitto.ia.mp4"
+    },
+    {
+     "n": 270,
+     "t": "DBZ 270 - Buu es cortado ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20270%20-%20Buu%20es%20cortado.ia.mp4"
+    },
+    {
+     "n": 271,
+     "t": "DBZ 271 - Conviertete en un dulce ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20271%20-%20Conviertete%20en%20un%20dulce.ia.mp4"
+    },
+    {
+     "n": 272,
+     "t": "DBZ 272 - Vegitto es absorbido ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20272%20-%20Vegitto%20es%20absorbido.ia.mp4"
+    },
+    {
+     "n": 273,
+     "t": "DBZ 273 - Qué habrá en el estómago de Buu ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20273%20-%20Qu%C3%A9%20habr%C3%A1%20en%20el%20est%C3%B3mago%20de%20Buu.ia.mp4"
+    },
+    {
+     "n": 274,
+     "t": "DBZ 274 - La pelea entre padres e hijos",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20274%20-%20La%20pelea%20entre%20padres%20e%20hijos.mp4"
+    },
+    {
+     "n": 275,
+     "t": "DBZ 275 - El secreto de Buu ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20275%20-%20El%20secreto%20de%20Buu.ia.mp4"
+    },
+    {
+     "n": 276,
+     "t": "DBZ 276 - Dónde está la salida ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20276%20-%20D%C3%B3nde%20est%C3%A1%20la%20salida.ia.mp4"
+    },
+    {
+     "n": 277,
+     "t": "DBZ 277 - La Tierra desaparece ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20277%20-%20La%20Tierra%20desaparece.ia.mp4"
+    },
+    {
+     "n": 278,
+     "t": "DBZ 278 - El ataque de Buu ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20278%20-%20El%20ataque%20de%20Buu.ia.mp4"
+    },
+    {
+     "n": 279,
+     "t": "DBZ 279 - Una pelea para el futuro",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20279%20-%20Una%20pelea%20para%20el%20futuro.mp4"
+    },
+    {
+     "n": 280,
+     "t": "DBZ 280 - Gokū, tú eres el N° 1 ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20280%20-%20Gok%C5%AB%2C%20t%C3%BA%20eres%20el%20N%C2%B0%201.ia.mp4"
+    },
+    {
+     "n": 281,
+     "t": "DBZ 281 - Resiste Vegeta ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20281%20-%20Resiste%20Vegeta.ia.mp4"
+    },
+    {
+     "n": 282,
+     "t": "DBZ 282 - No molestes a Mr  Satán  La aparición de Buu ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20282%20-%20No%20molestes%20a%20Mr.%20Sat%C3%A1n.%20La%20aparici%C3%B3n%20de%20Buu.ia.mp4"
+    },
+    {
+     "n": 283,
+     "t": "DBZ 283 - La estrategia de Vegeta ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20283%20-%20La%20estrategia%20de%20Vegeta.ia.mp4"
+    },
+    {
+     "n": 284,
+     "t": "DBZ 284 - La última esperanza ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20284%20-%20La%20%C3%BAltima%20esperanza.ia.mp4"
+    },
+    {
+     "n": 285,
+     "t": "DBZ 285 - Una Genki-dama hecha por todos ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20285%20-%20Una%20Genki-dama%20hecha%20por%20todos.ia.mp4"
+    },
+    {
+     "n": 286,
+     "t": "DBZ 286 - Gokū es el hombre más fuerte del universo ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20286%20-%20Gok%C5%AB%20es%20el%20hombre%20m%C3%A1s%20fuerte%20del%20universo.ia.mp4"
+    },
+    {
+     "n": 287,
+     "t": "DBZ 287 - Buu lucha a favor de la justicia ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20287%20-%20Buu%20lucha%20a%20favor%20de%20la%20justicia.ia.mp4"
+    },
+    {
+     "n": 288,
+     "t": "DBZ 288 - Gokū, llegas tarde ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20288%20-%20Gok%C5%AB%2C%20llegas%20tarde.ia.mp4"
+    },
+    {
+     "n": 289,
+     "t": "DBZ 289 - Mi nombre es Pan",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20289%20-%20Mi%20nombre%20es%20Pan.mp4"
+    },
+    {
+     "n": 290,
+     "t": "DBZ 290 - Yo soy Uub ia",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20290%20-%20Yo%20soy%20Uub.ia.mp4"
+    },
+    {
+     "n": 291,
+     "t": "DBZ 291 Final - El sueño de Gokū",
+     "url": "https://archive.org/download/dbz-en-espanol-latino/DBZ%20291%20Final%20-%20El%20sue%C3%B1o%20de%20Gok%C5%AB.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-Busqueda-Implacable-2008",
+   "t": "Taken",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2008",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/fO9HTzeL7sd346tybTfbd99Nv3R.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791437454871,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Búsqueda Implacable (2008)",
+     "url": "https://archive.org/download/Busqueda-Implacable-2008/B%C3%BAsqueda%20implacable%202008.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-busqueda-implacable-2-2012_202607",
+   "t": "Taken 2",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2012",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/2RQkFjXnqLxc6F8H4VsitxvSyuk.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791437469068,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Búsqueda Implacable 2 (2012)",
+     "url": "https://archive.org/download/busqueda-implacable-2-2012_202607/B%C3%BAsqueda%20implacable%202%202012.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-busqueda-implacable-3-2014_202607",
+   "t": "Taken 3",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2014",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/hCffcXqpH002rvSFt8AUnIC376s.jpg",
+   "tags": [
+    "Suspenso"
+   ],
+   "genre": "suspenso",
+   "at": 1791437485871,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Búsqueda Implacable 3 2014",
+     "url": "https://archive.org/download/busqueda-implacable-3-2014_202607/B%C3%BAsqueda%20implacable%203%202014.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-amor-explosivo-2025-latino",
+   "t": "Amor explosivo",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/z0jwBykM5DgPQ99lVlKI4sA0U0L.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791437527707,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "amor-explosivo-2025",
+     "url": "https://archive.org/download/amor-explosivo-2025-latino/amor-explosivo-2025-%5Blatino%5D.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-7664-holly-rock-a-bye-baby-1993-dvdrip-d_202402",
+   "t": "Los Picapiedra en: a Hollyroca por un bebé",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1993",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/y7f4BP4Vnd8LK8iCNtMxRCAePLM.jpg",
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
+   "at": 1791437587048,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Holly Rock A Bye Baby (1993) DVDRip Dual",
+     "url": "https://archive.org/download/7664-holly-rock-a-bye-baby-1993-dvdrip-d_202402/7664-HollyRock%20A%20Bye%20Baby%20(1993)%20DVDRip%20D.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-4441-maximo-riesgo-1993-720p-d-s-spa-eng-v_20240208",
+   "t": "Maximo Riesgo",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1993",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/1nwcgnpP6Clb3TXuFzvrEFreWZ6.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791437829504,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Maximo Riesgo (1993) 720p Dual",
+     "url": "https://archive.org/download/4441-maximo-riesgo-1993-720p-d-s-spa-eng-v_20240208/4441-Maximo%20Riesgo%20(1993)%20720p%20D%20S%20spa%20eng%20v.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-2104-adios-a-las-vegas-1995-720p-d-s-spa-eng-unrtd-v",
+   "t": "Adios A Las Vegas",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1995",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/pzp3EwKATK7Xl8K14L85daSt60M.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791437973685,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Adios A Las Vegas (1995) 720p Dual (UNRATED)",
+     "url": "https://archive.org/download/2104-adios-a-las-vegas-1995-720p-d-s-spa-eng-unrtd-v/2104-Adios%20A%20Las%20Vegas%20(1995)%20720p%20D%20S%20spa%20eng%20UNRTD%20v.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-el-pianista-en-espanol-pelicula-completa-en-hd-segunda-gu",
+   "t": "El Pianista",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/mxfLOWnHnSlbdraKfzRn5mqoqk7.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791438199269,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El Pianista En Español Película Completa En HD ( Segunda Gue",
+     "url": "https://archive.org/download/el-pianista-en-espanol-pelicula-completa-en-hd-segunda-guerra-mundial-1939/El%20Pianista%20en%20espa%C3%B1ol-Pel%C3%ADcula%20completa%20en%20HD%20(Segunda%20Guerra%20Mundial%201939).mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ElCdigoEnigmaPelculaCompletaEnEspaolLatinoYouTube",
+   "t": "El Código Enigma",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/pdd20KgHJec4BM4sfHS8oefaDUI.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791438282425,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "El Código Enigma Película Completa En Español Latino You Tub",
+     "url": "https://archive.org/download/ElCdigoEnigmaPelculaCompletaEnEspaolLatinoYouTube/El%20c%C3%B3digo%20enigma%20-%20Pel%C3%ADcula%20completa%20en%20espa%C3%B1ol%20%20latino-%20YouTube.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-mediterraneo-1991-version-original-con-subtitulos-en-espa",
+   "t": "Mediterráneo- Sub español",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/xspcpzfsFSRQZPL80QOHQheVvhB.jpg",
+   "at": 1791438364732,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Mediterráneo - 1991 - Versión original con subtítulos en esp",
+     "url": "https://archive.org/download/mediterraneo-1991-version-original-con-subtitulos-en-espanol/Mediterr%C3%A1neo%20-%201991%20-%20Versi%C3%B3n%20original%20con%20subt%C3%ADtulos%20en%20espa%C3%B1ol.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-dracula-de-bram-stoker-rtvcplay-f",
+   "t": "Drácula De Bram Stoker",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1992",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/3D4UhX6dzfBTHdVWkgjadcl8YkW.jpg",
+   "tags": [
+    "Romance"
+   ],
+   "genre": "romance",
+   "at": 1791438456689,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Drácula De Bram Stoker RTVCPlay F",
+     "url": "https://archive.org/download/dracula-de-bram-stoker-rtvcplay-f/Dr%C3%A1cula_de_Bram_Stoker___RTVCPlay_f_.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-van-helsing-2004-misio-n-de-londres",
+   "t": "Van Helsing - Mision Londres",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2005",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/2MFdzeCL2YTqbbBgiZT8e51MUGO.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791438481812,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "VAN HELSING 2004 MISIÓ N DE LONDRES",
+     "url": "https://archive.org/download/van-helsing-2004-misio-n-de-londres/VAN_HELSING%202004%20MISI%C3%93N%20DE%20LONDRES.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-gladiador-2000-fullscreen-espanol-latino-dvd-rip",
+   "t": "Gladiator",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2000",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/90QFOG5zSN4cbrIVs4DL4ePAuA5.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791438552271,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Gladiador ( 2000, Fullscreen) Español Latino DVD Rip",
+     "url": "https://archive.org/download/gladiador-2000-fullscreen-espanol-latino-dvd-rip/Gladiador%20(2000%2C%20Fullscreen)%20Espa%C3%B1ol%20Latino%20DVD%20Rip.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-lolita-1987-latino",
+   "t": "Lolita: Una pasión prohibida",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1997",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/3nTCYIR9kwBDAnbjNlf6IHMEHry.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791438700234,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Lolita:Una pasión prohibida (1997) [Calidad HD / Español Ame",
+     "url": "https://archive.org/download/lolita-1987-latino/Lolita%201987%20LATINO.ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-ricky-ricon_202604",
+   "t": "Ricky Ricón",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1994",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/mnp39mPqGiPTP8jZmfaKrVfalMi.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791438767584,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ricky Ricón",
+     "url": "https://archive.org/download/ricky-ricon_202604/Ricky%20Ric%C3%B3n.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-chip-y--dale--al--rescate--2022",
+   "t": "Chip y Dale: Al rescate",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2022",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/cVE6Mop3gCqIZfnQEkvGV2rG0IM.jpg",
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
+   "at": 1791438855665,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Chip y Dale: Al rescate",
+     "url": "https://archive.org/download/chip.y.-dale.-al.-rescate.-2022/Chip.y.Dale.Al.Rescate.2022.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-aullidos-2006",
+   "t": "Aullidos",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2006",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/kQNKyEjUZrNk2HeIDU5XpmEePa1.jpg",
+   "tags": [
+    "Terror"
+   ],
+   "genre": "terror",
+   "at": 1791438995468,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Aullidos ( 2006)",
+     "url": "https://archive.org/download/aullidos-2006/Aullidos%20(2006).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-aullidos-2_202402",
+   "t": "Aullidos 2: Stirba, la mujer lobo",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 1985",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8yRWi2aYhADhkAVdTXBkqmIjpyt.jpg",
+   "tags": [
+    "Suspenso"
+   ],
+   "genre": "suspenso",
+   "at": 1791439030356,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Aullidos 2: Stirba, la mujer lobo",
+     "url": "https://archive.org/download/aullidos-2_202402/Aullidos%202.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-azumi-2003",
+   "t": "Azumi",
+   "jp": "🎬",
+   "tag": "Cine IA · Película · 2003",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/bW3mZc0RGRWn6atA4196FKDwGuv.jpg",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1791439208089,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Azumi ( 2003)",
+     "url": "https://archive.org/download/azumi-2003/Azumi%20(2003).ia.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-jpnklv20220217ninjas2005azumi2deathorloveshusukekaneko",
+   "t": "Azumi 2",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada · 2022",
+   "g": 5,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/fziaqDpMdnhqM0btgaJAApUrbkA.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "clsManual": true,
+   "hentai": false,
+   "at": 1791439238057,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Ninjas/(2005) Azumi 2 Death Or Love (Shusuke Kaneko)/(2005) ",
+     "url": "https://archive.org/download/jpnklv20220217ninjas2005azumi2deathorloveshusukekaneko/Ninjas/(2005)%20Azumi%202%20Death%20Or%20Love%20(Shusuke%20Kaneko)/(2005)%20Azumi%202%20Death%20Or%20Love%20(Shusuke%20Kaneko)%20%5BJPN%5D%5BESP%5D.mp4"
+    }
+   ]
+  },
+  {
+   "id": "file-https-archive-org-details-mentiras-verdaderas-1-El-rey-le-C3",
+   "t": "El+rey+león+2,+El+tesoro+de+Simba~1",
+   "jp": "🎬",
+   "tag": "Enlace directo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": null,
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1791439631995,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://archive.org/details/mentiras-verdaderas-1/El+rey+le%C3%B3n+2%2C+El+tesoro+de+Simba~1.mp4"
     }
    ]
   }
@@ -105975,7 +109466,14 @@
   "mp-stape-root-46BAPdjQkghK44x": 1791414377694,
   "mp-stape-root-W17vOXa1a4tpZG": 1791414382350,
   "mp-stape-root-ZoklVRk8LRCqeB4": 1791414388590,
-  "mp-drv-1VVVfYxyWpt4OGVY26eR2Owzt1Ph_9VGF-1wCJ-T18fOGwcDgLy7xtoLAje4LoAM3wQ": 1791417495825
+  "mp-drv-1VVVfYxyWpt4OGVY26eR2Owzt1Ph_9VGF-1wCJ-T18fOGwcDgLy7xtoLAje4LoAM3wQ": 1791417495825,
+  "mp-stape-root-RD8V4wO3m8uZGW": 1791433057993,
+  "ia-mi-pobre-diablillo-2-audio-mexico": 1791434155770,
+  "ia-ver-trollhunters-el-despertar-de-los-titanes-trollhunter-": 1791436573351,
+  "ia-10000000-883586758738048-5253153845239873536-n": 1791437115892,
+  "ia-tesoro-del-amazonas-1985": 1791438339908,
+  "ia-y-2mate-com-aullidos-7-480p": 1791439021391,
+  "ia-mirmo-zibang-01-mp-4": 1791439501748
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -196914,6 +200412,176 @@
    "dest": "#/pelicula/clifford-el-gran-perro-rojo",
    "t": "clifford el gran perro rojo",
    "at": 1791428078472
+  },
+  "5qk6uv": {
+   "dest": "#/pelicula/la-casa-gucci",
+   "t": "La casa Gucci",
+   "at": 1791433009716
+  },
+  "pq4wrq": {
+   "dest": "#/pelicula/la-naranja-mecanica",
+   "t": "La Naranja Mecánica",
+   "at": 1791434584707
+  },
+  "5bjaus": {
+   "dest": "#/pelicula/adorable-criatura",
+   "t": "Adorable  Criatura",
+   "at": 1791434584707
+  },
+  "52devq": {
+   "dest": "#/pelicula/okko-y-los-fantasmas",
+   "t": "Okko Y Los Fantasmas",
+   "at": 1791434584707
+  },
+  "uawr4f": {
+   "dest": "#/pelicula/31-minutos-calurosa-navidad-2025",
+   "t": "31 Minutos: Calurosa Navidad (2025)",
+   "at": 1791434584707
+  },
+  "ru3w8k": {
+   "dest": "#/pelicula/31-minutos",
+   "t": "31 Minutos",
+   "at": 1791434584707
+  },
+  "syrc83": {
+   "dest": "#/pelicula/31-minutos-la-pelicula",
+   "t": "31 Minutos la pelicula",
+   "at": 1791436559095
+  },
+  "sbs4jn": {
+   "dest": "#/pelicula/frankenweenie",
+   "t": "Frankenweenie",
+   "at": 1791436559095
+  },
+  "yzdn6f": {
+   "dest": "#/pelicula/numero-9",
+   "t": "Numero 9",
+   "at": 1791436559095
+  },
+  "7kkkk8": {
+   "dest": "#/pelicula/el-cadaver-de-la-novia",
+   "t": "El Cadáver De La Novia",
+   "at": 1791436559095
+  },
+  "x9ntd4": {
+   "dest": "#/pelicula/el-extrano-mundo-de-jack",
+   "t": "El Extraño Mundo De Jack",
+   "at": 1791436559095
+  },
+  "fnztcy": {
+   "dest": "#/pelicula/la-leyenda-de-hei-espanol",
+   "t": "La Leyenda De Hei Español",
+   "at": 1791436559095
+  },
+  "hhrydk": {
+   "dest": "#/pelicula/dia-de-muertos",
+   "t": "Día De Muertos",
+   "at": 1791436559095
+  },
+  "r8v967": {
+   "dest": "#/pelicula/coraline-y-la-puerta-secreta",
+   "t": "Coraline Y La Puerta Secreta",
+   "at": 1791436559095
+  },
+  "yvfh4b": {
+   "dest": "#/pelicula/los-hermanos-willoughby",
+   "t": "Los Hermanos Willoughby",
+   "at": 1791436559095
+  },
+  "k4mz3k": {
+   "dest": "#/pelicula/veronika-decide-morir",
+   "t": "Veronika Decide Morir",
+   "at": 1791436559095
+  },
+  "vfbtag": {
+   "dest": "#/pelicula/academia-de-modelos",
+   "t": "Academia De Modelos",
+   "at": 1791436559095
+  },
+  "bxqydk": {
+   "dest": "#/pelicula/minority-report-sentencia-previa",
+   "t": "Minority Report Sentencia Previa",
+   "at": 1791436559095
+  },
+  "3jr967": {
+   "dest": "#/pelicula/taxi-driver",
+   "t": "Taxi Driver",
+   "at": 1791436559095
+  },
+  "z3n8mp": {
+   "dest": "#/pelicula/vecinos-invasores",
+   "t": "Vecinos Invasores",
+   "at": 1791436559095
+  },
+  "bxfgn2": {
+   "dest": "#/pelicula/bad-sister-mala-hermana",
+   "t": "Bad Sister / Mala Hermana",
+   "at": 1791436559095
+  },
+  "r8km8z": {
+   "dest": "#/pelicula/la-bella-durmiente",
+   "t": "La Bella Durmiente",
+   "at": 1791436559095
+  },
+  "shfy5b": {
+   "dest": "#/pelicula/shutter-estan-entre-nosotros",
+   "t": "Shutter / Están entre nosotros",
+   "at": 1791436559095
+  },
+  "692ugs": {
+   "dest": "#/pelicula/troya",
+   "t": "Troya",
+   "at": 1791436559095
+  },
+  "d8wbbt": {
+   "dest": "#/pelicula/el-enigma-de-jerusalen",
+   "t": "El enigma de Jerusalén",
+   "at": 1791436559095
+  },
+  "ngddq2": {
+   "dest": "#/pelicula/tropa-de-elite",
+   "t": "Tropa de Elite",
+   "at": 1791436559095
+  },
+  "fnsm5b": {
+   "dest": "#/pelicula/tropa-de-elite-2",
+   "t": "Tropa de Elite 2",
+   "at": 1791436559095
+  },
+  "vuvr6g": {
+   "dest": "#/pelicula/instinto-siniestro",
+   "t": "Instinto Siniestro",
+   "at": 1791436559095
+  },
+  "d6rwf8": {
+   "dest": "#/pelicula/marabunta",
+   "t": "Marabunta",
+   "at": 1791436559095
+  },
+  "2dfr38": {
+   "dest": "#/pelicula/muchas-mas-hormigas-entre-las-piernas",
+   "t": "Muchas Mas Hormigas Entre Las Piernas",
+   "at": 1791436559095
+  },
+  "9rzg7e": {
+   "dest": "#/pelicula/an-education-ensenanza-de-vida",
+   "t": "An Education / Enseñanza de vida",
+   "at": 1791436559095
+  },
+  "3q4q5s": {
+   "dest": "#/pelicula/el-angel-en-el-reloj",
+   "t": "El Ángel En El Reloj",
+   "at": 1791436559095
+  },
+  "7x7f66": {
+   "dest": "#/pelicula/la-masacre-de-texas",
+   "t": "La masacre de Texas",
+   "at": 1791436559095
+  },
+  "sfj234": {
+   "dest": "#/pelicula/trollhunters-el-despertar-de-los-titanes",
+   "t": "Trollhunters El Despertar De Los Titanes",
+   "at": 1791436559095
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -196927,5 +200595,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "RW8MPfClR6JqapgRAy7nt/0vjm1n8KyGOzht1E3s80lIjMz2LRwg5b4elzHOasbG3TTfAjKTYMksMB5xXFbgrA=="
+ "sig": "T06oewXsEolxnOKwo6UdmRKiaiwwfmPsAbqW2RDpd0ZRZiNrQjd0m2ntI8D9ZVUaTmPaPD4wGP6Qg4AYxnQN/A=="
 }
