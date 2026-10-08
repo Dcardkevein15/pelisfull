@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791496949441,
+ "v": 1791498367761,
  "by": "Dcard #2968",
- "at": "2026-10-08T22:02:29.441Z",
- "n": 5997,
+ "at": "2026-10-08T22:26:07.761Z",
+ "n": 5998,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49978,6 +49978,25 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW/view"
+    }
+   ]
+  },
+  {
+   "id": "ia-LaHistoriaOficial",
+   "t": "La historia oficial (1985)",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://archive.org/services/img/LaHistoriaOficial",
+   "tags": [],
+   "at": 1791497688916,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "La historia oficial (1985)",
+     "url": "https://archive.org/download/LaHistoriaOficial/La%20Historia%20Oficial.mp4"
     }
    ]
   }
@@ -201764,6 +201783,21 @@
    "dest": "#/pelicula/hotel-transilvania-tranformania",
    "t": "Hotel transilvania tranformania",
    "at": 1791490012855
+  },
+  "sxwjms": {
+   "dest": "#/pelicula/arthur",
+   "t": "Arthur",
+   "at": 1791497677383
+  },
+  "xdzjkh": {
+   "dest": "#/pelicula/hotel-transilvania",
+   "t": "Hotel transilvania",
+   "at": 1791497677383
+  },
+  "88q69d": {
+   "dest": "#/pelicula/la-historia-oficial-1985",
+   "t": "La historia oficial (1985)",
+   "at": 1791498359839
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -201777,5 +201811,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "luMMW/ZotcdQs2CswSrYZmT9z9J7FAwZ8eL7b0ytt8u+yYVInqHQDng6LWcEmjCf4CF/OOcwBrWR9J68EUlW/g=="
+ "sig": "Bk74vWbAvtwe2x6C12IJ5ccBxmd9z66UrQdEYb3pO7DJd6r54aqfJV30wpHe5arKPkSGon7tGLIyoYzC65ihjQ=="
 }
