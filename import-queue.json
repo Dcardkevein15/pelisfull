@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791476215359,
+ "at": 1791476299821,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view",
@@ -16,31 +16,13 @@
   {
    "url": "https://drive.google.com/file/d/1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1/view",
    "type": "drive-file",
-   "status": "done",
+   "status": "published",
    "name": "E T - El Extraterrestre",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791476129323,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1gvLDUriZa1jqSOzGEXsSUD5fEuWqK",
-     "t": "E T - El Extraterrestre",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1/view"
-      }
-     ],
-     "at": 1791476214378
-    }
-   ]
+   "payload": null
   }
  ]
 }
