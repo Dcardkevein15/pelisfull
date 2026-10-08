@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791492098536,
+ "v": 1791493517747,
  "by": "MortosPr #2968",
- "at": "2026-10-08T20:41:38.536Z",
+ "at": "2026-10-08T21:05:17.747Z",
  "n": 5998,
  "series": [
   {
@@ -49504,7 +49504,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu&sz=w1000",
+   "poster": "https://image.tmdb.org/t/p/w500/ymUY2iIm8IuSYuIX1SsABgPyB48.jpg",
    "tags": [
     "Fantasía"
    ],
@@ -201709,5 +201709,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "PlLOVf9DD32X9RSY7MXmpAJzDZYxBhTB8/QZvat/N1rHHVmK0bCNPxSBfRPiMOMLtvs2UqyJxJyE3ijY2HnsSg=="
+ "sig": "s8ORzffFEsHMpk1YCO1+koI68H5hTq6QtVOh+7EJ+I3ozFeaTevv3PFmW47xeU/TqAqJGA3xnS+pIt5diugxJw=="
 }
