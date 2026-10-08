@@ -5406,6 +5406,26 @@ let iqMerged = 0;
 try { importQueue = JSON.parse(localStorage.getItem(IQ_KEY) || '[]'); } catch (e) { importQueue = []; }
 const iqPersist = () => { try { localStorage.setItem(IQ_KEY, JSON.stringify(importQueue)); } catch (e) { } };
 
+/* 🔁 REGISTRO ANTI-LOOP: enlaces ya revisados y PUBLICADOS de verdad.
+   Impide que un cache viejo del CDN vuelva a colar el mismo «done» y
+   reaparezca el modal de completado una y otra vez.                       */
+const IQ_REV_KEY = 'xstream-iq-reviewed-v1';
+const iqReviewedAll = () => { try { return JSON.parse(localStorage.getItem(IQ_REV_KEY) || '[]'); } catch (e) { return []; } };
+function iqReviewedAdd(urls) {
+  try {
+    const all = new Set(iqReviewedAll());
+    for (const u of urls) all.add(u);
+    localStorage.setItem(IQ_REV_KEY, JSON.stringify([...all].slice(-400)));
+  } catch (e) { }
+}
+const iqReviewedHas = url => iqReviewedAll().includes(url);
+
+/* 🕒 marca de la última cola que ESTE navegador escribió a GitHub: si el
+   CDN nos sirve una versión MÁS VIEJA (cache), se ignora — no re-adoptamos
+   nuestro propio estado ya purgado.                                       */
+const IQ_LW_KEY = 'xstream-iq-lastwrite-v1';
+let iqLastWriteAt = parseInt(localStorage.getItem(IQ_LW_KEY) || '0', 10) || 0;
+
 /* ⚠ explicación de errores: POR QUÉ pasó + CÓMO solucionarlo */
 function iqExplainError(raw) {
   const s = String(raw || '');
@@ -6026,8 +6046,14 @@ els.confirmDrive.addEventListener('click', async () => {
 async function iqSyncRemote() {
   if (!window.XAUTH || !XAUTH.ghWriteFile) return false;
   try {
-    const r = await XAUTH.ghWriteFile('import-queue.json', { v: 1, at: Date.now(), queue: importQueue }, '⏳ cola de importación', 'chat-data');
-    return !!(r && r.ok);
+    const at = Date.now();
+    const r = await XAUTH.ghWriteFile('import-queue.json', { v: 1, at, queue: importQueue }, '⏳ cola de importación', 'chat-data');
+    if (r && r.ok) {
+      iqLastWriteAt = at;
+      try { localStorage.setItem(IQ_LW_KEY, String(at)); } catch (e) { }
+      return true;
+    }
+    return false;
   } catch (e) { return false; }
 }
 async function iqDispatchCloud() {
@@ -6046,11 +6072,17 @@ async function iqPollRemote() {
     const r = await fetch(IQ_REMOTE_URL + '?t=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) return;
     const data = await r.json();
+    /* 🕒 guard anti-cache: si esto vino del cache del CDN (más viejo que lo
+       que ESTE navegador escribió) → ignorar; no re-adoptar lo ya purgado */
+    if (data && data.at && iqLastWriteAt && data.at <= iqLastWriteAt) return;
     const remote = (data && data.queue) || [];
     let changed = false;
+    let skippedReviewed = 0;
     const newDone = [];
     for (const rq of remote) {
       if (!['done', 'failed-final', 'queued', 'published', 'dup'].includes(rq.status)) continue;
+      /* 🔁 ya revisado y publicado de verdad → jamás re-adoptar (anti-loop) */
+      if (rq.status === 'done' && iqReviewedHas(rq.url)) { skippedReviewed++; continue; }
       const lq = importQueue.find(q => q.url === rq.url);
       if (!lq) {
         /* nació en la nube u otro dispositivo → adoptar tal cual */
@@ -6077,6 +6109,9 @@ async function iqPollRemote() {
     }
     if (changed) iqPersist();
     if (newDone.length) iqAdoptCloud(newDone);
+    /* 🧹 purgar de la nube los done ya publicados que el cache retenga:
+       escribir la cola local (ya sin ellos) limpia el archivo remoto    */
+    if (skippedReviewed > 0) iqSyncRemote();
   } catch (e) { /* sin red o aún no existe el archivo: silencio */ }
 }
 
@@ -6189,15 +6224,29 @@ async function iqReviewApply(edits) {
   renderSeries(els.searchInput.value);
   /* re-categorizar con TMDB lo que siguió sin género (títulos recién corregidos) */
   try { await enrichMovieGenresFromTmdb(); } catch (e) { }
-  /* lo revisado y publicado SALE de la cola para siempre — el proceso
-     termina de verdad y el monitor no acumula historial muerto        */
+  /* recordar QUÉ enlaces se están publicando (para el registro anti-loop) */
+  const urls = importQueue.filter(q => q.status === 'done').map(q => q.url);
+  /* lo revisado SALE de la cola local para siempre */
   importQueue = importQueue.filter(q => q.status !== 'done');
   iqPersist();
-  await iqSyncRemote();
+  /* 🚀 PUBLICAR — resultado REAL (ok:false con motivo exacto si falla) */
+  let pub = null;
+  try { pub = await XAUTH.publishCatalog(); } catch (e) { pub = null; }
+  const pubOk = !!(pub && typeof pub === 'object' && pub.ok);
+  const pubMsg = (pub && typeof pub === 'object' && pub.msg) ? pub.msg : '';
+  /* sincronizar la cola limpia con GitHub (2 intentos) — solo con éxito
+     registra el anti-loop: si no sincronizó, el modal puede volver, pero
+     la ventana de revisión mostrará el problema REAL, no un éxito falso   */
+  let synced = await iqSyncRemote();
+  if (!synced) { await new Promise(r2 => setTimeout(r2, 1200)); synced = await iqSyncRemote(); }
+  if (pubOk && synced) iqReviewedAdd(urls);
+  else if (pubOk && !synced) {
+    /* publicado pero la cola remota no se limpió: igual registrar para no
+       repetir el modal — la próxima sincronización exitosa la purga        */
+    iqReviewedAdd(urls);
+  }
   renderQueuePill();
-  let pubOk = false;
-  if (window.XAUTH && XAUTH.publishCatalog) { try { await XAUTH.publishCatalog(); pubOk = true; } catch (e) { } }
-  return { changed, removed, published: pubOk };
+  return { changed, removed, published: pubOk, publishMsg: pubMsg, synced };
 }
 
 /* 🔄 recupera carátula + género reales de TMDB para el título ya corregido */
@@ -6327,12 +6376,25 @@ function iqOpenReview() {
     sv.disabled = true; sv.textContent = '⏳ Guardando y publicando…';
     const res = await w.opener.iqReview.apply(edits);
     const ok = doc.createElement('div'); ok.className = 'ok';
-    ok.innerHTML = `<div class="ic">${res.published ? '✅' : '☑'}</div>
-      <div style="font-size:16px;font-weight:900">${res.published ? '¡Publicado en la web!' : 'Guardado — publicación pendiente'}</div>
-      <div style="font-size:12px;color:#9a9ab0">${res.changed} cambio${res.changed !== 1 ? 's' : ''} aplicado${res.changed !== 1 ? 's' : ''} · ${res.removed} excluido${res.removed !== 1 ? 's' : ''}</div>`;
-    doc.body.appendChild(ok);
-    ok.style.display = 'flex';
-    setTimeout(() => w.close(), 2800);
+    if (res.published) {
+      ok.innerHTML = `<div class="ic">✅</div>
+        <div style="font-size:16px;font-weight:900">¡Publicado en la web!</div>
+        <div style="font-size:12px;color:#9a9ab0">${res.changed} cambio${res.changed !== 1 ? 's' : ''} aplicado${res.changed !== 1 ? 's' : ''} · ${res.removed} excluido${res.removed !== 1 ? 's' : ''} · llega a todos en ~1 min</div>`;
+      doc.body.appendChild(ok);
+      ok.style.display = 'flex';
+      setTimeout(() => w.close(), 2800);
+    } else {
+      const extra = res.publishMsg ? escapeHtml(res.publishMsg) : 'La publicación no se completó — mira el aviso en la pestaña principal.';
+      ok.innerHTML = `<div class="ic">⚠</div>
+        <div style="font-size:15px;font-weight:900;color:#ff9460">NO se publicó — esto es lo que pasó</div>
+        <div style="font-size:12px;color:#e2e2ee;max-width:430px;line-height:1.7;text-align:left;background:rgba(255,120,80,.08);border:1px solid rgba(255,140,90,.3);border-radius:10px;padding:12px 14px">${extra}</div>
+        <div style="font-size:11px;color:#9a9ab0;max-width:430px;line-height:1.6">Tus cambios quedaron guardados en esta biblioteca — arregla lo de arriba y vuelve a pulsar el botón.</div>`;
+      doc.body.appendChild(ok);
+      ok.style.display = 'flex';
+      sv.disabled = false;
+      sv.textContent = '💾 Reintentar publicar';
+      setTimeout(() => { ok.style.display = 'none'; }, 10000);
+    }
   });
   ft.appendChild(gh); ft.appendChild(sv);
   doc.body.appendChild(ft);

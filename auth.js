@@ -1119,8 +1119,9 @@
       pubBtn.textContent = '⏳ Publicando…';
     }
     axToast('🌐 Publicando: trayendo el catálogo en vivo y firmando…');
+    let result = { ok: false, code: '??', msg: 'la publicación no se completó' };
     try {
-      await publishCatalogRun();
+      result = await publishCatalogRun();
     } finally {
       if (pubBtn) {
         pubBtn.disabled = false;
@@ -1129,11 +1130,12 @@
         pubBtn.textContent = pubLbl || '🌐 Publicar mi biblioteca para TODOS';
       }
     }
+    return result;
   }
 
   async function publishCatalogRun() {
-    if (!isAdmin()) return axToast('🔒 Solo el administrador publica el catálogo', true);
-    if (!API || !API.getState) return axToast('La app aún no está lista', true);
+    if (!isAdmin()) return { ok: false, code: 'ADMIN', msg: 'Solo el administrador publica el catálogo.' };
+    if (!API || !API.getState) return { ok: false, code: 'NOTREADY', msg: 'La app aún no está lista — recarga y reintenta.' };
     /* 🎬 PASO 1 — CATEGORIZAR: antes de publicar, toda película sin género
        recibe la suya (TMDB + respaldo del título). El catálogo sale con
        TODAS las películas clasificadas.                                      */
@@ -1166,7 +1168,7 @@
       const mal = payload.series.find(s => String(s.id).length > 160 || String(s.t || '').length > 300)
         || payload.series[0];
       axToast(`🚨 Publicación BLOQUEADA: «${String(mal.t || mal.id).slice(0, 50)}» tiene un dato inválido (id/título demasiado largo). Si saliera así, todos los visitantes rechazarían el catálogo completo. Corrige ese registro y vuelve a publicar.`, true);
-      return;
+      return { ok: false, code: 'VALID', msg: `«${String(mal.t || mal.id).slice(0, 50)}» tiene un dato inválido (id o título demasiado largo). Corrige ese registro y reintenta.` };
     }
 
     /* 🛡 CANDADO ANTI-VACIADO: si la web EN VIVO tenía mucho más contenido del
@@ -1181,7 +1183,7 @@
       const vanSeries = liveS > 20 && myS < liveS * 0.7;
       if (vanCanales || vanSeries) {
         axToast(`🚨 Publicación BLOQUEADA para no perder contenido: la web tiene ${liveS} series y ${liveCh} canales, pero tu paquete saldría con ${myS} series y ${myCh} canales. Tu copia local está incompleta → ${vanCanales && !vanSeries ? 'abre la pestaña 📡 TV y pulsa «🔄 Actualizar» para reconstruir los canales desde las listas guardadas, y vuelve a publicar.' : 'revisa tu biblioteca antes de publicar.'}`, true);
-        return;
+        return { ok: false, code: 'VACIO', msg: `tu copia local está incompleta (la web tiene ${liveS} series / ${liveCh} canales y tu paquete saldría con ${myS}/${myCh}) — ${vanCanales && !vanSeries ? 'abre la pestaña 📡 TV y pulsa «🔄 Actualizar», y vuelve a publicar' : 'revisa tu biblioteca antes de publicar'}` };
       }
     }
 
@@ -1199,13 +1201,14 @@
            TODOS los lectores rechacen el catálogo — bloqueamos y explicamos. */
         if (CONFIG.catalogPubKey && (await verifyCatalog({ ...payload })) !== 'ok') {
           axToast('🚨 Publicación BLOQUEADA: tu clave de firma de este dispositivo NO coincide con la clave pública de auth.js — si saliera así, ningún visitante recibiría el catálogo. Entra a Perfil → «🔐 Firma del catálogo»: importa tu clave privada original, o copia la pública de aquí y pégala en auth.js (o deja CONFIG.catalogPubKey vacío para publicar sin blindaje).', true);
-          return;
+          return { ok: false, code: 'SIGN', msg: 'la clave de firma de ESTA sesión (incógnito o dispositivo nuevo) no coincide con la clave pública de la web. Usa el navegador donde publicaste antes, o importa tu clave privada en Perfil → 🔐 Firma del catálogo.' };
         }
       }
     } catch (e) { console.warn('[xstream] publicación sin firma:', e); }
 
     /* ① PUBLICACIÓN AUTOMÁTICA A GITHUB — los lectores lo reciben solos */
     const token = ghToken() || ghAskToken();
+    let failResult = null;   /* resultado honesto si la publicación NO salió */
     if (token) {
       axToast('🌐 Publicando en GitHub… todos lo recibirán en ~1 minuto');
       /* ⚡ anti-choque de publicadores: si otro (tu otro PC, un moderador)
@@ -1238,12 +1241,14 @@
             : ''));
         /* 📢 Telegram: anuncia solo las novedades (nunca bloquea la publicación) */
         telegramAnnounce(payload).catch(e => console.warn('[telegram]', e));
-        return;
+        return { ok: true, code: 'OK', msg: `publicado: ${payload.n} entradas` };
       }
       axToast('⚠ No se pudo publicar en GitHub: ' + ((errFinal && errFinal.message) || errFinal) + '. Revisa tu token.', true);
-      /* continúa al respaldo local abajo */
+      /* el resultado final honesto se devuelve tras el respaldo de abajo */
+      failResult = { ok: false, code: 'GH', msg: 'no se pudo publicar en GitHub (' + ((errFinal && errFinal.message) || errFinal) + '). Revisa tu token — GitHub → Settings → Developer settings → Tokens (classic), scope «repo».' };
     } else {
       axToast('⚠ Sin token de GitHub: uso el respaldo con descarga', true);
+      failResult = { ok: false, code: 'TOKEN', msg: 'esta sesión no tiene el token de GitHub guardado (típico de incógnito o un navegador nuevo). Usa el navegador donde publicaste antes, o pega el token al publicar.' };
     }
 
     /* ② respaldo: guardar el archivo y subirlo a mano (mecanismo antiguo) */
@@ -1260,8 +1265,10 @@
         if (API.save) API.save();
         renderCatalogStatus();
         axToast('🌐 catalog.json guardado — súbelo al repo para que se vea');
-        return;
-      } catch (e) { if (e && e.name === 'AbortError') return; }
+        return { ok: false, code: 'LOCAL', msg: 'catalog.json quedó guardado en tu equipo — tienes que subirlo a mano al repo para que se publique. No salió solo.' };
+      } catch (e) {
+        if (e && e.name === 'AbortError') return (failResult || { ok: false, code: 'CANCEL', msg: 'publicación cancelada' });
+      }
     }
     const blob = new Blob([json], { type: 'application/json' });
     const a = document.createElement('a');
@@ -1270,6 +1277,7 @@
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
     axToast('⬇ catalog.json descargado — súbelo al repo para publicarlo');
+    return failResult || { ok: false, code: 'LOCAL', msg: 'catalog.json descargado — súbelo a mano al repo. No salió solo.' };
   }
 
   /* ═══ Publicación directa a GitHub (el catálogo llega a TODOS solo) ═══
