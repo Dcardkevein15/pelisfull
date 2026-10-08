@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791417652009,
+ "v": 1791419153479,
  "by": "MortosPr #2968",
- "at": "2026-10-08T00:00:52.009Z",
- "n": 5881,
+ "at": "2026-10-08T00:25:53.479Z",
+ "n": 5882,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -32991,7 +32991,8 @@
      "t": "En Busca del Valle Encantado 2 Aventuras en El Gran Valle 19",
      "url": "https://streamtape.com/e/6aBQ2ARl1Bf9Dkz",
      "season": 2,
-     "srcSeason": "mp-stape-root-6aBQ2ARl1Bf9Dkz"
+     "srcSeason": "mp-stape-root-6aBQ2ARl1Bf9Dkz",
+     "thumb": "https://thumb.tapecontent.net/thumb/6aBQ2ARl1Bf9Dkz/m1VyZG1bb8FbP4R.jpg"
     },
     {
      "n": 3,
@@ -33037,21 +33038,24 @@
      "t": "En Busca del Valle Encantado 10 El viaje de los Cuellilargos",
      "url": "https://streamtape.com/e/V8kXLlbQgphPW0",
      "season": 8,
-     "srcSeason": "mp-stape-root-V8kXLlbQgphPW0"
+     "srcSeason": "mp-stape-root-V8kXLlbQgphPW0",
+     "thumb": "https://thumb.tapecontent.net/thumb/V8kXLlbQgphPW0/46Pq3BYYryTrxq.jpg"
     },
     {
      "n": 9,
      "t": "En busca del valle encantado 9 Travesia en el oseano 2002",
      "url": "https://streamtape.com/e/d3LxYgaJBBikqW2",
      "season": 9,
-     "srcSeason": "mp-stape-root-d3LxYgaJBBikqW2"
+     "srcSeason": "mp-stape-root-d3LxYgaJBBikqW2",
+     "thumb": "https://thumb.tapecontent.net/thumb/d3LxYgaJBBikqW2/KGXqQpDkDLtAxl.jpg"
     },
     {
      "n": 10,
      "t": "En busca del valle encantado 14 Viaje de los valientes 2016",
      "url": "https://streamtape.com/e/gq2rW9Ba1duqeaB",
      "season": 10,
-     "srcSeason": "mp-stape-root-gq2rW9Ba1duqeaB"
+     "srcSeason": "mp-stape-root-gq2rW9Ba1duqeaB",
+     "thumb": "https://thumb.tapecontent.net/thumb/gq2rW9Ba1duqeaB/Ky9Abk4pBXS09Zd.jpg"
     }
    ]
   },
@@ -34691,7 +34695,8 @@
      "t": "23 Avengers Endgame",
      "url": "https://streamtape.com/e/jrrDYyz1latzAyz",
      "season": 2,
-     "srcSeason": "mp-stape-root-jrrDYyz1latzAyz"
+     "srcSeason": "mp-stape-root-jrrDYyz1latzAyz",
+     "thumb": "https://thumb.tapecontent.net/thumb/jrrDYyz1latzAyz/d7WxKyX0D8ukpy4.jpg"
     }
    ]
   },
@@ -45174,12 +45179,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1qdjnTS9x7wt5jPLr7m0qTZ8aHLnON",
-   "t": "Ga Hoole - La Leyenda De Los Guardianes (2010) Dvdrip [Aventura]",
+   "t": "Ga Hoole - La Leyenda De Los Guardianes",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1qdjnTS9x7wt5jPLr7m0qTZ8aHLnONadB&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/dsOfwuOYnXUzOORTwYr9aKiKqtL.jpg",
    "tags": [
     "Aventura"
    ],
@@ -45195,12 +45201,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1-s8nFGwp8gEpwfgwr3DftLXnsTmLD",
-   "t": "02 - Pinocho",
+   "t": "Pinocho disney",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1-s8nFGwp8gEpwfgwr3DftLXnsTmLDK_2&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/76MYNTMpbiZYqzNArPXmXnPsQce.jpg",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
    "at": 1791417610258,
    "episodes": [
     {
@@ -45212,12 +45223,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-189wk-2TYJxMTN_YI0HRQBAS3TIhbj",
-   "t": "Coyote vs Acme (2026)",
+   "t": "Coyote vs Acme",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=189wk-2TYJxMTN_YI0HRQBAS3TIhbj-hH&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/vWFz9spZFBkJvForuYrKK2ntOLB.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
    "at": 1791417612650,
    "episodes": [
     {
@@ -45229,12 +45245,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1UpeprPYJChte0SjvbWg8hIH3hf5Ql",
-   "t": "Spider-Man Un nuevo día (2026)",
+   "t": "Spider-Man Un nuevo día",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1UpeprPYJChte0SjvbWg8hIH3hf5QlQ0n&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/9g0sEFhmvmK4nGhXj8DHuv2noYI.jpg",
+   "tags": [
+    "Ciencia Ficción"
+   ],
+   "genre": "scifi",
    "at": 1791417615180,
    "episodes": [
     {
@@ -45251,7 +45272,9 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1OyfNV24aTui99FHn9QerZwGdJyEdOz5d&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/5HlLUsmsv60cZVTzVns9ICZD6zU.jpg",
+   "tags": [],
    "at": 1791417617693,
    "episodes": [
     {
@@ -45268,6 +45291,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1tdtIb-bdH_z5IvC3srq8Oa7smExnbI8i&sz=w1000",
    "tags": [
     "Documental"
@@ -45284,12 +45308,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1LuTTsf3XhGpG7ZHGPw3WQ2WcAkePC",
-   "t": "El Precio del Mañana",
+   "t": "In Time",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1LuTTsf3XhGpG7ZHGPw3WQ2WcAkePCpO6&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/2cX5gY6FFsJW6ZXi6PLB3zm0vHr.jpg",
    "tags": [
     "Documental"
    ],
@@ -45310,7 +45335,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1GbD5EXCVhcNMcprVTYEIZn8954Sdlr5_&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/la7nc6pG4vmPJEzl3gV08jboQWX.jpg",
    "tags": [
     "Acción"
    ],
@@ -45331,7 +45357,8 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=16jptnMbvtuP8ihu2NqHyYwS2M2HNfJTE&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/2rP8vjVp5nx4c9TxVW14jWlffW.jpg",
    "tags": [
     "Comedia"
    ],
@@ -45347,12 +45374,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1g-lyE7mHhpnzA-rCgjo191Tc4I2A-",
-   "t": "2017 - Máquina de guerra - lo de jose",
+   "t": "Máquina de guerra",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1g-lyE7mHhpnzA-rCgjo191Tc4I2A-oBp&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/5C18uOTbDZRvVIZcVRO747k2fUi.jpg",
    "tags": [
     "Guerra"
    ],
@@ -45368,12 +45396,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1gaZAdaNRt6SMlc9xTQVDjLjKkZ-1y",
-   "t": "Robocop 4 (2014)",
+   "t": "Robocop 4",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1gaZAdaNRt6SMlc9xTQVDjLjKkZ-1ypDR&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/8wQzAAMhO0kEhJMdkfsh7HKBO7P.jpg",
    "tags": [
     "Crimen"
    ],
@@ -45389,12 +45418,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-10R9Ehqo8_PFMHxj4eLLxXaE_IDhaR",
-   "t": "el cuervo español HD 360p",
+   "t": "el cuervo",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=10R9Ehqo8_PFMHxj4eLLxXaE_IDhaRImK&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/uUUx4kN6uCvXnjGWOv79gUBxdYE.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
    "at": 1791417635061,
    "episodes": [
     {
@@ -45406,12 +45440,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-13ufcKILV2BV3CJX_yLEMB2hBCJ_3r",
-   "t": "Bumblebee (2018)",
+   "t": "Bumblebee",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=13ufcKILV2BV3CJX_yLEMB2hBCJ_3rqEL&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/lOW8vBMJqWHWcMxHbigVAytqiBn.jpg",
    "tags": [
     "Acción"
    ],
@@ -45427,12 +45462,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1wQaDzJcn2qLPnkocTMVHqaSC98Fqn",
-   "t": "Telegram @Pelisdrive si tuv 30",
+   "t": "si tuviera 30",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1wQaDzJcn2qLPnkocTMVHqaSC98FqnbHZ&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/sgiY4CxDEFDcCfsLWLqLr4ezs6n.jpg",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
    "at": 1791417640309,
    "episodes": [
     {
@@ -45444,12 +45484,17 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1aVVC_04MNqYQHetjdRPALxVbKd-qB",
-   "t": "P ear l Har bor",
+   "t": "Pearl Harbor",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=1aVVC_04MNqYQHetjdRPALxVbKd-qB8-1&sz=w1000",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/ftkKVbk4sQEcekuaGJvpvXcNs32.jpg",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
    "at": 1791417642873,
    "episodes": [
     {
@@ -45600,6 +45645,27 @@
      "n": 1,
      "t": "23 Avengers Endgame",
      "url": "https://streamtape.com/e/jrrDYyz1latzAyz"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-17qUrrqyF_ognYJ_yzlmz2pyQlB9Ax",
+   "t": "Espias a escondidas",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=17qUrrqyF_ognYJ_yzlmz2pyQlB9AxZaL&sz=w1000",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791418691792,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/17qUrrqyF_ognYJ_yzlmz2pyQlB9AxZaL/view"
     }
    ]
   }
@@ -196280,6 +196346,186 @@
    "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d-s01-1080p-lat-ing-10bits-x265-/22",
    "t": "Marvels Agents Of S.H.I.E.L.D - S01 [1080p_Lat-Ing] [10Bits_x265] HEVC · E22",
    "at": 1791413562725
+  },
+  "6umjte": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/1",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E1",
+   "at": 1791417696977
+  },
+  "263vaz": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/2",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E2",
+   "at": 1791417696978
+  },
+  "u3nmqv": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/3",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E3",
+   "at": 1791417696978
+  },
+  "watwps": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/4",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E4",
+   "at": 1791417696978
+  },
+  "an9fpc": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/5",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E5",
+   "at": 1791417696978
+  },
+  "hn5a7g": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/6",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E6",
+   "at": 1791417696978
+  },
+  "vxz952": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/7",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E7",
+   "at": 1791417696978
+  },
+  "xmscp5": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/8",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E8",
+   "at": 1791417696978
+  },
+  "8ca7j3": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/9",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E9",
+   "at": 1791417696978
+  },
+  "9c28pd": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/10",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E10",
+   "at": 1791417696978
+  },
+  "t3wytw": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/11",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E11",
+   "at": 1791417696978
+  },
+  "j5bzme": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/12",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E12",
+   "at": 1791417696978
+  },
+  "dh8w9f": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/13",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E13",
+   "at": 1791417696978
+  },
+  "7udwzf": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/14",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E14",
+   "at": 1791417696978
+  },
+  "7nv4km": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/15",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E15",
+   "at": 1791417696978
+  },
+  "sn2ud2": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/16",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E16",
+   "at": 1791417696978
+  },
+  "vuathc": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/17",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E17",
+   "at": 1791417696978
+  },
+  "uez5np": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/18",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E18",
+   "at": 1791417696978
+  },
+  "gkz2pw": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/19",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E19",
+   "at": 1791417696978
+  },
+  "gs2m58": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/20",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E20",
+   "at": 1791417696978
+  },
+  "z68fp6": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/21",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E21",
+   "at": 1791417696978
+  },
+  "kb45qr": {
+   "dest": "#/anime/marvels-agents-of-s-h-i-e-l-d/22",
+   "t": "Marvels Agents Of S.H.I.E.L.D · E22",
+   "at": 1791417696978
+  },
+  "eenw98": {
+   "dest": "#/pelicula/ga-hoole-la-leyenda-de-los-guardianes-2010-dvdrip-aventura",
+   "t": "Ga Hoole - La Leyenda De Los Guardianes (2010) Dvdrip [Aventura]",
+   "at": 1791417696978
+  },
+  "zhe85z": {
+   "dest": "#/pelicula/02-pinocho",
+   "t": "02 - Pinocho",
+   "at": 1791417696978
+  },
+  "yzudau": {
+   "dest": "#/pelicula/coyote-vs-acme-2026",
+   "t": "Coyote vs Acme (2026)",
+   "at": 1791417696978
+  },
+  "s2k6vm": {
+   "dest": "#/pelicula/spider-man-un-nuevo-dia-2026",
+   "t": "Spider-Man Un nuevo día (2026)",
+   "at": 1791417696978
+  },
+  "t4ftap": {
+   "dest": "#/pelicula/el-padrino-1972",
+   "t": "El Padrino (1972)",
+   "at": 1791417696978
+  },
+  "95esbw": {
+   "dest": "#/pelicula/la-mujer-maravilla",
+   "t": "La Mujer Maravilla",
+   "at": 1791417696978
+  },
+  "m8pvba": {
+   "dest": "#/pelicula/el-precio-del-manana",
+   "t": "El Precio del Mañana",
+   "at": 1791417696978
+  },
+  "3q4x38": {
+   "dest": "#/pelicula/monster-hunter",
+   "t": "MONSTER HUNTER",
+   "at": 1791417696978
+  },
+  "fvhsy7": {
+   "dest": "#/pelicula/los-tres-chiflados",
+   "t": "Los Tres Chiflados",
+   "at": 1791417696978
+  },
+  "dze2u5": {
+   "dest": "#/pelicula/robocop-4-2014",
+   "t": "Robocop 4 (2014)",
+   "at": 1791417696978
+  },
+  "f4p9us": {
+   "dest": "#/pelicula/el-cuervo-espanol-hd-360p",
+   "t": "el cuervo español HD 360p",
+   "at": 1791417696978
+  },
+  "edrf67": {
+   "dest": "#/pelicula/bumblebee-2018",
+   "t": "Bumblebee (2018)",
+   "at": 1791417696978
+  },
+  "y653g3": {
+   "dest": "#/pelicula/telegram-pelisdrive-si-tuv-30",
+   "t": "Telegram @Pelisdrive si tuv 30",
+   "at": 1791417696978
+  },
+  "5mm9nz": {
+   "dest": "#/pelicula/p-ear-l-har-bor",
+   "t": "P ear l Har bor",
+   "at": 1791417696978
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -196293,5 +196539,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "ZTlaE0ttOP2qiZbyI6TPL4cxgobvaqW5YQpydoFpy4k81K+7B9NGTT/szSGBImT9HyfLRwGr8/zJBbh8hPPLPA=="
+ "sig": "SQ5uu4i28U/4PStPytgtJhdFtdlTEuKE/T6US2gJzwsefpzOG1pjehePteqR490XgQDeR34WqkwdSn0owAvttg=="
 }
