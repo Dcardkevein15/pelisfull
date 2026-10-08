@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791494273197,
+ "v": 1791496949441,
  "by": "Dcard #2968",
- "at": "2026-10-08T21:17:53.197Z",
- "n": 5998,
+ "at": "2026-10-08T22:02:29.441Z",
+ "n": 5997,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49873,13 +49873,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1-cbgXMGsex2n4UhV_2ab56GSgSock",
-   "t": "Arthur 1",
+   "t": "Arthur",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1-cbgXMGsex2n4UhV_2ab56GSgSock0n6&sz=w1000",
+   "poster": "https://image.tmdb.org/t/p/w500/q1DDwFuWeQlwR0lcjFiEsM8iRkd.jpg",
    "tags": [
     "Acción"
    ],
@@ -49917,13 +49917,13 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-172zGHGZFGXmhpNmOuJq5QrejZ-9tL",
-   "t": "Hotel transilvania tranformania",
+   "t": "Hotel transilvania",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=172zGHGZFGXmhpNmOuJq5QrejZ-9tLDts&sz=w1000",
+   "poster": "https://image.tmdb.org/t/p/w500/zvWlwBGQWuJ0wog65q1uS37BApC.jpg",
    "tags": [
     "Terror"
    ],
@@ -49978,28 +49978,6 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW/view"
-    }
-   ]
-  },
-  {
-   "id": "file-https-drive-google-com-file-d-19tTcpzDdhFo-ERyU277gP7FPVAdm4",
-   "t": "Video externo (renómbrame ✎)",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://image.tmdb.org/t/p/w500/kUEbVMrs80nWXtTA8tKd8jRwnIn.jpg",
-   "tags": [
-    "Terror"
-   ],
-   "genre": "terror",
-   "at": 1791488857692,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi/view"
     }
    ]
   }
@@ -110236,7 +110214,8 @@
   "ia-mentiras-verdaderas-1": 1791439838630,
   "ia-el-joven-manos-de-tijera-1990_202606": 1791440090267,
   "ia-ed-wood-1995-vhs": 1791440186466,
-  "file-https-archive-org-details-ed-wood-1994_20251029": 1791440290513
+  "file-https-archive-org-details-ed-wood-1994_20251029": 1791440290513,
+  "file-https-drive-google-com-file-d-19tTcpzDdhFo-ERyU277gP7FPVAdm4": 1791496575034
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -201798,5 +201777,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "KBypki/df2hzEbfBk5TjxF1qsLregUQ0PQPkyyS7Dc5m3MdHpRdPQg55LTmms251eWovGXHYFlwew2aLywbszg=="
+ "sig": "luMMW/ZotcdQs2CswSrYZmT9z9J7FAwZ8eL7b0ytt8u+yYVInqHQDng6LWcEmjCf4CF/OOcwBrWR9J68EUlW/g=="
 }
