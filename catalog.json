@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791491936940,
+ "v": 1791492098536,
  "by": "MortosPr #2968",
- "at": "2026-10-08T20:38:56.940Z",
+ "at": "2026-10-08T20:41:38.536Z",
  "n": 5998,
  "series": [
   {
@@ -35742,7 +35742,7 @@
    "g": 1,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://archive.org/services/img/TheReturnOfTheLivingDead",
+   "poster": "https://image.tmdb.org/t/p/w500/yZsQ2asRp8mwbGt4WnqnE59pfdT.jpg",
    "tags": [
     "Comedia"
    ],
@@ -45685,7 +45685,7 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
-   "t": "Escuadron Suicida",
+   "t": "E5CU4DR0N 5U1C1D4",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
@@ -49570,7 +49570,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA&sz=w1000",
+   "poster": "https://image.tmdb.org/t/p/w500/7Iqb3NQIm3DCMa4dOeuMQYeLHdF.jpg",
    "tags": [
     "Infantil",
     "Aventura"
@@ -49592,7 +49592,7 @@
    "g": 6,
    "kind": "pelicula",
    "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1&sz=w1000",
+   "poster": "https://image.tmdb.org/t/p/w500/ojvKem8WUzRK5PLvO7wTuAFinnz.jpg",
    "tags": [
     "Ciencia Ficción"
    ],
@@ -49695,7 +49695,7 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1K835Kw2vl_Crh8ud2S-uqKSRSbm8s",
-   "t": "a todos los chicos de los que me enamore",
+   "t": "a todos los",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
@@ -49783,7 +49783,7 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-19tTcpzDdhFo-ERyU277gP7FPVAdm4",
-   "t": "Nosotros",
+   "t": "Video externo (renómbrame ✎)",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
@@ -49849,7 +49849,7 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1-cbgXMGsex2n4UhV_2ab56GSgSock",
-   "t": "Arthur y los Minimoys",
+   "t": "Arthur 1",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
@@ -49915,7 +49915,7 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1x",
-   "t": "la sirenita",
+   "t": "la sirenita (1989)",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
@@ -49959,7 +49959,7 @@
   },
   {
    "id": "file-https-drive-google-com-file-d-172zGHGZFGXmhpNmOuJq5QrejZ-9tL",
-   "t": "Hotel Transylvania 4",
+   "t": "Hotel transilvania tranformania",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
@@ -201709,5 +201709,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "Vkl3Td+9n1If+UgJOB8B/f7v/hHdSEH8/lEtBoUJJsf0t7rm3hMYCn+TqgcKPH0ozGXvuBeiiLT7f6MGli24Zg=="
+ "sig": "PlLOVf9DD32X9RSY7MXmpAJzDZYxBhTB8/QZvat/N1rHHVmK0bCNPxSBfRPiMOMLtvs2UqyJxJyE3ijY2HnsSg=="
 }
