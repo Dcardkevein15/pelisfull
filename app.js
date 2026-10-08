@@ -5743,6 +5743,10 @@ async function processImportQueue() {
       /* instantánea ANTES: ids + firma (título|nº episodios) de cada serie */
       const beforeIds = new Set(state.series.map(s => s.id));
       const beforeSig = new Map(state.series.map(s => [s.id, s.t + '|' + s.episodes.length]));
+      /* limpiar el status del modal: un error VIEJO de otro intento no puede
+         contaminar la captura de este (las rutas stape/mega/directa no lo tocan) */
+      els.driveStatus.classList.remove('hidden', 'ok', 'err');
+      els.driveStatus.innerHTML = '';
       els.driveFolderUrl.value = next.url;
       await importFromUrl();
       /* diff DESPUÉS: series nuevas y series actualizadas */
@@ -5773,12 +5777,26 @@ async function processImportQueue() {
         next.status = 'done';
         next.name = updated.map(s => s.t).join(' · ');
       } else {
-        /* falló → ¿es un error PERMANENTE? (carpeta privada / Mega carpeta:
-           reintentar es inútil, NUNCA va a cambiar solo) → descartar YA  */
-        const st = els.driveStatus.classList.contains('err') ? (els.driveStatus.innerText || '').trim() : '';
-        /* la 1ª línea del mensaje es la clave del error (el texto largo de
-           saturación traía un título claro + consejos que tapaban la causa) */
+        /* capturar el error SOLO si el modal lo mostró como error real */
+        const stErr = els.driveStatus.classList.contains('err');
+        const st = stErr ? (els.driveStatus.innerText || '').trim() : '';
         const firstLine = st ? (st.split('\n')[0] || st).slice(0, 160) : '';
+        if (!stErr && !firstLine) {
+          /* ✅ SIN ERROR VISIBLE y sin cambios en la biblioteca = el archivo
+             YA ESTABA (un intento anterior lo creó) → éxito idempotente:
+             entregar la entrada existente a la revisión, NO un fallo       */
+          const link = detectLinkType(next.url);
+          const canon = link && link.type === 'drive-file' ? `https://drive.google.com/file/d/${link.id}/view`
+            : link && link.type === 'stape-file' ? `https://streamtape.com/e/${link.id}` : next.url;
+          const exist = state.series.find(s => (s.episodes || [])[0] && s.episodes[0].url === canon);
+          next.status = 'done';
+          next.name = exist ? exist.t : (next.name || 'Entrada ya existente');
+          next.payload = exist ? [JSON.parse(JSON.stringify(exist))] : null;
+          processedAny = true;
+          iqPersist();
+          await new Promise(r => setTimeout(r, 900));
+          continue;
+        }
         const raw = firstLine || 'no se pudo importar (¿enlace caído o carpeta privada?)';
         if (IQ_PERM_RE.test(raw)) {
           next.status = 'failed-final';
@@ -6042,6 +6060,9 @@ async function iqPollRemote() {
         continue;
       }
       if (lq.status === 'published') continue;
+      /* un «done» local con payload es la verdad más fuerte (la entrada ya
+         existe aquí): un remoto viejo no puede degradarlo a queued         */
+      if (lq.status === 'done' && (lq.payload || []).length) continue;
       if ((lq.status || '') !== (rq.status || '')) {
         lq.status = rq.status;
         lq.name = rq.name || lq.name;
@@ -6103,6 +6124,11 @@ function iqScheduleRetry() {
 function iqSanitize() {
   const now = Date.now();
   let changed = false;
+  /* 🧟 zombis «published» de la era v169 vuelven una y otra vez desde el
+     localStorage: fuera — lo publicado ya vive en el catálogo de la web  */
+  const before = importQueue.length;
+  importQueue = importQueue.filter(q => q.status !== 'published');
+  if (importQueue.length !== before) changed = true;
   for (const q of importQueue) {
     if (q.status === 'queued' && (q.nextRetryAt || 0) > now + IQ_RETRY_MS) {
       q.nextRetryAt = now + IQ_RETRY_MS;
