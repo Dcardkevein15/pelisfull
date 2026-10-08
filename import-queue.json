@@ -1,14 +1,14 @@
 {
  "v": 1,
- "at": 1791482392005,
+ "at": 1791482591128,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view",
    "type": "drive-file",
    "status": "done",
    "name": "Hop",
-   "error": "",
-   "attempts": 0,
+   "error": "no se pudo importar (¿enlace caído o carpeta privada?)",
+   "attempts": 14,
    "nextRetryAt": 1791482006694,
    "addedAt": 1791478190772,
    "payload": [
@@ -27,22 +27,23 @@
        "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view"
       }
      ],
-     "genre": "comedia",
+     "at": 1791478250041,
      "tags": [
       "Comedia"
      ],
+     "anime": false,
+     "genre": "comedia",
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view",
    "type": "drive-file",
    "status": "done",
    "name": "Pokemon - Detective Pikachu",
-   "error": "",
-   "attempts": 0,
+   "error": "no se pudo importar (¿enlace caído o carpeta privada?)",
+   "attempts": 12,
    "nextRetryAt": 1791482006694,
    "addedAt": 1791478190772,
    "payload": [
@@ -68,8 +69,7 @@
      ],
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
+   ]
   }
  ]
 }
