@@ -5392,8 +5392,12 @@ async function importFromUrl() {
    mismo) → SOLO al guardar se publica el catálogo.                     */
 const IQ_KEY = 'xstream-import-queue';
 const IQ_REMOTE_URL = 'https://raw.githubusercontent.com/Dcardkevein15/pelisfull/chat-data/import-queue.json';
-const IQ_MAX_ATTEMPTS = 6;
-const IQ_BACKOFF = [2 * 60e3, 5 * 60e3, 15 * 60e3, 60 * 60e3, 4 * 3600e3, 24 * 3600e3];
+const IQ_MAX_ATTEMPTS = 10;
+const IQ_RETRY_MS = 2 * 60e3;          /* SIEMPRE cada 2 minutos, sin backoff */
+/* errores PERMANENTES: no se arreglan solos → descartar YA, sin reintentar
+   (carpeta privada, carpetas de Mega). ⚠ «públicos» (lectores) NO matchea
+   porque el patrón exige la «A» final — la saturación sigue siendo reintentable. */
+const IQ_PERM_RE = /PÚBLICA|sea pública|carpetas de Mega|Mega cifra|no es pública/i;
 let importQueue = [];
 let importRunning = false;
 let iqBackground = false;   /* true mientras la cola trabaja: los import NO roban el foco */
@@ -5544,7 +5548,7 @@ function iqMonitorRow(q, runLive) {
     t.textContent = name ? name.slice(0, 70) : shortUrl;
     s.textContent = runLive
       ? '🔄 La nube lo está procesando ahora mismo…'
-      : 'En cola — la nube lo toma en la próxima pasada (cada 15 min)';
+      : 'En cola — la nube lo toma en la próxima pasada (cada 2 min)';
   } else {
     dotCls = ''; sCls = 'q';
     t.textContent = shortUrl;
@@ -5573,7 +5577,7 @@ function iqRenderMonitor(run) {
     else if (run && run.status === 'completed' && run.at && (Date.now() - run.at) < 20 * 60000) {
       st.className = 'cl-status wait';
       st.textContent = `✓ pasada hace ${Math.max(1, Math.round((Date.now() - run.at) / 60000))} min`;
-    } else { st.className = 'cl-status wait'; st.textContent = '⏱ próxima pasada ≤15 min'; }
+    } else { st.className = 'cl-status wait'; st.textContent = '⏱ próxima pasada ≤2 min'; }
   }
   const pend = importQueue.filter(q => q.status === 'queued').length;
   if (title) title.textContent = pend ? 'Procesando en la nube…' : 'Proceso terminado';
@@ -5611,11 +5615,13 @@ function iqOpenMonitor() {
 document.getElementById('clClose')?.addEventListener('click', () => {
   document.getElementById('modalCloud').classList.add('hidden');
   clearInterval(iqMonitorTimer);
+  renderQueuePill();   /* el pill vuelve justo al cerrar el monitor */
 });
 document.getElementById('modalCloud')?.addEventListener('click', ev => {
   if (ev.target.id === 'modalCloud') {
     ev.target.classList.add('hidden');
     clearInterval(iqMonitorTimer);
+    renderQueuePill();
   }
 });
 /* ⏳ pila flotante: el proceso de la nube SIEMPRE visible mientras trabaja.
@@ -5626,6 +5632,9 @@ function renderQueuePill() {
   const lbl = document.getElementById('iqLabel');
   const cnt = document.getElementById('iqCount');
   if (!pill || !lbl || !cnt) return;
+  /* mientras el MONITOR está abierto, el pill no aparece — es redundante */
+  const monOpen = !document.getElementById('modalCloud')?.classList.contains('hidden');
+  if (monOpen) { pill.classList.add('hidden'); return; }
   const pend = importQueue.filter(q => q.status === 'queued');
   if (!pend.length) {
     pill.classList.add('hidden');
@@ -5716,15 +5725,23 @@ async function processImportQueue() {
         next.status = 'done';
         next.name = updated.map(s => s.t).join(' · ');
       } else {
-        /* falló → reintento automático con backoff (o «failed-final» con explicación) */
-        next.attempts = (next.attempts || 0) + 1;
+        /* falló → ¿es un error PERMANENTE? (carpeta privada / Mega carpeta:
+           reintentar es inútil, NUNCA va a cambiar solo) → descartar YA  */
         const st = els.driveStatus.classList.contains('err') ? (els.driveStatus.innerText || '').trim() : '';
-        next.error = (st && st.length < 200) ? st : 'no se pudo importar (¿enlace caído o carpeta privada?)';
-        if (next.attempts >= IQ_MAX_ATTEMPTS) {
+        const raw = (st && st.length < 200) ? st : 'no se pudo importar (¿enlace caído o carpeta privada?)';
+        if (IQ_PERM_RE.test(raw)) {
           next.status = 'failed-final';
+          next.attempts = 1;
+          next.error = raw;
         } else {
-          next.status = 'queued';
-          next.nextRetryAt = Date.now() + IQ_BACKOFF[Math.min(next.attempts - 1, IQ_BACKOFF.length - 1)];
+          next.attempts = (next.attempts || 0) + 1;
+          next.error = raw;
+          if (next.attempts >= IQ_MAX_ATTEMPTS) {
+            next.status = 'failed-final';
+          } else {
+            next.status = 'queued';
+            next.nextRetryAt = Date.now() + IQ_RETRY_MS;
+          }
         }
       }
       processedAny = processedAny || next.status === 'done' || next.status === 'dup';
@@ -5833,7 +5850,7 @@ function showImportDone() {
   if (cloud) {
     const pend = importQueue.filter(q => q.status === 'queued').length;
     cloud.textContent = pend
-      ? `☁ La nube sigue con ${pend} enlace${pend > 1 ? 's' : ''} — reintentos automáticos cada 15 min, no hagas nada`
+      ? `☁ La nube sigue con ${pend} enlace${pend > 1 ? 's' : ''} — reintentos automáticos cada 2 min (hasta ${IQ_MAX_ATTEMPTS} veces), no hagas nada`
       : '☁ Nube al día — todo lo posible ya está dentro';
   }
   /* ── detalle enlace por enlace ── */

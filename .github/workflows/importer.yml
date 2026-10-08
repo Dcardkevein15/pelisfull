@@ -8,7 +8,7 @@ name: X-STREAM Importador en la nube
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '*/15 * * * *'   # auto-reintento cada 15 min si queda algo pendiente
+    - cron: '*/2 * * * *'   # reintentos cada 2 minutos (sale al instante si no hay nada)
 
 permissions:
   contents: write

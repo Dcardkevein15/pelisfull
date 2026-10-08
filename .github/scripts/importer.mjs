@@ -18,8 +18,11 @@ const REPO = process.env.GH_REPO || 'Dcardkevein15/pelisfull';
 const BRANCH = 'chat-data';
 const TOKEN = process.env.GH_TOKEN;
 const TMDB_KEY = '03e66e3a69ab27b33648570df1c843df';
-const IQ_BACKOFF = [2 * 60e3, 5 * 60e3, 15 * 60e3, 60 * 60e3, 4 * 3600e3, 24 * 3600e3];
-const IQ_MAX_ATTEMPTS = 6;
+const IQ_RETRY_MS = 2 * 60e3;   /* SIEMPRE cada 2 minutos, sin backoff */
+const IQ_MAX_ATTEMPTS = 10;
+/* prefijo para errores PERMANENTES: reintentar no los arregla (carpeta
+   privada, enlace borrado, carpeta vacía, carpeta de Mega) → descartar YA */
+const PERM = '[PERMANENTE] ';
 const MAX_ITEMS_PER_RUN = 25;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -149,8 +152,26 @@ async function collectDriveDeep(folderId, depth = 0, seen = new Set(), budget = 
   try {
     result = parseFolderHtml(await fetchText(`https://drive.google.com/embeddedfolderview?id=${folderId}#list`));
   } catch (e) {
+    /* 404/403 = enlace roto o privado de raíz → PERMANENTE, no reintentar */
+    if (depth === 0 && (e.code === 404 || e.code === 403)) {
+      throw new Error(PERM + 'el enlace está caído o fue borrado (HTTP ' + e.code + ') — pega el enlace correcto');
+    }
     if (depth === 0) throw e;   /* la raíz fallando = item fallido; subcarpetas fallidas se saltan */
     return [];
+  }
+  /* 🚫 carpeta PRIVADA: Google responde con página de acceso/login → PERMANENTE */
+  if (depth === 0 && !result.files.length && !result.subfolders.length) {
+    /* distinguir por el título: carpetas privadas muestran «Sign in»/«Solicitar acceso»
+       o sin título; una carpeta pública VACÍA mantiene su nombre real              */
+    const html2 = await fetchText(`https://drive.google.com/embeddedfolderview?id=${folderId}#list`).catch(() => '');
+    if (/Sign in|Iniciar sesión|accounts\.google\.com|Solicitar acceso|Request access|no tiene acceso|you do not have access/i.test(html2)) {
+      throw new Error(PERM + 'la carpeta NO es pública — en Drive: clic derecho → Compartir → «Cualquiera con el enlace». Reintentar no lo arregla.');
+    }
+    if (!result.folderName && !html2.includes('entry-')) {
+      throw new Error(PERM + 'la carpeta NO es pública — en Drive: clic derecho → Compartir → «Cualquiera con el enlace»');
+    }
+    /* carpeta pública pero VACÍA (sin videos ni subcarpetas) → también permanente */
+    throw new Error(PERM + 'la carpeta está vacía — no tiene videos ni subcarpetas que importar');
   }
   budget.n += result.files.length;
   const groups = [{ name: result.folderName, files: result.files, folderId }];
@@ -265,7 +286,7 @@ async function processItem(item) {
       }
       for (const it of items) created.push(toSeriesObj(it, 'drv-' + grp.folderId, 'Google Drive'));
     }
-    if (!any) throw new Error('no se encontraron videos — la carpeta está vacía o no es pública (Compartir → Cualquiera con el enlace)');
+    if (!any) throw new Error(PERM + 'la carpeta y sus subcarpetas no contienen videos — nada que importar');
   } else if (link.type === 'drive-file') {
     const name = await getDriveFileName(link.id);
     if (!name) throw new Error('no se pudo leer el nombre del archivo — ¿es público? (Compartir → Cualquiera con el enlace)');
@@ -293,7 +314,7 @@ async function processItem(item) {
     const gen = detectMovieGenre(s.t); if (gen) applyMovieGenre(s, gen);
     created.push(s);
   } else if (link.type === 'mega-folder') {
-    throw new Error('carpetas de Mega no se pueden leer (Mega las cifra dentro del enlace) — pega los archivos uno a uno o usa Drive');
+    throw new Error(PERM + 'carpetas de Mega no se pueden leer (Mega las cifra dentro del enlace) — pega los archivos uno a uno o usa Drive');
   }
 
   if (!created.length) throw new Error('no se construyó ninguna entrada');
@@ -357,17 +378,25 @@ async function main() {
       nDone++;
       console.log(`  ✅ ${String(item.name).slice(0, 60)}`);
     } catch (e) {
-      item.attempts = (item.attempts || 0) + 1;
       item.error = String(e.message || e);
-      if (item.attempts >= IQ_MAX_ATTEMPTS) {
+      /* 🚫 error PERMANENTE → descartar YA: reintentar no lo va a arreglar */
+      if (item.error.startsWith(PERM) || item.error.startsWith('[PERMANENTE]')) {
         item.status = 'failed-final';
+        item.attempts = (item.attempts || 0) + 1;
         nFail++;
-        console.log(`  ⛔ ${item.url.slice(0, 50)} → ${item.error}`);
+        console.log(`  ⛔ ${item.url.slice(0, 50)} → DESCARTADO (permanente): ${item.error.replace(PERM, '')}`);
       } else {
-        item.status = 'queued';
-        item.nextRetryAt = Date.now() + IQ_BACKOFF[Math.min(item.attempts - 1, IQ_BACKOFF.length - 1)];
-        nFail++;
-        console.log(`  ⏳ ${item.url.slice(0, 50)} → reintento ${item.attempts}/${IQ_MAX_ATTEMPTS} (${item.error})`);
+        item.attempts = (item.attempts || 0) + 1;
+        if (item.attempts >= IQ_MAX_ATTEMPTS) {
+          item.status = 'failed-final';
+          nFail++;
+          console.log(`  ⛔ ${item.url.slice(0, 50)} → ${item.error}`);
+        } else {
+          item.status = 'queued';
+          item.nextRetryAt = Date.now() + IQ_RETRY_MS;
+          nFail++;
+          console.log(`  ⏳ ${item.url.slice(0, 50)} → reintento ${item.attempts}/${IQ_MAX_ATTEMPTS} en 2 min (${item.error})`);
+        }
       }
     }
     await sleep(500);
