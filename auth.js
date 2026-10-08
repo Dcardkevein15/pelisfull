@@ -1207,7 +1207,7 @@
     } catch (e) { console.warn('[xstream] publicación sin firma:', e); }
 
     /* ① PUBLICACIÓN AUTOMÁTICA A GITHUB — los lectores lo reciben solos */
-    const token = ghToken() || ghAskToken();
+    const token = ghToken() || (await ghAskToken());
     let failResult = null;   /* resultado honesto si la publicación NO salió */
     if (token) {
       axToast('🌐 Publicando en GitHub… todos lo recibirán en ~1 minuto');
@@ -1283,24 +1283,98 @@
   /* ═══ Publicación directa a GitHub (el catálogo llega a TODOS solo) ═══
      El token nunca se incluye en el catálogo ni se sube al repo:
      vive solo en el localStorage del dispositivo del administrador. */
-  function ghToken() {
-    try { return localStorage.getItem(CONFIG.ghTokenKey) || ''; } catch (e) { return ''; }
+  /* ═══ BÓVEDA DEL TOKEN — 3 capas para que NUNCA se te olvide ═══
+     1. localStorage (persistente en navegadores normales)
+     2. espejo IndexedDB (Safari privado/incógnito donde localStorage explota)
+     3. memoria viva (mínimo: sobrevive todo lo que dure la ventana)
+     + VALIDACIÓN al pegarlo: un token muerto se detecta AL INSTANTE en vez
+       de guardarse, fallar con 401, borrarse en secreto y volver a pedirlo. */
+  let _tokMem = '';
+  let _idbPromise = null;
+  function tokIdb() {
+    if (_idbPromise) return _idbPromise;
+    _idbPromise = new Promise(res => {
+      try {
+        const rq = indexedDB.open('xstream-vault', 1);
+        rq.onupgradeneeded = () => { try { rq.result.createObjectStore('kv'); } catch (e) { } };
+        rq.onsuccess = () => res(rq.result);
+        rq.onerror = () => res(null);
+      } catch (e) { res(null); }
+    });
+    return _idbPromise;
   }
-  function ghAskToken(force) {
-    const cur = ghToken();
+  async function tokIdbSave(v) {
+    const db = await tokIdb(); if (!db) return;
+    try {
+      const tx = db.transaction('kv', 'readwrite');
+      if (v) tx.objectStore('kv').put(v, CONFIG.ghTokenKey);
+      else tx.objectStore('kv').delete(CONFIG.ghTokenKey);
+    } catch (e) { }
+  }
+  function tokIdbLoad() {
+    return tokIdb().then(db => {
+      if (!db) return '';
+      return new Promise(res => {
+        try {
+          const rq = db.transaction('kv').objectStore('kv').get(CONFIG.ghTokenKey);
+          rq.onsuccess = () => res(rq.result || '');
+          rq.onerror = () => res('');
+        } catch (e) { res(''); }
+      });
+    }).catch(() => '');
+  }
+  /* guardar en TODAS las capas; devuelve true si quedó en un almacen PERSISTENTE */
+  function tokSave(v) {
+    _tokMem = v;
+    tokIdbSave(v);
+    try {
+      if (v) localStorage.setItem(CONFIG.ghTokenKey, v); else localStorage.removeItem(CONFIG.ghTokenKey);
+      return true;
+    } catch (e) { return false; }   /* Safari privado: solo quedó IDB + memoria */
+  }
+  function tokLoad() {
+    if (_tokMem) return _tokMem;
+    try { return localStorage.getItem(CONFIG.ghTokenKey) || _tokMem; } catch (e) { return _tokMem; }
+  }
+  /* al arrancar: hidratar memoria desde el espejo (si localStorage está bloqueado) */
+  tokIdbLoad().then(v => { if (v && !tokLoad()) _tokMem = v; });
+
+  function ghToken() { return tokLoad(); }
+  async function ghAskToken(force) {
+    let cur = tokLoad();
     if (cur && !force) return cur;
-    const t = window.prompt(
-      '🔑 TOKEN DE GITHUB (classic, con permiso "repo")\n\n' +
-      'Se guarda SOLO en este dispositivo — nunca se sube al repo ni va en el catálogo.\n' +
-      'GitHub → Settings → Developer settings → Tokens (classic) → Generate new token → marca el scope "repo".'
-      + (cur ? `\n\nActual: …${cur.slice(-6)} (borra el campo para eliminarlo)` : ''),
-      ''
-    );
-    if (t === null) return cur;
-    const v = t.trim();
-    if (!v) { try { localStorage.removeItem(CONFIG.ghTokenKey); } catch (e) { } return ''; }
-    try { localStorage.setItem(CONFIG.ghTokenKey, v); } catch (e) { }
-    return v;
+    for (let intento = 0; intento < 3; intento++) {
+      const t = window.prompt(
+        '🔑 TOKEN DE GITHUB (classic, con permiso "repo")\n\n' +
+        'Se guarda SOLO en este dispositivo — nunca se sube al repo ni va en el catálogo.\n' +
+        'GitHub → Settings → Developer settings → Tokens (classic) → Generate new token → marca el scope "repo".'
+        + (intento ? '\n\n⚠ ESE token no funcionó (inválido o expirado) — revísalo o genera uno nuevo.' : '')
+        + (cur ? `\n\nActual: …${cur.slice(-6)} (borra el campo para eliminarlo)` : ''),
+        ''
+      );
+      if (t === null) return tokLoad();
+      const v = t.trim();
+      if (!v) { tokSave(''); return ''; }
+      /* ✔ validar ANTES de guardar: respuesta inmediata, no un 401 fantasma después */
+      let ok = null;
+      try {
+        const r = await fetch('https://api.github.com/repos/' + CONFIG.ghRepo, { headers: { Authorization: 'token ' + v } });
+        ok = r.status;
+      } catch (e) { ok = 0; }
+      if (ok === 200 || ok === 0) {
+        const persisted = tokSave(v);
+        axToast(persisted
+          ? '✅ Token guardado en este dispositivo — no te lo volveré a pedir'
+          : '⚠ Modo privado: el token vivirá solo mientras esta ventana siga abierta — en tu navegador normal queda para siempre', !persisted);
+        return v;
+      }
+      if (ok === 401 || ok === 403) { cur = ''; continue; }   /* malo: re-pedir con aviso */
+      /* otro código (rate limit, etc.): guardarlo igual */
+      tokSave(v);
+      return v;
+    }
+    axToast('⚠ Token no válido tras 3 intentos — GitHub → Settings → Developer settings → Tokens (classic) → genera uno NUEVO con scope «repo»', true);
+    return tokLoad();
   }
   async function ghPublishCatalog(payload, token) {
     const base = `https://api.github.com/repos/${CONFIG.ghRepo}/contents/catalog.json`;
@@ -1322,9 +1396,9 @@
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       /* 🔑 401 = el token guardado en ESTE dispositivo expiró o lo revocaste:
-         se borra y el próximo «Publicar» pedirá uno nuevo (pegas el vigente) */
+          se borra de TODAS las capas y el próximo «Publicar» pedirá uno nuevo */
       if (res.status === 401) {
-        try { localStorage.removeItem(CONFIG.ghTokenKey); } catch (e2) { }
+        tokSave('');
         const t = new Error('Tu token de GitHub expiró o ya no es válido — se borró de este equipo. Vuelve a dar «Publicar» y pega el token nuevo (GitHub → Settings → Developer settings → Tokens).');
         t.code = 'TOKEN';
         throw t;
