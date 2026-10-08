@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791480469830,
+ "at": 1791480557826,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view",
@@ -27,11 +27,11 @@
   {
    "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "Hop",
    "error": "no se pudo importar (¿enlace caído o carpeta privada?)",
-   "attempts": 9,
-   "nextRetryAt": 1791480493825,
+   "attempts": 11,
+   "nextRetryAt": 1791480315936,
    "addedAt": 1791478190772,
    "payload": [
     {
