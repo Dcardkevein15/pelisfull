@@ -2442,12 +2442,15 @@
 
   /* estado del sha del catálogo (evita martillar la API en cada re-chequeo) */
   let _catSha = null, _catShaAt = 0;
+  let _catEtag = null;    /* latido condicional: 304 = gratis, 0 descargas */
   async function fetchCatalogBySha() {
     const now = Date.now();
     if (!_catSha || now - _catShaAt > 90e3) {
       const cr = await fetch(`https://api.github.com/repos/${CONFIG.ghRepo}/commits?path=catalog.json&sha=${CONFIG.ghBranch}&per_page=1&t=${now}`, { cache: 'no-store' });
       if (cr.status === 403 || cr.status === 429) return null;   /* rate-limit → respaldo */
       if (cr.ok) {
+        const et = cr.headers.get('ETag');
+        if (et) _catEtag = et;   /* reutilizado por el latido: siguientes checks = 304 */
         const commits = await cr.json().catch(() => null);
         const sha = commits && commits[0] && commits[0].sha;
         if (sha) { _catSha = sha; _catShaAt = now; }
@@ -2697,13 +2700,68 @@
     /* al entrar: SIEMPRE se sincroniza con la última publicación del admin —
        con aviso sutil de que quedó hecho */
     syncCatalog({ toast: true }).catch(() => { });
-    /* re-chequeo automático: al volver a la pestaña, al recuperar red, y cada 2 min.
-       Si no hay nada nuevo, el usuario no percibe absolutamente nada. */
+    /* 📡 ALARMA de novedades — sistema INTELIGENTE, sin martillar servidores:
+       · pestaña OCULTA → cero peticiones (nada pasa en tu espalda)
+       · pestaña visible → latido CONDICIONAL (If-None-Match): mientras no
+         haya nada nuevo GitHub responde 304, que es GRATIS (~100 bytes,
+         no consume rate-limit ni descarga NADA). Solo cuando el catálogo
+         cambia de verdad se descarga y aplica — y ahí suena la alarma.   */
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) syncCatalog().catch(() => { });
+      if (!document.hidden) catalogHeartbeat().catch(() => { });
     });
-    window.addEventListener('online', () => syncCatalog().catch(() => { }));
-    setInterval(() => syncCatalog().catch(() => { }), 2 * 60 * 1000);
+    window.addEventListener('online', () => catalogHeartbeat().catch(() => { }));
+    setInterval(() => catalogHeartbeat().catch(() => { }), 90e3);
+  }
+
+  /* ═══ 📡 LATIDO CONDICIONAL del catálogo (la «alarma») ═══
+     ETag + If-None-Match: mientras el catálogo publicado no cambió, GitHub
+     responde 304 sin cuerpo — 0 descargas, 0 consumo de rate-limit.
+     Si cambió (el admin publicó): descarga por @sha inmutable, aplica y
+     dispara toast + ping suave + aviso a las demás pestañas del navegador. */
+  let _catBC = null;
+  try {
+    if ('BroadcastChannel' in window) {
+      _catBC = new BroadcastChannel('xstream-catalog');
+      _catBC.onmessage = ev => { if (ev.data === 'new') syncCatalog().catch(() => { }); };
+    }
+  } catch (e) { }
+  async function catalogHeartbeat() {
+    if (document.hidden) return;                 /* oculto: ni una petición */
+    try {
+      const h = { Accept: 'application/vnd.github+json' };
+      if (_catEtag) h['If-None-Match'] = _catEtag;
+      const r = await fetch(`https://api.github.com/repos/${CONFIG.ghRepo}/commits?path=catalog.json&sha=${CONFIG.ghBranch}&per_page=1&t=${Date.now()}`,
+        { headers: h, cache: 'no-store' });
+      if (r.status === 304) return;               /* nada nuevo: latido gratis */
+      if (!r.ok) return;                          /* rate-limit o red: silencio */
+      const et = r.headers.get('ETag');
+      if (et) _catEtag = et;
+      const commits = await r.json().catch(() => null);
+      const sha = commits && commits[0] && commits[0].sha;
+      if (!sha || sha === _catSha) return;
+      /* ¡NOVEDAD REAL! descargar + aplicar YA, y disparar la alarma */
+      _catSha = sha; _catShaAt = Date.now();
+      await syncCatalog();
+      const st = API.getState();
+      const v = (st.catalogMeta && st.catalogMeta.v) || 0;
+      const t = v ? new Date(v).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+      axToast(`📡 ¡Novedades en el catálogo! Aplicada la última versión${t ? ` (${t})` : ''}`);
+      pingNewCatalog();
+      try { if (_catBC) _catBC.postMessage('new'); } catch (e) { }
+    } catch (e) { /* latidos fallan en silencio: el próximo reintenta */ }
+  }
+  /* 🔔 ping suave (solo si el usuario ya interactuó: los navegadores lo exigen) */
+  function pingNewCatalog() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (!ctx || ctx.state !== 'running') return;
+      const osc = ctx.createOscillator(), g = ctx.createGain();
+      osc.frequency.value = 880; osc.type = 'sine';
+      g.gain.setValueAtTime(0.08, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+      osc.connect(g); g.connect(ctx.destination);
+      osc.start(); osc.stop(ctx.currentTime + 0.4);
+    } catch (e) { }
   }
 
   /* firma un texto suelto con tu clave del dispositivo (prueba de admin
