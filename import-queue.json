@@ -1,15 +1,15 @@
 {
  "v": 1,
- "at": 1791499875403,
+ "at": 1791499881913,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
    "type": "drive-file",
    "status": "dup",
    "name": "Video externo (renómbrame ✎)",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 3,
-   "nextRetryAt": 1791488959248,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": null
   },
@@ -45,162 +45,6 @@
    "nextRetryAt": 0,
    "addedAt": 1791498782068,
    "payload": null
-  },
-  {
-   "url": "https://drive.google.com/file/d/1_3ZEVqVGYySqwnwcsunVnHwp8YCw-Jqd/view?usp=sharing",
-   "type": "drive-file",
-   "status": "done",
-   "name": "ser padre",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791498782068,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1_3ZEVqVGYySqwnwcsunVnHwp8YCw-",
-     "t": "ser padre",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1_3ZEVqVGYySqwnwcsunVnHwp8YCw-Jqd&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1_3ZEVqVGYySqwnwcsunVnHwp8YCw-Jqd/view"
-      }
-     ],
-     "at": 1791499268253
-    }
-   ]
-  },
-  {
-   "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view?usp=sharing",
-   "type": "drive-file",
-   "status": "done",
-   "name": "E5CU4DR0N 5U1C1D4",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791498782068,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
-     "t": "E5CU4DR0N 5U1C1D4",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://image.tmdb.org/t/p/w500/fPJWlhXA2VXf4MlQ3JenVsz1iba.jpg",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view"
-      }
-     ],
-     "at": 1791420644655,
-     "posterTried": true,
-     "tags": [
-      "Acción"
-     ],
-     "anime": false,
-     "genre": "accion",
-     "genreTmdbDone": true
-    }
-   ]
-  },
-  {
-   "url": "https://drive.google.com/file/d/1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq6Ah/view?usp=sharing",
-   "type": "drive-file",
-   "status": "done",
-   "name": "La Guerra Del Mañana",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791498782068,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq",
-     "t": "La Guerra Del Mañana",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq6Ah&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq6Ah/view"
-      }
-     ],
-     "genre": "guerra",
-     "tags": [
-      "Guerra"
-     ],
-     "at": 1791499547583
-    }
-   ]
-  },
-  {
-   "url": "https://drive.google.com/file/d/1HqpaRLrCbgoM2UcsFnBZk9h7FbBwLHIN/view?usp=sharing",
-   "type": "drive-file",
-   "status": "done",
-   "name": "El bueno, el Bart y el Loki",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791498782068,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1HqpaRLrCbgoM2UcsFnBZk9h7FbBwL",
-     "t": "El bueno, el Bart y el Loki",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1HqpaRLrCbgoM2UcsFnBZk9h7FbBwLHIN&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1HqpaRLrCbgoM2UcsFnBZk9h7FbBwLHIN/view"
-      }
-     ],
-     "at": 1791499829904
-    }
-   ]
-  },
-  {
-   "url": "https://drive.google.com/file/d/10BaGGyArGJbYBz27V-0s_QqWYBrc7hXN/view?usp=sharing",
-   "type": "drive-file",
-   "status": "done",
-   "name": "Un hombre lobo americano en Londres -1",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791498782068,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-10BaGGyArGJbYBz27V-0s_QqWYBrc7",
-     "t": "Un hombre lobo americano en Londres -1",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=10BaGGyArGJbYBz27V-0s_QqWYBrc7hXN&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/10BaGGyArGJbYBz27V-0s_QqWYBrc7hXN/view"
-      }
-     ],
-     "at": 1791499874346
-    }
-   ]
   }
  ]
 }
