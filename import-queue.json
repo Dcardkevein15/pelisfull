@@ -1,15 +1,15 @@
 {
  "v": 1,
- "at": 1791499254525,
+ "at": 1791499705397,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
    "type": "drive-file",
    "status": "dup",
    "name": "Video externo (renómbrame ✎)",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 3,
-   "nextRetryAt": 1791488959248,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": null
   },
@@ -36,6 +36,866 @@
    "status": "failed-final"
   },
   {
+   "url": "https://drive.google.com/file/d/1kHJ0aEsuEst6nsp0ghvGk6BtkAUzj62Y/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Hombres de Negro 1",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1kHJ0aEsuEst6nsp0ghvGk6BtkAUzj",
+     "t": "Hombres de Negro 1",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1kHJ0aEsuEst6nsp0ghvGk6BtkAUzj62Y&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1kHJ0aEsuEst6nsp0ghvGk6BtkAUzj62Y/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1HlAZ5SYiRtMadhZERbYDqn2aG9NqXCkI/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "sangre sudor y gloria",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1HlAZ5SYiRtMadhZERbYDqn2aG9NqX",
+     "t": "sangre sudor y gloria",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1HlAZ5SYiRtMadhZERbYDqn2aG9NqXCkI&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1HlAZ5SYiRtMadhZERbYDqn2aG9NqXCkI/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/105CPi5TmP2q0jCrEM_9yh5nsco8rFS22/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Batman: El largo halloween, parte 1 (2021)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-105CPi5TmP2q0jCrEM_9yh5nsco8rF",
+     "t": "Batman: El largo halloween, parte 1 (2021)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=105CPi5TmP2q0jCrEM_9yh5nsco8rFS22&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/105CPi5TmP2q0jCrEM_9yh5nsco8rFS22/view"
+      }
+     ],
+     "tags": [
+      "Suspenso"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/116_1wM1JemwitObEzToqoTJ8hS4h0Z9H/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Batman: El largo halloween, parte 2 (2021)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-116_1wM1JemwitObEzToqoTJ8hS4h0",
+     "t": "Batman: El largo halloween, parte 2 (2021)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=116_1wM1JemwitObEzToqoTJ8hS4h0Z9H&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/116_1wM1JemwitObEzToqoTJ8hS4h0Z9H/view"
+      }
+     ],
+     "tags": [
+      "Suspenso"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/10x7kFdYVxJfvb7t_Np42AUGZIVQcL6p1/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "injustice",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10x7kFdYVxJfvb7t_Np42AUGZIVQcL",
+     "t": "injustice",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10x7kFdYVxJfvb7t_Np42AUGZIVQcL6p1&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10x7kFdYVxJfvb7t_Np42AUGZIVQcL6p1/view"
+      }
+     ],
+     "genre": "scifi",
+     "tags": [
+      "Ciencia Ficción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-5rIpOxlEQtI_DKUtyW7UPVKKHOcldvn/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "resident evil",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-5rIpOxlEQtI_DKUtyW7UPVKKHOcl",
+     "t": "resident evil",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-5rIpOxlEQtI_DKUtyW7UPVKKHOcldvn&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-5rIpOxlEQtI_DKUtyW7UPVKKHOcldvn/view"
+      }
+     ],
+     "genre": "terror",
+     "tags": [
+      "Terror"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/108-UDPUwrREHW7GH9dO52L-c6yXNvnqR/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "bebe jefazo",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-108-UDPUwrREHW7GH9dO52L-c6yXNv",
+     "t": "bebe jefazo",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=108-UDPUwrREHW7GH9dO52L-c6yXNvnqR&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/108-UDPUwrREHW7GH9dO52L-c6yXNvnqR/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1brjqwg-qH4f7yYL7LMk0iHfeqqBCfLZP/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "El stand de los besos 3",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1brjqwg-qH4f7yYL7LMk0iHfeqqBCf",
+     "t": "El stand de los besos 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1brjqwg-qH4f7yYL7LMk0iHfeqqBCfLZP&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1brjqwg-qH4f7yYL7LMk0iHfeqqBCfLZP/view"
+      }
+     ],
+     "genre": "romance",
+     "tags": [
+      "Romance"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/12gR9Tl9Zf_KCjsDuZf06T5FQsUBGKLpY/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Liga de la Justicia Oscura Guerra Apokolips (2020)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12gR9Tl9Zf_KCjsDuZf06T5FQsUBGK",
+     "t": "Liga de la Justicia Oscura Guerra Apokolips (2020)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12gR9Tl9Zf_KCjsDuZf06T5FQsUBGKLpY&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12gR9Tl9Zf_KCjsDuZf06T5FQsUBGKLpY/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Guerra",
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/10pba7OUMjT3BYF_Vd5WP3PEjjA811KoR/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Wonder Woman Linaje (2019)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10pba7OUMjT3BYF_Vd5WP3PEjjA811",
+     "t": "Wonder Woman Linaje (2019)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10pba7OUMjT3BYF_Vd5WP3PEjjA811KoR&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10pba7OUMjT3BYF_Vd5WP3PEjjA811KoR/view"
+      }
+     ],
+     "tags": [
+      "Ciencia Ficción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/10kAAkZfAsXMgpwsAqbWgWBoB3IFbX28Y/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Batman Hush (2019)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10kAAkZfAsXMgpwsAqbWgWBoB3IFbX",
+     "t": "Batman Hush (2019)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10kAAkZfAsXMgpwsAqbWgWBoB3IFbX28Y&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10kAAkZfAsXMgpwsAqbWgWBoB3IFbX28Y/view"
+      }
+     ],
+     "tags": [
+      "Acción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/10UukDeuBcomr1l6wAq4TyV2k8HsBBU7C/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "La Muerte De Superman Parte 2 El Reinado De Los Superhombres (2019)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10UukDeuBcomr1l6wAq4TyV2k8HsBB",
+     "t": "La Muerte De Superman Parte 2 El Reinado De Los Superhombres (2019)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10UukDeuBcomr1l6wAq4TyV2k8HsBBU7C&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10UukDeuBcomr1l6wAq4TyV2k8HsBBU7C/view"
+      }
+     ],
+     "genre": "scifi",
+     "tags": [
+      "Ciencia Ficción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1l9cY4QvfyhE_05jm9yM57gO_pSIgTtKX/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Constantine-Ciudad-de-Demonios",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1l9cY4QvfyhE_05jm9yM57gO_pSIgT",
+     "t": "Constantine-Ciudad-de-Demonios",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1l9cY4QvfyhE_05jm9yM57gO_pSIgTtKX&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1l9cY4QvfyhE_05jm9yM57gO_pSIgTtKX/view"
+      }
+     ],
+     "genre": "fantasia",
+     "tags": [
+      "Fantasía"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/10PxF1bo8GlsB3c_Dj41qF-UlKr3HOz-D/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "La muerte de Superman (2018)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10PxF1bo8GlsB3c_Dj41qF-UlKr3HO",
+     "t": "La muerte de Superman (2018)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10PxF1bo8GlsB3c_Dj41qF-UlKr3HOz-D&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10PxF1bo8GlsB3c_Dj41qF-UlKr3HOz-D/view"
+      }
+     ],
+     "tags": [
+      "Ciencia Ficción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/10N_ZsoKzqQgYvDd3880aAa2pHlaviLmC/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Escuadrón Suicida Consecuencias infernales (2018)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10N_ZsoKzqQgYvDd3880aAa2pHlavi",
+     "t": "Escuadrón Suicida Consecuencias infernales (2018)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10N_ZsoKzqQgYvDd3880aAa2pHlaviLmC&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10N_ZsoKzqQgYvDd3880aAa2pHlaviLmC/view"
+      }
+     ],
+     "genre": "terror",
+     "tags": [
+      "Terror"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/10K_5u3w42SLRs1hx-u54AblphZ79WOMh/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Jóvenes titanes el contrato de Judas (2017)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10K_5u3w42SLRs1hx-u54AblphZ79W",
+     "t": "Jóvenes titanes el contrato de Judas (2017)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10K_5u3w42SLRs1hx-u54AblphZ79WOMh&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10K_5u3w42SLRs1hx-u54AblphZ79WOMh/view"
+      }
+     ],
+     "tags": [
+      "Ciencia Ficción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1_uPEwwzZuVhhdvsR9Ov0R2pmBUQC1xSa/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "La-Liga-de-la-Justicia-Oscura",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1_uPEwwzZuVhhdvsR9Ov0R2pmBUQC1",
+     "t": "La-Liga-de-la-Justicia-Oscura",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1_uPEwwzZuVhhdvsR9Ov0R2pmBUQC1xSa&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1_uPEwwzZuVhhdvsR9Ov0R2pmBUQC1xSa/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1JQ6EaossQy6l3dRVBE55L8nQDZLqWQNs/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "LJ vs J TT",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1JQ6EaossQy6l3dRVBE55L8nQDZLqW",
+     "t": "LJ vs J TT",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1JQ6EaossQy6l3dRVBE55L8nQDZLqWQNs&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1JQ6EaossQy6l3dRVBE55L8nQDZLqWQNs/view"
+      }
+     ],
+     "tags": [
+      "Ciencia Ficción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-yCrs0K7b5513dS_rHIUlAuUO-5SK-9A/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "366924@ Batman-Mala-sangre",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-yCrs0K7b5513dS_rHIUlAuUO-5SK",
+     "t": "366924@ Batman-Mala-sangre",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-yCrs0K7b5513dS_rHIUlAuUO-5SK-9A&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-yCrs0K7b5513dS_rHIUlAuUO-5SK-9A/view"
+      }
+     ],
+     "tags": [
+      "Ciencia Ficción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-ytv4uNm5qWBODVBCJk4ZxpH2oBR3q9N/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "321528@ Batman-vs-Robin",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-ytv4uNm5qWBODVBCJk4ZxpH2oBR3",
+     "t": "321528@ Batman-vs-Robin",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-ytv4uNm5qWBODVBCJk4ZxpH2oBR3q9N&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-ytv4uNm5qWBODVBCJk4ZxpH2oBR3q9N/view"
+      }
+     ],
+     "tags": [
+      "Crimen"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/108tbVyyVwkDCZ-p_0_4ElJhPaRndcvDM/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "La Liga de la Justicia El trono de Atlantis (2015)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-108tbVyyVwkDCZ-p_0_4ElJhPaRndc",
+     "t": "La Liga de la Justicia El trono de Atlantis (2015)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=108tbVyyVwkDCZ-p_0_4ElJhPaRndcvDM&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/108tbVyyVwkDCZ-p_0_4ElJhPaRndcvDM/view"
+      }
+     ],
+     "genre": "scifi",
+     "tags": [
+      "Ciencia Ficción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/104GZ5fYGhorozMJuRdquccp9Oftg9Svm/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "El hijo de Batman (2014)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-104GZ5fYGhorozMJuRdquccp9Oftg9",
+     "t": "El hijo de Batman (2014)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=104GZ5fYGhorozMJuRdquccp9Oftg9Svm&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/104GZ5fYGhorozMJuRdquccp9Oftg9Svm/view"
+      }
+     ],
+     "tags": [
+      "Acción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1kRDNopLsbNdqchX1p1eJcFQ99P_hz13Q/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "La-Liga-de-la-Justicia-Guerra",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1kRDNopLsbNdqchX1p1eJcFQ99P_hz",
+     "t": "La-Liga-de-la-Justicia-Guerra",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1kRDNopLsbNdqchX1p1eJcFQ99P_hz13Q&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1kRDNopLsbNdqchX1p1eJcFQ99P_hz13Q/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Guerra",
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1SbI7kbn0LoMowYV8oSqkvgZwHAuHrHfA/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "La-Liga-de-la-Justicia-La-paradoja-del-t",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1SbI7kbn0LoMowYV8oSqkvgZwHAuHr",
+     "t": "La-Liga-de-la-Justicia-La-paradoja-del-t",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1SbI7kbn0LoMowYV8oSqkvgZwHAuHrHfA&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1SbI7kbn0LoMowYV8oSqkvgZwHAuHrHfA/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1yNbpF_M2Q7GOzqrxQAOqIf4YR1PD4rqW/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "hasta que el cuerpo aguante",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1yNbpF_M2Q7GOzqrxQAOqIf4YR1PD4",
+     "t": "hasta que el cuerpo aguante",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1yNbpF_M2Q7GOzqrxQAOqIf4YR1PD4rqW&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1yNbpF_M2Q7GOzqrxQAOqIf4YR1PD4rqW/view"
+      }
+     ],
+     "genre": "documental",
+     "tags": [
+      "Documental"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1NIYIkSv2VaZRRHsOsMNfwWiRkwd5MNp9/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Video externo (renómbrame ✎)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791498782068,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1NIYIkSv2VaZRRHsOsMNfwWiRkwd5M",
+     "t": "Video externo (renómbrame ✎)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1NIYIkSv2VaZRRHsOsMNfwWiRkwd5MNp9&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1NIYIkSv2VaZRRHsOsMNfwWiRkwd5MNp9/view"
+      }
+     ],
+     "at": 1791499133291
+    }
+   ]
+  },
+  {
    "url": "https://drive.google.com/file/d/1QAzafcc7EVwZidY9cHSDszX0Ss27bDTm/view?usp=sharing",
    "type": "drive-file",
    "status": "dup",
@@ -49,57 +909,156 @@
   {
    "url": "https://drive.google.com/file/d/1_3ZEVqVGYySqwnwcsunVnHwp8YCw-Jqd/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "ser padre",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791498782068,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1_3ZEVqVGYySqwnwcsunVnHwp8YCw-",
+     "t": "ser padre",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1_3ZEVqVGYySqwnwcsunVnHwp8YCw-Jqd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1_3ZEVqVGYySqwnwcsunVnHwp8YCw-Jqd/view"
+      }
+     ],
+     "at": 1791499522621
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "E5CU4DR0N 5U1C1D4",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791498782068,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
+     "t": "E5CU4DR0N 5U1C1D4",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "anime": false,
+     "poster": "https://drive.google.com/thumbnail?id=1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q&sz=w1000",
+     "tags": [
+      "Acción"
+     ],
+     "genre": "accion",
+     "at": 1791420644655,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view"
+      }
+     ]
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq6Ah/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "La Guerra Del Mañana",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791498782068,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq",
+     "t": "La Guerra Del Mañana",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq6Ah&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1hjBvXP50fxqrEfq6wOUY4ZWi7fQlq6Ah/view"
+      }
+     ],
+     "genre": "guerra",
+     "tags": [
+      "Guerra"
+     ],
+     "at": 1791499566262
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1HqpaRLrCbgoM2UcsFnBZk9h7FbBwLHIN/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El bueno, el Bart y el Loki",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791498782068,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1HqpaRLrCbgoM2UcsFnBZk9h7FbBwL",
+     "t": "El bueno, el Bart y el Loki",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1HqpaRLrCbgoM2UcsFnBZk9h7FbBwLHIN&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1HqpaRLrCbgoM2UcsFnBZk9h7FbBwLHIN/view"
+      }
+     ],
+     "at": 1791499583511
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/10BaGGyArGJbYBz27V-0s_QqWYBrc7hXN/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Un hombre lobo americano en Londres -1",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791498782068,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10BaGGyArGJbYBz27V-0s_QqWYBrc7",
+     "t": "Un hombre lobo americano en Londres -1",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10BaGGyArGJbYBz27V-0s_QqWYBrc7hXN&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10BaGGyArGJbYBz27V-0s_QqWYBrc7hXN/view"
+      }
+     ],
+     "at": 1791499704388
+    }
+   ]
   }
  ]
 }
