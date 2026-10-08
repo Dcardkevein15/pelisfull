@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791478190773,
+ "at": 1791478217174,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view",
@@ -27,24 +27,71 @@
   {
    "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Hop",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791478190772,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1H8FwTjXRGJ54Ma06j81pfYmHtexXG",
+     "t": "Hop",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Pokemon - Detective Pikachu",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791478190772,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a",
+     "t": "Pokemon - Detective Pikachu",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Suspenso",
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   }
  ]
 }
