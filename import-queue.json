@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791480557826,
+ "at": 1791480713828,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view",
@@ -30,7 +30,7 @@
    "status": "failed-final",
    "name": "Hop",
    "error": "no se pudo importar (¿enlace caído o carpeta privada?)",
-   "attempts": 11,
+   "attempts": 12,
    "nextRetryAt": 1791480315936,
    "addedAt": 1791478190772,
    "payload": [
@@ -56,11 +56,11 @@
   {
    "url": "https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "Pokemon - Detective Pikachu",
    "error": "no se pudo importar (¿enlace caído o carpeta privada?)",
-   "attempts": 8,
-   "nextRetryAt": 1791480588367,
+   "attempts": 10,
+   "nextRetryAt": 1791480710961,
    "addedAt": 1791478190772,
    "payload": [
     {
