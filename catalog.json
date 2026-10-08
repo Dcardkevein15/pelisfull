@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791474604966,
+ "v": 1791476317388,
  "by": "Dcard #2968",
- "at": "2026-10-08T15:50:04.966Z",
- "n": 5980,
+ "at": "2026-10-08T16:18:37.388Z",
+ "n": 5981,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49595,6 +49595,27 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1gvLDUriZa1jqSOzGEXsSUD5fEuWqK",
+   "t": "E T - El Extraterrestre",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1&sz=w1000",
+   "tags": [
+    "Ciencia Ficción"
+   ],
+   "genre": "scifi",
+   "at": 1791476214378,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1/view"
     }
    ]
   }
@@ -201203,5 +201224,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "wY9l9Jd5YTTzsGcrgw063P84By3XM9gp6YPYi5UyLb60mQgjO4L9x5CrfQYlq9yUKHklRvXMSS6ikE+7Fzl65g=="
+ "sig": "CiWfTvDrzKCDLmPVckfPtO6l2VaE4f0bHlmTcjbTdLwvGvljUOqlV5l9nuUyjy0MgmgjK7kA5XFc3pS/h025Ag=="
 }
