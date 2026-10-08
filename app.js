@@ -5503,6 +5503,7 @@ function findSagaRoot(title) {
    Lee el estado REAL del workflow de GitHub Actions + la cola y pinta
    exactamente por dónde va. Se refresca solo cada 8s mientras está abierto. */
 let iqMonitorTimer = null;
+let iqDispatchedAt = 0;   /* momento del último dispatch: ventana «arrancando» */
 async function iqCloudRunStatus() {
   try {
     const r = await fetch('https://api.github.com/repos/Dcardkevein15/pelisfull/actions/workflows/importer.yml/runs?per_page=1',
@@ -5515,7 +5516,9 @@ async function iqCloudRunStatus() {
   } catch (e) { return null; }
 }
 
-function iqMonitorRow(q, runLive) {
+function iqMonitorRow(q, run) {
+  const runLive = !!(run && run.status === 'in_progress');
+  const runQueued = !!(run && run.status === 'queued');
   const row = document.createElement('div');
   row.className = 'cl-row';
   const name = q.name || q.url || '';
@@ -5580,7 +5583,9 @@ function iqMonitorRow(q, runLive) {
     t.textContent = name ? name.slice(0, 70) : shortUrl;
     s.textContent = runLive
       ? '🔄 La nube lo está procesando ahora mismo…'
-      : 'En cola — la nube lo toma en la próxima pasada (cada 2 min)';
+      : runQueued
+        ? '🚀 Run de GitHub arrancando — en segundos lo procesa'
+        : 'En cola — la próxima pasada automática lo toma (cada 2 min)';
   } else {
     dotCls = ''; sCls = 'q';
     t.textContent = shortUrl;
@@ -5603,12 +5608,13 @@ function iqRenderMonitor(run) {
   const clean = document.getElementById('clClean');
   if (!list || !barFill) return;
   const runLive = !!(run && run.status === 'in_progress');
+  const justDispatched = (Date.now() - iqDispatchedAt) < 90000;
   /* botón 🧹 visible solo si hay descartados que limpiar */
   if (clean) clean.classList.toggle('hidden', !importQueue.some(q => q.status === 'failed-final'));
   /* encabezado según estado real del workflow */
   if (st) {
     if (runLive) { st.className = 'cl-status live'; st.textContent = '● GitHub activo ahora'; }
-    else if (run && run.status === 'queued') { st.className = 'cl-status wait'; st.textContent = '· run en cola'; }
+    else if ((run && run.status === 'queued') || justDispatched) { st.className = 'cl-status live'; st.textContent = '🚀 Arrancando…'; }
     else if (run && run.status === 'completed' && run.at && (Date.now() - run.at) < 20 * 60000) {
       st.className = 'cl-status wait';
       st.textContent = `✓ pasada hace ${Math.max(1, Math.round((Date.now() - run.at) / 60000))} min`;
@@ -5627,7 +5633,7 @@ function iqRenderMonitor(run) {
   if (pct) pct.textContent = `${resolved}/${total} · ${p}%`;
   /* filas */
   list.innerHTML = '';
-  for (const q of importQueue) list.appendChild(iqMonitorRow(q, runLive));
+  for (const q of importQueue) list.appendChild(iqMonitorRow(q, run));
   list.scrollTop = list.scrollHeight;
 }
 
@@ -5645,7 +5651,7 @@ async function iqRetryOne(q) {
   iqPersist();
   await iqSyncRemote();
   const disp = await iqDispatchCloud();
-  if (disp.ok) { iqCloudActive = true; toast('☁ Reintentando en la nube — el enlace ahora ya puede ser leído'); }
+  if (disp.ok) { iqCloudActive = true; iqDispatchedAt = Date.now(); toast('☁ Reintentando en la nube — el enlace ahora ya puede ser leído'); }
   else { toast('🔁 Reintentando localmente'); processImportQueue(); }
   renderQueuePill();
   iqMonitorRefresh();
@@ -6029,6 +6035,7 @@ els.confirmDrive.addEventListener('click', async () => {
     const disp = await iqDispatchCloud();
     if (disp.ok) {
       iqCloudActive = true;
+      iqDispatchedAt = Date.now();
       toast(`☁ ${valid.length} enlace${valid.length > 1 ? 's' : ''} importándose EN LA NUBE — puedes APAGAR el celular y descansar tranquilo`);
       renderQueuePill();
       iqOpenMonitor();   /* 🖥 ver el proceso en vivo desde el primer segundo */

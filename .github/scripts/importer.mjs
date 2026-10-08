@@ -339,11 +339,27 @@ async function processItem(item) {
 }
 
 /* ═══════════ GitHub: leer y escribir la cola ═══════════ */
+/* leer SIEMPRE fresco por la API (raw.githubusercontent.com sirve CACHE CDN
+   hasta ~5 min → el primer run tras el dispatch podría leer la cola VIEJA
+   y no ver los enlaces nuevos: por eso «me toca esperar los 2 minutos»). */
 async function ghFetchQueue() {
-  const r = await fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/import-queue.json?t=${Date.now()}`);
+  const headers = { Authorization: 'Bearer ' + TOKEN, Accept: 'application/vnd.github+json' };
+  /* ① contents API: contenido inline (archivos < 1 MB, el caso normal) */
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/import-queue.json?ref=${BRANCH}`, { headers });
   if (r.status === 404) return [];
   if (!r.ok) throw new Error('leer cola: HTTP ' + r.status);
-  const j = await r.json();
+  const meta = await r.json();
+  let txt = '';
+  if (meta.content) {
+    txt = Buffer.from(meta.content.replace(/\s/g, ''), 'base64').toString('utf8');
+  } else {
+    /* ② archivo grande (>1 MB): blob API — también siempre fresco */
+    const rb = await fetch(`https://api.github.com/repos/${REPO}/git/blobs/${meta.sha}`, { headers });
+    if (!rb.ok) throw new Error('leer blob: HTTP ' + rb.status);
+    const blob = await rb.json();
+    txt = Buffer.from(blob.content.replace(/\s/g, ''), 'base64').toString('utf8');
+  }
+  const j = JSON.parse(txt);
   return (j && j.queue) || [];
 }
 async function ghWriteQueue(queue) {
