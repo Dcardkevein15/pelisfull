@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791419153479,
+ "v": 1791421436948,
  "by": "MortosPr #2968",
- "at": "2026-10-08T00:25:53.479Z",
- "n": 5882,
+ "at": "2026-10-08T01:03:56.948Z",
+ "n": 5894,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -45655,7 +45655,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
-   "poster": "https://drive.google.com/thumbnail?id=17qUrrqyF_ognYJ_yzlmz2pyQlB9AxZaL&sz=w1000",
+   "poster": "https://image.tmdb.org/t/p/w500/j2xcicPNXzNex47EYOfw45Dl1o0.jpg",
    "tags": [
     "Acción"
    ],
@@ -45666,6 +45666,242 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/17qUrrqyF_ognYJ_yzlmz2pyQlB9AxZaL/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-8Mcge-jGzUhotLHpddEPIQ4rFqIW",
+   "t": "arthur 2",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H&sz=w1000",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791420636357,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3",
+   "t": "arthur 3",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9&sz=w1000",
+   "tags": [
+    "Aventura"
+   ],
+   "genre": "aventura",
+   "at": 1791420640770,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
+   "t": "E5CU4DR0N 5U1C1D4",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q&sz=w1000",
+   "at": 1791420644655,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-_4U5TmGYXxSZApNVe3aYryPHl3tr",
+   "t": "la sirenita 2 regreso al mar (2000)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs&sz=w1000",
+   "at": 1791420943251,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1-N4EbZyX5sft47izD-vjQoAbSk9oS",
+   "t": "el origen de la sirenita (2008)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u&sz=w1000",
+   "at": 1791420960899,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-17pOT828OddAZOTlMYlEpSBNsIsRU7",
+   "t": "Jurassic World: el reino caído",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=17pOT828OddAZOTlMYlEpSBNsIsRU71r6&sz=w1000",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791420981484,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/17pOT828OddAZOTlMYlEpSBNsIsRU71r6/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-17bMiwZKIU0AlmO3Ed-j_FuiiEnbJa",
+   "t": "Inframundo 4",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63&sz=w1000",
+   "tags": [
+    "Fantasía"
+   ],
+   "genre": "fantasia",
+   "at": 1791420985327,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-141xUZN-m7Dv1tkx5foknrsyjh8ROY",
+   "t": "harry potter 20° aniversario",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ&sz=w1000",
+   "tags": [
+    "Documental"
+   ],
+   "genre": "documental",
+   "at": 1791421221135,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-140FaEXAENyFIvbKN5_xORkORXEcxv",
+   "t": "Erase una vez en hollywood",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=140FaEXAENyFIvbKN5_xORkORXEcxvPQm&sz=w1000",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791421224318,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/140FaEXAENyFIvbKN5_xORkORXEcxvPQm/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-12paturmR6xXcliyd3xo1DgJikPzww",
+   "t": "operacion feliz navidad la estafa de los duendes",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=12paturmR6xXcliyd3xo1DgJikPzwwx_Y&sz=w1000",
+   "tags": [
+    "Musical"
+   ],
+   "genre": "musical",
+   "at": 1791421227107,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/12paturmR6xXcliyd3xo1DgJikPzwwx_Y/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-12ljVZO85Ee03-4u9jjuA8OJKA57ND",
+   "t": "no mires arriba (2021)",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O&sz=w1000",
+   "at": 1791421230355,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-12eJYVRi1jVwpUCu8XKwZOK1EioTsq",
+   "t": "clifford el gran perro rojo",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L&sz=w1000",
+   "tags": [
+    "Infantil"
+   ],
+   "genre": "infantil",
+   "at": 1791421336473,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view"
     }
    ]
   }
@@ -196526,6 +196762,11 @@
    "dest": "#/pelicula/p-ear-l-har-bor",
    "t": "P ear l Har bor",
    "at": 1791417696978
+  },
+  "3s7gzp": {
+   "dest": "#/pelicula/pinocho-disney",
+   "t": "Pinocho disney",
+   "at": 1791420090812
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -196539,5 +196780,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "SQ5uu4i28U/4PStPytgtJhdFtdlTEuKE/T6US2gJzwsefpzOG1pjehePteqR490XgQDeR34WqkwdSn0owAvttg=="
+ "sig": "QJRGfq9ZS34i6M8e3yFH+6wRTss7K2UKjqVWL4JRpcY6+PLNhzTqLQj/AJD+QLhcVy/vxZftXhZztz2pFQr73w=="
 }
