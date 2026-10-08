@@ -1855,9 +1855,46 @@
     }
     const zone = bd.querySelector('#axPublishZone');
     if (isAdmin()) {
+      const tok = ghToken();
       zone.innerHTML = `<button class="btn btn-acid" id="axPublish">🌐 Publicar mi biblioteca para TODOS</button>
-        <p class="ax-note">Genera <b>catalog.json</b> con tus series y películas (sin tus datos personales). Guárdalo junto a <b>index.html</b> y todo visitante lo recibirá automáticamente al abrir la web.</p>`;
+        <div class="ax-sec-t" style="margin-top:14px">🔑 Token de GitHub — para publicar el catálogo</div>
+        <div class="ax-restore" style="flex-direction:column;align-items:stretch;gap:6px">
+          <input id="axGhToken" type="password" placeholder="ghp_… (classic, con permiso «repo»)" spellcheck="false" autocomplete="off" value="${axEsc(tok)}">
+          <p class="ax-note" id="axGhTokStatus">${tok
+            ? `✅ Token guardado en este dispositivo (…${tok.slice(-6)}) — se usa solo para publicar, nunca sale de aquí.`
+            : 'Pega aquí tu token — se guarda en este dispositivo para siempre y es lo que uso para publicar. GitHub → Settings → Developer settings → Tokens (classic) → scope «repo».'}</p>
+        </div>
+        <div class="modal-actions" style="justify-content:flex-start">
+          <button class="btn btn-mini" id="axGhTokSave">💾 Guardar token</button>
+          <button class="btn btn-mini" id="axGhTokTest">✔ Probar token</button>
+        </div>
+        <p class="ax-note">Genera <b>catalog.json</b> con tus series y películas (sin tus datos personales). Todo visitante lo recibirá automáticamente al abrir la web.</p>`;
       zone.querySelector('#axPublish').addEventListener('click', publishCatalog);
+      const tokIn = zone.querySelector('#axGhToken');
+      const tokSt = zone.querySelector('#axGhTokStatus');
+      const tokValidate = async v => {
+        if (!v) return { ok: true, msg: 'Token vacío — se quitó de este dispositivo.' };
+        try {
+          const r = await fetch('https://api.github.com/repos/' + CONFIG.ghRepo, { headers: { Authorization: 'token ' + v } });
+          if (r.ok) return { ok: true, msg: `✅ Token VÁLIDO — guardado (…${v.slice(-6)}). Publicarás sin que te lo vuelva a pedir.` };
+          if (r.status === 401 || r.status === 403) return { ok: false, msg: `⚠ Ese token NO funcionó (HTTP ${r.status}): expiró o es incorrecto. GitHub → Settings → Developer settings → Tokens → genera uno NUEVO con scope «repo».` };
+          return { ok: true, msg: `Token guardado (…${v.slice(-6)}) — no pude verificarlo ahora (HTTP ${r.status}), se usará igual.` };
+        } catch (e) { return { ok: true, msg: `Token guardado (…${v.slice(-6)}) — sin red para verificarlo ahora, se usará igual.` }; }
+      };
+      zone.querySelector('#axGhTokSave').addEventListener('click', async () => {
+        const v = tokIn.value.trim();
+        const persisted = tokSave(v);
+        const res = await tokValidate(v);
+        tokSt.textContent = res.msg + (persisted || !v ? '' : ' · ⚠ modo privado: vivirá solo mientras esta ventana siga abierta');
+        axToast(v ? (res.ok ? '🔑 Token guardado' : '⚠ Token con problemas — mira el detalle') : '🔑 Token eliminado de este dispositivo', !res.ok && !!v);
+      });
+      zone.querySelector('#axGhTokTest').addEventListener('click', async () => {
+        const v = tokIn.value.trim();
+        if (!v) { tokSt.textContent = 'Pega primero el token en la caja de arriba.'; return; }
+        tokSt.textContent = '⏳ Verificando contra GitHub…';
+        const res = await tokValidate(v);
+        tokSt.textContent = res.msg;
+      });
       renderSigZone(bd).catch(() => { });
     } else {
       zone.innerHTML = '';
