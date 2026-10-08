@@ -3443,11 +3443,116 @@ body.chat-full .cmu-list{max-height:44vh}
 .import-detect .id-chip.ok{color:var(--acid);border-color:rgba(216,255,62,.3)}
 .import-detect .id-chip.err{color:#ff5c5c;border-color:rgba(255,92,92,.3)}
 
-/* ⏳ pila flotante de importación en curso */
+/* ═══════════ 🎉 MODAL IMPORTACIÓN COMPLETA — resumen visual ═══════════ */
+.modal-done{width:min(580px,94vw);max-height:90vh;overflow-y:auto;text-align:left;padding:0 0 18px}
+.id-hero{
+  padding:26px 24px 18px;text-align:center;border-radius:14px 14px 0 0;
+  background:radial-gradient(ellipse at 50% -20%,rgba(216,255,62,.16),transparent 65%);
+  border-bottom:1px solid var(--line);
+}
+.id-hero-icon{font-size:56px;animation:idPop .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes idPop{from{transform:scale(0);opacity:0}}
+.id-hero h3{font-size:21px;margin-top:6px;letter-spacing:.3px}
+.id-hero-sub{font-size:13px;color:#d5d5e4;margin-top:8px;line-height:1.6}
+.id-chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:12px}
+.id-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  font:800 11px 'JetBrains Mono';padding:5px 12px;border-radius:999px;
+  border:1px solid transparent;
+}
+.id-chip.ok{color:#8aff8a;background:rgba(80,220,80,.1);border-color:rgba(80,220,80,.35)}
+.id-chip.dup{color:#a8a8c0;background:rgba(160,160,190,.08);border-color:rgba(160,160,190,.3)}
+.id-chip.saga{color:#7ec8ff;background:rgba(90,170,255,.1);border-color:rgba(90,170,255,.35)}
+.id-chip.retry{color:#ffc46b;background:rgba(255,170,60,.1);border-color:rgba(255,170,60,.35)}
+.id-chip.fail{color:#ff8a8a;background:rgba(255,80,80,.1);border-color:rgba(255,80,80,.35)}
+.id-cloud{
+  margin:12px 18px 0;padding:9px 14px;border-radius:10px;font:600 11px 'JetBrains Mono';
+  color:#7ec8ff;background:rgba(90,170,255,.07);border:1px solid rgba(90,170,255,.22);
+  display:flex;align-items:center;gap:8px;
+}
+.id-cloud:empty{display:none}
+.id-list{margin:12px 18px;padding:6px 12px;max-height:230px;overflow-y:auto;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
+.id-list:empty{display:none}
+.id-row{
+  display:flex;align-items:flex-start;gap:10px;padding:9px 6px;
+  border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap;
+}
+.id-row:last-child{border-bottom:none}
+.id-row .idr-ic{font-size:15px;flex-shrink:0;line-height:1.3}
+.id-row .idr-name{flex:1;min-width:0;font-size:13px;font-weight:700;color:#fff;word-break:break-word;line-height:1.4}
+.id-row .idr-badge{
+  flex-shrink:0;font:800 9.5px 'JetBrains Mono';letter-spacing:.4px;
+  padding:3px 10px;border-radius:999px;align-self:center;
+}
+.idr-badge.ok{color:#8aff8a;background:rgba(80,220,80,.1)}
+.idr-badge.retry{color:#ffc46b;background:rgba(255,170,60,.1)}
+.idr-badge.fail{color:#ff8a8a;background:rgba(255,80,80,.12)}
+.idr-badge.dup{color:#a8a8c0;background:rgba(160,160,190,.1)}
+.idr-why{
+  flex-basis:100%;font-size:11.5px;line-height:1.6;color:#ffb896;
+  padding:7px 10px;margin-top:4px;border-radius:8px;
+  background:rgba(255,120,80,.06);border-left:3px solid rgba(255,140,90,.5);
+}
+.idr-why b{color:#ffd6c2}
+.id-know{margin:4px 18px 12px;padding:14px 16px;border-radius:12px;background:rgba(216,255,62,.05);border:1px solid rgba(216,255,62,.22)}
+.id-know-title{font-size:12.5px;font-weight:900;color:var(--acid);margin-bottom:8px;letter-spacing:.3px}
+.id-know ol{margin:0;padding-left:20px;font-size:12px;line-height:1.8;color:#e2e2ee}
+.id-know li b{color:#fff}
+.modal-done .modal-actions{padding:0 18px}
+
+/* ═══════════ ☁ MONITOR DE LA NUBE — proceso en vivo ═══════════ */
+.modal-cloud{width:min(620px,94vw);max-height:90vh;overflow-y:auto;text-align:left;padding:0 0 16px}
+.cl-head{display:flex;align-items:center;gap:16px;padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+.cl-cloud{font-size:40px;animation:cloudFloat 2.6s ease-in-out infinite;flex-shrink:0}
+@keyframes cloudFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.cl-head-txt{flex:1;min-width:0}
+.cl-head-txt h3{font-size:17px}
+.cl-sub{font-size:12px;color:#9a9ab0;margin-top:3px}
+.cl-status{
+  flex-shrink:0;font:800 10.5px 'JetBrains Mono';padding:6px 12px;border-radius:999px;
+  border:1px solid var(--line);color:#a8a8c0;white-space:nowrap;
+}
+.cl-status.live{color:#8aff8a;border-color:rgba(80,220,80,.5);background:rgba(80,220,80,.08);animation:statusPulse 1.4s ease-in-out infinite}
+.cl-status.wait{color:#ffc46b;border-color:rgba(255,170,60,.4);background:rgba(255,170,60,.07)}
+@keyframes statusPulse{0%,100%{opacity:1}50%{opacity:.55}}
+.cl-progress{display:flex;align-items:center;gap:12px;padding:14px 22px 4px}
+.cl-bar{flex:1;height:8px;border-radius:99px;background:var(--panel);border:1px solid var(--line);overflow:hidden}
+.cl-bar > div{height:100%;background:linear-gradient(90deg,var(--acid),#aef25c);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.cl-progress b{font:900 12px 'JetBrains Mono';color:var(--acid)}
+.cl-list{margin:10px 22px;padding:4px 12px;max-height:300px;overflow-y:auto;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
+.cl-row{display:flex;align-items:flex-start;gap:11px;padding:10px 4px;border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
+.cl-row:last-child{border-bottom:none}
+.cl-dot{
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;
+  background:#5a5a74;
+}
+.cl-dot.run{background:var(--acid);animation:dotPulse 1.1s ease-in-out infinite}
+.cl-dot.done{background:#5ade5a}
+.cl-dot.retry{background:#ffb04a}
+.cl-dot.fail{background:#ff5c5c}
+.cl-dot.pub{background:#5ade5a;opacity:.4}
+@keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 rgba(216,255,62,.5)}50%{box-shadow:0 0 0 6px rgba(216,255,62,0)}}
+.cl-row .clr-name{flex:1;min-width:0}
+.clr-t{font-size:12.5px;font-weight:700;color:#fff;word-break:break-word;line-height:1.35}
+.clr-s{font-size:11px;line-height:1.5;margin-top:2px}
+.clr-s.q{color:#9a9ab0}
+.clr-s.ok{color:#8aff8a}
+.clr-s.r{color:#ffc46b}
+.clr-s.f{color:#ff9d9d}
+.clr-s.why{color:#ffb896;margin-top:5px;padding:6px 9px;border-radius:7px;background:rgba(255,120,80,.06);border-left:3px solid rgba(255,140,90,.5)}
+.clr-s.d{color:#a8a8c0}
+.cl-note{
+  margin:12px 22px 14px;padding:12px 15px;border-radius:12px;font-size:12px;line-height:1.7;
+  color:#c9e8ff;background:rgba(90,170,255,.06);border:1px solid rgba(90,170,255,.2);
+}
+.cl-note b{color:#fff}
+.modal-cloud .modal-actions{padding:0 22px}
+
+/* ═══════════ ☁ PILL flotante — proceso en la nube ═══════════ */
 .import-queue-pill{
   position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
   z-index:300;display:flex;align-items:center;gap:10px;
-  background:rgba(10,10,18,.92);border:1.5px solid rgba(216,255,62,.4);
+  background:rgba(10,10,18,.92);border:1.5px solid rgba(90,170,255,.4);
   border-radius:999px;padding:10px 18px;cursor:pointer;
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   box-shadow:0 12px 40px rgba(0,0,0,.5);
@@ -3457,62 +3562,23 @@ body.chat-full .cmu-list{max-height:44vh}
 .import-queue-pill:hover{transform:translateX(-50%) translateY(-3px)}
 .import-queue-pill.hidden{display:none}
 @keyframes iqSlide{from{transform:translateX(-50%) translateY(80px);opacity:0}}
-.import-queue-pill .iq-spin{
-  font-size:18px;animation:iqSpin 1.2s linear infinite;
-}
-@keyframes iqSpin{to{transform:rotate(360deg)}}
+.import-queue-pill .iq-spin{font-size:18px;animation:cloudFloat 2.6s ease-in-out infinite}
 .import-queue-pill .iq-label{font:700 12px inherit;color:#fff}
 .import-queue-pill .iq-count{
-  font:900 12px 'JetBrains Mono';color:var(--acid);
-  background:rgba(216,255,62,.1);border:1px solid rgba(216,255,62,.3);
+  font:900 12px 'JetBrains Mono';color:#7ec8ff;
+  background:rgba(90,170,255,.1);border:1px solid rgba(90,170,255,.3);
   border-radius:999px;padding:3px 10px;
 }
-
-/* 🎉 modal de importación completa */
-.import-done-icon{font-size:52px;text-align:center;margin-bottom:8px;animation:idPop .4s cubic-bezier(.2,1.4,.4,1)}
-@keyframes idPop{from{transform:scale(0);opacity:0}}
-#importDoneSummary{font-size:13px;line-height:1.6;text-align:center}
-.import-done-list{
-  margin:14px 0;padding:12px;border-radius:12px;
-  background:var(--panel);border:1px solid var(--line);
-  max-height:240px;overflow-y:auto;font-size:12px;
-}
-.import-done-list .idl-item{
-  display:flex;align-items:center;gap:8px;padding:5px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.import-done-list .idl-item:last-child{border-bottom:none}
-.import-done-list .idl-item b{color:#fff;font-weight:700}
-.import-done-list .idl-item .idl-kind{font:600 9.5px 'JetBrains Mono';color:var(--acid);flex-shrink:0}
-.import-done-list .idl-dup{font:600 9.5px 'JetBrains Mono';color:#ff9460;flex-shrink:0}
-.import-done-dups{
-  margin:8px 0 0;padding:10px 12px;border-radius:10px;
-  background:rgba(255,148,96,.06);border:1px solid rgba(255,148,96,.25);
-  font-size:11px;color:rgba(255,148,96,.8);line-height:1.5;
-}
-.import-done-dups.hidden{display:none}
 
 /* 📱 móvil */
 @media (max-width:640px){
   .modal-import{width:96vw;padding:16px 14px 14px}
   .modal-import textarea{min-height:100px;font-size:11.5px}
+  .modal-done,.modal-cloud{width:96vw}
+  .id-hero{padding:18px 14px 14px}
+  .id-list,.id-know{margin-left:12px;margin-right:12px}
+  .cl-list,.cl-note,.cl-progress{margin-left:14px;margin-right:14px;padding-left:14px;padding-right:14px}
   .import-queue-pill{bottom:12px;padding:8px 14px;gap:8px}
   .import-queue-pill .iq-label{font-size:11px}
+  .cl-status{display:none}
 }
-
-/* ── errores explicados en el modal de importación ── */
-.import-done-list .idl-why{
-  flex-basis:100%;font:500 10.5px/1.6 inherit;color:rgba(255,148,96,.85);
-  padding:6px 0 2px 24px;border-top:1px dashed rgba(255,148,96,.2);margin-top:4px;
-}
-.import-done-list .idl-item{flex-wrap:wrap}
-
-/* ── pill en modo «listo para revisar» ── */
-.import-queue-pill.review-mode{
-  border-color:rgba(216,255,62,.65);cursor:pointer;
-  box-shadow:0 12px 40px rgba(216,255,62,.15);
-  animation:iqPulse 1.6s ease-in-out infinite;
-}
-@keyframes iqPulse{0%,100%{box-shadow:0 12px 40px rgba(216,255,62,.12)}50%{box-shadow:0 12px 52px rgba(216,255,62,.3)}}
-.import-queue-pill.review-mode .iq-spin{animation:none;font-size:20px}
-.import-queue-pill.review-mode .iq-count{color:#0a0a12;background:var(--acid)}

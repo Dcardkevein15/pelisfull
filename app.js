@@ -5474,36 +5474,174 @@ function findSagaRoot(title) {
   return state.series.find(s => normTitle(s.t) === normTitle(root) && s.kind === 'pelicula') || null;
 }
 
-/* ⏳ pila flotante: progreso mientras importa · 🎬 aviso de revisión pendiente */
+/* ☁ MONITOR DE LA NUBE — el proceso en vivo, enlace por enlace.
+   Lee el estado REAL del workflow de GitHub Actions + la cola y pinta
+   exactamente por dónde va. Se refresca solo cada 8s mientras está abierto. */
+let iqMonitorTimer = null;
+async function iqCloudRunStatus() {
+  try {
+    const r = await fetch('https://api.github.com/repos/Dcardkevein15/pelisfull/actions/workflows/importer.yml/runs?per_page=1',
+      { headers: { Accept: 'application/vnd.github+json' } });
+    if (!r.ok) return null;
+    const j = await r.json();
+    const run = (j.workflow_runs || [])[0];
+    if (!run) return null;
+    return { status: run.status, conclusion: run.conclusion, at: new Date(run.created_at || 0).getTime() };
+  } catch (e) { return null; }
+}
+
+function iqMonitorRow(q, runLive) {
+  const row = document.createElement('div');
+  row.className = 'cl-row';
+  const name = q.name || q.url || '';
+  const shortUrl = String(q.url || '').replace(/^https?:\/\//, '').slice(0, 46);
+  const dot = document.createElement('span');
+  const txt = document.createElement('div');
+  txt.className = 'clr-name';
+  const t = document.createElement('div'); t.className = 'clr-t';
+  const s = document.createElement('div');
+  let dotCls = '', sCls = '';
+  if (q.status === 'done') {
+    dotCls = 'done'; sCls = 'ok';
+    t.textContent = name ? name.slice(0, 70) : shortUrl;
+    s.textContent = '✓ Importado — listo para revisar antes de publicar';
+  } else if (q.status === 'published') {
+    dotCls = 'pub'; sCls = 'd';
+    t.textContent = name ? name.slice(0, 70) : shortUrl;
+    s.textContent = '✓ Revisado y publicado en la web';
+  } else if (q.status === 'dup') {
+    dotCls = 'pub'; sCls = 'd';
+    t.textContent = name ? name.slice(0, 70) : shortUrl;
+    s.textContent = 'Duplicado — ya existía en tu biblioteca (descartado)';
+  } else if (q.status === 'failed-final') {
+    dotCls = 'fail'; sCls = 'f';
+    const ex = iqExplainError(q.error);
+    t.textContent = name ? name.slice(0, 70) : shortUrl;
+    s.innerHTML = `⛔ Falló tras ${IQ_MAX_ATTEMPTS} intentos`;
+    const why = document.createElement('div');
+    why.className = 'clr-s why';
+    why.innerHTML = `⚠ <b>${escapeHtml(ex.why)}</b><br>💡 ${escapeHtml(ex.fix)}`;
+    txt.appendChild(t); txt.appendChild(s); txt.appendChild(why);
+    dot.className = 'cl-dot ' + dotCls;
+    row.appendChild(dot); row.appendChild(txt);
+    return row;
+  } else if (q.status === 'queued') {
+    if ((q.attempts || 0) > 0) {
+      dotCls = 'retry'; sCls = 'r';
+      const min = Math.max(1, Math.ceil(((q.nextRetryAt || 0) - Date.now()) / 60000));
+      const ex = iqExplainError(q.error);
+      t.textContent = name ? name.slice(0, 70) : shortUrl;
+      s.innerHTML = `⏳ Reintento ${q.attempts}/${IQ_MAX_ATTEMPTS} — próximo en ${min} min`;
+      const why = document.createElement('div');
+      why.className = 'clr-s why';
+      why.innerHTML = `⚠ <b>${escapeHtml(ex.why)}</b><br>💡 ${escapeHtml(ex.fix)}`;
+      txt.appendChild(t); txt.appendChild(s); txt.appendChild(why);
+      dot.className = 'cl-dot ' + dotCls;
+      row.appendChild(dot); row.appendChild(txt);
+      return row;
+    }
+    dotCls = runLive ? 'run' : ''; sCls = 'q';
+    t.textContent = name ? name.slice(0, 70) : shortUrl;
+    s.textContent = runLive
+      ? '🔄 La nube lo está procesando ahora mismo…'
+      : 'En cola — la nube lo toma en la próxima pasada (cada 15 min)';
+  } else {
+    dotCls = ''; sCls = 'q';
+    t.textContent = shortUrl;
+    s.textContent = String(q.status || '…');
+  }
+  s.className = 'clr-s ' + sCls;
+  dot.className = 'cl-dot ' + dotCls;
+  txt.appendChild(t); txt.appendChild(s);
+  row.appendChild(dot); row.appendChild(txt);
+  return row;
+}
+
+function iqRenderMonitor(run) {
+  const list = document.getElementById('clList');
+  const barFill = document.getElementById('clBarFill');
+  const pct = document.getElementById('clPct');
+  const st = document.getElementById('clStatus');
+  const title = document.getElementById('clTitle');
+  const sub = document.getElementById('clSub');
+  if (!list || !barFill) return;
+  const runLive = !!(run && run.status === 'in_progress');
+  /* encabezado según estado real del workflow */
+  if (st) {
+    if (runLive) { st.className = 'cl-status live'; st.textContent = '● GitHub activo ahora'; }
+    else if (run && run.status === 'queued') { st.className = 'cl-status wait'; st.textContent = '· run en cola'; }
+    else if (run && run.status === 'completed' && run.at && (Date.now() - run.at) < 20 * 60000) {
+      st.className = 'cl-status wait';
+      st.textContent = `✓ pasada hace ${Math.max(1, Math.round((Date.now() - run.at) / 60000))} min`;
+    } else { st.className = 'cl-status wait'; st.textContent = '⏱ próxima pasada ≤15 min'; }
+  }
+  const pend = importQueue.filter(q => q.status === 'queued').length;
+  if (title) title.textContent = pend ? 'Procesando en la nube…' : 'Proceso terminado';
+  if (sub) sub.textContent = pend
+    ? (runLive ? 'Los servidores de GitHub están trabajando en tus enlaces ahora mismo' : 'Tus enlaces esperan la próxima pasada de GitHub (automática)')
+    : 'Todo lo que se pudo importar ya está listo';
+  /* progreso */
+  const total = importQueue.length || 1;
+  const resolved = importQueue.filter(q => ['done', 'dup', 'published', 'failed-final'].includes(q.status)).length;
+  const p = Math.round(resolved / total * 100);
+  if (barFill) barFill.style.width = p + '%';
+  if (pct) pct.textContent = `${resolved}/${total} · ${p}%`;
+  /* filas */
+  list.innerHTML = '';
+  for (const q of importQueue) list.appendChild(iqMonitorRow(q, runLive));
+  list.scrollTop = list.scrollHeight;
+}
+
+async function iqMonitorRefresh() {
+  await iqPollRemote();
+  const run = await iqCloudRunStatus();
+  iqRenderMonitor(run);
+  renderQueuePill();
+}
+
+function iqOpenMonitor() {
+  const m = document.getElementById('modalCloud');
+  if (!m) return;
+  if (!importQueue.length) { toast('No hay ninguna importación en curso ni pendiente'); return; }
+  m.classList.remove('hidden');
+  iqMonitorRefresh();
+  clearInterval(iqMonitorTimer);
+  iqMonitorTimer = setInterval(iqMonitorRefresh, 8000);
+}
+document.getElementById('clClose')?.addEventListener('click', () => {
+  document.getElementById('modalCloud').classList.add('hidden');
+  clearInterval(iqMonitorTimer);
+});
+document.getElementById('modalCloud')?.addEventListener('click', ev => {
+  if (ev.target.id === 'modalCloud') {
+    ev.target.classList.add('hidden');
+    clearInterval(iqMonitorTimer);
+  }
+});
+/* ⏳ pila flotante: el proceso de la nube SIEMPRE visible mientras trabaja.
+   Al terminar se OCULTA — el aviso de completado es SOLO el modal (sin duplicar). */
+let iqCloudActive = false;   /* true mientras GitHub trabaja la tanda actual */
 function renderQueuePill() {
   const pill = document.getElementById('importQueuePill');
   const lbl = document.getElementById('iqLabel');
   const cnt = document.getElementById('iqCount');
   if (!pill || !lbl || !cnt) return;
-  const next = importQueue.find(q => q.status === 'queued' && (q.nextRetryAt || 0) <= Date.now());
-  if (importRunning && next) {
-    const idx = importQueue.indexOf(next);
-    pill.classList.remove('hidden');
-    pill.classList.remove('review-mode');
-    pill.querySelector('.iq-spin').textContent = '⏳';
-    lbl.textContent = 'Importando en 2º plano…';
-    cnt.textContent = `${idx + 1}/${importQueue.length}`;
+  const pend = importQueue.filter(q => q.status === 'queued');
+  if (!pend.length) {
+    pill.classList.add('hidden');
+    iqCloudActive = false;
     return;
   }
-  const pendReview = importQueue.filter(q => q.status === 'done').length;
-  if (pendReview) {
-    pill.classList.remove('hidden');
-    pill.classList.add('review-mode');
-    pill.querySelector('.iq-spin').textContent = '🎬';
-    lbl.textContent = `${pendReview} listo${pendReview > 1 ? 's' : ''} para revisar — clic aquí`;
-    cnt.textContent = 'REVISAR';
-    return;
-  }
-  pill.classList.add('hidden');
+  const total = importQueue.length;
+  const resolved = importQueue.filter(q => ['done', 'dup', 'published', 'failed-final'].includes(q.status)).length;
+  pill.classList.remove('hidden');
+  pill.querySelector('.iq-spin').textContent = iqCloudActive ? '☁' : '⏳';
+  lbl.textContent = iqCloudActive
+    ? 'Nube importando — clic para ver el proceso'
+    : 'Importando en 2º plano — clic para ver el proceso';
+  cnt.textContent = `${resolved}/${total}`;
 }
-document.getElementById('importQueuePill')?.addEventListener('click', () => {
-  if (importQueue.some(q => q.status === 'done')) iqOpenReview();
-});
+document.getElementById('importQueuePill')?.addEventListener('click', () => iqOpenMonitor());
 
 /* 🔊 sonido de notificación ( generado con WebAudio — sin archivos ) */
 function playDoneSound() {
@@ -5658,52 +5796,70 @@ function mergeImportedSagas(newMovies) {
   return merged;
 }
 
-/* 🎉 modal de importación completada — la publicación espera la REVISIÓN obligatoria */
+/* 🎉 modal de importación completada — resumen visual con chips + explicaciones.
+   ÚNICO aviso de completado (el pill se oculta al terminar: sin duplicados).   */
 function showImportDone() {
   const modal = document.getElementById('modalImportDone');
   const summary = document.getElementById('importDoneSummary');
+  const chips = document.getElementById('importDoneChips');
+  const cloud = document.getElementById('importDoneCloud');
   const list = document.getElementById('importDoneList');
-  const dups = document.getElementById('importDoneDups');
   const retryBtn = document.getElementById('importDoneRetry');
+  const monBtn = document.getElementById('importDoneMonitor');
+  const viewBtn = document.getElementById('importDoneView');
   if (!modal) return;
   const done = importQueue.filter(q => q.status === 'done');
-  const errors = importQueue.filter(q => q.status === 'queued' && q.attempts > 0);
   const finals = importQueue.filter(q => q.status === 'failed-final');
+  const retrying = importQueue.filter(q => q.status === 'queued' && (q.attempts || 0) > 0);
   const dupsFound = importQueue.filter(q => q.status === 'dup');
+  /* ── resumen principal (texto claro y legible) ── */
   summary.innerHTML = done.length
-    ? `<b style="color:var(--acid)">${done.length} enlace${done.length > 1 ? 's' : ''} importado${done.length > 1 ? 's' : ''} correctamente</b>`
-      + (dupsFound.length ? ` · <b style="color:var(--dim)">${dupsFound.length} duplicado${dupsFound.length > 1 ? 's' : ''} eliminado${dupsFound.length > 1 ? 's' : ''}</b>` : '')
-      + (iqMerged ? ` · <b style="color:#7ec8ff">🔗 ${iqMerged} parte${iqMerged > 1 ? 's' : ''} unida${iqMerged > 1 ? 's' : ''} a su saga</b>` : '')
-      + (errors.length ? ` · <b style="color:#ff9460">${errors.length} reintentando…</b>` : '')
-      + (finals.length ? ` · <b style="color:#ff5c5c">${finals.length} fallido${finals.length > 1 ? 's' : ''}</b>` : '')
-      + `<br><small style="color:var(--dim)">⚠ Obligatorio revisar los títulos antes de publicar en la web.<br>La ☁ nube sigue reintentando los fallidos sola.</small>`
-    : (finals.length || errors.length
-      ? '<b style="color:#ff9460">Nada importado todavía</b><br><small style="color:var(--dim)">Los enlaces fallidos se reintentan automáticamente (2m→5m→15m→1h→4h→24h).</small>'
+    ? `<b style="color:var(--acid)">${done.length} entrada${done.length > 1 ? 's' : ''} importada${done.length > 1 ? 's' : ''}</b> esperando tu revisión antes de publicar`
+      + (dupsFound.length || iqMerged || retrying.length || finals.length
+        ? ` · <span style="color:#c9c9dd">${dupsFound.length + retrying.length + finals.length} enlace${(dupsFound.length + retrying.length + finals.length) > 1 ? 's' : ''} descartado${(dupsFound.length + retrying.length + finals.length) > 1 ? 's' : ''} o en reintento</span>` : '')
+    : (retrying.length || finals.length
+      ? `<b style="color:#ffc46b">Todavía no entró nada nuevo</b> — ${retrying.length + finals.length} enlace${(retrying.length + finals.length) > 1 ? 's' : ''} siguen en la nube`
       : 'No se importó nada nuevo.');
+  /* ── chips de estado (colores vivos, cuenta clara) ── */
+  const mkChip = (cls, txt) => { const c = document.createElement('span'); c.className = 'id-chip ' + cls; c.textContent = txt; chips.appendChild(c); };
+  chips.innerHTML = '';
+  if (done.length) mkChip('ok', `✅ ${done.length} listas para revisar`);
+  if (dupsFound.length) mkChip('dup', `🗑 ${dupsFound.length} duplicado${dupsFound.length > 1 ? 's' : ''}`);
+  if (iqMerged) mkChip('saga', `🔗 ${iqMerged} parte${iqMerged > 1 ? 's' : ''} unida${iqMerged > 1 ? 's' : ''} a su saga`);
+  if (retrying.length) mkChip('retry', `⏳ ${retrying.length} reintentando en la nube`);
+  if (finals.length) mkChip('fail', `⛔ ${finals.length} fallido${finals.length > 1 ? 's' : ''} definitivo${finals.length > 1 ? 's' : ''}`);
+  if (!chips.children.length) mkChip('dup', '· nada que reportar ·');
+  /* ── línea de estado de la nube ── */
+  if (cloud) {
+    const pend = importQueue.filter(q => q.status === 'queued').length;
+    cloud.textContent = pend
+      ? `☁ La nube sigue con ${pend} enlace${pend > 1 ? 's' : ''} — reintentos automáticos cada 15 min, no hagas nada`
+      : '☁ Nube al día — todo lo posible ya está dentro';
+  }
+  /* ── detalle enlace por enlace ── */
   if (list) {
     list.innerHTML = '';
-    const mkRow = (icon, name, kindTxt, cls, why, fix) => {
+    const mkRow = (icon, name, badgeTxt, badgeCls, why, fix) => {
       const d = document.createElement('div');
-      d.className = 'idl-item';
-      d.innerHTML = `<span>${icon}</span><b>${escapeHtml((name || '').slice(0, 46))}</b><span class="${cls}">${escapeHtml(kindTxt.slice(0, 30))}</span>`
-        + (why ? `<div class="idl-why">⚠ ${escapeHtml(why)}<br>💡 ${escapeHtml(fix || '')}</div>` : '');
+      d.className = 'id-row';
+      d.innerHTML = `<span class="idr-ic">${icon}</span><span class="idr-name">${escapeHtml(String(name || '').slice(0, 60))}</span>`
+        + `<span class="idr-badge ${badgeCls}">${escapeHtml(badgeTxt)}</span>`
+        + (why ? `<div class="idr-why">⚠ <b>${escapeHtml(why)}</b><br>💡 ${escapeHtml(fix || '')}</div>` : '');
       list.appendChild(d);
     };
     for (const q of importQueue) {
-      if (q.status === 'done') mkRow('✅', q.name || q.url, 'LISTO PARA REVISAR', 'idl-kind');
-      else if (q.status === 'dup') mkRow('🗑', q.name || q.url, 'DUPLICADO', 'idl-dup');
-      else if (q.status === 'failed-final') { const ex = iqExplainError(q.error); mkRow('⛔', q.name || q.url, 'FALLIDO', 'idl-dup', ex.why, ex.fix); }
-      else if (q.status === 'queued' && q.attempts > 0) { const ex = iqExplainError(q.error); mkRow('⏳', q.name || q.url, `REINTENTO ${q.attempts}/${IQ_MAX_ATTEMPTS}`, 'idl-dup', ex.why, ex.fix); }
-      else if (q.status === 'queued') mkRow('…', q.url, 'EN COLA', 'idl-dup');
+      const nm = q.name || q.url;
+      if (q.status === 'done') mkRow('✅', nm, 'LISTO PARA REVISAR', 'ok');
+      else if (q.status === 'dup') mkRow('🗑', nm, 'DUPLICADO', 'dup');
+      else if (q.status === 'failed-final') { const ex = iqExplainError(q.error); mkRow('⛔', nm, 'FALLIDO', 'fail', ex.why, ex.fix); }
+      else if (q.status === 'queued' && (q.attempts || 0) > 0) { const ex = iqExplainError(q.error); mkRow('⏳', nm, `REINTENTO ${q.attempts}/${IQ_MAX_ATTEMPTS}`, 'retry', ex.why, ex.fix); }
+      else if (q.status === 'queued') mkRow('…', nm, 'EN LA NUBE', 'retry');
+      else if (q.status === 'published') mkRow('🚀', nm, 'PUBLICADO', 'ok');
     }
   }
-  if (dups) {
-    if (dupsFound.length) {
-      dups.classList.remove('hidden');
-      dups.textContent = `🗑 ${dupsFound.length} duplicado${dupsFound.length > 1 ? 's' : ''} detectado${dupsFound.length > 1 ? 's' : ''} y eliminado${dupsFound.length > 1 ? 's' : ''} — ya existían en tu biblioteca.`;
-    } else { dups.classList.add('hidden'); }
-  }
-  if (retryBtn) retryBtn.classList.toggle('hidden', !(finals.length || errors.length));
+  if (retryBtn) retryBtn.classList.toggle('hidden', !(finals.length || retrying.length));
+  if (monBtn) monBtn.classList.toggle('hidden', !importQueue.some(q => q.status === 'queued'));
+  if (viewBtn) viewBtn.classList.toggle('hidden', !done.length);
   modal.classList.remove('hidden');
   renderQueuePill();
   playDoneSound();
@@ -5729,9 +5885,19 @@ document.getElementById('importDoneRetry')?.addEventListener('click', async () =
   iqPersist();
   await iqSyncRemote();
   const disp = await iqDispatchCloud();
-  toast(disp.ok ? `☁ ${n} enlace${n > 1 ? 's' : ''} reintentando en la nube` : `🔁 ${n} enlace${n > 1 ? 's' : ''} reintentando localmente`);
+  if (disp.ok) { iqCloudActive = true; toast(`☁ ${n} enlace${n > 1 ? 's' : ''} reintentando en la nube`); }
+  else { toast(`🔁 ${n} enlace${n > 1 ? 's' : ''} reintentando localmente`); processImportQueue(); }
   document.getElementById('modalImportDone').classList.add('hidden');
-  processImportQueue();
+  iqOpenMonitor();
+});
+document.getElementById('importDoneMonitor')?.addEventListener('click', () => {
+  document.getElementById('modalImportDone').classList.add('hidden');
+  iqOpenMonitor();
+});
+/* re-entrada a la revisión desde el modal de importación */
+document.getElementById('driveReviewPend')?.addEventListener('click', () => {
+  els.modalDrive.classList.add('hidden');
+  iqOpenReview();
 });
 
 /* ⚡ botón Importar: encola TODO y lo manda a la ☁ NUBE (GitHub Actions) */
@@ -5756,8 +5922,10 @@ els.confirmDrive.addEventListener('click', async () => {
   if (synced) {
     const disp = await iqDispatchCloud();
     if (disp.ok) {
+      iqCloudActive = true;
       toast(`☁ ${valid.length} enlace${valid.length > 1 ? 's' : ''} importándose EN LA NUBE — puedes APAGAR el celular y descansar tranquilo`);
       renderQueuePill();
+      iqOpenMonitor();   /* 🖥 ver el proceso en vivo desde el primer segundo */
       return;
     }
     const ex = iqExplainError(disp.reason);
@@ -5782,8 +5950,12 @@ async function iqDispatchCloud() {
 }
 
 /* 🛰 trae la cola de la nube: adopta lo procesado mientras estabas fuera
-   (incluso desde otro dispositivo) y los reintentos pendientes.           */
+   (incluso desde otro dispositivo) y los reintentos pendientes.
+   SOLO el equipo: los visitantes reciben el contenido por el catálogo
+   publicado, nunca por esta cola de trabajo.                            */
+let iqDoneShownBoot = false;
 async function iqPollRemote() {
+  if (!canAdmin()) return;
   try {
     const r = await fetch(IQ_REMOTE_URL + '?t=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) return;
@@ -6052,7 +6224,8 @@ function iqOpenReview() {
   try { playDoneSound(); } catch (e) { }
 }
 
-/* al arrancar: sincroniza con la nube, retoma pendientes y vigila el reloj */
+/* al arrancar: sincroniza con la nube, retoma pendientes y vigila el reloj.
+   Si ya hay algo listo sin revisar → aviso directo (una sola vez).          */
 setTimeout(async () => {
   await iqPollRemote();
   if (importQueue.some(q => q.status === 'queued')) {
@@ -6060,6 +6233,10 @@ setTimeout(async () => {
     else iqScheduleRetry();
   }
   renderQueuePill();
+  if (!iqDoneShownBoot && importQueue.some(q => q.status === 'done')) {
+    iqDoneShownBoot = true;
+    showImportDone();
+  }
 }, 5000);
 /* latido: cada 30s mira si la nube terminó algo · cada 2min retoma vencidos */
 setInterval(() => { if (!importRunning) iqPollRemote(); }, 30e3);
@@ -6071,6 +6248,13 @@ els.driveFolderBtn.addEventListener('click', () => {
   els.driveApiKey.value = vget('driveKey');
   els.stLogin.value = vget('stLogin');
   els.stKey.value = vget('stKey');
+  /* re-entrada: si hay importaciones listas sin revisar, se ofrece aquí */
+  const rp = document.getElementById('driveReviewPend');
+  const pend = importQueue.filter(q => q.status === 'done').length;
+  if (rp) {
+    rp.classList.toggle('hidden', !pend);
+    rp.textContent = `🎬 Revisar ${pend} pendiente${pend > 1 ? 's' : ''} de publicar`;
+  }
   setTimeout(() => els.driveFolderUrl.focus(), 60);
 });
 els.cancelDrive.addEventListener('click', () => els.modalDrive.classList.add('hidden'));

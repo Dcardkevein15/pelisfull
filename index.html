@@ -576,29 +576,70 @@
       <p class="modal-sub">Sin clave, la carpeta se lee mediante lectores públicos. Con una <b>API key</b> gratis es instantánea, 100% fiable y NUNCA se satura.</p>
     </details>
     <div class="modal-actions">
+      <button class="btn btn-ghost hidden" id="driveReviewPend">🎬 Revisar pendientes</button>
       <button class="btn btn-ghost" id="cancelDrive">Cancelar</button>
       <button class="btn btn-acid" id="confirmDrive">⚡ Importar</button>
     </div>
   </div>
 </div>
 
-<!-- 🔔 PILA DE IMPORTACIÓN — indicador flotante mientras procesa -->
-<div class="import-queue-pill hidden" id="importQueuePill" title="Ver progreso">
-  <span class="iq-spin">⏳</span>
+<!-- 🔔 PILA DE IMPORTACIÓN — indicador flotante del proceso en la nube -->
+<div class="import-queue-pill hidden" id="importQueuePill" title="Abrir el monitor de la nube">
+  <span class="iq-spin">☁</span>
   <span class="iq-label" id="iqLabel">Importando…</span>
   <b class="iq-count" id="iqCount">0/0</b>
 </div>
 
-<!-- 🎉 MODAL IMPORTACIÓN COMPLETA -->
-<div class="modal-backdrop hidden" id="modalImportDone">
-  <div class="modal">
-    <div class="import-done-icon">✅</div>
-    <h3>¡Importación completada!</h3>
-    <p class="modal-sub" id="importDoneSummary"></p>
-    <div class="import-done-list" id="importDoneList"></div>
-    <div class="import-done-dups hidden" id="importDoneDups"></div>
+<!-- ☁ MONITOR DE LA NUBE — proceso en vivo, enlace por enlace -->
+<div class="modal-backdrop hidden" id="modalCloud">
+  <div class="modal modal-cloud">
+    <div class="cl-head">
+      <div class="cl-cloud">☁</div>
+      <div class="cl-head-txt">
+        <h3 id="clTitle">Procesando en la nube…</h3>
+        <div class="cl-sub" id="clSub">Los servidores de GitHub están trabajando por ti</div>
+      </div>
+      <span class="cl-status" id="clStatus">…</span>
+    </div>
+    <div class="cl-progress">
+      <div class="cl-bar"><div id="clBarFill"></div></div>
+      <b id="clPct">0%</b>
+    </div>
+    <div class="cl-list" id="clList"></div>
+    <div class="cl-note">
+      💡 <b>Puedes cerrar esta ventana, seguir navegando o hasta apagar el celular</b> — el trabajo
+      continúa en los servidores de GitHub y cada enlace fallido se reintenta solo
+      (2m → 5m → 15m → 1h → 4h → 24h, hasta 6 intentos). Cuando todo termine te aviso aquí mismo.
+    </div>
     <div class="modal-actions">
-      <button class="btn btn-ghost hidden" id="importDoneRetry">🔁 Reintentar fallidos ahora</button>
+      <button class="btn btn-ghost" id="clClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- 🎉 MODAL IMPORTACIÓN COMPLETA — resumen visual del resultado -->
+<div class="modal-backdrop hidden" id="modalImportDone">
+  <div class="modal modal-done">
+    <div class="id-hero">
+      <div class="id-hero-icon">✅</div>
+      <h3>¡Importación completada!</h3>
+      <p class="id-hero-sub" id="importDoneSummary"></p>
+      <div class="id-chips" id="importDoneChips"></div>
+    </div>
+    <div class="id-cloud" id="importDoneCloud"></div>
+    <div class="id-list" id="importDoneList"></div>
+    <div class="id-know">
+      <div class="id-know-title">📋 Lo que debes saber antes de publicar</div>
+      <ol>
+        <li><b>La publicación está bloqueada</b> hasta que revises los títulos — es el paso obligatorio.</li>
+        <li>En la revisión puedes <b>corregir títulos</b>, cambiar <b>género</b>, recuperar la <b>carátula real con 🔄 (TMDB)</b> y <b>excluir</b> lo que no quieras.</li>
+        <li>Los enlaces fallidos <b>se reintentan solos en la nube</b> cada 15 min — no tienes que hacer nada.</li>
+        <li>Al pulsar «Revisar y publicar», el catálogo llega a <b>todos los visitantes en ~1 minuto</b>.</li>
+      </ol>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost hidden" id="importDoneRetry">🔁 Reintentar fallidos</button>
+      <button class="btn btn-ghost hidden" id="importDoneMonitor">☁ Ver la nube</button>
       <button class="btn btn-ghost" id="importDoneClose">Cerrar</button>
       <button class="btn btn-acid" id="importDoneView">🎬 Revisar y publicar</button>
     </div>
