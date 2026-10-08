@@ -1,1 +1,819 @@
-{"v":1,"at":1791490650822,"queue":[{"url":"https://drive.google.com/file/d/1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ/view","type":"drive-file","status":"done","name":"La Cenicienta","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485307695,"payload":[{"id":"file-https-drive-google-com-file-d-1WteFe9htTep4wFuRtLSrueUdI7H5s","t":"La Cenicienta","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ/view"}],"genre":"infantil","tags":["Infantil"],"genreTmdbDone":true}]},{"url":"https://drive.google.com/file/d/1_0irnw0CW4HhNbFuIH-GS5spdyCZV4ji/view?usp=sharing","type":"drive-file","status":"done","name":"10 razones para odiarte","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1_0irnw0CW4HhNbFuIH-GS5spdyCZV","t":"10 razones para odiarte","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1_0irnw0CW4HhNbFuIH-GS5spdyCZV4ji\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1_0irnw0CW4HhNbFuIH-GS5spdyCZV4ji/view"}],"at":1791485904782}]},{"url":"https://drive.google.com/file/d/1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW/view?usp=sharing","type":"drive-file","status":"done","name":"a todos los","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1K835Kw2vl_Crh8ud2S-uqKSRSbm8s","t":"a todos los","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW/view"}],"at":1791485910772}]},{"url":"https://drive.google.com/file/d/1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8pDx/view?usp=sharing","type":"drive-file","status":"done","name":"break up","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8","t":"break up","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8pDx\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8pDx/view"}],"at":1791485914523}]},{"url":"https://drive.google.com/file/d/11Oa4SVquIWVTnm6GN0EK6xn5I_G2jI2x/view?usp=sharing","type":"drive-file","status":"done","name":"una semana en corcega","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-11Oa4SVquIWVTnm6GN0EK6xn5I_G2j","t":"una semana en corcega","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=11Oa4SVquIWVTnm6GN0EK6xn5I_G2jI2x\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/11Oa4SVquIWVTnm6GN0EK6xn5I_G2jI2x/view"}],"at":1791485917694}]},{"url":"https://drive.google.com/file/d/19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi/view?usp=sharing","type":"drive-file","status":"done","name":"Video externo (renómbrame ✎)","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-19tTcpzDdhFo-ERyU277gP7FPVAdm4","t":"Video externo (renómbrame ✎)","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi/view"}],"at":1791485922490}]},{"url":"https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing","type":"drive-file","status":"dup","name":"Video externo (renómbrame ✎)","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":null},{"url":"https://drive.google.com/file/d/12j_1ydN80IAbuFSJAYjFSR5rCtTEqyAa/view?usp=sharing","type":"drive-file","status":"done","name":"prison break","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-12j_1ydN80IAbuFSJAYjFSR5rCtTEq","t":"prison break","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=12j_1ydN80IAbuFSJAYjFSR5rCtTEqyAa\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/12j_1ydN80IAbuFSJAYjFSR5rCtTEqyAa/view"}],"at":1791486171076}]},{"url":"https://drive.google.com/file/d/1ieGbEbYGHSCAE02uY9TJi-vaRnAKyU3E/view?usp=sharing","type":"drive-file","status":"done","name":"conjuro 3","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1ieGbEbYGHSCAE02uY9TJi-vaRnAKy","t":"conjuro 3","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1ieGbEbYGHSCAE02uY9TJi-vaRnAKyU3E\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1ieGbEbYGHSCAE02uY9TJi-vaRnAKyU3E/view"}],"at":1791486216646}]},{"url":"https://drive.google.com/file/d/1-cbgXMGsex2n4UhV_2ab56GSgSock0n6/view?usp=sharing","type":"drive-file","status":"done","name":"Arthur 1","error":"⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ","attempts":1,"nextRetryAt":1791486504453,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1-cbgXMGsex2n4UhV_2ab56GSgSock","t":"Arthur 1","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1-cbgXMGsex2n4UhV_2ab56GSgSock0n6\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1-cbgXMGsex2n4UhV_2ab56GSgSock0n6/view"}],"at":1791486524409}]},{"url":"https://drive.google.com/file/d/1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H/view?usp=sharing","type":"drive-file","status":"done","name":"arthur 2","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1-8Mcge-jGzUhotLHpddEPIQ4rFqIW","t":"arthur 2","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H\u0026sz=w1000","tags":["Comedia"],"genre":"comedia","at":1791420636357,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9/view?usp=sharing","type":"drive-file","status":"done","name":"arthur 3","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3","t":"arthur 3","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9\u0026sz=w1000","tags":["Aventura"],"genre":"aventura","at":1791420640770,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view?usp=sharing","type":"drive-file","status":"done","name":"E5CU4DR0N 5U1C1D4","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe","t":"E5CU4DR0N 5U1C1D4","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q\u0026sz=w1000","at":1791420644655,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view"}],"anime":false,"tags":["Acción"],"genre":"accion"}]},{"url":"https://drive.google.com/file/d/10CPQUrVg0euo15qlcXEAb88pgl4hvUcK/view?usp=sharing","type":"drive-file","status":"done","name":"365 dias","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-10CPQUrVg0euo15qlcXEAb88pgl4hv","t":"365 dias","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=10CPQUrVg0euo15qlcXEAb88pgl4hvUcK\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/10CPQUrVg0euo15qlcXEAb88pgl4hvUcK/view"}],"at":1791486455661}]},{"url":"https://drive.google.com/file/d/1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1xPLq/view?usp=sharing","type":"drive-file","status":"done","name":"la sirenita (1989)","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1x","t":"la sirenita (1989)","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1xPLq\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1xPLq/view"}],"at":1791486464216}]},{"url":"https://drive.google.com/file/d/1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs/view?usp=sharing","type":"drive-file","status":"done","name":"la sirenita 2 regreso al mar (2000)","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1-_4U5TmGYXxSZApNVe3aYryPHl3tr","t":"la sirenita 2 regreso al mar (2000)","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs\u0026sz=w1000","at":1791420943251,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs/view"}],"anime":false,"tags":[]}]},{"url":"https://drive.google.com/file/d/1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u/view?usp=sharing","type":"drive-file","status":"done","name":"el origen de la sirenita (2008)","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-1-N4EbZyX5sft47izD-vjQoAbSk9oS","t":"el origen de la sirenita (2008)","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u\u0026sz=w1000","at":1791420960899,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u/view"}],"anime":false,"tags":[]}]},{"url":"https://drive.google.com/file/d/17pOT828OddAZOTlMYlEpSBNsIsRU71r6/view?usp=sharing","type":"drive-file","status":"done","name":"Jurassic World: el reino caído","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-17pOT828OddAZOTlMYlEpSBNsIsRU7","t":"Jurassic World: el reino caído","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=17pOT828OddAZOTlMYlEpSBNsIsRU71r6\u0026sz=w1000","tags":["Fantasía"],"genre":"fantasia","at":1791420981484,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/17pOT828OddAZOTlMYlEpSBNsIsRU71r6/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63/view?usp=sharing","type":"drive-file","status":"done","name":"Inframundo 4","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-17bMiwZKIU0AlmO3Ed-j_FuiiEnbJa","t":"Inframundo 4","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63\u0026sz=w1000","tags":["Fantasía"],"genre":"fantasia","at":1791420985327,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/17MzXGxUWWGTZY-87tOniZyrWxWhi5N5N/view?usp=sharing","type":"drive-file","status":"done","name":"jamaica bajo cero","error":"⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u","attempts":1,"nextRetryAt":1791486874308,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-17MzXGxUWWGTZY-87tOniZyrWxWhi5","t":"jamaica bajo cero","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=17MzXGxUWWGTZY-87tOniZyrWxWhi5N5N\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/17MzXGxUWWGTZY-87tOniZyrWxWhi5N5N/view"}],"at":1791486974023}]},{"url":"https://drive.google.com/file/d/172zGHGZFGXmhpNmOuJq5QrejZ-9tLDts/view?usp=sharing","type":"drive-file","status":"done","name":"Hotel transilvania tranformania","error":"⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, HTTP 401, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u","attempts":1,"nextRetryAt":1791487009854,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-172zGHGZFGXmhpNmOuJq5QrejZ-9tL","t":"Hotel transilvania tranformania","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=172zGHGZFGXmhpNmOuJq5QrejZ-9tLDts\u0026sz=w1000","episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/172zGHGZFGXmhpNmOuJq5QrejZ-9tLDts/view"}],"at":1791487127850}]},{"url":"https://drive.google.com/file/d/141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ/view?usp=sharing","type":"drive-file","status":"done","name":"harry potter 20° aniversario","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-141xUZN-m7Dv1tkx5foknrsyjh8ROY","t":"harry potter 20° aniversario","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ\u0026sz=w1000","tags":["Documental"],"genre":"documental","at":1791421221135,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/140FaEXAENyFIvbKN5_xORkORXEcxvPQm/view?usp=sharing","type":"drive-file","status":"done","name":"Erase una vez en hollywood","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-140FaEXAENyFIvbKN5_xORkORXEcxv","t":"Erase una vez en hollywood","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=140FaEXAENyFIvbKN5_xORkORXEcxvPQm\u0026sz=w1000","tags":["Comedia"],"genre":"comedia","at":1791421224318,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/140FaEXAENyFIvbKN5_xORkORXEcxvPQm/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/12paturmR6xXcliyd3xo1DgJikPzwwx_Y/view?usp=sharing","type":"drive-file","status":"done","name":"operacion feliz navidad la estafa de los duendes","error":"⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 401, HTTP 408).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API","attempts":1,"nextRetryAt":1791487460202,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-12paturmR6xXcliyd3xo1DgJikPzww","t":"operacion feliz navidad la estafa de los duendes","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=12paturmR6xXcliyd3xo1DgJikPzwwx_Y\u0026sz=w1000","tags":["Musical"],"genre":"musical","at":1791421227107,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/12paturmR6xXcliyd3xo1DgJikPzwwx_Y/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O/view?usp=sharing","type":"drive-file","status":"done","name":"no mires arriba (2021)","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-12ljVZO85Ee03-4u9jjuA8OJKA57ND","t":"no mires arriba (2021)","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O\u0026sz=w1000","at":1791421230355,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O/view"}],"anime":false,"tags":[]}]},{"url":"https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view?usp=sharing","type":"drive-file","status":"done","name":"clifford el gran perro rojo","error":"⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ","attempts":1,"nextRetryAt":1791487758990,"addedAt":1791485718203,"payload":[{"id":"file-https-drive-google-com-file-d-12eJYVRi1jVwpUCu8XKwZOK1EioTsq","t":"clifford el gran perro rojo","jp":"🎬","tag":"Google Drive · Archivo","g":6,"kind":"pelicula","poster":"https://drive.google.com/thumbnail?id=12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L\u0026sz=w1000","tags":["Infantil"],"genre":"infantil","at":1791421336473,"episodes":[{"n":1,"t":"▶ Ver","url":"https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view"}],"anime":false}]},{"url":"https://drive.google.com/file/d/10ojwPaRtnqNRmiM1l6mQufrg2sBTnZuA/view?usp=sharing","type":"drive-file","status":"dup","name":"Video externo (renómbrame ✎)","error":"","attempts":0,"nextRetryAt":0,"addedAt":1791485718203,"payload":null}]}
+{
+ "v": 1,
+ "at": 1791491942304,
+ "queue": [
+  {
+   "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
+   "type": "drive-file",
+   "status": "dup",
+   "name": "Video externo (renómbrame ✎)",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "attempts": 3,
+   "nextRetryAt": 1791488959248,
+   "addedAt": 1791485718203,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/10ojwPaRtnqNRmiM1l6mQufrg2sBTnZuA/view?usp=sharing",
+   "type": "drive-file",
+   "status": "dup",
+   "name": "Video externo (renómbrame ✎)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": null
+  },
+  {
+   "url": "https://mega.nz/folder/AbCdEf#test123",
+   "addedAt": 1791490519540,
+   "type": "mega-folder",
+   "payload": null,
+   "error": "⚠ Mega cifra las carpetas dentro del propio enlace:ninguna app web puede leerlas automáticamente.Sí puedes pegar archivos sueltos de Mega (se catalogan)o usar G",
+   "name": "",
+   "nextRetryAt": 0,
+   "attempts": 1,
+   "status": "failed-final"
+  },
+  {
+   "url": "https://drive.google.com/file/d/1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ/view",
+   "type": "drive-file",
+   "status": "done",
+   "name": "La Cenicienta",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485307695,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1WteFe9htTep4wFuRtLSrueUdI7H5s",
+     "t": "La Cenicienta",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1_0irnw0CW4HhNbFuIH-GS5spdyCZV4ji/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "10 razones para odiarte",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1_0irnw0CW4HhNbFuIH-GS5spdyCZV",
+     "t": "10 razones para odiarte",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1_0irnw0CW4HhNbFuIH-GS5spdyCZV4ji&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1_0irnw0CW4HhNbFuIH-GS5spdyCZV4ji/view"
+      }
+     ],
+     "at": 1791485904782
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "a todos los",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1K835Kw2vl_Crh8ud2S-uqKSRSbm8s",
+     "t": "a todos los",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW/view"
+      }
+     ],
+     "at": 1791485910772
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8pDx/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "break up",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8",
+     "t": "break up",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8pDx&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8pDx/view"
+      }
+     ],
+     "at": 1791485914523
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/11Oa4SVquIWVTnm6GN0EK6xn5I_G2jI2x/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "una semana en corcega",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-11Oa4SVquIWVTnm6GN0EK6xn5I_G2j",
+     "t": "una semana en corcega",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=11Oa4SVquIWVTnm6GN0EK6xn5I_G2jI2x&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/11Oa4SVquIWVTnm6GN0EK6xn5I_G2jI2x/view"
+      }
+     ],
+     "at": 1791485917694
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Video externo (renómbrame ✎)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-19tTcpzDdhFo-ERyU277gP7FPVAdm4",
+     "t": "Video externo (renómbrame ✎)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi/view"
+      }
+     ],
+     "at": 1791485922490
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/12j_1ydN80IAbuFSJAYjFSR5rCtTEqyAa/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "prison break",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12j_1ydN80IAbuFSJAYjFSR5rCtTEq",
+     "t": "prison break",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12j_1ydN80IAbuFSJAYjFSR5rCtTEqyAa&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12j_1ydN80IAbuFSJAYjFSR5rCtTEqyAa/view"
+      }
+     ],
+     "at": 1791486171076
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1ieGbEbYGHSCAE02uY9TJi-vaRnAKyU3E/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "conjuro 3",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ieGbEbYGHSCAE02uY9TJi-vaRnAKy",
+     "t": "conjuro 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ieGbEbYGHSCAE02uY9TJi-vaRnAKyU3E&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ieGbEbYGHSCAE02uY9TJi-vaRnAKyU3E/view"
+      }
+     ],
+     "at": 1791486216646
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-cbgXMGsex2n4UhV_2ab56GSgSock0n6/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Arthur 1",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "attempts": 1,
+   "nextRetryAt": 1791486504453,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-cbgXMGsex2n4UhV_2ab56GSgSock",
+     "t": "Arthur 1",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-cbgXMGsex2n4UhV_2ab56GSgSock0n6&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-cbgXMGsex2n4UhV_2ab56GSgSock0n6/view"
+      }
+     ],
+     "at": 1791486524409
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "arthur 2",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-8Mcge-jGzUhotLHpddEPIQ4rFqIW",
+     "t": "arthur 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H&sz=w1000",
+     "tags": [
+      "Comedia"
+     ],
+     "genre": "comedia",
+     "at": 1791420636357,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "arthur 3",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3",
+     "t": "arthur 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9&sz=w1000",
+     "tags": [
+      "Aventura"
+     ],
+     "genre": "aventura",
+     "at": 1791420640770,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "E5CU4DR0N 5U1C1D4",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
+     "t": "E5CU4DR0N 5U1C1D4",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q&sz=w1000",
+     "at": 1791420644655,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view"
+      }
+     ],
+     "anime": false,
+     "tags": [
+      "Acción"
+     ],
+     "genre": "accion"
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/10CPQUrVg0euo15qlcXEAb88pgl4hvUcK/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "365 dias",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10CPQUrVg0euo15qlcXEAb88pgl4hv",
+     "t": "365 dias",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10CPQUrVg0euo15qlcXEAb88pgl4hvUcK&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10CPQUrVg0euo15qlcXEAb88pgl4hvUcK/view"
+      }
+     ],
+     "at": 1791486455661
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1xPLq/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "la sirenita (1989)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1x",
+     "t": "la sirenita (1989)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1xPLq&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-Svww5b8vQEN3Ho2lXoHQ-0pKZs1xPLq/view"
+      }
+     ],
+     "at": 1791486464216
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "la sirenita 2 regreso al mar (2000)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-_4U5TmGYXxSZApNVe3aYryPHl3tr",
+     "t": "la sirenita 2 regreso al mar (2000)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs&sz=w1000",
+     "at": 1791420943251,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-_4U5TmGYXxSZApNVe3aYryPHl3trkNs/view"
+      }
+     ],
+     "anime": false,
+     "tags": []
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "el origen de la sirenita (2008)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-N4EbZyX5sft47izD-vjQoAbSk9oS",
+     "t": "el origen de la sirenita (2008)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u&sz=w1000",
+     "at": 1791420960899,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-N4EbZyX5sft47izD-vjQoAbSk9oSK3u/view"
+      }
+     ],
+     "anime": false,
+     "tags": []
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/17pOT828OddAZOTlMYlEpSBNsIsRU71r6/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Jurassic World: el reino caído",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-17pOT828OddAZOTlMYlEpSBNsIsRU7",
+     "t": "Jurassic World: el reino caído",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=17pOT828OddAZOTlMYlEpSBNsIsRU71r6&sz=w1000",
+     "tags": [
+      "Fantasía"
+     ],
+     "genre": "fantasia",
+     "at": 1791420981484,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/17pOT828OddAZOTlMYlEpSBNsIsRU71r6/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Inframundo 4",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-17bMiwZKIU0AlmO3Ed-j_FuiiEnbJa",
+     "t": "Inframundo 4",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63&sz=w1000",
+     "tags": [
+      "Fantasía"
+     ],
+     "genre": "fantasia",
+     "at": 1791420985327,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/17bMiwZKIU0AlmO3Ed-j_FuiiEnbJaE63/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/17MzXGxUWWGTZY-87tOniZyrWxWhi5N5N/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "jamaica bajo cero",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 1,
+   "nextRetryAt": 1791486874308,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-17MzXGxUWWGTZY-87tOniZyrWxWhi5",
+     "t": "jamaica bajo cero",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=17MzXGxUWWGTZY-87tOniZyrWxWhi5N5N&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/17MzXGxUWWGTZY-87tOniZyrWxWhi5N5N/view"
+      }
+     ],
+     "at": 1791486974023
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/172zGHGZFGXmhpNmOuJq5QrejZ-9tLDts/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Hotel transilvania tranformania",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, HTTP 401, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 1,
+   "nextRetryAt": 1791487009854,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-172zGHGZFGXmhpNmOuJq5QrejZ-9tL",
+     "t": "Hotel transilvania tranformania",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=172zGHGZFGXmhpNmOuJq5QrejZ-9tLDts&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/172zGHGZFGXmhpNmOuJq5QrejZ-9tLDts/view"
+      }
+     ],
+     "at": 1791487127850
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "harry potter 20° aniversario",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-141xUZN-m7Dv1tkx5foknrsyjh8ROY",
+     "t": "harry potter 20° aniversario",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ&sz=w1000",
+     "tags": [
+      "Documental"
+     ],
+     "genre": "documental",
+     "at": 1791421221135,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/141xUZN-m7Dv1tkx5foknrsyjh8ROYNKZ/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/140FaEXAENyFIvbKN5_xORkORXEcxvPQm/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "Erase una vez en hollywood",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-140FaEXAENyFIvbKN5_xORkORXEcxv",
+     "t": "Erase una vez en hollywood",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=140FaEXAENyFIvbKN5_xORkORXEcxvPQm&sz=w1000",
+     "tags": [
+      "Comedia"
+     ],
+     "genre": "comedia",
+     "at": 1791421224318,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/140FaEXAENyFIvbKN5_xORkORXEcxvPQm/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/12paturmR6xXcliyd3xo1DgJikPzwwx_Y/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "operacion feliz navidad la estafa de los duendes",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 401, HTTP 408).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
+   "attempts": 1,
+   "nextRetryAt": 1791487460202,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12paturmR6xXcliyd3xo1DgJikPzww",
+     "t": "operacion feliz navidad la estafa de los duendes",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12paturmR6xXcliyd3xo1DgJikPzwwx_Y&sz=w1000",
+     "tags": [
+      "Musical"
+     ],
+     "genre": "musical",
+     "at": 1791421227107,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12paturmR6xXcliyd3xo1DgJikPzwwx_Y/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "no mires arriba (2021)",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12ljVZO85Ee03-4u9jjuA8OJKA57ND",
+     "t": "no mires arriba (2021)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O&sz=w1000",
+     "at": 1791421230355,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12ljVZO85Ee03-4u9jjuA8OJKA57NDR9O/view"
+      }
+     ],
+     "anime": false,
+     "tags": []
+    }
+   ]
+  },
+  {
+   "url": "https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view?usp=sharing",
+   "type": "drive-file",
+   "status": "done",
+   "name": "clifford el gran perro rojo",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "attempts": 1,
+   "nextRetryAt": 1791487758990,
+   "addedAt": 1791485718203,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12eJYVRi1jVwpUCu8XKwZOK1EioTsq",
+     "t": "clifford el gran perro rojo",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L&sz=w1000",
+     "tags": [
+      "Infantil"
+     ],
+     "genre": "infantil",
+     "at": 1791421336473,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12eJYVRi1jVwpUCu8XKwZOK1EioTsqm5L/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
+  }
+ ]
+}
