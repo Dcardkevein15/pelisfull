@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791476317388,
+ "v": 1791484386170,
  "by": "Dcard #2968",
- "at": "2026-10-08T16:18:37.388Z",
- "n": 5981,
+ "at": "2026-10-08T18:33:06.170Z",
+ "n": 5984,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -49584,6 +49584,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA&sz=w1000",
    "tags": [
     "Infantil",
@@ -49605,6 +49606,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1&sz=w1000",
    "tags": [
     "Ciencia Ficción"
@@ -49616,6 +49618,71 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/1gvLDUriZa1jqSOzGEXsSUD5fEuWqK-g1/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1H8FwTjXRGJ54Ma06j81pfYmHtexXG",
+   "t": "Hop",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k&sz=w1000",
+   "tags": [
+    "Comedia"
+   ],
+   "genre": "comedia",
+   "at": 1791478250041,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a",
+   "t": "Pokemon - Detective Pikachu",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://drive.google.com/thumbnail?id=1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L&sz=w1000",
+   "tags": [
+    "Suspenso"
+   ],
+   "genre": "suspenso",
+   "at": 1791478255542,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1NBa_lhy0yf6Brj6j4o2YlMmtcXk8a37L/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-1qdnKa4Q0wrYVlWln5KQC12e_SqbVX",
+   "t": "Los Miserables",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=1qdnKa4Q0wrYVlWln5KQC12e_SqbVXbHQ&sz=w1000",
+   "tags": [
+    "Drama"
+   ],
+   "genre": "drama",
+   "at": 1791484339276,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/1qdnKa4Q0wrYVlWln5KQC12e_SqbVXbHQ/view"
     }
    ]
   }
@@ -201211,6 +201278,26 @@
    "dest": "#/pelicula/el-mejor-verano-de-mi-vida",
    "t": "El Mejor Verano De Mi Vida",
    "at": 1791472420620
+  },
+  "azmxan": {
+   "dest": "#/pelicula/carino-he-encogido-a-los-ninos",
+   "t": "Cariño, He Encogido A Los Niños",
+   "at": 1791478128756
+  },
+  "f37kcj": {
+   "dest": "#/pelicula/e-t-el-extraterrestre",
+   "t": "E T - El Extraterrestre",
+   "at": 1791478128756
+  },
+  "73emw9": {
+   "dest": "#/pelicula/hop",
+   "t": "Hop",
+   "at": 1791479660527
+  },
+  "nepn2s": {
+   "dest": "#/pelicula/pokemon-detective-pikachu",
+   "t": "Pokemon - Detective Pikachu",
+   "at": 1791479660527
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -201224,5 +201311,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "CiWfTvDrzKCDLmPVckfPtO6l2VaE4f0bHlmTcjbTdLwvGvljUOqlV5l9nuUyjy0MgmgjK7kA5XFc3pS/h025Ag=="
+ "sig": "k6nBOIYJGKjY6JFaQoq2VFWCMYN5X6Qr85lcoPonsBpEbSsdyNA7oo+ERJlU9kuzq+7+iNrmhHa6PYJwaCdzaA=="
 }
