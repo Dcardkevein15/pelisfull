@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791490609362,
+ "at": 1791490650822,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1WteFe9htTep4wFuRtLSrueUdI7H5s4PQ/view",
@@ -40,9 +40,9 @@
    "type": "drive-file",
    "status": "done",
    "name": "10 razones para odiarte",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 5,
-   "nextRetryAt": 1791487538725,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": [
     {
@@ -60,7 +60,7 @@
        "url": "https://drive.google.com/file/d/1_0irnw0CW4HhNbFuIH-GS5spdyCZV4ji/view"
       }
      ],
-     "at": 1791487721891
+     "at": 1791485904782
     }
    ]
   },
@@ -69,9 +69,9 @@
    "type": "drive-file",
    "status": "done",
    "name": "a todos los",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 3,
-   "nextRetryAt": 1791486914583,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": [
     {
@@ -89,7 +89,7 @@
        "url": "https://drive.google.com/file/d/1K835Kw2vl_Crh8ud2S-uqKSRSbm8spyW/view"
       }
      ],
-     "at": 1791487039780
+     "at": 1791485910772
     }
    ]
   },
@@ -98,9 +98,9 @@
    "type": "drive-file",
    "status": "done",
    "name": "break up",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 2,
-   "nextRetryAt": 1791487720389,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": [
     {
@@ -118,7 +118,7 @@
        "url": "https://drive.google.com/file/d/1L1WjK1q1MCnhq8MgHt7pp-wTJLj-8pDx/view"
       }
      ],
-     "at": 1791487764960
+     "at": 1791485914523
     }
    ]
   },
@@ -147,7 +147,7 @@
        "url": "https://drive.google.com/file/d/11Oa4SVquIWVTnm6GN0EK6xn5I_G2jI2x/view"
       }
      ],
-     "at": 1791487768602
+     "at": 1791485917694
     }
    ]
   },
@@ -156,9 +156,9 @@
    "type": "drive-file",
    "status": "done",
    "name": "Video externo (renómbrame ✎)",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 3,
-   "nextRetryAt": 1791488777964,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": [
     {
@@ -176,7 +176,7 @@
        "url": "https://drive.google.com/file/d/19tTcpzDdhFo-ERyU277gP7FPVAdm4Zfi/view"
       }
      ],
-     "at": 1791488857692
+     "at": 1791485922490
     }
    ]
   },
@@ -185,9 +185,9 @@
    "type": "drive-file",
    "status": "dup",
    "name": "Video externo (renómbrame ✎)",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 3,
-   "nextRetryAt": 1791488959248,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": null
   },
@@ -216,7 +216,7 @@
        "url": "https://drive.google.com/file/d/12j_1ydN80IAbuFSJAYjFSR5rCtTEqyAa/view"
       }
      ],
-     "at": 1791488959728
+     "at": 1791486171076
     }
    ]
   },
@@ -225,9 +225,9 @@
    "type": "drive-file",
    "status": "done",
    "name": "conjuro 3",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 2,
-   "nextRetryAt": 1791489621235,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": [
     {
@@ -245,7 +245,7 @@
        "url": "https://drive.google.com/file/d/1ieGbEbYGHSCAE02uY9TJi-vaRnAKyU3E/view"
       }
      ],
-     "at": 1791489786288
+     "at": 1791486216646
     }
    ]
   },
@@ -255,8 +255,8 @@
    "status": "done",
    "name": "Arthur 1",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 3,
-   "nextRetryAt": 1791490111919,
+   "attempts": 1,
+   "nextRetryAt": 1791486504453,
    "addedAt": 1791485718203,
    "payload": [
     {
@@ -274,7 +274,7 @@
        "url": "https://drive.google.com/file/d/1-cbgXMGsex2n4UhV_2ab56GSgSock0n6/view"
       }
      ],
-     "at": 1791490419861
+     "at": 1791486524409
     }
    ]
   },
@@ -287,7 +287,30 @@
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791485718203,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-8Mcge-jGzUhotLHpddEPIQ4rFqIW",
+     "t": "arthur 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H&sz=w1000",
+     "tags": [
+      "Comedia"
+     ],
+     "genre": "comedia",
+     "at": 1791420636357,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-8Mcge-jGzUhotLHpddEPIQ4rFqIWu5H/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9/view?usp=sharing",
@@ -306,7 +329,12 @@
      "tag": "Google Drive · Archivo",
      "g": 6,
      "kind": "pelicula",
-     "poster": "https://image.tmdb.org/t/p/w500/y2FwChmqk1twjhslQNtgBA3Oik6.jpg",
+     "poster": "https://drive.google.com/thumbnail?id=1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9&sz=w1000",
+     "tags": [
+      "Aventura"
+     ],
+     "genre": "aventura",
+     "at": 1791420640770,
      "episodes": [
       {
        "n": 1,
@@ -314,13 +342,6 @@
        "url": "https://drive.google.com/file/d/1-L4gJ-8VpDrMgGU7R4IRl1wOjFna3GV9/view"
       }
      ],
-     "at": 1791420640770,
-     "genre": "aventura",
-     "tags": [
-      "Aventura"
-     ],
-     "genreTmdbDone": true,
-     "posterTried": true,
      "anime": false
     }
    ]
@@ -329,33 +350,33 @@
    "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view?usp=sharing",
    "type": "drive-file",
    "status": "done",
-   "name": "Blancanieves Y Los Siete Enanitos",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
-   "attempts": 1,
-   "nextRetryAt": 1791490417472,
+   "name": "E5CU4DR0N 5U1C1D4",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": [
     {
-     "id": "file-https-drive-google-com-file-d-1uQVGRYcF5Nmt1JTv2GO6cpAV4kbLM",
-     "t": "Blancanieves Y Los Siete Enanitos",
+     "id": "file-https-drive-google-com-file-d-1uBLG4wrHubiifJMYlYLoD5-FqwOFe",
+     "t": "E5CU4DR0N 5U1C1D4",
      "jp": "🎬",
      "tag": "Google Drive · Archivo",
      "g": 6,
      "kind": "pelicula",
-     "anime": false,
-     "poster": "https://drive.google.com/thumbnail?id=1uQVGRYcF5Nmt1JTv2GO6cpAV4kbLMmmE&sz=w1000",
-     "tags": [
-      "Fantasía"
-     ],
-     "genre": "fantasia",
-     "at": 1791485088857,
+     "poster": "https://drive.google.com/thumbnail?id=1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q&sz=w1000",
+     "at": 1791420644655,
      "episodes": [
       {
        "n": 1,
        "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1uQVGRYcF5Nmt1JTv2GO6cpAV4kbLMmmE/view"
+       "url": "https://drive.google.com/file/d/1uBLG4wrHubiifJMYlYLoD5-FqwOFeJ9q/view"
       }
-     ]
+     ],
+     "anime": false,
+     "tags": [
+      "Acción"
+     ],
+     "genre": "accion"
     }
    ]
   },
@@ -384,12 +405,7 @@
        "url": "https://drive.google.com/file/d/10CPQUrVg0euo15qlcXEAb88pgl4hvUcK/view"
       }
      ],
-     "at": 1791486455661,
-     "genre": "romance",
-     "tags": [
-      "Romance"
-     ],
-     "genreTmdbDone": true
+     "at": 1791486455661
     }
    ]
   },
@@ -577,12 +593,7 @@
        "url": "https://drive.google.com/file/d/17MzXGxUWWGTZY-87tOniZyrWxWhi5N5N/view"
       }
      ],
-     "at": 1791486974023,
-     "genre": "comedia",
-     "tags": [
-      "Comedia"
-     ],
-     "genreTmdbDone": true
+     "at": 1791486974023
     }
    ]
   },
@@ -798,11 +809,11 @@
    "addedAt": 1791490519540,
    "type": "mega-folder",
    "payload": null,
-   "error": "[PERMANENTE] carpetas de Mega no se pueden leer (Mega las cifra dentro del enlace) — pega los archivos uno a uno o usa Drive",
+   "error": "⚠ Mega cifra las carpetas dentro del propio enlace:ninguna app web puede leerlas automáticamente.Sí puedes pegar archivos sueltos de Mega (se catalogan)o usar G",
    "name": "",
    "nextRetryAt": 0,
-   "attempts": 0,
-   "status": "queued"
+   "attempts": 1,
+   "status": "failed-final"
   }
  ]
 }
