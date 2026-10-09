@@ -13,7 +13,7 @@
 
   <!-- ══════════ TOPBAR ══════════ -->
   <header class="soc-top">
-    <a class="soc-brand" href="../" title="Ir a XSTREAM">
+    <a class="soc-brand" href="/" title="Ir a XSTREAM">
       <span class="soc-logo">X</span>
       <span class="soc-brandname">XSTREAM<b>SOCIAL</b></span>
     </a>
@@ -23,10 +23,10 @@
       <div class="soc-search-drop hidden" id="socSearchDrop"></div>
     </div>
     <nav class="soc-topnav">
-      <a href="../" title="Catálogo de películas en XSTREAM">Películas</a>
-      <a href="../" title="Series en XSTREAM">Series</a>
-      <a href="../" title="Anime en XSTREAM">Anime</a>
-      <a href="./" class="on" title="Estás en la comunidad">Comunidad</a>
+      <a href="/" title="Catálogo de películas en XSTREAM">🎬 Películas</a>
+      <a href="/" title="Series en XSTREAM">📺 Series</a>
+      <a href="/" title="Anime en XSTREAM">🎮 Anime</a>
+      <a href="/social/" class="on" title="Estás en la comunidad">👥 Comunidad</a>
     </nav>
     <div class="soc-top-actions">
       <button class="soc-bell" id="socBell" title="Notificaciones">
@@ -34,7 +34,7 @@
         <div class="soc-notif-drop hidden" id="socNotifDrop"></div>
       </button>
       <button class="soc-bell" id="socMsgBtn" title="Mensajes">
-        <span>✉️</span><b class="soc-badge" id="socMsgCount" hidden>0</b>
+        <span>💬</span><b class="soc-badge" id="socMsgCount" hidden>0</b>
       </button>
       <div class="soc-me" id="socMe">
         <span class="soc-avatar" id="socMeAvatar">?</span>
@@ -45,6 +45,7 @@
         <span class="soc-caret">▾</span>
         <div class="soc-me-drop hidden" id="socMeDrop"></div>
       </div>
+      <button class="soc-bell" id="socMoreBtn" title="Más opciones">⋮</button>
     </div>
   </header>
 
@@ -53,72 +54,75 @@
     <nav class="soc-side-nav" id="socSideNav">
       <a class="on" data-nav="inicio"><span>🏠</span> Inicio</a>
       <a data-nav="explorar"><span>🧭</span> Explorar</a>
-      <a data-nav="amigos"><span>👥</span> Amigos</a>
+      <a data-nav="amigos"><span>👥</span> Amigos <b class="soc-red hidden" id="socSideFriends"></b></a>
       <a data-nav="grupos"><span>⬡</span> Grupos</a>
       <a data-nav="mensajes"><span>💬</span> Mensajes <b class="soc-red hidden" id="socSideMsg"></b></a>
       <a data-nav="notificaciones"><span>🔔</span> Notificaciones <b class="soc-red hidden" id="socSideNotif"></b></a>
-      <a data-nav="perfil"><span>🧑</span> Mi perfil</a>
+      <a data-nav="perfil"><span class="soc-nav-av" id="socSideAv">🧑</span> Mi perfil</a>
     </nav>
     <div class="soc-side-sec">TUS INTERESES</div>
     <div class="soc-interests" id="socInterests"></div>
     <div class="soc-premium">
       <div class="soc-crown">👑</div>
-      <b>XSTREAM PREMIUM</b>
-      <p>Sin anuncios, todo desbloqueado y funciones sociales exclusivas.</p>
-      <a class="soc-btn soc-btn-green" href="../" target="_self">Ver planes</a>
+      <b>Únete a Premium</b>
+      <p>Sin anuncios • Contenido exclusivo, Más funciones</p>
+      <a class="soc-btn soc-btn-green" href="/">Ver planes</a>
     </div>
   </aside>
 
-  <!-- ══════════ COLUMNA CENTRAL ══════════ -->
+  <!-- ══════════ COLUMNA CENTRAL: publicar+historias a todo lo ancho,
+       luego subcolumnas [tendencias | feed] como en la referencia ══════════ -->
   <main class="soc-main">
 
-    <!-- Publicar -->
-    <section class="soc-card soc-create">
+    <!-- Publicar (a todo lo ancho del centro) -->
+    <section class="soc-card soc-create soc-span">
       <span class="soc-avatar me" id="socCreateAvatar">?</span>
       <div class="soc-create-body">
         <textarea id="socPostText" rows="2" placeholder="¿Qué estás pensando?" maxlength="800"></textarea>
         <div class="soc-attach hidden" id="socAttach"></div>
         <div class="soc-tools">
-          <button class="soc-tool" data-tool="foto" title="Añadir foto o vídeo (URL o del catálogo)">📷 Foto/Vídeo</button>
-          <button class="soc-tool" data-tool="encuesta" title="Crear una encuesta">📊 Encuesta</button>
-          <button class="soc-tool" data-tool="enlace" title="Añadir un enlace">🔗 Enlace</button>
-          <button class="soc-tool" data-tool="gif" title="Añadir un GIF o imagen por URL">🎞 GIF</button>
+          <button class="soc-tool" data-tool="foto" title="Añadir foto o vídeo (URL o del catálogo)"><i>📷</i> Foto/Vídeo</button>
+          <button class="soc-tool" data-tool="encuesta" title="Crear una encuesta"><i>📊</i> Encuesta</button>
+          <button class="soc-tool" data-tool="enlace" title="Añadir un enlace"><i>🔗</i> Publicar enlace</button>
+          <button class="soc-tool" data-tool="gif" title="Añadir un GIF o imagen por URL"><i>🎞</i> GIF</button>
           <button class="soc-btn soc-btn-green" id="socPublish">Publicar</button>
         </div>
       </div>
     </section>
 
-    <!-- Historias -->
-    <section class="soc-card soc-stories-card">
+    <!-- Historias (a todo lo ancho del centro) -->
+    <section class="soc-card soc-stories-card soc-span">
       <div class="soc-stories" id="socStories"></div>
     </section>
 
-    <!-- Feed -->
+    <!-- Subcolumna izquierda del centro: Tendencias + Grupos -->
+    <aside class="soc-col-left">
+      <section class="soc-card">
+        <div class="soc-card-h"><span>🔥 Tendencias ahora</span></div>
+        <div class="soc-trends" id="socTrends"></div>
+        <a class="soc-vermas" id="socTrendsMore" href="javascript:void 0">Ver más →</a>
+      </section>
+      <section class="soc-card">
+        <div class="soc-card-h"><span>⬡ Grupos recomendados</span></div>
+        <div class="soc-groups" id="socGroups"></div>
+        <a class="soc-vermas" id="socGroupsMore" href="javascript:void 0">Ver más →</a>
+      </section>
+    </aside>
+
+    <!-- Subcolumna derecha del centro: Feed -->
     <section id="socFeed" class="soc-feed" aria-live="polite"></section>
     <div class="soc-feed-empty hidden" id="socFeedEmpty"></div>
   </main>
 
-  <!-- ══════════ COLUMNA IZQUIERDA INTERNA: TENDENCIAS + GRUPOS ══════════ -->
-  <aside class="soc-col-left">
-    <section class="soc-card">
-      <div class="soc-card-h"><span>🔥 Tendencias ahora</span><small># de la comunidad</small></div>
-      <div class="soc-trends" id="socTrends"></div>
-    </section>
-    <section class="soc-card">
-      <div class="soc-card-h"><span>⬡ Grupos recomendados</span></div>
-      <div class="soc-groups" id="socGroups"></div>
-    </section>
-  </aside>
-
   <!-- ══════════ COLUMNA DERECHA INTERNA: DESCUBRIMIENTO ══════════ -->
   <aside class="soc-col-right">
     <section class="soc-card">
-      <div class="soc-card-h"><span>👑 Contenido destacado</span><a href="../">Ver todo</a></div>
+      <div class="soc-card-h"><span>👑 Contenido destacado</span><a href="/">Ver todo →</a></div>
       <div class="soc-feat" id="socFeat"></div>
       <div class="soc-feat-nav" id="socFeatNav"></div>
     </section>
     <section class="soc-card">
-      <div class="soc-card-h"><span>👥 Personas que quizás conozcas</span></div>
+      <div class="soc-card-h"><span>👥 Personas que quizás conozcas</span><a href="javascript:void 0" id="socSugMore">Ver todo →</a></div>
       <div class="soc-suggest" id="socSuggest"></div>
     </section>
     <section class="soc-card">
@@ -140,11 +144,14 @@
     </section>
     <section class="soc-card soc-promo">
       <div class="soc-promo-x">X</div>
-      <b>Conecta, comparte y vive la experiencia XSTREAM</b>
-      <a class="soc-btn soc-btn-green" href="../">¡Únete ahora!</a>
+      <div class="soc-promo-b">
+        <b>Conecta, comparte y vive la experiencia XSTREAM</b>
+        <a class="soc-btn soc-btn-green" href="/">¡Únete ahora!</a>
+      </div>
     </section>
     <section class="soc-card">
-      <div class="soc-card-h"><span>🟢 Usuarios en línea</span><b id="socOnlineCount">0</b></div>
+      <div class="soc-card-h"><span>🟢 Usuarios en línea</span><a href="javascript:void 0" id="socOnlineMore">Ver más →</a></div>
+      <div class="soc-online-h"><b id="socOnlineCount">0</b> conectados ahora</div>
       <div class="soc-online" id="socOnline"></div>
     </section>
   </aside>

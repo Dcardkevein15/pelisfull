@@ -46,6 +46,18 @@
   }
   const avatarHtml = (name, grad, size, extra) =>
     `<span class="soc-avatar ${size || ''}" style="${gradOf(grad)}" ${extra || ''}>${esc(initials(name))}</span>`;
+  const avatarImgHtml = (url, name, size, extra) =>
+    `<span class="soc-avatar ${size || ''}" ${extra || ''}><img src="${esc(url)}" alt="${esc(name)}" loading="lazy" onerror="this.parentElement.textContent='${esc(initials(name))}';this.remove()"></span>`;
+
+  /* mapping de grupos oficiales → pósters REALES del catálogo (identidad visual de la referencia) */
+  const groupPoster = gid => ({
+    animelove: catFind('solo leveling', 'soraleveling'),
+    cinetotal: catFind('dune'),
+    seriesfans: catFind('the last of us', 'last of us'),
+    mundoanime: catFind('naruto', 'one piece', 'dragon ball'),
+    gamingzone: null,
+    amigosdelstream: catFind('spider', 'batman'),
+  }[gid] || null)?.poster || null;
 
   /* ── estado ── */
   const S = {
@@ -104,12 +116,15 @@
     const cAv = $('socCreateAvatar');
     cAv.style.cssText = gradOf(S.me.grad);
     cAv.textContent = initials(S.me.name);
+    /* avatar mini del «Mi perfil» en la barra lateral (como la referencia) */
+    const sideAv = $('socSideAv');
+    if (sideAv) { sideAv.style.cssText = gradOf(S.me.grad); sideAv.textContent = initials(S.me.name); }
     $('socMeDrop').innerHTML = `
       <div class="soc-drop-h">${esc(S.me.name)} ${esc(S.me.tag || '')} ${esc(S.me.flag || '')}</div>
       <button data-me="perfil">🧑 Mi perfil</button>
       <button data-me="guardados">🔖 Guardados (${S.saved.length})</button>
       <button data-me="intereses">⭐ Mis intereses</button>
-      <a href="../">🎬 Ir a XSTREAM</a>`;
+      <a href="/">🎬 Ir a XSTREAM</a>`;
     $('socMeDrop').querySelectorAll('[data-me]').forEach(b => b.addEventListener('click', () => {
       $('socMeDrop').classList.add('hidden');
       if (b.dataset.me === 'perfil') openProfile(S.me.uid);
@@ -138,13 +153,20 @@
 
   /* ═══════════ SIDEBAR + INTERESES ═══════════ */
   const INTERESTS = ['Películas', 'Series', 'Anime', 'Juegos', 'Música', 'Deportes', 'Tecnología'];
+  const INTEREST_META = {
+    'Películas': { ic: '🎬', c: '#3d1520' }, 'Series': { ic: '📺', c: '#063C2A' },
+    'Anime': { ic: '👾', c: '#241540' }, 'Juegos': { ic: '🎮', c: '#12303d' },
+    'Música': { ic: '🎵', c: '#3d1530' }, 'Deportes': { ic: '⚽', c: '#3d2815' },
+    'Tecnología': { ic: '⚙️', c: '#122a3d' },
+  };
   function renderInterests() {
     const box = $('socInterests');
     box.innerHTML = '';
     for (const it of INTERESTS) {
+      const meta = INTEREST_META[it];
       const b = document.createElement('button');
       b.className = 'soc-int' + (S.interests.includes(it) ? ' on' : '');
-      b.textContent = it;
+      b.innerHTML = `<i style="--c1:${meta.c}">${meta.ic}</i> ${esc(it)}`;
       b.addEventListener('click', async () => {
         const i = S.interests.indexOf(it);
         if (i >= 0) S.interests.splice(i, 1); else S.interests.push(it);
@@ -172,6 +194,7 @@
   function renderStories() {
     const box = $('socStories');
     box.innerHTML = '';
+    const RINGS = ['', 'ring-b', 'ring-c', 'ring-d', 'ring-e'];
     const mk = (cls, inner, name, click, live) => {
       const d = document.createElement('button');
       d.className = 'soc-story ' + cls;
@@ -186,12 +209,17 @@
     } else {
       mk('ring-d', avatarHtml(S.me.name, S.me.grad), 'Tu historia', openCreateStory);
     }
-    for (const g of S.groups.slice(0, 6)) {
-      mk('ring-b', esc(g.name[0]), g.name, () => openConvo('g:' + g.id, g.name));
-    }
-    for (const s of S.stories.filter(x => x.uid !== S.me.uid).slice(0, 10)) {
-      mk('ring-e', avatarHtml(s.name, s.grad), s.name.split(' ')[0], () => openStoryView(s), s.live);
-    }
+    S.groups.slice(0, 6).forEach((g, i) => {
+      const poster = groupPoster(g.id);
+      mk(RINGS[(i + 1) % RINGS.length], poster
+        ? `<img src="${esc(poster)}" alt="${esc(g.name)}" loading="lazy" onerror="this.remove()">`
+        : esc(g.name[0]), g.name, () => openConvo('g:' + g.id, g.name));
+    });
+    S.stories.filter(x => x.uid !== S.me.uid).slice(0, 10).forEach((s, i) => {
+      mk(RINGS[(i + 3) % RINGS.length], s.img
+        ? `<img src="${esc(s.img)}" alt="" loading="lazy" onerror="this.remove()">`
+        : avatarHtml(s.name, s.grad), (s.name || '').split(' ')[0], () => openStoryView(s), s.live);
+    });
   }
   function openCreateStory() {
     openSheet(`
@@ -293,7 +321,11 @@
   });
 
   /* ═══════════ FEED ═══════════ */
-  const withTags = t => esc(t).replace(/(^|\s)(#[\wáéíóúñÁÉÍÓÚÑ]+)/g, (m, a, b) => `${a}<span class="tag">${b}</span>`);
+  const extractTags = t => {
+    const tags = String(t || '').match(/#[\wáéíóúñÁÉÍÓÚÑ]+/g) || [];
+    const clean = String(t || '').replace(/\s*#[\wáéíóúñÁÉÍÓÚÑ]+/g, '').trim();
+    return { clean, tags };
+  };
   function postCard(p) {
     const d = document.createElement('article');
     d.className = 'soc-card soc-post';
@@ -301,25 +333,28 @@
     const liked = p.likes.includes(S.me.uid);
     const saved = S.saved.includes(p.id);
     const comments = p.comments || [];
+    const { clean, tags } = extractTags(p.text);
+    const official = p.official || p.uid === 'x-stream-social-team';
     d.innerHTML = `
       <div class="soc-post-h">
         ${avatarHtml(p.name, p.grad, 'lg')}
         <div class="soc-post-user">
-          <b>${esc(p.name)} ${p.official || p.uid === 'x-stream-social-team' ? '<span class="soc-verified" title="Equipo XSTREAM">✔</span>' : ''}</b>
-          <small>${esc(p.tag || '')} · ${ago(p.at)}${p.official || p.uid === 'x-stream-social-team' ? ' · <span style="color:var(--blue)">EQUIPO XSTREAM</span>' : ''}</small>
+          <b>${esc(p.name)} ${official ? '<span class="soc-verified" title="Equipo XSTREAM">✓</span>' : ''}</b>
+          <small>@${esc((p.tag || 'xstream').replace('#', ''))} · ${ago(p.at)}</small>
         </div>
-        <div class="soc-post-time">${hms(p.at)}</div>
-      <button class="soc-post-menu" title="Opciones">⋯</button>
+        <span class="soc-post-time">⋯</span>
+        <button class="soc-post-menu" title="Opciones">⋮</button>
       </div>
-      ${p.text ? `<p class="soc-post-text">${withTags(p.text)}</p>` : ''}
+      ${clean ? `<p class="soc-post-text">${esc(clean)}</p>` : ''}
+      ${tags.length ? `<div class="soc-post-tags">${tags.map(t => `<span>${esc(t)}</span>`).join(' ')}</div>` : ''}
       ${p.img ? `<div class="soc-post-img"><img src="${esc(p.img)}" loading="lazy" alt=""></div>` : ''}
       ${p.link ? `<a class="soc-post-link" href="${esc(p.link)}" target="_blank" rel="noopener">🔗 ${esc(p.link)}</a>` : ''}
       ${p.poll ? pollHtml(p) : ''}
       <div class="soc-post-acts">
-        <button class="soc-act lk ${liked ? 'on' : ''}" title="Me gusta">❤️ ${p.likes.length}</button>
+        <button class="soc-act lk ${liked ? 'on' : ''}" title="Me gusta">👍 ${p.likes.length}</button>
         <button class="soc-act cm" title="Comentarios">💬 ${comments.length}</button>
         <button class="soc-act sh" title="Compartir (copia el enlace)">↗ Compartir${p.shares ? ' · ' + p.shares : ''}</button>
-        <button class="soc-act sv save ${saved ? 'on' : ''}" title="Guardar">🔖 ${saved ? 'Guardado' : 'Guardar'}</button>
+        <button class="soc-act sv save ${saved ? 'on' : ''}" title="Guardar">🔖</button>
       </div>
       <div class="soc-comments hidden">
         ${comments.map(c => `
@@ -336,7 +371,7 @@
     lk.addEventListener('click', async () => {
       lk.classList.toggle('on');
       const r = await socCall('like', { postId: p.id, on: lk.classList.contains('on') ? '1' : '0' }, true);
-      if (r) { p.likes = r.mine ? [...p.likes] : p.likes; lk.textContent = '❤️ ' + r.likes; }
+      if (r) { p.likes = r.mine ? [...p.likes] : p.likes; lk.textContent = '👍 ' + r.likes; }
       refreshSoon();
     });
     d.querySelector('.cm').addEventListener('click', () => d.querySelector('.soc-comments').classList.toggle('hidden'));
@@ -356,11 +391,10 @@
     sv.addEventListener('click', async () => {
       const on = !sv.classList.contains('on');
       sv.classList.toggle('on', on);
-      sv.textContent = on ? '🔖 Guardado' : '🔖 Guardar';
       const r = await socCall('save', { postId: p.id, on: on ? '1' : '0' }, true);
       if (r) { S.saved = r.saved || S.saved; toast(on ? '🔖 Guardado' : 'Quitado de guardados'); }
     });
-    d.querySelector('.soc-post-menu').addEventListener('click', () => toast('Opciones: usar Guardar o Compartir · abre el perfil tocando el avatar'));
+    d.querySelector('.soc-post-menu').addEventListener('click', () => toast('Opciones: usa Guardar 🔖 o Compartir ↗ · toca el avatar para abrir el perfil'));
     if (p.poll) wirePoll(d, p);
     return d;
   }
@@ -389,15 +423,15 @@
   /* posts de bienvenida del EQUIPO — datos de ejemplo claramente identificados */
   function welcomePosts() {
     const solo = catFind('solo leveling', 'soraleveling') || S.catalog.find(s => s.kind !== 'pelicula') || null;
-    const dune = catFind('dune', 'dune parte dos') || S.catalog.find(s => s.kind === 'pelicula') || null;
-    const mk = (img, text) => ({
+    const dune = catFind('dune') || S.catalog.find(s => s.kind === 'pelicula') || null;
+    const mk = (img, text, at) => ({
       id: 'welcome-' + slugify(text.slice(0, 20)), uid: 'x-stream-social-team', name: 'XSTREAM · Equipo',
-      tag: '#oficial', grad: 0, text, img: img || '', link: '', poll: null, at: Date.now() - 3600e3,
+      tag: '#oficial', grad: 0, text, img: img || '', link: '', poll: null, at: Date.now() - (at || 3600e3),
       likes: [], comments: [], shares: 0, official: true,
     });
     const out = [];
-    if (solo) out.push(mk(solo.poster, `¡Bienvenido a XSTREAM SOCIAL! 🎉 Esta es la nueva comunidad de #cine, #series y #anime. Publica, comenta y sigue a tus creadores favoritos. Como muestra, esto es lo que verás por aquí — hablando de #SoloLeveling y de todo lo que amas. Únete a la conversación 👇`));
-    if (dune) out.push(mk('', `¿Ya viste la conversación de la semana? #DuneParte2 sigue dando de qué hablar 🏜️ Cuéntanos tu teoría sin spoilers… o con spoilers, pero avisa 😄`));
+    if (solo) out.push(mk(solo.poster, `¡Ya está aquí la comunidad XSTREAM! 🎉 Publica, comenta y comparte todo lo que amas del cine, las series y el anime. Empieza hablando de #SoloLeveling y todo lo que viene 👇`, 7200e3));
+    if (dune) out.push(mk(dune.poster, `¿Ya viste la conversación del momento? Cuéntanos tu opinión sin spoilers (o con, pero avisa 😄) y usa los #hashtags para que tu publicación llegue a las Tendencias 🔥`, 3600e3));
     return out;
   }
 
@@ -415,49 +449,55 @@
   }
 
   /* ═══════════ TENDENCIAS + GRUPOS ═══════════ */
+  let trendsExpanded = false;
   function renderTrends() {
     const counts = {};
     for (const p of S.posts) {
       for (const m of String(p.text || '').matchAll(/#([\wáéíóúñÁÉÍÓÚÑ]{2,30})/g)) counts[m[1]] = (counts[m[1]] || 0) + 1;
     }
-    let items = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 3)
-      .map(([tag, n]) => ({ tag, n }));
-    const cat = hotCatalog().slice(0, 5 - items.length);
+    const items = Object.entries(counts).sort((a, b) => b[1] - a[1])
+      .map(([tag, n]) => ({ tag, n, kind: 'Comunidad', sub: `${n} publicación${n === 1 ? '' : 'es'} en la comunidad` }));
+    const cat = hotCatalog().map(c => ({
+      cat: c, tag: slugify(c.t).replace(/-/g, ''),
+      sub: `${c.kind === 'pelicula' ? 'Película' : 'Serie'} · ${(c.episodes || []).length} ${c.kind === 'pelicula' ? 'video' : 'capítulo'}${(c.episodes || []).length === 1 ? '' : 's'}`,
+      kind: c.kind === 'pelicula' ? 'Películas' : (c.anime ? 'Anime' : 'Series'),
+    })).filter(c => !items.some(i => i.tag === c.tag));
+    const all = [...items, ...cat];
     const box = $('socTrends');
     box.innerHTML = '';
-    let idx = 1;
-    for (const it of items) {
+    const show = trendsExpanded ? all.slice(0, 10) : all.slice(0, 5);
+    show.forEach((it, i) => {
       const d = document.createElement('div');
       d.className = 'soc-trend';
-      d.innerHTML = `<span class="soc-trend-idx">${idx++}</span><span class="soc-trend-emoji">💬</span>
-        <div class="soc-trend-b"><b>#${esc(it.tag)}</b><small>${it.n} publicación${it.n === 1 ? '' : 'es'} en la comunidad</small></div>
-        <span class="soc-trend-up">▲</span>`;
-      d.addEventListener('click', () => { $('socSearch').value = '#' + it.tag; doSearch(); });
+      d.innerHTML = `<span class="soc-trend-idx">${i + 1}</span>
+        ${it.cat ? `<img src="${esc(it.cat.poster)}" loading="lazy" alt="">` : '<span class="soc-trend-emoji">💬</span>'}
+        <div class="soc-trend-b"><b>#${esc(it.tag)}</b><small>${esc(it.sub)}</small></div>
+        <span class="soc-trend-up">↗</span>`;
+      d.addEventListener('click', () => {
+        if (it.cat) window.open(catLink(it.cat), '_self');
+        else { $('socSearch').value = '#' + it.tag; doSearch(); }
+      });
       box.appendChild(d);
-    }
-    for (const c of cat) {
-      const d = document.createElement('div');
-      d.className = 'soc-trend';
-      d.innerHTML = `<span class="soc-trend-idx">${idx++}</span>
-        <img src="${esc(c.poster)}" loading="lazy" alt="">
-        <div class="soc-trend-b"><b>#${esc(slugify(c.t).replace(/-/g, ''))}</b><small>${esc((c.genre || (c.kind === 'pelicula' ? 'Película' : 'Serie')) + '')} · en el catálogo</small></div>
-        <span class="soc-trend-up">▲</span>`;
-      d.addEventListener('click', () => window.open(catLink(c), '_self'));
-      box.appendChild(d);
-    }
+    });
     if (!box.children.length) box.innerHTML = '<div class="soc-empty">Las tendencias crecen con las publicaciones de la comunidad.</div>';
+    const more = $('socTrendsMore');
+    if (more) {
+      more.textContent = trendsExpanded ? 'Ver menos ←' : 'Ver más →';
+      more.onclick = () => { trendsExpanded = !trendsExpanded; renderTrends(); };
+    }
   }
   function renderGroups() {
     const box = $('socGroups');
     box.innerHTML = '';
     for (const g of S.groups.slice(0, 6)) {
       const joined = S.follows.includes('g:' + g.id);
+      const poster = groupPoster(g.id);
       const d = document.createElement('div');
       d.className = 'soc-group';
       d.innerHTML = `
-        <span class="soc-group-av">${esc(g.name[0])}</span>
-        <div class="soc-group-b"><b>${esc(g.name)}</b><small>${g.members} miembro${g.members === 1 ? '' : 's'} · ${esc(g.desc || 'Grupo de la comunidad')}</small></div>
-        <button class="soc-btn ${joined ? '' : 'soc-btn-green'}">${joined ? '✓ Miembro' : 'Unirte'}</button>`;
+        <span class="soc-group-av" style="${gradOf(2)}">${poster ? `<img src="${esc(poster)}" alt="" loading="lazy" onerror="this.remove()">` : esc(g.name[0])}</span>
+        <div class="soc-group-b"><b>${esc(g.name)}</b><small>${g.members} miembro${g.members === 1 ? '' : 's'}</small></div>
+        <button class="soc-btn ${joined ? '' : 'soc-btn-green'}">${joined ? '✓ Unido' : 'Unirte'}</button>`;
       d.querySelector('button').addEventListener('click', async ev => {
         ev.stopPropagation();
         const r = await socCall('follow', { target: 'g:' + g.id, on: joined ? '0' : '1' }, true);
@@ -466,6 +506,8 @@
       d.addEventListener('click', () => openConvo('g:' + g.id, g.name));
       box.appendChild(d);
     }
+    const more = $('socGroupsMore');
+    if (more) more.onclick = openGroups;
   }
 
   /* ═══════════ DESCUBRIMIENTO ═══════════ */
@@ -477,11 +519,11 @@
     ].filter(Boolean);
     const fill = hotCatalog().filter(c => !picks.includes(c)).slice(0, 3 - picks.length);
     const list = [...picks, ...fill].slice(0, 3);
-    $('socFeat').innerHTML = list.length ? list.map((c, i) => `
+    $('socFeat').innerHTML = list.length ? list.map(c => `
       <a class="soc-feat-it" href="${catLink(c)}">
         <img src="${esc(c.poster)}" loading="lazy" alt="${esc(c.t)}">
-        ${c.kind !== 'pelicula' ? '<span class="soc-feat-badge">EN EMISIÓN</span>' : ''}
-        <span class="soc-feat-t">${esc(c.t.slice(0, 30))}<small>${esc(c.kind === 'pelicula' ? 'Película' : 'Serie · ' + (c.episodes || []).length + ' caps')}</small></span>
+        ${c.kind !== 'pelicula' ? '<span class="soc-feat-badge">EN EMISIÓN</span>' : '<span class="soc-feat-play">▶</span>'}
+        <span class="soc-feat-t">${esc(c.t.slice(0, 30))}<small>${esc(c.kind === 'pelicula' ? 'Película completa' : 'Serie · ' + (c.episodes || []).length + ' caps')}</small></span>
       </a>`).join('') : '<div class="soc-empty">El catálogo se está cargando…</div>';
     $('socFeatNav').innerHTML = list.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('');
   }
@@ -496,17 +538,21 @@
       d.className = 'soc-suggest-it';
       d.innerHTML = `
         ${avatarHtml(u.name, u.grad)}
-        <div class="soc-suggest-b"><b>${esc(u.name)} ${u.online ? '<span class="soc-dot on" style="display:inline-block"></span>' : ''}</b><small>${esc(u.tag || '')}${u.posts ? ' · ' + u.posts + ' publicaciones' : ''}</small></div>
-        <button class="soc-btn soc-btn-blue">${following ? 'Siguiendo' : 'Seguir'}</button>`;
-      d.querySelector('button').addEventListener('click', async ev => {
+        <div class="soc-suggest-b"><b>${esc(u.name)}</b><small>${u.followsMe ? 'Te sigue' : (u.posts ? u.posts + ' publicación' + (u.posts === 1 ? '' : 'es') : 'Nuevo en la comunidad')}</small></div>
+        <button class="soc-btn soc-btn-blue">${following ? 'Siguiendo' : 'Seguir'}</button>
+        <button class="soc-suggest-menu" title="Opciones">⋮</button>`;
+      d.querySelector('button.soc-btn').addEventListener('click', async ev => {
         ev.stopPropagation();
         const r = await socCall('follow', { target: u.uid, on: following ? '0' : '1' }, true);
         if (r) toast(following ? 'Dejaste de seguir a ' + u.name : '👥 Ahora sigues a ' + u.name);
         refresh();
       });
+      d.querySelector('.soc-suggest-menu').addEventListener('click', ev => { ev.stopPropagation(); openProfile(u.uid); });
       d.addEventListener('click', () => openProfile(u.uid));
       box.appendChild(d);
     }
+    const more = $('socSugMore');
+    if (more) more.onclick = openFriends;
   }
   function renderLive() {
     const box = $('socLive');
@@ -535,9 +581,9 @@
     const groups = S.groups.map(g => {
       const cid = 'g:' + g.id;
       const c = S.convos.find(x => x.id === cid);
-      return c ? { ...c, peerName: g.name, peerOnline: false, group: true } : {
-        id: cid, last: 'Grupo oficial — únete y escribe', at: 0, unread: 0,
-        peerName: g.name, peerOnline: false, group: true,
+      return c ? { ...c, peerName: g.name, peerGrad: 2, group: true, poster: groupPoster(g.id) } : {
+        id: cid, last: 'Grupo oficial — únete y escribe', at: 0, unread: 0, lastIsMine: false,
+        peerName: g.name, peerGrad: 2, peerOnline: false, group: true, poster: groupPoster(g.id),
       };
     });
     let list = [...S.convos.filter(c => !c.id.startsWith('g:')), ...groups];
@@ -549,12 +595,19 @@
     for (const c of list) {
       const d = document.createElement('div');
       d.className = 'soc-convo';
+      const avInner = c.poster
+        ? `<img src="${esc(c.poster)}" alt="" loading="lazy" onerror="this.remove()">${c.peerOnline ? '' : ''}`
+        : esc(initials(c.peerName));
       d.innerHTML = `
-        ${avatarHtml(c.peerName, c.group ? 1 : 2)}
-        <div class="soc-convo-b"><b>${esc(c.peerName)}${c.peerOnline ? ' <span class="soc-dot on" style="display:inline-block"></span>' : ''}</b>
-        <small>${esc(c.last || '')}</small></div>
-        ${c.unread ? `<b class="soc-red">${c.unread}</b>` : ''}
-        ${c.at ? `<span class="soc-convo-time">${hms(c.at)}</span>` : ''}`;
+        <span class="soc-avatar" style="${c.poster ? '' : gradOf(c.peerGrad)}">${avInner}${(c.peerOnline && !c.group) ? '<span class="soc-online-dot"></span>' : ''}</span>
+        <div class="soc-convo-b">
+          <b>${esc(c.peerName)}${c.group ? ' <small>(Grupo)</small>' : ''}</b>
+          <small class="last">${c.lastIsMine ? 'Tú: ' : ''}${esc(c.last || '')}</small>
+        </div>
+        <div class="soc-convo-side">
+          ${c.at ? `<span class="soc-convo-time">${hms(c.at)}</span>` : ''}
+          ${c.unread ? `<b class="soc-unread">${c.unread}</b>` : ''}
+        </div>`;
       d.addEventListener('click', () => openConvo(c.id, c.peerName));
       box.appendChild(d);
     }
@@ -613,6 +666,8 @@
     box.innerHTML = S.onlineUsers.length
       ? S.onlineUsers.map(u => avatarHtml(u.name, u.grad, 'sm').replace('<span', `<span title="${esc(u.name)}"`)).join('')
       : '<div class="soc-empty">Nadie más conectado ahora — invita a tus amigos 👋</div>';
+    const more = $('socOnlineMore');
+    if (more) more.onclick = () => toast(`${S.onlineCount} persona${S.onlineCount === 1 ? '' : 's'} conectada${S.onlineCount === 1 ? '' : 's'} ahora mismo`);
   }
 
   /* ═══════════ BÚSQUEDA ═══════════ */
@@ -769,7 +824,7 @@
       <div class="soc-card-h"><span>Publicaciones</span></div>
       ${posts.length ? posts.map(p => `
         <div style="padding:9px 0;border-bottom:1px solid var(--line)">
-          <p style="font-size:12.5px;line-height:1.5">${withTags(p.text || '')}</p>
+          <p style="font-size:12.5px;line-height:1.5">${esc(extractTags(p.text).clean)}${(() => { const t = extractTags(p.text).tags; return t.length ? ` <span style="color:var(--blue)">${t.map(x => esc(x)).join(' ')}</span>` : ''; })()}</p>
           <small style="color:var(--faint)">${ago(p.at)} · ❤️ ${p.likes.length} · 💬 ${(p.comments || []).length}</small>
         </div>`).join('') : '<div class="soc-empty">Sin publicaciones todavía.</div>'}`);
     if (mine) {

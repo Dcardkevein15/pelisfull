@@ -146,7 +146,9 @@ function convoSummary(db, uid) {
     const otherU = !isGroup && db.users[other];
     out.push({
       id: cid, last: last.text.slice(0, 80), at: last.at, unread,
+      lastIsMine: last.uid === uid,
       peerName: isGroup ? (db.groups.find(g => 'g:' + g.id === cid) || {}).name || 'Grupo' : (otherU ? otherU.name + ' ' + (otherU.tag || '') : 'Usuario'),
+      peerGrad: isGroup ? 2 : (otherU ? otherU.grad || 0 : 0),
       peerOnline: !!(otherU && otherU.beat && Date.now() - otherU.beat < ONLINE_MS),
     });
   }
@@ -376,7 +378,7 @@ module.exports = async function handler(req, res) {
           ? Object.values(db.users)
             .filter(u => u.uid && u.uid !== uid && !(me && (me.follows || []).includes(u.uid)))
             .sort((a, z) => (z.beat || 0) - (a.beat || 0))
-            .map(u => ({ uid: u.uid, name: u.name, tag: u.tag, grad: u.grad || 0, bio: u.bio || '', online: !!(u.beat && now - u.beat < ONLINE_MS), posts: db.posts.filter(p => p.uid === u.uid).length }))
+            .map(u => ({ uid: u.uid, name: u.name, tag: u.tag, grad: u.grad || 0, bio: u.bio || '', online: !!(u.beat && now - u.beat < ONLINE_MS), posts: db.posts.filter(p => p.uid === u.uid).length, followsMe: !!(me && (u.follows || []).includes(uid)) }))
             .slice(0, 12)
           : [],
         follows: me ? (me.follows || []) : [],
