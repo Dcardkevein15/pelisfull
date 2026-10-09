@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791573769475,
+ "at": 1791573810272,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -206,7 +206,7 @@
      "tag": "Enlace directo",
      "g": 6,
      "kind": "pelicula",
-     "poster": "https://image.tmdb.org/t/p/w500/tu6kz9Ejm7wljiO58waAuwn1miV.jpg",
+     "poster": null,
      "episodes": [
       {
        "n": 1,
@@ -214,14 +214,9 @@
        "url": "https://dn720403.ca.archive.org/0/items/yummy_202105/-%20Aquellos%20que%20desean%20mi%20muerte.mp4"
       }
      ],
-     "genre": "suspenso",
-     "tags": [
-      "Suspenso"
-     ],
-     "genreTmdbDone": true
+     "at": 1791573809319
     }
-   ],
-   "processedBy": "cloud"
+   ]
   }
  ]
 }
