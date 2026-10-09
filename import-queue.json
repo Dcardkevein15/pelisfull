@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791589999652,
+ "at": 1791590058508,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -183,7 +183,7 @@
    "addedAt": 1791490519540,
    "type": "mega-folder",
    "payload": null,
-   "error": "[PERMANENTE] carpetas de Mega no se pueden leer (Mega las cifra dentro del enlace) — pega los archivos uno a uno o usa Drive",
+   "error": "⚠ Mega cifra las carpetas dentro del propio enlace:ninguna app web puede leerlas automáticamente.Sí puedes pegar archivos sueltos de Mega (se catalogan)o usar G",
    "name": "",
    "nextRetryAt": 0,
    "attempts": 1,
