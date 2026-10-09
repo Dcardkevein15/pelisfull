@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791573751041,
+ "at": 1791573769475,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -192,13 +192,36 @@
   {
    "url": "https://dn720403.ca.archive.org/0/items/yummy_202105/-%20Aquellos%20que%20desean%20mi%20muerte.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Aquellos que desean mi muerte",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791573751041,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-dn720403-ca-archive-org-0-items-yummy_202105-20Aquello",
+     "t": "- Aquellos que desean mi muerte",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/tu6kz9Ejm7wljiO58waAuwn1miV.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://dn720403.ca.archive.org/0/items/yummy_202105/-%20Aquellos%20que%20desean%20mi%20muerte.mp4"
+      }
+     ],
+     "genre": "suspenso",
+     "tags": [
+      "Suspenso"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   }
  ]
 }
