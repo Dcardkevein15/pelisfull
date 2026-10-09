@@ -831,9 +831,9 @@
     renderMe(); renderCounters(); renderNotifDrop(); renderInterests();
     renderStories(); renderFeed(); renderTrends(); renderGroups();
     renderSuggested(); renderLive(); renderChat(); renderOnline();
-    /* latido de presencia + refresco de estado */
-    socCall('beat').catch(() => { });
-    setInterval(() => socCall('beat').catch(() => { }), 60000);
+    /* latido de presencia + refresco de estado — TODO firmado con la clave del dispositivo */
+    socCall('beat', {}, true).catch(() => { });
+    setInterval(() => socCall('beat', {}, true).catch(() => { }), 60000);
     setInterval(refresh, 45000);
     await loadCatalog();
     renderFeatured(); renderTrends(); renderFeed();
