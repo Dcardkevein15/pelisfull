@@ -2,776 +2,177 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>X·STREAM — Anime y películas en español gratis en HD, online sin registro</title>
-<meta name="description" content="X·STREAM: mira anime y películas completas en español latino y castellano, gratis y en HD. Sin registro, sin anuncios molestos. Temporadas completas, OVAs y estrenos.">
-<meta name="keywords" content="anime online, ver anime gratis, peliculas completas español, series gratis, streaming gratis, anime español latino, ver peliculas online, xstream">
-<link rel="canonical" href="https://x.yapido.click/">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
-<link rel="alternate" type="application/rss+xml" title="X·STREAM — nuevas publicaciones" href="/feed.xml">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0a0f">
-<meta name="google-site-verification" content="OW7usJxQoxRvT5-AhIWk9vILNfVDoO-xobCbuWEcy2M" />
-<meta name="p:domain_verify" content="af0228b0a5d58aa9d752eb370baa0c15"/>
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="X·STREAM">
-<meta property="og:locale" content="es_ES">
-<meta property="og:title" content="X·STREAM — Anime y películas completas en español, gratis y en HD">
-<meta property="og:description" content="Mira anime y películas completas en español latino y castellano: temporadas enteras, estrenos y clásicos. Gratis, sin registro y sin anuncios molestos.">
-<meta property="og:url" content="https://x.yapido.click/">
-<meta property="og:image" content="https://x.yapido.click/assets/og-cover.jpg">
-<meta property="og:image:secure_url" content="https://x.yapido.click/assets/og-cover.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="X·STREAM — Anime y películas completas en español">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="X·STREAM — Anime y películas completas en español">
-<meta name="twitter:description" content="Temporadas enteras y películas en español latino, gratis y en HD. Sin registro.">
-<meta name="twitter:image" content="https://x.yapido.click/assets/og-cover.jpg">
-<meta name="twitter:image:alt" content="X·STREAM — Anime y películas completas en español">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"X·STREAM","alternateName":"XSTREAM Anime y Películas","url":"https://x.yapido.click/","description":"Anime y películas completas en español latino y castellano, gratis y en HD.","inLanguage":"es"}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "X·STREAM",
-  "url": "https://x.yapido.click/",
-  "description": "Anime y películas completas en español, gratis y en HD.",
-  "inLanguage": "es",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": { "@type": "EntryPoint", "urlTemplate": "https://x.yapido.click/?buscar={search_term_string}" },
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Archivo+Black&family=JetBrains+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>XSTREAM SOCIAL — La comunidad audiovisual</title>
+<meta name="description" content="XSTREAM SOCIAL: publica, comenta, sigue y vive la comunidad de películas, series y anime de XSTREAM.">
+<link rel="icon" href="/icon.svg">
+<link rel="stylesheet" href="/social/social.css">
 </head>
 <body>
+<div class="soc-app">
 
-<!-- splash -->
-<div class="splash" id="splash">
-  <div class="splash-x">X</div>
-  <div class="splash-name">STREAM</div>
-</div>
-
-<!-- ══════════ TOPBAR ══════════ -->
-<header class="topbar">
-  <div class="brand">
-    <span class="brand-x">X</span>
-    <span class="brand-name">STREAM<em>anime</em></span>
-  </div>
-  <div class="search-box collapsed" id="searchBox">
-    <button class="search-toggle" id="searchToggle" title="Buscar ( / )" aria-label="Buscar">
-      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    </button>
-    <input id="searchInput" type="text" placeholder="Buscar serie… ( / )" autocomplete="off">
-  </div>
-  <div class="top-actions">
-    <div class="accent-pick collapsed" id="accentPick" title="Color de acento">
-      <button class="accent-mini" id="accentMini" title="Cambiar color de acento" aria-label="Cambiar color de acento"></button>
+  <!-- ══════════ TOPBAR ══════════ -->
+  <header class="soc-top">
+    <a class="soc-brand" href="/" title="Ir a XSTREAM">
+      <span class="soc-logo">X</span>
+      <span class="soc-brandname">XSTREAM<b>SOCIAL</b></span>
+    </a>
+    <div class="soc-search" id="socSearchWrap">
+      <span class="soc-search-ic">🔍</span>
+      <input id="socSearch" type="text" placeholder="Buscar películas, series, personas, grupos..." autocomplete="off" spellcheck="false">
+      <div class="soc-search-drop hidden" id="socSearchDrop"></div>
     </div>
-    <button id="statsBtn" class="btn btn-ghost btn-icon" title="Estadísticas">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
-    </button>
-    <button id="themeBtn" class="btn btn-ghost btn-icon" title="Cambiar tema (claro/oscuro)"></button>
-    <!-- 🪙 CONTADOR DE MONEDAS — siempre visible en la barra superior -->
-    <button id="coinsPill" class="coins-pill" title="Tus monedas — toca para ver cómo funcionan">
-      <span class="cp-icon">🪙</span>
-      <b id="coinsPillNum">50</b>
-    </button>
-    <!-- 👑 Panel admin de monedas (solo admin) -->
-    <button id="coinsAdminBtn" class="btn btn-ghost admin-only" style="color:var(--acid)" title="🪙 Panel de Monedas — precios, tiempos, recompensas (solo admin)">
-      <span>🪙</span><span class="admin-only-label">Monedas</span>
-    </button>
-    <!-- 👤 Identidad del visitante (auth.js) — círculo + nombre, abre el perfil -->
-    <button id="userChip" class="user-chip" title="Tu perfil — cuenta automática de este dispositivo">
-      <img class="uc-ava" alt="" width="26" height="26">
-      <span class="uc-txt">
-        <b class="uc-name">…</b>
-        <i class="uc-sub">…</i>
-      </span>
-    </button>
-    <button id="cineBtn" class="btn btn-ghost admin-only" title="Buscar películas, anime y OVAs en español (Internet Archive)">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 4v16M17 4v16M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>
-      <span>Buscar cine</span>
-    </button>
-    <button id="driveFolderBtn" class="btn btn-ghost admin-only" title="Importar una carpeta completa de Google Drive como serie">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg>
-      <span>Importar carpeta Drive</span>
-    </button>
-    <button id="editModeBtn" class="btn btn-ghost admin-only" title="Pegar tus enlaces MP4">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
-      <span>Editar enlaces</span>
-    </button>
-    <button id="addSeriesBtn" class="btn btn-acid admin-only">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg>
-      <span>Añadir serie</span>
-    </button>
-  </div>
-</header>
-
-<div class="layout">
-
-  <!-- ══════════ SIDEBAR: SERIES ══════════ -->
-  <aside class="sidebar" id="sidebar">
-    <div class="side-panel collapsed" id="sidePanel">
-      <div class="side-tools">
-        <select id="sortMode" class="sort-select" title="Orden de la lista">
-          <option value="manual">⇅ Manual (arrastrar)</option>
-          <option value="recent">🕘 Recientes</option>
-          <option value="alpha">A → Z</option>
-        </select>
-        <button id="favFilter" class="chip-filter" title="Solo favoritos">♥ Favs</button>
-        <button id="trendsBtn" class="chip-filter admin-only" title="Tendencias del momento (TMDB + anime): qué publicar hoy y dónde lo están pidiendo">🚀 Tendencias</button>
-        <button id="linksBtn" class="chip-filter admin-only" title="Acortador de enlaces: crea códigos cortos b.yapido.click que abren al instante">🔗 Acortador</button>
-        <button id="migrateBtn" class="chip-filter admin-only" title="Migrar videos de Streamtape a archive.org: sin anuncios, para siempre">🚚 Migrar</button>
-        <button id="trashBtn" class="chip-filter trash2 admin-only" title="Papelera — restaurar (7 días)">🗑 <b id="trashCount">0</b></button>
+    <nav class="soc-topnav">
+      <a href="/" title="Catálogo de películas en XSTREAM">🎬 Películas</a>
+      <a href="/" title="Series en XSTREAM">📺 Series</a>
+      <a href="/" title="Anime en XSTREAM">🎮 Anime</a>
+      <a href="/social/" class="on" title="Estás en la comunidad">👥 Comunidad</a>
+    </nav>
+    <div class="soc-top-actions">
+      <button class="soc-bell" id="socBell" title="Notificaciones">
+        <span>🔔</span><b class="soc-badge" id="socBellCount" hidden>0</b>
+        <div class="soc-notif-drop hidden" id="socNotifDrop"></div>
+      </button>
+      <button class="soc-bell" id="socMsgBtn" title="Mensajes">
+        <span>💬</span><b class="soc-badge" id="socMsgCount" hidden>0</b>
+      </button>
+      <div class="soc-me" id="socMe">
+        <span class="soc-avatar" id="socMeAvatar">?</span>
+        <span class="soc-me-txt">
+          <b id="socMeName">Cargando…</b>
+          <small><i class="soc-dot on"></i> En línea</small>
+        </span>
+        <span class="soc-caret">▾</span>
+        <div class="soc-me-drop hidden" id="socMeDrop"></div>
       </div>
-      <div class="side-filters" id="tagChips"></div>
-      <div class="side-foot">
-        <button id="exportBtn" class="foot-btn" title="Exportar biblioteca completa (JSON)">⬇ Exportar</button>
-        <button id="importBtn" class="foot-btn admin-only" title="Importar respaldo JSON">⬆ Importar</button>
-        <input type="file" id="importFile" accept=".json,application/json" hidden>
-        <button id="syncBtn" class="foot-btn" title="Sync en la nube (Firebase)">☁ Sync</button>
-        <button id="brokenBtn" class="foot-btn broken admin-only" title="Historial de enlaces rotos">⚠ Rotos <b id="brokenCount" class="foot-count">0</b></button>
-      </div>
+      <button class="soc-bell" id="socMoreBtn" title="Más opciones">⋮</button>
     </div>
-    <div class="side-scroll" id="sideScroll">
-    <div class="side-tabs">
-      <button id="tabHome" class="side-tab on" data-tab="home" title="Inicio — destacados y novedades">
-        <span class="tab-emoji">🏠</span><span class="tab-name">Inicio</span><b id="countHome" class="tab-count"></b>
-      </button>
-      <button id="tabAnime" class="side-tab" data-tab="anime" title="Series de anime (las OVAs se integran solas en su serie)">
-        <span class="tab-emoji">📺</span><span class="tab-name">Anime</span><b id="countAnime" class="tab-count">0</b>
-      </button>
-      <button id="tabSeries" class="side-tab" data-tab="series" title="Series y novelas (no anime) — si alguna quedó mal, muévela con ⇄ Mover">
-        <span class="tab-emoji">📼</span><span class="tab-name">Series</span><b id="countSeries" class="tab-count">0</b>
-      </button>
-      <button id="tabHentai" class="side-tab tab-hentai-btn" data-tab="hentai" title="Categoría Hentai — colección separada">
-        <span class="tab-emoji">💗</span><span class="tab-name">Hentai</span><b id="countHentai" class="tab-count">0</b>
-      </button>
-      <button id="tabPeliculas" class="side-tab" data-tab="peliculas" title="Películas y sagas">
-        <span class="tab-emoji">🎬</span><span class="tab-name">Películas</span><b id="countPelis" class="tab-count">0</b>
-      </button>
-      <button id="tabTv" class="side-tab" data-tab="tv" title="Canales de televisión en vivo">
-        <span class="tab-emoji">📡</span><span class="tab-name">TV</span><b id="countTv" class="tab-count">0</b>
-      </button>
-      <button id="gearBtn" class="gear-btn" title="Herramientas de la lista">⚙</button>
+  </header>
+
+  <!-- ══════════ SIDEBAR IZQUIERDA ══════════ -->
+  <aside class="soc-side">
+    <nav class="soc-side-nav" id="socSideNav">
+      <a class="on" data-nav="inicio"><span>🏠</span> Inicio</a>
+      <a data-nav="explorar"><span>🧭</span> Explorar</a>
+      <a data-nav="amigos"><span>👥</span> Amigos <b class="soc-red hidden" id="socSideFriends"></b></a>
+      <a data-nav="grupos"><span>⬡</span> Grupos</a>
+      <a data-nav="mensajes"><span>💬</span> Mensajes <b class="soc-red hidden" id="socSideMsg"></b></a>
+      <a data-nav="notificaciones"><span>🔔</span> Notificaciones <b class="soc-red hidden" id="socSideNotif"></b></a>
+      <a data-nav="perfil"><span class="soc-nav-av" id="socSideAv">🧑</span> Mi perfil</a>
+    </nav>
+    <div class="soc-side-sec">TUS INTERESES</div>
+    <div class="soc-interests" id="socInterests"></div>
+    <div class="soc-premium">
+      <div class="soc-crown">👑</div>
+      <b>Únete a Premium</b>
+      <p>Sin anuncios • Contenido exclusivo, Más funciones</p>
+      <a class="soc-btn soc-btn-green" href="/">Ver planes</a>
     </div>
-    <div class="tv-tools hidden" id="tvTools">
-      <button class="btn btn-mini" id="tvScanBtn" title="Pega la URL de una lista M3U o su contenido: los canales nuevos entran y los caídos salen solos">📡 Lista M3U</button>
-      <button class="btn btn-mini" id="tvRescanBtn" title="Vuelve a descargar todas las listas guardadas y actualiza los canales (quita los caídos, añade los nuevos)">🔄 Actualizar</button>
-      <button class="btn btn-mini" id="tvIptvBtn" title="Fuentes oficiales de iptv-org: elige idiomas, países y categorías que se actualizan solas">🌐 iptv-org</button>
-      <button class="btn btn-mini" id="tvEpgBtn" title="Guía de programación (EPG) — qué echan ahora en cada canal">📅 Guía</button>
-    </div>
-    <nav id="seriesList" class="series-list"></nav>
-    </div><!-- /side-scroll: pestañas + herramientas + lista ruedan juntas -->
-    <div class="broken-list collapsed" id="brokenList"></div>
   </aside>
 
-  <!-- ══════════ CENTRO: PLAYER ══════════ -->
-  <main class="stage">
-    <!-- 🏠 Home (descubrimiento): ocupa todo el escenario cuando la pestaña Inicio está activa -->
-    <div class="home-view hidden" id="homeView"></div>
-    <noscript>
-      <div style="max-width:640px;margin:0 auto;padding:44px 20px;text-align:center;color:#f4f4fb;font-family:system-ui">
-        <h1 style="letter-spacing:-.5px">X·STREAM — Anime y películas completas en español</h1>
-        <p>Mira anime y películas completas en español latino y castellano, gratis y en HD. Sin registro y sin anuncios molestos.</p>
-        <p>Activa JavaScript para usar el reproductor. Mientras tanto, explora el catálogo:
-          <a href="/ver/naruto-completo/" style="color:#d8ff3e">Naruto completo</a> ·
-          <a href="/ver/zombieland/" style="color:#d8ff3e">Zombieland</a> ·
-          <a href="/sitemap.xml" style="color:#d8ff3e">todas las series y películas</a></p>
-      </div>
-    </noscript>
-    <div class="player-shell" id="playerShell">
-      <!-- 📺 Categorías de TV en vivo (con barra de desplazamiento propia) -->
-      <div class="tvcats-wrap hidden" id="tvCatsWrap">
-        <div class="tv-cats" id="tvCats"></div>
-        <div class="sb-track" aria-hidden="true">
-          <div class="sb-thumb" id="tvCatsThumb" title="Arrastra para ver todas las categorías"></div>
+  <!-- ══════════ COLUMNA CENTRAL: publicar+historias a todo lo ancho,
+       luego subcolumnas [tendencias | feed] como en la referencia ══════════ -->
+  <main class="soc-main">
+
+    <!-- Publicar (a todo lo ancho del centro) -->
+    <section class="soc-card soc-create soc-span">
+      <span class="soc-avatar me" id="socCreateAvatar">?</span>
+      <div class="soc-create-body">
+        <textarea id="socPostText" rows="2" placeholder="¿Qué estás pensando?" maxlength="800"></textarea>
+        <div class="soc-attach hidden" id="socAttach"></div>
+        <div class="soc-tools">
+          <button class="soc-tool" data-tool="foto" title="Añadir foto o vídeo (URL o del catálogo)"><i>📷</i> Foto/Vídeo</button>
+          <button class="soc-tool" data-tool="encuesta" title="Crear una encuesta"><i>📊</i> Encuesta</button>
+          <button class="soc-tool" data-tool="enlace" title="Añadir un enlace"><i>🔗</i> Publicar enlace</button>
+          <button class="soc-tool" data-tool="gif" title="Añadir un GIF o imagen por URL"><i>🎞</i> GIF</button>
+          <button class="soc-btn soc-btn-green" id="socPublish">Publicar</button>
         </div>
       </div>
-      <!-- 🎴 TARJETAS DE GÉNERO — la galería de Películas (encima de Sigue viendo) -->
-      <div class="genre-row hidden" id="genreRow"></div>
+    </section>
 
-      <!-- ✨ Sigue viendo -->
-      <div class="continue-row hidden" id="continueRow"></div>
+    <!-- Historias (a todo lo ancho del centro) -->
+    <section class="soc-card soc-stories-card soc-span">
+      <div class="soc-stories" id="socStories"></div>
+    </section>
 
-      <div class="player-anchor" id="playerAnchor">
-      <div class="player" id="playerArea">
-        <video id="video" preload="auto" playsinline controlsList="nodownload"></video>
-        <iframe id="driveFrame" class="drive-frame" title="Google Drive"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    <!-- Subcolumna izquierda del centro: Tendencias + Grupos -->
+    <aside class="soc-col-left">
+      <section class="soc-card">
+        <div class="soc-card-h"><span>🔥 Tendencias ahora</span></div>
+        <div class="soc-trends" id="socTrends"></div>
+        <a class="soc-vermas" id="socTrendsMore" href="javascript:void 0">Ver más →</a>
+      </section>
+      <section class="soc-card">
+        <div class="soc-card-h"><span>⬡ Grupos recomendados</span></div>
+        <div class="soc-groups" id="socGroups"></div>
+        <a class="soc-vermas" id="socGroupsMore" href="javascript:void 0">Ver más →</a>
+      </section>
+    </aside>
 
-        <!-- overlay estado vacío -->
-        <div class="player-empty" id="playerEmpty">
-          <div class="empty-logo">▶</div>
-          <h1>Elige un capítulo</h1>
-          <p>Selecciona una serie y su episodio. Pega enlaces MP4 directos con el modo edición.</p>
-        </div>
-
-        <!-- overlay no-url -->
-        <div class="player-nourl hidden" id="playerNoUrl">
-          <h2>Este capítulo aún no tiene enlace</h2>
-          <p>Activa <b>Editar enlaces</b> y pega la URL directa (mp4 / m3u8-directo / webm).</p>
-          <button class="btn btn-acid admin-only" id="goEditBtn">Pegar enlace ahora</button>
-        </div>
-
-        <!-- 🪙 LA CAJA FUERTE — fondo membresia.png + contenido en dos columnas -->
-        <div class="vault hidden" id="paywall">
-          <div class="vault-bg"></div>
-          <div class="vault-body">
-            <!-- ══ COLUMNA IZQUIERDA: sistema de monedas (gratis) — contenedor rojo ══ -->
-            <div class="vault-left">
-              <div class="vl-card">
-                <div class="vl-scroll">
-                  <div class="vl-icon">
-                    <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6">
-                      <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
-                      <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
-                      <circle cx="12" cy="15.5" r="1.8" fill="currentColor" stroke="none"/>
-                    </svg>
-                  </div>
-                  <h2 id="pwTitle">Capítulo bloqueado</h2>
-                <div class="vault-meta">
-                  <span class="vault-price">
-                    <span class="vp-label">Cuesta</span> <b id="pwPrice">100</b> <span>🪙</span>
-                  </span>
-                  <span class="vault-have">tienes <b id="pwCoins">50</b> 🪙</span>
-                </div>
-                  <p class="vault-sub" id="pwSub">Al desbloquear, queda abierto <b>para siempre</b><br>Recibes <b>500 monedas gratis</b> cada día</p>
-                </div>
-                <div class="vl-fixed">
-                  <button class="vault-play" id="pwUnlockBtn">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    <span>Reproducir ahora</span>
-                  </button>
-                  <button class="vault-earn" id="pwAdBtn">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
-                    <span>Ganar recompensas <b id="pwAdReward">+100</b> 🪙</span>
-                  </button>
-                  <button class="vault-explain" id="pwExplainBtn">¿Cómo funciona? →</button>
-                </div>
-              </div>
-            </div>
-            <!-- ══ COLUMNA DERECHA: MEMBRESÍA $1/mes (contenedor dorado) ══ -->
-            <div class="vault-right">
-              <div class="vr-card">
-                <div class="vr-head">
-                  <span class="vr-crown">👑</span>
-                  <h3>Membresía</h3>
-                  <span class="vr-price">$1<small>/mes</small></span>
-                </div>
-                <div class="vr-benefits">
-                  <li>✅ Sin límites — ve TODO</li>
-                  <li>✅ Sin anuncios — nunca</li>
-                  <li>✅ Sin monedas — desbloqueo directo</li>
-                  <li>✅ Calidad HD garantizada</li>
-                  <li>✅ Descargas de música gratis</li>
-                  <li>✅ Soporta el proyecto 💛</li>
-                </div>
-                <button class="vr-get" id="pwVipBtn">Obtener membresía</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 📺 overlay ANUNCIO — modal con banner Adsterra + X cerrar -->
-        <div class="adwall hidden" id="adwall">
-          <div class="ad-shade"></div>
-          <div class="ad-card">
-            <div class="ad-head">
-              <button class="ad-close" id="adCloseBtn" title="Cerrar anuncio">✕</button>
-              <span class="ad-badge">📢 ANUNCIO</span>
-              <div class="ad-timer" id="adTimer">
-                <svg viewBox="0 0 44 44" width="44" height="44">
-                  <circle cx="22" cy="22" r="19" fill="none" stroke="var(--line)" stroke-width="4"/>
-                  <circle id="adTimerRing" cx="22" cy="22" r="19" fill="none" stroke="var(--acid)" stroke-width="4"
-                    stroke-dasharray="119.4" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 22 22)"/>
-                  <text id="adTimerNum" x="22" y="27" text-anchor="middle" font-size="15" font-weight="900" fill="var(--ink)">15</text>
-                </svg>
-              </div>
-            </div>
-            <div class="ad-immersive-bar hidden" id="adImmersiveBar">
-              <div class="ad-top-msg">✅ <b>¡Clic registrado!</b> Esperando <b id="adTimerNum2">15</b>s…</div>
-            </div>
-            <div class="ad-top-progress hidden" id="adTopProgress"><div id="adTopBar"></div></div>
-            <div class="ad-slot" id="adSlot">
-              <div class="ad-banner-wrap" id="adBannerWrap"></div>
-              <div class="ad-placeholder" id="adPlaceholder">
-                <p>📢 Toca el anuncio</p>
-                <small>para iniciar la cuenta regresiva</small>
-                <div class="ad-blocked">
-                  Si estás viendo esto es porque tienes activado el <b>Adblocker</b>.<br>
-                  Desactívalo para poder hacer clic y que la<br>
-                  cuenta regresiva comience.
-                </div>
-              </div>
-            </div>
-            <div class="ad-msg" id="adMsg">Cargando el anuncio…</div>
-            <div class="ad-wait hidden" id="adWait">✅ ¡Clic registrado! Espera <b id="adWaitNum">10</b> segundos más…</div>
-          </div>
-        </div>
-
-        <!-- spinner -->
-        <!-- aviso modo Drive -->
-        <div class="drive-hint">▶ Google Drive — usa los controles del propio video</div>
-
-        <!-- spinner -->
-        <div class="player-spinner hidden" id="spinner"><span></span><span></span><span></span></div>
-
-        <!-- indicador modo Drive -->
-        <div class="drive-hint">DRIVE PLAYER — usa los controles internos</div>
-
-        <!-- overlay enlace externo (megaup, etc.) -->
-        <div class="player-ext" id="playerExt">
-          <div class="empty-logo" style="background:#ff2e63">⧉</div>
-          <h2 id="extTitle">Enlace externo</h2>
-          <p id="extHost">Esta fuente no permite incrustar el video. Se abre en una pestaña nueva.</p>
-          <button class="btn btn-acid" id="extOpen">▶ Abrir en la fuente</button>
-        </div>
-
-        <!-- big play: el círculo central lleva la marca dentro (aparecen/desaparecen juntos) -->
-        <button class="big-play hidden" id="bigPlay" aria-label="Reproducir">
-          <span class="bp-x">X</span>
-          <span class="bp-name">STREAM</span>
-        </button>
-
-        <!-- gesto doble click -->
-        <div class="gesture left" id="gestL">⟲ 10s</div>
-        <div class="gesture right" id="gestR">10s ⟳</div>
-
-        <!-- CONTROLES -->
-        <div class="controls" id="controls">
-          <div class="seek-wrap" id="seekWrap">
-            <div class="seek-buffer" id="seekBuffer"></div>
-            <div class="seek-fill" id="seekFill"></div>
-            <div class="seek-thumb" id="seekThumb"></div>
-          </div>
-          <div class="controls-row">
-            <button class="cbtn" id="prevEp" title="Capítulo anterior (P)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 4h2v16H6zm3.5 8 8.5-7v14z"/></svg></button>
-            <button class="cbtn" id="playBtn" title="Play/Espacio">
-              <svg id="playIcon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
-            </button>
-            <button class="cbtn" id="nextEp" title="Siguiente capítulo (N)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 4h2v16h-2zM6 5l8.5 7L6 19z"/></svg></button>
-            <button class="cbtn cbtn-cc hidden" id="ccBtn" title="Subtítulos en español">CC</button>
-            <div class="vol-wrap">
-              <button class="cbtn" id="muteBtn" title="Silencio (M)">
-                <svg id="volIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
-              </button>
-              <input type="range" id="volume" min="0" max="1" step="0.02" value="1">
-            </div>
-            <span class="time"><b id="tCur">00:00</b> / <span id="tDur">00:00</span></span>
-            <span class="now-playing" id="nowPlaying"></span>
-            <div class="spacer"></div>
-            <button class="cbtn cbtn-text" id="autoplayBtn" title="Autoplay próximo capítulo">AUTO</button>
-            <select class="speed" id="speed" title="Velocidad">
-              <option value="0.5">0.5×</option><option value="0.75">0.75×</option>
-              <option value="1" selected>1×</option><option value="1.25">1.25×</option>
-              <option value="1.5">1.5×</option><option value="2">2×</option>
-            </select>
-            <button class="cbtn" id="pipBtn" title="Picture in Picture"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M19 7h-8v6h8V7zm2-4H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H3V5h18v14z"/></svg></button>
-            <button class="cbtn hidden" id="castBtn" title="Enviar a Chromecast"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M1 18v3h3a3 3 0 0 0-3-3zm0-4v2a5 5 0 0 1 5 5h2a7 7 0 0 0-7-7zm0-4v2a9 9 0 0 1 9 9h2c0-6.08-4.93-11-11-11zm20-7H3c-1.1 0-2 .9-2 2v3h2V5h18v14h-7v2h7c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></button>
-            <button class="cbtn" id="fsBtn" title="Pantalla completa (F)"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
-          </div>
-        </div>
-
-        <!-- botón flotante para cerrar el mini player -->
-        <button class="mini-x" id="miniX" title="Cerrar mini player">✕</button>
-        <!-- asa para arrastrar el mini player a cualquier posición -->
-        <div class="mini-grip" id="miniGrip" title="Arrastra para mover">⠿</div>
-      </div>
-      </div>
-
-      <!-- info bajo player -->
-      <div class="stage-info">
-        <div>
-          <div class="stage-title-row">
-            <h1 id="stageTitle">X·STREAM Anime</h1>
-            <div class="stage-badges" id="stageBadges"></div>
-            <button id="flagBtn" class="flag-inline hidden" title="Este capítulo no funciona o el enlace está caído">🚩 Reportar enlace roto</button>
-          </div>
-          <p id="stageSub">Tu reproductor instantáneo de enlaces directos</p>
-        </div>
-        <div class="stage-side">
-          <button class="btn btn-dl hidden" id="downloadBtn" title="Descargar el video original a tu dispositivo">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v11m0 0 4.5-4.5M12 14 7.5 9.5M4 19h16"/></svg>
-            <span id="downloadLbl">Descargar</span>
-          </button>
-          <button class="btn btn-acid hidden" id="shareBtn" title="Compartir este capítulo">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14"/></svg>
-            <span>Compartir capítulo</span>
-          </button>
-          <button class="btn btn-syn hidden" id="synopsisBtn" title="Historia, reparto con fotos, tráiler oficial y todos los capítulos">
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17.5a2.5 2.5 0 0 1-2.5 2.5H6.5A2.5 2.5 0 0 1 4 19.5v-15z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
-            <span>Leer sinopsis</span>
-          </button>
-          <button class="btn btn-music" id="musicBtn" title="🎵 Reproductor de música — elige género, busca, descarga y guarda favoritas">
-            <span>🎵</span> <span>Música</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- ══════════ PANEL INFERIOR: Contenido / 💬 Chat ══════════ -->
-      <div class="episodes-panel" id="episodesPanel">
-        <div class="panel-tabs">
-          <button class="panel-tab on" id="ptabContent" title="Capítulos y relacionados">
-            <span>📺</span> Contenido
-          </button>
-          <button class="panel-tab panel-tab-mid" id="ptabExpandChat" title="Chat a PANTALLA COMPLETA — chatea cómodo ⛶">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4"/></svg>
-            <b id="expandLbl">Expandir chat</b>
-          </button>
-          <button class="panel-tab" id="ptabChat" title="Chat de la comunidad — habla con quienes están viendo ahora">
-            💬 Chat <b id="chatBadge" class="chat-badge hidden">0</b>
-          </button>
-        </div>
-        <div class="panel-page" id="panelContent">
-        <div class="episodes-head">
-          <h2 id="episodesTitle">Capítulos</h2>
-          <div class="episodes-tools">
-            <button class="btn btn-mini hidden admin-only" id="undoBtn" title="Recuperar el último capítulo eliminado">↩ Deshacer</button>
-            <button class="btn btn-mini" id="favBtn" title="Marcar como favorito">🤍 Favorito</button>
-            <button class="btn btn-mini admin-only" id="tagBtn" title="Etiquetas de colección">🏷 Etiquetas</button>
-            <button class="btn btn-mini" id="remindBtn" title="Recordatorio (ej: sale capítulo nuevo)">🔔 Recordatorio</button>
-            <button class="btn btn-mini admin-only" id="renameBtn" title="Cambiar el título de esta serie/película">✎ Renombrar</button>
-            <button class="btn btn-mini admin-only" id="moveCatBtn" title="Mover entre categorías (Anime ↔ Película) por si quedó mal clasificada">⇄ Mover</button>
-            <button class="btn btn-mini admin-only" id="insertEpBtn" title="Insertar un capítulo en una posición concreta">⇂ Insertar</button>
-            <button class="btn btn-mini admin-only" id="addEpBtn" title="Añadir capítulo al final de la serie">+ Capítulo</button>
-            <button class="btn btn-mini danger hidden admin-only" id="delSeriesBtn">Eliminar</button>
-          </div>
-        </div>
-        <div class="episodes-grid" id="episodesGrid">
-          <div class="episodes-hint">← Selecciona una serie para ver sus capítulos</div>
-        </div>
-        </div><!-- /panelContent -->
-
-        <!-- ══════════ 💬 CHAT ══════════ -->
-        <div class="panel-page hidden chat-panel" id="panelChat">
-          <div class="chat-top">
-            <button class="chip-filter hidden" id="chatBackBtn" title="Volver a la sala">← Sala</button>
-            <div id="chatRooms" class="chat-rooms" title="Salas del chat — toca una para entrar"></div>
-            <button class="chip-filter" id="chatInboxBtn" title="Mensajes privados">📩 <b id="chatDmBadge" class="chat-badge hidden">0</b></button>
-            <button class="chat-online chip-filter" id="chatOnline" title="Usuarios en línea — toca para ver la lista">● 0</button>
-            <span class="spacer"></span>
-            <button class="chip-filter hidden" id="chatSettingsBtn" title="Ajustes del chat (admin)">⚙</button>
-            <button class="chip-filter" id="chatBgBtn" title="Fondo del chat — elige una imagen (local en tu dispositivo)">🖼</button>
-            <button class="chip-filter" id="chatMusicBtn" title="🎵 Música mientras chateas — listas MP3 que se arman solas">🎵</button>
-            <button class="chip-filter" id="chatFavsBtn" title="Mis enlaces favoritos ❤ — se quedan aunque el chat se limpie">❤</button>
-            <button class="chat-help" id="chatHelpBtn" title="Guía rápida: qué puedes hacer en este chat">?</button>
-            <button class="chip-filter chat-restore" id="chatRestoreBtn" title="Restaurar — volver a la vista normal">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 5H5a1 1 0 0 0-1 1v4M15 5h4a1 1 0 0 1 1 1v4M20 14v4a1 1 0 0 1-1 1h-4M9 19H5a1 1 0 0 1-1-1v-4"/></svg>
-            </button>
-          </div>
-          <div class="chat-main" id="chatMain">
-            <div class="chat-bg" id="chatBg"></div>
-            <div class="chat-stage">
-              <div class="chat-msgs" id="chatMsgs"></div>
-              <div class="chat-users" id="chatUsers"></div>
-            </div>
-          </div>
-          <!-- 🎵 mini-dock de música (se abre con el 🎵 de arriba) -->
-          <div class="chat-music hidden" id="chatMusic"></div>
-          <div class="chat-compose">
-            <button class="chip-filter" id="chatImgBtn" title="Compartir imagen (se sube, no un enlace)">📷</button>
-            <input type="text" id="chatInput" placeholder="Escribe en el chat… (enlaces se ven con tarjeta)" maxlength="2000" autocomplete="off">
-            <button class="btn btn-acid" id="chatSend">➤</button>
-          </div>
-          <div class="chat-inbox hidden" id="chatInbox"></div>
-        </div>
-      </div>
-      <!-- 🎬 mini-reproductor flotante del chat (arrastrable) -->
-      <div class="chat-mini hidden" id="chatMini"></div>
-    </div>
+    <!-- Subcolumna derecha del centro: Feed -->
+    <section id="socFeed" class="soc-feed" aria-live="polite"></section>
+    <div class="soc-feed-empty hidden" id="socFeedEmpty"></div>
   </main>
-</div>
 
-<!-- ══════════ MODAL AÑADIR SERIE ══════════ -->
-<div class="modal-backdrop hidden" id="modalAdd">
-  <div class="modal">
-    <h3>⚡ Nueva serie en 1 clic</h3>
-    <p class="modal-sub">Se generan los capítulos automáticamente. Luego pega tus enlaces con el modo edición.</p>
-    <label>Nombre del anime
-      <input type="text" id="newTitle" placeholder="Ej: Jujutsu Kaisen" autocomplete="off">
-    </label>
-    <label>Texto japonés / inicial (opcional)
-      <input type="text" id="newJp" placeholder="呪術廻戦" maxlength="4" autocomplete="off">
-    </label>
-    <label>N.º de capítulos
-      <input type="number" id="newEps" min="1" max="1200" value="12">
-    </label>
-    <label>Color de portada</label>
-    <div class="grad-picker" id="gradPicker"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="cancelAdd">Cancelar</button>
-      <button class="btn btn-acid" id="confirmAdd">Crear serie</button>
-    </div>
-  </div>
-</div>
+  <!-- ══════════ COLUMNA DERECHA INTERNA: DESCUBRIMIENTO ══════════ -->
+  <aside class="soc-col-right">
+    <section class="soc-card">
+      <div class="soc-card-h"><span>👑 Contenido destacado</span><a href="/">Ver todo →</a></div>
+      <div class="soc-feat" id="socFeat"></div>
+      <div class="soc-feat-nav" id="socFeatNav"></div>
+    </section>
+    <section class="soc-card">
+      <div class="soc-card-h"><span>👥 Personas que quizás conozcas</span><a href="javascript:void 0" id="socSugMore">Ver todo →</a></div>
+      <div class="soc-suggest" id="socSuggest"></div>
+    </section>
+    <section class="soc-card">
+      <div class="soc-card-h"><span>🔴 Eventos en vivo</span></div>
+      <div class="soc-live" id="socLive"></div>
+    </section>
+  </aside>
 
-<!-- ══════════ MODAL COMPARTIR ══════════ -->
-<div class="modal-backdrop hidden" id="modalShare">
-  <div class="modal">
-    <h3>📤 Compartir capítulo</h3>
-    <p class="modal-sub" id="shareTitle"></p>
-    <div class="share-grid" id="shareGrid"></div>
-    <div class="share-copy">
-      <input id="shareUrl" readonly onclick="this.select()">
-      <button class="btn btn-acid" id="copyShareUrl">Copiar</button>
-    </div>
-    <p class="modal-sub share-note">El enlace abre exactamente este capítulo — funciona aunque la otra persona nunca haya usado la app.</p>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="closeShare">Cerrar</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ ✨ SINOPSIS (historia + reparto + tráiler + capítulos) ══════════ -->
-<div class="syn-backdrop hidden" id="synModal" role="dialog" aria-modal="true" aria-label="Sinopsis y ficha completa">
-  <div class="syn-shell" id="synShell"></div>
-</div>
-
-<!-- ══════════ MODAL IMPORTAR — multi-enlace + cola en la nube ══════════ -->
-<div class="modal-backdrop hidden" id="modalDrive">
-  <div class="modal modal-import">
-    <h3>📁 Importar — Drive · Streamtape · Mega · enlaces</h3>
-    <p class="modal-sub">Pega <b>todos los enlaces que quieras</b> — uno por línea.<br>La app detecta el tipo de cada uno y los procesa en segundo plano.<br>
-      📺 Puedes cerrar este panel y seguir navegando — <b>la importación continúa sola</b> y al terminar <b>publica automáticamente</b>.</p>
-    <label>Tus enlaces (uno por línea o separados por espacios)
-      <textarea id="driveFolderUrl" rows="6" placeholder="Pega aquí tus enlaces de Drive, Streamtape, Mega o video directo…&#10;&#10;https://drive.google.com/drive/folders/…&#10;https://drive.google.com/file/d/…&#10;https://streamtape.com/v/…&#10;https://mega.nz/file/…" autocomplete="off" spellcheck="false"></textarea>
-    </label>
-    <div class="import-detect hidden" id="importDetect"></div>
-    <div class="drive-status hidden" id="driveStatus"></div>
-    <div class="import-mode">
-      <span class="import-mode-label">Tratar como:</span>
-      <label><input type="radio" name="importMode" value="auto" checked> 🤖 Auto</label>
-      <label><input type="radio" name="importMode" value="serie"> 📺 Serie</label>
-      <label><input type="radio" name="importMode" value="peliculas"> 🎬 Películas</label>
-    </div>
-
-    <!-- ☁ STREAMTAPE: cuenta completa vía API -->
-    <div class="stape-box">
-      <div class="stape-head">☁ <b>Streamtape</b> — importa TODA tu cuenta automáticamente</div>
-      <div class="stape-grid">
-        <label>API Login
-          <input type="text" id="stLogin" autocomplete="off" spellcheck="false">
-        </label>
-        <label>API Key (Account Settings)
-          <input type="password" id="stKey" placeholder="Se guarda solo en tu navegador" autocomplete="off" spellcheck="false">
-        </label>
+  <!-- ══════════ PANEL EXTREMO DERECHO: CHAT ══════════ -->
+  <aside class="soc-chat" id="socChatPanel">
+    <section class="soc-card">
+      <div class="soc-card-h"><span>💬 Chat y comunidad</span></div>
+      <div class="soc-chat-filters" id="socChatFilters">
+        <button class="on" data-f="todos">Todos</button>
+        <button data-f="amigos">Amigos</button>
+        <button data-f="grupos">Grupos</button>
       </div>
-      <button class="btn btn-acid stape-go" id="stImportBtn">☁ Cargar TODO mi Streamtape</button>
-      <p class="modal-sub stape-hint">Lee todas tus carpetas y crea las series/películas según el nombre de cada carpeta.</p>
-    </div>
-    <details class="drive-adv">
-      <summary>⚙ Avanzado: API key de Google Drive (opcional · más fiable)</summary>
-      <input type="text" id="driveApiKey" placeholder="AIzaSy…" autocomplete="off">
-      <p class="modal-sub">Sin clave, la carpeta se lee mediante lectores públicos. Con una <b>API key</b> gratis es instantánea, 100% fiable y NUNCA se satura.</p>
-    </details>
-    <div class="modal-actions">
-      <button class="btn btn-ghost hidden" id="driveReviewPend">🎬 Revisar pendientes</button>
-      <button class="btn btn-ghost" id="cancelDrive">Cancelar</button>
-      <button class="btn btn-acid" id="confirmDrive">⚡ Importar</button>
-    </div>
-  </div>
-</div>
-
-<!-- 🔔 PILA DE IMPORTACIÓN — indicador flotante del proceso en la nube -->
-<div class="import-queue-pill hidden" id="importQueuePill" title="Abrir el monitor de la nube">
-  <span class="iq-spin">☁</span>
-  <span class="iq-label" id="iqLabel">Importando…</span>
-  <b class="iq-count" id="iqCount">0/0</b>
-</div>
-
-<!-- ☁ MONITOR DE LA NUBE — proceso en vivo, enlace por enlace -->
-<div class="modal-backdrop hidden" id="modalCloud">
-  <div class="modal modal-cloud">
-    <div class="cl-head">
-      <div class="cl-cloud">☁</div>
-      <div class="cl-head-txt">
-        <h3 id="clTitle">Procesando en la nube…</h3>
-        <div class="cl-sub" id="clSub">Los servidores de GitHub están trabajando por ti</div>
+      <div class="soc-convos" id="socConvos"></div>
+    </section>
+    <section class="soc-card soc-promo">
+      <div class="soc-promo-x">X</div>
+      <div class="soc-promo-b">
+        <b>Conecta, comparte y vive la experiencia XSTREAM</b>
+        <a class="soc-btn soc-btn-green" href="/">¡Únete ahora!</a>
       </div>
-      <span class="cl-status" id="clStatus">…</span>
-    </div>
-    <div class="cl-progress">
-      <div class="cl-bar"><div id="clBarFill"></div></div>
-      <b id="clPct">0%</b>
-    </div>
-    <div class="cl-list" id="clList"></div>
-    <div class="cl-note">
-      💡 <b>Puedes cerrar esta ventana, seguir navegando o hasta apagar el celular</b> — el trabajo
-      continúa en los servidores de GitHub y cada enlace fallido se reintenta solo
-      (cada 2 minutos, hasta 10 intentos). Cuando todo termine te aviso aquí mismo.
-      Las carpetas <b>privadas o enlaces rotos se descartan al momento</b> — reintentar no los arregla.
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost hidden" id="clClean">🧹 Limpiar descartados</button>
-      <button class="btn btn-ghost" id="clClose">Cerrar</button>
-    </div>
-  </div>
+    </section>
+    <section class="soc-card">
+      <div class="soc-card-h"><span>🟢 Usuarios en línea</span><a href="javascript:void 0" id="socOnlineMore">Ver más →</a></div>
+      <div class="soc-online-h"><b id="socOnlineCount">0</b> conectados ahora</div>
+      <div class="soc-online" id="socOnline"></div>
+    </section>
+  </aside>
+
 </div>
 
-<!-- 🎉 MODAL IMPORTACIÓN COMPLETA — resumen visual del resultado -->
-<div class="modal-backdrop hidden" id="modalImportDone">
-  <div class="modal modal-done">
-    <div class="id-hero">
-      <div class="id-hero-icon">✅</div>
-      <h3>¡Importación completada!</h3>
-      <p class="id-hero-sub" id="importDoneSummary"></p>
-      <div class="id-chips" id="importDoneChips"></div>
-    </div>
-    <div class="id-cloud" id="importDoneCloud"></div>
-    <div class="id-list" id="importDoneList"></div>
-    <div class="id-know">
-      <div class="id-know-title">📋 Lo que debes saber antes de publicar</div>
-      <ol>
-        <li><b>La publicación está bloqueada</b> hasta que revises los títulos — es el paso obligatorio.</li>
-        <li>En la revisión puedes <b>corregir títulos</b>, cambiar <b>género</b>, recuperar la <b>carátula real con 🔄 (TMDB)</b> y <b>excluir</b> lo que no quieras.</li>
-        <li>Los enlaces fallidos <b>se reintentan solos en la nube cada 2 min</b> (hasta 10 veces) — las carpetas privadas se descartan al momento porque reintentar no las arregla.</li>
-        <li>Al pulsar «Revisar y publicar», el catálogo llega a <b>todos los visitantes en ~1 minuto</b>.</li>
-      </ol>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost hidden" id="importDoneRetry">🔁 Reintentar fallidos</button>
-      <button class="btn btn-ghost hidden" id="importDoneMonitor">☁ Ver la nube</button>
-      <button class="btn btn-ghost" id="importDoneClose">Cerrar</button>
-      <button class="btn btn-acid" id="importDoneView">🎬 Revisar y publicar</button>
-    </div>
-  </div>
-</div>
+<!-- Vistas superpuestas: perfil, conversación, publicar detalle -->
+<div class="soc-overlay hidden" id="socOverlay"><div class="soc-sheet" id="socSheet"></div></div>
 
-<!-- ══════════ MODAL PAPELERA ══════════ -->
-<div class="modal-backdrop hidden" id="modalTrash">
-  <div class="modal">
-    <h3>🗑 Papelera</h3>
-    <p class="modal-sub">Las series y películas eliminadas se conservan <b>7 días</b>. Pasado ese plazo se borran permanentemente de forma automática.</p>
-    <div class="trash-list" id="trashList"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="closeTrash">Cerrar</button>
-    </div>
-  </div>
-</div>
+<!-- Navegación móvil -->
+<nav class="soc-mob hidden" id="socMob">
+  <a data-nav="inicio" class="on">🏠</a>
+  <a data-nav="explorar">🧭</a>
+  <a data-nav="mensajes">💬<b class="soc-red hidden" id="socMobMsg"></b></a>
+  <a data-nav="notificaciones">🔔<b class="soc-red hidden" id="socMobNotif"></b></a>
+  <a data-nav="perfil">🧑</a>
+</nav>
 
-<!-- ══════════ MODAL ESTADÍSTICAS ══════════ -->
-<div class="modal-backdrop hidden" id="modalStats">
-  <div class="modal">
-    <h3>📊 Tus estadísticas</h3>
-    <div class="stats-body" id="statsBody"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="closeStats">Cerrar</button>
-    </div>
-  </div>
-</div>
+<div class="soc-toasts" id="socToasts"></div>
 
-<!-- ══════════ MODAL SYNC FIREBASE ══════════ -->
-<div class="modal-backdrop hidden" id="modalSync">
-  <div class="modal">
-    <h3>☁ Sync en la nube</h3>
-    <p class="modal-sub">Sincroniza tu biblioteca (series, enlaces, progreso y papelera) entre tus dispositivos usando el Firebase del ecosistema.</p>
-    <label>Config Firebase (.json)
-      <textarea id="fbConfig" rows="6" spellcheck="false" style="font-family:'JetBrains Mono';font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--ink);resize:vertical"></textarea>
-    </label>
-    <div class="sync-status" id="syncStatus">Sin conectar</div>
-    <div class="modal-actions" style="justify-content:flex-start">
-      <button class="btn btn-ghost" id="syncConnect">Conectar</button>
-      <button class="btn btn-acid" id="syncUp">⬆ Subir mi biblioteca</button>
-      <button class="btn btn-ghost" id="syncDown">⬇ Bajar de la nube</button>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="closeSync">Cerrar</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ MODAL CINE — buscador de películas (Internet Archive · español) ══════════ -->
-<div class="modal-backdrop hidden" id="modalCine">
-  <div class="modal modal-wide cine-modal">
-    <h3>🎬 Cine público — películas, anime y OVAs en español</h3>
-    <p class="modal-sub">Busca en el archivo libre de internet. Todo es de dominio público/libre, con MP4 directo, y <b>un clic la publica y reproduce al instante</b> en tu lista.</p>
-    <div class="net-search">
-      <input type="text" id="cineQuery" placeholder="Ej: anime ovas, akira, dragon ball, el viaje de chihiro, película española…" autocomplete="off">
-      <button class="btn btn-acid" id="cineGo">Buscar</button>
-    </div>
-    <div class="cine-tools">
-      <label class="cine-lang"><input type="checkbox" id="cineLang" checked> 🇪🇸 Solo español</label>
-      <label class="cine-lang"><input type="checkbox" id="cineMinDur" checked> ⏱ Solo +60 min</label>
-      <div class="cine-chips" id="cineChips"></div>
-    </div>
-    <div class="net-status hidden" id="cineStatus">🔍 Buscando…</div>
-    <div class="cine-grid" id="cineResults"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="closeCine">Cerrar</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ MODAL CONFIRMAR REPORTE DE ENLACE ROTO ══════════ -->
-<div class="modal-backdrop hidden" id="modalFlag">
-  <div class="modal modal-flag">
-    <div class="flag-icon">🚩</div>
-    <h3>¿Reportar este enlace como roto?</h3>
-    <p class="modal-sub" id="flagText"></p>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="flagCancel">Cancelar</button>
-      <button class="btn btn-solid-danger" id="flagConfirm">Sí, reportar</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ MODAL UI GENÉRICO (diálogos elegantes: renombrar, etiquetas, recordatorio…) ══════════ -->
-<div class="modal-backdrop hidden" id="modalUi">
-  <div class="modal ui-modal" id="uiModalBox" role="dialog" aria-modal="true">
-    <div class="ui-icon" id="uiIcon">✨</div>
-    <h3 id="uiTitle"></h3>
-    <p class="ui-sub" id="uiSub"></p>
-    <div class="ui-fields" id="uiFields"></div>
-    <div class="modal-actions ui-actions">
-      <button class="btn btn-ghost ui-cancel" id="uiCancel">Cancelar</button>
-      <button class="btn btn-acid ui-ok" id="uiOk">Aceptar</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ MODAL MIGRACIÓN STREAMTAPE ══════════ -->
-<div class="modal-backdrop hidden" id="modalMigrate">
-  <div class="modal modal-wide">
-    <h3>🚚 Migración Streamtape → archive.org</h3>
-    <p class="modal-sub">Streamtape pone anuncios dentro de su reproductor y no se pueden quitar sin romperlo. La migración corre <b>desde TU navegador, en vivo</b>: descarga cada video directo de Streamtape (el CDN sí da acceso) y lo sube a archive.org (reproductor propio, cero anuncios). <b>Todo queda agrupado: los capítulos de una serie van a UN solo ítem en archive.org</b> (las temporadas empaquetadas y las películas a su propio ítem limpio).</p>
-    <div class="mig-status" id="migStatus">Comprobando…</div>
-    <p class="modal-sub" style="font-size:11px">⚡ Al lanzar, descarga y sube cada video <b>desde este navegador, sin límites de tiempo</b>; verás cada episodio migrarse en vivo. Cierra esta ventana solo cuando diga «terminada».</p>
-    <div class="mig-list" id="migList"></div>
-    <details class="drive-adv" id="migCredsBox">
-      <summary>🔑 Cuentas de origen y destino — cámbialas cuando quieras (se guardan solo en tu navegador)</summary>
-      <div class="mig-creds">
-        <input type="text" id="migStapeLogin" placeholder="Streamtape API login" autocomplete="off" spellcheck="false">
-        <input type="password" id="migStapeKey" placeholder="Streamtape API key" autocomplete="off" spellcheck="false">
-        <input type="text" id="migIaAccess" placeholder="archive.org access key" autocomplete="off" spellcheck="false">
-        <input type="password" id="migIaSecret" placeholder="archive.org secret key" autocomplete="off" spellcheck="false">
-      </div>
-      <p class="modal-sub">Pega aquí otra cuenta cuando la necesites (otra Streamtape u otro archive.org) y el robot la usará en el próximo lote. archive.org gratis en <b>archive.org/account/s3.php</b>.</p>
-    </details>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="closeMigrate">Cerrar</button>
-      <button class="btn btn-acid" id="migRunBtn">🚀 Lanzar robot (lote de 15)</button>
-      <button class="btn btn-acid hidden" id="migApplyBtn">📥 Integrar migrados y preparar publicación</button>
-    </div>
-  </div>
-</div>
-
-<!-- toast -->
-<div class="toast hidden" id="toast"></div>
-
-<script src="auth.js"></script>
-<script src="coins.js"></script>
-<script src="app.js"></script>
-<script src="chat.js"></script>
+<script src="/auth.js"></script>
+<script src="/social/social.js"></script>
 </body>
 </html>
