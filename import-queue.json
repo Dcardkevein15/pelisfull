@@ -1,15 +1,15 @@
 {
  "v": 1,
- "at": 1791562248931,
+ "at": 1791573751041,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
    "type": "drive-file",
    "status": "dup",
    "name": "Video externo (renómbrame ✎)",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "attempts": 3,
+   "nextRetryAt": 1791488959248,
    "addedAt": 1791485718203,
    "payload": null
   },
@@ -23,6 +23,17 @@
    "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": null
+  },
+  {
+   "url": "https://mega.nz/folder/AbCdEf#test123",
+   "addedAt": 1791490519540,
+   "type": "mega-folder",
+   "payload": null,
+   "error": "⚠ Mega cifra las carpetas dentro del propio enlace:ninguna app web puede leerlas automáticamente.Sí puedes pegar archivos sueltos de Mega (se catalogan)o usar G",
+   "name": "",
+   "nextRetryAt": 0,
+   "attempts": 1,
+   "status": "failed-final"
   },
   {
    "url": "https://drive.google.com/file/d/1QAzafcc7EVwZidY9cHSDszX0Ss27bDTm/view?usp=sharing",
@@ -176,6 +187,17 @@
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://dn720403.ca.archive.org/0/items/yummy_202105/-%20Aquellos%20que%20desean%20mi%20muerte.mp4",
+   "type": "direct",
+   "status": "queued",
+   "name": "",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791573751041,
    "payload": null
   }
  ]
