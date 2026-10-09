@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791524294023,
+ "v": 1791553871970,
  "by": "Dcard #2968",
- "at": "2026-10-09T05:38:14.023Z",
- "n": 6058,
+ "at": "2026-10-09T13:51:11.970Z",
+ "n": 6057,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -45591,28 +45591,6 @@
    ]
   },
   {
-   "id": "file-https-drive-google-com-file-d-1wQaDzJcn2qLPnkocTMVHqaSC98Fqn",
-   "t": "Telegram @Pelisdrive si tuv 30",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1wQaDzJcn2qLPnkocTMVHqaSC98FqnbHZ&sz=w1000",
-   "tags": [
-    "Comedia"
-   ],
-   "genre": "comedia",
-   "at": 1791417640309,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1wQaDzJcn2qLPnkocTMVHqaSC98FqnbHZ/view"
-    }
-   ]
-  },
-  {
    "id": "file-https-drive-google-com-file-d-1aVVC_04MNqYQHetjdRPALxVbKd-qB",
    "t": "P ear l Har bor",
    "jp": "🎬",
@@ -49149,31 +49127,13 @@
    ]
   },
   {
-   "id": "file-https-drive-google-com-file-d-1NIYIkSv2VaZRRHsOsMNfwWiRkwd5M",
-   "t": "Video externo (renómbrame ✎)",
-   "jp": "🎬",
-   "tag": "Google Drive · Archivo",
-   "g": 6,
-   "kind": "pelicula",
-   "anime": false,
-   "poster": "https://drive.google.com/thumbnail?id=1NIYIkSv2VaZRRHsOsMNfwWiRkwd5MNp9&sz=w1000",
-   "tags": [],
-   "at": 1791499213967,
-   "episodes": [
-    {
-     "n": 1,
-     "t": "▶ Ver",
-     "url": "https://drive.google.com/file/d/1NIYIkSv2VaZRRHsOsMNfwWiRkwd5MNp9/view"
-    }
-   ]
-  },
-  {
    "id": "file-https-drive-google-com-file-d-1m7F_Pv5DruTVrAsSCvy-Ymja9Yfuq",
    "t": "Perdona Si Te Llamo Amor",
    "jp": "🎬",
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1m7F_Pv5DruTVrAsSCvy-Ymja9Yfuq07h&sz=w1000",
    "tags": [
     "Romance"
@@ -49195,6 +49155,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=18hJa1KVumBSrpnV2O2w1AnsO8zmMtCP-&sz=w1000",
    "tags": [
     "Drama"
@@ -49216,6 +49177,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1AwWdbvyTFG4vaxRBtbwTdcrx9a9O9C0t&sz=w1000",
    "tags": [
     "Ciencia Ficción"
@@ -49237,6 +49199,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1i_5vwMGfchl7hzhAP7yKrOT_nQYFX17n&sz=w1000",
    "tags": [
     "Infantil"
@@ -49258,6 +49221,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1GaSVobTVc9_FuTmYDdKgyPSh3Xv19V1U&sz=w1000",
    "tags": [
     "Fantasía"
@@ -49279,6 +49243,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1I-zv9J6PamFlDPpOs4VghsxVUSFuLWNf&sz=w1000",
    "tags": [
     "Fantasía"
@@ -49300,6 +49265,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=13Y2dEVkDdL5zQof2OjodgOcftAa40Yq8&sz=w1000",
    "tags": [
     "Infantil"
@@ -49321,6 +49287,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1lqmEyzPZc_QkdK6ynMke61vx3sz1WJV2&sz=w1000",
    "tags": [
     "Infantil"
@@ -49342,6 +49309,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=18RsK0nYO49FphPY7L_oHijSgdVSt-SAE&sz=w1000",
    "tags": [
     "Comedia"
@@ -49363,6 +49331,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1V9q5VxBOO-au3ZkuskquH7xILRnN7QbJ&sz=w1000",
    "tags": [
     "Aventura"
@@ -49383,6 +49352,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1vRyztjkuwkRmpacPpfaNXJjpBr6Q-SvF&sz=w1000",
    "tags": [
     "Documental"
@@ -49403,6 +49373,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=11Y6utr0mB5xE9D-DXG6MrEkX7Rd0dBKi&sz=w1000",
    "tags": [
     "Aventura"
@@ -49423,6 +49394,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc31g&sz=w1000",
    "tags": [
     "Fantasía"
@@ -49443,6 +49415,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1dHcihkiJ0fbHq53AegNv2xN0CsywN2ak&sz=w1000",
    "tags": [
     "Comedia"
@@ -49464,6 +49437,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1_mlaiQE2d0aiik18uQTpW3vOSKx9PuIK&sz=w1000",
    "tags": [
     "Comedia"
@@ -49485,6 +49459,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1EJnafmN0u8RSBcsjQOWVn0SDgShc_2Kd&sz=w1000",
    "tags": [
     "Comedia"
@@ -49506,6 +49481,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=13IjfrszkDGOQzOjh-2wq2QS1Gf6meA9Q&sz=w1000",
    "tags": [
     "Comedia"
@@ -49527,6 +49503,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1J3LPszYVZ3s9gZDXg_8vn7dyGcH2fjb1&sz=w1000",
    "tags": [
     "Infantil"
@@ -49548,6 +49525,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1Ch2X29llEHhzv2YUTbszXgryG01y7xln&sz=w1000",
    "tags": [
     "Drama"
@@ -49569,6 +49547,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1fW7r26lMSSbGVt2Xuuj-HinaIpmPtnFT&sz=w1000",
    "tags": [
     "Suspenso"
@@ -49590,6 +49569,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1z4jGs964qdZRTsQ0eEI9kkV6Ej0WVtnX&sz=w1000",
    "tags": [
     "Crimen"
@@ -49611,6 +49591,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=19twgF4QsGWElXlqA09AmjMKaaMQpysDB&sz=w1000",
    "tags": [
     "Drama"
@@ -49632,6 +49613,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1N870kUFBG2Ixe_eheiwAfsgj2FG2o0LN&sz=w1000",
    "tags": [
     "Acción"
@@ -49653,6 +49635,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1igzSnwdRjPvHdJ-HNo1p8WSQvcXPBP9m&sz=w1000",
    "tags": [
     "Comedia"
@@ -49674,6 +49657,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1ckj8kDkJESMFmalO6pzxABorrkgbfI-F&sz=w1000",
    "tags": [
     "Drama"
@@ -49697,6 +49681,7 @@
    "kind": "serie",
    "anime": false,
    "poster": "https://archive.org/services/img/martin-fierro-la-pelicula-2007-dvd-480p",
+   "tags": [],
    "at": 1791522611464,
    "episodes": [
     {
@@ -49758,6 +49743,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=11VRXFXtdAkW8W06zDrbEEs3lb79b2OTR&sz=w1000",
    "tags": [
     "Terror"
@@ -49779,6 +49765,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1kb-qmMcbaB9Lvh7szRgA8rdks10h1T5a&sz=w1000",
    "tags": [
     "Suspenso"
@@ -49800,6 +49787,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=11O633M0plj778mkR3oIt5nPV8ybBtHRg&sz=w1000",
    "tags": [
     "Drama"
@@ -49821,6 +49809,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=1L4LrDKdAkmtAUL6Rnj7bbyuxHZPLWiln&sz=w1000",
    "tags": [
     "Comedia"
@@ -49842,6 +49831,7 @@
    "tag": "Google Drive · Archivo",
    "g": 6,
    "kind": "pelicula",
+   "anime": false,
    "poster": "https://drive.google.com/thumbnail?id=11O0az-IOSJevQ1sbopiZDkJPTwYUjUXK&sz=w1000",
    "tags": [
     "Crimen"
@@ -49853,6 +49843,27 @@
      "n": 1,
      "t": "▶ Ver",
      "url": "https://drive.google.com/file/d/11O0az-IOSJevQ1sbopiZDkJPTwYUjUXK/view"
+    }
+   ]
+  },
+  {
+   "id": "file-https-drive-google-com-file-d-10XGk-p3NHAldybSSiiKJcdoQhsdDY",
+   "t": "Leyenda Urbana",
+   "jp": "🎬",
+   "tag": "Google Drive · Archivo",
+   "g": 6,
+   "kind": "pelicula",
+   "poster": "https://drive.google.com/thumbnail?id=10XGk-p3NHAldybSSiiKJcdoQhsdDYl75&sz=w1000",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791553734504,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "▶ Ver",
+     "url": "https://drive.google.com/file/d/10XGk-p3NHAldybSSiiKJcdoQhsdDYl75/view"
     }
    ]
   }
@@ -110091,7 +110102,9 @@
   "ia-ed-wood-1995-vhs": 1791440186466,
   "file-https-archive-org-details-ed-wood-1994_20251029": 1791440290513,
   "file-https-drive-google-com-file-d-19tTcpzDdhFo-ERyU277gP7FPVAdm4": 1791496575034,
-  "ia-dbz-en-espanol-latino": 1791499345824
+  "ia-dbz-en-espanol-latino": 1791499345824,
+  "file-https-drive-google-com-file-d-1NIYIkSv2VaZRRHsOsMNfwWiRkwd5M": 1791525623033,
+  "file-https-drive-google-com-file-d-1wQaDzJcn2qLPnkocTMVHqaSC98Fqn": 1791525691134
  },
  "tvSources": {
   "iptv-org/spa": {
@@ -201935,6 +201948,206 @@
    "dest": "#/pelicula/un-hombre-lobo-americano-en-londres",
    "t": "Un hombre lobo americano en Londres",
    "at": 1791501254917
+  },
+  "8aty3r": {
+   "dest": "#/pelicula/perdona-si-te-llamo-amor",
+   "t": "Perdona Si Te Llamo Amor",
+   "at": 1791524561516
+  },
+  "mqmxcx": {
+   "dest": "#/pelicula/madre",
+   "t": "Madre",
+   "at": 1791524561516
+  },
+  "dxmpat": {
+   "dest": "#/pelicula/star-wars-episodio-ix-el-ascenso-de-skywalker",
+   "t": "Star Wars Episodio IX - El Ascenso De Skywalker",
+   "at": 1791524561516
+  },
+  "z2a829": {
+   "dest": "#/pelicula/mascotas-2",
+   "t": "Mascotas 2",
+   "at": 1791524561516
+  },
+  "zdas9n": {
+   "dest": "#/pelicula/frozen-el-reino-de-hielo",
+   "t": "Frozen - El Reino De Hielo",
+   "at": 1791524561516
+  },
+  "5zqg9a": {
+   "dest": "#/pelicula/frozen-ii",
+   "t": "Frozen II",
+   "at": 1791524561516
+  },
+  "ptzpgf": {
+   "dest": "#/pelicula/pica-pica-fiesta-party",
+   "t": "PICA PICA - Fiesta Party",
+   "at": 1791524561516
+  },
+  "a9tp3z": {
+   "dest": "#/pelicula/ralph-rompe-internet",
+   "t": "Ralph Rompe Internet",
+   "at": 1791524561516
+  },
+  "398txq": {
+   "dest": "#/pelicula/powder-pura-energia",
+   "t": "Powder (Pura Energía)",
+   "at": 1791524561516
+  },
+  "ycqgyz": {
+   "dest": "#/pelicula/los-goonies",
+   "t": "Los Goonies",
+   "at": 1791524561516
+  },
+  "4hx4s6": {
+   "dest": "#/pelicula/campeones",
+   "t": "Campeones",
+   "at": 1791524561516
+  },
+  "tsuuss": {
+   "dest": "#/pelicula/el-rey-leon-2019",
+   "t": "El Rey León (2019)",
+   "at": 1791524561516
+  },
+  "8b2ckj": {
+   "dest": "#/pelicula/mi-vecino-totoro",
+   "t": "Mi Vecino Totoro",
+   "at": 1791524561516
+  },
+  "ngeeqt": {
+   "dest": "#/pelicula/los-descendientes",
+   "t": "Los Descendientes",
+   "at": 1791524561516
+  },
+  "kpsr7u": {
+   "dest": "#/pelicula/los-descendientes-2",
+   "t": "Los Descendientes 2",
+   "at": 1791524561516
+  },
+  "6pf39d": {
+   "dest": "#/pelicula/los-descendientes-3",
+   "t": "Los Descendientes 3",
+   "at": 1791524561516
+  },
+  "rnz7ft": {
+   "dest": "#/pelicula/superlopez",
+   "t": "Superlópez",
+   "at": 1791524561516
+  },
+  "jeq3a5": {
+   "dest": "#/pelicula/bobby-el-erizo",
+   "t": "Bobby El Erizo",
+   "at": 1791524561516
+  },
+  "8ffrp2": {
+   "dest": "#/pelicula/togo",
+   "t": "Togo",
+   "at": 1791524561516
+  },
+  "yns44j": {
+   "dest": "#/pelicula/parasitos",
+   "t": "Parásitos",
+   "at": 1791524561516
+  },
+  "8qcgh6": {
+   "dest": "#/pelicula/malasana-32",
+   "t": "Malasaña 32",
+   "at": 1791524561516
+  },
+  "mk8kuv": {
+   "dest": "#/pelicula/eduardo-manostijeras",
+   "t": "Eduardo Manostijeras",
+   "at": 1791524561516
+  },
+  "up6unc": {
+   "dest": "#/pelicula/rambo-last-blood",
+   "t": "Rambo Last Blood",
+   "at": 1791524561516
+  },
+  "f6uxdg": {
+   "dest": "#/pelicula/el-arte-de-vivir-bajo-la-lluvia",
+   "t": "El Arte De Vivir Bajo La Lluvia",
+   "at": 1791524561516
+  },
+  "ckfzsd": {
+   "dest": "#/pelicula/10-dias-sin-mama",
+   "t": "10 Días Sin Mamá",
+   "at": 1791524561516
+  },
+  "pjf328": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/1",
+   "t": "Martín Fierro: La Película (2007) · E1",
+   "at": 1791524561516
+  },
+  "3kmscc": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/2",
+   "t": "Martín Fierro: La Película (2007) · E2",
+   "at": 1791524561516
+  },
+  "ctnftk": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/3",
+   "t": "Martín Fierro: La Película (2007) · E3",
+   "at": 1791524561516
+  },
+  "2xxus5": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/4",
+   "t": "Martín Fierro: La Película (2007) · E4",
+   "at": 1791524561516
+  },
+  "3wn5jn": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/5",
+   "t": "Martín Fierro: La Película (2007) · E5",
+   "at": 1791524561516
+  },
+  "fhkgkh": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/6",
+   "t": "Martín Fierro: La Película (2007) · E6",
+   "at": 1791524561516
+  },
+  "m9j838": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/7",
+   "t": "Martín Fierro: La Película (2007) · E7",
+   "at": 1791524561516
+  },
+  "uh82cj": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/8",
+   "t": "Martín Fierro: La Película (2007) · E8",
+   "at": 1791524561516
+  },
+  "a93bd7": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/9",
+   "t": "Martín Fierro: La Película (2007) · E9",
+   "at": 1791524561516
+  },
+  "x5d78k": {
+   "dest": "#/anime/martin-fierro-la-pelicula-2007/10",
+   "t": "Martín Fierro: La Película (2007) · E10",
+   "at": 1791524561516
+  },
+  "h85pf3": {
+   "dest": "#/pelicula/hotel-transilvania-3-unas-vacaciones-monstruosas",
+   "t": "Hotel Transilvania 3 - Unas Vacaciones Monstruosas",
+   "at": 1791524561516
+  },
+  "8ju5cx": {
+   "dest": "#/pelicula/downton-abbey",
+   "t": "Downton Abbey",
+   "at": 1791524561516
+  },
+  "bbp9s5": {
+   "dest": "#/pelicula/richard-jewell",
+   "t": "Richard Jewell",
+   "at": 1791524561516
+  },
+  "6hqkrz": {
+   "dest": "#/pelicula/huerfanos-de-brooklyn",
+   "t": "Huérfanos De Brooklyn",
+   "at": 1791524561516
+  },
+  "6z8pn6": {
+   "dest": "#/pelicula/los-pinguinos-del-sr-popper",
+   "t": "Los Pingüinos Del Sr Popper",
+   "at": 1791524561516
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -201948,5 +202161,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "ZII6W9l/bxhjZk6mTHio6/Xac8Pnc7V+AKy/Gho7i9c20WBulIOqN8nmM+faP49ZmgHTzLsBQhjn0lmNjv8W0g=="
+ "sig": "XaSN6JsbngqS4pKp3whHlwkxmOIWmFTh8IROMBrVr1eDHJVlb8j1zlZ90+5VaJ/774xRLl421UcUhLRa0IvUCA=="
 }
