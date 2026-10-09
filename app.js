@@ -2394,7 +2394,12 @@ function buildSeriesCard(s, idx) {
   btn.querySelector('.s-fav').addEventListener('click', ev => { ev.stopPropagation(); s.fav = !s.fav; save(); renderSeries(els.searchInput.value); if (s.id === current.seriesId) syncFavBtn(); });
   const refBtn = btn.querySelector('.s-refresh');
   if (refBtn) refBtn.addEventListener('click', ev => { ev.stopPropagation(); refetchPoster(s); });
-  btn.addEventListener('click', ev => { if (!ev.target.closest('.s-del,.s-fav,.s-refresh')) selectSeries(s.id); });
+  btn.addEventListener('click', ev => {
+    if (ev.target.closest('.s-del,.s-fav,.s-refresh')) return;
+    /* 🎬 PELÍCULA → sinopsis cinematográfica al instante (series: flujo normal) */
+    if (!editing && s.kind === 'pelicula' && window.openSynopsisCard) { window.openSynopsisCard(s.id); return; }
+    selectSeries(s.id);
+  });
 
   /* entrada con shimmer escalonado para lo recién importado */
   if (freshIds.has(s.id)) {
@@ -3030,7 +3035,11 @@ function renderEpisodes() {
           <div class="rel-c">${chipTxt}</div>
         </div>`;
       if (!img) relEnqueueThumb(m);   /* sin imagen aún → se captura y pinta sola */
-      cell.addEventListener('click', () => selectSeries(m.id));
+      cell.addEventListener('click', () => {
+        /* 🎬 película relacionada → su ficha al instante (nada se reproduce solo) */
+        if (m.kind === 'pelicula' && window.openSynopsisCard) { window.openSynopsisCard(m.id); return; }
+        selectSeries(m.id);
+      });
       els.episodesGrid.appendChild(cell);
     }
     return;
@@ -4249,24 +4258,27 @@ els.shareBtn.addEventListener('click', () => {
     const poster = (d && d.poster) || s.poster || '';
     const chips = [];
     if (d && d.year) chips.push(`📅 ${d.year}`);
-    if (d && d.rating) chips.push(`⭐ ${d.rating}/10${d.votes ? ` (${d.votes.toLocaleString('es')} votos)` : ''}`);
     if (d && d.genres.length) chips.push(`🎭 ${d.genres.slice(0, 3).join(' · ')}`);
     if (d && d.runtime) chips.push(`⏱ ${d.runtime} min${isPeli ? '' : '/cap'}`);
     if (d && d.seasons) chips.push(`📺 ${d.seasons} temporada${d.seasons === 1 ? '' : 's'}`);
     if (d && d.status) chips.push(d.status === 'Ended' ? '✅ Finalizada' : (d.status === 'Returning Series' ? '🟢 En emisión' : esc(d.status)));
+    /* ⭐ la puntuación vive ahora en el ANILLO luminoso del hero */
+    const ringOff = d && d.rating ? (119.4 * (1 - Math.min(10, d.rating) / 10)).toFixed(1) : 0;
+    const votesTxt = d && d.votes ? String(d.votes.toLocaleString('es')) + ' votos en TMDB' : '';
     const first = eps.find(e => e.url) || eps[0];
     return `
   <div class="syn-card">
     <div class="syn-hero"${heroBg ? ` style="background-image:url('${esc(heroBg)}')"` : ''}>
       <div class="syn-shade"></div>
       <button class="syn-x" data-x="1" aria-label="Cerrar">✕</button>
+      ${d && d.rating ? `<div class="syn-ring" title="${esc(votesTxt)}"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="4"/><circle class="syn-ring-fg" cx="22" cy="22" r="19" fill="none" stroke="var(--acid)" stroke-width="4" stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4" transform="rotate(-90 22 22)" style="--ring:${ringOff}"/></svg><b>${d.rating}</b></div>` : ''}
       <div class="syn-hero-in">
         ${poster ? `<img class="syn-poster" src="${esc(poster)}" alt="Póster de ${esc(s.t)}" loading="lazy">` : `<div class="syn-poster sk">${esc(s.jp || '🎬')}</div>`}
         <div class="syn-hmeta">
           <h2>${esc((d && d.title) || s.t)}${d && d.year ? ` <span>(${d.year})</span>` : ''}</h2>
           ${d && d.original && synNorm(d.original) !== synNorm(d.title) ? `<div class="syn-orig">${esc(d.original)}</div>` : ''}
           ${d && d.tagline ? `<div class="syn-tagline">“${esc(d.tagline)}”</div>` : `<div class="syn-tagline">${esc(isPeli ? 'Película completa en español' : 'Serie completa en español')}</div>`}
-          ${chips.length ? `<div class="syn-chips">${chips.map(c => `<span>${c}</span>`).join('')}</div>` : ''}
+          ${chips.length ? `<div class="syn-chips">${chips.map((c, i) => `<span style="--i:${i}">${c}</span>`).join('')}</div>` : ''}
         </div>
       </div>
     </div>
@@ -4390,6 +4402,11 @@ els.shareBtn.addEventListener('click', () => {
       });
     });
   }
+
+  /* 🎬 SINOPSIS AL INSTANTE: clic en la carátula de cualquier PELÍCULA
+     (página principal, pestaña Películas, videos relacionados) abre la
+     ficha cinematográfica directamente — antes de reproducir nada.      */
+  window.openSynopsisCard = openSynopsis;
 })();
 
 /* ═══════════ ⬇ Descarga directa del video original ═══════════
