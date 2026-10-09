@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791574494425,
+ "at": 1791574531901,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -221,277 +221,833 @@
   {
    "url": "https://archive.org/download/yummy_202105/-%20Casas%20de%20cristal.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Casas de cristal",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494424,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Casas-20de-20crist",
+     "t": "- Casas de cristal",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/5fZGWJjStklNAbYfqrinkj9cv0G.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Casas%20de%20cristal.mp4"
+      }
+     ],
+     "genre": "suspenso",
+     "tags": [
+      "Suspenso"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Click%20Perdiendo%20el%20control.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Click Perdiendo el control",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494424,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Click-20Perdiendo-",
+     "t": "- Click Perdiendo el control",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/l06jMu0V4cp1DuQdI9ptSJjV01q.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Click%20Perdiendo%20el%20control.mp4"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20El%20hijo%20del%20novio.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- El hijo del novio",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494424,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20El-20hijo-20del-20",
+     "t": "- El hijo del novio",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/aMFKyKj2z34HhuncNjXWQ33695B.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20El%20hijo%20del%20novio.mp4"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Las%20Legiones%20Emergentes.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Las Legiones Emergentes",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494424,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Las-20Legiones-20E",
+     "t": "- Las Legiones Emergentes",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/z86oCfUHyI7bYVoeM6eMrE4yO9A.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Las%20Legiones%20Emergentes.mp4"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Los%20miserables.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Los miserables",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494424,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Los-20miserables-m",
+     "t": "- Los miserables",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/uTh8sNW6u8PqmU9CQwQVHjU7b7e.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Los%20miserables.mp4"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Mr.%20Bean.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Mr  Bean",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494424,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Mr-20Bean-mp4",
+     "t": "- Mr  Bean",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/67boPPEDTXpLi7X18SGKzV45A1T.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Mr.%20Bean.mp4"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Mujer%20bonita.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Mujer bonita",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Mujer-20bonita-mp4",
+     "t": "- Mujer bonita",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/347sQDPhK9i1yIW2tymzh46FBGI.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Mujer%20bonita.mp4"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Paredes%20siniestras.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Paredes siniestras",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Paredes-20siniestr",
+     "t": "- Paredes siniestras",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/1gDHWhNuktQNtpB8JemeS6Vx561.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Paredes%20siniestras.mp4"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Peter%20Rabbit%202.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Peter Rabbit 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Peter-20Rabbit-202",
+     "t": "- Peter Rabbit 2",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/7qb6u23jMucfMlJ4MCSFo8djka1.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Peter%20Rabbit%202.mp4"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Prisionero%2099.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Prisionero 99",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Prisionero-2099-mp",
+     "t": "- Prisionero 99",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/w1pGYNa8w9UAlb6gVfW1qWx9jvq.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Prisionero%2099.mp4"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Prueba%20de%20fe.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Prueba de fe",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Prueba-20de-20fe-m",
+     "t": "- Prueba de fe",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/3YMj4Be4XGWWouHFetSrnQ0DD3W.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Prueba%20de%20fe.mp4"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Secreto%20en%20la%20monta%C3%B1a.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Secreto en la montaña",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Secreto-20en-20la-",
+     "t": "- Secreto en la montaña",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/kRgrTPM6uDiLBgASk8j3RBTE49d.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Secreto%20en%20la%20monta%C3%B1a.mp4"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://dn720403.ca.archive.org/0/items/yummy_202105/-%20Yo%20los%20declaro%20marido%20y...%20Larry.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Yo los declaro marido y  Larry",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-dn720403-ca-archive-org-0-items-yummy_202105-20Yo-20lo",
+     "t": "- Yo los declaro marido y  Larry",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/jFb9o09UgJ6RZUf8cx8zxNzIgG6.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://dn720403.ca.archive.org/0/items/yummy_202105/-%20Yo%20los%20declaro%20marido%20y...%20Larry.mp4"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/-%20Yo%20soy%20todas%20las%20ni%C3%B1as.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "- Yo soy todas las niñas",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-20Yo-20soy-20todas-2",
+     "t": "- Yo soy todas las niñas",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/jAzX5TSKREp3Mhq7nqew4DcXjRZ.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/-%20Yo%20soy%20todas%20las%20ni%C3%B1as.mp4"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/Blue%20Code%20of%20Silence.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Blue Code of Silence",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-Blue-20Code-20of-20S",
+     "t": "Blue Code of Silence",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/sjAjX7VKsIo3FYwUIiMAXG9ra99.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/Blue%20Code%20of%20Silence.mp4"
+      }
+     ],
+     "genre": "documental",
+     "tags": [
+      "Documental"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/Bodyguard.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Video externo (renómbrame ✎)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-Bodyguard-mp4",
+     "t": "Video externo (renómbrame ✎)",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": null,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/Bodyguard.mp4"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/De%20Roma%20con%20amor.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "De Roma con amor",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-De-20Roma-20con-20am",
+     "t": "De Roma con amor",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/gK6FizI6v704f4q8L29bs8H4GrN.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/De%20Roma%20con%20amor.mp4"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/De%20mendigo%20a%20millonario.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "De mendigo a millonario",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-De-20mendigo-20a-20m",
+     "t": "De mendigo a millonario",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/bwmqcucVleqUTKUKw7K3hlvUGKC.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/De%20mendigo%20a%20millonario.mp4"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/De%20vuelta%20a%20casa%20Un%20viaje%20incre%C3%ADble.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "De vuelta a casa Un viaje increíble",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-De-20vuelta-20a-20ca",
+     "t": "De vuelta a casa Un viaje increíble",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/2zcHLbkPIuY0hOeZ9hYWvi2uYpx.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/De%20vuelta%20a%20casa%20Un%20viaje%20incre%C3%ADble.mp4"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/Diavlo.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Video externo (renómbrame ✎)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-Diavlo-mp4",
+     "t": "Video externo (renómbrame ✎)",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": null,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/Diavlo.mp4"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/El%20asesino%20de%20las%20postales.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El asesino de las postales",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-El-20asesino-20de-20",
+     "t": "El asesino de las postales",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/mbSidQ9TYKTUw32RghMi6LdkLO.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/El%20asesino%20de%20las%20postales.mp4"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Suspenso",
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/El%20ciudadano%20Kane.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El ciudadano Kane",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-El-20ciudadano-20Kan",
+     "t": "El ciudadano Kane",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/w7V0bv38Z0q0DgHmMfcGM4WRNTv.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/El%20ciudadano%20Kane.mp4"
+      }
+     ],
+     "genre": "suspenso",
+     "tags": [
+      "Suspenso"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/El%20exterminador%203.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El exterminador 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-El-20exterminador-20",
+     "t": "El exterminador 3",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://image.tmdb.org/t/p/w500/56EDrIgGKq18npCBsfl2PuXc1Gg.jpg",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/El%20exterminador%203.mp4"
+      }
+     ],
+     "genre": "crimen",
+     "tags": [
+      "Crimen"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/El%20exterminador%205.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El exterminador 5",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-El-20exterminador-20",
+     "t": "El exterminador 5",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": null,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/El%20exterminador%205.mp4"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/El%20exterminador%206%2C%20destino%20oscuro.mp4",
    "type": "direct",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El exterminador 6, destino oscuro",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791574494425,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-archive-org-download-yummy_202105-El-20exterminador-20",
+     "t": "El exterminador 6, destino oscuro",
+     "jp": "🎬",
+     "tag": "Enlace directo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": null,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://archive.org/download/yummy_202105/El%20exterminador%206%2C%20destino%20oscuro.mp4"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://archive.org/download/yummy_202105/Est%C3%A1ndar.mp4",
