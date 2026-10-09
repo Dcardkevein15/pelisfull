@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791519273326,
+ "at": 1791519323194,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -49,54 +49,148 @@
   {
    "url": "https://drive.google.com/file/d/1m7F_Pv5DruTVrAsSCvy-Ymja9Yfuq07h/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Perdona Si Te Llamo Amor",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1m7F_Pv5DruTVrAsSCvy-Ymja9Yfuq",
+     "t": "Perdona Si Te Llamo Amor",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1m7F_Pv5DruTVrAsSCvy-Ymja9Yfuq07h&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1m7F_Pv5DruTVrAsSCvy-Ymja9Yfuq07h/view"
+      }
+     ],
+     "genre": "romance",
+     "tags": [
+      "Romance"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/18hJa1KVumBSrpnV2O2w1AnsO8zmMtCP-/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Madre",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-18hJa1KVumBSrpnV2O2w1AnsO8zmMt",
+     "t": "Madre",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=18hJa1KVumBSrpnV2O2w1AnsO8zmMtCP-&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/18hJa1KVumBSrpnV2O2w1AnsO8zmMtCP-/view"
+      }
+     ],
+     "genre": "terror",
+     "tags": [
+      "Terror"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1AwWdbvyTFG4vaxRBtbwTdcrx9a9O9C0t/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Star Wars Episodio IX - El Ascenso De Skywalker",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1AwWdbvyTFG4vaxRBtbwTdcrx9a9O9",
+     "t": "Star Wars Episodio IX - El Ascenso De Skywalker",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1AwWdbvyTFG4vaxRBtbwTdcrx9a9O9C0t&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1AwWdbvyTFG4vaxRBtbwTdcrx9a9O9C0t/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Ciencia Ficción",
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu/view?usp=drivesdk",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El Mago de Oz",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1jZLd4KI0QkgzmloDFljKB-VVmHrlD",
+     "t": "El Mago de Oz",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Fantasía",
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1mwde01Y6jiDtCsoIXNCNXOizBrxY2FUm/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
@@ -104,21 +198,44 @@
   {
    "url": "https://drive.google.com/file/d/1i_5vwMGfchl7hzhAP7yKrOT_nQYFX17n/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Mascotas 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1i_5vwMGfchl7hzhAP7yKrOT_nQYFX",
+     "t": "Mascotas 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1i_5vwMGfchl7hzhAP7yKrOT_nQYFX17n&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1i_5vwMGfchl7hzhAP7yKrOT_nQYFX17n/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/15Y_BR6sE9omf0ybkWpGj2whE8ewCXRsR/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
@@ -126,10 +243,10 @@
   {
    "url": "https://drive.google.com/file/d/1BIfBvJSQPai7CGWm9OtHYRdo9iVSCWxV/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
@@ -137,10 +254,10 @@
   {
    "url": "https://drive.google.com/file/d/1J8gCjf_E-BP0o127JqnlwlmJSKNKVL-T/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
@@ -148,10 +265,10 @@
   {
    "url": "https://drive.google.com/file/d/1tedwoi27UQjfstSNOXS7Ckv5CWkQhkzu/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
@@ -159,43 +276,113 @@
   {
    "url": "https://drive.google.com/file/d/1GaSVobTVc9_FuTmYDdKgyPSh3Xv19V1U/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Frozen - El Reino De Hielo",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1GaSVobTVc9_FuTmYDdKgyPSh3Xv19",
+     "t": "Frozen - El Reino De Hielo",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1GaSVobTVc9_FuTmYDdKgyPSh3Xv19V1U&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1GaSVobTVc9_FuTmYDdKgyPSh3Xv19V1U/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Fantasía",
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1I-zv9J6PamFlDPpOs4VghsxVUSFuLWNf/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Frozen II",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1I-zv9J6PamFlDPpOs4VghsxVUSFuL",
+     "t": "Frozen II",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1I-zv9J6PamFlDPpOs4VghsxVUSFuLWNf&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1I-zv9J6PamFlDPpOs4VghsxVUSFuLWNf/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/13Y2dEVkDdL5zQof2OjodgOcftAa40Yq8/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "PICA PICA - Fiesta Party",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-13Y2dEVkDdL5zQof2OjodgOcftAa40",
+     "t": "PICA PICA - Fiesta Party",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=13Y2dEVkDdL5zQof2OjodgOcftAa40Yq8&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/13Y2dEVkDdL5zQof2OjodgOcftAa40Yq8/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1T13nIZMQ-pKYl2xYcSvZO4xcsgT5ABfv/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
@@ -203,98 +390,282 @@
   {
    "url": "https://drive.google.com/file/d/1-VmwBC6fYxW-QTf5e1910hzkmmchfonr/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Rompe Ralph",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-VmwBC6fYxW-QTf5e1910hzkmmchf",
+     "t": "Rompe Ralph",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-VmwBC6fYxW-QTf5e1910hzkmmchfonr&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-VmwBC6fYxW-QTf5e1910hzkmmchfonr/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1lqmEyzPZc_QkdK6ynMke61vx3sz1WJV2/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Ralph Rompe Internet",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1lqmEyzPZc_QkdK6ynMke61vx3sz1W",
+     "t": "Ralph Rompe Internet",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1lqmEyzPZc_QkdK6ynMke61vx3sz1WJV2&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1lqmEyzPZc_QkdK6ynMke61vx3sz1WJV2/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/18RsK0nYO49FphPY7L_oHijSgdVSt-SAE/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Powder (Pura Energía)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-18RsK0nYO49FphPY7L_oHijSgdVSt-",
+     "t": "Powder (Pura Energía)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=18RsK0nYO49FphPY7L_oHijSgdVSt-SAE&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/18RsK0nYO49FphPY7L_oHijSgdVSt-SAE/view"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1GZXmeXcNqgns1oXNSVg8kF-iOaoN7EI0/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Willow",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1GZXmeXcNqgns1oXNSVg8kF-iOaoN7",
+     "t": "Willow",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1GZXmeXcNqgns1oXNSVg8kF-iOaoN7EI0&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1GZXmeXcNqgns1oXNSVg8kF-iOaoN7EI0/view"
+      }
+     ],
+     "genre": "fantasia",
+     "tags": [
+      "Fantasía"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1V9q5VxBOO-au3ZkuskquH7xILRnN7QbJ/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Los Goonies",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1V9q5VxBOO-au3ZkuskquH7xILRnN7",
+     "t": "Los Goonies",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1V9q5VxBOO-au3ZkuskquH7xILRnN7QbJ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1V9q5VxBOO-au3ZkuskquH7xILRnN7QbJ/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1vRyztjkuwkRmpacPpfaNXJjpBr6Q-SvF/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Campeones",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1vRyztjkuwkRmpacPpfaNXJjpBr6Q-",
+     "t": "Campeones",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1vRyztjkuwkRmpacPpfaNXJjpBr6Q-SvF&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1vRyztjkuwkRmpacPpfaNXJjpBr6Q-SvF/view"
+      }
+     ],
+     "genre": "documental",
+     "tags": [
+      "Documental"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1McZFJetkTwFAb2kHR_df-_y13wP7ZLIC/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El Mejor Verano De Mi Vida",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1McZFJetkTwFAb2kHR_df-_y13wP7Z",
+     "t": "El Mejor Verano De Mi Vida",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1McZFJetkTwFAb2kHR_df-_y13wP7ZLIC&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1McZFJetkTwFAb2kHR_df-_y13wP7ZLIC/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/11Y6utr0mB5xE9D-DXG6MrEkX7Rd0dBKi/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El Rey León (2019)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-11Y6utr0mB5xE9D-DXG6MrEkX7Rd0d",
+     "t": "El Rey León (2019)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=11Y6utr0mB5xE9D-DXG6MrEkX7Rd0dBKi&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/11Y6utr0mB5xE9D-DXG6MrEkX7Rd0dBKi/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1LvxZwkFK7OUvS_rPJ1JUgluQ8v8PNOQz/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
@@ -302,21 +673,44 @@
   {
    "url": "https://drive.google.com/file/d/1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc31g/view?usp=drivesdk",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Mi Vecino Totoro",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc",
+     "t": "Mi Vecino Totoro",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc31g&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc31g/view"
+      }
+     ],
+     "genre": "fantasia",
+     "tags": [
+      "Fantasía"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1U_R8ya6AzKbj6Ufb2gL79_59LKHLNcJz/view?usp=drivesdk",
    "type": "drive-file",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": null
