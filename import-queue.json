@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791533042763,
+ "at": 1791553616659,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -176,6 +176,105 @@
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://mega.nz/folder/AbCdEf#test123",
+   "addedAt": 1791490519540,
+   "type": "mega-folder",
+   "payload": null,
+   "error": "⚠ Mega cifra las carpetas dentro del propio enlace:ninguna app web puede leerlas automáticamente.Sí puedes pegar archivos sueltos de Mega (se catalogan)o usar G",
+   "name": "",
+   "nextRetryAt": 0,
+   "attempts": 1,
+   "status": "failed-final"
+  },
+  {
+   "url": "https://drive.google.com/file/d/15Y_BR6sE9omf0ybkWpGj2whE8ewCXRsR/view?usp=sharing",
+   "type": "drive-file",
+   "status": "failed-final",
+   "name": "",
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
+   "nextRetryAt": 0,
+   "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/1BIfBvJSQPai7CGWm9OtHYRdo9iVSCWxV/view?usp=sharing",
+   "type": "drive-file",
+   "status": "failed-final",
+   "name": "",
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
+   "nextRetryAt": 0,
+   "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/1J8gCjf_E-BP0o127JqnlwlmJSKNKVL-T/view?usp=sharing",
+   "type": "drive-file",
+   "status": "failed-final",
+   "name": "",
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
+   "nextRetryAt": 0,
+   "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/1tedwoi27UQjfstSNOXS7Ckv5CWkQhkzu/view?usp=sharing",
+   "type": "drive-file",
+   "status": "failed-final",
+   "name": "",
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
+   "nextRetryAt": 0,
+   "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/1T13nIZMQ-pKYl2xYcSvZO4xcsgT5ABfv/view?usp=sharing",
+   "type": "drive-file",
+   "status": "failed-final",
+   "name": "",
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
+   "nextRetryAt": 0,
+   "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/1LvxZwkFK7OUvS_rPJ1JUgluQ8v8PNOQz/view?usp=sharing",
+   "type": "drive-file",
+   "status": "failed-final",
+   "name": "",
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
+   "nextRetryAt": 0,
+   "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/1U_R8ya6AzKbj6Ufb2gL79_59LKHLNcJz/view?usp=drivesdk",
+   "type": "drive-file",
+   "status": "failed-final",
+   "name": "",
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
+   "nextRetryAt": 0,
+   "addedAt": 1791519273326,
+   "payload": null
+  },
+  {
+   "url": "https://drive.google.com/file/d/10XGk-p3NHAldybSSiiKJcdoQhsdDYl75/view",
+   "type": "drive-file",
+   "status": "queued",
+   "name": "",
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
+   "addedAt": 1791553616658,
    "payload": null
   }
  ]
