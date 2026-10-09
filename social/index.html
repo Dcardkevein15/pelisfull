@@ -6,7 +6,16 @@
 <title>XSTREAM SOCIAL — La comunidad audiovisual</title>
 <meta name="description" content="XSTREAM SOCIAL: publica, comenta, sigue y vive la comunidad de películas, series y anime de XSTREAM.">
 <link rel="icon" href="/icon.svg">
-<link rel="stylesheet" href="/social/social.css">
+<script>
+  /* 🌐/💾 doble entorno: en el servidor rutas ABSOLUTAS (sobreviven a /social
+     sin barra final) · en local (file://) rutas RELATIVAS — así el diseño
+     se ve abriendo el archivo con doble clic igual que en producción      */
+  if (location.protocol === 'file:') {
+    document.write('<link rel="stylesheet" href="social.css">');
+  } else {
+    document.write('<link rel="stylesheet" href="/social/social.css">');
+  }
+</script>
 </head>
 <body>
 <div class="soc-app">
@@ -172,7 +181,12 @@
 
 <div class="soc-toasts" id="socToasts"></div>
 
-<script src="/auth.js"></script>
-<script src="/social/social.js"></script>
+<script>
+  if (location.protocol === 'file:') {
+    document.write('<script src="../auth.js"><\/script><script src="social.js"><\/script>');
+  } else {
+    document.write('<script src="/auth.js"><\/script><script src="/social/social.js"><\/script>');
+  }
+</script>
 </body>
 </html>
