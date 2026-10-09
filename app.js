@@ -1450,9 +1450,14 @@ function renderHome() {
       </div>`;
     hv.querySelector('.hero-btn').addEventListener('click', () => {
       /* antes sólo seleccionaba y parecía "no hacer nada" (el player
-         se esconde bajo la vista Home): ahora entra y reproduce      */
+          se esconde bajo la vista Home): ahora entra y reproduce      */
       setTab(hero.kind === 'pelicula' ? 'peliculas' : (hero.anime === false ? 'series' : 'anime'));
       selectSeries(hero.id);
+    });
+    /* 🎬 clic en la imagen del hero → su ficha cinematográfica al instante */
+    hv.addEventListener('click', ev => {
+      if (ev.target.closest('.hero-btn')) return;
+      if (window.openSynopsisCard) window.openSynopsisCard(hero.id);
     });
     els.homeView.appendChild(hv);
   }
@@ -1534,6 +1539,9 @@ function renderHome() {
         <span class="hm-sub">${pct ? '▣ ' + pct + '% visto' : escapeHtml(s.tag || '')}</span>
       </span>`;
     b.addEventListener('click', () => {
+      /* 🎬 la carátula abre SIEMPRE la ficha cinematográfica (pelis Y animes);
+         el flujo antiguo (reproducir directo) queda como respaldo             */
+      if (!editing && window.openSynopsisCard) { window.openSynopsisCard(s.id); return; }
       setTab(isPeli ? 'peliculas' : (s.anime === false ? 'series' : 'anime'));
       selectSeries(s.id);
       const first = s.episodes.find(e => e.url) || s.episodes[0];
@@ -2396,8 +2404,9 @@ function buildSeriesCard(s, idx) {
   if (refBtn) refBtn.addEventListener('click', ev => { ev.stopPropagation(); refetchPoster(s); });
   btn.addEventListener('click', ev => {
     if (ev.target.closest('.s-del,.s-fav,.s-refresh')) return;
-    /* 🎬 PELÍCULA → sinopsis cinematográfica al instante (series: flujo normal) */
-    if (!editing && s.kind === 'pelicula' && window.openSynopsisCard) { window.openSynopsisCard(s.id); return; }
+    /* 🎬 TODA carátula (película O anime/serie) abre su ficha al instante;
+       el flujo directo queda solo para el admin en modo edición          */
+    if (!editing && window.openSynopsisCard) { window.openSynopsisCard(s.id); return; }
     selectSeries(s.id);
   });
 
@@ -3036,8 +3045,8 @@ function renderEpisodes() {
         </div>`;
       if (!img) relEnqueueThumb(m);   /* sin imagen aún → se captura y pinta sola */
       cell.addEventListener('click', () => {
-        /* 🎬 película relacionada → su ficha al instante (nada se reproduce solo) */
-        if (m.kind === 'pelicula' && window.openSynopsisCard) { window.openSynopsisCard(m.id); return; }
+        /* 🎬 cualquier carátula relacionada (película O anime) → su ficha */
+        if (window.openSynopsisCard) { window.openSynopsisCard(m.id); return; }
         selectSeries(m.id);
       });
       els.episodesGrid.appendChild(cell);
@@ -4354,9 +4363,17 @@ els.shareBtn.addEventListener('click', () => {
     synShell.querySelector('[data-x]').addEventListener('click', closeSynopsis);
     synShell.scrollTop = 0;
     const isPeli = s.kind === 'pelicula';
+    /* si la ficha se abrió desde el HOME, reproducir debe llevarnos a la
+       vista correcta antes de cargar el capítulo (si no, el player queda
+       oculto detrás del Home)                                            */
+    const goStage = () => {
+      if (state.tab === 'home' && typeof setTab === 'function') {
+        setTab(isPeli ? 'peliculas' : (s.anime === false ? 'series' : 'anime'));
+      }
+    };
 
     const main = synShell.querySelector('.syn-playMain');
-    if (main) main.addEventListener('click', () => { const n = +main.dataset.n; closeSynopsis(); selectSeries(s.id); loadEpisode(n, true); });
+    if (main) main.addEventListener('click', () => { const n = +main.dataset.n; closeSynopsis(); goStage(); selectSeries(s.id); loadEpisode(n, true); });
     const sh = synShell.querySelector('.syn-shareBtn');
     if (sh) sh.addEventListener('click', () => {
       closeSynopsis();
@@ -4383,9 +4400,9 @@ els.shareBtn.addEventListener('click', () => {
       if (playable) {
         row.addEventListener('click', ev => {
           if (ev.target.closest('.se-lnk')) return; /* el 🔗 no reproduce */
-          closeSynopsis(); selectSeries(s.id); loadEpisode(n, true);
+          closeSynopsis(); goStage(); selectSeries(s.id); loadEpisode(n, true);
         });
-        row.addEventListener('keydown', ev => { if ((ev.key === 'Enter' || ev.key === ' ') && !ev.target.closest('.se-lnk')) { ev.preventDefault(); closeSynopsis(); selectSeries(s.id); loadEpisode(n, true); } });
+        row.addEventListener('keydown', ev => { if ((ev.key === 'Enter' || ev.key === ' ') && !ev.target.closest('.se-lnk')) { ev.preventDefault(); closeSynopsis(); goStage(); selectSeries(s.id); loadEpisode(n, true); } });
       }
       const lnk = row.querySelector('.se-lnk');
       if (lnk && playable) lnk.addEventListener('click', async ev => {
