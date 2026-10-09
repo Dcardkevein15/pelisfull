@@ -4903,6 +4903,9 @@ async function importStreamtapeAll() {
          a mano con arrastrar/soltar cuando quieras (mergeSeason intacto).   */
       /* 🎬 GÉNERO: carpeta llamada «Terror», «Acción»… → películas individuales */
       const gFolder = isGenreFolder(g.name);
+      /* 🛟 RESCATE de títulos basura: «Telegram_83472.mp4» dentro de
+         «El Padrín» → la película se llama «El Padrín» (nombre de carpeta) */
+      if (g.name && !gFolder) rescueJunkTitles(g.files, g.name);
       const { items } = buildImportedItems(g.name, g.files, gFolder ? 'peliculas' : (g.name ? 'auto' : 'peliculas'));
       if (gFolder) {
         for (const it of items) {
@@ -5016,6 +5019,8 @@ function importSingleFile(videoUrl, name, tag) {
   }
   /* IDs opacos (mega, hosts sin nombre de archivo) → título genérico renombrable */
   if (t && !/\s/.test(t) && !t.endsWith(')') && /^[\w-]{6,}$/.test(t)) t = null;
+  /* 🕵️ título basura (Telegram/código/dominio) → genérico renombrable */
+  if (t && isJunkTitle(t)) t = null;
   if (!t) t = 'Video externo (renómbrame ✎)';
   const id = 'file-' + videoUrl.replace(/[^\w]+/g, '-').slice(0, 60);
   const dId = parseDriveId(videoUrl);
@@ -5078,6 +5083,50 @@ function looksLikeSeries(files) {
     return { yes: true, reason: `todos empiezan por «${prefix.slice(0, 30)}»` };
   }
   return { yes: false, reason: `${files.length} videos sin relación aparente` };
+}
+
+/* 🕵️ DETECTOR DE TÍTULOS BASURA — archivos cuyo nombre no es un título real:
+   «Telegram_83472.mp4», «Cuevana3_x7f9.mkv», «t.me_pelicula9987.mp4»,
+   dominios web seguidos de un código, o puros números/símbolos sin palabras.
+   El nombre REAL suele estar en la CARPETA que los contiene.            */
+function isJunkTitle(name) {
+  let t = String(name || '').replace(VIDEO_EXT, '').trim();
+  if (!t) return true;
+  const s = t.toLowerCase().replace(/[\u0300-\u036f]/g, '');
+  /* 1) empieza con canales/telegram/webs conocidas */
+  if (/^(telegram|telegraph|t[\. _-]?me|tg|canal|channel|descarga|download|nuevo|new|copy|copia|archivo|file|video|img)[\s._\-]/.test(s)) return true;
+  /* 2) webs de películas/streaming como primera palabra */
+  if (/^(cuevana|pelisplus|repelis|gnula|pelispedia|cinemahd|mkvcage|123movies|pelis24|pelisflix|netplay|dailymotion|ok\.ru|vk\.[a-z]+)[\s._\-0-9]/.test(s)) return true;
+  if (/\.?(com|net|org|io|xyz|me|cc|tv|club|online|site|link)[\s._\-]|t\.me\/|telegram\.me|youtu\.be|bit\.ly|goo\.gl|drive\.google/.test(s)) return true;
+  /* 3) una sola palabra con dígitos mezclados y sin acentos legibles = código opaco */
+  const words = s.split(/[\s]+/).filter(Boolean);
+  if (words.length === 1) {
+    const w = words[0];
+    if (/\d/.test(w) && w.length >= 8 && /^[a-z0-9._\-]+$/.test(w)) return true;
+  }
+  /* 4) nada legible: solo símbolos y números */
+  if (!/[a-zñ]/.test(s)) return true;
+  return false;
+}
+
+/* 🛟 RESCATE: si el nombre del archivo es basura pero su CARPETA tiene un
+   nombre real, la carpeta dona el título. Varios archivos basura en la
+   misma carpeta → «Carpeta - 1», «Carpeta - 2»… (nada se colapsa).      */
+function rescueJunkTitles(files, folderName) {
+  if (!files || !files.length) return 0;
+  if (!folderName || isJunkTitle(folderName)) return 0;   /* la carpeta también es basura: nada que donar */
+  const junk = files.filter(f => isJunkTitle(f.name));
+  if (!junk.length) return 0;
+  if (junk.length === 1) {
+    const ext = (junk[0].name.match(VIDEO_EXT) || [''])[0];
+    junk[0].name = folderName + ext;
+  } else {
+    junk.forEach((f, i) => {
+      const ext = (f.name.match(VIDEO_EXT) || [''])[0];
+      f.name = `${folderName} - ${i + 1}${ext}`;
+    });
+  }
+  return junk.length;
 }
 
 function buildImportedItems(folderName, files, mode = 'auto') {
@@ -5346,6 +5395,9 @@ async function importFromUrl() {
       /* 🎬 GÉNERO: si la subcarpeta se llama «Terror», «Acción», «Comedia»…
          NO es una serie: cada archivo es una PELÍCULA individual de ese género  */
       const gFolder = isGenreFolder(gName);
+      /* 🛟 RESCATE de títulos basura: el archivo se llama «Telegram_83472.mp4»
+         pero su carpeta sí tiene el nombre real → la carpeta dona el título */
+      if (gName && !gFolder) rescueJunkTitles(g.files, gName);
       const { detected, items } = buildImportedItems(
         gName,
         g.files.map(f => ({ name: f.name, key: f.id, url: `https://drive.google.com/file/d/${f.id}/view`, thumb: driveThumbUrl(f.id, 1000) })),

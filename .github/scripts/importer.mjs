@@ -110,6 +110,43 @@ function importedIdFor(it, srcId) {
     : `mp-${srcId}-${(it.fileKey || it.t).replace(/[^\w]+/g, '-').slice(0, 40)}`;
 }
 
+/* 🕵️ DETECTOR DE TÍTULOS BASURA (puerto del cliente):
+   «Telegram_83472.mp4», «Cuevana3_x7f9.mkv», dominios web + código…
+   El nombre REAL suele estar en la CARPETA que contiene el archivo.   */
+function isJunkTitle(name) {
+  let t = String(name || '').replace(VIDEO_EXT, '').trim();
+  if (!t) return true;
+  const s = t.toLowerCase().replace(/[\u0300-\u036f]/g, '');
+  if (/^(telegram|telegraph|t[\. _-]?me|tg|canal|channel|descarga|download|nuevo|new|copy|copia|archivo|file|video|img)[\s._\-]/.test(s)) return true;
+  if (/^(cuevana|pelisplus|repelis|gnula|pelispedia|cinemahd|mkvcage|123movies|pelis24|pelisflix|netplay|dailymotion|ok\.ru|vk\.[a-z]+)[\s._\-0-9]/.test(s)) return true;
+  if (/\.?(com|net|org|io|xyz|me|cc|tv|club|online|site|link)[\s._\-]|t\.me\/|telegram\.me|youtu\.be|bit\.ly|goo\.gl|drive\.google/.test(s)) return true;
+  const words = s.split(/[\s]+/).filter(Boolean);
+  if (words.length === 1) {
+    const w = words[0];
+    if (/\d/.test(w) && w.length >= 8 && /^[a-z0-9._\-]+$/.test(w)) return true;
+  }
+  if (!/[a-zñ]/.test(s)) return true;
+  return false;
+}
+/* 🛟 RESCATE: archivo con nombre basura dentro de carpeta con nombre real →
+   la carpeta dona el título. Varios basura en la misma carpeta: N - 1, N - 2…  */
+function rescueJunkTitles(files, folderName) {
+  if (!files || !files.length) return 0;
+  if (!folderName || isJunkTitle(folderName)) return 0;
+  const junk = files.filter(f => isJunkTitle(f.name));
+  if (!junk.length) return 0;
+  if (junk.length === 1) {
+    const ext = (junk[0].name.match(VIDEO_EXT) || [''])[0];
+    junk[0].name = folderName + ext;
+  } else {
+    junk.forEach((f, i) => {
+      const ext = (f.name.match(VIDEO_EXT) || [''])[0];
+      f.name = `${folderName} - ${i + 1}${ext}`;
+    });
+  }
+  return junk.length;
+}
+
 /* ═══════════ lectura de Drive DIRECTA (sin proxies — server side) ═══════════ */
 async function fetchText(url, timeoutMs = 20000) {
   const ctrl = new AbortController();
@@ -273,6 +310,10 @@ async function processItem(item) {
         gName = `${rootName} · Temporada ${(gName.match(/\d+/) || [''])[0]}`;
       }
       const gFolder = isGenreFolder(gName);
+      /* 🛟 RESCATE: «Telegram_83472.mp4» dentro de «El Padrino» → se llama
+         «El Padrino». Las carpetas de género NO donan su nombre (sería
+         «Acción» como título de película)                            */
+      if (gName && !gFolder) rescueJunkTitles(grp.files, gName);
       const items = buildImportedItems(
         gName,
         grp.files.map(f => ({ name: f.name, key: f.id, url: `https://drive.google.com/file/d/${f.id}/view`, thumb: driveThumbUrl(f.id, 1000) })),
@@ -308,6 +349,7 @@ async function processItem(item) {
     const id = 'file-' + videoUrl.replace(/[^\w]+/g, '-').slice(0, 60);
     let t = link.name ? cleanEpTitle(link.name, 'Video Streamtape').slice(0, 80) : null;
     if (t && !/\s/.test(t) && !t.endsWith(')') && /^[\w-]{6,}$/.test(t)) t = null;
+    if (t && isJunkTitle(t)) t = null;   /* 🕵️ Telegram/código/dominio → renombrable */
     if (!t) t = 'Video externo (renómbrame ✎)';
     const s = { id, t, jp: '🎬', tag: 'Streamtape · Enlace', g: 6, kind: 'pelicula', poster: null, episodes: [{ n: 1, t: '▶ Ver', url: videoUrl }] };
     const gen = detectMovieGenre(s.t); if (gen) applyMovieGenre(s, gen);
@@ -317,6 +359,7 @@ async function processItem(item) {
     let t = null;
     try { t = decodeURIComponent(item.url.split('#')[0].split('/').pop().split('?')[0]).replace(VIDEO_EXT, '').replace(/[._]+/g, ' ').trim(); } catch (e) { }
     if (t && !/\s/.test(t) && !t.endsWith(')') && /^[\w-]{6,}$/.test(t)) t = null;
+    if (t && isJunkTitle(t)) t = null;   /* 🕵️ Telegram/código/dominio → renombrable */
     if (!t) t = 'Video externo (renómbrame ✎)';
     const s = { id, t: t.slice(0, 80), jp: '🎬', tag: link.type === 'mega-file' ? 'Mega · Enlace' : 'Enlace directo', g: 6, kind: 'pelicula', poster: null, episodes: [{ n: 1, t: '▶ Ver', url: item.url }] };
     const gen = detectMovieGenre(s.t); if (gen) applyMovieGenre(s, gen);
