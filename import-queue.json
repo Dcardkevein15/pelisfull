@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791519323194,
+ "at": 1791520426235,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -23,17 +23,6 @@
    "nextRetryAt": 0,
    "addedAt": 1791485718203,
    "payload": null
-  },
-  {
-   "url": "https://mega.nz/folder/AbCdEf#test123",
-   "addedAt": 1791490519540,
-   "type": "mega-folder",
-   "payload": null,
-   "error": "⚠ Mega cifra las carpetas dentro del propio enlace:ninguna app web puede leerlas automáticamente.Sí puedes pegar archivos sueltos de Mega (se catalogan)o usar G",
-   "name": "",
-   "nextRetryAt": 0,
-   "attempts": 1,
-   "status": "failed-final"
   },
   {
    "url": "https://drive.google.com/file/d/1QAzafcc7EVwZidY9cHSDszX0Ss27bDTm/view?usp=sharing",
@@ -71,14 +60,9 @@
        "url": "https://drive.google.com/file/d/1m7F_Pv5DruTVrAsSCvy-Ymja9Yfuq07h/view"
       }
      ],
-     "genre": "romance",
-     "tags": [
-      "Romance"
-     ],
-     "genreTmdbDone": true
+     "at": 1791519430733
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/18hJa1KVumBSrpnV2O2w1AnsO8zmMtCP-/view?usp=sharing",
@@ -105,14 +89,9 @@
        "url": "https://drive.google.com/file/d/18hJa1KVumBSrpnV2O2w1AnsO8zmMtCP-/view"
       }
      ],
-     "genre": "terror",
-     "tags": [
-      "Terror"
-     ],
-     "genreTmdbDone": true
+     "at": 1791519527185
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1AwWdbvyTFG4vaxRBtbwTdcrx9a9O9C0t/view?usp=sharing",
@@ -139,24 +118,22 @@
        "url": "https://drive.google.com/file/d/1AwWdbvyTFG4vaxRBtbwTdcrx9a9O9C0t/view"
       }
      ],
-     "genre": "aventura",
+     "genre": "scifi",
      "tags": [
-      "Ciencia Ficción",
-      "Aventura"
+      "Ciencia Ficción"
      ],
-     "genreTmdbDone": true
+     "at": 1791519641389
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu/view?usp=drivesdk",
    "type": "drive-file",
    "status": "done",
    "name": "El Mago de Oz",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 1,
+   "nextRetryAt": 1791519873537,
    "addedAt": 1791519273326,
    "payload": [
     {
@@ -167,6 +144,11 @@
      "g": 6,
      "kind": "pelicula",
      "poster": "https://drive.google.com/thumbnail?id=1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu&sz=w1000",
+     "tags": [
+      "Fantasía"
+     ],
+     "genre": "fantasia",
+     "at": 1791468438086,
      "episodes": [
       {
        "n": 1,
@@ -174,26 +156,38 @@
        "url": "https://drive.google.com/file/d/1jZLd4KI0QkgzmloDFljKB-VVmHrlD3Lu/view"
       }
      ],
-     "genre": "aventura",
-     "tags": [
-      "Fantasía",
-      "Aventura"
-     ],
-     "genreTmdbDone": true
+     "anime": false
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1mwde01Y6jiDtCsoIXNCNXOizBrxY2FUm/view?usp=sharing",
    "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "status": "done",
+   "name": "Page Not Found",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 404, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
    "attempts": 1,
-   "nextRetryAt": 0,
+   "nextRetryAt": 1791520041979,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1mwde01Y6jiDtCsoIXNCNXOizBrxY2",
+     "t": "Page Not Found",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1mwde01Y6jiDtCsoIXNCNXOizBrxY2FUm&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1mwde01Y6jiDtCsoIXNCNXOizBrxY2FUm/view"
+      }
+     ],
+     "at": 1791520050445
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1i_5vwMGfchl7hzhAP7yKrOT_nQYFX17n/view?usp=sharing",
@@ -220,58 +214,9 @@
        "url": "https://drive.google.com/file/d/1i_5vwMGfchl7hzhAP7yKrOT_nQYFX17n/view"
       }
      ],
-     "genre": "comedia",
-     "tags": [
-      "Comedia"
-     ],
-     "genreTmdbDone": true
+     "at": 1791520045163
     }
-   ],
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/15Y_BR6sE9omf0ybkWpGj2whE8ewCXRsR/view?usp=sharing",
-   "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791519273326,
-   "payload": null
-  },
-  {
-   "url": "https://drive.google.com/file/d/1BIfBvJSQPai7CGWm9OtHYRdo9iVSCWxV/view?usp=sharing",
-   "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791519273326,
-   "payload": null
-  },
-  {
-   "url": "https://drive.google.com/file/d/1J8gCjf_E-BP0o127JqnlwlmJSKNKVL-T/view?usp=sharing",
-   "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791519273326,
-   "payload": null
-  },
-  {
-   "url": "https://drive.google.com/file/d/1tedwoi27UQjfstSNOXS7Ckv5CWkQhkzu/view?usp=sharing",
-   "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791519273326,
-   "payload": null
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1GaSVobTVc9_FuTmYDdKgyPSh3Xv19V1U/view?usp=sharing",
@@ -298,15 +243,13 @@
        "url": "https://drive.google.com/file/d/1GaSVobTVc9_FuTmYDdKgyPSh3Xv19V1U/view"
       }
      ],
-     "genre": "infantil",
+     "genre": "fantasia",
      "tags": [
-      "Fantasía",
-      "Infantil"
+      "Fantasía"
      ],
-     "genreTmdbDone": true
+     "at": 1791520255585
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1I-zv9J6PamFlDPpOs4VghsxVUSFuLWNf/view?usp=sharing",
@@ -333,14 +276,9 @@
        "url": "https://drive.google.com/file/d/1I-zv9J6PamFlDPpOs4VghsxVUSFuLWNf/view"
       }
      ],
-     "genre": "infantil",
-     "tags": [
-      "Infantil"
-     ],
-     "genreTmdbDone": true
+     "at": 1791520259532
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/13Y2dEVkDdL5zQof2OjodgOcftAa40Yq8/view?usp=sharing",
@@ -367,25 +305,9 @@
        "url": "https://drive.google.com/file/d/13Y2dEVkDdL5zQof2OjodgOcftAa40Yq8/view"
       }
      ],
-     "genre": "infantil",
-     "tags": [
-      "Infantil"
-     ],
-     "genreTmdbDone": true
+     "at": 1791520266455
     }
-   ],
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1T13nIZMQ-pKYl2xYcSvZO4xcsgT5ABfv/view?usp=sharing",
-   "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791519273326,
-   "payload": null
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1-VmwBC6fYxW-QTf5e1910hzkmmchfonr/view?usp=sharing",
@@ -412,14 +334,15 @@
        "url": "https://drive.google.com/file/d/1-VmwBC6fYxW-QTf5e1910hzkmmchfonr/view"
       }
      ],
+     "at": 1791472295145,
      "genre": "infantil",
      "tags": [
       "Infantil"
      ],
-     "genreTmdbDone": true
+     "genreTmdbDone": true,
+     "anime": false
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1lqmEyzPZc_QkdK6ynMke61vx3sz1WJV2/view?usp=sharing",
@@ -446,14 +369,9 @@
        "url": "https://drive.google.com/file/d/1lqmEyzPZc_QkdK6ynMke61vx3sz1WJV2/view"
       }
      ],
-     "genre": "comedia",
-     "tags": [
-      "Comedia"
-     ],
-     "genreTmdbDone": true
+     "at": 1791520285143
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/18RsK0nYO49FphPY7L_oHijSgdVSt-SAE/view?usp=sharing",
@@ -480,38 +398,96 @@
        "url": "https://drive.google.com/file/d/18RsK0nYO49FphPY7L_oHijSgdVSt-SAE/view"
       }
      ],
-     "genre": "drama",
-     "tags": [
-      "Drama"
-     ],
-     "genreTmdbDone": true
+     "at": 1791520292691
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1GZXmeXcNqgns1oXNSVg8kF-iOaoN7EI0/view?usp=sharing",
    "type": "drive-file",
    "status": "done",
-   "name": "Willow",
+   "name": "Los Goonies · Campeones · El Rey León (2019) · Mi Vecino Totoro",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
    "payload": [
     {
-     "id": "file-https-drive-google-com-file-d-1GZXmeXcNqgns1oXNSVg8kF-iOaoN7",
-     "t": "Willow",
+     "id": "file-https-drive-google-com-file-d-1V9q5VxBOO-au3ZkuskquH7xILRnN7",
+     "t": "Los Goonies",
      "jp": "🎬",
      "tag": "Google Drive · Archivo",
      "g": 6,
      "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1GZXmeXcNqgns1oXNSVg8kF-iOaoN7EI0&sz=w1000",
+     "poster": "https://drive.google.com/thumbnail?id=1V9q5VxBOO-au3ZkuskquH7xILRnN7QbJ&sz=w1000",
      "episodes": [
       {
        "n": 1,
        "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1GZXmeXcNqgns1oXNSVg8kF-iOaoN7EI0/view"
+       "url": "https://drive.google.com/file/d/1V9q5VxBOO-au3ZkuskquH7xILRnN7QbJ/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    },
+    {
+     "id": "file-https-drive-google-com-file-d-1vRyztjkuwkRmpacPpfaNXJjpBr6Q-",
+     "t": "Campeones",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1vRyztjkuwkRmpacPpfaNXJjpBr6Q-SvF&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1vRyztjkuwkRmpacPpfaNXJjpBr6Q-SvF/view"
+      }
+     ],
+     "genre": "documental",
+     "tags": [
+      "Documental"
+     ],
+     "genreTmdbDone": true
+    },
+    {
+     "id": "file-https-drive-google-com-file-d-11Y6utr0mB5xE9D-DXG6MrEkX7Rd0d",
+     "t": "El Rey León (2019)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=11Y6utr0mB5xE9D-DXG6MrEkX7Rd0dBKi&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/11Y6utr0mB5xE9D-DXG6MrEkX7Rd0dBKi/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    },
+    {
+     "id": "file-https-drive-google-com-file-d-1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc",
+     "t": "Mi Vecino Totoro",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc31g&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc31g/view"
       }
      ],
      "genre": "fantasia",
@@ -520,8 +496,7 @@
      ],
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1V9q5VxBOO-au3ZkuskquH7xILRnN7QbJ/view?usp=sharing",
@@ -554,8 +529,7 @@
      ],
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1vRyztjkuwkRmpacPpfaNXJjpBr6Q-SvF/view?usp=sharing",
@@ -588,8 +562,7 @@
      ],
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1McZFJetkTwFAb2kHR_df-_y13wP7ZLIC/view?usp=sharing",
@@ -622,8 +595,7 @@
      ],
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/11Y6utr0mB5xE9D-DXG6MrEkX7Rd0dBKi/view?usp=sharing",
@@ -656,19 +628,7 @@
      ],
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1LvxZwkFK7OUvS_rPJ1JUgluQ8v8PNOQz/view?usp=sharing",
-   "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791519273326,
-   "payload": null
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1Fnwn-rTgBngI0Hwtnt89gE0Q7vvUc31g/view?usp=drivesdk",
@@ -701,19 +661,7 @@
      ],
      "genreTmdbDone": true
     }
-   ],
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1U_R8ya6AzKbj6Ufb2gL79_59LKHLNcJz/view?usp=drivesdk",
-   "type": "drive-file",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791519273326,
-   "payload": null
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1vDS4t4KSaJy8f98mjVjzNxEJDwL7LdNA/view?usp=drivesdk",
