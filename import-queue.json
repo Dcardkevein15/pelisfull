@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791532624298,
+ "at": 1791532717239,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view",
@@ -2364,13 +2364,36 @@
   {
    "url": "https://drive.google.com/file/d/11O633M0plj778mkR3oIt5nPV8ybBtHRg/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Richard Jewell",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 401, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
    "attempts": 1,
    "nextRetryAt": 1791532711318,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-11O633M0plj778mkR3oIt5nPV8ybBt",
+     "t": "Richard Jewell",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=11O633M0plj778mkR3oIt5nPV8ybBtHRg&sz=w1000",
+     "tags": [
+      "Drama"
+     ],
+     "genre": "drama",
+     "at": 1791523040998,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/11O633M0plj778mkR3oIt5nPV8ybBtHRg/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1L4LrDKdAkmtAUL6Rnj7bbyuxHZPLWiln/view?usp=sharing",
