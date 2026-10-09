@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791532389087,
+ "at": 1791532624298,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1H8FwTjXRGJ54Ma06j81pfYmHtexXGM5k/view",
@@ -2262,13 +2262,36 @@
   {
    "url": "https://drive.google.com/file/d/11VRXFXtdAkW8W06zDrbEEs3lb79b2OTR/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Hotel Transilvania 3 - Unas Vacaciones Monstruosas",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
    "attempts": 2,
    "nextRetryAt": 1791532502100,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-11VRXFXtdAkW8W06zDrbEEs3lb79b2",
+     "t": "Hotel Transilvania 3 - Unas Vacaciones Monstruosas",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=11VRXFXtdAkW8W06zDrbEEs3lb79b2OTR&sz=w1000",
+     "tags": [
+      "Terror"
+     ],
+     "genre": "terror",
+     "at": 1791522771984,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/11VRXFXtdAkW8W06zDrbEEs3lb79b2OTR/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1kb-qmMcbaB9Lvh7szRgA8rdks10h1T5a/view?usp=sharing",
@@ -2307,46 +2330,125 @@
   {
    "url": "https://drive.google.com/file/d/11O0az-IOSJevQ1sbopiZDkJPTwYUjUXK/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Los Pingüinos Del Sr Popper",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-11O0az-IOSJevQ1sbopiZDkJPTwYUj",
+     "t": "Los Pingüinos Del Sr Popper",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=11O0az-IOSJevQ1sbopiZDkJPTwYUjUXK&sz=w1000",
+     "tags": [
+      "Crimen"
+     ],
+     "genre": "crimen",
+     "at": 1791523335685,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/11O0az-IOSJevQ1sbopiZDkJPTwYUjUXK/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/11O633M0plj778mkR3oIt5nPV8ybBtHRg/view?usp=sharing",
    "type": "drive-file",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 401, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "attempts": 1,
+   "nextRetryAt": 1791532711318,
    "addedAt": 1791519273326,
    "payload": null
   },
   {
    "url": "https://drive.google.com/file/d/1L4LrDKdAkmtAUL6Rnj7bbyuxHZPLWiln/view?usp=sharing",
    "type": "drive-file",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Huérfanos De Brooklyn",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1L4LrDKdAkmtAUL6Rnj7bbyuxHZPLW",
+     "t": "Huérfanos De Brooklyn",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1L4LrDKdAkmtAUL6Rnj7bbyuxHZPLWiln&sz=w1000",
+     "tags": [
+      "Comedia"
+     ],
+     "genre": "comedia",
+     "at": 1791523125092,
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1L4LrDKdAkmtAUL6Rnj7bbyuxHZPLWiln/view"
+      }
+     ],
+     "anime": false
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/drive/folders/1GRkeNNb0fxiiyJIXmH11EAtlUZS-eDsZ?usp=sharing",
    "type": "drive-folder",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Jesús de Nazaret",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791519273326,
-   "payload": null
+   "payload": [
+    {
+     "id": "imp-drv-1GRkeNNb0fxiiyJIXmH11EAtlUZS-eDsZ",
+     "t": "Jesús de Nazaret",
+     "jp": "📁",
+     "tag": "Google Drive",
+     "g": 4,
+     "kind": "serie",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "Jesús de Nazaret - Parte I",
+       "url": "https://drive.google.com/file/d/10oRek2EgQimJ_C5XVKnviKAG5od9MGks/view"
+      },
+      {
+       "n": 2,
+       "t": "Jesús de Nazaret - Parte II",
+       "url": "https://drive.google.com/file/d/1o4IPUVvLPzs26Itd-_cKDuIEAqQ8ZI_b/view"
+      },
+      {
+       "n": 3,
+       "t": "Jesús de Nazaret - Parte III",
+       "url": "https://drive.google.com/file/d/1DFn0H99fhF7-NzuhUf_Kqh2jrVyhy4Oc/view"
+      },
+      {
+       "n": 4,
+       "t": "Jesús de Nazaret - Parte IV",
+       "url": "https://drive.google.com/file/d/14WuzC70nRoTyDde_hbcoGtHcztYmTXzC/view"
+      }
+     ],
+     "poster": null,
+     "at": 1791532623036
+    }
+   ]
   },
   {
    "url": "https://drive.google.com/file/d/1tbT3Is2ZaMVKbutKBM2enbnnDSZo8_8a/view?usp=sharing",
