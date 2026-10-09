@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791574588218,
+ "at": 1791574653182,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1346OHn6cv6A19eFBgc8d_2IUDYhuRnrP/view?usp=sharing",
@@ -1004,7 +1004,7 @@
   {
    "url": "https://archive.org/download/yummy_202105/Ghost%20in%20the%20Shell%20Stand%20Alone%20Complex%202nd%20GiG.mp4",
    "type": "direct",
-   "status": "queued",
+   "status": "done",
    "name": "Ghost in the Shell Stand Alone Complex 2nd GiG",
    "error": "",
    "attempts": 0,
@@ -1015,7 +1015,7 @@
   {
    "url": "https://archive.org/download/yummy_202105/Ghost%20in%20the%20Shell.mp4",
    "type": "direct",
-   "status": "queued",
+   "status": "done",
    "name": "Ghost in the Shell",
    "error": "",
    "attempts": 0,
@@ -1262,7 +1262,7 @@
   {
    "url": "https://archive.org/download/yummy_202105/Mainstream.mp4",
    "type": "direct",
-   "status": "queued",
+   "status": "dup",
    "name": "Video externo (renómbrame ✎)",
    "error": "",
    "attempts": 0,
@@ -1360,7 +1360,7 @@
   {
    "url": "https://archive.org/download/yummy_202105/Otra%20pel%C3%ADcula%20de%20huevos%20y%20un%20pollo.mp4",
    "type": "direct",
-   "status": "queued",
+   "status": "dup",
    "name": "Otra película de huevos y un pollo",
    "error": "",
    "attempts": 0,
