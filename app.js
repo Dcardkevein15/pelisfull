@@ -5554,18 +5554,45 @@ function iqExplainError(raw) {
   return { why: s.slice(0, 160) || 'Error desconocido.', fix: 'Se reintenta solo. Si persiste, verifica el enlace en el navegador.' };
 }
 
-/* extraer todos los enlaces del textarea (uno por línea o separados) */
+/* extraer todos los enlaces del textarea — detecta el formato
+   «título arriba + enlace abajo» y «título + enlace en la misma línea»:
+   si el usuario escribe un nombre encima del enlace, ese nombre
+   REPLAZA al nombre interno del archivo de Drive.                    */
 function parseImportLinks(text) {
-  const parts = String(text || '').split(/[\n\r\s]+/).map(x => x.trim()).filter(Boolean);
+  const lines = String(text || '').split(/[\n\r]+/).map(x => x.trim()).filter(Boolean);
   const links = [];
   const seen = new Set();
-  for (const p of parts) {
-    const link = detectLinkType(p);
-    if (!link) { links.push({ url: p, type: null, error: 'no reconocido' }); continue; }
-    if (link.type === 'mega-folder') { links.push({ url: p, type: null, error: 'carpetas de Mega no se pueden leer' }); continue; }
-    if (seen.has(p)) continue;   /* mismo enlace pegado 2 veces → solo 1 */
-    seen.add(p);
-    links.push({ url: p, type: link.type, link });
+  let pendingTitle = null;
+
+  for (const line of lines) {
+    const urlMatch = line.match(/https?:\/\/\S+/);
+    if (urlMatch) {
+      const url = urlMatch[0];
+      /* ¿título en la MISMA línea, antes del enlace? */
+      const beforeUrl = line.substring(0, line.indexOf(url)).trim();
+      let title = null;
+      if (beforeUrl) {
+        title = beforeUrl.replace(/^\d+\s*[.\)\-:—–]?\s*/, '').trim();
+      } else if (pendingTitle) {
+        title = pendingTitle;
+      }
+      /* números sueltos no son títulos */
+      if (title && /^\d+$/.test(title)) title = null;
+
+      const link = detectLinkType(url);
+      if (!link) { links.push({ url, type: null, error: 'no reconocido', title }); pendingTitle = null; continue; }
+      if (link.type === 'mega-folder') { links.push({ url, type: null, error: 'carpetas de Mega no se pueden leer', title }); pendingTitle = null; continue; }
+      if (seen.has(url)) { pendingTitle = null; continue; }
+      seen.add(url);
+      links.push({ url, type: link.type, link, title });
+      pendingTitle = null;
+    } else {
+      /* sin URL en esta línea — puede ser un título para el enlace siguiente */
+      const cleaned = line.replace(/^\d+\s*[.\)\-:—–]?\s*/, '').trim();
+      if (cleaned && !/^\d+$/.test(cleaned) && cleaned.length > 2 && cleaned.length < 200) {
+        pendingTitle = cleaned;
+      }
+    }
   }
   return links;
 }
@@ -5896,6 +5923,19 @@ async function processImportQueue() {
       /* diff DESPUÉS: series nuevas y series actualizadas */
       const news = state.series.filter(s => !beforeIds.has(s.id));
       const updated = state.series.filter(s => beforeIds.has(s.id) && beforeSig.get(s.id) !== (s.t + '|' + s.episodes.length));
+
+      /* 📝 TÍTULO PERSONALIZADO del usuario: si escribió un nombre encima
+         del enlace, ese nombre REPLAZA al del archivo de Drive — ANTES del
+         dedup para que la comparación use el título correcto             */
+      if (next.title) {
+        const targets = news.length ? news : updated;
+        for (const ns of targets) {
+          if (ns.t !== next.title) {
+            ns.t = next.title.slice(0, 120);
+            ns.genreTmdbDone = false;  /* re-categorizar con TMDB con el título nuevo */
+          }
+        }
+      }
       /* 🗑 dedup: lo recién creado cuyo título ya existía → se retira */
       const kept = [], dups = [];
       for (const ns of news) {
@@ -6179,7 +6219,7 @@ els.confirmDrive.addEventListener('click', async () => {
   if (!valid.length) { setDriveStatus('⚠ Ningún enlace reconocido.\nSoportados: Drive (archivo/carpeta), Streamtape /v/ o /e/, Mega archivo, enlace directo.', 'err'); return; }
   /* encolar (los reimportados a propósito DESPIERTAN del cementerio) */
   for (const l of valid) {
-    importQueue.push({ url: l.url, type: l.type, status: 'queued', name: '', error: '', attempts: 0, nextRetryAt: 0, addedAt: Date.now(), payload: null });
+    importQueue.push({ url: l.url, type: l.type, title: l.title || '', status: 'queued', name: '', error: '', attempts: 0, nextRetryAt: 0, addedAt: Date.now(), payload: null });
   }
   iqDeadDelete(valid.map(l => l.url));
   iqPersist();
