@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791609135565,
+ "v": 1791609255966,
  "by": "Dcard #2968",
- "at": "2026-10-10T05:12:15.565Z",
- "n": 6127,
+ "at": "2026-10-10T05:14:15.966Z",
+ "n": 6128,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -51545,6 +51545,28 @@
      "n": 1,
      "t": "Metegol (2013. Audio Latino)",
      "url": "https://archive.org/download/metegol.-2013.-dvdrip.-xvi-d.-latino.-argentino.-sbt/Metegol.2013.DVDrip.XviD.Latino.Argentino.SBT.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-masters--del--universo",
+   "t": "Masters del Universo",
+   "jp": "🎬",
+   "tag": "Cine IA · Película",
+   "g": 1,
+   "kind": "pelicula",
+   "anime": false,
+   "poster": "https://image.tmdb.org/t/p/w500/A6kqScyPEsn6akDS5HyPf9jE4Od.jpg",
+   "tags": [
+    "Acción"
+   ],
+   "genre": "accion",
+   "at": 1791609236578,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Masters del Universo - Español",
+     "url": "https://archive.org/download/masters.-del.-universo/Masters%20del%20Universo.mp4"
     }
    ]
   }
@@ -211173,5 +211195,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "qN5gaVThTWWGwjwhFjU3paDF2SzDCMVQdk9NSIqJdW3pxvO4shZy1Y5Nj6kPq75m8yRo3ZYQmAzchiV+bzcZpg=="
+ "sig": "y4AfwnH7QFneXhtFMEaldq+b1i6z2EXbEraEJWspx0NdQRa/ARDOH7DitQzHm/VRT0hAJeUP2nWShSmUYBoJwA=="
 }
