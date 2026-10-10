@@ -801,7 +801,9 @@
   async function unlockAdmin(pass) {
     const h = await sha256(String(pass || '').trim());
     if (h && h === CONFIG.adminHash) {
-      ID.admin = true; writeAll(); applyRole(); renderChip();
+      ID.admin = true;
+      ID.everAdmin = true;   /* 🛡 una vez admin, SIEMPRE se fusiona (nunca pisan tu biblioteca) */
+      writeAll(); applyRole(); renderChip();
       return true;
     }
     unlockFails++;
@@ -1273,8 +1275,8 @@
       const liveS = (lastSeenRemote.series || []).length;
       const liveCh = (lastSeenRemote.channels || []).length;
       const myS = payload.series.length, myCh = payload.channels.length;
-      const vanCanales = liveCh > 100 && myCh < liveCh * 0.5;
-      const vanSeries = liveS > 20 && myS < liveS * 0.7;
+      const vanCanales = liveCh > 100 && myCh < liveCh * 0.7;
+      const vanSeries = liveS > 20 && myS < liveS * 0.9;
       if (vanCanales || vanSeries) {
         axToast(`🚨 Publicación BLOQUEADA para no perder contenido: la web tiene ${liveS} series y ${liveCh} canales, pero tu paquete saldría con ${myS} series y ${myCh} canales. Tu copia local está incompleta → ${vanCanales && !vanSeries ? 'abre la pestaña 📡 TV y pulsa «🔄 Actualizar» para reconstruir los canales desde las listas guardadas, y vuelve a publicar.' : 'revisa tu biblioteca antes de publicar.'}`, true);
         return { ok: false, code: 'VACIO', msg: `tu copia local está incompleta (la web tiene ${liveS} series / ${liveCh} canales y tu paquete saldría con ${myS}/${myCh}) — ${vanCanales && !vanSeries ? 'abre la pestaña 📡 TV y pulsa «🔄 Actualizar», y vuelve a publicar' : 'revisa tu biblioteca antes de publicar'}` };
@@ -1439,7 +1441,13 @@
   /* al arrancar: hidratar memoria desde el espejo (si localStorage está bloqueado) */
   tokIdbLoad().then(v => { if (v && !tokLoad()) _tokMem = v; });
 
-  function ghToken() { return tokLoad(); }
+  function ghToken() {
+    const t = tokLoad();
+    if (t) return t;
+    /* respaldo: buscar en la bóveda si localStorage no lo tiene */
+    try { const v = vaultGet('ghTok'); if (v) { _tokMem = v; return v; } } catch (e) { }
+    return '';
+  }
   async function ghAskToken(force) {
     let cur = tokLoad();
     if (cur && !force) return cur;
@@ -2880,8 +2888,19 @@ xhr.setRequestHeader('Content-Type', 'application/json');
       }
       /* 👑 ADMIN/STAFF: FUSIÓN por unión — tu trabajo aún no publicado en
          este PC sobrevive al llegar lo del otro PC/moderadores.
-         👤 Lector: la web manda (reemplazo clásico de applyCatalog).    */
-      if (isAdmin()) mergeLiveCatalog(cat); else applyCatalog(cat);
+         👤 Lector: la web manda (reemplazo clásico de applyCatalog).
+         ⚠️ PERO: si este dispositivo FUE admin alguna vez, JAMÁS se
+         reemplaza — siempre se fusiona. Salir del modo admin y refrescar
+         PISABA la biblioteca local con el catálogo remoto (el bug que
+         hacía 'retroceder' el catálogo al publicar).                       */
+      const everAdmin = !!(ID && (ID.admin || ID.everAdmin));
+      const localCount = st.series.length;
+      const remoteCount = (cat.series || []).length;
+      if (isAdmin() || everAdmin || localCount > remoteCount) {
+        mergeLiveCatalog(cat);
+      } else {
+        applyCatalog(cat);
+      }
       const t = new Date(cat.v).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       syncedToast = `📡 Catálogo actualizado a la última versión (${t} · ${cat.series.length} títulos)`;
       /* 🪙 SISTEMA DE MONEDAS: sincroniza la config del admin (dailyCoins,
