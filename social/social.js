@@ -49,7 +49,7 @@
 
   /* ── estado ── */
   const S = {
-    me: null, catalog: [], posts: [], stories: [], groups: [],
+    me: null, myPubKey: '', catalog: [], posts: [], stories: [], groups: [],
     suggested: [], follows: [], saved: [], convos: [], notifs: [],
     onlineCount: 0, onlineUsers: [], interests: [], bio: '',
     chatFilter: 'todos', attach: null, pollDraft: null,
@@ -64,6 +64,9 @@
         const hora = Math.floor(Date.now() / 3600000);
         const sig = await XAUTH.signText(`social-${S.me.uid}:${hora}`);
         if (sig) headers['x-social-sig'] = sig;
+        /* TOFU: la clave pública viaja SIEMPRE con las firmas — el servidor
+           la registra la primera vez y luego verifica contra ella        */
+        if (S.myPubKey) q.set('pubKey', S.myPubKey);
       }
       const r = await fetch(`${SOCIAL_API}?${q}`, { headers });
       const j = await r.json();
@@ -819,6 +822,8 @@
       return;
     }
     S.me = XAUTH.id;
+    /* mi clave pública para el TOFU del servidor (imprescindible firmar) */
+    if (typeof XAUTH.pubKeyB64 === 'function') S.myPubKey = (await XAUTH.pubKeyB64()) || '';
     /* bio/intereses ya guardados */
     const j = await socCall('state');
     if (j) {

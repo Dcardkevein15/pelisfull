@@ -2859,6 +2859,17 @@
     } catch (e) { return null; }
   }
 
+  /* 🔑 clave pública del dispositivo (la necesita SOCIAL para el TOFU:
+     el servidor registra la clave la primera vez que escribes y a partir
+     de ahí verifica cada firma contra ella)                       */
+  async function pubKeyB64() {
+    try {
+      await sigKeysEnsure();
+      const rec = await sigKeysGet();
+      return rec ? rec.pubB64 : null;
+    } catch (e) { return null; }
+  }
+
   /* ═══════════ API pública ═══════════ */
   window.XAUTH = {
     attach,
@@ -2878,6 +2889,7 @@
     unlockAdmin,
     sha256,
     signText,
+    pubKeyB64,
     get id() { return ID; },
     get ready() { return !!ID; },
   };
