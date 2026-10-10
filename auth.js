@@ -889,8 +889,9 @@
           </div>
         </div>
         <div class="ax-sec" id="axAdminSec"></div>
+        <div class="ax-sec" id="axToolsSec"></div>
         <div class="ax-sec">
-          <div class="ax-sec-t">🌐 Catálogo compartido</div>
+          <div class="ax-sec-t">📡 Catálogo compartido</div>
           <div class="ax-catstatus" id="axCatStatus"></div>
           <div id="axPublishZone"></div>
         </div>
@@ -1002,6 +1003,7 @@
       recentEl.innerHTML = '';
     }
     renderAdminZone();
+    renderToolsZone();
     renderCatalogStatus();
     renderModZone();
     renderTgZone();
@@ -1012,8 +1014,7 @@
   function renderAdminZone() {
     const bd = profileModalEnsure();
     const sec = bd.querySelector('#axAdminSec');
-    if (isAdmin()) {
-      sec.innerHTML = `
+    if (isAdmin()) {      sec.innerHTML = `
         <div class="ax-sec-t">👑 Zona de administrador</div>
         <p class="ax-note">Eres el administrador absoluto: solo tú ves los botones de edición (Buscar cine, Importar Drive, Editar enlaces, Añadir serie…) y solo tú puedes publicar el catálogo.</p>
         <button class="btn btn-ghost" id="axLock">🔒 Salir del modo admin</button>`;
@@ -2082,6 +2083,46 @@
   }
 
   /* ═══ Zona 🛡 moderadores (solo ADMIN): generar pases de invitación ═══ */
+  /* ═══ 🧰 PANEL DE HERRAMIENTAS DEL ADMIN (en el perfil) ═══
+     Los botones originales viven ocultos en el topbar con sus listeners
+     intactos — estos disparan un .click() sobre ellos: funciones 100%
+     iguales, cero riesgo de romper nada.                                    */
+  function renderToolsZone() {
+    const bd = profileModalEnsure();
+    const sec = bd.querySelector('#axToolsSec');
+    if (!sec) return;
+    if (!isAdmin()) { sec.innerHTML = ''; return; }
+    sec.innerHTML = `
+      <div class="ax-sec-t">🧰 Panel de herramientas</div>
+      <p class="ax-note">Tus herramientas de administración — al clic se abren al instante, igual que antes pero ordenadas aquí.</p>
+      <div class="ax-tools">
+        <button class="ax-tool" id="axToolCine">
+          <span class="ax-tool-ic" style="--tc:#08A9F4">🎬</span>
+          <span class="ax-tool-b"><b>Buscar cine</b><small>Películas, anime y OVAs en español (Internet Archive)</small></span>
+          <span class="ax-tool-go">→</span>
+        </button>
+        <button class="ax-tool" id="axToolDrive">
+          <span class="ax-tool-ic" style="--tc:#00E676">📁</span>
+          <span class="ax-tool-b"><b>Importar carpeta Drive</b><small>Drive · Streamtape · Mega · enlaces — en la nube con reintentos</small></span>
+          <span class="ax-tool-go">→</span>
+        </button>
+        <button class="ax-tool" id="axToolCoins">
+          <span class="ax-tool-ic" style="--tc:#FFD60A">🪙</span>
+          <span class="ax-tool-b"><b>Panel de Monedas</b><small>Precios, tiempos, recompensas y regalos — control total</small></span>
+          <span class="ax-tool-go">→</span>
+        </button>
+      </div>`;
+    const fire = id => {
+      const orig = document.getElementById(id);
+      if (!orig) { axToast('⚠ Herramienta no disponible', true); return; }
+      bd.classList.add('hidden');
+      orig.click();
+    };
+    sec.querySelector('#axToolCine').addEventListener('click', () => fire('cineBtn'));
+    sec.querySelector('#axToolDrive').addEventListener('click', () => fire('driveFolderBtn'));
+    sec.querySelector('#axToolCoins').addEventListener('click', () => fire('coinsAdminBtn'));
+  }
+
   function renderModZone() {
     const bd = profileModalEnsure();
     const zone = bd.querySelector('#axModZone');

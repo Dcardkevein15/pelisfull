@@ -3698,3 +3698,29 @@ body.chat-full .cmu-list{max-height:44vh}
 }
 .iqkill-del:hover{box-shadow:0 8px 30px rgba(255,48,79,.45);transform:translateY(-2px)}
 .iqkill-del:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* ═══════════ 🧰 PANEL DE HERRAMIENTAS (perfil del admin) ═══════════ */
+.ax-tools{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg)}
+.ax-tool{
+  display:flex;align-items:center;gap:13px;padding:13px 14px;text-align:left;
+  background:var(--panel);border:none;border-bottom:1px solid var(--line);cursor:pointer;
+  transition:background .15s,border-color .15s;width:100%;color:var(--ink);
+}
+.ax-tool:last-child{border-bottom:none}
+.ax-tool:hover{background:var(--panel2,var(--card,#0A1727))}
+.ax-tool:active{transform:scale(.995)}
+.ax-tool-ic{
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  font-size:17px;flex-shrink:0;
+  background:color-mix(in srgb,var(--tc,var(--acid)) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--tc,var(--acid)) 30%,transparent);
+}
+.ax-tool-b{flex:1;min-width:0;line-height:1.3}
+.ax-tool-b b{font-size:13px;display:block}
+.ax-tool-b small{color:var(--dim);font-size:10.5px;display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ax-tool-go{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  background:transparent;border:1px solid var(--line);color:var(--dim);
+  font-size:13px;transition:all .15s;
+}
+.ax-tool:hover .ax-tool-go{background:var(--acid);border-color:var(--acid);color:#0a0a12;transform:translateX(2px)}

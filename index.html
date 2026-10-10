@@ -86,8 +86,9 @@
       <span class="cp-icon">🪙</span>
       <b id="coinsPillNum">50</b>
     </button>
-    <!-- 👑 Panel admin de monedas (solo admin) -->
-    <button id="coinsAdminBtn" class="btn btn-ghost admin-only" style="color:var(--acid)" title="🪙 Panel de Monedas — precios, tiempos, recompensas (solo admin)">
+    <!-- 👑 Herramientas del admin: TRASLADADAS al panel de perfil — los botones
+         originales viven ocultos aquí para conservar sus listeners intactos -->
+    <button id="coinsAdminBtn" class="btn btn-ghost admin-only hidden" style="color:var(--acid)" title="🪙 Panel de Monedas — precios, tiempos, recompensas (solo admin)">
       <span>🪙</span><span class="admin-only-label">Monedas</span>
     </button>
     <!-- 👤 Identidad del visitante (auth.js) — círculo + nombre, abre el perfil -->
@@ -98,11 +99,11 @@
         <i class="uc-sub">…</i>
       </span>
     </button>
-    <button id="cineBtn" class="btn btn-ghost admin-only" title="Buscar películas, anime y OVAs en español (Internet Archive)">
+    <button id="cineBtn" class="btn btn-ghost admin-only hidden" title="Buscar películas, anime y OVAs en español (Internet Archive)">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 4v16M17 4v16M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>
       <span>Buscar cine</span>
     </button>
-    <button id="driveFolderBtn" class="btn btn-ghost admin-only" title="Importar una carpeta completa de Google Drive como serie">
+    <button id="driveFolderBtn" class="btn btn-ghost admin-only hidden" title="Importar una carpeta completa de Google Drive como serie">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg>
       <span>Importar carpeta Drive</span>
     </button>
