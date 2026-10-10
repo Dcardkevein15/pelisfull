@@ -573,11 +573,20 @@
     S.chatFilter = b.dataset.f;
     renderChat();
   }));
-  function openChatPanel() {
-    const chat = $('socChatPanel');
-    if (getComputedStyle(chat).display === 'none') chat.classList.add('show');
-    chat.scrollIntoView({ behavior: 'smooth' });
+
+  /* ═══════════ 🚀 SOCIAL DOCK — pestañas que cambian AL INSTANTE ═══════════ */
+  function dockTab(t) {
+    document.querySelectorAll('.soc-dock-tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+    document.querySelectorAll('.soc-dock-tab').forEach(s => s.classList.toggle('on', s.dataset.tb === t));
   }
+  document.querySelectorAll('.soc-dock-tabs button').forEach(b =>
+    b.addEventListener('click', () => dockTab(b.dataset.t)));
+  function dockOpen(tab) {
+    const dock = $('socDock');
+    if (getComputedStyle(dock).display === 'none') dock.classList.add('show');
+    if (tab) dockTab(tab);
+  }
+  function openChatPanel() { dockOpen('chat'); }
 
   let convoTimer = null;
   async function openConvo(cid, title) {
@@ -670,7 +679,7 @@
   /* ═══════════ HOJAS (overlays) ═══════════ */
   function openSheet(inner) { $('socSheet').innerHTML = `<button class="soc-x" id="ssX">✕</button>` + inner; $('socOverlay').classList.remove('hidden'); $('ssX').addEventListener('click', closeSheet); }
   function closeSheet() { clearInterval(convoTimer); $('socOverlay').classList.add('hidden'); $('socSheet').innerHTML = ''; }
-  function closeSheets() { closeSheet(); document.querySelectorAll('.soc-col-right.show,.soc-chat.show').forEach(e => e.classList.remove('show')); }
+  function closeSheets() { closeSheet(); document.querySelectorAll('.soc-dock.show').forEach(e => e.classList.remove('show')); }
   $('socOverlay').addEventListener('click', ev => { if (ev.target.id === 'socOverlay') closeSheet(); });
 
   function openExplore() {

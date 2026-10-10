@@ -117,43 +117,60 @@
     </section>
   </aside>
 
-  <!-- ══════════ COLUMNA DERECHA INTERNA: DESCUBRIMIENTO ══════════ -->
-  <aside class="soc-col-right">
-    <section class="soc-card">
-      <div class="soc-card-h"><span>👑 Contenido destacado</span><a href="../">Ver todo</a></div>
-      <div class="soc-feat" id="socFeat"></div>
-      <div class="soc-feat-nav" id="socFeatNav"></div>
-    </section>
-    <section class="soc-card">
-      <div class="soc-card-h"><span>👥 Personas que quizás conozcas</span></div>
-      <div class="soc-suggest" id="socSuggest"></div>
-    </section>
-    <section class="soc-card">
-      <div class="soc-card-h"><span>🔴 Eventos en vivo</span></div>
-      <div class="soc-live" id="socLive"></div>
-    </section>
-  </aside>
-
-  <!-- ══════════ PANEL EXTREMO DERECHO: CHAT ══════════ -->
-  <aside class="soc-chat" id="socChatPanel">
-    <section class="soc-card">
-      <div class="soc-card-h"><span>💬 Chat y comunidad</span></div>
-      <div class="soc-chat-filters" id="socChatFilters">
-        <button class="on" data-f="todos">Todos</button>
-        <button data-f="amigos">Amigos</button>
-        <button data-f="grupos">Grupos</button>
-      </div>
-      <div class="soc-convos" id="socConvos"></div>
-    </section>
-    <section class="soc-card soc-promo">
+  <!-- ══════════ SOCIAL DOCK — la columna derecha unificada: pestañas
+       que cambian al instante (Chat · Descubre · Vivo) + footer promo ══════════ -->
+  <aside class="soc-dock" id="socDock">
+    <div class="soc-dock-head">
+      <span class="soc-dock-pulse"></span>
+      <b class="soc-dock-brand">XSTREAM <i>COMUNIDAD</i></b>
+      <span class="soc-dock-chip"><b id="socOnlineCount">0</b> en línea</span>
+    </div>
+    <nav class="soc-dock-tabs" id="socDockTabs">
+      <button class="on" data-t="chat"><span>💬</span> Chat</button>
+      <button data-t="descubre"><span>✨</span> Descubre</button>
+      <button data-t="vivo"><span>🔴</span> Vivo</button>
+    </nav>
+    <div class="soc-dock-body">
+      <section class="soc-dock-tab on" data-tb="chat">
+        <div class="soc-card">
+          <div class="soc-card-h"><span>💬 Chat y comunidad</span></div>
+          <div class="soc-chat-filters" id="socChatFilters">
+            <button class="on" data-f="todos">Todos</button>
+            <button data-f="amigos">Amigos</button>
+            <button data-f="grupos">Grupos</button>
+          </div>
+          <div class="soc-convos" id="socConvos"></div>
+        </div>
+      </section>
+      <section class="soc-dock-tab" data-tb="descubre">
+        <div class="soc-card">
+          <div class="soc-card-h"><span>👑 Contenido destacado</span><a href="../">Ver todo →</a></div>
+          <div class="soc-feat" id="socFeat"></div>
+          <div class="soc-feat-nav" id="socFeatNav"></div>
+        </div>
+        <div class="soc-card">
+          <div class="soc-card-h"><span>👥 Personas que quizás conozcas</span></div>
+          <div class="soc-suggest" id="socSuggest"></div>
+        </div>
+      </section>
+      <section class="soc-dock-tab" data-tb="vivo">
+        <div class="soc-card">
+          <div class="soc-card-h"><span>🔴 Eventos en vivo</span></div>
+          <div class="soc-live" id="socLive"></div>
+        </div>
+        <div class="soc-card">
+          <div class="soc-card-h"><span>🟢 Usuarios en línea</span><a href="javascript:void 0" id="socOnlineMore">Ver más →</a></div>
+          <div class="soc-online" id="socOnline"></div>
+        </div>
+      </section>
+    </div>
+    <div class="soc-dock-foot">
       <div class="soc-promo-x">X</div>
-      <b>Conecta, comparte y vive la experiencia XSTREAM</b>
-      <a class="soc-btn soc-btn-green" href="../">¡Únete ahora!</a>
-    </section>
-    <section class="soc-card">
-      <div class="soc-card-h"><span>🟢 Usuarios en línea</span><b id="socOnlineCount">0</b></div>
-      <div class="soc-online" id="socOnline"></div>
-    </section>
+      <div class="soc-promo-b">
+        <b>Conecta, comparte y vive la experiencia XSTREAM</b>
+        <a class="soc-btn soc-btn-green" href="../">¡Únete ahora!</a>
+      </div>
+    </div>
   </aside>
 
 </div>
