@@ -1099,8 +1099,17 @@
       /* 🪙 CONFIG DE MONEDAS: viaja firmada en el catálogo → todos la reciben.
          Solo el admin puede cambiarla (aquí se lee de COINS.getConfig()). */
       coinsCfg: (typeof COINS !== 'undefined') ? COINS.getConfig() : undefined,
-      /* 🎁 REGALO ACTIVO: si el admin activó un obsequio, viaja también */
+      /* 🪙 REGALO ACTIVO: si el admin activó un obsequio, viaja también */
       coinsGift: (typeof COINS !== 'undefined' && COINS._activeGift) ? COINS._activeGift : undefined,
+      /* 📢 SNAP DE TELEGRAM: viaja CON el catálogo para que ambas computadoras
+         sepan qué ya fue anunciado — sin esto, cada PC anunciaba TODO de nuevo
+         porque su localStorage no tenía el snap de la otra PC                    */
+      tgSnap: (() => {
+        try {
+          const s = JSON.parse(localStorage.getItem('xstream-tg-snap-v1') || 'null');
+          return s ? s.items : null;
+        } catch (e) { return null; }
+      })(),
     };
   }
 
@@ -1229,6 +1238,18 @@
     pubProgress(1, 'descargando la última versión publicada…');
     const live = await fetchRemoteCatalog();
     if (live) mergeLiveCatalog(live);
+    /* 📢 ADOPTAR el snap de Telegram del catálogo VIVO: la otra PC lo
+       publicó dentro del catálogo — sin esto, cada PC anunciaba TODO
+       porque su localStorage no tenía el snap de la otra                   */
+    if (live && live.tgSnap && typeof live.tgSnap === 'object') {
+      try {
+        const mine = JSON.parse(localStorage.getItem('xstream-tg-snap-v1') || 'null');
+        const liveAt = new Date(live.at || live.v || Date.now()).getTime();
+        if (!mine || liveAt > (mine.at || 0)) {
+          localStorage.setItem('xstream-tg-snap-v1', JSON.stringify({ v: live.v, at: liveAt, items: live.tgSnap }));
+        }
+      } catch (e) { }
+    }
     const state = API.getState();
     let payload = buildCatalogPayload(state);
     pubProgress(2, 'verificando y firmando…');
