@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791675804850,
+ "at": 1791676371358,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1Dnjpj6aLcgU6-w1FFXTiJveDXSDQVtO0/view?usp=drivesdk",
@@ -123,8 +123,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791675905748,
+   "attempts": 2,
+   "nextRetryAt": 1791676467755,
    "addedAt": 1791675754521,
    "payload": null
   },
@@ -161,8 +161,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791675908371,
+   "attempts": 2,
+   "nextRetryAt": 1791676468495,
    "addedAt": 1791675754521,
    "payload": null
   },
@@ -620,253 +620,550 @@
    "url": "https://drive.google.com/file/d/1XeHgDF5Kwd9LcoJr65jkQcUArQppG4K_/view",
    "type": "drive-file",
    "title": "Miami Vice",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Miami Vice Dublado 2006 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1XeHgDF5Kwd9LcoJr65jkQcUArQppG",
+     "t": "Download Livre Miami Vice Dublado 2006 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1XeHgDF5Kwd9LcoJr65jkQcUArQppG4K_&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1XeHgDF5Kwd9LcoJr65jkQcUArQppG4K_/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/12Bkh_OxOOgOxP_vW7bl7HuEe62mMf_jn/view",
    "type": "drive-file",
    "title": "Marcado",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Marcado Dublado 2012 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12Bkh_OxOOgOxP_vW7bl7HuEe62mMf",
+     "t": "Download Livre Marcado Dublado 2012 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12Bkh_OxOOgOxP_vW7bl7HuEe62mMf_jn&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12Bkh_OxOOgOxP_vW7bl7HuEe62mMf_jn/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1nf0YMnTlQqMaUtvTFQESR0EPlpMJJiVd/view",
    "type": "drive-file",
    "title": "Lenda Urbana",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Lenda Urbana Dublado 1998 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1nf0YMnTlQqMaUtvTFQESR0EPlpMJJ",
+     "t": "Download Livre Lenda Urbana Dublado 1998 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1nf0YMnTlQqMaUtvTFQESR0EPlpMJJiVd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1nf0YMnTlQqMaUtvTFQESR0EPlpMJJiVd/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1Pkx9oh3EzxY3DwS-uFHIm9pKlYeV0Yhr/view",
    "type": "drive-file",
    "title": "La Leyenda del Caballero Sin Cabeza",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791676352044
   },
   {
    "url": "https://drive.google.com/file/d/10XGk-p3NHAldybSSiiKJcdoQhsdDYl75/view",
    "type": "drive-file",
    "title": "El Reluctante Fundamentalista",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre O Relutante Fundamentalista Dublado 2013 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10XGk-p3NHAldybSSiiKJcdoQhsdDY",
+     "t": "Download Livre O Relutante Fundamentalista Dublado 2013 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10XGk-p3NHAldybSSiiKJcdoQhsdDYl75&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10XGk-p3NHAldybSSiiKJcdoQhsdDYl75/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1icA7P0E8zwYd0Y0RbjpEW5xOgtCEm5FU/view",
    "type": "drive-file",
    "title": "Pecados Mortales",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Pecados Mortais Dublado 2013 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1icA7P0E8zwYd0Y0RbjpEW5xOgtCEm",
+     "t": "Download Livre Pecados Mortais Dublado 2013 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1icA7P0E8zwYd0Y0RbjpEW5xOgtCEm5FU&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1icA7P0E8zwYd0Y0RbjpEW5xOgtCEm5FU/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1oRLiCofwXUoesnwSrS2biN54a4gPB5tn/view",
    "type": "drive-file",
    "title": "Zona Fría",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Zona Fria Dublado 2018 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1oRLiCofwXUoesnwSrS2biN54a4gPB",
+     "t": "Download Livre Zona Fria Dublado 2018 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1oRLiCofwXUoesnwSrS2biN54a4gPB5tn&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1oRLiCofwXUoesnwSrS2biN54a4gPB5tn/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1ZPAhH3O7vvCbQl0ws4aLloN2MI2nh61T/view",
    "type": "drive-file",
    "title": "Tokyo Ghoul",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tokyo Ghoul Audio 2019 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ZPAhH3O7vvCbQl0ws4aLloN2MI2nh",
+     "t": "Tokyo Ghoul Audio 2019 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ZPAhH3O7vvCbQl0ws4aLloN2MI2nh61T&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ZPAhH3O7vvCbQl0ws4aLloN2MI2nh61T/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/12Y4BBQ2m-lh16TFmx15rs0fOGD46kUEb/view",
    "type": "drive-file",
    "title": "13 Fantasmas",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791676356437
   },
   {
    "url": "https://drive.google.com/file/d/122DkfzPODAPtnA34rk1hP1jKP8Tz3rMJ/view",
    "type": "drive-file",
    "title": "Bayoneta",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Bayoneta Dublado 2019 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-122DkfzPODAPtnA34rk1hP1jKP8Tz3",
+     "t": "Bayoneta Dublado 2019 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=122DkfzPODAPtnA34rk1hP1jKP8Tz3rMJ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/122DkfzPODAPtnA34rk1hP1jKP8Tz3rMJ/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1vIskREesLzSDucZdNfG6J50cyfYcbHS6/view",
    "type": "drive-file",
    "title": "El Hombre Lobo - Sin Cortes",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre O Lobisomem Dublado 2010 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1vIskREesLzSDucZdNfG6J50cyfYcb",
+     "t": "Download Livre O Lobisomem Dublado 2010 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1vIskREesLzSDucZdNfG6J50cyfYcbHS6&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1vIskREesLzSDucZdNfG6J50cyfYcbHS6/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1ZPriug_R-Ro_cPgWHoRLVIViSJcirv8A/view",
    "type": "drive-file",
    "title": "Un Hombre Contra Wall Street",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Um Homem Contra Wall Street Dublado 2013 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ZPriug_R-Ro_cPgWHoRLVIViSJcir",
+     "t": "Download Livre Um Homem Contra Wall Street Dublado 2013 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ZPriug_R-Ro_cPgWHoRLVIViSJcirv8A&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ZPriug_R-Ro_cPgWHoRLVIViSJcirv8A/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1h0CGkls2Fy1NvMWDSDYU87FyP1L17NWT/view",
    "type": "drive-file",
    "title": "Serpientes a Bordo",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Serpentes a Bordo Dublado 2006 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1h0CGkls2Fy1NvMWDSDYU87FyP1L17",
+     "t": "Download Livre Serpentes a Bordo Dublado 2006 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1h0CGkls2Fy1NvMWDSDYU87FyP1L17NWT&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1h0CGkls2Fy1NvMWDSDYU87FyP1L17NWT/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1tOPlznz--FbxQhAO2xgAbKJN8aUsa2NR/view",
    "type": "drive-file",
    "title": "La Dama del Espejo - El Ritual de las Tinieblas",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre A Dama do Espelho O Ritual das Trevas Dublado 2018 www downloadli",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1tOPlznz-FbxQhAO2xgAbKJN8aUsa2",
+     "t": "Download Livre A Dama do Espelho O Ritual das Trevas Dublado 2018 www downloadli",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1tOPlznz--FbxQhAO2xgAbKJN8aUsa2NR&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1tOPlznz--FbxQhAO2xgAbKJN8aUsa2NR/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1OtgMJjL217VKcjI5D_82MKgU6A6Gjs6x/view",
    "type": "drive-file",
    "title": "Sangre y Codicia",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Sangue e Cobica Dublado 2018 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1OtgMJjL217VKcjI5D_82MKgU6A6Gj",
+     "t": "Download Livre Sangue e Cobica Dublado 2018 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1OtgMJjL217VKcjI5D_82MKgU6A6Gjs6x&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1OtgMJjL217VKcjI5D_82MKgU6A6Gjs6x/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1HvEQ4ntQBevb0JNpWJXlS-aIvZ89J9x9/view",
    "type": "drive-file",
    "title": "La Guerra",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre A Guerra Dublado 2018 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1HvEQ4ntQBevb0JNpWJXlS-aIvZ89J",
+     "t": "Download Livre A Guerra Dublado 2018 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1HvEQ4ntQBevb0JNpWJXlS-aIvZ89J9x9&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1HvEQ4ntQBevb0JNpWJXlS-aIvZ89J9x9/view"
+      }
+     ],
+     "genre": "guerra",
+     "tags": [
+      "Guerra"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1mmv9mfAQXD79YmAbRyG8He1_5SX1UaNt/view",
    "type": "drive-file",
    "title": "Tito y los Pájaros",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tito e os Passaros Nacional 2019 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1mmv9mfAQXD79YmAbRyG8He1_5SX1U",
+     "t": "Tito e os Passaros Nacional 2019 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1mmv9mfAQXD79YmAbRyG8He1_5SX1UaNt&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1mmv9mfAQXD79YmAbRyG8He1_5SX1UaNt/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1oJ2BLrnzBPROwDsvY9Hkt9DchUphy9R9/view",
    "type": "drive-file",
    "title": "High Life - Una Nueva Vida",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791676365261
   },
   {
    "url": "https://drive.google.com/file/d/1LUujUsFWS11V1-iS651Qi0VVl6Qmigi_/view",
    "type": "drive-file",
    "title": "Sin Su Sangre",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791676366494
   },
   {
    "url": "https://drive.google.com/file/d/13P6HAorVbDeAzUaW0DX5wFDdVKtmvM02/view",
    "type": "drive-file",
    "title": "Nunca, Raramente, A Veces, Sempre",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Nunca Rar8ment7 As V7zes S7mpre 2020 My Sabrigo gdriveFilmes",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-13P6HAorVbDeAzUaW0DX5wFDdVKtmv",
+     "t": "Nunca Rar8ment7 As V7zes S7mpre 2020 My Sabrigo gdriveFilmes",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=13P6HAorVbDeAzUaW0DX5wFDdVKtmvM02&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/13P6HAorVbDeAzUaW0DX5wFDdVKtmvM02/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1uRrmk5U6-J3yZH42HLP2ixqNkvC0QdHd/view",
    "type": "drive-file",
    "title": "O Bastardo",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791676369251
   },
   {
    "url": "https://drive.google.com/file/d/1gum0UkU73ZD3Vz__yJqH8oGgtiXb6yiR/view",
@@ -874,9 +1171,9 @@
    "title": "Rosa y Momo",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791676489995,
    "addedAt": 1791675754521,
    "payload": null
   },
@@ -884,13 +1181,31 @@
    "url": "https://drive.google.com/file/d/1-5eRhHGD_vbr2aaOH2P-VEN_OTLf8fH2/view",
    "type": "drive-file",
    "title": "Carlinhos y Carlão",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Carlinhos e Carlao 2020 6CH Moz9Filmes",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-5eRhHGD_vbr2aaOH2P-VEN_OTLf8",
+     "t": "Carlinhos e Carlao 2020 6CH Moz9Filmes",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-5eRhHGD_vbr2aaOH2P-VEN_OTLf8fH2&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-5eRhHGD_vbr2aaOH2P-VEN_OTLf8fH2/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1JDzXUYirTw8BvjpLrO5tmmOfeUDtXBAM/view",
