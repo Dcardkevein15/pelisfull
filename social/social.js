@@ -672,6 +672,22 @@
   $('socBell').addEventListener('click', ev => { ev.stopPropagation(); $('socNotifDrop').classList.toggle('hidden'); markNotifsRead(); });
   $('socMsgBtn').addEventListener('click', () => navTo('mensajes'));
   $('socMe').addEventListener('click', ev => { ev.stopPropagation(); $('socMeDrop').classList.toggle('hidden'); });
+
+  /* ═══════════ ☀/🌙 TEMA claro-oscuro (como la página principal) ═══════════ */
+  let socTheme = 'dark';
+  try { socTheme = localStorage.getItem('soc-theme') || 'dark'; } catch (e) { }
+  function applySocTheme(t) {
+    document.body.classList.toggle('light', t === 'light');
+    const tb = $('socThemeBtn');
+    if (tb) { tb.textContent = t === 'light' ? '☀️' : '🌙'; tb.title = t === 'light' ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'; }
+  }
+  $('socThemeBtn')?.addEventListener('click', () => {
+    socTheme = socTheme === 'light' ? 'dark' : 'light';
+    try { localStorage.setItem('soc-theme', socTheme); } catch (e) { }
+    applySocTheme(socTheme);
+    toast(socTheme === 'light' ? '☀ Tema claro' : '🌙 Tema oscuro');
+  });
+  applySocTheme(socTheme);
   async function markNotifsRead() {
     if (S.notifs.some(n => !n.read)) { await socCall('notifsRead', {}, true); refreshSoon(); }
   }
