@@ -5951,11 +5951,7 @@ async function processImportQueue() {
          se pregunta si eliminarlo — confirmación = fuera PARA SIEMPRE, sin
          esperas, sin reintentos, sin notificaciones. Cero 30 minutos.    */
       if (next.status === 'failed-final') {
-        const ex = iqExplainError(next.error);
-        const kill = confirm(
-          `⛔ ENLACE DESCARTADO — no se pudo importar:\n\n${(next.url || '').slice(0, 70)}\n\n` +
-          `Razón: ${ex.why}\nSolución: ${ex.fix}\n\n` +
-          `¿Eliminarlo DEFINITIVAMENTE de la cola?`);
+        const kill = await iqConfirmKill([{ url: next.url, error: next.error }]);
         if (kill) {
           const ix = importQueue.indexOf(next);
           if (ix > -1) importQueue.splice(ix, 1);
@@ -6107,10 +6103,7 @@ function showImportDone() {
      confirmar = eliminados PARA SIEMPRE, exactamente como pide el admin        */
   if (finals.length && !iqFailAsked) {
     iqFailAsked = true;
-    const kill = confirm(
-      `⛔ ${finals.length} enlace${finals.length > 1 ? 's' : ''} no ${finals.length > 1 ? 'se pudieron importar' : 'se pudo importar'}:\n\n` +
-      finals.map(f => '· ' + (f.url || '').slice(0, 55) + '\n  ' + iqExplainError(f.error).why).join('\n') +
-      `\n\n¿Eliminar${finals.length > 1 ? 'los' : 'lo'} DEFINITIVAMENTE de la cola?`);
+    iqConfirmKill(finals).then(kill => {
     if (kill) {
       iqDeadAdd(finals.map(f => f.url));   /* ⚰️ enterrados: jamás resucitan */
       importQueue = importQueue.filter(q => q.status !== 'failed-final');
@@ -6122,6 +6115,7 @@ function showImportDone() {
       for (const f of finals) { const q = importQueue.find(x => x.url === f.url); if (q) q.keep = true; }
       iqPersist();
     }
+    });
   }
 }
 
@@ -6301,10 +6295,7 @@ async function iqPollRemote() {
        monitor bajo su control (con keep: ni purga ni pregunta otra vez)  */
     if (newFailed.length && !iqFailAsked) {
       iqFailAsked = true;
-      const kill = confirm(
-        `⛔ ${newFailed.length} enlace${newFailed.length > 1 ? 's' : ''} no ${newFailed.length > 1 ? 'se pudieron importar' : 'se pudo importar'} (descartado${newFailed.length > 1 ? 's' : ''} en la nube):\n\n` +
-        newFailed.map(f => '· ' + (f.url || '').slice(0, 55) + '\n  ' + iqExplainError(f.error).why).join('\n') +
-        `\n\n¿Eliminar${newFailed.length > 1 ? 'los' : 'lo'} DEFINITIVAMENTE?`);
+      const kill = await iqConfirmKill(newFailed);
       if (kill) {
         iqDeadAdd(newFailed.map(f => f.url));   /* ⚰️ jamás resucitan */
         importQueue = importQueue.filter(q => !newFailed.some(f => f.url === q.url));
@@ -6409,6 +6400,47 @@ function iqSanitize() {
   }
   if (changed) iqPersist();
   return changed;
+}
+
+/* ⛔ CONFIRMACIÓN DE ELIMINACIÓN — ventana modal propia (nada de confirm()
+   feo del navegador): lista los enlaces con su razón y solución exactas, y
+   el botón destructivo NO es el foco (conservar es la opción por defecto). */
+function iqConfirmKill(items) {
+  return new Promise(resolve => {
+    const bd = document.createElement('div');
+    bd.className = 'iqkill-backdrop';
+    bd.innerHTML = `
+      <div class="iqkill" role="dialog" aria-modal="true">
+        <div class="iqkill-ic">⛔</div>
+        <h3>${items.length > 1 ? items.length + ' enlaces descartados' : 'Enlace descartado'}</h3>
+        <p class="iqkill-sub">No ${items.length > 1 ? 'se pudieron importar' : 'se pudo importar'}. ¿Qué quieres hacer con ${items.length > 1 ? 'ellos' : 'él'}?</p>
+        <div class="iqkill-list">
+          ${items.map(f => {
+            const ex = iqExplainError(f.error);
+            return `<div class="iqkill-item">
+              <div class="iqkill-url">${escapeHtml((f.url || '').slice(0, 80))}</div>
+              <div class="iqkill-why">⚠ <b>${escapeHtml(ex.why)}</b></div>
+              <div class="iqkill-fix">💡 ${escapeHtml(ex.fix)}</div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="iqkill-acts">
+          <button class="btn btn-ghost" id="iqkillKeep">Conservar en el monitor</button>
+          <button class="btn iqkill-del" id="iqkillDel">🗑 Eliminar para siempre</button>
+        </div>
+      </div>`;
+    document.body.appendChild(bd);
+    const done = val => { document.removeEventListener('keydown', onKey, true); bd.remove(); resolve(val); };
+    const onKey = ev => {
+      if (ev.key === 'Escape') { ev.preventDefault(); done(false); }
+      else if (ev.key === 'Enter') { ev.preventDefault(); done(true); }
+    };
+    document.addEventListener('keydown', onKey, true);
+    bd.querySelector('#iqkillDel').addEventListener('click', () => done(true));
+    bd.querySelector('#iqkillKeep').addEventListener('click', () => done(false));
+    bd.addEventListener('click', ev => { if (ev.target === bd) done(false); });
+    setTimeout(() => bd.querySelector('#iqkillKeep').focus(), 60);
+  });
 }
 
 /* ═══════════════ 🎬 VENTANA DE REVISIÓN OBLIGATORIA (nueva pestaña) ═══════════════
