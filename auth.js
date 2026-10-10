@@ -1579,12 +1579,36 @@
   function buildTelegramEvents(payload, snapItems) {
     const ev = [];
     if (!snapItems) return ev;                    /* 1ª vez: solo se hace la foto */
+    /* 🔁 índice por TÍTULO normalizado: la misma película/serie que reaparece
+       con un ID NUEVO (reimportación, migración ia-*, otra fuente) NO es
+       novedad — antes cada id nuevo se re-anunciaba como estreno aunque
+       fuera un duplicado de algo ya anunciado (el bug de los 49 mensajes)  */
+    const nT = t => String(t || '').toLowerCase().normalize('NFD')
+      .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
+    const byTitle = {};
+    for (const id of Object.keys(snapItems)) {
+      const it = snapItems[id];
+      const k = (it.k || '') + '|' + nT(it.t);
+      if (!byTitle[k] || (it.ln || 0) > (byTitle[k].ln || 0)) byTitle[k] = it;
+    }
+    const announced = new Set();   /* un mismo título se anuncia UNA sola vez */
     for (const s of payload.series || []) {
       const linked = (s.episodes || []).filter(e => e.url).length;
+      if (!linked) continue;
       const prev = snapItems[s.id];
-      if (!prev) { if (linked) ev.push({ tipo: 'nuevo', s }); continue; }
+      if (!prev) {
+        const twin = byTitle[(s.kind || '') + '|' + nT(s.t)];
+        if (twin) {
+          /* ya existe (con otro id): solo anuncia si trae MÁS contenido */
+          const delta = linked - (twin.ln || 0);
+          if (delta > 0 && !announced.has(s.t)) { ev.push({ tipo: 'mas', s, delta }); announced.add(s.t); }
+        } else if (!announced.has(s.t)) {
+          ev.push({ tipo: 'nuevo', s }); announced.add(s.t);
+        }
+        continue;
+      }
       const delta = linked - (prev.ln || 0);
-      if (delta > 0) ev.push({ tipo: 'mas', s, delta });
+      if (delta > 0 && !announced.has(s.t)) { ev.push({ tipo: 'mas', s, delta }); announced.add(s.t); }
     }
     return ev;
   }
