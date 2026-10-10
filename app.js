@@ -6167,6 +6167,7 @@ let iqDoneShownBoot = false;
 async function iqPollRemote() {
   if (!canAdmin()) return;
   try {
+    iqSanitize();   /* limpieza local obligatoria en cada latido: lo caducado muere */
     const r = await fetch(IQ_REMOTE_URL + '?t=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) return;
     const data = await r.json();
@@ -6283,14 +6284,22 @@ function iqScheduleRetry() {
 function iqSanitize() {
   const now = Date.now();
   let changed = false;
-  /* 🧟 zombis «published» de la era v169 vuelven una y otra vez desde el
-     localStorage: fuera — lo publicado ya vive en el catálogo de la web  */
+  /* 🧼 LIMPIEZA DEFINITIVA (regla del admin, sin excepciones): los items
+     done/dup son AVISOS, no datos — el contenido ya vive en tu biblioteca.
+     done >2h · dup >30min → se retiran PARA SIEMPRE y en SILENCIO: nunca
+     más resucita '¡Importación completada!' de cosas de hace horas.      */
+  const before2 = importQueue.length;
+  importQueue = importQueue.filter(q => {
+    if (q.status === 'done' && now - (q.addedAt || q.at || 0) > 2 * 3600e3) return false;
+    if (q.status === 'dup' && now - (q.addedAt || q.at || 0) > 30 * 60e3) return false;
+    return true;
+  });
+  if (importQueue.length !== before2) changed = true;
+  /* 🧟 zombis «published» de la era v169 fuera — lo publicado ya vive en la web */
   const before = importQueue.length;
   importQueue = importQueue.filter(q => q.status !== 'published');
   if (importQueue.length !== before) changed = true;
-  /* 🧹 AUTO-EXPIRACIÓN (regla del admin): lo fallido definitivamente que
-     lleva 30 min sin solución se descarta y DEJA DE NOTIFICAR — la cola
-     solo conserva lo que de verdad sigue vivo                      */
+  /* 🧹 fallidos definitivos >30 min: fuera con un único aviso de despedida */
   const expired = [];
   importQueue = importQueue.filter(q => {
     if (q.status === 'failed-final' && now - (q.failedAt || q.at || 0) > 30 * 60e3) {
@@ -6301,7 +6310,7 @@ function iqSanitize() {
   });
   if (expired.length) {
     changed = true;
-    toast(`🧹 ${expired.length} enlace${expired.length > 1 ? 's' : ''} ${expired.length > 1 ? 'descartados' : 'descartado'} automáticamente: no se pudo importar en 30 min (revisa por qué en el monitor antes de reintentar). Ya no te molesto con ${expired.length > 1 ? 'ellos' : 'él'}.`);
+    toast(`🧹 ${expired.length} enlace${expired.length > 1 ? 's' : ''} ${expired.length > 1 ? 'descartados' : 'descartado'} automáticamente (sin solución en 30 min). Ya no te molesto con ${expired.length > 1 ? 'ellos' : 'él'}.`);
   }
   for (const q of importQueue) {
     if (q.status === 'queued' && (q.nextRetryAt || 0) > now + IQ_RETRY_MS) {

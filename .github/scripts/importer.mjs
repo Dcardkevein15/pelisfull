@@ -438,9 +438,15 @@ async function main() {
     if (q.status === 'queued' && (q.attempts || 0) >= IQ_MAX_ATTEMPTS) { q.status = 'failed-final'; q.failedAt = Date.now(); migrated++; }
   }
   /* 🧹 AUTO-EXPIRACIÓN (regla del admin): fallidos definitivos >30 min fuera
-     — dejan de notificar al cliente para siempre                        */
+     — dejan de notificar al cliente para siempre. done >24h y dup >1h también:
+     los clientes ya tuvieron tiempo sobrado de adoptarlos/revisarlos.     */
   const beforePrune = queue.length;
-  const pruned = queue.filter(q => !(q.status === 'failed-final' && Date.now() - (q.failedAt || 0) > 30 * 60e3));
+  const pruned = queue.filter(q => {
+    if (q.status === 'failed-final' && Date.now() - (q.failedAt || 0) > 30 * 60e3) return false;
+    if (q.status === 'done' && Date.now() - (q.addedAt || q.at || 0) > 24 * 3600e3) return false;
+    if (q.status === 'dup' && Date.now() - (q.addedAt || q.at || 0) > 3600e3) return false;
+    return true;
+  });
   if (pruned.length !== beforePrune) migrated += beforePrune - pruned.length;
   queue.length = 0;
   queue.push(...pruned);
