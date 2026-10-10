@@ -5506,6 +5506,21 @@ function iqReviewedAdd(urls) {
 }
 const iqReviewedHas = url => iqReviewedAll().includes(url);
 
+/* ⚰️ CEMENTERIO de enlaces: lo que el admin ELIMINA o lo que caduca se
+   entierra AQUÍ — y una URL enterrada JAMÁS se re-adopta desde la nube.
+   Este es el fin del BUCLE de resurrección: purga → la nube lo devuelve
+   → purga → toast cada 30 segundos… nunca más.                          */
+const IQ_DEAD_KEY = 'xstream-iq-dead-v1';
+const iqDeadAll = () => { try { return JSON.parse(localStorage.getItem(IQ_DEAD_KEY) || '[]'); } catch (e) { return []; } };
+function iqDeadAdd(urls) {
+  try {
+    const all = new Set(iqDeadAll());
+    for (const u of urls) all.add(u);
+    localStorage.setItem(IQ_DEAD_KEY, JSON.stringify([...all].slice(-500)));
+  } catch (e) { }
+}
+const iqDeadHas = url => iqDeadAll().includes(url);
+
 /* 🕒 marca de la última cola que ESTE navegador escribió a GitHub: si el
    CDN nos sirve una versión MÁS VIEJA (cache), se ignora — no re-adoptamos
    nuestro propio estado ya purgado.                                       */
@@ -5745,19 +5760,22 @@ async function iqRetryOne(q) {
 async function iqDeleteOne(q) {
   const i = importQueue.indexOf(q);
   if (i > -1) importQueue.splice(i, 1);
+  iqDeadAdd([q.url]);   /* ⚰️ enterrado: la nube jamás lo devuelve */
   iqPersist();
   await iqSyncRemote();
-  toast('🗑 Enlace eliminado de la cola');
+  toast('🗑 Enlace eliminado para siempre');
   iqMonitorRefresh();
   renderQueuePill();
 }
 async function iqCleanDiscarded() {
   const before = importQueue.length;
+  const killed = importQueue.filter(q => q.status === 'failed-final');
   importQueue = importQueue.filter(q => q.status !== 'failed-final');
   const n = before - importQueue.length;
+  iqDeadAdd(killed.map(q => q.url));   /* ⚰️ todos enterrados */
   iqPersist();
   await iqSyncRemote();
-  toast(n ? `🧹 ${n} enlace${n > 1 ? 's' : ''} descartado${n > 1 ? 's' : ''} eliminado${n > 1 ? 's' : ''}` : 'No hay descartados que limpiar');
+  toast(n ? `🧹 ${n} enlace${n > 1 ? 's' : ''} enterrado${n > 1 ? 's' : ''} para siempre` : 'No hay descartados que limpiar');
   iqMonitorRefresh();
   renderQueuePill();
 }
@@ -5941,10 +5959,12 @@ async function processImportQueue() {
         if (kill) {
           const ix = importQueue.indexOf(next);
           if (ix > -1) importQueue.splice(ix, 1);
+          iqDeadAdd([next.url]);   /* ⚰️ la nube jamás lo devuelve */
           iqPersist();
           iqSyncRemote();
           toast('🗑 Eliminado para siempre');
         } else {
+          next.keep = true;   /* decisión del admin: ni purga ni pregunta otra vez */
           toast('El enlace queda en el monitor — elimínalo o reinténtalo desde ahí cuando quieras');
         }
       }
@@ -6092,11 +6112,15 @@ function showImportDone() {
       finals.map(f => '· ' + (f.url || '').slice(0, 55) + '\n  ' + iqExplainError(f.error).why).join('\n') +
       `\n\n¿Eliminar${finals.length > 1 ? 'los' : 'lo'} DEFINITIVAMENTE de la cola?`);
     if (kill) {
+      iqDeadAdd(finals.map(f => f.url));   /* ⚰️ enterrados: jamás resucitan */
       importQueue = importQueue.filter(q => q.status !== 'failed-final');
       iqPersist();
       iqSyncRemote();
-      toast(`🗑 ${finals.length} enlace${finals.length > 1 ? 's' : ''} eliminado${finals.length > 1 ? 's' : ''} para siempre`);
+      toast(`🗑 ${finals.length} enlace${finals.length > 1 ? 's' : ''} enterrado${finals.length > 1 ? 's' : ''} para siempre`);
       showImportDone();   /* repintar el resumen ya sin ellos */
+    } else {
+      for (const f of finals) { const q = importQueue.find(x => x.url === f.url); if (q) q.keep = true; }
+      iqPersist();
     }
   }
 }
@@ -6213,9 +6237,14 @@ async function iqPollRemote() {
     const remote = (data && data.queue) || [];
     let changed = false;
     let skippedReviewed = 0;
+    let skippedDead = 0;
     const newDone = [];
+    const newFailed = [];
     for (const rq of remote) {
       if (!['done', 'failed-final', 'queued', 'published', 'dup'].includes(rq.status)) continue;
+      /* ⚰️ enterrado por decisión del admin o por caducidad: LA NUBE NO
+         PUEDE DEVOLVERLO — se ignora y se registra para limpiar el archivo */
+      if (iqDeadHas(rq.url)) { skippedDead++; continue; }
       /* 🔁 ya revisado y publicado de verdad → jamás re-adoptar (anti-loop) */
       if (rq.status === 'done' && iqReviewedHas(rq.url)) { skippedReviewed++; continue; }
       const lq = importQueue.find(q => q.url === rq.url);
@@ -6224,6 +6253,7 @@ async function iqPollRemote() {
         importQueue.push(rq);
         changed = true;
         if (rq.status === 'done' && rq.payload && rq.payload.length) newDone.push(rq);
+        if (rq.status === 'failed-final') newFailed.push(rq);
         continue;
       }
       if (lq.status === 'published') continue;
@@ -6235,11 +6265,13 @@ async function iqPollRemote() {
         lq.name = rq.name || lq.name;
         lq.error = rq.error || lq.error;
         lq.attempts = Math.max(lq.attempts || 0, rq.attempts || 0);
+        if (rq.status === 'failed-final') lq.failedAt = rq.failedAt || Date.now();
         /* clamp: timestamps escritos por el backoff viejo nunca deben atascar */
         lq.nextRetryAt = Math.min(rq.nextRetryAt || lq.nextRetryAt || 0, Date.now() + IQ_RETRY_MS);
         lq.payload = rq.payload || lq.payload;
         changed = true;
         if (rq.status === 'done' && rq.payload && rq.payload.length) newDone.push(lq);
+        if (rq.status === 'failed-final') newFailed.push(lq);
       }
     }
     if (changed) iqPersist();
@@ -6264,9 +6296,31 @@ async function iqPollRemote() {
       }
     }
     if (newDone.length) iqAdoptCloud(newDone);
+    /* ⛔ la NUBE descartó enlaces NUEVOS → pregunta INMEDIATA al admin:
+       confirmar = enterrados PARA SIEMPRE; cancelar = quedan solo en el
+       monitor bajo su control (con keep: ni purga ni pregunta otra vez)  */
+    if (newFailed.length && !iqFailAsked) {
+      iqFailAsked = true;
+      const kill = confirm(
+        `⛔ ${newFailed.length} enlace${newFailed.length > 1 ? 's' : ''} no ${newFailed.length > 1 ? 'se pudieron importar' : 'se pudo importar'} (descartado${newFailed.length > 1 ? 's' : ''} en la nube):\n\n` +
+        newFailed.map(f => '· ' + (f.url || '').slice(0, 55) + '\n  ' + iqExplainError(f.error).why).join('\n') +
+        `\n\n¿Eliminar${newFailed.length > 1 ? 'los' : 'lo'} DEFINITIVAMENTE?`);
+      if (kill) {
+        iqDeadAdd(newFailed.map(f => f.url));   /* ⚰️ jamás resucitan */
+        importQueue = importQueue.filter(q => !newFailed.some(f => f.url === q.url));
+        iqPersist();
+        iqSyncRemote();
+        toast(`🗑 ${newFailed.length} enlace${newFailed.length > 1 ? 's' : ''} enterrado${newFailed.length > 1 ? 's' : ''} para siempre`);
+      } else {
+        for (const f of newFailed) { const q = importQueue.find(x => x.url === f.url); if (q) q.keep = true; }
+        iqPersist();
+        toast('Quedan en el monitor — 🗑 para eliminar o 🔁 para reintentar, bajo tu control');
+      }
+      renderQueuePill();
+    }
     /* 🧹 purgar de la nube los done ya publicados que el cache retenga:
        escribir la cola local (ya sin ellos) limpia el archivo remoto    */
-    if (skippedReviewed > 0) iqSyncRemote();
+    if (skippedReviewed > 0 || skippedDead > 0) iqSyncRemote();
   } catch (e) { /* sin red o aún no existe el archivo: silencio */ }
 }
 
@@ -6320,33 +6374,27 @@ function iqScheduleRetry() {
 function iqSanitize() {
   const now = Date.now();
   let changed = false;
-  /* 🧼 LIMPIEZA DEFINITIVA (regla del admin, sin excepciones): los items
-     done/dup son AVISOS, no datos — el contenido ya vive en tu biblioteca.
-     done >2h · dup >30min → se retiran PARA SIEMPRE y en SILENCIO: nunca
-     más resucita '¡Importación completada!' de cosas de hace horas.      */
+  const purgedUrls = [];
+  /* 🧼 limpieza por edad (done >2h · dup >30min · failed-final >30min):
+     todo lo purgado se ENTIERRA (cementerio) para que la nube no pueda
+     devolverlo JAMÁS — el toast solo puede sonar UNA vez por enlace.    */
   const before2 = importQueue.length;
   importQueue = importQueue.filter(q => {
-    if (q.status === 'done' && now - (q.addedAt || q.at || 0) > 2 * 3600e3) return false;
-    if (q.status === 'dup' && now - (q.addedAt || q.at || 0) > 30 * 60e3) return false;
-    return true;
+    if (q.keep === true) return true;   /* el admin decidió conservarlo: intocable */
+    let out = false;
+    if (q.status === 'done' && now - (q.addedAt || q.at || 0) > 2 * 3600e3) out = true;
+    if (q.status === 'dup' && now - (q.addedAt || q.at || 0) > 30 * 60e3) out = true;
+    if (q.status === 'failed-final' && now - (q.failedAt || q.at || 0) > 30 * 60e3) out = true;
+    if (q.status === 'published') out = true;
+    if (out) purgedUrls.push(q.url);
+    return !out;
   });
   if (importQueue.length !== before2) changed = true;
-  /* 🧟 zombis «published» de la era v169 fuera — lo publicado ya vive en la web */
-  const before = importQueue.length;
-  importQueue = importQueue.filter(q => q.status !== 'published');
-  if (importQueue.length !== before) changed = true;
-  /* 🧹 fallidos definitivos >30 min: fuera con un único aviso de despedida */
-  const expired = [];
-  importQueue = importQueue.filter(q => {
-    if (q.status === 'failed-final' && now - (q.failedAt || q.at || 0) > 30 * 60e3) {
-      expired.push(q);
-      return false;
-    }
-    return true;
-  });
-  if (expired.length) {
-    changed = true;
-    toast(`🧹 ${expired.length} enlace${expired.length > 1 ? 's' : ''} ${expired.length > 1 ? 'descartados' : 'descartado'} automáticamente (sin solución en 30 min). Ya no te molesto con ${expired.length > 1 ? 'ellos' : 'él'}.`);
+  if (purgedUrls.length) {
+    iqDeadAdd(purgedUrls);          /* ⚰️ jamás resucitan desde la nube */
+    const nP = purgedUrls.length;
+    toast(`🧹 ${nP} enlace${nP > 1 ? 's' : ''} ${nP > 1 ? 'retirados' : 'retirado'} definitivamente — enterrado${nP > 1 ? 's' : ''} para siempre.`);
+    iqSyncRemote();                /* la nube también se limpia YA */
   }
   for (const q of importQueue) {
     if (q.status === 'queued' && (q.nextRetryAt || 0) > now + IQ_RETRY_MS) {
