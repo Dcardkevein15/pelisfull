@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791610585923,
+ "v": 1791612117210,
  "by": "Dcard #2968",
- "at": "2026-10-10T05:36:25.923Z",
- "n": 6129,
+ "at": "2026-10-10T06:01:57.210Z",
+ "n": 6130,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -51700,6 +51700,314 @@
      "n": 24,
      "t": "Tokyo Revengers/Tokyo Revenger-24",
      "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-24.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-wendy-2020_202012",
+   "t": "Wendy ( 2020)",
+   "jp": "📺",
+   "tag": "Cine IA · Temporada",
+   "g": 5,
+   "kind": "serie",
+   "anime": false,
+   "poster": "https://archive.org/services/img/wendy-2020_202012",
+   "at": 1791612085588,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Algunas veces ellos vuelven (1991)",
+     "url": "https://archive.org/download/wendy-2020_202012/Algunas%20veces%20ellos%20vuelven%20(1991).mp4"
+    },
+    {
+     "n": 2,
+     "t": "American Pie Las chicas mandan (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/American%20Pie%20Las%20chicas%20mandan%20(2020).mp4"
+    },
+    {
+     "n": 3,
+     "t": "Anatomía (2000)",
+     "url": "https://archive.org/download/wendy-2020_202012/Anatomi%CC%81a%20(2000).mp4"
+    },
+    {
+     "n": 4,
+     "t": "Anatomía 2 (2003)",
+     "url": "https://archive.org/download/wendy-2020_202012/Anatomi%CC%81a%202%20(2003).mp4"
+    },
+    {
+     "n": 5,
+     "t": "Borat, película film secuela (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Borat%2C%20peli%CC%81cula%20film%20secuela%20(2020).mp4"
+    },
+    {
+     "n": 6,
+     "t": "Buddy Games (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Buddy%20Games%20(2020).mp4"
+    },
+    {
+     "n": 7,
+     "t": "Carrie (2002)",
+     "url": "https://archive.org/download/wendy-2020_202012/Carrie%20(2002).mp4"
+    },
+    {
+     "n": 8,
+     "t": "Coherence (2013)",
+     "url": "https://archive.org/download/wendy-2020_202012/Coherence%20(2013).mp4"
+    },
+    {
+     "n": 9,
+     "t": "Cómo sobrevivir en un mundo material (Kajillionaire) (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Co%CC%81mo%20sobrevivir%20en%20un%20mundo%20material%20(Kajillionaire)%20(2020).mp4"
+    },
+    {
+     "n": 10,
+     "t": "Corazón loco (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Corazo%CC%81n%20loco%20(2020).mp4"
+    },
+    {
+     "n": 11,
+     "t": "Dark Places (2015)",
+     "url": "https://archive.org/download/wendy-2020_202012/Dark%20Places%20(2015).mp4"
+    },
+    {
+     "n": 12,
+     "t": "Deep Blue Sea 3 (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Deep%20Blue%20Sea%203%20(2020).mp4"
+    },
+    {
+     "n": 13,
+     "t": "El Club de los Idealistas (2020)-1",
+     "url": "https://archive.org/download/wendy-2020_202012/El%20Club%20de%20los%20Idealistas%20(2020)-1.mp4"
+    },
+    {
+     "n": 14,
+     "t": "El Club de los Idealistas (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/El%20Club%20de%20los%20Idealistas%20(2020).mp4"
+    },
+    {
+     "n": 15,
+     "t": "El magnífico Iván (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/El%20magni%CC%81fico%20Iva%CC%81n%20(2020).mp4"
+    },
+    {
+     "n": 16,
+     "t": "El testamento de la abuela (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/El%20testamento%20de%20la%20abuela%20(2020).mp4"
+    },
+    {
+     "n": 17,
+     "t": "Fat Ass Zombies (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Fat%20Ass%20Zombies%20(2020).mp4"
+    },
+    {
+     "n": 18,
+     "t": "Glass Houses (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Glass%20Houses%20(2020).mp4"
+    },
+    {
+     "n": 19,
+     "t": "Harpoon (2019)",
+     "url": "https://archive.org/download/wendy-2020_202012/Harpoon%20(2019).mp4"
+    },
+    {
+     "n": 20,
+     "t": "La Casa de Huéspedes (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/La%20Casa%20de%20Hue%CC%81spedes%20(2020).mp4"
+    },
+    {
+     "n": 21,
+     "t": "La cosecha (2007)",
+     "url": "https://archive.org/download/wendy-2020_202012/La%20cosecha%20(2007).mp4"
+    },
+    {
+     "n": 22,
+     "t": "La increíble historia de la Isla de las Rosas (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/La%20increi%CC%81ble%20historia%20de%20la%20Isla%20de%20las%20Rosas%20(2020).mp4"
+    },
+    {
+     "n": 23,
+     "t": "La Llorona (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/La%20Llorona%20(2020).mp4"
+    },
+    {
+     "n": 24,
+     "t": "La noche de los muertos vivientes (1990)",
+     "url": "https://archive.org/download/wendy-2020_202012/La%20noche%20de%20los%20muertos%20vivientes%20(1990).mp4"
+    },
+    {
+     "n": 25,
+     "t": "La nochebuena es mi condena (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/La%20nochebuena%20es%20mi%20condena%20(2020).mp4"
+    },
+    {
+     "n": 26,
+     "t": "Los chicos del maíz (1984)",
+     "url": "https://archive.org/download/wendy-2020_202012/Los%20chicos%20del%20mai%CC%81z%20(1984).mp4"
+    },
+    {
+     "n": 27,
+     "t": "Los hijos de los muertos vivientes (2001)",
+     "url": "https://archive.org/download/wendy-2020_202012/Los%20hijos%20de%20los%20muertos%20vivientes%20(2001).mp4"
+    },
+    {
+     "n": 28,
+     "t": "Ludo (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Ludo%20(2020).mp4"
+    },
+    {
+     "n": 29,
+     "t": "Magic Camp (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Magic%20Camp%20(2020).mp4"
+    },
+    {
+     "n": 30,
+     "t": "Mi Padrastro Malvado (2019)",
+     "url": "https://archive.org/download/wendy-2020_202012/Mi%20Padrastro%20Malvado%20(2019).mp4"
+    },
+    {
+     "n": 31,
+     "t": "Nochevieja en el Magnolia (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Nochevieja%20en%20el%20Magnolia%20(2020).mp4"
+    },
+    {
+     "n": 32,
+     "t": "Operación Feliz Navidad (2020)-1",
+     "url": "https://archive.org/download/wendy-2020_202012/Operacio%CC%81n%20Feliz%20Navidad%20(2020)-1.mp4"
+    },
+    {
+     "n": 33,
+     "t": "Operación Feliz Navidad (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Operacio%CC%81n%20Feliz%20Navidad%20(2020).mp4"
+    },
+    {
+     "n": 34,
+     "t": "Os Espetaculares (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Os%20Espetaculares%20(2020).mp4"
+    },
+    {
+     "n": 35,
+     "t": "Paranormal Activity (2009)",
+     "url": "https://archive.org/download/wendy-2020_202012/Paranormal%20Activity%20(2009).mp4"
+    },
+    {
+     "n": 36,
+     "t": "Paranormal Activity Los señalados (2014)",
+     "url": "https://archive.org/download/wendy-2020_202012/Paranormal%20Activity%20Los%20sen%CC%83alados%20(2014).mp4"
+    },
+    {
+     "n": 37,
+     "t": "Paranormal Activity Tokyo Night (2010)",
+     "url": "https://archive.org/download/wendy-2020_202012/Paranormal%20Activity%20Tokyo%20Night%20(2010).mp4"
+    },
+    {
+     "n": 38,
+     "t": "PAW Patrol Jet to the Rescue (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/PAW%20Patrol%20Jet%20to%20the%20Rescue%20(2020).mp4"
+    },
+    {
+     "n": 39,
+     "t": "Primer (2004)",
+     "url": "https://archive.org/download/wendy-2020_202012/Primer%20(2004).mp4"
+    },
+    {
+     "n": 40,
+     "t": "Rocambola (2019)",
+     "url": "https://archive.org/download/wendy-2020_202012/Rocambola%20(2019).mp4"
+    },
+    {
+     "n": 41,
+     "t": "Scream at the Devil (2015)",
+     "url": "https://archive.org/download/wendy-2020_202012/Scream%20at%20the%20Devil%20(2015).mp4"
+    },
+    {
+     "n": 42,
+     "t": "Se busca papá (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Se%20busca%20papa%CC%81%20(2020).mp4"
+    },
+    {
+     "n": 43,
+     "t": "Sentadas en el umbral (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Sentadas%20en%20el%20umbral%20(2020).mp4"
+    },
+    {
+     "n": 44,
+     "t": "Sin Origen (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Sin%20Origen%20(2020).mp4"
+    },
+    {
+     "n": 45,
+     "t": "Spontaneous (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Spontaneous%20(2020).mp4"
+    },
+    {
+     "n": 46,
+     "t": "Stargirl (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Stargirl%20(2020).mp4"
+    },
+    {
+     "n": 47,
+     "t": "Superman - Hombre del Mañana (2020) (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Superman%20-%20Hombre%20del%20Man%CC%83ana%20(2020)%20(2020).mp4"
+    },
+    {
+     "n": 48,
+     "t": "The Current Occupant (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/The%20Current%20Occupant%20(2020).mp4"
+    },
+    {
+     "n": 49,
+     "t": "The Sputnik (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/The%20Sputnik%20(2020).mp4"
+    },
+    {
+     "n": 50,
+     "t": "The Wrong Mommy (2019)",
+     "url": "https://archive.org/download/wendy-2020_202012/The%20Wrong%20Mommy%20(2019).mp4"
+    },
+    {
+     "n": 51,
+     "t": "Think Like a Dog (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Think%20Like%20a%20Dog%20(2020).mp4"
+    },
+    {
+     "n": 52,
+     "t": "Tut Tut Cory Bólidos Navidad (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Tut%20Tut%20Cory%20Bo%CC%81lidos%20Navidad%20(2020).mp4"
+    },
+    {
+     "n": 53,
+     "t": "Vampiros contra el Bronx (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Vampiros%20contra%20el%20Bronx%20(2020).mp4"
+    },
+    {
+     "n": 54,
+     "t": "Voces (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Voces%20(2020).mp4"
+    },
+    {
+     "n": 55,
+     "t": "Wendy (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Wendy%20(2020).mp4"
+    },
+    {
+     "n": 56,
+     "t": "Whiteout (2009)",
+     "url": "https://archive.org/download/wendy-2020_202012/Whiteout%20(2009).mp4"
+    },
+    {
+     "n": 57,
+     "t": "Wish Upon a Unicorn (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Wish%20Upon%20a%20Unicorn%20(2020).mp4"
+    },
+    {
+     "n": 58,
+     "t": "Work It Al ritmo de los sueños (2020)",
+     "url": "https://archive.org/download/wendy-2020_202012/Work%20It%20Al%20ritmo%20de%20los%20suen%CC%83os%20(2020).mp4"
+    },
+    {
+     "n": 59,
+     "t": "Zombi Child (2019)",
+     "url": "https://archive.org/download/wendy-2020_202012/Zombi%20Child%20(2019).mp4"
     }
    ]
   }
@@ -211325,6 +211633,11 @@
    "dest": "#/pelicula/masters-del-universo",
    "t": "Masters del Universo",
    "at": 1791610305812
+  },
+  "r7snjm": {
+   "dest": "#/anime/tokyo-revenger-latino/1",
+   "t": "Tokyo Revenger Latino · E1",
+   "at": 1791610850850
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -211338,5 +211651,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "SpGqbzKErd6gybBYxLEcHksDf+M9M/bMVdVe+6v3lr31F/vLjoiYN4zCR/EsHoDV69TZtzDWwtOzVIbhVwXZEA=="
+ "sig": "NbjKrHH3AzF53DPP1ir1wiUEc4Q2J7eBT23IvXDTF52yHlwtkM2uv2oXRhMkyhJBLJO18bkhKAMyvd8UwMl/KQ=="
 }
