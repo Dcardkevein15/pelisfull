@@ -3724,3 +3724,12 @@ body.chat-full .cmu-list{max-height:44vh}
   font-size:13px;transition:all .15s;
 }
 .ax-tool:hover .ax-tool-go{background:var(--acid);border-color:var(--acid);color:#0a0a12;transform:translateX(2px)}
+
+/* 🔧 Herramientas trasladadas al perfil: estos 3 botones JAMÁS aparecen
+   en el topbar aunque seas admin — viven ocultos con sus listeners      */
+body.admin-on #cineBtn.hidden,
+body.staff-on #cineBtn.hidden,
+body.admin-on #driveFolderBtn.hidden,
+body.staff-on #driveFolderBtn.hidden,
+body.admin-on #coinsAdminBtn.hidden,
+body.staff-on #coinsAdminBtn.hidden{display:none!important}
