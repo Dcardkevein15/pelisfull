@@ -319,20 +319,21 @@
       ${p.link ? `<a class="soc-post-link" href="${esc(p.link)}" target="_blank" rel="noopener">🔗 ${esc(p.link)}</a>` : ''}
       ${p.poll ? pollHtml(p) : ''}
       <div class="soc-post-acts">
-        <button class="soc-act lk ${liked ? 'on' : ''}" title="Me gusta">❤️ ${p.likes.length}</button>
-        <button class="soc-act cm" title="Comentarios">💬 ${comments.length}</button>
+        <button class="soc-act lk ${liked ? 'on' : ''}" title="Me gusta">👍 ${p.likes.length}</button>
+        <button class="soc-act cm" title="Ir a los comentarios">💬 ${comments.length}</button>
         <button class="soc-act sh" title="Compartir (copia el enlace)">↗ Compartir${p.shares ? ' · ' + p.shares : ''}</button>
-        <button class="soc-act sv save ${saved ? 'on' : ''}" title="Guardar">🔖 ${saved ? 'Guardado' : 'Guardar'}</button>
+        <button class="soc-act sv save ${saved ? 'on' : ''}" title="Guardar">🔖</button>
       </div>
-      <div class="soc-comments hidden">
-        ${comments.map(c => `
+      <div class="soc-comments">
+        ${comments.length ? comments.map(c => `
           <div class="soc-comment">
             ${avatarHtml(c.name, 0, 'sm')}
             <div class="soc-comment-b"><b>${esc(c.name)}</b><p>${esc(c.text)}</p><small>${ago(c.at)}</small></div>
-          </div>`).join('')}
+          </div>`).join('') : `<div class="soc-comments-none">Aún sin comentarios — sé el primero 👇</div>`}
         <div class="soc-comment-new">
           ${avatarHtml(S.me.name, S.me.grad, 'sm')}
           <input placeholder="Escribe un comentario…" maxlength="400">
+          <button class="soc-btn soc-btn-green soc-comment-send">Enviar</button>
         </div>
       </div>`;
     const lk = d.querySelector('.lk');
@@ -342,13 +343,18 @@
       if (r) { p.likes = r.mine ? [...p.likes] : p.likes; lk.textContent = '❤️ ' + r.likes; }
       refreshSoon();
     });
-    d.querySelector('.cm').addEventListener('click', () => d.querySelector('.soc-comments').classList.toggle('hidden'));
+    d.querySelector('.cm').addEventListener('click', () => d.querySelector('.soc-comment-new input').focus());
     const cIn = d.querySelector('.soc-comment-new input');
-    cIn.addEventListener('keydown', async ev => {
-      if (ev.key !== 'Enter' || !cIn.value.trim()) return;
+    const sendComment = async () => {
+      if (!cIn.value.trim()) { cIn.focus(); return; }
+      const btn = d.querySelector('.soc-comment-send');
+      btn.disabled = true; btn.textContent = '…';
       const r = await socCall('comment', { postId: p.id, text: cIn.value.trim() }, true);
-      if (r) { toast('💬 Comentario publicado'); refresh(); }
-    });
+      if (r) { cIn.value = ''; toast('💬 Comentario publicado'); refresh(); }
+      btn.disabled = false; btn.textContent = 'Enviar';
+    };
+    cIn.addEventListener('keydown', ev => { if (ev.key === 'Enter') sendComment(); });
+    d.querySelector('.soc-comment-send').addEventListener('click', sendComment);
     d.querySelector('.sh').addEventListener('click', async () => {
       const url = location.origin + location.pathname + '#p-' + p.id;
       try { await navigator.clipboard.writeText(url); toast('↗ Enlace de la publicación copiado'); } catch (e) { toast(url); }
