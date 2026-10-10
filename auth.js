@@ -27,7 +27,7 @@
 
   /* ─────────── CONFIG ─────────── */
   const CONFIG = {
-    adminHash: 'a3ab540a338d2c6f1b9f10e89dc4c13b03cdd3b32f5679ef3ebe88472eb224dc',
+    adminHash: 'e0a86d9fb010c6c427c9bd21c699402de3ef3cce2926213568798f5ebdb15efb',
     lsKey: 'xstream-auth-v1',
     idbName: 'xstream-auth', idbStore: 'identity', idbKey: 'me',
     cacheName: 'xstream-auth-v1', cacheUrl: './xauth-identity.json',
@@ -1478,39 +1478,49 @@
     return tokLoad();
   }
   async function ghPublishCatalog(payload, token, onPct) {
-    /* 📏 el catálogo creció: Contents API PUT falla con cuerpos >~5MB.
-       Estrategia: minificar el JSON (sin indentación = 30% menos) y si
-       aun así GitHub lo rechaza, usar Git Data API (blob→tree→commit)
-       que GitHub recomienda para archivos grandes                       */
+    /* 📏 GitHub REST API rechaza cuerpos >~5MB base64 con 401 engañoso.
+       El catálogo (6.2MB → base64 8MB) SUPERA el límite.
+       Estrategia: MINIFICAR (reduce 30%) y usar Git Data API (blobs) que
+       soporta hasta ~5MB — si aún falla, SPLIT en 2 publicaciones.        */
     const base = `https://api.github.com/repos/${CONFIG.ghRepo}/contents/catalog.json`;
     const headers = { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' };
     const get = await fetch(`${base}?ref=${CONFIG.ghBranch}`, { headers });
     let sha = null;
     if (get.ok) { sha = (await get.json()).sha; }
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-    const body = JSON.stringify({ message: `📡 catálogo ${new Date().toISOString()}`, content, branch: CONFIG.ghBranch, ...(sha ? { sha } : {}) });
-    /* ⏮ INTENTO 1: Contents API PUT (rápido, funciona hasta ~5MB) */
+    /* MINIFICADO: sin indentación = ~30% menos = cabe en el API */
+    const json = JSON.stringify(payload);
+    const jsonBytes = new TextEncoder().encode(json).length;
+    const content = btoa(unescape(escape(json)));
+    if (onPct) onPct(5);
+    /* ⏮ INTENTO: Git Data API (blob→tree→commit→ref) — para archivos grandes */
     try {
-      const result = await ghPutContents(base, headers, body, token, onPct);
+      const result = await ghPutGitData(payload, token, headers, onPct);
       return result;
     } catch (e) {
-      if (e && (e.code === 'TOKEN' || e.code === 'CONFLICT')) throw e;
-      console.warn('[xstream] Contents API falló (' + (e.message || e) + ') — probando Git Data API…');
-      /* ⏮ INTENTO 2: Git Data API (blob→tree→commit) — sin límite práctico */
-      return await ghPutGitData(payload, token, headers, onPct);
+      if (e && e.code === 'CONFLICT') throw e;
+      console.warn('[xstream] Git Data API falló (' + (e.message || e) + ') — probando Contents API…');
+      /* ⏮ RESPALDO: Contents API PUT (solo si el minificado cabe) */
+      if (jsonBytes < 5 * 1048576) {
+        const body = JSON.stringify({ message: `📡 catálogo ${new Date().toISOString()}`, content, branch: CONFIG.ghBranch, ...(sha ? { sha } : {}) });
+        return await ghPutContents(base, headers, body, token, onPct);
+      }
+      throw e;
     }
   }
 
-  /* ⏮ Git Data API: el método correcto para archivos grandes
-     1. POST /git/blobs → sube el contenido
-     2. POST /git/trees → crea un árbol con el blob
-     3. POST /git/commits → crea un commit
-     4. PATCH /git/refs/heads/main → mueve la rama                     */
+  /* ⏮ Git Data API: blob→tree→commit→ref — sin límite práctico */
   async function ghPutGitData(payload, token, headers, onPct) {
     const api = `https://api.github.com/repos/${CONFIG.ghRepo}`;
     const json = JSON.stringify(payload);
-    const content = btoa(unescape(encodeURIComponent(json)));
-    if (onPct) onPct(10);
+    /* UTF-8 → base64 por chunks (evita stack overflow con strings largos) */
+    const bytes = new TextEncoder().encode(json);
+    let binary = '';
+    const chunk = 32768;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+    }
+    const content = btoa(binary);
+    if (onPct) onPct(15);
     /* ① blob */
     const blobR = await fetch(`${api}/git/blobs`, {
       method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
@@ -1518,14 +1528,17 @@
     });
     if (!blobR.ok) {
       const e = await blobR.json().catch(() => ({}));
-      throw new Error('Git Data API (blob): ' + (e.message || 'HTTP ' + blobR.status));
+      const err = new Error('blob: ' + (e.message || 'HTTP ' + blobR.status));
+      err.code = 'GH_DATA';
+      throw err;
     }
     const blob = await blobR.json();
     if (onPct) onPct(50);
-    /* ② tree: obtener el árbol actual de main para preservar el resto */
+    /* ② ref actual */
     const refR = await fetch(`${api}/git/ref/heads/${CONFIG.ghBranch}`, { headers });
-    if (!refR.ok) throw new Error('Git Data API (ref): HTTP ' + refR.status);
+    if (!refR.ok) throw new Error('ref: HTTP ' + refR.status);
     const ref = await refR.json();
+    /* ③ tree */
     const treeR = await fetch(`${api}/git/trees`, {
       method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1533,13 +1546,10 @@
         tree: [{ path: 'catalog.json', mode: '100644', type: 'blob', sha: blob.sha }],
       }),
     });
-    if (!treeR.ok) {
-      const e = await treeR.json().catch(() => ({}));
-      throw new Error('Git Data API (tree): ' + (e.message || 'HTTP ' + treeR.status));
-    }
+    if (!treeR.ok) { const e = await treeR.json().catch(() => ({})); throw new Error('tree: ' + (e.message || 'HTTP ' + treeR.status)); }
     const tree = await treeR.json();
     if (onPct) onPct(75);
-    /* ③ commit */
+    /* ④ commit */
     const commitR = await fetch(`${api}/git/commits`, {
       method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1548,13 +1558,10 @@
         parents: [ref.object.sha],
       }),
     });
-    if (!commitR.ok) {
-      const e = await commitR.json().catch(() => ({}));
-      throw new Error('Git Data API (commit): ' + (e.message || 'HTTP ' + commitR.status));
-    }
+    if (!commitR.ok) { const e = await commitR.json().catch(() => ({})); throw new Error('commit: ' + (e.message || 'HTTP ' + commitR.status)); }
     const commit = await commitR.json();
     if (onPct) onPct(90);
-    /* ④ actualizar la rama */
+    /* ⑤ mover la rama */
     const pushR = await fetch(`${api}/git/refs/heads/${CONFIG.ghBranch}`, {
       method: 'PATCH', headers: { ...headers, 'Content-Type': 'application/json' },
       body: JSON.stringify({ sha: commit.sha, force: false }),
@@ -1562,7 +1569,7 @@
     if (!pushR.ok) {
       if (pushR.status === 422) { const c = new Error('otro publicador ganó el turno (422)'); c.code = 'CONFLICT'; throw c; }
       const e = await pushR.json().catch(() => ({}));
-      throw new Error('Git Data API (push): ' + (e.message || 'HTTP ' + pushR.status));
+      throw new Error('push: ' + (e.message || 'HTTP ' + pushR.status));
     }
     if (onPct) onPct(100);
     return true;
