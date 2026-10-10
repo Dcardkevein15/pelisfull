@@ -1478,18 +1478,98 @@
     return tokLoad();
   }
   async function ghPublishCatalog(payload, token, onPct) {
+    /* 📏 el catálogo creció: Contents API PUT falla con cuerpos >~5MB.
+       Estrategia: minificar el JSON (sin indentación = 30% menos) y si
+       aun así GitHub lo rechaza, usar Git Data API (blob→tree→commit)
+       que GitHub recomienda para archivos grandes                       */
     const base = `https://api.github.com/repos/${CONFIG.ghRepo}/contents/catalog.json`;
     const headers = { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' };
-    /* necesitamos el SHA actual del archivo para poder sobreescribirlo */
     const get = await fetch(`${base}?ref=${CONFIG.ghBranch}`, { headers });
     let sha = null;
     if (get.ok) { sha = (await get.json()).sha; }
-    /* UTF-8 → base64 sin romper tildes/emoji */
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 1))));
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
     const body = JSON.stringify({ message: `📡 catálogo ${new Date().toISOString()}`, content, branch: CONFIG.ghBranch, ...(sha ? { sha } : {}) });
-    /* ⏫ XHR con progreso REAL de bytes: fetch no puede reportar la subida,
-       y este es el paso más largo (MBs) — el % en vivo evita la sensación
-       de «no está pasando nada» justo cuando más tarda                     */
+    /* ⏮ INTENTO 1: Contents API PUT (rápido, funciona hasta ~5MB) */
+    try {
+      const result = await ghPutContents(base, headers, body, token, onPct);
+      return result;
+    } catch (e) {
+      if (e && (e.code === 'TOKEN' || e.code === 'CONFLICT')) throw e;
+      console.warn('[xstream] Contents API falló (' + (e.message || e) + ') — probando Git Data API…');
+      /* ⏮ INTENTO 2: Git Data API (blob→tree→commit) — sin límite práctico */
+      return await ghPutGitData(payload, token, headers, onPct);
+    }
+  }
+
+  /* ⏮ Git Data API: el método correcto para archivos grandes
+     1. POST /git/blobs → sube el contenido
+     2. POST /git/trees → crea un árbol con el blob
+     3. POST /git/commits → crea un commit
+     4. PATCH /git/refs/heads/main → mueve la rama                     */
+  async function ghPutGitData(payload, token, headers, onPct) {
+    const api = `https://api.github.com/repos/${CONFIG.ghRepo}`;
+    const json = JSON.stringify(payload);
+    const content = btoa(unescape(encodeURIComponent(json)));
+    if (onPct) onPct(10);
+    /* ① blob */
+    const blobR = await fetch(`${api}/git/blobs`, {
+      method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content, encoding: 'base64' }),
+    });
+    if (!blobR.ok) {
+      const e = await blobR.json().catch(() => ({}));
+      throw new Error('Git Data API (blob): ' + (e.message || 'HTTP ' + blobR.status));
+    }
+    const blob = await blobR.json();
+    if (onPct) onPct(50);
+    /* ② tree: obtener el árbol actual de main para preservar el resto */
+    const refR = await fetch(`${api}/git/ref/heads/${CONFIG.ghBranch}`, { headers });
+    if (!refR.ok) throw new Error('Git Data API (ref): HTTP ' + refR.status);
+    const ref = await refR.json();
+    const treeR = await fetch(`${api}/git/trees`, {
+      method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        base_tree: ref.object.sha,
+        tree: [{ path: 'catalog.json', mode: '100644', type: 'blob', sha: blob.sha }],
+      }),
+    });
+    if (!treeR.ok) {
+      const e = await treeR.json().catch(() => ({}));
+      throw new Error('Git Data API (tree): ' + (e.message || 'HTTP ' + treeR.status));
+    }
+    const tree = await treeR.json();
+    if (onPct) onPct(75);
+    /* ③ commit */
+    const commitR = await fetch(`${api}/git/commits`, {
+      method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `📡 catálogo ${new Date().toISOString()}`,
+        tree: tree.sha,
+        parents: [ref.object.sha],
+      }),
+    });
+    if (!commitR.ok) {
+      const e = await commitR.json().catch(() => ({}));
+      throw new Error('Git Data API (commit): ' + (e.message || 'HTTP ' + commitR.status));
+    }
+    const commit = await commitR.json();
+    if (onPct) onPct(90);
+    /* ④ actualizar la rama */
+    const pushR = await fetch(`${api}/git/refs/heads/${CONFIG.ghBranch}`, {
+      method: 'PATCH', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sha: commit.sha, force: false }),
+    });
+    if (!pushR.ok) {
+      if (pushR.status === 422) { const c = new Error('otro publicador ganó el turno (422)'); c.code = 'CONFLICT'; throw c; }
+      const e = await pushR.json().catch(() => ({}));
+      throw new Error('Git Data API (push): ' + (e.message || 'HTTP ' + pushR.status));
+    }
+    if (onPct) onPct(100);
+    return true;
+  }
+
+  /* ⏮ Contents API PUT con XHR para el % de progreso */
+  async function ghPutContents(base, headers, body, token, onPct) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open('PUT', base);
