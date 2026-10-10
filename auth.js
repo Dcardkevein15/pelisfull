@@ -1241,14 +1241,18 @@
     const live = await fetchRemoteCatalog();
     if (live) mergeLiveCatalog(live);
     /* 📢 ADOPTAR el snap de Telegram del catálogo VIVO: la otra PC lo
-       publicó dentro del catálogo — sin esto, cada PC anunciaba TODO
-       porque su localStorage no tenía el snap de la otra                   */
+       publicó dentro del catálogo. Se adopta si tiene MÁS entradas que
+       el local (comparar timestamps fallaba: el local siempre parecía
+       «más nuevo» porque se guarda DESPUÉS del publish, pero podía estar
+       incompleto). Con la unión por cantidad, siempre gana el más
+       completo.                                                        */
     if (live && live.tgSnap && typeof live.tgSnap === 'object') {
       try {
         const mine = JSON.parse(localStorage.getItem('xstream-tg-snap-v1') || 'null');
-        const liveAt = new Date(live.at || live.v || Date.now()).getTime();
-        if (!mine || liveAt > (mine.at || 0)) {
-          localStorage.setItem('xstream-tg-snap-v1', JSON.stringify({ v: live.v, at: liveAt, items: live.tgSnap }));
+        const remoteCount = Object.keys(live.tgSnap).length;
+        const localCount = mine && mine.items ? Object.keys(mine.items).length : 0;
+        if (!mine || remoteCount > localCount) {
+          localStorage.setItem('xstream-tg-snap-v1', JSON.stringify({ v: live.v, at: Date.now(), items: live.tgSnap }));
         }
       } catch (e) { }
     }
@@ -1867,8 +1871,26 @@ xhr.setRequestHeader('Content-Type', 'application/json');
   /* punto de entrada tras publicar: anuncia solo el delta, con foto y botón */
   async function telegramAnnounce(payload) {
     const token = vaultGet('tgBotToken'), chat = vaultGet('tgChat');
-    if (!token || !chat) return;                                   /* no configurado → silencio total */
-    const prev = tgSnapLoad();
+    if (!token || !chat) return;
+    /* 🔀 FUSIÓN DE SNAPS: unión del snap LOCAL (localStorage) + el snap
+       REMOTO (viaja dentro del catálogo publicado por la otra PC). Esto
+       garantiza que ambas computadoras compartan la MISMA base de
+       «ya anunciado» — aunque una tenga un snap viejo, la otra lo cubre. */
+    const localSnap = tgSnapLoad();
+    const remoteSnap = payload.tgSnap;
+    let snapItems = null;
+    if (remoteSnap || (localSnap && localSnap.items)) {
+      snapItems = {};
+      /* remoto primero (más reciente desde la otra PC) */
+      if (remoteSnap) for (const id of Object.keys(remoteSnap)) snapItems[id] = remoteSnap[id];
+      /* local rellena huecos que el remoto no tenga */
+      if (localSnap && localSnap.items) {
+        for (const id of Object.keys(localSnap.items)) {
+          if (!snapItems[id]) snapItems[id] = localSnap.items[id];
+        }
+      }
+    }
+    const prev = snapItems ? { items: snapItems } : null;
     const events = buildTelegramEvents(payload, prev && prev.items);
     if (!prev) {
       tgSnapSave(payload);
