@@ -95,8 +95,13 @@
     }
     return null;
   };
-  const catLink = s => `../#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${encodeURIComponent(slugify(s.t))}${s.kind === 'pelicula' ? '' : '/1'}`;
   const hotCatalog = () => S.catalog.filter(s => s.kind !== 'pelicula' || s.genre).slice(0, 30);
+
+  /* 🔗 enlace al SITIO PRINCIPAL que funciona en web Y en local:
+     web → ../  ·  file:// → ../index.html (si no, el navegador muestra el
+     listado de la carpeta en vez de abrir la app)                        */
+  const mainLink = h => (location.protocol === 'file:' ? '../index.html' : '../') + (h || '');
+  const catLink = s => mainLink(`#/${s.kind === 'pelicula' ? 'pelicula' : 'anime'}/${encodeURIComponent(slugify(s.t))}${s.kind === 'pelicula' ? '' : '/1'}`);
 
   /* ═══════════ TOPBAR ═══════════ */
   function renderMe() {
@@ -112,7 +117,7 @@
       <button data-me="perfil">🧑 Mi perfil</button>
       <button data-me="guardados">🔖 Guardados (${S.saved.length})</button>
       <button data-me="intereses">⭐ Mis intereses</button>
-      <a href="../">🎬 Ir a XSTREAM</a>`;
+      <a href="${mainLink('')}">🎬 Ir a XSTREAM</a>`;
     $('socMeDrop').querySelectorAll('[data-me]').forEach(b => b.addEventListener('click', () => {
       $('socMeDrop').classList.add('hidden');
       if (b.dataset.me === 'perfil') openProfile(S.me.uid);
@@ -235,29 +240,202 @@
     if (!a) { box.classList.add('hidden'); box.innerHTML = ''; return; }
     box.classList.remove('hidden');
     if (a.kind === 'img') box.innerHTML = `<img src="${esc(a.url)}" alt=""><span>Imagen adjunta</span><button class="soc-x" id="ssAttX">✕</button>`;
+    if (a.kind === 'vid') box.innerHTML = `<img src="https://i.ytimg.com/vi/${esc(a.url)}/hqdefault.jpg" alt=""><span>Vídeo de YouTube adjunto</span><button class="soc-x" id="ssAttX">✕</button>`;
     if (a.kind === 'link') box.innerHTML = `<span>🔗</span><span style="word-break:break-all">${esc(a.url)}</span><button class="soc-x" id="ssAttX">✕</button>`;
     if (a.kind === 'poll') box.innerHTML = `<span>📊</span><span>Encuesta: ${a.options.length} opciones</span><button class="soc-x" id="ssAttX">✕</button>`;
     $('ssAttX').addEventListener('click', () => { S.attach = null; renderAttach(); });
   }
-  document.querySelectorAll('.soc-tool').forEach(t => t.addEventListener('click', async () => {
-    const k = t.dataset.tool;
-    if (k === 'foto' || k === 'gif') {
-      openSheet(`
-        <div class="soc-card-h"><span>${k === 'gif' ? '🎞 Añadir GIF o imagen' : '📷 Añadir foto o vídeo'}</span></div>
-        <input id="ssIm" placeholder="Pega la URL de la imagen (https://…)" style="width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:9px;outline:none">
-        ${S.catalog.length ? `<p style="color:var(--faint);font-size:11px;margin:10px 0 6px">…o elige un póster real de tu catálogo:</p>
-        <div style="max-height:240px;overflow-y:auto;display:flex;gap:8px;flex-wrap:wrap" id="ssPickC">
-          ${S.catalog.slice(0, 24).map(c => `<img data-p="${esc(c.poster)}" src="${esc(c.poster)}" style="width:52px;height:74px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid var(--line)">`).join('')}
-        </div>` : ''}
-        <div style="margin-top:13px"><button class="soc-btn soc-btn-green" id="ssImGo">Adjuntar</button></div>`);
-      $('ssPickC')?.querySelectorAll('img').forEach(i => i.addEventListener('click', () => { $('ssIm').value = i.dataset.p; }));
-      $('ssImGo').addEventListener('click', () => {
-        const u = $('ssIm').value.trim();
-        if (!/^https?:\/\//.test(u)) { toast('⚠ Pega una URL válida (https://…)', true); return; }
-        S.attach = { kind: 'img', url: u };
-        closeSheet(); renderAttach();
-      });
+  /* ═══════════ 🎬 ESTUDIO DE MEDIOS — herramientas profesionales ═══════════
+     3 pestañas: Imágenes (URL + TMDB real + catálogo) · Vídeos (trailers
+     oficiales de películas/series/anime reales + búsqueda YouTube) · Ideas
+     (plantillas que incentivan a abrir temas). Adjunta como imagen o video. */
+  async function tmdbMultiSearch(q) {
+    try {
+      const r = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_KEY}&language=es-ES&query=${encodeURIComponent(q)}&page=1&include_adult=false`);
+      if (!r.ok) return [];
+      const j = await r.json();
+      return (j.results || []).filter(x => x && x.media_type !== 'person' && (x.poster_path || x.backdrop_path));
+    } catch (e) { return []; }
+  }
+  async function ytSearchPiped(q) {
+    const INSTANCES = ['https://pipedapi.kavin.rocks', 'https://pipedapi.adminforge.de', 'https://api.piped.private.coffee'];
+    for (const base of INSTANCES) {
+      try {
+        const r = await fetch(`${base}/search?q=${encodeURIComponent(q)}&filter=videos`);
+        if (!r.ok) continue;
+        const j = await r.json();
+        if (j && j.items) {
+          return j.items.filter(i => i && !i.isShort && (i.url || '').includes('v='))
+            .slice(0, 12)
+            .map(i => ({ key: (i.url.split('v=')[1] || '').split('&')[0], title: i.title, author: i.uploaderName, dur: i.duration }));
+        }
+      } catch (e) { }
     }
+    return [];
+  }
+  async function tmdbOfficialTrailers(q) {
+    const res = await tmdbMultiSearch(q);
+    const out = [];
+    for (const it of res.slice(0, 8)) {
+      if (!it.media_type || it.media_type === 'person') continue;
+      try {
+        let v = await fetch(`https://api.themoviedb.org/3/${it.media_type}/${it.id}/videos?api_key=${TMDB_KEY}&language=es-ES`).then(r => r.json()).catch(() => null);
+        let vids = (v && v.results) || [];
+        if (!vids.length) vids = ((await fetch(`https://api.themoviedb.org/3/${it.media_type}/${it.id}/videos?api_key=${TMDB_KEY}&language=en-US`).then(r => r.json()).catch(() => ({}))).results) || [];
+        const t = vids.find(x => x.site === 'YouTube' && /Trailer|Teaser/i.test(x.type || '')) || vids.find(x => x.site === 'YouTube');
+        if (t) {
+          out.push({ key: t.key, title: it.title || it.name, tipo: it.media_type === 'movie' ? 'Película' : 'Serie', official: true });
+          if (out.length >= 6) break;
+        }
+      } catch (e) { }
+      await new Promise(r => setTimeout(r, 60));
+    }
+    return out;
+  }
+  const IDEAS = [
+    { ic: '🔥', t: 'El estreno que todos deben ver', txt: 'Acabo de ver «…» y tengo que contarlo: sin spoilers, ¿pero qué escena es la que más les gustó? 🍿' },
+    { ic: '⚔️', t: 'Mi anime del momento', txt: 'Si solo pudieran ver UN anime esta temporada, sería «…». ¿Alguien más lo está siguiendo? 👾' },
+    { ic: '🧛', t: 'Recomiéndame algo parecido', txt: 'Amé «…» — ¿qué me recomiendan que tenga ese mismo rollo? Voy a anotar todo 📝' },
+    { ic: '😮', t: 'La escena que me marcó', txt: 'Hay escenas que no se olvidan. La mía es de «…», minuto exacto no digo 😏 ¿la suya?' },
+    { ic: '🆚', t: 'Versus eterno', txt: 'Duelo de hoy: «…» contra «…». Solo puede quedar uno. Argumentos, no insultos 😄' },
+    { ic: '🏆', t: 'Maratón del fin de semana', txt: 'Plan para el finde: maratón completa de «…». ¿Se apunta alguien? Traigo snacks 🎬' },
+  ];
+  function openMediaStudio(tab) {
+    openSheet(`
+      <div class="soc-studio">
+        <div class="soc-studio-head">
+          <b>🎬 Estudio de medios</b>
+          <small>Adjunta contenido REAL para tu publicación</small>
+        </div>
+        <nav class="soc-studio-tabs">
+          <button class="${tab === 'vid' ? '' : 'on'}" data-st="img"><span>🖼</span> Imágenes</button>
+          <button class="${tab === 'vid' ? 'on' : ''}" data-st="vid"><span>🎬</span> Vídeos</button>
+          <button class="${tab === 'temas' ? 'on' : ''}" data-st="temas"><span>💡</span> Ideas</button>
+        </nav>
+
+        <section class="soc-studio-pane ${tab === 'vid' ? '' : 'on'}" data-sp="vid">
+          <div class="soc-studio-search">
+            <input id="stVq" placeholder="Busca una película, serie o anime real — traemos su tráiler oficial…" autocomplete="off">
+            <button class="soc-btn soc-btn-green" id="stVgo">Buscar</button>
+          </div>
+          <div class="soc-studio-res" id="stVres"><div class="soc-empty">Escribe arriba y encontraré tráilers oficiales (YouTube) de la película/serie/anime real — y más vídeos de YouTube.</div></div>
+        </section>
+
+        <section class="soc-studio-pane ${tab === 'img' ? 'on' : ''}" data-sp="img">
+          <div class="soc-studio-search">
+            <input id="stIq" placeholder="Busca arte real de películas/series (TMDB)…" autocomplete="off">
+            <button class="soc-btn soc-btn-green" id="stIgo">Buscar</button>
+          </div>
+          <div class="soc-studio-res" id="stIres"></div>
+          <div class="soc-studio-sub">…o pega una URL de imagen:</div>
+          <div class="soc-studio-search">
+            <input id="stIurl" placeholder="https://… (jpg, png, gif)">
+            <button class="soc-btn soc-btn-green" id="stIurlGo">Adjuntar</button>
+          </div>
+          ${S.catalog.length ? `<div class="soc-studio-sub">…o de tu catálogo XSTREAM:</div>
+          <div class="soc-studio-res soc-studio-cat" id="stIcat">
+            ${S.catalog.slice(0, 12).map(c => `<img data-p="${esc(c.poster)}" src="${esc(c.poster)}" title="${esc(c.t)}" loading="lazy">`).join('')}
+          </div>` : ''}
+        </section>
+
+        <section class="soc-studio-pane ${tab === 'temas' ? 'on' : ''}" data-sp="temas">
+          <div class="soc-studio-sub">¿No sabes cómo empezar? Una idea, un clic, y el texto queda listo para elogiarlo a tu manera:</div>
+          <div class="soc-ideas" id="stIdeas">
+            ${IDEAS.map((it, i) => `<button class="soc-idea" data-i="${i}"><span>${it.ic}</span><b>${it.t}</b><small>${esc(it.txt.slice(0, 54))}…</small></button>`).join('')}
+          </div>
+        </section>
+      </div>`, true);
+
+    const sheet = $('socSheet');
+    sheet.querySelectorAll('.soc-studio-tabs button').forEach(b => b.addEventListener('click', () => {
+      sheet.querySelectorAll('.soc-studio-tabs button').forEach(x => x.classList.toggle('on', x === b));
+      sheet.querySelectorAll('.soc-studio-pane').forEach(p => p.classList.toggle('on', p.dataset.sp === b.dataset.st));
+    }));
+
+    /* ── pestaña VÍDEOS ── */
+    const vgo = () => attachVidSearch();
+    $('stVgo').addEventListener('click', vgo);
+    $('stVq').addEventListener('keydown', ev => { if (ev.key === 'Enter') vgo(); });
+    async function attachVidSearch() {
+      const q = $('stVq').value.trim();
+      if (q.length < 2) { toast('⚠ Escribe al menos 2 letras', true); return; }
+      const box = $('stVres');
+      box.innerHTML = '<div class="soc-empty">⏳ Buscando el tráiler oficial y vídeos…</div>';
+      const [official, general] = await Promise.all([tmdbOfficialTrailers(q), ytSearchPiped(q)]);
+      if (!document.getElementById('stVres')) return;
+      let html = '';
+      if (official.length) {
+        html += `<div class="soc-studio-sub">⭐ Tráilers OFICIALES de la película/serie/anime real</div>` + official.map(v => `
+          <button class="soc-vidpick" data-k="${esc(v.key)}">
+            <span class="soc-vidpick-th"><img src="https://i.ytimg.com/vi/${esc(v.key)}/hqdefault.jpg" loading="lazy"><i>▶</i></span>
+            <span class="soc-vidpick-b"><b>${esc(v.title)}</b><small>${v.tipo} · tráiler oficial de YouTube</small></span>
+          </button>`).join('');
+      }
+      if (general.length) {
+        html += `<div class="soc-studio-sub">▶ Más vídeos de YouTube</div>` + general.map(v => `
+          <button class="soc-vidpick" data-k="${esc(v.key)}">
+            <span class="soc-vidpick-th"><img src="https://i.ytimg.com/vi/${esc(v.key)}/hqdefault.jpg" loading="lazy"><i>▶</i></span>
+            <span class="soc-vidpick-b"><b>${esc(v.title.slice(0, 60))}</b><small>${esc(v.author || '')}${v.dur ? ' · ' + fmtDur(v.dur) : ''}</small></span>
+          </button>`).join('');
+      }
+      box.innerHTML = html || '<div class="soc-empty">Sin resultados — prueba con el título exacto de la película o serie.</div>';
+      box.querySelectorAll('.soc-vidpick').forEach(b => b.addEventListener('click', () => {
+        S.attach = { kind: 'vid', url: b.dataset.k };
+        closeSheet(); renderAttach();
+        toast('🎬 Vídeo adjuntado — Publica cuando quieras');
+      }));
+    }
+    const fmtDur = s => `${Math.floor((s || 0) / 60)}:${String((s || 0) % 60).padStart(2, '0')}`;
+
+    /* ── pestaña IMÁGENES ── */
+    const igo = async () => {
+      const q = $('stIq').value.trim();
+      if (q.length < 2) { toast('⚠ Escribe al menos 2 letras', true); return; }
+      const box = $('stIres');
+      box.innerHTML = '<div class="soc-empty">⏳ Buscando arte real…</div>';
+      const res = await tmdbMultiSearch(q);
+      if (!document.getElementById('stIres')) return;
+      box.innerHTML = res.length ? `<div class="soc-studio-imgs">` + res.map(x => `
+        <button class="soc-imgpick" data-p="https://image.tmdb.org/t/p/w780${esc(x.backdrop_path || x.poster_path)}">
+          <img src="https://image.tmdb.org/t/p/w300${esc(x.poster_path || x.backdrop_path)}" loading="lazy">
+          <b>${esc((x.title || x.name || '').slice(0, 22))}</b>
+          <small>${x.media_type === 'movie' ? 'Película' : 'Serie'}</small>
+        </button>`).join('') + '</div>'
+        : '<div class="soc-empty">Sin resultados en TMDB — prueba otro título o pega una URL abajo.</div>';
+      box.querySelectorAll('.soc-imgpick').forEach(b => b.addEventListener('click', () => {
+        S.attach = { kind: 'img', url: b.dataset.p };
+        closeSheet(); renderAttach();
+        toast('🖼 Imagen adjuntada');
+      }));
+    };
+    $('stIgo').addEventListener('click', igo);
+    $('stIq').addEventListener('keydown', ev => { if (ev.key === 'Enter') igo(); });
+    $('stIurlGo').addEventListener('click', () => {
+      const u = $('stIurl').value.trim();
+      if (!/^https?:\/\//.test(u)) { toast('⚠ Pega una URL válida (https://…)', true); return; }
+      S.attach = { kind: 'img', url: u };
+      closeSheet(); renderAttach(); toast('🖼 Imagen adjuntada');
+    });
+    $('stIcat')?.querySelectorAll('img').forEach(i => i.addEventListener('click', () => {
+      S.attach = { kind: 'img', url: i.dataset.p };
+      closeSheet(); renderAttach(); toast('🖼 Carátula de tu catálogo adjuntada');
+    }));
+
+    /* ── pestaña IDEAS ── */
+    $('stIdeas').querySelectorAll('.soc-idea').forEach(b => b.addEventListener('click', () => {
+      const idea = IDEAS[+b.dataset.i];
+      $('socPostText').value = idea.txt;
+      closeSheet();
+      $('socPostText').focus();
+      toast('💡 Idea cargada — complétala a tu manera y publica');
+    }));
+  }
+
+  /* herramientas del compositor: 📷 Foto/Vídeo y 🎞 GIF abren el ESTUDIO
+     de medios; enlace y encuesta conservan sus diálogos propios        */
+  document.querySelectorAll('.soc-tool').forEach(t => t.addEventListener('click', () => {
+    const k = t.dataset.tool;
+    if (k === 'foto' || k === 'gif') { openMediaStudio('img'); return; }
     if (k === 'enlace') {
       const u = prompt('🔗 URL del enlace a compartir:');
       if (u && /^https?:\/\//.test(u)) { S.attach = { kind: 'link', url: u }; renderAttach(); }
@@ -283,6 +461,7 @@
     const p = {
       text,
       img: S.attach && S.attach.kind === 'img' ? S.attach.url : '',
+      vid: S.attach && S.attach.kind === 'vid' ? S.attach.url : '',
       link: S.attach && S.attach.kind === 'link' ? S.attach.url : '',
       poll: S.attach && S.attach.kind === 'poll' ? JSON.stringify(S.attach.options) : '',
     };
@@ -316,6 +495,7 @@
       </div>
       ${p.text ? `<p class="soc-post-text">${withTags(p.text)}</p>` : ''}
       ${p.img ? `<div class="soc-post-img"><img src="${esc(p.img)}" loading="lazy" alt=""></div>` : ''}
+      ${p.vid ? `<div class="soc-post-vid" data-k="${esc(p.vid)}" role="button" tabindex="0"><img src="https://i.ytimg.com/vi/${esc(p.vid)}/hqdefault.jpg" loading="lazy" alt="vídeo"><span class="soc-vid-play">▶</span></div>` : ''}
       ${p.link ? `<a class="soc-post-link" href="${esc(p.link)}" target="_blank" rel="noopener">🔗 ${esc(p.link)}</a>` : ''}
       ${p.poll ? pollHtml(p) : ''}
       <div class="soc-post-acts">
@@ -370,6 +550,12 @@
       if (r) { S.saved = r.saved || S.saved; toast(on ? '🔖 Guardado' : 'Quitado de guardados'); }
     });
     d.querySelector('.soc-post-menu').addEventListener('click', () => toast('Opciones: usar Guardar o Compartir · abre el perfil tocando el avatar'));
+    /* ▶ vídeo de YouTube: portada + play → embed al instante */
+    const vd = d.querySelector('.soc-post-vid');
+    if (vd) vd.addEventListener('click', () => {
+      vd.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(vd.dataset.k)}?autoplay=1&rel=0" title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      vd.classList.add('on');
+    });
     if (p.poll) wirePoll(d, p);
     return d;
   }
@@ -478,21 +664,94 @@
   }
 
   /* ═══════════ DESCUBRIMIENTO ═══════════ */
-  function renderFeatured() {
+  /* ═══════════ CARRUSEL DESTACADO — páginas de 3 que ROTAN solas ═══════════
+     Contenido 100% real del catálogo; clic → vista previa instantánea.     */
+  let featPage = 0, featTimer = null;
+  function featuredPool() {
     const picks = [
       catFind('solo leveling', 'soraleveling'),
       catFind('dune'),
       catFind('the last of us', 'last of us'),
     ].filter(Boolean);
-    const fill = hotCatalog().filter(c => !picks.includes(c)).slice(0, 3 - picks.length);
-    const list = [...picks, ...fill].slice(0, 3);
-    $('socFeat').innerHTML = list.length ? list.map((c, i) => `
-      <a class="soc-feat-it" href="${catLink(c)}">
+    const rest = S.catalog.filter(c => !picks.includes(c) && c.poster).slice(0, 15);
+    const pool = [...picks];
+    for (const c of rest) if (!pool.includes(c)) pool.push(c);
+    return pool.slice(0, 18);
+  }
+  function renderFeatured() {
+    const pool = featuredPool();
+    const pages = [];
+    for (let i = 0; i < pool.length; i += 3) pages.push(pool.slice(i, i + 3));
+    const grid = $('socFeat'), nav = $('socFeatNav');
+    if (!grid || !nav) return;
+    if (featPage >= pages.length) featPage = 0;
+    clearInterval(featTimer);
+    if (!pages.length) {
+      grid.innerHTML = '<div class="soc-empty">El catálogo se está cargando…</div>';
+      nav.innerHTML = '';
+      return;
+    }
+    const page = pages[featPage];
+    grid.innerHTML = page.map(c => `
+      <button class="soc-feat-it" data-fid="${esc(c.id)}">
         <img src="${esc(c.poster)}" loading="lazy" alt="${esc(c.t)}">
-        ${c.kind !== 'pelicula' ? '<span class="soc-feat-badge">EN EMISIÓN</span>' : ''}
-        <span class="soc-feat-t">${esc(c.t.slice(0, 30))}<small>${esc(c.kind === 'pelicula' ? 'Película' : 'Serie · ' + (c.episodes || []).length + ' caps')}</small></span>
-      </a>`).join('') : '<div class="soc-empty">El catálogo se está cargando…</div>';
-    $('socFeatNav').innerHTML = list.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('');
+        ${c.kind !== 'pelicula' ? '<span class="soc-feat-badge">EN EMISIÓN</span>' : '<span class="soc-feat-play">▶</span>'}
+        <span class="soc-feat-t">${esc(c.t.slice(0, 30))}<small>${esc(c.kind === 'pelicula' ? 'Película completa' : 'Serie · ' + (c.episodes || []).length + ' caps')}</small></span>
+      </button>`).join('');
+    nav.innerHTML = pages.map((_, i) => `<i class="${i === featPage ? 'on' : ''}" data-fp="${i}"></i>`).join('');
+    nav.querySelectorAll('i').forEach(dot => dot.addEventListener('click', () => { featPage = +dot.dataset.fp; renderFeatured(); }));
+    grid.querySelectorAll('.soc-feat-it').forEach(b => b.addEventListener('click', () => {
+      const c = pool.find(x => x.id === b.dataset.fid);
+      if (c) openCatalogPreview(c);
+    }));
+    /* rotación automática: cada 6s, 3 títulos nuevos */
+    if (pages.length > 1) featTimer = setInterval(() => { featPage = (featPage + 1) % pages.length; renderFeatured(); }, 6000);
+  }
+
+  /* 👀 vista previa instantánea: ficha con póster, ficha TMDB en vivo,
+     botones Ver / Publicar sobre esto (adjunta el póster al compositor) */
+  async function openCatalogPreview(c) {
+    openSheet(`
+      <div class="soc-preview">
+        <div class="soc-preview-hero">
+          <img class="soc-preview-bg" src="${esc(c.poster)}" alt="">
+          <div class="soc-preview-shade"></div>
+          <img class="soc-preview-poster" src="${esc(c.poster)}" alt="${esc(c.t)}">
+          <div class="soc-preview-meta">
+            <b>${esc(c.t)}</b>
+            <small>${esc(c.kind === 'pelicula' ? '🎬 Película' : '📺 Serie · ' + (c.episodes || []).length + ' capítulos')}${c.genre ? ' · ' + esc(String(c.genre)) : ''}</small>
+          </div>
+        </div>
+        <p class="soc-preview-story" id="ssPvStory">⏳ Buscando la ficha…</p>
+        <div class="soc-preview-acts">
+          <a class="soc-btn soc-btn-green" href="${catLink(c)}" target="_self">▶ Ver en XSTREAM</a>
+          <button class="soc-btn" id="ssPvShare">↗ Copiar enlace</button>
+          <button class="soc-btn soc-btn-blue" id="ssPvPost">💬 Publicar sobre esto</button>
+        </div>
+      </div>`, true);
+    /* ficha TMDB en vivo (sinopsis) */
+    (async () => {
+      try {
+        const type = c.kind === 'pelicula' ? 'movie' : 'tv';
+        const r = await fetch(`https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_KEY}&language=es-ES&query=${encodeURIComponent(c.t)}&page=1`);
+        const j = await r.json();
+        const top = (j.results || [])[0];
+        const st = document.getElementById('ssPvStory');
+        if (st) st.textContent = top && top.overview ? top.overview : 'Sin ficha disponible — pero lo tienes completo aquí en XSTREAM.';
+      } catch (e) { }
+    })();
+    $('ssPvShare').addEventListener('click', async () => {
+      const u = catLink(c);
+      try { await navigator.clipboard.writeText(u); toast('↗ Enlace copiado'); } catch (e) { toast(u); }
+    });
+    $('ssPvPost').addEventListener('click', () => {
+      $('socPostText').value = `Acabo de encontrar «${c.t}» en XSTREAM y tengo que recomendarlo`;
+      S.attach = { kind: 'img', url: c.poster };
+      renderAttach();
+      closeSheet();
+      $('socPostText').focus();
+      toast('💬 Texto y póster listos — publica cuando quieras');
+    });
   }
   function renderSuggested() {
     const box = $('socSuggest');
@@ -693,7 +952,12 @@
   }
 
   /* ═══════════ HOJAS (overlays) ═══════════ */
-  function openSheet(inner) { $('socSheet').innerHTML = `<button class="soc-x" id="ssX">✕</button>` + inner; $('socOverlay').classList.remove('hidden'); $('ssX').addEventListener('click', closeSheet); }
+  function openSheet(inner, wide) {
+    $('socSheet').classList.toggle('wide', !!wide);
+    $('socSheet').innerHTML = `<button class="soc-x" id="ssX">✕</button>` + inner;
+    $('socOverlay').classList.remove('hidden');
+    $('ssX').addEventListener('click', closeSheet);
+  }
   function closeSheet() { clearInterval(convoTimer); $('socOverlay').classList.add('hidden'); $('socSheet').innerHTML = ''; }
   function closeSheets() { closeSheet(); document.querySelectorAll('.soc-dock.show').forEach(e => e.classList.remove('show')); }
   $('socOverlay').addEventListener('click', ev => { if (ev.target.id === 'socOverlay') closeSheet(); });
@@ -853,6 +1117,11 @@
       return;
     }
     S.me = XAUTH.id;
+    /* 🔗 enlaces al sitio principal que funcionan en web Y en local:
+       en file:// apuntan a ../index.html (si no, el navegador enseña el
+       listado de la carpeta en vez de abrir la app)                        */
+    document.querySelectorAll('[data-main]').forEach(a => { a.href = mainLink(a.dataset.main || ''); });
+    document.querySelectorAll('.soc-topnav a.on').forEach(a => { if (location.protocol === 'file:') a.href = './'; });
     /* mi clave pública para el TOFU del servidor (imprescindible firmar) */
     if (typeof XAUTH.pubKeyB64 === 'function') S.myPubKey = (await XAUTH.pubKeyB64()) || '';
     /* bio/intereses ya guardados */

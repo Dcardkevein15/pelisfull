@@ -187,11 +187,13 @@ const OPS = {
         if (opts.length >= 2) poll = { o: opts, votes: {} };
       } catch (e) { }
     }
-    const id = stableId('p', uid, text + '|' + (b.img || '') + '|' + (b.poll || ''));
+    const id = stableId('p', uid, text + '|' + (b.img || '') + '|' + (b.vid || '') + '|' + (b.link || '') + '|' + (b.poll || ''));
     /* id determinista → un reintento ACTUALIZA la misma publicación, jamás la duplica */
     const post = {
       id, uid, name: u.name || 'Usuario', tag: u.tag || '', grad: u.grad || 0, flag: u.flag || '',
-      text, img: b.img ? String(b.img).slice(0, 500) : '', link: b.link ? String(b.link).slice(0, 400) : '',
+      text, img: b.img ? String(b.img).slice(0, 500) : '',
+      vid: b.vid && /^[A-Za-z0-9_-]{6,20}$/.test(String(b.vid)) ? String(b.vid) : '',
+      link: b.link ? String(b.link).slice(0, 400) : '',
       poll, at: Date.now(), likes: [], comments: [], shares: 0, official: isOfficial,
     };
     const i = db.posts.findIndex(p => p.id === id);
