@@ -5489,7 +5489,10 @@ let importQueue = [];
 let importRunning = false;
 let iqBackground = false;   /* true mientras la cola trabaja: los import NO roban el foco */
 let iqMerged = 0;
-try { importQueue = JSON.parse(localStorage.getItem(IQ_KEY) || '[]'); } catch (e) { importQueue = []; }
+try {
+  importQueue = JSON.parse(localStorage.getItem(IQ_KEY) || '[]')
+    .filter(q => !iqDeadHas(q.url) || q.status === 'queued');   /* ⚰️ lo enterrado jamás carga */
+} catch (e) { importQueue = []; }
 const iqPersist = () => { try { localStorage.setItem(IQ_KEY, JSON.stringify(importQueue)); } catch (e) { } };
 
 /* 🔁 REGISTRO ANTI-LOOP: enlaces ya revisados y PUBLICADOS de verdad.
@@ -5508,18 +5511,28 @@ const iqReviewedHas = url => iqReviewedAll().includes(url);
 
 /* ⚰️ CEMENTERIO de enlaces: lo que el admin ELIMINA o lo que caduca se
    entierra AQUÍ — y una URL enterrada JAMÁS se re-adopta desde la nube.
-   Este es el fin del BUCLE de resurrección: purga → la nube lo devuelve
-   → purga → toast cada 30 segundos… nunca más.                          */
+   Doble capa: memoria viva (incluso si localStorage falla) + disco.      */
 const IQ_DEAD_KEY = 'xstream-iq-dead-v1';
+const IQ_DEAD_MEM = new Set();
 const iqDeadAll = () => { try { return JSON.parse(localStorage.getItem(IQ_DEAD_KEY) || '[]'); } catch (e) { return []; } };
 function iqDeadAdd(urls) {
+  for (const u of urls) if (u) IQ_DEAD_MEM.add(u);   /* memoria: a prueba de todo */
   try {
-    const all = new Set(iqDeadAll());
-    for (const u of urls) all.add(u);
+    const all = new Set([...IQ_DEAD_MEM, ...iqDeadAll()]);
     localStorage.setItem(IQ_DEAD_KEY, JSON.stringify([...all].slice(-500)));
   } catch (e) { }
 }
-const iqDeadHas = url => iqDeadAll().includes(url);
+function iqDeadDelete(urls) {
+  for (const u of urls) if (u) IQ_DEAD_MEM.delete(u);
+  try {
+    const all = new Set(iqDeadAll());
+    for (const u of urls) all.delete(u);
+    localStorage.setItem(IQ_DEAD_KEY, JSON.stringify([...all].slice(-500)));
+    for (const u of urls) IQ_DEAD_MEM.add(u);   /* re-sync memoria con disco */
+    for (const u of urls) IQ_DEAD_MEM.delete(u);
+  } catch (e) { }
+}
+const iqDeadHas = url => IQ_DEAD_MEM.has(url) || iqDeadAll().includes(url);
 
 /* 🕒 marca de la última cola que ESTE navegador escribió a GitHub: si el
    CDN nos sirve una versión MÁS VIEJA (cache), se ignora — no re-adoptamos
@@ -5748,7 +5761,8 @@ async function iqMonitorRefresh() {
 /* 🔁⏳🗑 gestión de descartados: reintentar UN enlace a mano (si ya lo
    hiciste público en Drive) o eliminarlo de la cola para siempre.     */
 async function iqRetryOne(q) {
-  q.status = 'queued'; q.attempts = 0; q.nextRetryAt = 0; q.error = '';
+  q.status = 'queued'; q.attempts = 0; q.nextRetryAt = 0; q.error = ''; q.keep = false;
+  iqDeadDelete([q.url]);   /* reintentar = despertar del cementerio */
   iqPersist();
   await iqSyncRemote();
   const disp = await iqDispatchCloud();
@@ -6163,10 +6177,11 @@ els.confirmDrive.addEventListener('click', async () => {
   const invalid = links.filter(l => !l.type);
   if (!links.length) { setDriveStatus('⚠ Pega al menos un enlace.', 'err'); return; }
   if (!valid.length) { setDriveStatus('⚠ Ningún enlace reconocido.\nSoportados: Drive (archivo/carpeta), Streamtape /v/ o /e/, Mega archivo, enlace directo.', 'err'); return; }
-  /* encolar (con campos de reintento) */
+  /* encolar (los reimportados a propósito DESPIERTAN del cementerio) */
   for (const l of valid) {
     importQueue.push({ url: l.url, type: l.type, status: 'queued', name: '', error: '', attempts: 0, nextRetryAt: 0, addedAt: Date.now(), payload: null });
   }
+  iqDeadDelete(valid.map(l => l.url));
   iqPersist();
   els.modalDrive.classList.add('hidden');
   if (invalid.length) toast(`⚠ ${invalid.length} enlace${invalid.length > 1 ? 's' : ''} no reconocido${invalid.length > 1 ? 's' : ''} — saltado${invalid.length > 1 ? 's' : ''}`, true);
@@ -6383,8 +6398,15 @@ function iqSanitize() {
   if (importQueue.length !== before2) changed = true;
   if (purgedUrls.length) {
     iqDeadAdd(purgedUrls);          /* ⚰️ jamás resucitan desde la nube */
-    const nP = purgedUrls.length;
-    toast(`🧹 ${nP} enlace${nP > 1 ? 's' : ''} ${nP > 1 ? 'retirados' : 'retirado'} definitivamente — enterrado${nP > 1 ? 's' : ''} para siempre.`);
+    /* 🔕 deduplicación por sesión: el aviso SOLO suena con URLs NUNCA
+       avisadas — aunque algo resucite por cualquier causa imposible de
+       ver, el toast es mudito para siempre en esta sesión             */
+    const fresh = purgedUrls.filter(u => !IQ_PURGED_SAID.has(u));
+    for (const u of purgedUrls) IQ_PURGED_SAID.add(u);
+    if (fresh.length) {
+      const nP = fresh.length;
+      toast(`🧹 ${nP} enlace${nP > 1 ? 's' : ''} ${nP > 1 ? 'retirados' : 'retirado'} definitivamente — enterrado${nP > 1 ? 's' : ''} para siempre.`);
+    }
     iqSyncRemote();                /* la nube también se limpia YA */
   }
   for (const q of importQueue) {
@@ -6401,6 +6423,8 @@ function iqSanitize() {
   if (changed) iqPersist();
   return changed;
 }
+/* aviso de purga: solo UNA vez por URL en toda la sesión */
+const IQ_PURGED_SAID = new Set();
 
 /* ⛔ CONFIRMACIÓN DE ELIMINACIÓN — ventana modal propia (nada de confirm()
    feo del navegador): lista los enlaces con su razón y solución exactas, y
