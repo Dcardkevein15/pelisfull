@@ -5914,11 +5914,13 @@ async function processImportQueue() {
           next.status = 'failed-final';
           next.attempts = 1;
           next.error = raw;
+          next.failedAt = Date.now();
         } else {
           next.attempts = (next.attempts || 0) + 1;
           next.error = raw;
           if (next.attempts >= IQ_MAX_ATTEMPTS) {
             next.status = 'failed-final';
+            next.failedAt = Date.now();
           } else {
             next.status = 'queued';
             next.nextRetryAt = Date.now() + IQ_RETRY_MS;
@@ -6144,6 +6146,9 @@ async function iqSyncRemote() {
     if (r && r.ok) {
       iqLastWriteAt = at;
       try { localStorage.setItem(IQ_LW_KEY, String(at)); } catch (e) { }
+      /* marcar todo lo sincronizado: la reconciliación entre PCs solo da de
+         baja lo que CONSTA como viajado a la nube                          */
+      for (const q of importQueue) q.syncedAt = q.syncedAt || at;
       return true;
     }
     return false;
@@ -6201,6 +6206,26 @@ async function iqPollRemote() {
       }
     }
     if (changed) iqPersist();
+    /* 🔁 RECONCILIACIÓN ENTRE COMPUTADORAS: si un item ya SINCRONIZADO no
+       existe más en la nube, la otra PC lo limpió al publicar → fuera de
+       aquí también. FIN del fantasma de ver «todos los enlaces» resucitar
+       en la notificación del segundo equipo. Solo aplica a items que
+       CONSTAN como viajados (syncedAt): lo que nunca se sincronizó jamás
+       se descarta — el usuario no pierde nada por revisar.              */
+    if (remote.length) {
+      const remoteUrls = new Set(remote.map(r => r.url));
+      const before = importQueue.length;
+      importQueue = importQueue.filter(q => {
+        if (!q.syncedAt) return true;                                  /* nunca viajó: intocable */
+        if (!['done', 'dup', 'published'].includes(q.status)) return true;
+        if (remoteUrls.has(q.url)) return true;
+        return false;   /* viajó, la nube lo dio de baja → fuera de aquí  */
+      });
+      if (importQueue.length !== before) {
+        iqPersist();
+        renderQueuePill();
+      }
+    }
     if (newDone.length) iqAdoptCloud(newDone);
     /* 🧹 purgar de la nube los done ya publicados que el cache retenga:
        escribir la cola local (ya sin ellos) limpia el archivo remoto    */
@@ -6211,13 +6236,15 @@ async function iqPollRemote() {
 /* 🛬 aplica a TU biblioteca lo que la nube importó (idempotente por id) */
 function iqAdoptCloud(items) {
   const applied = [];
+  let merged = 0;
   for (const q of items) {
     for (const s of (q.payload || [])) {
       const live = getSeries(s.id);
       if (live) {
-        /* ya estaba (importado local antes): actualiza episodios/título */
-        live.t = s.t || live.t;
-        if ((s.episodes || []).length > (live.episodes || []).length) live.episodes = s.episodes;
+        /* ya estaba (importado local antes): solo entran capítulos NUEVOS —
+           el título/edits LOCALES mandan (el usuario pudo renombrar en la
+           revisión; la nube no pisa su trabajo)                          */
+        if ((s.episodes || []).length > (live.episodes || []).length) { live.episodes = s.episodes; merged++; }
         if (s.genre && !live.genre) applyMovieGenre(live, s.genre);
         if (s.poster && !live.poster) live.poster = s.poster;
       } else {
@@ -6227,7 +6254,11 @@ function iqAdoptCloud(items) {
       }
     }
   }
-  if (applied.length || items.length) {
+  /* 🤫 NADA NUEVO = NINGÚN AVISO: si no entró nada ni se fusionó nada, no
+     resurrectamos el modal «importación completada» de algo que ya tenías
+     (era el 'me dice publique… y no hay nada por publicar')             */
+  if (!applied.length && !merged) return;
+  if (applied.length || merged) {
     save();
     renderSeries(els.searchInput.value);
     mergeImportedSagas(applied.filter(s => s.kind === 'pelicula'));
@@ -6257,6 +6288,21 @@ function iqSanitize() {
   const before = importQueue.length;
   importQueue = importQueue.filter(q => q.status !== 'published');
   if (importQueue.length !== before) changed = true;
+  /* 🧹 AUTO-EXPIRACIÓN (regla del admin): lo fallido definitivamente que
+     lleva 30 min sin solución se descarta y DEJA DE NOTIFICAR — la cola
+     solo conserva lo que de verdad sigue vivo                      */
+  const expired = [];
+  importQueue = importQueue.filter(q => {
+    if (q.status === 'failed-final' && now - (q.failedAt || q.at || 0) > 30 * 60e3) {
+      expired.push(q);
+      return false;
+    }
+    return true;
+  });
+  if (expired.length) {
+    changed = true;
+    toast(`🧹 ${expired.length} enlace${expired.length > 1 ? 's' : ''} ${expired.length > 1 ? 'descartados' : 'descartado'} automáticamente: no se pudo importar en 30 min (revisa por qué en el monitor antes de reintentar). Ya no te molesto con ${expired.length > 1 ? 'ellos' : 'él'}.`);
+  }
   for (const q of importQueue) {
     if (q.status === 'queued' && (q.nextRetryAt || 0) > now + IQ_RETRY_MS) {
       q.nextRetryAt = now + IQ_RETRY_MS;
@@ -6264,6 +6310,7 @@ function iqSanitize() {
     }
     if (q.status === 'queued' && (q.attempts || 0) >= IQ_MAX_ATTEMPTS) {
       q.status = 'failed-final';
+      q.failedAt = now;
       changed = true;
     }
   }

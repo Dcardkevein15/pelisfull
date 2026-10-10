@@ -1,7 +1,7 @@
 ﻿/* XÃ‚Â·STREAM service worker Ã¢â‚¬â€ cachea el app shell para carga instantÃƒÂ¡nea/offline */
 /* Ã¢Å¡Â  IMPORTANTE: cualquier cambio visible en la app requiere subir esta versiÃƒÂ³n
    (v24 Ã¢â€ â€™ v25Ã¢â‚¬Â¦) para que los usuarios reciban los archivos nuevos.            */
-const CACHE = 'xstream-v184';
+const CACHE = 'xstream-v185';
 const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'chat.js', 'coins.js', 'icon.svg', 'manifest.json'];
 
 self.addEventListener('install', e => {

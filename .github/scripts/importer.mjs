@@ -435,8 +435,15 @@ async function main() {
   let migrated = 0;
   for (const q of queue) {
     if (q.status === 'queued' && (q.nextRetryAt || 0) > Date.now() + IQ_RETRY_MS) { q.nextRetryAt = Date.now() + IQ_RETRY_MS; migrated++; }
-    if (q.status === 'queued' && (q.attempts || 0) >= IQ_MAX_ATTEMPTS) { q.status = 'failed-final'; migrated++; }
+    if (q.status === 'queued' && (q.attempts || 0) >= IQ_MAX_ATTEMPTS) { q.status = 'failed-final'; q.failedAt = Date.now(); migrated++; }
   }
+  /* 🧹 AUTO-EXPIRACIÓN (regla del admin): fallidos definitivos >30 min fuera
+     — dejan de notificar al cliente para siempre                        */
+  const beforePrune = queue.length;
+  const pruned = queue.filter(q => !(q.status === 'failed-final' && Date.now() - (q.failedAt || 0) > 30 * 60e3));
+  if (pruned.length !== beforePrune) migrated += beforePrune - pruned.length;
+  queue.length = 0;
+  queue.push(...pruned);
   const now = Date.now();
   const due = queue.filter(q => q.status === 'queued' && (q.nextRetryAt || 0) <= now).slice(0, MAX_ITEMS_PER_RUN);
   if (!due.length) {
@@ -461,6 +468,7 @@ async function main() {
       /* 🚫 error PERMANENTE → descartar YA: reintentar no lo va a arreglar */
       if (item.error.startsWith(PERM) || item.error.startsWith('[PERMANENTE]')) {
         item.status = 'failed-final';
+        item.failedAt = Date.now();
         item.attempts = (item.attempts || 0) + 1;
         nFail++;
         console.log(`  ⛔ ${item.url.slice(0, 50)} → DESCARTADO (permanente): ${item.error.replace(PERM, '')}`);
@@ -468,6 +476,7 @@ async function main() {
         item.attempts = (item.attempts || 0) + 1;
         if (item.attempts >= IQ_MAX_ATTEMPTS) {
           item.status = 'failed-final';
+          item.failedAt = Date.now();
           nFail++;
           console.log(`  ⛔ ${item.url.slice(0, 50)} → ${item.error}`);
         } else {

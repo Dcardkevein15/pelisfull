@@ -1424,6 +1424,7 @@
     for (let intento = 0; intento < 3; intento++) {
       const t = window.prompt(
         '🔑 TOKEN DE GITHUB (classic, con permiso "repo")\n\n' +
+        '💡 Puedes usar el MISMO token en TODAS tus computadoras y navegadores — uno solo sirve para todo.\n' +
         'Se guarda SOLO en este dispositivo — nunca se sube al repo ni va en el catálogo.\n' +
         'GitHub → Settings → Developer settings → Tokens (classic) → Generate new token → marca el scope "repo".'
         + (intento ? '\n\n⚠ ESE token no funcionó (inválido o expirado) — revísalo o genera uno nuevo.' : '')
@@ -1474,15 +1475,28 @@
       xhr.upload.onprogress = ev => {
         if (ev.lengthComputable && onPct) onPct(Math.min(100, Math.round(ev.loaded / ev.total * 100)));
       };
-      xhr.onload = () => {
+      xhr.onload = async () => {
         if (xhr.status >= 200 && xhr.status < 300) return resolve(true);
         let err = {};
         try { err = JSON.parse(xhr.responseText); } catch (e) { }
         if (xhr.status === 401) {
-          tokSave('');
-          const t = new Error('Tu token de GitHub expiró o ya no es válido — se borró de este equipo. Vuelve a dar «Publicar» y pega el token nuevo (GitHub → Settings → Developer settings → Tokens).');
-          t.code = 'TOKEN';
-          return reject(t);
+          /* ⚠ NO borrar el token a ciegas: un 401 TRANSITORIO de GitHub no
+             debe robarte el token de este equipo (pasaba entre 2 PC: uno
+             publicaba y al rato el otro perdía su token guardado y lo volvía
+             a pedir). Solo se borra si una verificación directa CONFIRMA
+             que el token está muerto.                                          */
+          let reallyDead = false;
+          try {
+            const chk = await fetch('https://api.github.com/repos/' + CONFIG.ghRepo, { headers: { Authorization: 'token ' + token } });
+            reallyDead = chk.status === 401;
+          } catch (e2) { reallyDead = false; }
+          if (reallyDead) {
+            tokSave('');
+            const t = new Error('Tu token de GitHub expiró o fue revocado — se borró de este equipo porque lo verifiqué directamente. Vuelve a dar «Publicar» y pega el token nuevo (GitHub → Settings → Developer settings → Tokens).');
+            t.code = 'TOKEN';
+            return reject(t);
+          }
+          return reject(new Error('GitHub respondió 401 de forma transitoria (no es tu token — lo verifiqué y sigue vivo). Reintenta en unos segundos.'));
         }
         if (xhr.status === 409) { const c = new Error('otro publicador ganó el turno (409)'); c.code = 'CONFLICT'; return reject(c); }
         reject(new Error(err.message || ('HTTP ' + xhr.status)));
