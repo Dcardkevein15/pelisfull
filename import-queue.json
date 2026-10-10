@@ -1,54 +1,120 @@
 {
  "v": 1,
- "at": 1791675754524,
+ "at": 1791675804850,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1Dnjpj6aLcgU6-w1FFXTiJveDXSDQVtO0/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Los vampiros que se muerden",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "OS VAMPIROS QUE SE MORDAM",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Dnjpj6aLcgU6-w1FFXTiJveDXSDQV",
+     "t": "OS VAMPIROS QUE SE MORDAM",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Dnjpj6aLcgU6-w1FFXTiJveDXSDQVtO0&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Dnjpj6aLcgU6-w1FFXTiJveDXSDQVtO0/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1kVrUqtm3_dKhDlRL2p8QPCvM0OaFd52k/view",
    "type": "drive-file",
    "title": "Inactividad Paranormal 2",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "INATIVIDADE PARANORMAL",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1kVrUqtm3_dKhDlRL2p8QPCvM0OaFd",
+     "t": "INATIVIDADE PARANORMAL",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1kVrUqtm3_dKhDlRL2p8QPCvM0OaFd52k&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1kVrUqtm3_dKhDlRL2p8QPCvM0OaFd52k/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Terror",
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1iu4CYl1TF57Z9MKzsgF-qEWV9VJvvnSD/view",
    "type": "drive-file",
    "title": "Los Nuevos Mutantes",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Os Novos Mutantes Dublado 2020 WWW DOWNLOADLIVRE XYZ",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1iu4CYl1TF57Z9MKzsgF-qEWV9VJvv",
+     "t": "Os Novos Mutantes Dublado 2020 WWW DOWNLOADLIVRE XYZ",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1iu4CYl1TF57Z9MKzsgF-qEWV9VJvvnSD&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1iu4CYl1TF57Z9MKzsgF-qEWV9VJvvnSD/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1gGNJERpSSJUEAoRxXgNR63zW84bc8gGB/view",
    "type": "drive-file",
    "title": "Zeroville",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791675785044
   },
   {
    "url": "https://drive.google.com/file/d/1bxa_mtfwMxJOt4SP2PmnPJ-fg5bu_gM7/view",
@@ -56,9 +122,9 @@
    "title": "Apagón - La Batalla Final",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791675905748,
    "addedAt": 1791675754521,
    "payload": null
   },
@@ -66,25 +132,27 @@
    "url": "https://drive.google.com/file/d/1J0rsH0brxVBIkV9IYd2QCvYs3z4utUme/view",
    "type": "drive-file",
    "title": "Proyecto Mercurio - Los Siete Elegidos",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791675786783
   },
   {
    "url": "https://drive.google.com/file/d/1CNaxTXYWAaY4_wHXGoOEhrNsBUTRyuaV/view",
    "type": "drive-file",
    "title": "Verdad y Honor",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791675787602
   },
   {
    "url": "https://drive.google.com/file/d/1WROCF61PVcIJqhsuy2aMb0MdtfbDgGYi/view",
@@ -92,9 +160,9 @@
    "title": "La Galería de los Corazones Rotos",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791675908371,
    "addedAt": 1791675754521,
    "payload": null
   },
@@ -102,205 +170,451 @@
    "url": "https://drive.google.com/file/d/1zEBOTLtuyq8hZ_484v7mmKYnA7BGjfHr/view",
    "type": "drive-file",
    "title": "Nuestro Amor",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791675789584
   },
   {
    "url": "https://drive.google.com/file/d/13Z-chQVUVry34fPsZyH0Lp7MKkA2V5B0/view",
    "type": "drive-file",
    "title": "Al Final del Sendero",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791675790675
   },
   {
    "url": "https://drive.google.com/file/d/1IOwQjrbJ5bIazFVv8L8Wh9nI07a2TzIN/view",
    "type": "drive-file",
    "title": "Mosul",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Mosul 2020 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1IOwQjrbJ5bIazFVv8L8Wh9nI07a2T",
+     "t": "Mosul 2020 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1IOwQjrbJ5bIazFVv8L8Wh9nI07a2TzIN&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1IOwQjrbJ5bIazFVv8L8Wh9nI07a2TzIN/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1FbgARegzerqhmTEFRl4yanaR6fb_dpS6/view",
    "type": "drive-file",
    "title": "Cut Throat City",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791675792630
   },
   {
    "url": "https://drive.google.com/file/d/1-mM7KwX2907EehaNX6_bPgNoqVh5VLx4/view?usp=sharing",
    "type": "drive-file",
    "title": "Atrás de la Línea - Fuga a Dunkerque",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Atras da Linha Fuga para Dunkirk 2020 DD5 1 Moz9Filmes",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-mM7KwX2907EehaNX6_bPgNoqVh5V",
+     "t": "Atras da Linha Fuga para Dunkirk 2020 DD5 1 Moz9Filmes",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-mM7KwX2907EehaNX6_bPgNoqVh5VLx4&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-mM7KwX2907EehaNX6_bPgNoqVh5VLx4/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1qt6Eb2kxoD2NVCawykKVw0FaWZAjR9py/view",
    "type": "drive-file",
    "title": "Tío Frank",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": null,
+   "failedAt": 1791675794262
   },
   {
    "url": "https://drive.google.com/file/d/1JxD99rMjJplFhi5Mpg5w2dn6_d5WdaPJ/view",
    "type": "drive-file",
    "title": "Crónicas de Navidad - Parte Dos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Cronicas de Natal Parte Dois 2020 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1JxD99rMjJplFhi5Mpg5w2dn6_d5Wd",
+     "t": "Cronicas de Natal Parte Dois 2020 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1JxD99rMjJplFhi5Mpg5w2dn6_d5WdaPJ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1JxD99rMjJplFhi5Mpg5w2dn6_d5WdaPJ/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1pJW53DTuUHuVNTZA7HbXzUpahwbtfNj7/view",
    "type": "drive-file",
    "title": "Quebra de Contrato",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Quebra de Contrato Dublado 2013 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1pJW53DTuUHuVNTZA7HbXzUpahwbtf",
+     "t": "Quebra de Contrato Dublado 2013 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1pJW53DTuUHuVNTZA7HbXzUpahwbtfNj7&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1pJW53DTuUHuVNTZA7HbXzUpahwbtfNj7/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1_86katFprYoAfZYW-ItYOQTmQ4fuJPR8/view",
    "type": "drive-file",
    "title": "Guerra contra Aliens",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Guerra contra Aliens Dublado 2019 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1_86katFprYoAfZYW-ItYOQTmQ4fuJ",
+     "t": "Guerra contra Aliens Dublado 2019 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1_86katFprYoAfZYW-ItYOQTmQ4fuJPR8&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1_86katFprYoAfZYW-ItYOQTmQ4fuJPR8/view"
+      }
+     ],
+     "genre": "scifi",
+     "tags": [
+      "Ciencia Ficción"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1yy7_2dY0GWHjbho31tWT3n5m9y_Kz1Ek/view",
    "type": "drive-file",
    "title": "Tienda de Unicornios",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Loja de Unicornios Dublado 2019 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1yy7_2dY0GWHjbho31tWT3n5m9y_Kz",
+     "t": "Loja de Unicornios Dublado 2019 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1yy7_2dY0GWHjbho31tWT3n5m9y_Kz1Ek&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1yy7_2dY0GWHjbho31tWT3n5m9y_Kz1Ek/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1-Pb-M-POZWymBk2lH2vvepxTlyAxGLZy/view",
    "type": "drive-file",
    "title": "Mis vecinos son un terror",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Download Livre Meus Vizinhos Saao um Terror Dublado 1989 www downloadlivre net",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-Pb-M-POZWymBk2lH2vvepxTlyAxG",
+     "t": "Download Livre Meus Vizinhos Saao um Terror Dublado 1989 www downloadlivre net",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-Pb-M-POZWymBk2lH2vvepxTlyAxGLZy&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-Pb-M-POZWymBk2lH2vvepxTlyAxGLZy/view"
+      }
+     ],
+     "genre": "terror",
+     "tags": [
+      "Terror"
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1GPTQC7xPwMENVthmbbvG5dcxZE8ocotE/view",
    "type": "drive-file",
    "title": "Terapia de Parejas para Amantes",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Terapia de Casais para Amantes Dublado 2019 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1GPTQC7xPwMENVthmbbvG5dcxZE8oc",
+     "t": "Terapia de Casais para Amantes Dublado 2019 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1GPTQC7xPwMENVthmbbvG5dcxZE8ocotE&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1GPTQC7xPwMENVthmbbvG5dcxZE8ocotE/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/19XDCNlnz26pl6G_AGgVOy1Ap3t8fRF_R/view",
    "type": "drive-file",
    "title": "Holmes e Watson",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Holmes e Watson Dublado 2019 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-19XDCNlnz26pl6G_AGgVOy1Ap3t8fR",
+     "t": "Holmes e Watson Dublado 2019 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=19XDCNlnz26pl6G_AGgVOy1Ap3t8fRF_R&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/19XDCNlnz26pl6G_AGgVOy1Ap3t8fRF_R/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1QCEnevFYtMLASa2QdgShTeY6LpRDY9C6/view",
    "type": "drive-file",
    "title": "Minotauro",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Minotauro Dublado 2006 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1QCEnevFYtMLASa2QdgShTeY6LpRDY",
+     "t": "Minotauro Dublado 2006 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1QCEnevFYtMLASa2QdgShTeY6LpRDY9C6&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1QCEnevFYtMLASa2QdgShTeY6LpRDY9C6/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1EISeljssDaGpLnViyrYAC9W4E16DXlSp/view",
    "type": "drive-file",
    "title": "Lucha por la Honor",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Luta Pela Honra Dublado 2009 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1EISeljssDaGpLnViyrYAC9W4E16DX",
+     "t": "Luta Pela Honra Dublado 2009 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1EISeljssDaGpLnViyrYAC9W4E16DXlSp&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1EISeljssDaGpLnViyrYAC9W4E16DXlSp/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1UBDvSDLlaoISQtS-rghjca8MrgiT4U9u/view",
    "type": "drive-file",
    "title": "Pegando Fuego",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Burnt Pegando Fogo Dublado 2015 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1UBDvSDLlaoISQtS-rghjca8MrgiT4",
+     "t": "Burnt Pegando Fogo Dublado 2015 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1UBDvSDLlaoISQtS-rghjca8MrgiT4U9u&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1UBDvSDLlaoISQtS-rghjca8MrgiT4U9u/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1psXktOEmknYCjI4rr06rLeA1_KX-M7WR/view",
    "type": "drive-file",
    "title": "A La Búsqueda de la Venganza",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A Procura da Vinganca Dublado 2006 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1psXktOEmknYCjI4rr06rLeA1_KX-M",
+     "t": "A Procura da Vinganca Dublado 2006 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1psXktOEmknYCjI4rr06rLeA1_KX-M7WR&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1psXktOEmknYCjI4rr06rLeA1_KX-M7WR/view"
+      }
+     ]
+    }
+   ],
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1XeHgDF5Kwd9LcoJr65jkQcUArQppG4K_/view",
