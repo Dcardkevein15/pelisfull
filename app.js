@@ -5929,6 +5929,25 @@ async function processImportQueue() {
       }
       processedAny = processedAny || next.status === 'done' || next.status === 'dup';
       iqPersist();
+      /* ⛔ REGLA DEL ADMIN: en el INSTANTE en que un enlace queda descartado
+         se pregunta si eliminarlo — confirmación = fuera PARA SIEMPRE, sin
+         esperas, sin reintentos, sin notificaciones. Cero 30 minutos.    */
+      if (next.status === 'failed-final') {
+        const ex = iqExplainError(next.error);
+        const kill = confirm(
+          `⛔ ENLACE DESCARTADO — no se pudo importar:\n\n${(next.url || '').slice(0, 70)}\n\n` +
+          `Razón: ${ex.why}\nSolución: ${ex.fix}\n\n` +
+          `¿Eliminarlo DEFINITIVAMENTE de la cola?`);
+        if (kill) {
+          const ix = importQueue.indexOf(next);
+          if (ix > -1) importQueue.splice(ix, 1);
+          iqPersist();
+          iqSyncRemote();
+          toast('🗑 Eliminado para siempre');
+        } else {
+          toast('El enlace queda en el monitor — elimínalo o reinténtalo desde ahí cuando quieras');
+        }
+      }
       /* respiro entre enlaces para no martillar Drive/TMDB */
       await new Promise(r => setTimeout(r, 900));
     }
@@ -5998,6 +6017,7 @@ function mergeImportedSagas(newMovies) {
 
 /* 🎉 modal de importación completada — resumen visual con chips + explicaciones.
    ÚNICO aviso de completado (el pill se oculta al terminar: sin duplicados).   */
+let iqFailAsked = false;   /* pregunta de eliminación de descartados: 1 vez por sesión */
 function showImportDone() {
   const modal = document.getElementById('modalImportDone');
   const summary = document.getElementById('importDoneSummary');
@@ -6063,6 +6083,22 @@ function showImportDone() {
   modal.classList.remove('hidden');
   renderQueuePill();
   playDoneSound();
+  /* ⛔ descartados en el resumen → pregunta inmediata en lote (una vez por sesión):
+     confirmar = eliminados PARA SIEMPRE, exactamente como pide el admin        */
+  if (finals.length && !iqFailAsked) {
+    iqFailAsked = true;
+    const kill = confirm(
+      `⛔ ${finals.length} enlace${finals.length > 1 ? 's' : ''} no ${finals.length > 1 ? 'se pudieron importar' : 'se pudo importar'}:\n\n` +
+      finals.map(f => '· ' + (f.url || '').slice(0, 55) + '\n  ' + iqExplainError(f.error).why).join('\n') +
+      `\n\n¿Eliminar${finals.length > 1 ? 'los' : 'lo'} DEFINITIVAMENTE de la cola?`);
+    if (kill) {
+      importQueue = importQueue.filter(q => q.status !== 'failed-final');
+      iqPersist();
+      iqSyncRemote();
+      toast(`🗑 ${finals.length} enlace${finals.length > 1 ? 's' : ''} eliminado${finals.length > 1 ? 's' : ''} para siempre`);
+      showImportDone();   /* repintar el resumen ya sin ellos */
+    }
+  }
 }
 
 /* botones del modal de completado */
