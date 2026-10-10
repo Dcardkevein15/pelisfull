@@ -1,9 +1,9 @@
 {
  "app": "xstream",
- "v": 1791609255966,
+ "v": 1791610585923,
  "by": "Dcard #2968",
- "at": "2026-10-10T05:14:15.966Z",
- "n": 6128,
+ "at": "2026-10-10T05:36:25.923Z",
+ "n": 6129,
  "series": [
   {
    "id": "custom-1788239650578",
@@ -51567,6 +51567,139 @@
      "n": 1,
      "t": "Masters del Universo - Español",
      "url": "https://archive.org/download/masters.-del.-universo/Masters%20del%20Universo.mp4"
+    }
+   ]
+  },
+  {
+   "id": "ia-tokyo-revenger-latino",
+   "t": "Tokyo Revenger-Latino",
+   "jp": "🎌",
+   "tag": "Cine IA · Anime · Temporada",
+   "g": 4,
+   "kind": "serie",
+   "anime": true,
+   "poster": "https://archive.org/services/img/tokyo-revenger-latino",
+   "at": 1791610508948,
+   "episodes": [
+    {
+     "n": 1,
+     "t": "Tokyo Revengers/Tokyo Revenger-01",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-01.mp4"
+    },
+    {
+     "n": 2,
+     "t": "Tokyo Revengers/Tokyo Revenger-02",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-02.mp4"
+    },
+    {
+     "n": 3,
+     "t": "Tokyo Revengers/Tokyo Revenger-03",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-03.mp4"
+    },
+    {
+     "n": 4,
+     "t": "Tokyo Revengers/Tokyo Revenger-04",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-04.mp4"
+    },
+    {
+     "n": 5,
+     "t": "Tokyo Revengers/Tokyo Revenger-05",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-05.mp4"
+    },
+    {
+     "n": 6,
+     "t": "Tokyo Revengers/Tokyo Revenger-06",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-06.mp4"
+    },
+    {
+     "n": 7,
+     "t": "Tokyo Revengers/Tokyo Revenger-07",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-07.mp4"
+    },
+    {
+     "n": 8,
+     "t": "Tokyo Revengers/Tokyo Revenger-08",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-08.mp4"
+    },
+    {
+     "n": 9,
+     "t": "Tokyo Revengers/Tokyo Revenger-09",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-09.mp4"
+    },
+    {
+     "n": 10,
+     "t": "Tokyo Revengers/Tokyo Revenger-10 ia",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-10.ia.mp4"
+    },
+    {
+     "n": 11,
+     "t": "Tokyo Revengers/Tokyo Revenger-11 ia",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-11.ia.mp4"
+    },
+    {
+     "n": 12,
+     "t": "Tokyo Revengers/Tokyo Revenger-12",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-12.mp4"
+    },
+    {
+     "n": 13,
+     "t": "Tokyo Revengers/Tokyo Revenger-13",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-13.mp4"
+    },
+    {
+     "n": 14,
+     "t": "Tokyo Revengers/Tokyo Revenger-14",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-14.mp4"
+    },
+    {
+     "n": 15,
+     "t": "Tokyo Revengers/Tokyo Revenger-15",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-15.mp4"
+    },
+    {
+     "n": 16,
+     "t": "Tokyo Revengers/Tokyo Revenger-16",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-16.mp4"
+    },
+    {
+     "n": 17,
+     "t": "Tokyo Revengers/Tokyo Revenger-17",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-17.mp4"
+    },
+    {
+     "n": 18,
+     "t": "Tokyo Revengers/Tokyo Revenger-18",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-18.mp4"
+    },
+    {
+     "n": 19,
+     "t": "Tokyo Revengers/Tokyo Revenger-19",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-19.mp4"
+    },
+    {
+     "n": 20,
+     "t": "Tokyo Revengers/Tokyo Revenger-20",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-20.mp4"
+    },
+    {
+     "n": 21,
+     "t": "Tokyo Revengers/Tokyo Revenger-21",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-21.mp4"
+    },
+    {
+     "n": 22,
+     "t": "Tokyo Revengers/Tokyo Revenger-22",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-22.mp4"
+    },
+    {
+     "n": 23,
+     "t": "Tokyo Revengers/Tokyo Revenger-23",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-23.mp4"
+    },
+    {
+     "n": 24,
+     "t": "Tokyo Revengers/Tokyo Revenger-24",
+     "url": "https://archive.org/download/tokyo-revenger-latino/Tokyo%20Revengers/Tokyo%20Revenger-24.mp4"
     }
    ]
   }
@@ -211182,6 +211315,16 @@
    "dest": "#/pelicula/yummy",
    "t": "Yummy",
    "at": 1791575973398
+  },
+  "tj6w6f": {
+   "dest": "#/pelicula/metegol",
+   "t": "Metegol",
+   "at": 1791610305812
+  },
+  "btu6c9": {
+   "dest": "#/pelicula/masters-del-universo",
+   "t": "Masters del Universo",
+   "at": 1791610305812
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -211195,5 +211338,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "y4AfwnH7QFneXhtFMEaldq+b1i6z2EXbEraEJWspx0NdQRa/ARDOH7DitQzHm/VRT0hAJeUP2nWShSmUYBoJwA=="
+ "sig": "SpGqbzKErd6gybBYxLEcHksDf+M9M/bMVdVe+6v3lr31F/vLjoiYN4zCR/EsHoDV69TZtzDWwtOzVIbhVwXZEA=="
 }
