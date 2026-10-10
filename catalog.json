@@ -1,8 +1,8 @@
 {
  "app": "xstream",
- "v": 1791612117210,
+ "v": 1791612392617,
  "by": "Dcard #2968",
- "at": "2026-10-10T06:01:57.210Z",
+ "at": "2026-10-10T06:06:32.617Z",
  "n": 6130,
  "series": [
   {
@@ -211638,6 +211638,416 @@
    "dest": "#/anime/tokyo-revenger-latino/1",
    "t": "Tokyo Revenger Latino · E1",
    "at": 1791610850850
+  },
+  "bhg3d8": {
+   "dest": "#/anime/wendy-2020/1",
+   "t": "Wendy 2020 · E1",
+   "at": 1791612286297
+  },
+  "zfp2c9": {
+   "dest": "#/anime/tokyo-revenger-latino/2",
+   "t": "Tokyo Revenger-Latino · E2",
+   "at": 1791612328100
+  },
+  "u4uzp8": {
+   "dest": "#/anime/tokyo-revenger-latino/3",
+   "t": "Tokyo Revenger-Latino · E3",
+   "at": 1791612328100
+  },
+  "wmz3zs": {
+   "dest": "#/anime/tokyo-revenger-latino/4",
+   "t": "Tokyo Revenger-Latino · E4",
+   "at": 1791612328100
+  },
+  "hunqbd": {
+   "dest": "#/anime/tokyo-revenger-latino/5",
+   "t": "Tokyo Revenger-Latino · E5",
+   "at": 1791612328100
+  },
+  "m99pdm": {
+   "dest": "#/anime/tokyo-revenger-latino/6",
+   "t": "Tokyo Revenger-Latino · E6",
+   "at": 1791612328100
+  },
+  "qn76me": {
+   "dest": "#/anime/tokyo-revenger-latino/7",
+   "t": "Tokyo Revenger-Latino · E7",
+   "at": 1791612328100
+  },
+  "t3w5rb": {
+   "dest": "#/anime/tokyo-revenger-latino/8",
+   "t": "Tokyo Revenger-Latino · E8",
+   "at": 1791612328100
+  },
+  "cb7mux": {
+   "dest": "#/anime/tokyo-revenger-latino/9",
+   "t": "Tokyo Revenger-Latino · E9",
+   "at": 1791612328100
+  },
+  "f5sup7": {
+   "dest": "#/anime/tokyo-revenger-latino/10",
+   "t": "Tokyo Revenger-Latino · E10",
+   "at": 1791612328100
+  },
+  "vwhrcv": {
+   "dest": "#/anime/tokyo-revenger-latino/11",
+   "t": "Tokyo Revenger-Latino · E11",
+   "at": 1791612328100
+  },
+  "xmy3xz": {
+   "dest": "#/anime/tokyo-revenger-latino/12",
+   "t": "Tokyo Revenger-Latino · E12",
+   "at": 1791612328100
+  },
+  "uqxx4e": {
+   "dest": "#/anime/tokyo-revenger-latino/13",
+   "t": "Tokyo Revenger-Latino · E13",
+   "at": 1791612328101
+  },
+  "usfbc8": {
+   "dest": "#/anime/tokyo-revenger-latino/14",
+   "t": "Tokyo Revenger-Latino · E14",
+   "at": 1791612328101
+  },
+  "p8xb6w": {
+   "dest": "#/anime/tokyo-revenger-latino/15",
+   "t": "Tokyo Revenger-Latino · E15",
+   "at": 1791612328101
+  },
+  "drk2yn": {
+   "dest": "#/anime/tokyo-revenger-latino/16",
+   "t": "Tokyo Revenger-Latino · E16",
+   "at": 1791612328101
+  },
+  "da87y2": {
+   "dest": "#/anime/tokyo-revenger-latino/17",
+   "t": "Tokyo Revenger-Latino · E17",
+   "at": 1791612328101
+  },
+  "vgz4vv": {
+   "dest": "#/anime/tokyo-revenger-latino/18",
+   "t": "Tokyo Revenger-Latino · E18",
+   "at": 1791612328101
+  },
+  "5zd579": {
+   "dest": "#/anime/tokyo-revenger-latino/19",
+   "t": "Tokyo Revenger-Latino · E19",
+   "at": 1791612328101
+  },
+  "dfx5ze": {
+   "dest": "#/anime/tokyo-revenger-latino/20",
+   "t": "Tokyo Revenger-Latino · E20",
+   "at": 1791612328101
+  },
+  "jnzr8e": {
+   "dest": "#/anime/tokyo-revenger-latino/21",
+   "t": "Tokyo Revenger-Latino · E21",
+   "at": 1791612328101
+  },
+  "cag4qx": {
+   "dest": "#/anime/tokyo-revenger-latino/22",
+   "t": "Tokyo Revenger-Latino · E22",
+   "at": 1791612328101
+  },
+  "a3ju7u": {
+   "dest": "#/anime/tokyo-revenger-latino/23",
+   "t": "Tokyo Revenger-Latino · E23",
+   "at": 1791612328101
+  },
+  "5arahy": {
+   "dest": "#/anime/tokyo-revenger-latino/24",
+   "t": "Tokyo Revenger-Latino · E24",
+   "at": 1791612328101
+  },
+  "ddpvwy": {
+   "dest": "#/anime/wendy-2020/2",
+   "t": "Wendy ( 2020) · E2",
+   "at": 1791612328101
+  },
+  "un5mu7": {
+   "dest": "#/anime/wendy-2020/3",
+   "t": "Wendy ( 2020) · E3",
+   "at": 1791612328101
+  },
+  "cewjcj": {
+   "dest": "#/anime/wendy-2020/4",
+   "t": "Wendy ( 2020) · E4",
+   "at": 1791612328101
+  },
+  "humu2d": {
+   "dest": "#/anime/wendy-2020/5",
+   "t": "Wendy ( 2020) · E5",
+   "at": 1791612328101
+  },
+  "t62hrv": {
+   "dest": "#/anime/wendy-2020/6",
+   "t": "Wendy ( 2020) · E6",
+   "at": 1791612328101
+  },
+  "jczt63": {
+   "dest": "#/anime/wendy-2020/7",
+   "t": "Wendy ( 2020) · E7",
+   "at": 1791612328101
+  },
+  "vn58ne": {
+   "dest": "#/anime/wendy-2020/8",
+   "t": "Wendy ( 2020) · E8",
+   "at": 1791612328101
+  },
+  "e3fkt6": {
+   "dest": "#/anime/wendy-2020/9",
+   "t": "Wendy ( 2020) · E9",
+   "at": 1791612328101
+  },
+  "6qrzjr": {
+   "dest": "#/anime/wendy-2020/10",
+   "t": "Wendy ( 2020) · E10",
+   "at": 1791612328101
+  },
+  "k9nfr3": {
+   "dest": "#/anime/wendy-2020/11",
+   "t": "Wendy ( 2020) · E11",
+   "at": 1791612328101
+  },
+  "4pwqyn": {
+   "dest": "#/anime/wendy-2020/12",
+   "t": "Wendy ( 2020) · E12",
+   "at": 1791612328101
+  },
+  "sn8ape": {
+   "dest": "#/anime/wendy-2020/13",
+   "t": "Wendy ( 2020) · E13",
+   "at": 1791612328101
+  },
+  "4mjnur": {
+   "dest": "#/anime/wendy-2020/14",
+   "t": "Wendy ( 2020) · E14",
+   "at": 1791612328101
+  },
+  "4qdamj": {
+   "dest": "#/anime/wendy-2020/15",
+   "t": "Wendy ( 2020) · E15",
+   "at": 1791612328101
+  },
+  "fp8xg6": {
+   "dest": "#/anime/wendy-2020/16",
+   "t": "Wendy ( 2020) · E16",
+   "at": 1791612328101
+  },
+  "854pgt": {
+   "dest": "#/anime/wendy-2020/17",
+   "t": "Wendy ( 2020) · E17",
+   "at": 1791612328101
+  },
+  "93v3se": {
+   "dest": "#/anime/wendy-2020/18",
+   "t": "Wendy ( 2020) · E18",
+   "at": 1791612328101
+  },
+  "2j6694": {
+   "dest": "#/anime/wendy-2020/19",
+   "t": "Wendy ( 2020) · E19",
+   "at": 1791612328101
+  },
+  "h85wwp": {
+   "dest": "#/anime/wendy-2020/20",
+   "t": "Wendy ( 2020) · E20",
+   "at": 1791612328101
+  },
+  "jwrrs8": {
+   "dest": "#/anime/wendy-2020/21",
+   "t": "Wendy ( 2020) · E21",
+   "at": 1791612328101
+  },
+  "krtxxk": {
+   "dest": "#/anime/wendy-2020/22",
+   "t": "Wendy ( 2020) · E22",
+   "at": 1791612328101
+  },
+  "k89u4v": {
+   "dest": "#/anime/wendy-2020/23",
+   "t": "Wendy ( 2020) · E23",
+   "at": 1791612328101
+  },
+  "u4975q": {
+   "dest": "#/anime/wendy-2020/24",
+   "t": "Wendy ( 2020) · E24",
+   "at": 1791612328101
+  },
+  "h292py": {
+   "dest": "#/anime/wendy-2020/25",
+   "t": "Wendy ( 2020) · E25",
+   "at": 1791612328101
+  },
+  "f5zbpy": {
+   "dest": "#/anime/wendy-2020/26",
+   "t": "Wendy ( 2020) · E26",
+   "at": 1791612328101
+  },
+  "u568t3": {
+   "dest": "#/anime/wendy-2020/27",
+   "t": "Wendy ( 2020) · E27",
+   "at": 1791612328101
+  },
+  "ma2ee8": {
+   "dest": "#/anime/wendy-2020/28",
+   "t": "Wendy ( 2020) · E28",
+   "at": 1791612328101
+  },
+  "p6ucg5": {
+   "dest": "#/anime/wendy-2020/29",
+   "t": "Wendy ( 2020) · E29",
+   "at": 1791612328101
+  },
+  "3cqas9": {
+   "dest": "#/anime/wendy-2020/30",
+   "t": "Wendy ( 2020) · E30",
+   "at": 1791612328101
+  },
+  "hw33d3": {
+   "dest": "#/anime/wendy-2020/31",
+   "t": "Wendy ( 2020) · E31",
+   "at": 1791612328101
+  },
+  "8at3pa": {
+   "dest": "#/anime/wendy-2020/32",
+   "t": "Wendy ( 2020) · E32",
+   "at": 1791612328101
+  },
+  "fv885t": {
+   "dest": "#/anime/wendy-2020/33",
+   "t": "Wendy ( 2020) · E33",
+   "at": 1791612328101
+  },
+  "8cv5gj": {
+   "dest": "#/anime/wendy-2020/34",
+   "t": "Wendy ( 2020) · E34",
+   "at": 1791612328101
+  },
+  "2z5qx3": {
+   "dest": "#/anime/wendy-2020/35",
+   "t": "Wendy ( 2020) · E35",
+   "at": 1791612328101
+  },
+  "ty6tj6": {
+   "dest": "#/anime/wendy-2020/36",
+   "t": "Wendy ( 2020) · E36",
+   "at": 1791612328101
+  },
+  "zggk3n": {
+   "dest": "#/anime/wendy-2020/37",
+   "t": "Wendy ( 2020) · E37",
+   "at": 1791612328101
+  },
+  "bztqjj": {
+   "dest": "#/anime/wendy-2020/38",
+   "t": "Wendy ( 2020) · E38",
+   "at": 1791612328101
+  },
+  "kv7rf9": {
+   "dest": "#/anime/wendy-2020/39",
+   "t": "Wendy ( 2020) · E39",
+   "at": 1791612328101
+  },
+  "htn62m": {
+   "dest": "#/anime/wendy-2020/40",
+   "t": "Wendy ( 2020) · E40",
+   "at": 1791612328101
+  },
+  "q8egbd": {
+   "dest": "#/anime/wendy-2020/41",
+   "t": "Wendy ( 2020) · E41",
+   "at": 1791612328101
+  },
+  "a26x8d": {
+   "dest": "#/anime/wendy-2020/42",
+   "t": "Wendy ( 2020) · E42",
+   "at": 1791612328101
+  },
+  "5dnvmj": {
+   "dest": "#/anime/wendy-2020/43",
+   "t": "Wendy ( 2020) · E43",
+   "at": 1791612328101
+  },
+  "78ptmp": {
+   "dest": "#/anime/wendy-2020/44",
+   "t": "Wendy ( 2020) · E44",
+   "at": 1791612328101
+  },
+  "dd2kwn": {
+   "dest": "#/anime/wendy-2020/45",
+   "t": "Wendy ( 2020) · E45",
+   "at": 1791612328101
+  },
+  "pzkqbk": {
+   "dest": "#/anime/wendy-2020/46",
+   "t": "Wendy ( 2020) · E46",
+   "at": 1791612328101
+  },
+  "e89rqu": {
+   "dest": "#/anime/wendy-2020/47",
+   "t": "Wendy ( 2020) · E47",
+   "at": 1791612328101
+  },
+  "7skvwh": {
+   "dest": "#/anime/wendy-2020/48",
+   "t": "Wendy ( 2020) · E48",
+   "at": 1791612328101
+  },
+  "eq84f2": {
+   "dest": "#/anime/wendy-2020/49",
+   "t": "Wendy ( 2020) · E49",
+   "at": 1791612328101
+  },
+  "5bgrqp": {
+   "dest": "#/anime/wendy-2020/50",
+   "t": "Wendy ( 2020) · E50",
+   "at": 1791612328101
+  },
+  "zcf98q": {
+   "dest": "#/anime/wendy-2020/51",
+   "t": "Wendy ( 2020) · E51",
+   "at": 1791612328101
+  },
+  "243n3f": {
+   "dest": "#/anime/wendy-2020/52",
+   "t": "Wendy ( 2020) · E52",
+   "at": 1791612328101
+  },
+  "vzchyd": {
+   "dest": "#/anime/wendy-2020/53",
+   "t": "Wendy ( 2020) · E53",
+   "at": 1791612328101
+  },
+  "qmr8zv": {
+   "dest": "#/anime/wendy-2020/54",
+   "t": "Wendy ( 2020) · E54",
+   "at": 1791612328101
+  },
+  "95qwf5": {
+   "dest": "#/anime/wendy-2020/55",
+   "t": "Wendy ( 2020) · E55",
+   "at": 1791612328101
+  },
+  "xy3ytz": {
+   "dest": "#/anime/wendy-2020/56",
+   "t": "Wendy ( 2020) · E56",
+   "at": 1791612328101
+  },
+  "475ha6": {
+   "dest": "#/anime/wendy-2020/57",
+   "t": "Wendy ( 2020) · E57",
+   "at": 1791612328101
+  },
+  "z4694w": {
+   "dest": "#/anime/wendy-2020/58",
+   "t": "Wendy ( 2020) · E58",
+   "at": 1791612328101
+  },
+  "ptr6ez": {
+   "dest": "#/anime/wendy-2020/59",
+   "t": "Wendy ( 2020) · E59",
+   "at": 1791612328101
   }
  },
  "linksDom": "https://x.yapido.click",
@@ -211651,5 +212061,5 @@
   "adRequireClick": true,
   "unlockDays": 7
  },
- "sig": "NbjKrHH3AzF53DPP1ir1wiUEc4Q2J7eBT23IvXDTF52yHlwtkM2uv2oXRhMkyhJBLJO18bkhKAMyvd8UwMl/KQ=="
+ "sig": "4tzZNMfamoTSlswgscd6C5DAKptJTi3ybWYiwXcOGYMtcoOIngIJSImzLCMEvwHViDGXH5lWJOjamf/1XO9nAQ=="
 }
