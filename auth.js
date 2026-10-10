@@ -1493,7 +1493,9 @@
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open('PUT', base);
-      for (const [k, v] of Object.entries(headers)) xhr.setRequestHeader(k, v);
+      xhr.setRequestHeader('Authorization', 'token ' + token);
+xhr.setRequestHeader('Accept', 'application/vnd.github+json');
+xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.upload.onprogress = ev => {
         if (ev.lengthComputable && onPct) onPct(Math.min(100, Math.round(ev.loaded / ev.total * 100)));
       };
@@ -1509,7 +1511,7 @@
              que el token está muerto.                                          */
           let reallyDead = false;
           try {
-            const chk = await fetch('https://api.github.com/repos/' + CONFIG.ghRepo, { headers: { Authorization: 'token ' + token } });
+            const chk = await fetch('https://api.github.com/user', { headers: { Authorization: 'token ' + token } });
             reallyDead = chk.status === 401;
           } catch (e2) { reallyDead = false; }
           if (reallyDead) {
@@ -1521,7 +1523,8 @@
           return reject(new Error('GitHub respondió 401 de forma transitoria (no es tu token — lo verifiqué y sigue vivo). Reintenta en unos segundos.'));
         }
         if (xhr.status === 409) { const c = new Error('otro publicador ganó el turno (409)'); c.code = 'CONFLICT'; return reject(c); }
-        reject(new Error(err.message || ('HTTP ' + xhr.status)));
+        const ghMsg = err.message || '';
+        reject(new Error(ghMsg || ('HTTP ' + xhr.status + (xhr.responseText ? ' — ' + String(xhr.responseText).slice(0, 200) : ''))));
       };
       xhr.onerror = () => reject(new Error('sin red al subir'));
       xhr.ontimeout = () => reject(new Error('timeout al subir'));
@@ -2017,11 +2020,18 @@
       const tokValidate = async v => {
         if (!v) return { ok: true, msg: 'Token vacío — se quitó de este dispositivo.' };
         try {
-          const r = await fetch('https://api.github.com/repos/' + CONFIG.ghRepo, { headers: { Authorization: 'token ' + v } });
-          if (r.ok) return { ok: true, msg: `✅ Token VÁLIDO — guardado (…${v.slice(-6)}). Publicarás sin que te lo vuelva a pedir.` };
-          if (r.status === 401 || r.status === 403) return { ok: false, msg: `⚠ Ese token NO funcionó (HTTP ${r.status}): expiró o es incorrecto. GitHub → Settings → Developer settings → Tokens → genera uno NUEVO con scope «repo».` };
-          return { ok: true, msg: `Token guardado (…${v.slice(-6)}) — no pude verificarlo ahora (HTTP ${r.status}), se usará igual.` };
-        } catch (e) { return { ok: true, msg: `Token guardado (…${v.slice(-6)}) — sin red para verificarlo ahora, se usará igual.` }; }
+          /* ⚠️ GET /user es el UNICO endpoint que exige autenticación de verdad:
+             un repo público responde 200 incluso con un token muerto (el bug
+             que hacía que 'Probar token' dijera ✓ con un token expirado)     */
+          const r = await fetch('https://api.github.com/user', { headers: { Authorization: 'token ' + v } });
+          if (r.ok) {
+            const u = await r.json().catch(() => ({}));
+            return { ok: true, msg: `✅ Token VÁLIDO — autenticado como ${u.login || 'usuario'} (…${v.slice(-6)}). Publicarás sin problemas.` };
+          }
+          if (r.status === 401) return { ok: false, msg: `⚠ Ese token está MUERTO (GitHub lo rechaza: 401). GitHub → Settings → Developer settings → Tokens (CLASSIC) → genera uno NUEVO con scope «repo».` };
+          if (r.status === 403) return { ok: false, msg: `⚠ Token rechazado (403 — puede ser rate limit). Espera un momento y reintenta, o genera uno nuevo.` };
+          return { ok: true, msg: `Token guardado (…${v.slice(-6)}) — no pude verificarlo ahora (HTTP ${r.status}).` };
+        } catch (e) { return { ok: true, msg: `Token guardado (…${v.slice(-6)}) — sin red para verificarlo ahora.` }; }
       };
       zone.querySelector('#axGhTokSave').addEventListener('click', async () => {
         const v = tokIn.value.trim();
