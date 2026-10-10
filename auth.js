@@ -1478,34 +1478,98 @@
     return tokLoad();
   }
   async function ghPublishCatalog(payload, token, onPct) {
-    /* 📏 GitHub REST API rechaza cuerpos >~5MB base64 con 401 engañoso.
-       El catálogo (6.2MB → base64 8MB) SUPERA el límite.
-       Estrategia: MINIFICAR (reduce 30%) y usar Git Data API (blobs) que
-       soporta hasta ~5MB — si aún falla, SPLIT en 2 publicaciones.        */
-    const base = `https://api.github.com/repos/${CONFIG.ghRepo}/contents/catalog.json`;
+    /* 📏 GitHub API rechaza >~5MB por blob. El catálogo (6MB+) no cabe.
+       SOLUCIÓN: dividir automáticamente en catalog.json (series) +
+       channels.json (TV) — cada parte <5MB. Si una parte crece demasiado,
+       se subdivide en partes-1.json, partes-2.json… automáticamente.    */
+    const api = `https://api.github.com/repos/${CONFIG.ghRepo}`;
     const headers = { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' };
-    const get = await fetch(`${base}?ref=${CONFIG.ghBranch}`, { headers });
-    let sha = null;
-    if (get.ok) { sha = (await get.json()).sha; }
-    /* MINIFICADO: sin indentación = ~30% menos = cabe en el API */
-    const json = JSON.stringify(payload);
-    const jsonBytes = new TextEncoder().encode(json).length;
-    const content = btoa(unescape(encodeURIComponent(json)));
-    if (onPct) onPct(5);
-    /* ⏮ INTENTO: Git Data API (blob→tree→commit→ref) — para archivos grandes */
-    try {
-      const result = await ghPutGitData(payload, token, headers, onPct);
-      return result;
-    } catch (e) {
-      if (e && e.code === 'CONFLICT') throw e;
-      console.warn('[xstream] Git Data API falló (' + (e.message || e) + ') — probando Contents API…');
-      /* ⏮ RESPALDO: Contents API PUT (solo si el minificado cabe) */
-      if (jsonBytes < 5 * 1048576) {
-        const body = JSON.stringify({ message: `📡 catálogo ${new Date().toISOString()}`, content, branch: CONFIG.ghBranch, ...(sha ? { sha } : {}) });
-        return await ghPutContents(base, headers, body, token, onPct);
-      }
-      throw e;
+
+    /* DIVIDIR: channels fuera del catálogo principal */
+    const { channels, ...catalogPart } = payload;
+    const parts = [{ path: 'catalog.json', data: catalogPart }];
+    if (channels && channels.length) {
+      parts.push({ path: 'channels.json', data: { v: payload.v, channels } });
     }
+    /* si el catálogo solo sigue siendo demasiado grande, subdividir series */
+    const MAX_BYTES = 3.5 * 1048576;  /* 3.5MB margen de seguridad */
+    const catBytes = new TextEncoder().encode(JSON.stringify(catalogPart)).length;
+    if (catBytes > MAX_BYTES && catalogPart.series) {
+      /* dividir series en 2 mitades */
+      const mid = Math.ceil(catalogPart.series.length / 2);
+      const partA = { ...catalogPart, series: catalogPart.series.slice(0, mid) };
+      const partB = { ...catalogPart, series: catalogPart.series.slice(mid), seriesPart: 2 };
+      parts[0] = { path: 'catalog.json', data: partA };
+      parts.splice(1, 0, { path: 'catalog-2.json', data: partB });
+    }
+
+    /* subir cada parte como blob */
+    const blobShas = [];
+    for (let i = 0; i < parts.length; i++) {
+      if (onPct) onPct(Math.round((i / parts.length) * 60));
+      const json = JSON.stringify(parts[i].data);
+      /* UTF-8 → base64 por chunks (evita límites de btoa) */
+      const bytes = new TextEncoder().encode(json);
+      let binary = '';
+      const chunk = 32768;
+      for (let j = 0; j < bytes.length; j += chunk) {
+        binary += String.fromCharCode(...bytes.subarray(j, j + chunk));
+      }
+      const b64 = btoa(binary);
+      const blobR = await fetch(`${api}/git/blobs`, {
+        method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: b64, encoding: 'base64' }),
+      });
+      if (!blobR.ok) {
+        const e = await blobR.json().catch(() => ({}));
+        const err = new Error(`blob ${parts[i].path}: ${e.message || 'HTTP ' + blobR.status}`);
+        err.code = 'GH_DATA';
+        throw err;
+      }
+      const blob = await blobR.json();
+      blobShas.push({ path: parts[i].path, sha: blob.sha });
+    }
+    if (onPct) onPct(70);
+
+    /* tree con todas las partes */
+    const refR = await fetch(`${api}/git/ref/heads/${CONFIG.ghBranch}`, { headers });
+    if (!refR.ok) throw new Error('ref: HTTP ' + refR.status);
+    const ref = await refR.json();
+    const treeR = await fetch(`${api}/git/trees`, {
+      method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        base_tree: ref.object.sha,
+        tree: blobShas.map(b => ({ path: b.path, mode: '100644', type: 'blob', sha: b.sha })),
+      }),
+    });
+    if (!treeR.ok) { const e = await treeR.json().catch(() => ({})); throw new Error('tree: ' + (e.message || 'HTTP ' + treeR.status)); }
+    const tree = await treeR.json();
+    if (onPct) onPct(85);
+
+    /* commit */
+    const commitR = await fetch(`${api}/git/commits`, {
+      method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `📡 catálogo ${new Date().toISOString()}`,
+        tree: tree.sha, parents: [ref.object.sha],
+      }),
+    });
+    if (!commitR.ok) { const e = await commitR.json().catch(() => ({})); throw new Error('commit: ' + (e.message || 'HTTP ' + commitR.status)); }
+    const commit = await commitR.json();
+    if (onPct) onPct(92);
+
+    /* mover la rama */
+    const pushR = await fetch(`${api}/git/refs/heads/${CONFIG.ghBranch}`, {
+      method: 'PATCH', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sha: commit.sha, force: false }),
+    });
+    if (!pushR.ok) {
+      if (pushR.status === 422) { const c = new Error('otro publicador ganó el turno'); c.code = 'CONFLICT'; throw c; }
+      const e = await pushR.json().catch(() => ({}));
+      throw new Error('push: ' + (e.message || 'HTTP ' + pushR.status));
+    }
+    if (onPct) onPct(100);
+    return true;
   }
 
   /* ⏮ Git Data API: blob→tree→commit→ref — sin límite práctico */
@@ -2710,13 +2774,28 @@ xhr.setRequestHeader('Content-Type', 'application/json');
        del CDN: la URL @sha es inmutable y jsDelivr la sirve recién creada). */
     const cat = await fetchCatalogBySha().catch(() => null);
     if (cat) return verifyAndAdopt(cat);
-    /* FUENTE 2 (respaldo) — la copia desplegada del sitio con anti-caché
-       agresivo (parámetro único en cada petición)                     */
+    /* FUENTE 2 (respaldo) — la copia desplegada del sitio con anti-caché */
     const onProd = /^https?:$/.test(location.protocol) && !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
     const base = onProd ? CONFIG.catalogUrl : (CONFIG.catalogUrlRemote || CONFIG.catalogUrl);
     const r = await fetch(base + (base.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) return null;
-    return verifyAndAdopt(await r.json().catch(() => null));
+    const main = await r.json().catch(() => null);
+    if (!main) return null;
+    /* 🧩 FUSIONAR PARTES: channels.json + catalog-2.json si existen */
+    const merged = { ...main };
+    try {
+      const chR = await fetch(base.replace('catalog.json', 'channels.json') + (base.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' });
+      if (chR.ok) {
+        const ch = await chR.json();
+        if (ch && ch.channels) merged.channels = ch.channels;
+      }
+      const c2R = await fetch(base.replace('catalog.json', 'catalog-2.json') + (base.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' });
+      if (c2R.ok) {
+        const c2 = await c2R.json();
+        if (c2 && c2.series) merged.series = [...(merged.series || []), ...c2.series];
+      }
+    } catch (e) { /* sin partes adicionales: seguir con el principal */ }
+    return verifyAndAdopt(merged);
   }
 
   /* estado del sha del catálogo (evita martillar la API en cada re-chequeo) */
@@ -2738,9 +2817,17 @@ xhr.setRequestHeader('Content-Type', 'application/json');
     }
     const jr = await fetch(`https://cdn.jsdelivr.net/gh/${CONFIG.ghRepo}@${_catSha}/catalog.json`, { cache: 'no-store' });
     if (!jr.ok) return null;
-    const cat = await jr.json().catch(() => null);
-    if (!cat || typeof cat.v !== 'number' || !Array.isArray(cat.series) || !cat.series.length) return null;
-    return cat;
+    const main = await jr.json().catch(() => null);
+    if (!main || typeof main.v !== 'number' || !Array.isArray(main.series) || !main.series.length) return null;
+    /* 🧩 FUSIONAR PARTES: channels.json + catalog-2.json si el publish las creó */
+    const merged = { ...main };
+    try {
+      const chR = await fetch(`https://cdn.jsdelivr.net/gh/${CONFIG.ghRepo}@${_catSha}/channels.json`, { cache: 'no-store' });
+      if (chR.ok) { const ch = await chR.json(); if (ch && ch.channels) merged.channels = ch.channels; }
+      const c2R = await fetch(`https://cdn.jsdelivr.net/gh/${CONFIG.ghRepo}@${_catSha}/catalog-2.json`, { cache: 'no-store' });
+      if (c2R.ok) { const c2 = await c2R.json(); if (c2 && c2.series) merged.series = [...(merged.series || []), ...c2.series]; }
+    } catch (e) { /* sin partes: seguir */ }
+    return merged;
   }
 
   /* validación compartida por ambas fuentes: esquema + firma ECDSA */
