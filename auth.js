@@ -1490,7 +1490,7 @@
     /* MINIFICADO: sin indentación = ~30% menos = cabe en el API */
     const json = JSON.stringify(payload);
     const jsonBytes = new TextEncoder().encode(json).length;
-    const content = btoa(unescape(escape(json)));
+    const content = btoa(unescape(encodeURIComponent(json)));
     if (onPct) onPct(5);
     /* ⏮ INTENTO: Git Data API (blob→tree→commit→ref) — para archivos grandes */
     try {
