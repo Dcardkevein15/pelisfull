@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791689319163,
+ "at": 1791713827669,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE23Z/view",
@@ -128,20 +128,6 @@
    "processedBy": "cloud"
   },
   {
-   "url": "https://drive.google.com/file/d/1kPIEyASYNJ25i80pYMjnIUTFGJpWmZxv/view",
-   "type": "drive-file",
-   "title": "Persecución radical",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791689292507
-  },
-  {
    "url": "https://drive.google.com/file/d/1Yv0T3mT0yU4MchnPWdqT1k7Rl_AO_tAf/view",
    "type": "drive-file",
    "title": "María y Juan: El cuento de las brujas",
@@ -233,34 +219,6 @@
    ],
    "syncedAt": 1791675754524,
    "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1t-qkPj_sjGyCzLKbYLIkX9sXPXXc7ysp/view",
-   "type": "drive-file",
-   "title": "La jornada",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791689295726
-  },
-  {
-   "url": "https://drive.google.com/file/d/1Vq4wtoJpR8OF6ThGbL3ptUKnMz9CjcJW/view",
-   "type": "drive-file",
-   "title": "La cacería",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791689296375
   },
   {
    "url": "https://drive.google.com/file/d/1qMO7rWPchVHJnnEGG6Fg0_tIpmWb3kaS/view",
@@ -453,20 +411,6 @@
    "processedBy": "cloud"
   },
   {
-   "url": "https://drive.google.com/file/d/1N9kNdvU-509WrZOtVq4TUS3cyyMGn2Xx/view",
-   "type": "drive-file",
-   "title": "Los Reyes de la Colina 2",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791689301935
-  },
-  {
    "url": "https://drive.google.com/file/d/1092_Ff-LmYxHFbisK52ZMTt_ETRou7ST/view",
    "type": "drive-file",
    "title": "Proyecto Power",
@@ -527,20 +471,6 @@
    ],
    "syncedAt": 1791675754524,
    "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/14ag2y0QopIb60cxP3veln2Qxoe3gXRLf/view",
-   "type": "drive-file",
-   "title": "Bad Boys para siempre",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791689304149
   },
   {
    "url": "https://drive.google.com/file/d/1c7byqch86t5I0ewRy3t1oBFwbLuFTeOp/view",
@@ -608,14 +538,15 @@
    "url": "https://drive.google.com/file/d/1lWrvboE-sfjRUulOc5Eze5YX5JERQ71q/view",
    "type": "drive-file",
    "title": "Celular: un grito de socorro",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "HTTP 500",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791689436348,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791713806688
   },
   {
    "url": "https://drive.google.com/file/d/12Ahs_1HWZXiP9tcvLKH9uebWdzKOOxNe/view",
@@ -714,313 +645,675 @@
    "url": "https://drive.google.com/file/d/1mdkh1tGwkzIflkIfmRLQxE2l1zl7KQlW/view",
    "type": "drive-file",
    "title": "Ahora estamos solos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Agora Estamos Sozinhos Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1mdkh1tGwkzIflkIfmRLQxE2l1zl7K",
+     "t": "Agora Estamos Sozinhos Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1mdkh1tGwkzIflkIfmRLQxE2l1zl7KQlW&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1mdkh1tGwkzIflkIfmRLQxE2l1zl7KQlW/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1G2r-pz5WpLbCqsh3HeLP_BXWgT_pSksy/view",
    "type": "drive-file",
    "title": "Hospedaje mortal",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Hospedagem Mortal Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1G2r-pz5WpLbCqsh3HeLP_BXWgT_pS",
+     "t": "Hospedagem Mortal Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1G2r-pz5WpLbCqsh3HeLP_BXWgT_pSksy&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1G2r-pz5WpLbCqsh3HeLP_BXWgT_pSksy/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1WFnLvuQl7cT1cWWoZ1mYcuxxfphk90x-/view",
    "type": "drive-file",
    "title": "Maestro",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Maestro Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1WFnLvuQl7cT1cWWoZ1mYcuxxfphk9",
+     "t": "O Maestro Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1WFnLvuQl7cT1cWWoZ1mYcuxxfphk90x-&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1WFnLvuQl7cT1cWWoZ1mYcuxxfphk90x-/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/12nLJVWkZzvDec3hjbMHqc9ivAWisvU2Z/view",
    "type": "drive-file",
    "title": "Encuentro fatal",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Encontro Fatal Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12nLJVWkZzvDec3hjbMHqc9ivAWisv",
+     "t": "Encontro Fatal Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12nLJVWkZzvDec3hjbMHqc9ivAWisvU2Z&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12nLJVWkZzvDec3hjbMHqc9ivAWisvU2Z/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1EN0jPt_5eqofU5yQbuSX8Mv6USi1mIxR/view",
    "type": "drive-file",
    "title": "Siempre tú",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Sempre Voce Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1EN0jPt_5eqofU5yQbuSX8Mv6USi1m",
+     "t": "Sempre Voce Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1EN0jPt_5eqofU5yQbuSX8Mv6USi1mIxR&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1EN0jPt_5eqofU5yQbuSX8Mv6USi1mIxR/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1QmAUCqxOaXZmANWw_4W2Mn7NJUE3xpl8/view",
    "type": "drive-file",
    "title": "Bryan Banks: un sueño interrumpido",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Brian Banks Um Sonho Interrompido Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1QmAUCqxOaXZmANWw_4W2Mn7NJUE3x",
+     "t": "Brian Banks Um Sonho Interrompido Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1QmAUCqxOaXZmANWw_4W2Mn7NJUE3xpl8&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1QmAUCqxOaXZmANWw_4W2Mn7NJUE3xpl8/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1igLRhFeLLZEdNq3zqUYvIAmZZXaPa74C/view",
    "type": "drive-file",
    "title": "Greyhound en la mira del enemigo",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791713812241
   },
   {
    "url": "https://drive.google.com/file/d/1ROq97dXF_yG2humRS1vScIxNx1TylSh-/view",
    "type": "drive-file",
    "title": "El ojo del demonio",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Olho do Demonio 2019 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ROq97dXF_yG2humRS1vScIxNx1Tyl",
+     "t": "O Olho do Demonio 2019 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ROq97dXF_yG2humRS1vScIxNx1TylSh-&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ROq97dXF_yG2humRS1vScIxNx1TylSh-/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1gEo6GAS_upaIsqlcFko3fYkXcG2tWPEw/view",
    "type": "drive-file",
    "title": "El grito",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Grito 2020 Dublado UNIVERSO3GP COM BR",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1gEo6GAS_upaIsqlcFko3fYkXcG2tW",
+     "t": "O Grito 2020 Dublado UNIVERSO3GP COM BR",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1gEo6GAS_upaIsqlcFko3fYkXcG2tWPEw&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1gEo6GAS_upaIsqlcFko3fYkXcG2tWPEw/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1knX-KSAvJH1ILMc4BPqSQ0mYQxAclwha/view",
    "type": "drive-file",
    "title": "El cuarto de los deseos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Quarto dos Desejos 2019 6CH DUBLADO-UNIVERSO3GP COM BR",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1knX-KSAvJH1ILMc4BPqSQ0mYQxAcl",
+     "t": "O Quarto dos Desejos 2019 6CH DUBLADO-UNIVERSO3GP COM BR",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1knX-KSAvJH1ILMc4BPqSQ0mYQxAclwha&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1knX-KSAvJH1ILMc4BPqSQ0mYQxAclwha/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/17uxe_qKeehBP-E0KMZVcGIHVCqA-AVfQ/view",
    "type": "drive-file",
    "title": "Los huérfanos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Os Orfaos 2020 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-17uxe_qKeehBP-E0KMZVcGIHVCqA-A",
+     "t": "Os Orfaos 2020 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=17uxe_qKeehBP-E0KMZVcGIHVCqA-AVfQ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/17uxe_qKeehBP-E0KMZVcGIHVCqA-AVfQ/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/16H_gj_Ws3QEeOET5WkaYFP6d1SeoLoh2/view",
    "type": "drive-file",
    "title": "Apanhador de pesadelos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Apanhador de Pesadelos 2020 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-16H_gj_Ws3QEeOET5WkaYFP6d1SeoL",
+     "t": "Apanhador de Pesadelos 2020 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=16H_gj_Ws3QEeOET5WkaYFP6d1SeoLoh2&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/16H_gj_Ws3QEeOET5WkaYFP6d1SeoLoh2/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1__RzFzHuZFFbVRp8MyhLKD5EYi1h2NGe/view",
    "type": "drive-file",
    "title": "Mentiras peligrosas",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Mentiras Perigosas 2020 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1__RzFzHuZFFbVRp8MyhLKD5EYi1h2",
+     "t": "Mentiras Perigosas 2020 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1__RzFzHuZFFbVRp8MyhLKD5EYi1h2NGe&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1__RzFzHuZFFbVRp8MyhLKD5EYi1h2NGe/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1haTVOXIqFLnCs5crzqr5sEUqQ_M_-U8O/view",
    "type": "drive-file",
    "title": "Muerte a las seis de la tarde",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Morte as Seis da Tarde 2018 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1haTVOXIqFLnCs5crzqr5sEUqQ_M_-",
+     "t": "Morte as Seis da Tarde 2018 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1haTVOXIqFLnCs5crzqr5sEUqQ_M_-U8O&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1haTVOXIqFLnCs5crzqr5sEUqQ_M_-U8O/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1kUwL1B2NY9ckVE4PO93bXKFb6QrZSVBf/view",
    "type": "drive-file",
    "title": "Harriet",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791713818782
   },
   {
    "url": "https://drive.google.com/file/d/1lS_AWRojXofxFKH3WDwQBREv6qSaJ-hH/view",
    "type": "drive-file",
    "title": "Rescate",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Resgate 2020 DUBLADO-UNVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1lS_AWRojXofxFKH3WDwQBREv6qSaJ",
+     "t": "Resgate 2020 DUBLADO-UNVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1lS_AWRojXofxFKH3WDwQBREv6qSaJ-hH&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1lS_AWRojXofxFKH3WDwQBREv6qSaJ-hH/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1LbBs6J-aUaVaJZ2LhKgoxWYkyJWQu1rX/view",
    "type": "drive-file",
    "title": "La vieja guardia",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791713820763
   },
   {
    "url": "https://drive.google.com/file/d/1bmU5T5UDK5fCSfyBEMk7uTnDItbaZDVe/view",
    "type": "drive-file",
    "title": "Norbit",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "19",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1bmU5T5UDK5fCSfyBEMk7uTnDItbaZ",
+     "t": "19",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1bmU5T5UDK5fCSfyBEMk7uTnDItbaZDVe&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1bmU5T5UDK5fCSfyBEMk7uTnDItbaZDVe/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/105SIsrNqS_CaoIEn1YD0wUlG4uJeqtgB/view",
    "type": "drive-file",
    "title": "La Guardería de Papá",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "29",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-105SIsrNqS_CaoIEn1YD0wUlG4uJeq",
+     "t": "29",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=105SIsrNqS_CaoIEn1YD0wUlG4uJeqtgB&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/105SIsrNqS_CaoIEn1YD0wUlG4uJeqtgB/view"
+      }
+     ],
+     "genre": "romance",
+     "tags": [
+      "Romance"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1IKst0bCRXrKfx64QU3-SKIyOFfoYsBPb/view",
    "type": "drive-file",
    "title": "Esposa de Mentirinha",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "32",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1IKst0bCRXrKfx64QU3-SKIyOFfoYs",
+     "t": "32",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1IKst0bCRXrKfx64QU3-SKIyOFfoYsBPb&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1IKst0bCRXrKfx64QU3-SKIyOFfoYsBPb/view"
+      }
+     ],
+     "genre": "western",
+     "tags": [
+      "Western"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/13NKsZNAE_IECSMpYK_fU8X9D2wwaP36X/view",
    "type": "drive-file",
    "title": "Los increíbles",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Os Incríveis - Dublado (Series Zoiudo)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-13NKsZNAE_IECSMpYK_fU8X9D2wwaP",
+     "t": "Os Incríveis - Dublado (Series Zoiudo)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=13NKsZNAE_IECSMpYK_fU8X9D2wwaP36X&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/13NKsZNAE_IECSMpYK_fU8X9D2wwaP36X/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1YPXsXBYsO9iAFjmVmK_rxdG0319cBM2-/view",
    "type": "drive-file",
    "title": "Os Vingadores",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791713825446
   },
   {
    "url": "https://drive.google.com/file/d/191tkpTgtppLgzmY4TSoYYufj6au54L9F/view",
    "type": "drive-file",
    "title": "Los Vengadores II: Era de Ultron",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Vingadores - Era de Ultron 2015 Dublado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-191tkpTgtppLgzmY4TSoYYufj6au54",
+     "t": "Vingadores - Era de Ultron 2015 Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=191tkpTgtppLgzmY4TSoYYufj6au54L9F&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/191tkpTgtppLgzmY4TSoYYufj6au54L9F/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1sIehdPxstkF_jFaYSX9hV3UzJaNovGwP/view",
    "type": "drive-file",
    "title": "Los Vengadores III: Guerra Infinita",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791713827169
   },
   {
    "url": "https://drive.google.com/file/d/1-zn_nBpV98AKGY83TBQXYxVjNKZkUv3Z/view",
