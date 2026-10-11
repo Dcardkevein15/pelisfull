@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791713827669,
+ "at": 1791735716226,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE23Z/view",
@@ -535,20 +535,6 @@
    "processedBy": "cloud"
   },
   {
-   "url": "https://drive.google.com/file/d/1lWrvboE-sfjRUulOc5Eze5YX5JERQ71q/view",
-   "type": "drive-file",
-   "title": "Celular: un grito de socorro",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791689436348,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791713806688
-  },
-  {
    "url": "https://drive.google.com/file/d/12Ahs_1HWZXiP9tcvLKH9uebWdzKOOxNe/view",
    "type": "drive-file",
    "title": "Arraste-me para o inferno sem censura",
@@ -828,20 +814,6 @@
    "processedBy": "cloud"
   },
   {
-   "url": "https://drive.google.com/file/d/1igLRhFeLLZEdNq3zqUYvIAmZZXaPa74C/view",
-   "type": "drive-file",
-   "title": "Greyhound en la mira del enemigo",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791713812241
-  },
-  {
    "url": "https://drive.google.com/file/d/1ROq97dXF_yG2humRS1vScIxNx1TylSh-/view",
    "type": "drive-file",
    "title": "El ojo del demonio",
@@ -1059,20 +1031,6 @@
    "processedBy": "cloud"
   },
   {
-   "url": "https://drive.google.com/file/d/1kUwL1B2NY9ckVE4PO93bXKFb6QrZSVBf/view",
-   "type": "drive-file",
-   "title": "Harriet",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791713818782
-  },
-  {
    "url": "https://drive.google.com/file/d/1lS_AWRojXofxFKH3WDwQBREv6qSaJ-hH/view",
    "type": "drive-file",
    "title": "Rescate",
@@ -1102,20 +1060,6 @@
    ],
    "syncedAt": 1791675754524,
    "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1LbBs6J-aUaVaJZ2LhKgoxWYkyJWQu1rX/view",
-   "type": "drive-file",
-   "title": "La vieja guardia",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791713820763
   },
   {
    "url": "https://drive.google.com/file/d/1bmU5T5UDK5fCSfyBEMk7uTnDItbaZDVe/view",
@@ -1257,20 +1201,6 @@
    "processedBy": "cloud"
   },
   {
-   "url": "https://drive.google.com/file/d/1YPXsXBYsO9iAFjmVmK_rxdG0319cBM2-/view",
-   "type": "drive-file",
-   "title": "Os Vingadores",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791713825446
-  },
-  {
    "url": "https://drive.google.com/file/d/191tkpTgtppLgzmY4TSoYYufj6au54L9F/view",
    "type": "drive-file",
    "title": "Los Vengadores II: Era de Ultron",
@@ -1302,9 +1232,9 @@
    "processedBy": "cloud"
   },
   {
-   "url": "https://drive.google.com/file/d/1sIehdPxstkF_jFaYSX9hV3UzJaNovGwP/view",
+   "url": "https://drive.google.com/file/d/1-zn_nBpV98AKGY83TBQXYxVjNKZkUv3Z/view",
    "type": "drive-file",
-   "title": "Los Vengadores III: Guerra Infinita",
+   "title": "Vingadores Ultimato",
    "status": "failed-final",
    "name": "",
    "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
@@ -1313,332 +1243,642 @@
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524,
-   "failedAt": 1791713827169
-  },
-  {
-   "url": "https://drive.google.com/file/d/1-zn_nBpV98AKGY83TBQXYxVjNKZkUv3Z/view",
-   "type": "drive-file",
-   "title": "Vingadores Ultimato",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "failedAt": 1791735695524
   },
   {
    "url": "https://drive.google.com/file/d/1_A-Z2PTyh-QaKxo8KIIC-BSmTY895_iU/view",
    "type": "drive-file",
    "title": "Thor",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735696231
   },
   {
    "url": "https://drive.google.com/file/d/13XIYMmbnpJulIIzObqLLnPJPmJ6u_P2h/view",
    "type": "drive-file",
    "title": "Thor: El Mundo Oscuro",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735696869
   },
   {
    "url": "https://drive.google.com/file/d/14eOIhCWBSRO9r0CkMyj7_HiN_cbicpCY/view",
    "type": "drive-file",
    "title": "Thor: Ragnarok",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Thor Ragnarok 2018",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-14eOIhCWBSRO9r0CkMyj7_HiN_cbic",
+     "t": "Thor Ragnarok 2018",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=14eOIhCWBSRO9r0CkMyj7_HiN_cbicpCY&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/14eOIhCWBSRO9r0CkMyj7_HiN_cbicpCY/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/117Sdd4myBilEcsVl0mPwffkYTKCUEbfT/view",
    "type": "drive-file",
    "title": "Guardiões de la Galaxia",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735698601
   },
   {
    "url": "https://drive.google.com/file/d/1VwhQ4WSYxKz89LMnGnD4ZvxCnvCFekp4/view",
    "type": "drive-file",
    "title": "Guardiões de la Galaxia II",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Guardiões da Galáxia Vol 2 2017 Dublado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1VwhQ4WSYxKz89LMnGnD4ZvxCnvCFe",
+     "t": "Guardiões da Galáxia Vol 2 2017 Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1VwhQ4WSYxKz89LMnGnD4ZvxCnvCFekp4&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1VwhQ4WSYxKz89LMnGnD4ZvxCnvCFekp4/view"
+      }
+     ],
+     "genre": "scifi",
+     "tags": [
+      "Ciencia Ficción"
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1XWll5iCzoYeyMjINEvOeXaRvMcHOn_03/view",
    "type": "drive-file",
    "title": "Capitana Marvel",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Capita Marvel 2019 DUBLADO WWW COMANDOTORRENTS COM",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1XWll5iCzoYeyMjINEvOeXaRvMcHOn",
+     "t": "Capita Marvel 2019 DUBLADO WWW COMANDOTORRENTS COM",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1XWll5iCzoYeyMjINEvOeXaRvMcHOn_03&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1XWll5iCzoYeyMjINEvOeXaRvMcHOn_03/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1TYbmObWMxwAZ1xSRQx3rs_HJg6Am0u8a/view",
    "type": "drive-file",
    "title": "Parque Jurásico: El parque de los dinosaurios",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735700882
   },
   {
    "url": "https://drive.google.com/file/d/1SxA71RCdZVARfaLj3gd9fPPKAz9IHdNd/view",
    "type": "drive-file",
    "title": "Parque Jurásico II: El mundo perdido",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735701532
   },
   {
    "url": "https://drive.google.com/file/d/1ALAyHUz8IXC0pG9QMrJ-IGIRgp4qR12k/view",
    "type": "drive-file",
    "title": "Jurassic Park III",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735702185
   },
   {
    "url": "https://drive.google.com/file/d/1pu_43kLYTeuDxvr3arzWDHXMvVy2RcPy/view",
    "type": "drive-file",
    "title": "Percy Jackson e o Ladrão de Raios",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Percy Jackson - DUB",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1pu_43kLYTeuDxvr3arzWDHXMvVy2R",
+     "t": "Percy Jackson - DUB",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1pu_43kLYTeuDxvr3arzWDHXMvVy2RcPy&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1pu_43kLYTeuDxvr3arzWDHXMvVy2RcPy/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1Q_2bFgei2XyoHGiF31GvyJJ60B5WfZcE/view?usp=sharing",
    "type": "drive-file",
    "title": "Percy Jackson y el mar de monstruos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Percy Jackson 2 - DUB",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Q_2bFgei2XyoHGiF31GvyJJ60B5Wf",
+     "t": "Percy Jackson 2 - DUB",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Q_2bFgei2XyoHGiF31GvyJJ60B5WfZcE&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Q_2bFgei2XyoHGiF31GvyJJ60B5WfZcE/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1j3zkHCGxByr4JffAguLdbiYD7VSTdSR6/view",
    "type": "drive-file",
    "title": "Cuatro vidas de un perro",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Quatro Vidas De Um Cachorro [2017] - Dublado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1j3zkHCGxByr4JffAguLdbiYD7VSTd",
+     "t": "Quatro Vidas De Um Cachorro [2017] - Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1j3zkHCGxByr4JffAguLdbiYD7VSTdSR6&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1j3zkHCGxByr4JffAguLdbiYD7VSTdSR6/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1uWRlgUK21JPxYk-YmJ77dOZFKO0dAyEb/view",
    "type": "drive-file",
    "title": "Anastasia",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Anastasia",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1uWRlgUK21JPxYk-YmJ77dOZFKO0dA",
+     "t": "Anastasia",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1uWRlgUK21JPxYk-YmJ77dOZFKO0dAyEb&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1uWRlgUK21JPxYk-YmJ77dOZFKO0dAyEb/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1kPqumtbCUuqQ8eSNmPLIXlWVSn2kr1G0/view",
    "type": "drive-file",
    "title": "El bicho va a agarrar",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Bicho Vai Pegar",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1kPqumtbCUuqQ8eSNmPLIXlWVSn2kr",
+     "t": "O Bicho Vai Pegar",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1kPqumtbCUuqQ8eSNmPLIXlWVSn2kr1G0&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1kPqumtbCUuqQ8eSNmPLIXlWVSn2kr1G0/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/121ni7xGdSJTTRFsf--KM3l0GWHqhl6ab/view",
    "type": "drive-file",
    "title": "O bicho vai pegar 2",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Bicho Vai Pegar 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-121ni7xGdSJTTRFsf-KM3l0GWHqhl6",
+     "t": "O Bicho Vai Pegar 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=121ni7xGdSJTTRFsf--KM3l0GWHqhl6ab&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/121ni7xGdSJTTRFsf--KM3l0GWHqhl6ab/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1inBiXRLZc22muvfJHHlHU3piERKB5H3G/view",
    "type": "drive-file",
    "title": "El bicho va a picar 3",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Bicho Vai Pegar 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1inBiXRLZc22muvfJHHlHU3piERKB5",
+     "t": "O Bicho Vai Pegar 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1inBiXRLZc22muvfJHHlHU3piERKB5H3G&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1inBiXRLZc22muvfJHHlHU3piERKB5H3G/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1m-v_Xv8rDWfjJ_FLMMBDXrKts-ZM2s1m/view",
    "type": "drive-file",
    "title": "El bicho va a pegar 4",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Bicho Vai Pegar 4",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1m-v_Xv8rDWfjJ_FLMMBDXrKts-ZM2",
+     "t": "O Bicho Vai Pegar 4",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1m-v_Xv8rDWfjJ_FLMMBDXrKts-ZM2s1m&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1m-v_Xv8rDWfjJ_FLMMBDXrKts-ZM2s1m/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1yOhcj4b9YC-msCX26JDFHpAl2B7nqDG9/view",
    "type": "drive-file",
    "title": "Los Croods",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735710151
   },
   {
    "url": "https://drive.google.com/file/d/1AysEwu4maOCJpCeP_-gTkzuV_Dzb7Yxo/view",
    "type": "drive-file",
    "title": "Karate Kid",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735710839
   },
   {
    "url": "https://drive.google.com/file/d/1q40wvi2UJt34_omOmv0ZNDDgvU9KCbaU/view",
    "type": "drive-file",
    "title": "Ella es el chico",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Ela é o Cara - DUB",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1q40wvi2UJt34_omOmv0ZNDDgvU9KC",
+     "t": "Ela é o Cara - DUB",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1q40wvi2UJt34_omOmv0ZNDDgvU9KCbaU&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1q40wvi2UJt34_omOmv0ZNDDgvU9KCbaU/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1U_nAl3v1Vkj3fWsMjZDC_smKW0vXNE-M/view",
    "type": "drive-file",
    "title": "Mi primer amor",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Meu Primeiro Amor",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1U_nAl3v1Vkj3fWsMjZDC_smKW0vXN",
+     "t": "Meu Primeiro Amor",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1U_nAl3v1Vkj3fWsMjZDC_smKW0vXNE-M&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1U_nAl3v1Vkj3fWsMjZDC_smKW0vXNE-M/view"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1voSQZJQaPmfQfW8I5HaVUyN4D_N2PFgC/view",
    "type": "drive-file",
    "title": "El niño del pijama de rayas",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Menino Do Pijama Listrado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1voSQZJQaPmfQfW8I5HaVUyN4D_N2P",
+     "t": "O Menino Do Pijama Listrado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1voSQZJQaPmfQfW8I5HaVUyN4D_N2PFgC&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1voSQZJQaPmfQfW8I5HaVUyN4D_N2PFgC/view"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1_FOzV5TQ4lRUZsC8zD45ENXQCg_vW5jW/view",
    "type": "drive-file",
    "title": "Un amor para recordar",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Um Amor Para Recordar",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1_FOzV5TQ4lRUZsC8zD45ENXQCg_vW",
+     "t": "Um Amor Para Recordar",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1_FOzV5TQ4lRUZsC8zD45ENXQCg_vW5jW&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1_FOzV5TQ4lRUZsC8zD45ENXQCg_vW5jW/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1SCDJAS4qu3e56oyvQAyjdCcyzZupyoik/view",
    "type": "drive-file",
    "title": "El diablo viste de Prada",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791735715727
   },
   {
    "url": "https://drive.google.com/file/d/1iCDG0x4MuhBPlLSfWujFaC0EdShZflyr/view",
