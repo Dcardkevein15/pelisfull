@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791683965636,
+ "at": 1791684085636,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE23Z/view",
@@ -8,22 +8,9 @@
    "title": "Lutando por la vida",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/10y_Yvfq8bsdSHz7sz-zLgm2HV5_LO42e/view",
-   "type": "drive-file",
-   "title": "Rota de fuga 3",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 1,
+   "nextRetryAt": 1791684188037,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
