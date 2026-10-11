@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791750663665,
+ "at": 1791762784275,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1tUmyVFZnPYz8_m8A05p73RJkv63iF43J/view",
@@ -9,8 +9,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 3,
-   "nextRetryAt": 1791750530971,
+   "attempts": 4,
+   "nextRetryAt": 1791762882979,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -22,8 +22,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 3,
-   "nextRetryAt": 1791750531838,
+   "attempts": 4,
+   "nextRetryAt": 1791762883858,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -35,81 +35,11 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791750533258,
+   "attempts": 2,
+   "nextRetryAt": 1791762884778,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1HqvBUeK6n2LQFwcdUX5Cm8jzIXbQEev9/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Campanita: Una Aventura en el Reino de las Hadas",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791750415831
-  },
-  {
-   "url": "https://drive.google.com/file/d/1tCKWr9y55g9EUXMDMczbJDEVeyc1H4mu/view",
-   "type": "drive-file",
-   "title": "Carros",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791750427674
-  },
-  {
-   "url": "https://drive.google.com/file/d/1QifztMnarAdGhAK1mtWdcpFEd4-17qVw/view",
-   "type": "drive-file",
-   "title": "Carros II",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791750428871
-  },
-  {
-   "url": "https://drive.google.com/file/d/1wpRzUfhDoU-khHbwTVcfKSUPbj4pHiod/view",
-   "type": "drive-file",
-   "title": "Quarteto fantástico",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791750430399
-  },
-  {
-   "url": "https://drive.google.com/file/d/1aMPAibzUdNQtPXe8Qj34a3Vk1wuftLQJ/view",
-   "type": "drive-file",
-   "title": "Cuarteto fantástico y el surfista plateado",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791750431129
   },
   {
    "url": "https://drive.google.com/file/d/1fO4FrQx4dn6S74_OMfvJhIHnwETCoWLQ/view",
@@ -118,8 +48,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791750551812,
+   "attempts": 2,
+   "nextRetryAt": 1791762885471,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -131,8 +61,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791750552513,
+   "attempts": 2,
+   "nextRetryAt": 1791762886190,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -144,52 +74,25 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791750553316,
+   "attempts": 2,
+   "nextRetryAt": 1791762887002,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1tGf-dfq3l04HS7814DgiwtqUgEx53XoD/view",
-   "type": "drive-file",
-   "title": "Annabelle",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791750434095
-  },
-  {
-   "url": "https://drive.google.com/file/d/1JUqr0iCfp150UUz5IfGAnhAGT-j1vUKW/view",
-   "type": "drive-file",
-   "title": "Annabelle 2",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791750435259
   },
   {
    "url": "https://drive.google.com/file/d/11Ih1PBDvPGNWJg7ZqVg6xPh8JkIf6fG-/view",
    "type": "drive-file",
    "title": "Annabelle 3",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762767880
   },
   {
    "url": "https://drive.google.com/file/d/1K-rHxZ9_kg_iS3wK5l2UhX9EUILWRVeE/view",
@@ -197,9 +100,9 @@
    "title": "Viva la vida es una fiesta",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791762888634,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -208,196 +111,313 @@
    "url": "https://drive.google.com/file/d/1ztBXawySd7OyUSGUWonVwS2Q9aA0RnAn/view?usp=sharing",
    "type": "drive-file",
    "title": "El Exorcista",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762769909
   },
   {
    "url": "https://drive.google.com/file/d/18jC2NIo8pMAWfkYeBEwBaZvuFIpr8Lo3/view?usp=sharing",
    "type": "drive-file",
    "title": "Invocación del Mal",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762770671
   },
   {
    "url": "https://drive.google.com/file/d/1I7rSHhZT5QYlh_VRMKPQnLZJnKzYreGq/view?usp=sharing",
    "type": "drive-file",
    "title": "Invocación del Mal 2",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762771565
   },
   {
    "url": "https://drive.google.com/file/d/1ZOGpUxcQn0YclC8u3yUTLyf3yaRlLuzW/view",
    "type": "drive-file",
    "title": "Divergente",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762772301
   },
   {
    "url": "https://drive.google.com/file/d/1HGl4pByqbSL88v8KXmiKHxk_SpevMyjq/view?usp=sharing",
    "type": "drive-file",
    "title": "Insurgente",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762773037
   },
   {
    "url": "https://drive.google.com/file/d/1aVh0oxRGaOtSGvsfv1EAMMl3YSUPS2hn/view",
    "type": "drive-file",
    "title": "Convergente",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762774147
   },
   {
    "url": "https://drive.google.com/file/d/1mfoNC3pFXx-GnURJ6ErQl6PV1pWQcTS5/view",
    "type": "drive-file",
    "title": "Monte Carlo",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Monte Carlo 2011",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1mfoNC3pFXx-GnURJ6ErQl6PV1pWQc",
+     "t": "Monte Carlo 2011",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1mfoNC3pFXx-GnURJ6ErQl6PV1pWQcTS5&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1mfoNC3pFXx-GnURJ6ErQl6PV1pWQcTS5/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1VOTWM0NN7BHvcVnubEw-ta9kmlsBJHMr/view",
    "type": "drive-file",
    "title": "O lar das crianças peculiares",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Lar das Crianças Peculiares 2016",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1VOTWM0NN7BHvcVnubEw-ta9kmlsBJ",
+     "t": "O Lar das Crianças Peculiares 2016",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1VOTWM0NN7BHvcVnubEw-ta9kmlsBJHMr&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1VOTWM0NN7BHvcVnubEw-ta9kmlsBJHMr/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/14T7ems7NLDKFmfwlPhDuhRn9exZ4zmtc/view?usp=sharing",
    "type": "drive-file",
    "title": "El secreto de Brockeback",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Segredo de Brokeback Mountain 2005",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-14T7ems7NLDKFmfwlPhDuhRn9exZ4z",
+     "t": "O Segredo de Brokeback Mountain 2005",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=14T7ems7NLDKFmfwlPhDuhRn9exZ4zmtc&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/14T7ems7NLDKFmfwlPhDuhRn9exZ4zmtc/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1nTS1mKXlkU90KZPB49kwDN_OZwa96kZ-/view",
    "type": "drive-file",
    "title": "Matriz",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762777948
   },
   {
    "url": "https://drive.google.com/file/d/1nHVAq6JGCuQawc7urJ9AIa-U0a4hP-RR/view?usp=sharing",
    "type": "drive-file",
    "title": "Matrix Reloaded",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762778639
   },
   {
    "url": "https://drive.google.com/file/d/1gMg6zPIZWedS5Ll4PpvqMoxW8_B1pYMa/view?usp=sharing",
    "type": "drive-file",
    "title": "Matrix Revolutions",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791762779321
   },
   {
    "url": "https://drive.google.com/file/d/1BpqvWd9rSO3WhSivuWDsZlkP5XHUOcH_/view",
    "type": "drive-file",
    "title": "Clube dos cinco",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Clube dos Cinco (1985) Trial Áudio By-LuanHarper",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1BpqvWd9rSO3WhSivuWDsZlkP5XHUO",
+     "t": "Clube dos Cinco (1985) Trial Áudio By-LuanHarper",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1BpqvWd9rSO3WhSivuWDsZlkP5XHUOcH_&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1BpqvWd9rSO3WhSivuWDsZlkP5XHUOcH_/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1hRns9yJ2CSx1jw6k-EacfMS9M6lpuFaM/view?usp=sharing",
    "type": "drive-file",
    "title": "O doutrinador",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Doutrinador 2018 NACIONAL-WWW BLUDV TV",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1hRns9yJ2CSx1jw6k-EacfMS9M6lpu",
+     "t": "O Doutrinador 2018 NACIONAL-WWW BLUDV TV",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1hRns9yJ2CSx1jw6k-EacfMS9M6lpuFaM&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1hRns9yJ2CSx1jw6k-EacfMS9M6lpuFaM/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1bCs33o-yu482xyX3T2mPZRluBIzKsYvZ/view?usp=sharing",
    "type": "drive-file",
    "title": "El zoológico de Varsovia",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Zoológico de Varsóvia 2017 DUBLADO-WWW BLUDV COM",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1bCs33o-yu482xyX3T2mPZRluBIzKs",
+     "t": "O Zoológico de Varsóvia 2017 DUBLADO-WWW BLUDV COM",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1bCs33o-yu482xyX3T2mPZRluBIzKsYvZ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1bCs33o-yu482xyX3T2mPZRluBIzKsYvZ/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/0Byqap-KXjFnheDQ5LXk4ckZPQWs/view",
@@ -405,9 +425,9 @@
    "title": "Una Casa Monstruo",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791762902905,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -416,14 +436,32 @@
    "url": "https://drive.google.com/file/d/1qfn_Tb3CZGG4a6mV3vGevsL1Dg6CpuAV/view",
    "type": "drive-file",
    "title": "Paranoia",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Paranóia (2007) - Dublado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1qfn_Tb3CZGG4a6mV3vGevsL1Dg6Cp",
+     "t": "Paranóia (2007) - Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1qfn_Tb3CZGG4a6mV3vGevsL1Dg6CpuAV&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1qfn_Tb3CZGG4a6mV3vGevsL1Dg6CpuAV/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1pK_j-yWJUt9ImcFIcMpX3PIy3Ox5jalO/view",
