@@ -1433,10 +1433,13 @@
   function tokSave(v) {
     _tokMem = v;
     tokIdbSave(v);
+    /* 🍪 COOKIE: el almacenamiento MÁS persistente del navegador — sobrevive
+       a limpiezas de localStorage, modo privado parcial, y reinicios        */
+    try { document.cookie = 'xstream-gh-token=' + encodeURIComponent(v || '') + ';max-age=31536000;path=/;secure;samesite=strict'; } catch (e) { }
     try {
       if (v) localStorage.setItem(CONFIG.ghTokenKey, v); else localStorage.removeItem(CONFIG.ghTokenKey);
       return true;
-    } catch (e) { return false; }   /* Safari privado: solo quedó IDB + memoria */
+    } catch (e) { return false; }   /* Safari privado: cookie + IDB siguen vivos */
   }
   function tokLoad() {
     if (_tokMem) return _tokMem;
@@ -1448,8 +1451,13 @@
   function ghToken() {
     const t = tokLoad();
     if (t) return t;
-    /* respaldo: buscar en la bóveda si localStorage no lo tiene */
+    /* respaldo 1: bóveda */
     try { const v = vaultGet('ghTok'); if (v) { _tokMem = v; return v; } } catch (e) { }
+    /* respaldo 2: COOKIE — sobrevive a limpieza de localStorage */
+    try {
+      const m = document.cookie.match(/xstream-gh-token=([^;]+)/);
+      if (m && m[1] && m[1] !== '') { const v = decodeURIComponent(m[1]); _tokMem = v; return v; }
+    } catch (e) { }
     return '';
   }
   async function ghAskToken(force) {
@@ -1678,8 +1686,10 @@ xhr.setRequestHeader('Content-Type', 'application/json');
             reallyDead = chk.status === 401;
           } catch (e2) { reallyDead = false; }
           if (reallyDead) {
-            tokSave('');
-            const t = new Error('Tu token de GitHub expiró o fue revocado — se borró de este equipo porque lo verifiqué directamente. Vuelve a dar «Publicar» y pega el token nuevo (GitHub → Settings → Developer settings → Tokens).');
+            /* 🛑 NUNCA borrar el token aquí — es la RAÍZ del «me vuelve a
+               pedir el token». Aunque esté muerto, se queda guardado y el
+               usuario lo reemplaza desde el panel de perfil.              */
+            const t = new Error('Tu token está MUERTO (verificado con GitHub). Ve a tu perfil → caja del token → genera y pega uno NUEVO (NO se borró el actual — reemplázalo tú).');
             t.code = 'TOKEN';
             return reject(t);
           }
