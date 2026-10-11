@@ -1,32 +1,68 @@
 {
  "v": 1,
- "at": 1791684319334,
+ "at": 1791689319163,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE23Z/view",
    "type": "drive-file",
    "title": "Lutando por la vida",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "status": "done",
+   "name": "Imortais-DVDRip-DUBLADO-WWW MEGAHFILMESHD NET",
+   "error": "",
    "attempts": 2,
    "nextRetryAt": 1791684427845,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE",
+     "t": "Imortais-DVDRip-DUBLADO-WWW MEGAHFILMESHD NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE23Z&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE23Z/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1k_qqHTxIkI0ja_1FEdrbBJ3I0L8VKs6y/view",
    "type": "drive-file",
    "title": "Secretos oficiales",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "status": "done",
+   "name": "Segredos Oficiais Dublado 2020 WWW DOWNLOADLIVRE NET",
+   "error": "",
    "attempts": 1,
    "nextRetryAt": 1791684340729,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1k_qqHTxIkI0ja_1FEdrbBJ3I0L8VK",
+     "t": "Segredos Oficiais Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1k_qqHTxIkI0ja_1FEdrbBJ3I0L8VKs6y&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1k_qqHTxIkI0ja_1FEdrbBJ3I0L8VKs6y/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/15n2ntgItdQ7qkawsoPDuK-q30PS3R1fT/view",
@@ -64,248 +100,509 @@
    "url": "https://drive.google.com/file/d/1OD-FNEsoywWrKSrr4L_jI3UnrbMHuTND/view",
    "type": "drive-file",
    "title": "El amanecer más oscuro",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Amanhecer Mais Escuro 2018 (visite www filmesdozaca com)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1OD-FNEsoywWrKSrr4L_jI3UnrbMHu",
+     "t": "O Amanhecer Mais Escuro 2018 (visite www filmesdozaca com)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1OD-FNEsoywWrKSrr4L_jI3UnrbMHuTND&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1OD-FNEsoywWrKSrr4L_jI3UnrbMHuTND/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1kPIEyASYNJ25i80pYMjnIUTFGJpWmZxv/view",
    "type": "drive-file",
    "title": "Persecución radical",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791689292507
   },
   {
    "url": "https://drive.google.com/file/d/1Yv0T3mT0yU4MchnPWdqT1k7Rl_AO_tAf/view",
    "type": "drive-file",
    "title": "María y Juan: El cuento de las brujas",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Maria e Joao O Conto das Bruxas 2020 -DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Yv0T3mT0yU4MchnPWdqT1k7Rl_AO_",
+     "t": "Maria e Joao O Conto das Bruxas 2020 -DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Yv0T3mT0yU4MchnPWdqT1k7Rl_AO_tAf&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Yv0T3mT0yU4MchnPWdqT1k7Rl_AO_tAf/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/13MWNE1J7aFJPsNV4OqhsRsXseIamTwMo/view",
    "type": "drive-file",
    "title": "El secreto de Alcatraz",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Segredo de Alcatraz Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-13MWNE1J7aFJPsNV4OqhsRsXseIamT",
+     "t": "O Segredo de Alcatraz Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=13MWNE1J7aFJPsNV4OqhsRsXseIamTwMo&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/13MWNE1J7aFJPsNV4OqhsRsXseIamTwMo/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1M3evGsbDJryclj_q8zr5xry2tHOwNSAl/view",
    "type": "drive-file",
    "title": "El cántico de los nombres",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Cantico dos Nomes Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1M3evGsbDJryclj_q8zr5xry2tHOwN",
+     "t": "O Cantico dos Nomes Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1M3evGsbDJryclj_q8zr5xry2tHOwNSAl&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1M3evGsbDJryclj_q8zr5xry2tHOwNSAl/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1t-qkPj_sjGyCzLKbYLIkX9sXPXXc7ysp/view",
    "type": "drive-file",
    "title": "La jornada",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791689295726
   },
   {
    "url": "https://drive.google.com/file/d/1Vq4wtoJpR8OF6ThGbL3ptUKnMz9CjcJW/view",
    "type": "drive-file",
    "title": "La cacería",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791689296375
   },
   {
    "url": "https://drive.google.com/file/d/1qMO7rWPchVHJnnEGG6Fg0_tIpmWb3kaS/view",
    "type": "drive-file",
    "title": "Anelka: El incomprendido",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Anelka O incompreendido Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1qMO7rWPchVHJnnEGG6Fg0_tIpmWb3",
+     "t": "Anelka O incompreendido Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1qMO7rWPchVHJnnEGG6Fg0_tIpmWb3kaS&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1qMO7rWPchVHJnnEGG6Fg0_tIpmWb3kaS/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1AJ7POGbMHevhEN03lwWGKxpa3xDt7tik/view",
    "type": "drive-file",
    "title": "Sin Misericordia",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Sem Misericordia Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1AJ7POGbMHevhEN03lwWGKxpa3xDt7",
+     "t": "Sem Misericordia Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1AJ7POGbMHevhEN03lwWGKxpa3xDt7tik&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1AJ7POGbMHevhEN03lwWGKxpa3xDt7tik/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1ZkKhbnI0K69wy13vM8f0leoKzhlHiJpx/view",
    "type": "drive-file",
    "title": "El fanático",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Fanatico Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ZkKhbnI0K69wy13vM8f0leoKzhlHi",
+     "t": "O Fanatico Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ZkKhbnI0K69wy13vM8f0leoKzhlHiJpx&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ZkKhbnI0K69wy13vM8f0leoKzhlHiJpx/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1ilDSqu73oNpiYFliBYWym2NSVrVfzvNP/view",
    "type": "drive-file",
    "title": "Guerra de cocaína: La lucha por el fin",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Guerra da Cocaína-A Luta pelo Fim 2020 DUBLADO (visite www filmesdozaca com)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ilDSqu73oNpiYFliBYWym2NSVrVfz",
+     "t": "Guerra da Cocaína-A Luta pelo Fim 2020 DUBLADO (visite www filmesdozaca com)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ilDSqu73oNpiYFliBYWym2NSVrVfzvNP&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ilDSqu73oNpiYFliBYWym2NSVrVfzvNP/view"
+      }
+     ],
+     "genre": "guerra",
+     "tags": [
+      "Guerra"
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1kk_0r935fTOvKxKLz-s4gHrdVgRbfdGd/view",
    "type": "drive-file",
    "title": "Scooby: La película",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Scooby O Filme 2020 AC3 Dublado-RICKSZ",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1kk_0r935fTOvKxKLz-s4gHrdVgRbf",
+     "t": "Scooby O Filme 2020 AC3 Dublado-RICKSZ",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1kk_0r935fTOvKxKLz-s4gHrdVgRbfdGd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1kk_0r935fTOvKxKLz-s4gHrdVgRbfdGd/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1ObyXshyLivrNJPnr2ogxFV7WGV7tAUyd/view",
    "type": "drive-file",
    "title": "Exterminador: caballeros y dragones",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Exterminador 3A Cavaleiros e Dragoes O Filme Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ObyXshyLivrNJPnr2ogxFV7WGV7tA",
+     "t": "Exterminador 3A Cavaleiros e Dragoes O Filme Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ObyXshyLivrNJPnr2ogxFV7WGV7tAUyd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ObyXshyLivrNJPnr2ogxFV7WGV7tAUyd/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1N9kNdvU-509WrZOtVq4TUS3cyyMGn2Xx/view",
    "type": "drive-file",
    "title": "Los Reyes de la Colina 2",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791689301935
   },
   {
    "url": "https://drive.google.com/file/d/1092_Ff-LmYxHFbisK52ZMTt_ETRou7ST/view",
    "type": "drive-file",
    "title": "Proyecto Power",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Power 2020 DUBLADO-UNIVERSO3GP",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1092_Ff-LmYxHFbisK52ZMTt_ETRou",
+     "t": "Power 2020 DUBLADO-UNIVERSO3GP",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1092_Ff-LmYxHFbisK52ZMTt_ETRou7ST&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1092_Ff-LmYxHFbisK52ZMTt_ETRou7ST/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1lJjFWdCUX-cLn2_g0Usv8k7bb3r8351E/view",
    "type": "drive-file",
    "title": "En el ojo del tornado",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "N0 0lho Do Tornad0 My Sabrigo Gdrive FIlmes",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1lJjFWdCUX-cLn2_g0Usv8k7bb3r83",
+     "t": "N0 0lho Do Tornad0 My Sabrigo Gdrive FIlmes",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1lJjFWdCUX-cLn2_g0Usv8k7bb3r8351E&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1lJjFWdCUX-cLn2_g0Usv8k7bb3r8351E/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/14ag2y0QopIb60cxP3veln2Qxoe3gXRLf/view",
    "type": "drive-file",
    "title": "Bad Boys para siempre",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791689304149
   },
   {
    "url": "https://drive.google.com/file/d/1c7byqch86t5I0ewRy3t1oBFwbLuFTeOp/view",
    "type": "drive-file",
    "title": "Araña en la red",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Ar8nha na Teia 2019 My Sabrigo Gdrive FIlmes",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1c7byqch86t5I0ewRy3t1oBFwbLuFT",
+     "t": "Ar8nha na Teia 2019 My Sabrigo Gdrive FIlmes",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1c7byqch86t5I0ewRy3t1oBFwbLuFTeOp&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1c7byqch86t5I0ewRy3t1oBFwbLuFTeOp/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1ixmNCt0C4bzFGmLR23BjBGZS9BBHNhxZ/view",
    "type": "drive-file",
    "title": "La hora de su muerte",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A Hora da Sua Morte (2020) Dublado(httpsfilmesdozaca0800 blogspot com)",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ixmNCt0C4bzFGmLR23BjBGZS9BBHN",
+     "t": "A Hora da Sua Morte (2020) Dublado(httpsfilmesdozaca0800 blogspot com)",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ixmNCt0C4bzFGmLR23BjBGZS9BBHNhxZ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ixmNCt0C4bzFGmLR23BjBGZS9BBHNhxZ/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1lWrvboE-sfjRUulOc5Eze5YX5JERQ71q/view",
@@ -313,9 +610,9 @@
    "title": "Celular: un grito de socorro",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 500",
+   "attempts": 1,
+   "nextRetryAt": 1791689436348,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -324,40 +621,94 @@
    "url": "https://drive.google.com/file/d/12Ahs_1HWZXiP9tcvLKH9uebWdzKOOxNe/view",
    "type": "drive-file",
    "title": "Arraste-me para o inferno sem censura",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Arraste-me para o Inferno 2009 My Sabrigo Gdrive Filmes",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12Ahs_1HWZXiP9tcvLKH9uebWdzKOO",
+     "t": "Arraste-me para o Inferno 2009 My Sabrigo Gdrive Filmes",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12Ahs_1HWZXiP9tcvLKH9uebWdzKOOxNe&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12Ahs_1HWZXiP9tcvLKH9uebWdzKOOxNe/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1XorDcJLQQn_DW2ErGZZpgODUCtdX7X2d/view",
    "type": "drive-file",
    "title": "Devorados vivos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Devorados Vivos Dublado 2011 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1XorDcJLQQn_DW2ErGZZpgODUCtdX7",
+     "t": "Devorados Vivos Dublado 2011 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1XorDcJLQQn_DW2ErGZZpgODUCtdX7X2d&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1XorDcJLQQn_DW2ErGZZpgODUCtdX7X2d/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1TqV4BUiPgT196MhJnQUxhb_tJycUQug2/view",
    "type": "drive-file",
    "title": "MILF",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "MILF Dublado 2020 WWW DOWNLOADLIVRE NET",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1TqV4BUiPgT196MhJnQUxhb_tJycUQ",
+     "t": "MILF Dublado 2020 WWW DOWNLOADLIVRE NET",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1TqV4BUiPgT196MhJnQUxhb_tJycUQug2&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1TqV4BUiPgT196MhJnQUxhb_tJycUQug2/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1mdkh1tGwkzIflkIfmRLQxE2l1zl7KQlW/view",
