@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791683238549,
+ "at": 1791683566547,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1kulcb-igxeK8VmFQETilxyOWpHbM75Tz/view",
@@ -8,35 +8,9 @@
    "title": "Persiguiendo al asesino 2018",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
-   "nextRetryAt": 1791683343741,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1MCqMLS8At9o1cdm6tlC0wU1HH0ftCTHZ/view",
-   "type": "drive-file",
-   "title": "El apagón",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1auiABzP4RLnTmD9rrbkq4m0US4GrkeAu/view",
-   "type": "drive-file",
-   "title": "Aprisionados 2017",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 2,
+   "nextRetryAt": 1791683652456,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
