@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791678384217,
+ "at": 1791678526466,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1Dnjpj6aLcgU6-w1FFXTiJveDXSDQVtO0/view?usp=drivesdk",
@@ -1013,19 +1013,6 @@
      "genreTmdbDone": false
     }
    ],
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1ZPAhH3O7vvCbQl0ws4aLloN2MI2nh61T/view",
-   "type": "drive-file",
-   "title": "Tokyo Ghoul",
-   "status": "dup",
-   "name": "Tokyo Ghoul",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
    "syncedAt": 1791675754524
   },
   {
@@ -2438,19 +2425,6 @@
      "genreTmdbDone": false
     }
    ],
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1j9iweFYdEQHo1C6Vn5Qnu2FjQ-hGps9P/view",
-   "type": "drive-file",
-   "title": "Superlópez",
-   "status": "dup",
-   "name": "Superlópez",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
    "syncedAt": 1791675754524
   },
   {
@@ -4929,832 +4903,2020 @@
    "url": "https://drive.google.com/file/d/177ZBb18J1cqc8kF3OJVeJ-qSw-8Mt0IS/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Do fundo do Mar 3",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Do fundo do Mar 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-177ZBb18J1cqc8kF3OJVeJ-qSw-8Mt",
+     "t": "Do fundo do Mar 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=177ZBb18J1cqc8kF3OJVeJ-qSw-8Mt0IS&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/177ZBb18J1cqc8kF3OJVeJ-qSw-8Mt0IS/view"
+      }
+     ],
+     "at": 1791678386231,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1lP2ZmH1_-HA3s1KYQVkkZBBU6Z2mr9wX/view",
    "type": "drive-file",
    "title": "Deapool",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Deapool",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1lP2ZmH1_-HA3s1KYQVkkZBBU6Z2mr",
+     "t": "Deapool",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1lP2ZmH1_-HA3s1KYQVkkZBBU6Z2mr9wX&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1lP2ZmH1_-HA3s1KYQVkkZBBU6Z2mr9wX/view"
+      }
+     ],
+     "at": 1791678388334,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1Dp8KcjC1SelNuA1c11pdjIIt-A5PCpgQ/view",
    "type": "drive-file",
    "title": "Godzilla II: Rey de los monstruos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Godzilla II: Rey de los monstruos",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Dp8KcjC1SelNuA1c11pdjIIt-A5PC",
+     "t": "Godzilla II: Rey de los monstruos",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Dp8KcjC1SelNuA1c11pdjIIt-A5PCpgQ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Dp8KcjC1SelNuA1c11pdjIIt-A5PCpgQ/view"
+      }
+     ],
+     "at": 1791678390742,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1RLmjWUEC50ryoaoD_b3Y4fk3X-hHN3r2/view",
    "type": "drive-file",
    "title": "Fuga de Auschwitz",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Fuga de Auschwitz",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1RLmjWUEC50ryoaoD_b3Y4fk3X-hHN",
+     "t": "Fuga de Auschwitz",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1RLmjWUEC50ryoaoD_b3Y4fk3X-hHN3r2&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1RLmjWUEC50ryoaoD_b3Y4fk3X-hHN3r2/view"
+      }
+     ],
+     "at": 1791678394512,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1JROJ81SRewOpCerDWw1iSiYG5vrCQR3v/view",
    "type": "drive-file",
    "title": "Una noche en Bangkok",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Una noche en Bangkok",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1JROJ81SRewOpCerDWw1iSiYG5vrCQ",
+     "t": "Una noche en Bangkok",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1JROJ81SRewOpCerDWw1iSiYG5vrCQR3v&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1JROJ81SRewOpCerDWw1iSiYG5vrCQR3v/view"
+      }
+     ],
+     "at": 1791678396951,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1JebWbRE4CxhpEKfrK5uVDCN6Zb9bm4Oc/view",
    "type": "drive-file",
    "title": "Aprendiz de espía",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Aprendiz de espía",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1JebWbRE4CxhpEKfrK5uVDCN6Zb9bm",
+     "t": "Aprendiz de espía",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1JebWbRE4CxhpEKfrK5uVDCN6Zb9bm4Oc&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1JebWbRE4CxhpEKfrK5uVDCN6Zb9bm4Oc/view"
+      }
+     ],
+     "at": 1791678400335,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1uzMkvz3I8wQ-OH3tDJ0Pn0E2mFCBCjgR/view",
    "type": "drive-file",
    "title": "El espejo",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El espejo",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1uzMkvz3I8wQ-OH3tDJ0Pn0E2mFCBC",
+     "t": "El espejo",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1uzMkvz3I8wQ-OH3tDJ0Pn0E2mFCBCjgR&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1uzMkvz3I8wQ-OH3tDJ0Pn0E2mFCBCjgR/view"
+      }
+     ],
+     "at": 1791678404430,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1f-IC4nTl7muApxB4VFMwr5yWc7Tmo7wk/view",
    "type": "drive-file",
    "title": "Delitos de familia",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Delitos de familia",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1f-IC4nTl7muApxB4VFMwr5yWc7Tmo",
+     "t": "Delitos de familia",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1f-IC4nTl7muApxB4VFMwr5yWc7Tmo7wk&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1f-IC4nTl7muApxB4VFMwr5yWc7Tmo7wk/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "at": 1791678407009,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1o6KjMnOmfu9HCoQkhg4CAqqAsANIjQAp/view",
    "type": "drive-file",
    "title": "Vivo",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Vivo",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1o6KjMnOmfu9HCoQkhg4CAqqAsANIj",
+     "t": "Vivo",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1o6KjMnOmfu9HCoQkhg4CAqqAsANIjQAp&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1o6KjMnOmfu9HCoQkhg4CAqqAsANIjQAp/view"
+      }
+     ],
+     "at": 1791678409468,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/10s31j2oMguvqJG8gwIIiMs9bStgVRKy1/view",
    "type": "drive-file",
    "title": "Reprisal: Contra ataque",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Reprisal: Contra ataque",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10s31j2oMguvqJG8gwIIiMs9bStgVR",
+     "t": "Reprisal: Contra ataque",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10s31j2oMguvqJG8gwIIiMs9bStgVRKy1&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10s31j2oMguvqJG8gwIIiMs9bStgVRKy1/view"
+      }
+     ],
+     "at": 1791678411921,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1rCDlBhxgwRYhyJ3Q-eXi7mONZPkXYf9E/view",
    "type": "drive-file",
    "title": "Get Duked",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Get Duked",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1rCDlBhxgwRYhyJ3Q-eXi7mONZPkXY",
+     "t": "Get Duked",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1rCDlBhxgwRYhyJ3Q-eXi7mONZPkXYf9E&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1rCDlBhxgwRYhyJ3Q-eXi7mONZPkXYf9E/view"
+      }
+     ],
+     "at": 1791678414459,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1JGk2FwX9SR99MSivIpYR8AxbbZUGsi6A/view",
    "type": "drive-file",
    "title": "Rogue 2020 Doblado",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Rogue 2020 Doblado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1JGk2FwX9SR99MSivIpYR8AxbbZUGs",
+     "t": "Rogue 2020 Doblado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1JGk2FwX9SR99MSivIpYR8AxbbZUGsi6A&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1JGk2FwX9SR99MSivIpYR8AxbbZUGsi6A/view"
+      }
+     ],
+     "at": 1791678416900,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1WvXGCzsDBqQQkF9Xe1jD9OLywtiXdyXF/view",
    "type": "drive-file",
    "title": "Freaks: uno de nosotros",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Freaks: uno de nosotros",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1WvXGCzsDBqQQkF9Xe1jD9OLywtiXd",
+     "t": "Freaks: uno de nosotros",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1WvXGCzsDBqQQkF9Xe1jD9OLywtiXdyXF&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1WvXGCzsDBqQQkF9Xe1jD9OLywtiXdyXF/view"
+      }
+     ],
+     "at": 1791678419366,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1chqeA7sc_5cyJ2yiNlVwCAMYzevvfYOO/view",
    "type": "drive-file",
    "title": "Tirando a maior onda: El película",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tirando a maior onda: El película",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1chqeA7sc_5cyJ2yiNlVwCAMYzevvf",
+     "t": "Tirando a maior onda: El película",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1chqeA7sc_5cyJ2yiNlVwCAMYzevvfYOO&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1chqeA7sc_5cyJ2yiNlVwCAMYzevvfYOO/view"
+      }
+     ],
+     "at": 1791678421911,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1y_vRm_60UGcaQOQT-B5iIa9A-T6ihydb/view",
    "type": "drive-file",
    "title": "El secreto: Atrévete a soñar",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El secreto: Atrévete a soñar",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1y_vRm_60UGcaQOQT-B5iIa9A-T6ih",
+     "t": "El secreto: Atrévete a soñar",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1y_vRm_60UGcaQOQT-B5iIa9A-T6ihydb&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1y_vRm_60UGcaQOQT-B5iIa9A-T6ihydb/view"
+      }
+     ],
+     "at": 1791678424531,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1eQ17iQjLiJGoxjfWvizCXZff4vyINPwl/view",
    "type": "drive-file",
    "title": "Decisión",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Decisión",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1eQ17iQjLiJGoxjfWvizCXZff4vyIN",
+     "t": "Decisión",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1eQ17iQjLiJGoxjfWvizCXZff4vyINPwl&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1eQ17iQjLiJGoxjfWvizCXZff4vyINPwl/view"
+      }
+     ],
+     "at": 1791678427509,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1xYOTyHNOKmcuLMS03xDppiGR6dIi_UUD/view",
    "type": "drive-file",
    "title": "Ma educación",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Ma educación",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1xYOTyHNOKmcuLMS03xDppiGR6dIi_",
+     "t": "Ma educación",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1xYOTyHNOKmcuLMS03xDppiGR6dIi_UUD&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1xYOTyHNOKmcuLMS03xDppiGR6dIi_UUD/view"
+      }
+     ],
+     "at": 1791678429982,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1zoR4omuosgtmgu4iKniT1KJLo_HmfabD/view",
    "type": "drive-file",
    "title": "Casi una Rockstar",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Casi una Rockstar",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1zoR4omuosgtmgu4iKniT1KJLo_Hmf",
+     "t": "Casi una Rockstar",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1zoR4omuosgtmgu4iKniT1KJLo_HmfabD&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1zoR4omuosgtmgu4iKniT1KJLo_HmfabD/view"
+      }
+     ],
+     "at": 1791678432503,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1jmXE8bdVsR4BYj5uoeTH7wa4HuHMOw8m/view",
    "type": "drive-file",
    "title": "Superman - Hombre del Mañana",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Superman - Hombre del Mañana",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1jmXE8bdVsR4BYj5uoeTH7wa4HuHMO",
+     "t": "Superman - Hombre del Mañana",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1jmXE8bdVsR4BYj5uoeTH7wa4HuHMOw8m&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1jmXE8bdVsR4BYj5uoeTH7wa4HuHMOw8m/view"
+      }
+     ],
+     "at": 1791678434971,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1c7FYumcY8o4iKedimQL94QsxFS5HgMfk/view?usp=sharing",
    "type": "drive-file",
    "title": "John Wick 1",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "John Wick 1",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1c7FYumcY8o4iKedimQL94QsxFS5Hg",
+     "t": "John Wick 1",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1c7FYumcY8o4iKedimQL94QsxFS5HgMfk&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1c7FYumcY8o4iKedimQL94QsxFS5HgMfk/view"
+      }
+     ],
+     "at": 1791678436642,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/18l2k0-kzdu8eulgqMtj2tx8AuKhsaJ7t/view",
    "type": "drive-file",
    "title": "John Wick 2",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "John Wick 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-18l2k0-kzdu8eulgqMtj2tx8AuKhsa",
+     "t": "John Wick 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=18l2k0-kzdu8eulgqMtj2tx8AuKhsaJ7t&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/18l2k0-kzdu8eulgqMtj2tx8AuKhsaJ7t/view"
+      }
+     ],
+     "at": 1791678437933,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1I8fIvzzMvz00fAHcmGn-bOR8ElXGL3yQ/view",
    "type": "drive-file",
    "title": "John Wick 3",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "John Wick 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1I8fIvzzMvz00fAHcmGn-bOR8ElXGL",
+     "t": "John Wick 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1I8fIvzzMvz00fAHcmGn-bOR8ElXGL3yQ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1I8fIvzzMvz00fAHcmGn-bOR8ElXGL3yQ/view"
+      }
+     ],
+     "at": 1791678439413,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/12ZaAJhsBbhxPrycj9eIU_Bltjy7agcp3/view",
    "type": "drive-file",
    "title": "Círculo de Fuego",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Círculo de Fuego",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12ZaAJhsBbhxPrycj9eIU_Bltjy7ag",
+     "t": "Círculo de Fuego",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12ZaAJhsBbhxPrycj9eIU_Bltjy7agcp3&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12ZaAJhsBbhxPrycj9eIU_Bltjy7agcp3/view"
+      }
+     ],
+     "at": 1791678442056,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1t6ie6-zzh1K4SW2HaBsyKwd2bCLsxPEd/view",
    "type": "drive-file",
    "title": "Círculo de Fuego - La Revuelta",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Círculo de Fuego - La Revuelta",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1t6ie6-zzh1K4SW2HaBsyKwd2bCLsx",
+     "t": "Círculo de Fuego - La Revuelta",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1t6ie6-zzh1K4SW2HaBsyKwd2bCLsxPEd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1t6ie6-zzh1K4SW2HaBsyKwd2bCLsxPEd/view"
+      }
+     ],
+     "at": 1791678444576,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1iJd0o0T1K_QqVOgcIlAxrksrkeSwiCFkDA/view",
    "type": "drive-file",
    "title": "It – La Cosa",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "It – La Cosa",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1iJd0o0T1K_QqVOgcIlAxrksrkeSwi",
+     "t": "It – La Cosa",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1iJd0o0T1K_QqVOgcIlAxrksrkeSwiCFkDA&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1iJd0o0T1K_QqVOgcIlAxrksrkeSwiCFkDA/view"
+      }
+     ],
+     "at": 1791678445966,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1xmOnn_qwPU7SLc69beVP24NOSMVERD8F/view",
    "type": "drive-file",
    "title": "Una noche de crimen 1",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Una noche de crimen 1",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1xmOnn_qwPU7SLc69beVP24NOSMVER",
+     "t": "Una noche de crimen 1",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1xmOnn_qwPU7SLc69beVP24NOSMVERD8F&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1xmOnn_qwPU7SLc69beVP24NOSMVERD8F/view"
+      }
+     ],
+     "at": 1791678448420,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1u414VWnNZMbKCWdkAI02Fg0HpccZZox6/view",
    "type": "drive-file",
    "title": "Una noche de crimen 2",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Una noche de crimen 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1u414VWnNZMbKCWdkAI02Fg0HpccZZ",
+     "t": "Una noche de crimen 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1u414VWnNZMbKCWdkAI02Fg0HpccZZox6&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1u414VWnNZMbKCWdkAI02Fg0HpccZZox6/view"
+      }
+     ],
+     "at": 1791678451693,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/13fkJ4BVd3-EfrxNRyktcOs146aFx3SQd/view",
    "type": "drive-file",
    "title": "Una noche de crimen 3",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Una noche de crimen 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-13fkJ4BVd3-EfrxNRyktcOs146aFx3",
+     "t": "Una noche de crimen 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=13fkJ4BVd3-EfrxNRyktcOs146aFx3SQd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/13fkJ4BVd3-EfrxNRyktcOs146aFx3SQd/view"
+      }
+     ],
+     "at": 1791678453014,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1sRsDzb-hvkXPAmYLoXmH1Do8Kn249EiX/view",
    "type": "drive-file",
    "title": "Una noche de crimen 4",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Una noche de crimen 4",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1sRsDzb-hvkXPAmYLoXmH1Do8Kn249",
+     "t": "Una noche de crimen 4",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1sRsDzb-hvkXPAmYLoXmH1Do8Kn249EiX&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1sRsDzb-hvkXPAmYLoXmH1Do8Kn249EiX/view"
+      }
+     ],
+     "at": 1791678455532,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1rnUq8_yB8i2WIGq-4Xk8GYyHvB5PA5BU/view",
    "type": "drive-file",
    "title": "Hombre de Hierro 1",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Hombre de Hierro 1",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1rnUq8_yB8i2WIGq-4Xk8GYyHvB5PA",
+     "t": "Hombre de Hierro 1",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1rnUq8_yB8i2WIGq-4Xk8GYyHvB5PA5BU&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1rnUq8_yB8i2WIGq-4Xk8GYyHvB5PA5BU/view"
+      }
+     ],
+     "at": 1791678457617,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1lsSMaMbyyAv45qjWMrsmGNhjUGDyNal9/view",
    "type": "drive-file",
    "title": "Hombre de Hierro 2",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Hombre de Hierro 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1lsSMaMbyyAv45qjWMrsmGNhjUGDyN",
+     "t": "Hombre de Hierro 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1lsSMaMbyyAv45qjWMrsmGNhjUGDyNal9&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1lsSMaMbyyAv45qjWMrsmGNhjUGDyNal9/view"
+      }
+     ],
+     "at": 1791678459231,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/10hzyDPVb1jA7nIb5suk3DOh3Bqbq5tNc/view",
    "type": "drive-file",
    "title": "Hombre de Hierro 3",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Hombre de Hierro 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10hzyDPVb1jA7nIb5suk3DOh3Bqbq5",
+     "t": "Hombre de Hierro 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10hzyDPVb1jA7nIb5suk3DOh3Bqbq5tNc&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10hzyDPVb1jA7nIb5suk3DOh3Bqbq5tNc/view"
+      }
+     ],
+     "at": 1791678460679,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/13kAAeu9kUn8iHpfHaAmGY4Or4BY758rU/view",
    "type": "drive-file",
    "title": "Un lobo con piel de cordero",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Un lobo con piel de cordero",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-13kAAeu9kUn8iHpfHaAmGY4Or4BY75",
+     "t": "Un lobo con piel de cordero",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=13kAAeu9kUn8iHpfHaAmGY4Or4BY758rU&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/13kAAeu9kUn8iHpfHaAmGY4Or4BY758rU/view"
+      }
+     ],
+     "at": 1791678462378,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1DNlu-90xRQ_dHBNqnXAq-V6H9Rn691ke/view",
    "type": "drive-file",
    "title": "El hombre invisible",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El hombre invisible",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1DNlu-90xRQ_dHBNqnXAq-V6H9Rn69",
+     "t": "El hombre invisible",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1DNlu-90xRQ_dHBNqnXAq-V6H9Rn691ke&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1DNlu-90xRQ_dHBNqnXAq-V6H9Rn691ke/view"
+      }
+     ],
+     "at": 1791678464316,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1F8UGZIGk4-UCn4CeV3Qs9DNaS4ay5pOH/view",
    "type": "drive-file",
    "title": "Anna",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Anna",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1F8UGZIGk4-UCn4CeV3Qs9DNaS4ay5",
+     "t": "Anna",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1F8UGZIGk4-UCn4CeV3Qs9DNaS4ay5pOH&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1F8UGZIGk4-UCn4CeV3Qs9DNaS4ay5pOH/view"
+      }
+     ],
+     "at": 1791678465996,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1NG2X9xyxq7YUUhTy7nuvqnsR9Y1G12UN/view",
    "type": "drive-file",
    "title": "Fractura",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Fractura",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1NG2X9xyxq7YUUhTy7nuvqnsR9Y1G1",
+     "t": "Fractura",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1NG2X9xyxq7YUUhTy7nuvqnsR9Y1G12UN&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1NG2X9xyxq7YUUhTy7nuvqnsR9Y1G12UN/view"
+      }
+     ],
+     "at": 1791678467747,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1CilwTXDVx7Bie6IdyWVxwip2xWGicFJ7/view",
    "type": "drive-file",
    "title": "Rescate",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Rescate",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1CilwTXDVx7Bie6IdyWVxwip2xWGic",
+     "t": "Rescate",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1CilwTXDVx7Bie6IdyWVxwip2xWGicFJ7&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1CilwTXDVx7Bie6IdyWVxwip2xWGicFJ7/view"
+      }
+     ],
+     "at": 1791678469274,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/19AJ3ade7fMLF9eqsWVycli1lplm4IIPi/view",
    "type": "drive-file",
    "title": "La caverna Time Tripe",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "La caverna Time Tripe",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-19AJ3ade7fMLF9eqsWVycli1lplm4I",
+     "t": "La caverna Time Tripe",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=19AJ3ade7fMLF9eqsWVycli1lplm4IIPi&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/19AJ3ade7fMLF9eqsWVycli1lplm4IIPi/view"
+      }
+     ],
+     "at": 1791678471681,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/0B5kz261eDr-tNFJtTnc5ZGpUcVE/view",
    "type": "drive-file",
    "title": "Namoro o Libertad",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Namoro o Libertad",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-0B5kz261eDr-tNFJtTnc5ZGpUcVE-v",
+     "t": "Namoro o Libertad",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=0B5kz261eDr-tNFJtTnc5ZGpUcVE&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/0B5kz261eDr-tNFJtTnc5ZGpUcVE/view"
+      }
+     ],
+     "at": 1791678474162,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1tCXJpEXvv2rf8A02lY9WJs8U7jKXRv8W/view",
    "type": "drive-file",
    "title": "Manda Chuva",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Manda Chuva",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1tCXJpEXvv2rf8A02lY9WJs8U7jKXR",
+     "t": "Manda Chuva",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1tCXJpEXvv2rf8A02lY9WJs8U7jKXRv8W&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1tCXJpEXvv2rf8A02lY9WJs8U7jKXRv8W/view"
+      }
+     ],
+     "at": 1791678475715,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/132_vwYz5zXMQORAhWmTwQHlLZ47Tpu7V/view?usp=drivesdk",
    "type": "drive-file",
    "title": "A cinco pasos de usted",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A cinco pasos de usted",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-132_vwYz5zXMQORAhWmTwQHlLZ47Tp",
+     "t": "A cinco pasos de usted",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=132_vwYz5zXMQORAhWmTwQHlLZ47Tpu7V&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/132_vwYz5zXMQORAhWmTwQHlLZ47Tpu7V/view"
+      }
+     ],
+     "at": 1791678478173,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1Xb1XWdlkvMQllgBit3Jm7JeH3pPx2dUD/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Descendientes 3",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Descendientes 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Xb1XWdlkvMQllgBit3Jm7JeH3pPx2",
+     "t": "Descendientes 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Xb1XWdlkvMQllgBit3Jm7JeH3pPx2dUD&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Xb1XWdlkvMQllgBit3Jm7JeH3pPx2dUD/view"
+      }
+     ],
+     "at": 1791678479559,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1HZfDsVgSkFGQXRK8rGg-9wYqObXke0hH/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Animais fantásticos 2: Os crimes de Grindelwald",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Animais fantásticos 2: Os crimes de Grindelwald",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1HZfDsVgSkFGQXRK8rGg-9wYqObXke",
+     "t": "Animais fantásticos 2: Os crimes de Grindelwald",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1HZfDsVgSkFGQXRK8rGg-9wYqObXke0hH&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1HZfDsVgSkFGQXRK8rGg-9wYqObXke0hH/view"
+      }
+     ],
+     "at": 1791678480978,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/14Qn-tIaZZ5fsao2KdgFWM32H9iotDUyb/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Malévola 2014",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Malévola 2014",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-14Qn-tIaZZ5fsao2KdgFWM32H9iotD",
+     "t": "Malévola 2014",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=14Qn-tIaZZ5fsao2KdgFWM32H9iotDUyb&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/14Qn-tIaZZ5fsao2KdgFWM32H9iotDUyb/view"
+      }
+     ],
+     "at": 1791678483402,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1_Kc12biQujJnv7JcxjznImr9tivQGl6b/view?usp=drivesdk",
    "type": "drive-file",
    "title": "La muerte te da felicitaciones 2017",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "La muerte te da felicitaciones 2017",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1_Kc12biQujJnv7JcxjznImr9tivQG",
+     "t": "La muerte te da felicitaciones 2017",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1_Kc12biQujJnv7JcxjznImr9tivQGl6b&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1_Kc12biQujJnv7JcxjznImr9tivQGl6b/view"
+      }
+     ],
+     "at": 1791678485039,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/0B4KPnu6oPu3kbkhucU10QlhfbDg/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Rápidos y Furiosos 7",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Rápidos y Furiosos 7",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-0B4KPnu6oPu3kbkhucU10QlhfbDg-v",
+     "t": "Rápidos y Furiosos 7",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=0B4KPnu6oPu3kbkhucU10QlhfbDg&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/0B4KPnu6oPu3kbkhucU10QlhfbDg/view"
+      }
+     ],
+     "at": 1791678486507,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/17QQ7uQqwD8DWFK4H5-51hTe-_f5W5k25/view",
    "type": "drive-file",
    "title": "Ojos hambrientos 3",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Ojos hambrientos 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-17QQ7uQqwD8DWFK4H5-51hTe-_f5W5",
+     "t": "Ojos hambrientos 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=17QQ7uQqwD8DWFK4H5-51hTe-_f5W5k25&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/17QQ7uQqwD8DWFK4H5-51hTe-_f5W5k25/view"
+      }
+     ],
+     "at": 1791678489029,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1Zv6PCcycBSHlREsDsonIVxmeBDIuLG_M/edit",
    "type": "drive-file",
    "title": "Los otros 2001",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Los otros 2001",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Zv6PCcycBSHlREsDsonIVxmeBDIuL",
+     "t": "Los otros 2001",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Zv6PCcycBSHlREsDsonIVxmeBDIuLG_M&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Zv6PCcycBSHlREsDsonIVxmeBDIuLG_M/view"
+      }
+     ],
+     "at": 1791678491356,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1D3_tRk1ZZmDIbxm91ay2r3dAKGBop3bs/view",
    "type": "drive-file",
    "title": "A.I inteligencia artificial",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A.I inteligencia artificial",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1D3_tRk1ZZmDIbxm91ay2r3dAKGBop",
+     "t": "A.I inteligencia artificial",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1D3_tRk1ZZmDIbxm91ay2r3dAKGBop3bs&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1D3_tRk1ZZmDIbxm91ay2r3dAKGBop3bs/view"
+      }
+     ],
+     "at": 1791678492724,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1COC0b0RL5P8KTzQ2o8an-d93OhsC6vmW/view",
    "type": "drive-file",
    "title": "Lara Croft: Tomb Raider 2. La origen de la vida 2003",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Lara Croft: Tomb Raider 2. La origen de la vida 2003",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1COC0b0RL5P8KTzQ2o8an-d93OhsC6",
+     "t": "Lara Croft: Tomb Raider 2. La origen de la vida 2003",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1COC0b0RL5P8KTzQ2o8an-d93OhsC6vmW&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1COC0b0RL5P8KTzQ2o8an-d93OhsC6vmW/view"
+      }
+     ],
+     "at": 1791678495262,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1HzXJhVozR8-JiMeMXM3MxwZ9dlXInOA-/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Como se fosse a primeira vez 2004",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Como se fosse a primeira vez 2004",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1HzXJhVozR8-JiMeMXM3MxwZ9dlXIn",
+     "t": "Como se fosse a primeira vez 2004",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1HzXJhVozR8-JiMeMXM3MxwZ9dlXInOA-&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1HzXJhVozR8-JiMeMXM3MxwZ9dlXInOA-/view"
+      }
+     ],
+     "at": 1791678496605,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1AcHteB4cuEysP6_p2a5FklIqF8W8l30R/view?usp=drivesdk",
    "type": "drive-file",
    "title": "La niñera 2017",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "La niñera 2017",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1AcHteB4cuEysP6_p2a5FklIqF8W8l",
+     "t": "La niñera 2017",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1AcHteB4cuEysP6_p2a5FklIqF8W8l30R&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1AcHteB4cuEysP6_p2a5FklIqF8W8l30R/view"
+      }
+     ],
+     "at": 1791678499174,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1AznSsclf21BZdR6F155SATgWETCtExPj/view?usp=drivesdk",
    "type": "drive-file",
    "title": "La niñera: La reina de la Muerte 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "La niñera: La reina de la Muerte 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1AznSsclf21BZdR6F155SATgWETCtE",
+     "t": "La niñera: La reina de la Muerte 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1AznSsclf21BZdR6F155SATgWETCtExPj&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1AznSsclf21BZdR6F155SATgWETCtExPj/view"
+      }
+     ],
+     "at": 1791678501685,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1vCnTE1BtBARrwYyfBBMtas7m1d3NhL7K/view",
    "type": "drive-file",
    "title": "Se busca un padre 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Se busca un padre 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1vCnTE1BtBARrwYyfBBMtas7m1d3Nh",
+     "t": "Se busca un padre 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1vCnTE1BtBARrwYyfBBMtas7m1d3NhL7K&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1vCnTE1BtBARrwYyfBBMtas7m1d3NhL7K/view"
+      }
+     ],
+     "at": 1791678504331,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/129n85Ta_m3DvSHwovOc0PiDKug5wAFy1/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Pooka vive 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Pooka vive 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-129n85Ta_m3DvSHwovOc0PiDKug5wA",
+     "t": "Pooka vive 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=129n85Ta_m3DvSHwovOc0PiDKug5wAFy1&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/129n85Ta_m3DvSHwovOc0PiDKug5wAFy1/view"
+      }
+     ],
+     "at": 1791678506860,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1LsQGGMDqPBYTraq4jgqkd4yt5PtVezEt/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Vampiros vs El Bronx",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Vampiros vs El Bronx",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1LsQGGMDqPBYTraq4jgqkd4yt5PtVe",
+     "t": "Vampiros vs El Bronx",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1LsQGGMDqPBYTraq4jgqkd4yt5PtVezEt&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1LsQGGMDqPBYTraq4jgqkd4yt5PtVezEt/view"
+      }
+     ],
+     "at": 1791678509392,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1no_iko-qfZ_XzLjxCi_o13RaIIi8Tfxw/view",
    "type": "drive-file",
    "title": "El Halloween de Hubie 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El Halloween de Hubie 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1no_iko-qfZ_XzLjxCi_o13RaIIi8T",
+     "t": "El Halloween de Hubie 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1no_iko-qfZ_XzLjxCi_o13RaIIi8Tfxw&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1no_iko-qfZ_XzLjxCi_o13RaIIi8Tfxw/view"
+      }
+     ],
+     "at": 1791678511922,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1W2r4WnajcJR3Vwbz1q2yzwmCgt3WANlu/view",
    "type": "drive-file",
    "title": "Homem-Aranha: Longe de Casa 2019",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Homem-Aranha: Longe de Casa 2019",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1W2r4WnajcJR3Vwbz1q2yzwmCgt3WA",
+     "t": "Homem-Aranha: Longe de Casa 2019",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1W2r4WnajcJR3Vwbz1q2yzwmCgt3WANlu&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1W2r4WnajcJR3Vwbz1q2yzwmCgt3WANlu/view"
+      }
+     ],
+     "at": 1791678514411,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1okhUQTvvYL_XNiQtVcQNxpR4EBdTCEXa/view",
    "type": "drive-file",
    "title": "El espectacular Hombre Araña 2 2014",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El espectacular Hombre Araña 2 2014",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1okhUQTvvYL_XNiQtVcQNxpR4EBdTC",
+     "t": "El espectacular Hombre Araña 2 2014",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1okhUQTvvYL_XNiQtVcQNxpR4EBdTCEXa&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1okhUQTvvYL_XNiQtVcQNxpR4EBdTCEXa/view"
+      }
+     ],
+     "at": 1791678516896,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1K9tJfUOaLc9SJzWuWGdxnNK2lfTG8Tzn/view",
    "type": "drive-file",
    "title": "Mosaico de Stan Lee 2006",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Mosaico de Stan Lee 2006",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1YWtxZrUUx1JUwafnxbeNDR6zr_lSx-2X/view?usp=drivesdk",
-   "type": "drive-file",
-   "title": "El Hombre Invisible",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1K9tJfUOaLc9SJzWuWGdxnNK2lfTG8",
+     "t": "Mosaico de Stan Lee 2006",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1K9tJfUOaLc9SJzWuWGdxnNK2lfTG8Tzn&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1K9tJfUOaLc9SJzWuWGdxnNK2lfTG8Tzn/view"
+      }
+     ],
+     "at": 1791678518518,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1ef7SL_m6-vnX8jGvDgThOrqxfUgFpkFh/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Enola Holmes 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Enola Holmes 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ef7SL_m6-vnX8jGvDgThOrqxfUgFp",
+     "t": "Enola Holmes 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ef7SL_m6-vnX8jGvDgThOrqxfUgFpkFh&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ef7SL_m6-vnX8jGvDgThOrqxfUgFpkFh/view"
+      }
+     ],
+     "at": 1791678521703,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/19VZcW4tNprlx03jRU5jjHvZQCVL_nNt1/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Oh Ramona",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Oh Ramona",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-19VZcW4tNprlx03jRU5jjHvZQCVL_n",
+     "t": "Oh Ramona",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=19VZcW4tNprlx03jRU5jjHvZQCVL_nNt1&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/19VZcW4tNprlx03jRU5jjHvZQCVL_nNt1/view"
+      }
+     ],
+     "at": 1791678524152,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1jXKc_acZ8TQlsc1VRSXmMaF8y84t_qcO/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Hitman: Agente 47 2015",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Hitman: Agente 47 2015",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1jXKc_acZ8TQlsc1VRSXmMaF8y84t_",
+     "t": "Hitman: Agente 47 2015",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1jXKc_acZ8TQlsc1VRSXmMaF8y84t_qcO&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1jXKc_acZ8TQlsc1VRSXmMaF8y84t_qcO/view"
+      }
+     ],
+     "at": 1791678528214,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
