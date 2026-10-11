@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791684085636,
+ "at": 1791684319334,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1-2yRHKL34GsFi6ZOP2I93Fw5e0mmE23Z/view",
@@ -8,9 +8,9 @@
    "title": "Lutando por la vida",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 1,
-   "nextRetryAt": 1791684188037,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 2,
+   "nextRetryAt": 1791684427845,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -21,22 +21,9 @@
    "title": "Secretos oficiales",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/14XkOrNc4w1xAqMAxw9OKlZlLVSjhGU9f/view",
-   "type": "drive-file",
-   "title": "El Hombre de paja",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API ",
+   "attempts": 1,
+   "nextRetryAt": 1791684340729,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -45,13 +32,32 @@
    "url": "https://drive.google.com/file/d/15n2ntgItdQ7qkawsoPDuK-q30PS3R1fT/view",
    "type": "drive-file",
    "title": "Veneno",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Veneno",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-15n2ntgItdQ7qkawsoPDuK-q30PS3R",
+     "t": "Veneno",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=15n2ntgItdQ7qkawsoPDuK-q30PS3R1fT&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/15n2ntgItdQ7qkawsoPDuK-q30PS3R1fT/view"
+      }
+     ],
+     "at": 1791684319577,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
