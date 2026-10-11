@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791745043089,
+ "at": 1791750435761,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1tUmyVFZnPYz8_m8A05p73RJkv63iF43J/view",
@@ -8,9 +8,9 @@
    "title": "Para todos los chicos de los que me enamoré",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, HTTP 401, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 2,
-   "nextRetryAt": 1791744969402,
+   "error": "HTTP 401",
+   "attempts": 3,
+   "nextRetryAt": 1791750530971,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -21,9 +21,9 @@
    "title": "Para Todos los Chicos: P.D. Todavía Te Amo",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
-   "attempts": 2,
-   "nextRetryAt": 1791745051227,
+   "error": "HTTP 401",
+   "attempts": 3,
+   "nextRetryAt": 1791750531838,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -34,9 +34,9 @@
    "title": "El odio que siembras",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791750533258,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -45,222 +45,484 @@
    "url": "https://drive.google.com/file/d/1VvxOpH82khD1C4SF2SsmaGIj1v-Uiq92/view",
    "type": "drive-file",
    "title": "Malévola I",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Malévola - DUB",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1VvxOpH82khD1C4SF2SsmaGIj1v-Ui",
+     "t": "Malévola - DUB",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1VvxOpH82khD1C4SF2SsmaGIj1v-Uiq92&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1VvxOpH82khD1C4SF2SsmaGIj1v-Uiq92/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1syCT3ChMWTRm_Jm9lbJC-TtiFV6OcDE5/view",
    "type": "drive-file",
    "title": "Malévola II",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Malévola 2 - DUB",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1syCT3ChMWTRm_Jm9lbJC-TtiFV6Oc",
+     "t": "Malévola 2 - DUB",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1syCT3ChMWTRm_Jm9lbJC-TtiFV6OcDE5&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1syCT3ChMWTRm_Jm9lbJC-TtiFV6OcDE5/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1HqvBUeK6n2LQFwcdUX5Cm8jzIXbQEev9/view?usp=sharing",
    "type": "drive-file",
    "title": "Campanita: Una Aventura en el Reino de las Hadas",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791750415831
   },
   {
    "url": "https://drive.google.com/file/d/12KwCScFwEJp3WNS1HpnrUjryHf5hYVRH/view?usp=sharing",
    "type": "drive-file",
    "title": "Campanita 2: El Tesoro Perdido",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tinker Bell 2 - O Tesouro Perdido",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12KwCScFwEJp3WNS1HpnrUjryHf5hY",
+     "t": "Tinker Bell 2 - O Tesouro Perdido",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12KwCScFwEJp3WNS1HpnrUjryHf5hYVRH&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12KwCScFwEJp3WNS1HpnrUjryHf5hYVRH/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1KUOZOZVI3qY8Y7IEzOoSVm5ZfAJP_xnh/view",
    "type": "drive-file",
    "title": "Tinker Bell 3: El Rescate del Hada",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tinker Bell 3 - O Resgate da Fada",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1KUOZOZVI3qY8Y7IEzOoSVm5ZfAJP_",
+     "t": "Tinker Bell 3 - O Resgate da Fada",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1KUOZOZVI3qY8Y7IEzOoSVm5ZfAJP_xnh&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1KUOZOZVI3qY8Y7IEzOoSVm5ZfAJP_xnh/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1cO3IvZ0cIVL07J9q5AExvNjQwVD0e_Kl/view?usp=sharing",
    "type": "drive-file",
    "title": "Campanita 4: El Secreto de las Hadas",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tinker Bell 4 - O Segredo das Fadas",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1cO3IvZ0cIVL07J9q5AExvNjQwVD0e",
+     "t": "Tinker Bell 4 - O Segredo das Fadas",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1cO3IvZ0cIVL07J9q5AExvNjQwVD0e_Kl&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1cO3IvZ0cIVL07J9q5AExvNjQwVD0e_Kl/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/16ji-Q00fcCXAczaNpdr5gk6_5QElaLr5/view",
    "type": "drive-file",
    "title": "Tinker Bell 5: Fadas e Piratas",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tinker Bell 5 - Fadas e Piratas",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-16ji-Q00fcCXAczaNpdr5gk6_5QEla",
+     "t": "Tinker Bell 5 - Fadas e Piratas",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=16ji-Q00fcCXAczaNpdr5gk6_5QElaLr5&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/16ji-Q00fcCXAczaNpdr5gk6_5QElaLr5/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Aventura",
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1Y_s--iQLf1UlU-t5MT68CPuO2CJHb_J8/view?usp=sharing",
    "type": "drive-file",
    "title": "Campanita 6: El Monstruo de la Tierra de Nunca Jamás",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tinker Bell 6 - O Monstro da Terra do Nunca",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Y_s-iQLf1UlU-t5MT68CPuO2CJHb_",
+     "t": "Tinker Bell 6 - O Monstro da Terra do Nunca",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Y_s--iQLf1UlU-t5MT68CPuO2CJHb_J8&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Y_s--iQLf1UlU-t5MT68CPuO2CJHb_J8/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/18mvmCNY938-HypgIrEEbSq5ATiY4jgMp/view?usp=sharing",
    "type": "drive-file",
    "title": "Campanita 7: Juegos en el Refugio de las Hadas",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tinker Bell 7 - (Extra) Jogos no Refúgio das Fadas",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-18mvmCNY938-HypgIrEEbSq5ATiY4j",
+     "t": "Tinker Bell 7 - (Extra) Jogos no Refúgio das Fadas",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=18mvmCNY938-HypgIrEEbSq5ATiY4jgMp&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/18mvmCNY938-HypgIrEEbSq5ATiY4jgMp/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1XkbCr1OsDsxo2vqT47drh5WbfGyVv7LI/view",
    "type": "drive-file",
    "title": "La pequeña sirena",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A Pequena Sereia 1",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1XkbCr1OsDsxo2vqT47drh5WbfGyVv",
+     "t": "A Pequena Sereia 1",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1XkbCr1OsDsxo2vqT47drh5WbfGyVv7LI&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1XkbCr1OsDsxo2vqT47drh5WbfGyVv7LI/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1QdS6IIJnXWIpJfgrumlJyhT665Uxo5fJ/view",
    "type": "drive-file",
    "title": "A pequena sereia II",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A Pequena Sereia 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1QdS6IIJnXWIpJfgrumlJyhT665Uxo",
+     "t": "A Pequena Sereia 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1QdS6IIJnXWIpJfgrumlJyhT665Uxo5fJ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1QdS6IIJnXWIpJfgrumlJyhT665Uxo5fJ/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1YQCsvD7OjqWmKvaFbRIgyEz7Gt3Zsydp/view?usp=sharing",
    "type": "drive-file",
    "title": "La pequeña sirena III",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A Pequena Sereia 3",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1YQCsvD7OjqWmKvaFbRIgyEz7Gt3Zs",
+     "t": "A Pequena Sereia 3",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1YQCsvD7OjqWmKvaFbRIgyEz7Gt3Zsydp&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1YQCsvD7OjqWmKvaFbRIgyEz7Gt3Zsydp/view"
+      }
+     ],
+     "genre": "infantil",
+     "tags": [
+      "Infantil"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1tCKWr9y55g9EUXMDMczbJDEVeyc1H4mu/view",
    "type": "drive-file",
    "title": "Carros",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791750427674
   },
   {
    "url": "https://drive.google.com/file/d/1QifztMnarAdGhAK1mtWdcpFEd4-17qVw/view",
    "type": "drive-file",
    "title": "Carros II",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791750428871
   },
   {
    "url": "https://drive.google.com/file/d/1Evlgsi_iaosowYfj4qMJz4x7PGOEXCy3/view?usp=sharing",
    "type": "drive-file",
    "title": "Carros III",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Carros 3 @drivefilmesz",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Evlgsi_iaosowYfj4qMJz4x7PGOEX",
+     "t": "Carros 3 @drivefilmesz",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Evlgsi_iaosowYfj4qMJz4x7PGOEXCy3&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Evlgsi_iaosowYfj4qMJz4x7PGOEXCy3/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1wpRzUfhDoU-khHbwTVcfKSUPbj4pHiod/view",
    "type": "drive-file",
    "title": "Quarteto fantástico",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791750430399
   },
   {
    "url": "https://drive.google.com/file/d/1aMPAibzUdNQtPXe8Qj34a3Vk1wuftLQJ/view",
    "type": "drive-file",
    "title": "Cuarteto fantástico y el surfista plateado",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791750431129
   },
   {
    "url": "https://drive.google.com/file/d/1fO4FrQx4dn6S74_OMfvJhIHnwETCoWLQ/view",
@@ -268,9 +530,9 @@
    "title": "O Chamado",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791750551812,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -281,9 +543,9 @@
    "title": "O Chamado 2",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791750552513,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -294,9 +556,9 @@
    "title": "El Llamado 3",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791750553316,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -305,27 +567,29 @@
    "url": "https://drive.google.com/file/d/1tGf-dfq3l04HS7814DgiwtqUgEx53XoD/view",
    "type": "drive-file",
    "title": "Annabelle",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791750434095
   },
   {
    "url": "https://drive.google.com/file/d/1JUqr0iCfp150UUz5IfGAnhAGT-j1vUKW/view",
    "type": "drive-file",
    "title": "Annabelle 2",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791750435259
   },
   {
    "url": "https://drive.google.com/file/d/11Ih1PBDvPGNWJg7ZqVg6xPh8JkIf6fG-/view",
