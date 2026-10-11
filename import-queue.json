@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791678526466,
+ "at": 1791680366467,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1Dnjpj6aLcgU6-w1FFXTiJveDXSDQVtO0/view?usp=drivesdk",
@@ -6923,195 +6923,448 @@
    "url": "https://drive.google.com/file/d/1ZaHbw_okNMpES7u5n_xOFdCBToIb9fD_/view",
    "type": "drive-file",
    "title": "Nacido para matar",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Nacido para matar",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ZaHbw_okNMpES7u5n_xOFdCBToIb9",
+     "t": "Nacido para matar",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ZaHbw_okNMpES7u5n_xOFdCBToIb9fD_&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ZaHbw_okNMpES7u5n_xOFdCBToIb9fD_/view"
+      }
+     ],
+     "at": 1791678529849,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/16PD3CzeUUf-HLnBa71f8aE2krax_8fOd/view",
    "type": "drive-file",
    "title": "Tron, una odisea electrónica",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Tron, una odisea electrónica",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-16PD3CzeUUf-HLnBa71f8aE2krax_8",
+     "t": "Tron, una odisea electrónica",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=16PD3CzeUUf-HLnBa71f8aE2krax_8fOd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/16PD3CzeUUf-HLnBa71f8aE2krax_8fOd/view"
+      }
+     ],
+     "at": 1791678531968,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1Y2go92NXy88kzbyNmTMaD5T5BpOR2mx1/view?usp=sharing",
    "type": "drive-file",
    "title": "La mosca 1986",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "La mosca 1986",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Y2go92NXy88kzbyNmTMaD5T5BpOR2",
+     "t": "La mosca 1986",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Y2go92NXy88kzbyNmTMaD5T5BpOR2mx1&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Y2go92NXy88kzbyNmTMaD5T5BpOR2mx1/view"
+      }
+     ],
+     "at": 1791678535009,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1UpYzVbv5hvFPM-7Sk26nKOWV4T-JRpsx/view",
    "type": "drive-file",
    "title": "El hijo del hombre 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "El hijo del hombre 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1UpYzVbv5hvFPM-7Sk26nKOWV4T-JR",
+     "t": "El hijo del hombre 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1UpYzVbv5hvFPM-7Sk26nKOWV4T-JRpsx&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1UpYzVbv5hvFPM-7Sk26nKOWV4T-JRpsx/view"
+      }
+     ],
+     "at": 1791678538974,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/188E-uRLY9s8QzLzdqHYUFMSJGfLkQ1nF/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Lo que quedó perdido 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Lo que quedó perdido 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-188E-uRLY9s8QzLzdqHYUFMSJGfLkQ",
+     "t": "Lo que quedó perdido 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=188E-uRLY9s8QzLzdqHYUFMSJGfLkQ1nF&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/188E-uRLY9s8QzLzdqHYUFMSJGfLkQ1nF/view"
+      }
+     ],
+     "at": 1791678540501,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1-MYgjaqnxkStI4cil1DL80B0015YBFLJ/view",
    "type": "drive-file",
    "title": "Alicia a través del espejo",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Alicia a través del espejo",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1-MYgjaqnxkStI4cil1DL80B0015YB",
+     "t": "Alicia a través del espejo",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1-MYgjaqnxkStI4cil1DL80B0015YBFLJ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1-MYgjaqnxkStI4cil1DL80B0015YBFLJ/view"
+      }
+     ],
+     "at": 1791678541950,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1qTsNA5iHgDWnV_zjQk-CPITBTvpkZJHd/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Con el color y el coraje 2",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Con el color y el coraje 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1qTsNA5iHgDWnV_zjQk-CPITBTvpkZ",
+     "t": "Con el color y el coraje 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1qTsNA5iHgDWnV_zjQk-CPITBTvpkZJHd&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1qTsNA5iHgDWnV_zjQk-CPITBTvpkZJHd/view"
+      }
+     ],
+     "at": 1791678544551,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1X8GTspvemot7G1dBuwN89Fy-IgAO3aAA/view",
    "type": "drive-file",
    "title": "A prima Sofía 2020",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A prima Sofía 2020",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1X8GTspvemot7G1dBuwN89Fy-IgAO3",
+     "t": "A prima Sofía 2020",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1X8GTspvemot7G1dBuwN89Fy-IgAO3aAA&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1X8GTspvemot7G1dBuwN89Fy-IgAO3aAA/view"
+      }
+     ],
+     "at": 1791678547020,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1CclK3HBNU-8ezfaiCwbVxd0lpyHFgfM1/view",
    "type": "drive-file",
    "title": "Resident.Evil.O.Hospede.Maldito.2002",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Resident.Evil.O.Hospede.Maldito.2002",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1CclK3HBNU-8ezfaiCwbVxd0lpyHFg",
+     "t": "Resident.Evil.O.Hospede.Maldito.2002",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1CclK3HBNU-8ezfaiCwbVxd0lpyHFgfM1&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1CclK3HBNU-8ezfaiCwbVxd0lpyHFgfM1/view"
+      }
+     ],
+     "at": 1791678549541,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1OPDwg0EQEzqeBjvkXI_e9XuHRhSJnEk-/view",
    "type": "drive-file",
    "title": "Resident Evil 2: Apocalipsis 2004",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Resident Evil 2: Apocalipsis 2004",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1OPDwg0EQEzqeBjvkXI_e9XuHRhSJn",
+     "t": "Resident Evil 2: Apocalipsis 2004",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1OPDwg0EQEzqeBjvkXI_e9XuHRhSJnEk-&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1OPDwg0EQEzqeBjvkXI_e9XuHRhSJnEk-/view"
+      }
+     ],
+     "at": 1791678552060,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1w-7las2yc6tM29OjO0N3V0crRnSA9BgV/view",
    "type": "drive-file",
    "title": "Resident Evil 3: La Extinción 2007",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Resident Evil 3: La Extinción 2007",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1w-7las2yc6tM29OjO0N3V0crRnSA9",
+     "t": "Resident Evil 3: La Extinción 2007",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1w-7las2yc6tM29OjO0N3V0crRnSA9BgV&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1w-7las2yc6tM29OjO0N3V0crRnSA9BgV/view"
+      }
+     ],
+     "at": 1791678554622,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1YO7R3s8FbqccHD4J60wZVrMo7c__rC16/view",
    "type": "drive-file",
    "title": "Resident Evil 4: Recomeco 2010",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Resident Evil 4: Recomeco 2010",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1YO7R3s8FbqccHD4J60wZVrMo7c__r",
+     "t": "Resident Evil 4: Recomeco 2010",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1YO7R3s8FbqccHD4J60wZVrMo7c__rC16&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1YO7R3s8FbqccHD4J60wZVrMo7c__rC16/view"
+      }
+     ],
+     "at": 1791678557111,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/12IWVpgTs3Qv_24aIz4rRBdxGfChoMqDu/view",
    "type": "drive-file",
    "title": "Resident_Evil_5_Retribuicao_2012",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Resident_Evil_5_Retribuicao_2012",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-12IWVpgTs3Qv_24aIz4rRBdxGfChoM",
+     "t": "Resident_Evil_5_Retribuicao_2012",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=12IWVpgTs3Qv_24aIz4rRBdxGfChoMqDu&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/12IWVpgTs3Qv_24aIz4rRBdxGfChoMqDu/view"
+      }
+     ],
+     "at": 1791678559628,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1XwrYlfp10w3MhzdFKKaDA-LNfMb0vp20/view",
    "type": "drive-file",
    "title": "Resident.Evil.6.O.Capitulo.Final.2017",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Resident.Evil.6.O.Capitulo.Final.2017",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/open?id=1j90XBTog6auOBZKzUA3kTfkqEGjsGwnB",
-   "type": "drive-folder",
-   "title": "Guardiões da galáxia 2014",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1XwrYlfp10w3MhzdFKKaDA-LNfMb0v",
+     "t": "Resident.Evil.6.O.Capitulo.Final.2017",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1XwrYlfp10w3MhzdFKKaDA-LNfMb0vp20&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1XwrYlfp10w3MhzdFKKaDA-LNfMb0vp20/view"
+      }
+     ],
+     "at": 1791678561076,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
