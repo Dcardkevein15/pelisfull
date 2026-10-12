@@ -1,55 +1,16 @@
 {
  "v": 1,
- "at": 1791762784275,
+ "at": 1791766735401,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/1tUmyVFZnPYz8_m8A05p73RJkv63iF43J/view",
-   "type": "drive-file",
-   "title": "Para todos los chicos de los que me enamoré",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 4,
-   "nextRetryAt": 1791762882979,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1leIaYNnmRLeDGiUfMqMiLH9-qkEiuJYv/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Para Todos los Chicos: P.D. Todavía Te Amo",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 4,
-   "nextRetryAt": 1791762883858,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1luK6mpqwnzv0z80BPlRFB-maNe6rauUI/view?usp=sharing",
-   "type": "drive-file",
-   "title": "El odio que siembras",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 2,
-   "nextRetryAt": 1791762884778,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/1fO4FrQx4dn6S74_OMfvJhIHnwETCoWLQ/view",
    "type": "drive-file",
    "title": "O Chamado",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 2,
-   "nextRetryAt": 1791762885471,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratui",
+   "attempts": 8,
+   "nextRetryAt": 1791756177401,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -60,9 +21,9 @@
    "title": "O Chamado 2",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 2,
-   "nextRetryAt": 1791762886190,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratu",
+   "attempts": 6,
+   "nextRetryAt": 1791756191232,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -73,26 +34,12 @@
    "title": "El Llamado 3",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 2,
-   "nextRetryAt": 1791762887002,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratu",
+   "attempts": 4,
+   "nextRetryAt": 1791756261256,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/11Ih1PBDvPGNWJg7ZqVg6xPh8JkIf6fG-/view",
-   "type": "drive-file",
-   "title": "Annabelle 3",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762767880
   },
   {
    "url": "https://drive.google.com/file/d/1K-rHxZ9_kg_iS3wK5l2UhX9EUILWRVeE/view",
@@ -100,324 +47,12 @@
    "title": "Viva la vida es una fiesta",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
    "attempts": 1,
-   "nextRetryAt": 1791762888634,
+   "nextRetryAt": 1791756195442,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1ztBXawySd7OyUSGUWonVwS2Q9aA0RnAn/view?usp=sharing",
-   "type": "drive-file",
-   "title": "El Exorcista",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762769909
-  },
-  {
-   "url": "https://drive.google.com/file/d/18jC2NIo8pMAWfkYeBEwBaZvuFIpr8Lo3/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Invocación del Mal",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762770671
-  },
-  {
-   "url": "https://drive.google.com/file/d/1I7rSHhZT5QYlh_VRMKPQnLZJnKzYreGq/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Invocación del Mal 2",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762771565
-  },
-  {
-   "url": "https://drive.google.com/file/d/1ZOGpUxcQn0YclC8u3yUTLyf3yaRlLuzW/view",
-   "type": "drive-file",
-   "title": "Divergente",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762772301
-  },
-  {
-   "url": "https://drive.google.com/file/d/1HGl4pByqbSL88v8KXmiKHxk_SpevMyjq/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Insurgente",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762773037
-  },
-  {
-   "url": "https://drive.google.com/file/d/1aVh0oxRGaOtSGvsfv1EAMMl3YSUPS2hn/view",
-   "type": "drive-file",
-   "title": "Convergente",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762774147
-  },
-  {
-   "url": "https://drive.google.com/file/d/1mfoNC3pFXx-GnURJ6ErQl6PV1pWQcTS5/view",
-   "type": "drive-file",
-   "title": "Monte Carlo",
-   "status": "done",
-   "name": "Monte Carlo 2011",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1mfoNC3pFXx-GnURJ6ErQl6PV1pWQc",
-     "t": "Monte Carlo 2011",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1mfoNC3pFXx-GnURJ6ErQl6PV1pWQcTS5&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1mfoNC3pFXx-GnURJ6ErQl6PV1pWQcTS5/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1VOTWM0NN7BHvcVnubEw-ta9kmlsBJHMr/view",
-   "type": "drive-file",
-   "title": "O lar das crianças peculiares",
-   "status": "done",
-   "name": "O Lar das Crianças Peculiares 2016",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1VOTWM0NN7BHvcVnubEw-ta9kmlsBJ",
-     "t": "O Lar das Crianças Peculiares 2016",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1VOTWM0NN7BHvcVnubEw-ta9kmlsBJHMr&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1VOTWM0NN7BHvcVnubEw-ta9kmlsBJHMr/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/14T7ems7NLDKFmfwlPhDuhRn9exZ4zmtc/view?usp=sharing",
-   "type": "drive-file",
-   "title": "El secreto de Brockeback",
-   "status": "done",
-   "name": "O Segredo de Brokeback Mountain 2005",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-14T7ems7NLDKFmfwlPhDuhRn9exZ4z",
-     "t": "O Segredo de Brokeback Mountain 2005",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=14T7ems7NLDKFmfwlPhDuhRn9exZ4zmtc&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/14T7ems7NLDKFmfwlPhDuhRn9exZ4zmtc/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1nTS1mKXlkU90KZPB49kwDN_OZwa96kZ-/view",
-   "type": "drive-file",
-   "title": "Matriz",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762777948
-  },
-  {
-   "url": "https://drive.google.com/file/d/1nHVAq6JGCuQawc7urJ9AIa-U0a4hP-RR/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Matrix Reloaded",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762778639
-  },
-  {
-   "url": "https://drive.google.com/file/d/1gMg6zPIZWedS5Ll4PpvqMoxW8_B1pYMa/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Matrix Revolutions",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791762779321
-  },
-  {
-   "url": "https://drive.google.com/file/d/1BpqvWd9rSO3WhSivuWDsZlkP5XHUOcH_/view",
-   "type": "drive-file",
-   "title": "Clube dos cinco",
-   "status": "done",
-   "name": "Clube dos Cinco (1985) Trial Áudio By-LuanHarper",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1BpqvWd9rSO3WhSivuWDsZlkP5XHUO",
-     "t": "Clube dos Cinco (1985) Trial Áudio By-LuanHarper",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1BpqvWd9rSO3WhSivuWDsZlkP5XHUOcH_&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1BpqvWd9rSO3WhSivuWDsZlkP5XHUOcH_/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1hRns9yJ2CSx1jw6k-EacfMS9M6lpuFaM/view?usp=sharing",
-   "type": "drive-file",
-   "title": "O doutrinador",
-   "status": "done",
-   "name": "O Doutrinador 2018 NACIONAL-WWW BLUDV TV",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1hRns9yJ2CSx1jw6k-EacfMS9M6lpu",
-     "t": "O Doutrinador 2018 NACIONAL-WWW BLUDV TV",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1hRns9yJ2CSx1jw6k-EacfMS9M6lpuFaM&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1hRns9yJ2CSx1jw6k-EacfMS9M6lpuFaM/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1bCs33o-yu482xyX3T2mPZRluBIzKsYvZ/view?usp=sharing",
-   "type": "drive-file",
-   "title": "El zoológico de Varsovia",
-   "status": "done",
-   "name": "O Zoológico de Varsóvia 2017 DUBLADO-WWW BLUDV COM",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1bCs33o-yu482xyX3T2mPZRluBIzKs",
-     "t": "O Zoológico de Varsóvia 2017 DUBLADO-WWW BLUDV COM",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1bCs33o-yu482xyX3T2mPZRluBIzKsYvZ&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1bCs33o-yu482xyX3T2mPZRluBIzKsYvZ/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/0Byqap-KXjFnheDQ5LXk4ckZPQWs/view",
@@ -425,43 +60,12 @@
    "title": "Una Casa Monstruo",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
    "attempts": 1,
-   "nextRetryAt": 1791762902905,
+   "nextRetryAt": 1791756227293,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1qfn_Tb3CZGG4a6mV3vGevsL1Dg6CpuAV/view",
-   "type": "drive-file",
-   "title": "Paranoia",
-   "status": "done",
-   "name": "Paranóia (2007) - Dublado",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1qfn_Tb3CZGG4a6mV3vGevsL1Dg6Cp",
-     "t": "Paranóia (2007) - Dublado",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1qfn_Tb3CZGG4a6mV3vGevsL1Dg6CpuAV&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1qfn_Tb3CZGG4a6mV3vGevsL1Dg6CpuAV/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1pK_j-yWJUt9ImcFIcMpX3PIy3Ox5jalO/view",
@@ -469,9 +73,9 @@
    "title": "Marley & Eu",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756231289,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -482,9 +86,9 @@
    "title": "Marley y Eu II: El cachorro problemático",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756233289,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -495,9 +99,9 @@
    "title": "Escuadrón Suicida",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756235286,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -508,9 +112,9 @@
    "title": "500 Días con Ella",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756237295,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -521,9 +125,9 @@
    "title": "Piratas del Caribe: La maldición de la perla negra",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756239297,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -534,9 +138,9 @@
    "title": "Piratas del Caribe III: En el fin del mundo",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756241289,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -547,9 +151,9 @@
    "title": "Harry Potter e a pedra filosofal",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756243378,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -560,9 +164,9 @@
    "title": "Harry Potter y la cámara secreta",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756245297,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -573,9 +177,9 @@
    "title": "Harry Potter y el prisionero de Azkaban",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756247276,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -586,9 +190,9 @@
    "title": "Harry Potter y el cáliz de fuego",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756249313,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -599,9 +203,9 @@
    "title": "Harry Potter y la orden del fénix",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756251340,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -612,9 +216,9 @@
    "title": "Harry Potter y el misterio del príncipe",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756253273,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -625,9 +229,9 @@
    "title": "Harry Potter y las reliquias de la muerte",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756263303,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -638,9 +242,9 @@
    "title": "Harry Potter y las Reliquias de la Muerte II",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756265290,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -651,9 +255,9 @@
    "title": "365 días/día",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756267302,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -664,9 +268,9 @@
    "title": "Cincuenta sombras más oscuras",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756269278,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -677,9 +281,9 @@
    "title": "Cincuenta sombras de libertad",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756271286,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -690,9 +294,9 @@
    "title": "Lo maravilloso ahora",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756273291,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -703,9 +307,9 @@
    "title": "Buscando",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756275288,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -716,9 +320,9 @@
    "title": "Nosotros",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "attempts": 1,
+   "nextRetryAt": 1791756277309,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
