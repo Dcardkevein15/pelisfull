@@ -1,201 +1,7 @@
 {
  "v": 1,
- "at": 1791778045012,
+ "at": 1791805758907,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/1K-rHxZ9_kg_iS3wK5l2UhX9EUILWRVeE/view",
-   "type": "drive-file",
-   "title": "Viva la vida es una fiesta",
-   "status": "failed-final",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 10,
-   "nextRetryAt": 1791768240123,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777407165,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/0Byqap-KXjFnheDQ5LXk4ckZPQWs/view",
-   "type": "drive-file",
-   "title": "Una Casa Monstruo",
-   "status": "failed-final",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
-   "attempts": 10,
-   "nextRetryAt": 1791777527485,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777961648
-  },
-  {
-   "url": "https://drive.google.com/file/d/1Z0edILVrJLYeMI05L6dbP1F787ZXhh7F/view",
-   "type": "drive-file",
-   "title": "500 Días con Ella",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756237295,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777408293,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1hSdU4dIHSp3yeso4x09e0ImIR8ZcZJlg/view",
-   "type": "drive-file",
-   "title": "Harry Potter e a pedra filosofal",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756243378,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777411017,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1QlzZVUHQX-8pikeYTUtBfy4eaCJ4SAOR/view",
-   "type": "drive-file",
-   "title": "Harry Potter y la cámara secreta",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756245297,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777412290,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1DRhtBwYTInBYvqWBp20-zoyNYGMbWmvc/view",
-   "type": "drive-file",
-   "title": "Harry Potter y el prisionero de Azkaban",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756247276,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777414119,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1X4NWiQKxZIjqrIbWAMsv-pgYJvxbDoWm/view",
-   "type": "drive-file",
-   "title": "Harry Potter y el cáliz de fuego",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756249313,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777415022,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/17oTD17Z5lNWLy9xrlGwwm8lidpztXj_R/view",
-   "type": "drive-file",
-   "title": "Harry Potter y la orden del fénix",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756251340,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777415890,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1XfPK_oJDrzbLIUkOc0m0qt82m4gA7uup/view",
-   "type": "drive-file",
-   "title": "Harry Potter y el misterio del príncipe",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756253273,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777416624,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1jguv9LhgK3KhBIjXVUv_DN9qwcqpga8s/view",
-   "type": "drive-file",
-   "title": "Harry Potter y las reliquias de la muerte",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756263303,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777417585,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1IZWnGER0dYqI5omm6r5GsBIpRubxgHtN/view",
-   "type": "drive-file",
-   "title": "Harry Potter y las Reliquias de la Muerte II",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756265290,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777418631,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1QYQtmkZI19UULC4PBR8TFHD1g_xYiVEk/view",
-   "type": "drive-file",
-   "title": "365 días/día",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756267302,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777419834,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1o98bhvUFkgTqxOGVrWs5RrvoOmMxUHuy/view",
-   "type": "drive-file",
-   "title": "Cincuenta sombras más oscuras",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756269278,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777420560,
-   "keep": true
-  },
   {
    "url": "https://drive.google.com/file/d/1yBRr9xqPz9IRWfmMEvp7omOi5e6ksjwG/view",
    "type": "drive-file",
@@ -203,91 +9,16 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 2,
-   "nextRetryAt": 1791777541295,
+   "attempts": 3,
+   "nextRetryAt": 1791805856713,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
   },
   {
-   "url": "https://drive.google.com/file/d/1oNYCerXFnP5RWJP2IL3qYADaSOTYmJnm/view",
+   "url": "https://drive.google.com/file/d/12aFsYpp1XFjAlaZyxWp3Yv5YggDMtNjY/view",
    "type": "drive-file",
-   "title": "Lo maravilloso ahora",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756273291,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777422096,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1UAmmsz7W0-510ZCUDymLTnGdaGkciUVH/view",
-   "type": "drive-file",
-   "title": "Buscando",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756275288,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777422936,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/17fw2-UxbHiTcgqL3SnnnJMf_tmEtiwqS/view",
-   "type": "drive-file",
-   "title": "Nosotros",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 2,
-   "nextRetryAt": 1791756277309,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777424135,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1O59zpR-FGvaUxtWnpYudsb575RLt57Ww/view",
-   "type": "drive-file",
-   "title": "El cuarto de Jack",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777425232,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1uM83YpCwvcFg9JseOShAseMVgLc9mW0A/view",
-   "type": "drive-file",
-   "title": "Conductor de taxi",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791777425943,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/1T8Ra7K33emARd25Y4Nyz79HGWFSvSv8c/view",
-   "type": "drive-file",
-   "title": "Hobbit: Una aventura inesperada",
+   "title": "Alicia en el País de las Maravillas",
    "status": "failed-final",
    "name": "",
    "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
@@ -296,60 +27,49 @@
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524,
-   "failedAt": 1791777426578,
-   "keep": true
-  },
-  {
-   "url": "https://drive.google.com/file/d/12aFsYpp1XFjAlaZyxWp3Yv5YggDMtNjY/view",
-   "type": "drive-file",
-   "title": "Alicia en el País de las Maravillas",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "failedAt": 1791805737339
   },
   {
    "url": "https://drive.google.com/file/d/10bQjzY5X9-EZcU-0LUJ0AQfTF80RLC7j/view",
    "type": "drive-file",
    "title": "Alicia a través del espejo",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805738022
   },
   {
    "url": "https://drive.google.com/file/d/192jnasaeowg-jrBZzSqRnwxSPxiBMl9v/view",
    "type": "drive-file",
    "title": "Mascotas: La vida secreta de los animales",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805738678
   },
   {
    "url": "https://drive.google.com/file/d/10SJlrlyWmsJOtYQLHcZE90x3u08mQUvP/view",
    "type": "drive-file",
    "title": "Mascotas: La vida secreta de los animales II",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805739338
   },
   {
    "url": "https://drive.google.com/file/d/1npmasQmKBqhQgKA1p7tvSqLPrEEPQwb7/view",
@@ -357,9 +77,9 @@
    "title": "Nace una estrella",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805860254,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -370,9 +90,9 @@
    "title": "El lobo de Wall Street",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805860988,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -383,9 +103,9 @@
    "title": "El Señor de los Anillos: La Comunidad del Anillo",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805861727,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -396,9 +116,9 @@
    "title": "O Senhor dos Anéis: O Retorno do Rei",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805862379,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -409,9 +129,9 @@
    "title": "Toy Story",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805863077,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -422,9 +142,9 @@
    "title": "Toy Story 2",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805863733,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -435,9 +155,9 @@
    "title": "Toy Story 3",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805864815,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -448,9 +168,9 @@
    "title": "Toy Story 4",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791805865737,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -459,157 +179,294 @@
    "url": "https://drive.google.com/file/d/1h46bvt3gneHuXOHhOypcpxuJgrfXtlWa/view",
    "type": "drive-file",
    "title": "Febre Congelante",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805746607
   },
   {
    "url": "https://drive.google.com/file/d/14CT5PM8NP2T-BOKl4OZI1AaX-OcPQc2i/view",
    "type": "drive-file",
    "title": "Frozen II",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805747487
   },
   {
    "url": "https://drive.google.com/file/d/13kma4y8HomL4sUYKMqNSSNuPI7bCUDD3/view",
    "type": "drive-file",
    "title": "Coraline y el Mundo Secreto",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805748624
   },
   {
    "url": "https://drive.google.com/file/d/1w_g8muJRYdrjMQrGI0qDrqiT-a_68jRR/view",
    "type": "drive-file",
    "title": "Una Fantástica Fábrica de Chocolate",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805749477
   },
   {
    "url": "https://drive.google.com/file/d/1CNC_jXj4K_nB7_YA8oSgS9ED3Oywawni/view",
    "type": "drive-file",
    "title": "Garfield 1",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805750702
   },
   {
    "url": "https://drive.google.com/file/d/1ebBMMP3lkaMRVcXjVlKey5_64Ge3xqcZ/view?usp=sharing",
    "type": "drive-file",
    "title": "Garfield 2",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791805752279
   },
   {
    "url": "https://drive.google.com/file/d/1JNWl6jotp1x1tDWXuJwB7E80yEfIbzoS/view",
    "type": "drive-file",
    "title": "La barraca del beso",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A Barraca Do Beijo 2018 DD5 1 - WWW COMANDOTORRENTS COM",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1JNWl6jotp1x1tDWXuJwB7E80yEfIb",
+     "t": "A Barraca Do Beijo 2018 DD5 1 - WWW COMANDOTORRENTS COM",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1JNWl6jotp1x1tDWXuJwB7E80yEfIbzoS&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1JNWl6jotp1x1tDWXuJwB7E80yEfIbzoS/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1g8A7ezz_e59v-RLcDRkJAAZCwNROSASj/view",
    "type": "drive-file",
    "title": "La barraca del beso II",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "A Barraca do Beijo 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1g8A7ezz_e59v-RLcDRkJAAZCwNROS",
+     "t": "A Barraca do Beijo 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1g8A7ezz_e59v-RLcDRkJAAZCwNROSASj&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1g8A7ezz_e59v-RLcDRkJAAZCwNROSASj/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/16xjaLqORBk30AECy379p8D8TGobGAz-I/view",
    "type": "drive-file",
    "title": "Bohemian Rhapsody",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Bohemian Rhapsody 2018 -DUBLADO WWW COMANDOTORRENTS COM",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-16xjaLqORBk30AECy379p8D8TGobGA",
+     "t": "Bohemian Rhapsody 2018 -DUBLADO WWW COMANDOTORRENTS COM",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=16xjaLqORBk30AECy379p8D8TGobGAz-I&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/16xjaLqORBk30AECy379p8D8TGobGAz-I/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1DyrZSxYRUonZxKyCDaR0gedVLvN8OxNN/view",
    "type": "drive-file",
    "title": "Star Wars 1: La amenaza fantasma",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Star Wars 1: A Ameaça Fantasma",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1DyrZSxYRUonZxKyCDaR0gedVLvN8O",
+     "t": "Star Wars 1: A Ameaça Fantasma",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1DyrZSxYRUonZxKyCDaR0gedVLvN8OxNN&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1DyrZSxYRUonZxKyCDaR0gedVLvN8OxNN/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Ciencia Ficción",
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1AXu4fyfo2L1gWUstKImqaJqUqrzpgZEB/view",
    "type": "drive-file",
    "title": "Star Wars 2: Ataque de los clones",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Star Wars 2: Ataque Dos Clones",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1AXu4fyfo2L1gWUstKImqaJqUqrzpg",
+     "t": "Star Wars 2: Ataque Dos Clones",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1AXu4fyfo2L1gWUstKImqaJqUqrzpgZEB&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1AXu4fyfo2L1gWUstKImqaJqUqrzpgZEB/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Ciencia Ficción",
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1JjzAsfHI8FeO3CaqT0hSEJgxJlz6LU5R/view?usp=sharing",
    "type": "drive-file",
    "title": "Star Wars 3: La venganza de los Sith",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Star Wars 3: A Vingança Dos Sith",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1JjzAsfHI8FeO3CaqT0hSEJgxJlz6L",
+     "t": "Star Wars 3: A Vingança Dos Sith",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1JjzAsfHI8FeO3CaqT0hSEJgxJlz6LU5R&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1JjzAsfHI8FeO3CaqT0hSEJgxJlz6LU5R/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Ciencia Ficción",
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1GDTJ706StQbWooX4TBPCibSKnHfOYxjl/view",
