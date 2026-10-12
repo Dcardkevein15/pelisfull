@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791768169797,
+ "at": 1791772674894,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1K-rHxZ9_kg_iS3wK5l2UhX9EUILWRVeE/view",
@@ -9,11 +9,13 @@
    "status": "queued",
    "name": "",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 5,
+   "attempts": 10,
    "nextRetryAt": 1791768240123,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791770256478,
+   "keep": true
   },
   {
    "url": "https://drive.google.com/file/d/0Byqap-KXjFnheDQ5LXk4ckZPQWs/view",
@@ -22,34 +24,8 @@
    "status": "queued",
    "name": "",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 4,
-   "nextRetryAt": 1791768145285,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1lFFbaxACNKC4luSS3qn6hT4D3nocjAYb/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Marley y Eu II: El cachorro problemático",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
-   "nextRetryAt": 1791756233289,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1Wj9L1mMRdnmeMnnUVHgvBIT1q1F3RPzm/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Escuadrón Suicida",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
-   "nextRetryAt": 1791756235286,
+   "attempts": 8,
+   "nextRetryAt": 1791770231322,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
