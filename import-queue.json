@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791819527538,
+ "at": 1791822394928,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1yBRr9xqPz9IRWfmMEvp7omOi5e6ksjwG/view",
@@ -8,22 +8,9 @@
    "title": "Cincuenta sombras de libertad",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 3,
-   "nextRetryAt": 1791805856713,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1npmasQmKBqhQgKA1p7tvSqLPrEEPQwb7/view",
-   "type": "drive-file",
-   "title": "Nace una estrella",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791805860254,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
+   "attempts": 4,
+   "nextRetryAt": 1791822507374,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
