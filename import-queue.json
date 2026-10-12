@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791822494923,
+ "at": 1791822854920,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1yBRr9xqPz9IRWfmMEvp7omOi5e6ksjwG/view",
@@ -8,9 +8,9 @@
    "title": "Cincuenta sombras de libertad",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
-   "attempts": 4,
-   "nextRetryAt": 1791822507374,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 6,
+   "nextRetryAt": 1791822940541,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -21,9 +21,9 @@
    "title": "El lobo de Wall Street",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
-   "attempts": 2,
-   "nextRetryAt": 1791822595830,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 3,
+   "nextRetryAt": 1791822847213,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -34,22 +34,9 @@
    "title": "O Senhor dos Anéis: O Retorno do Rei",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791805862379,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1qFiNeT1kRnW4H1UQrSaCBndyViPEQzj7/view",
-   "type": "drive-file",
-   "title": "Toy Story",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791805863077,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
+   "attempts": 3,
+   "nextRetryAt": 1791822893073,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
