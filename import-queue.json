@@ -1,29 +1,16 @@
 {
  "v": 1,
- "at": 1791767264079,
+ "at": 1791768029384,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/1NblP4NhFhWaZjE6ffkRPd6_gA9t6Qoz8/view?usp=sharing",
-   "type": "drive-file",
-   "title": "O Chamado 2",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 8,
-   "nextRetryAt": 1791767362000,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/1K-rHxZ9_kg_iS3wK5l2UhX9EUILWRVeE/view",
    "type": "drive-file",
    "title": "Viva la vida es una fiesta",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 2,
-   "nextRetryAt": 1791767146053,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 4,
+   "nextRetryAt": 1791768012579,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -34,9 +21,9 @@
    "title": "Una Casa Monstruo",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
-   "attempts": 2,
-   "nextRetryAt": 1791767280684,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 4,
+   "nextRetryAt": 1791768145285,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
