@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791822394928,
+ "at": 1791822494923,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1yBRr9xqPz9IRWfmMEvp7omOi5e6ksjwG/view",
@@ -21,22 +21,9 @@
    "title": "El lobo de Wall Street",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791805860988,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1v2kWgYcH4CmsmQczQIT6JM1Q9-8PDulD/view",
-   "type": "drive-file",
-   "title": "El Señor de los Anillos: La Comunidad del Anillo",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791805861727,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API",
+   "attempts": 2,
+   "nextRetryAt": 1791822595830,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
