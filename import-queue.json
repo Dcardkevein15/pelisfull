@@ -1,12 +1,12 @@
 {
  "v": 1,
- "at": 1791772674894,
+ "at": 1791777433337,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1K-rHxZ9_kg_iS3wK5l2UhX9EUILWRVeE/view",
    "type": "drive-file",
    "title": "Viva la vida es una fiesta",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
    "attempts": 10,
@@ -14,7 +14,7 @@
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524,
-   "failedAt": 1791770256478,
+   "failedAt": 1791777407165,
    "keep": true
   },
   {
@@ -23,9 +23,9 @@
    "title": "Una Casa Monstruo",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 8,
-   "nextRetryAt": 1791770231322,
+   "error": "HTTP 401",
+   "attempts": 9,
+   "nextRetryAt": 1791777527485,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -34,170 +34,226 @@
    "url": "https://drive.google.com/file/d/1Z0edILVrJLYeMI05L6dbP1F787ZXhh7F/view",
    "type": "drive-file",
    "title": "500 Días con Ella",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756237295,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777408293
   },
   {
    "url": "https://drive.google.com/file/d/1Hv0pTTioAKm8I3rfeK0WkOIdtch4TqWJ/view",
    "type": "drive-file",
    "title": "Piratas del Caribe: La maldición de la perla negra",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "status": "done",
+   "name": "Piratas Do Caribe 1 - A Maldição Do Pérola Negra - Dublado",
+   "error": "",
    "attempts": 1,
    "nextRetryAt": 1791756239297,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1Hv0pTTioAKm8I3rfeK0WkOIdtch4T",
+     "t": "Piratas Do Caribe 1 - A Maldição Do Pérola Negra - Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1Hv0pTTioAKm8I3rfeK0WkOIdtch4TqWJ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1Hv0pTTioAKm8I3rfeK0WkOIdtch4TqWJ/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1pHLOUby4KX-izyggayQhx4OFxarosm50/view?usp=sharing",
    "type": "drive-file",
    "title": "Piratas del Caribe III: En el fin del mundo",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
+   "status": "done",
+   "name": "Piratas Do Caribe 3 - No Fim Do Mundo - Dublado",
+   "error": "",
    "attempts": 1,
    "nextRetryAt": 1791756241289,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1pHLOUby4KX-izyggayQhx4OFxaros",
+     "t": "Piratas Do Caribe 3 - No Fim Do Mundo - Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1pHLOUby4KX-izyggayQhx4OFxarosm50&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1pHLOUby4KX-izyggayQhx4OFxarosm50/view"
+      }
+     ],
+     "genre": "aventura",
+     "tags": [
+      "Aventura"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1hSdU4dIHSp3yeso4x09e0ImIR8ZcZJlg/view",
    "type": "drive-file",
    "title": "Harry Potter e a pedra filosofal",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756243378,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777411017
   },
   {
    "url": "https://drive.google.com/file/d/1QlzZVUHQX-8pikeYTUtBfy4eaCJ4SAOR/view",
    "type": "drive-file",
    "title": "Harry Potter y la cámara secreta",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756245297,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777412290
   },
   {
    "url": "https://drive.google.com/file/d/1DRhtBwYTInBYvqWBp20-zoyNYGMbWmvc/view",
    "type": "drive-file",
    "title": "Harry Potter y el prisionero de Azkaban",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756247276,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777414119
   },
   {
    "url": "https://drive.google.com/file/d/1X4NWiQKxZIjqrIbWAMsv-pgYJvxbDoWm/view",
    "type": "drive-file",
    "title": "Harry Potter y el cáliz de fuego",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756249313,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777415022
   },
   {
    "url": "https://drive.google.com/file/d/17oTD17Z5lNWLy9xrlGwwm8lidpztXj_R/view",
    "type": "drive-file",
    "title": "Harry Potter y la orden del fénix",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756251340,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777415890
   },
   {
    "url": "https://drive.google.com/file/d/1XfPK_oJDrzbLIUkOc0m0qt82m4gA7uup/view",
    "type": "drive-file",
    "title": "Harry Potter y el misterio del príncipe",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756253273,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777416624
   },
   {
    "url": "https://drive.google.com/file/d/1jguv9LhgK3KhBIjXVUv_DN9qwcqpga8s/view",
    "type": "drive-file",
    "title": "Harry Potter y las reliquias de la muerte",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756263303,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777417585
   },
   {
    "url": "https://drive.google.com/file/d/1IZWnGER0dYqI5omm6r5GsBIpRubxgHtN/view",
    "type": "drive-file",
    "title": "Harry Potter y las Reliquias de la Muerte II",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756265290,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777418631
   },
   {
    "url": "https://drive.google.com/file/d/1QYQtmkZI19UULC4PBR8TFHD1g_xYiVEk/view",
    "type": "drive-file",
    "title": "365 días/día",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756267302,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777419834
   },
   {
    "url": "https://drive.google.com/file/d/1o98bhvUFkgTqxOGVrWs5RrvoOmMxUHuy/view",
    "type": "drive-file",
    "title": "Cincuenta sombras más oscuras",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756269278,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777420560
   },
   {
    "url": "https://drive.google.com/file/d/1yBRr9xqPz9IRWfmMEvp7omOi5e6ksjwG/view",
@@ -205,9 +261,9 @@
    "title": "Cincuenta sombras de libertad",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
-   "nextRetryAt": 1791756271286,
+   "error": "HTTP 401",
+   "attempts": 2,
+   "nextRetryAt": 1791777541295,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -216,131 +272,229 @@
    "url": "https://drive.google.com/file/d/1oNYCerXFnP5RWJP2IL3qYADaSOTYmJnm/view",
    "type": "drive-file",
    "title": "Lo maravilloso ahora",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756273291,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777422096
   },
   {
    "url": "https://drive.google.com/file/d/1UAmmsz7W0-510ZCUDymLTnGdaGkciUVH/view",
    "type": "drive-file",
    "title": "Buscando",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756275288,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777422936
   },
   {
    "url": "https://drive.google.com/file/d/17fw2-UxbHiTcgqL3SnnnJMf_tmEtiwqS/view",
    "type": "drive-file",
    "title": "Nosotros",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: usa la API key gratuitaen «⚙ A",
-   "attempts": 1,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 2,
    "nextRetryAt": 1791756277309,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777424135
   },
   {
    "url": "https://drive.google.com/file/d/1O59zpR-FGvaUxtWnpYudsb575RLt57Ww/view",
    "type": "drive-file",
    "title": "El cuarto de Jack",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777425232
   },
   {
    "url": "https://drive.google.com/file/d/1uM83YpCwvcFg9JseOShAseMVgLc9mW0A/view",
    "type": "drive-file",
    "title": "Conductor de taxi",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777425943
   },
   {
    "url": "https://drive.google.com/file/d/1T8Ra7K33emARd25Y4Nyz79HGWFSvSv8c/view",
    "type": "drive-file",
    "title": "Hobbit: Una aventura inesperada",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791777426578
   },
   {
    "url": "https://drive.google.com/file/d/1ksimHfauYNIU_IMODUkpFL-LN8qGNz6s/view",
    "type": "drive-file",
    "title": "Hobbit III: La batalla de los cinco ejércitos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "3 - A Batalha dos Cinco Exércitos",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1ksimHfauYNIU_IMODUkpFL-LN8qGN",
+     "t": "3 - A Batalha dos Cinco Exércitos",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1ksimHfauYNIU_IMODUkpFL-LN8qGNz6s&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1ksimHfauYNIU_IMODUkpFL-LN8qGNz6s/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1_tHMqz_6WNNRPflZZ6o3kOVEzCPhmRfi/view",
    "type": "drive-file",
    "title": "El espectacular Hombre Araña",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Espetacular Homem-Aranha",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1_tHMqz_6WNNRPflZZ6o3kOVEzCPhm",
+     "t": "O Espetacular Homem-Aranha",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1_tHMqz_6WNNRPflZZ6o3kOVEzCPhmRfi&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1_tHMqz_6WNNRPflZZ6o3kOVEzCPhmRfi/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/18I08pkUE3Nw5OV9pEst7j4tuFQs5NRu6/view",
    "type": "drive-file",
    "title": "El espectacular Hombre Araña II",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Espetacular Homem-Aranha 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-18I08pkUE3Nw5OV9pEst7j4tuFQs5N",
+     "t": "O Espetacular Homem-Aranha 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=18I08pkUE3Nw5OV9pEst7j4tuFQs5NRu6&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/18I08pkUE3Nw5OV9pEst7j4tuFQs5NRu6/view"
+      }
+     ],
+     "genre": "accion",
+     "tags": [
+      "Acción"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1RwCXE1GFg7ZSh5X39d289ARiY0VtSm4E/view",
    "type": "drive-file",
    "title": "El Rey del Espectáculo",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "O Rei Do Show",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1RwCXE1GFg7ZSh5X39d289ARiY0VtS",
+     "t": "O Rei Do Show",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1RwCXE1GFg7ZSh5X39d289ARiY0VtSm4E&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1RwCXE1GFg7ZSh5X39d289ARiY0VtSm4E/view"
+      }
+     ],
+     "genre": "drama",
+     "tags": [
+      "Drama"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/12aFsYpp1XFjAlaZyxWp3Yv5YggDMtNjY/view",
