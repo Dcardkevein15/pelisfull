@@ -1263,12 +1263,33 @@
     /* 🧯 Candado anti-apagón: valida el payload EXACTAMENTE como haría un
        lector. Un solo registro inválido (p. ej. un id demasiado largo) hace
        que TODOS los visitantes descarten el catálogo entero en silencio —
-       bloqueamos aquí y señalamos el registro culpable. */
+       bloqueamos aquí y señalamos el registro culpable. La señal es la
+       RAZÓN REAL encontrada revalidando campo a campo (series[0] era un
+       chivo expiatorio cuando el culpable era otra cosa: episodios,
+       canales, enlaces…).                                              */
     if (!validateCatalog(payload)) {
-      const mal = payload.series.find(s => String(s.id).length > 160 || String(s.t || '').length > 300)
-        || payload.series[0];
-      axToast(`🚨 Publicación BLOQUEADA: «${String(mal.t || mal.id).slice(0, 50)}» tiene un dato inválido (id/título demasiado largo). Si saliera así, todos los visitantes rechazarían el catálogo completo. Corrige ese registro y vuelve a publicar.`, true);
-      return { ok: false, code: 'VALID', msg: `«${String(mal.t || mal.id).slice(0, 50)}» tiene un dato inválido (id o título demasiado largo). Corrige ese registro y reintenta.` };
+      const razones = [];
+      const escX = x => String(x == null ? '' : x);
+      try {
+        for (const s of (payload.series || [])) {
+          const nombre = escX(s.t).slice(0, 40) || escX(s.id).slice(0, 40);
+          if (escX(s.id).length > 160) razones.push(`«${nombre}»: id de ${escX(s.id).length} caracteres (máx 160)`);
+          if (escX(s.t).length > 300) razones.push(`«${nombre}»: título de ${escX(s.t).length} caracteres (máx 300)`);
+          for (const e of (s.episodes || [])) {
+            if (e.t !== undefined && e.t !== null && e.t !== '' && String(e.t).length > 300) razones.push(`«${nombre}» episodio ${e.n}: título de ${String(e.t).length} caracteres (máx 300)`);
+            if (e.url !== undefined && e.url !== '' && e.url !== null && !/^https?:\/\//i.test(e.url)) razones.push(`«${nombre}» episodio ${e.n}: URL inválida (debe empezar por http:// o https://)`);
+          }
+        }
+        for (const c of (payload.channels || [])) {
+          if (escX(c.name).length > 220) razones.push(`Canal «${escX(c.name).slice(0, 30)}»: nombre de ${escX(c.name).length} caracteres (máx 220)`);
+          if (escX(c.id).length > 160) razones.push(`Canal «${escX(c.name).slice(0, 30)}»: id de ${escX(c.id).length} caracteres (máx 160)`);
+          if (c.url !== undefined && !/^https?:\/\//i.test(escX(c.url))) razones.push(`Canal «${escX(c.name).slice(0, 30)}»: URL inválida`);
+        }
+        if (!Array.isArray(payload.series) || !payload.series.length) razones.push('el paquete saldría sin ninguna serie');
+      } catch (e) { }
+      const detalle = razones.length ? razones.slice(0, 3).join('  ·  ') : 'un registro no supera la validación integral (revisa lo último editado)';
+      axToast(`🚨 Publicación BLOQUEADA: ${detalle}. Corrige ese registro y vuelve a publicar.`, true);
+      return { ok: false, code: 'VALID', msg: `dato inválido: ${detalle}` };
     }
 
     /* 🛡 CANDADO ANTI-VACIADO: si la web EN VIVO tenía mucho más contenido del
