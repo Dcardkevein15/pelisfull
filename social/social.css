@@ -304,6 +304,74 @@ a{color:inherit;text-decoration:none}
   font-size:12.5px;line-height:1.7;
 }
 
+/* ── v3: menú ⋯ de publicación (moderación real) ────────── */
+.soc-post{position:relative}
+.soc-menu{
+  position:absolute;top:44px;right:14px;z-index:60;min-width:190px;
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);padding:5px;
+  animation:socMenuIn .14s cubic-bezier(.2,1.2,.4,1);
+}
+@keyframes socMenuIn{from{opacity:0;transform:translateY(-6px) scale(.97)}}
+.soc-menu button{
+  display:block;width:100%;text-align:left;padding:8px 11px;border-radius:8px;
+  background:none;border:none;color:var(--ink);font:600 12px Inter;cursor:pointer;
+}
+.soc-menu button:hover{background:var(--card)}
+.soc-menu button.danger{color:#FF6B6B}
+.soc-menu button.danger:hover{background:rgba(255,60,60,.12)}
+
+/* ── v3: ❤ me gusta en comentarios ───────────────────────── */
+.soc-clike{
+  align-self:flex-start;margin-top:4px;flex-shrink:0;
+  background:none;border:1px solid transparent;border-radius:8px;
+  color:var(--faint);font:700 10.5px Inter;padding:4px 7px;cursor:pointer;
+  transition:all .15s;
+}
+.soc-clike:hover{color:#FF8A9B;border-color:var(--line)}
+.soc-clike.on{color:#FF4D6D;background:rgba(255,77,109,.1)}
+
+/* ── v3: filas de notificación con no-leído resaltado ─────── */
+.soc-nrow.unread b{color:var(--green)}
+.soc-nrow.unread{background:rgba(0,230,118,.05);border-radius:8px;margin:0 -4px;padding-left:8px!important;padding-right:8px!important}
+
+/* ── v3: espectadores de historia ─────────────────────────── */
+.soc-views{display:block;color:var(--faint);font-size:11px;margin-top:4px}
+
+/* ── v3: hoja de reporte ──────────────────────────────────── */
+.soc-report-opt{
+  display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;
+  border:1px solid var(--line);margin-bottom:6px;cursor:pointer;
+  color:var(--ink);font:600 12.5px Inter;transition:all .15s;
+}
+.soc-report-opt:hover{border-color:var(--green)}
+.soc-report-opt input{accent-color:var(--green)}
+
+/* ── v3: panel de moderación ─────────────────────────────── */
+.soc-report-item{
+  display:flex;gap:10px;align-items:flex-start;justify-content:space-between;
+  padding:11px 0;border-bottom:1px solid var(--line);
+}
+.soc-report-t{min-width:0;flex:1}
+.soc-report-t b{font-size:12.5px}
+.soc-report-t small{color:var(--faint)}
+.soc-report-t p{font-size:11.5px;color:var(--dim);margin-top:3px;line-height:1.5}
+.soc-report-why{color:var(--blue);font-weight:700}
+.soc-report-acts{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.soc-report-acts .soc-btn{padding:6px 10px;font-size:10.5px}
+
+/* ── v3: seguridad y respaldo ─────────────────────────────── */
+.soc-sec-row{display:flex;gap:8px;margin-top:6px}
+.soc-sec-row input{
+  flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;
+  color:var(--ink);font:inherit;padding:9px 11px;outline:none;
+}
+.soc-sec-row input:focus{border-color:var(--green)}
+.soc-sec-row .soc-btn{flex-shrink:0}
+
+/* ── v3: nav móvil con 7 destinos ─────────────────────────── */
+.soc-mob a{padding:6px 7px;font-size:17px}
+
 /* ── tendencias ──────────────────────────────────────────── */
 .soc-trends{display:flex;flex-direction:column;gap:2px}
 .soc-trend{display:flex;align-items:center;gap:10px;padding:7px 6px;border-radius:9px;cursor:pointer}
@@ -568,6 +636,9 @@ body.light .soc-dock-foot{background:linear-gradient(160deg,#C9FADE,#fff 80%)}
 body.light .soc-msg.me{background:#DFFCE9}
 body.light .soc-poll-opt .fill{background:#D6F5E4}
 body.light .soc-verified{color:#fff}
+body.light .soc-menu{background:#fff;box-shadow:0 18px 50px rgba(20,40,70,.2)}
+body.light .soc-clike.on{color:#E5345B;background:rgba(229,52,91,.09)}
+body.light .soc-nrow.unread{background:rgba(0,160,90,.07)}
 body.light ::-webkit-scrollbar-thumb{background:#C4CFDC}
 
 /* ═══════════ 🎬 ESTUDIO DE MEDIOS + VISTA PREVIA + VÍDEOS ═══════════ */

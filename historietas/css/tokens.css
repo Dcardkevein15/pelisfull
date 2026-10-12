@@ -1,0 +1,25 @@
+/* tokens.css — sistema de diseño: paleta editorial oscura con ámbar de tinta. */
+
+:root {
+  --bg: #0d0e12;
+  --bg-2: #121318;
+  --panel: #16171d;
+  --panel-2: #1c1e26;
+  --line: #2a2c35;
+  --line-soft: #22242d;
+  --ink: #f2ede4;
+  --ink-soft: #c9c4bb;
+  --muted: #9a958b;
+  --accent: #f0a83c;
+  --accent-deep: #c77f1d;
+  --ok: #58c98c;
+  --warn: #e6b450;
+  --err: #e2635c;
+  --comic-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+  --radius: 14px;
+  --radius-s: 9px;
+  --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, 'Cascadia Mono', monospace;
+  --max-w: 1180px;
+}

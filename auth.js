@@ -3205,6 +3205,77 @@ xhr.setRequestHeader('Content-Type', 'application/json');
     } catch (e) { return null; }
   }
 
+  /* ═══════════ 🗝 RESPALDO CIFRADO DE LA CUENTA ═══════════
+     Para no perder la identidad social (uid + clave de firma) al
+     borrar IndexedDB o cambiar de dispositivo: exporta identidad y
+     claves cifradas con una frase (PBKDF2 150k + AES-GCM). El
+     import restaura AMBAS — así el uid sigue firmando con la clave
+     que el servidor registró (TOFU) y la cuenta no queda huérfana. */
+
+  async function exportIdentityEncrypted(pass) {
+    try {
+      if (!ID) return null;
+      const rec = await sigKeysEnsure();
+      if (!rec) return null;
+      pass = String(pass || '');
+      if (pass.length < 6) return null;
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', hash: 'SHA-256', salt, iterations: 150000 },
+        await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']),
+        { name: 'AES-GCM', length: 256 }, false, ['encrypt']);
+      const payload = { v: 1, id: JSON.parse(JSON.stringify(ID)), keys: { priv: rec.jwkPriv, pub: rec.jwkPub } };
+      const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(JSON.stringify(payload)));
+      return 'XBAK1.' + bytesToB64(salt) + '.' + bytesToB64(iv) + '.' + bytesToB64(new Uint8Array(ct));
+    } catch (e) { return null; }
+  }
+
+  async function importIdentityEncrypted(pass, blob) {
+    try {
+      const m = String(blob || '').trim().match(/^XBAK1\.([A-Za-z0-9+/=]+)\.([A-Za-z0-9+/=]+)\.([A-Za-z0-9+/=]+)$/);
+      if (!m) return { ok: false, msg: 'respaldo no reconocido' };
+      const salt = b64ToBytes(m[1]), iv = b64ToBytes(m[2]), ct = b64ToBytes(m[3]);
+      const key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', hash: 'SHA-256', salt, iterations: 150000 },
+        await crypto.subtle.importKey('raw', new TextEncoder().encode(String(pass || '')), 'PBKDF2', false, ['deriveKey']),
+        { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);   /* frase errónea → excepción */
+      const payload = JSON.parse(new TextDecoder().decode(pt));
+      if (!payload || payload.v !== 1 || !payload.id || !payload.keys || !payload.keys.priv) return { ok: false, msg: 'respaldo incompleto' };
+      const inst = await installSigningKeys(payload.keys.priv, payload.keys.pub);
+      if (!inst) return { ok: false, msg: 'las claves del respaldo no son válidas' };
+      const restored = normalizeIdentity(payload.id);
+      if (!restored) return { ok: false, msg: 'identidad corrupta' };
+      const eraAdmin = ID ? !!ID.admin : false;
+      const eraMod = ID ? { mod: !!ID.mod, modExp: ID.modExp || 0 } : { mod: false, modExp: 0 };
+      ID = restored;
+      ID.admin = eraAdmin || !!ID.admin;
+      if (eraMod.mod) { ID.mod = true; ID.modExp = eraMod.modExp; }
+      writeAll(); renderChip(); applyRole();
+      return { ok: true, uid: ID.uid, name: ID.name };
+    } catch (e) {
+      return { ok: false, msg: 'frase incorrecta o respaldo dañado' };
+    }
+  }
+
+  /* instala una pareja de claves de firma (JWK priv + pub): prueba de
+     coherencia firma/verificación y persistencia en IndexedDB        */
+  async function installSigningKeys(jwkPriv, jwkPub) {
+    try {
+      if (!jwkPriv || !jwkPriv.d || !jwkPriv.x || !jwkPriv.y) return false;
+      const priv = await crypto.subtle.importKey('jwk', jwkPriv, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
+      const pubJwk = jwkPub && jwkPub.x && jwkPub.y ? jwkPub : { kty: jwkPriv.kty, crv: jwkPriv.crv, x: jwkPriv.x, y: jwkPriv.y };
+      const pubK = await crypto.subtle.importKey('jwk', pubJwk, { name: 'ECDSA', namedCurve: 'P-256' }, true, ['verify']);
+      const probe = new TextEncoder().encode('xstream-keycheck');
+      const s = await crypto.subtle.sign({ name: 'ECDSA', hash: 'SHA-256' }, priv, probe);
+      if (!(await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, pubK, s, probe))) return false;
+      const pubB64 = bytesToB64(new Uint8Array(await crypto.subtle.exportKey('spki', pubK)));
+      await idbSet(SIG_IDB_KEY, { jwkPriv, jwkPub: pubJwk, pubB64 });
+      return true;
+    } catch (e) { return false; }
+  }
+
   /* ═══════════ API pública ═══════════ */
   window.XAUTH = {
     attach,
@@ -3225,6 +3296,9 @@ xhr.setRequestHeader('Content-Type', 'application/json');
     sha256,
     signText,
     pubKeyB64,
+    exportIdentityEncrypted,
+    importIdentityEncrypted,
+    installSigningKeys,
     get id() { return ID; },
     get ready() { return !!ID; },
   };

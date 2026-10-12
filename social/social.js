@@ -52,27 +52,53 @@
     me: null, myPubKey: '', catalog: [], posts: [], stories: [], groups: [],
     suggested: [], follows: [], saved: [], convos: [], notifs: [],
     onlineCount: 0, onlineUsers: [], interests: [], bio: '',
-    chatFilter: 'todos', attach: null, pollDraft: null,
+    chatFilter: 'todos', attach: null, ready: false,
+    /* v3: delta ETag por archivo + lápidas + latido integrado */
+    etags: { posts: '', presence: '', index: '' },
+    notifsUnread: 0, lastBeatAt: 0, seenTomb: new Set(),
   };
 
-  /* ── API con firma de dispositivo ── */
-  async function socCall(op, params = {}, sign = false) {
+  /* utilidad base64 para la rotación de clave */
+  const b64FromBytes = bytes => { let s = ''; for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]); return btoa(s); };
+
+  /* ── API con firma de dispositivo (v3) ──
+     La firma cubre la OP y TODOS los parámetros, no un texto fijo por
+     hora: «soc3|<uid>|<hora>|<op>|<params canónicos>». Una firma
+     capturada solo sirve para ESA acción y expira al pasar la hora
+     del servidor (anti-replay). */
+  async function socCall(op, params = {}, sign = false, extraHeaders, quiet = false) {
     try {
-      const q = new URLSearchParams({ op, uid: S.me.uid, name: S.me.name, tag: S.me.tag, grad: S.me.grad, flag: S.me.flag || '', ...params });
-      const headers = {};
+      if (!S.me || !S.me.uid) return null;
+      const all = { op, uid: S.me.uid, name: S.me.name, tag: S.me.tag || '', grad: S.me.grad, flag: S.me.flag || '', ...params };
+      for (const k of Object.keys(all)) if (all[k] === undefined) delete all[k];
+      const headers = { ...(extraHeaders || {}) };
       if (sign) {
         const hora = Math.floor(Date.now() / 3600000);
-        const sig = await XAUTH.signText(`social-${S.me.uid}:${hora}`);
+        all.hora = hora;
+        if (S.myPubKey) all.pubKey = S.myPubKey;
+        const canon = Object.keys(all).filter(k => !['hora', 'pubKey'].includes(k)).sort().map(k => k + '=' + String(all[k])).join('&');
+        const sig = await XAUTH.signText('soc3|' + S.me.uid + '|' + hora + '|' + op + '|' + canon);
         if (sig) headers['x-social-sig'] = sig;
-        /* TOFU: la clave pública viaja SIEMPRE con las firmas — el servidor
-           la registra la primera vez y luego verifica contra ella        */
-        if (S.myPubKey) q.set('pubKey', S.myPubKey);
+        /* TOFU: la clave pública viaja SIEMPRE con la firma — el servidor
+           la registra la primera vez y a partir de ahí la clave viva NO
+           se puede cambiar (a menos que la clave vieja firme una rotación) */
       }
+      const q = new URLSearchParams(all);
       const r = await fetch(`${SOCIAL_API}?${q}`, { headers });
-      const j = await r.json();
-      if (!j.ok && j.error) { toast('⚠ ' + j.error, true); return null; }
+      const j = await r.json().catch(() => null);
+      if (!j || !j.ok) {
+        if (!quiet && j && j.error) toast('⚠ ' + j.error, true);
+        return j && j.ok ? j : null;
+      }
       return j;
     } catch (e) { return null; }
+  }
+
+  /* 🛡 encabezados de admin (solo si el dispositivo tiene la clave
+     que publica el catálogo — la misma que firma en el chat) */
+  async function adminSigHeader() {
+    const sig = await XAUTH.signText('xstream-social-admin:' + Math.floor(Date.now() / 3600000));
+    return sig ? { 'x-social-admin': sig } : null;
   }
 
   /* ── catálogo (mismo método a prueba de caché del sitio principal) ── */
@@ -117,18 +143,24 @@
       <button data-me="perfil">🧑 Mi perfil</button>
       <button data-me="guardados">🔖 Guardados (${S.saved.length})</button>
       <button data-me="intereses">⭐ Mis intereses</button>
+      <button data-me="seguridad">🔐 Seguridad y respaldo</button>
+      ${isLocalAdmin() ? '<button data-me="mods">🛡 Panel de moderación</button>' : ''}
       <a href="${mainLink('')}">🎬 Ir a XSTREAM</a>`;
     $('socMeDrop').querySelectorAll('[data-me]').forEach(b => b.addEventListener('click', () => {
       $('socMeDrop').classList.add('hidden');
       if (b.dataset.me === 'perfil') openProfile(S.me.uid);
       if (b.dataset.me === 'guardados') openSaved();
       if (b.dataset.me === 'intereses') openInterests();
+      if (b.dataset.me === 'seguridad') openSecurity();
+      if (b.dataset.me === 'mods') openAdminReports();
     }));
   }
   function renderCounters() {
-    const unreadNotifs = S.notifs.filter(n => !n.read).length;
+    /* v3: usa notifsUnread del servidor (sabe lo leído de verdad),
+       con fallback local por si viene sin él                        */
+    const unreadNotifs = typeof S.notifsUnread === 'number' ? S.notifsUnread : S.notifs.filter(n => !n.read).length;
     const unreadMsgs = S.convos.reduce((a, c) => a + (c.unread || 0), 0);
-    const set = (el, n) => { const b = $(el); b.hidden = !n; b.textContent = n > 99 ? '99+' : n; };
+    const set = (el, n) => { const b = $(el); if (!b) return; b.hidden = !n; b.textContent = n > 99 ? '99+' : n; };
     set('socBellCount', unreadNotifs); set('socMsgCount', unreadMsgs);
     set('socSideNotif', unreadNotifs); set('socSideMsg', unreadMsgs);
     set('socMobNotif', unreadNotifs); set('socMobMsg', unreadMsgs);
@@ -137,7 +169,7 @@
     const d = $('socNotifDrop');
     d.innerHTML = `<div class="soc-drop-h">Notificaciones</div>` + (S.notifs.length
       ? S.notifs.slice(0, 25).map(n => `
-        <div class="soc-nrow">
+        <div class="soc-nrow ${n.read ? '' : 'unread'}">
           <span class="n-ic">${n.type === 'like' ? '❤️' : n.type === 'comment' ? '💬' : n.type === 'follow' ? '👤' : '✉️'}</span>
           <b>${esc(n.byName)}</b> ${esc(n.text)}<small>${ago(n.at)}</small>
         </div>`).join('')
@@ -230,7 +262,18 @@
       </div>
       ${s.img ? `<div style="border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-bottom:10px"><img src="${esc(s.img)}" style="width:100%;display:block"></div>` : ''}
       ${s.text ? `<p style="font-size:13.5px;line-height:1.6">${esc(s.text)}</p>` : '<p class="soc-empty">Historia de texto</p>'}
-      <small style="display:block;color:var(--faint);margin-top:10px">${ago(s.at)} · desaparece a las 24 h</small>`);
+      <small style="display:block;color:var(--faint);margin-top:10px">${ago(s.at)} · desaparece a las 24 h</small>
+      <small class="soc-views" id="ssViews">${(s.views || []).length} espectadores${(s.views || []).length === 1 ? '' : 's'}</small>`);
+    /* cada apertura cuenta UNA vista por persona en el servidor */
+    if (s.id && !(s.views || []).includes(S.me.uid)) {
+      socCall('storyView', { sid: s.id }, true).then(r => {
+        if (!r || !r.ok) return;
+        const views = (s.views = s.views || []);
+        if (!views.includes(S.me.uid)) views.push(S.me.uid);
+        const v = $('ssViews');
+        if (v) v.textContent = views.length + ' espectador' + (views.length === 1 ? '' : 's');
+      }).catch(() => { });
+    }
   }
 
   /* ═══════════ PUBLICAR ═══════════ */
@@ -470,95 +513,52 @@
       $('socPostText').value = '';
       S.attach = null; renderAttach();
       toast('✅ Publicado en la comunidad');
-      refresh();
+      if (r.post) { S.posts.unshift(r.post); syncFeed(); }
     }
   });
 
-  /* ═══════════ FEED ═══════════ */
+  /* ═══════════ FEED — incremental ═══════════
+     Las tarjetas viven en feedCards: cada refresco actualiza contadores,
+     hilos y encuestas EN SITIO. El input de comentario está FUERA de la
+     zona rehecha → lo que escribes sobrevive al refresco de 45 s.      */
   const withTags = t => esc(t).replace(/(^|\s)(#[\wáéíóúñÁÉÍÓÚÑ]+)/g, (m, a, b) => `${a}<span class="tag">${b}</span>`);
-  function postCard(p) {
-    const d = document.createElement('article');
-    d.className = 'soc-card soc-post';
-    d.dataset.pid = p.id;   /* ancla para #p-<id> (enlaces de compartir) */
-    const liked = p.likes.includes(S.me.uid);
-    const saved = S.saved.includes(p.id);
-    const comments = p.comments || [];
-    d.innerHTML = `
-      <div class="soc-post-h">
-        ${avatarHtml(p.name, p.grad, 'lg')}
-        <div class="soc-post-user">
-          <b>${esc(p.name)} ${p.official || p.uid === 'x-stream-social-team' ? '<span class="soc-verified" title="Equipo XSTREAM">✔</span>' : ''}</b>
-          <small>${esc(p.tag || '')} · ${ago(p.at)}${p.official || p.uid === 'x-stream-social-team' ? ' · <span style="color:var(--blue)">EQUIPO XSTREAM</span>' : ''}</small>
-        </div>
-        <div class="soc-post-time">${hms(p.at)}</div>
-      <button class="soc-post-menu" title="Opciones">⋯</button>
-      </div>
-      ${p.text ? `<p class="soc-post-text">${withTags(p.text)}</p>` : ''}
-      ${p.img ? `<div class="soc-post-img"><img src="${esc(p.img)}" loading="lazy" alt=""></div>` : ''}
-      ${p.vid ? `<div class="soc-post-vid" data-k="${esc(p.vid)}" role="button" tabindex="0"><img src="https://i.ytimg.com/vi/${esc(p.vid)}/hqdefault.jpg" loading="lazy" alt="vídeo"><span class="soc-vid-play">▶</span></div>` : ''}
-      ${p.link ? `<a class="soc-post-link" href="${esc(p.link)}" target="_blank" rel="noopener">🔗 ${esc(p.link)}</a>` : ''}
-      ${p.poll ? pollHtml(p) : ''}
-      <div class="soc-post-acts">
-        <button class="soc-act lk ${liked ? 'on' : ''}" title="Me gusta">👍 ${p.likes.length}</button>
-        <button class="soc-act cm" title="Ir a los comentarios">💬 ${comments.length}</button>
-        <button class="soc-act sh" title="Compartir (copia el enlace)">↗ Compartir${p.shares ? ' · ' + p.shares : ''}</button>
-        <button class="soc-act sv save ${saved ? 'on' : ''}" title="Guardar">🔖</button>
-      </div>
-      <div class="soc-comments">
-        ${comments.length ? comments.map(c => `
-          <div class="soc-comment">
-            ${avatarHtml(c.name, 0, 'sm')}
-            <div class="soc-comment-b"><b>${esc(c.name)}</b><p>${esc(c.text)}</p><small>${ago(c.at)}</small></div>
-          </div>`).join('') : `<div class="soc-comments-none">Aún sin comentarios — sé el primero 👇</div>`}
-        <div class="soc-comment-new">
-          ${avatarHtml(S.me.name, S.me.grad, 'sm')}
-          <input placeholder="Escribe un comentario…" maxlength="400">
-          <button class="soc-btn soc-btn-green soc-comment-send">Enviar</button>
-        </div>
-      </div>`;
-    const lk = d.querySelector('.lk');
-    lk.addEventListener('click', async () => {
-      lk.classList.toggle('on');
-      const r = await socCall('like', { postId: p.id, on: lk.classList.contains('on') ? '1' : '0' }, true);
-      if (r) { p.likes = r.mine ? [...p.likes] : p.likes; lk.textContent = '❤️ ' + r.likes; }
-      refreshSoon();
+  const feedCards = new Map();   /* pid -> { el, cmSig, pollSig } */
+  const feedList = () => (S.posts.length ? S.posts : welcomePosts()).filter(p => !S.seenTomb.has(p.id));
+  const postOf = pid => feedList().find(p => p.id === pid);
+
+  /* posts de bienvenida del EQUIPO — datos de ejemplo claramente identificados (solo con feed vacío) */
+  let _welcomeCache = null;
+  function welcomePosts() {
+    if (_welcomeCache) return _welcomeCache;
+    const solo = catFind('solo leveling', 'soraleveling') || S.catalog.find(s => s.kind !== 'pelicula') || null;
+    const dune = catFind('dune', 'dune parte dos') || S.catalog.find(s => s.kind === 'pelicula') || null;
+    const mk = (img, text) => ({
+      id: 'welcome-' + slugify(text.slice(0, 20)), uid: 'x-stream-social-team', name: 'XSTREAM · Equipo',
+      tag: '#oficial', grad: 0, text, img: img || '', link: '', poll: null, at: Date.now() - 3600e3,
+      likes: [], comments: [], shares: 0, official: true,
     });
-    d.querySelector('.cm').addEventListener('click', () => d.querySelector('.soc-comment-new input').focus());
-    const cIn = d.querySelector('.soc-comment-new input');
-    const sendComment = async () => {
-      if (!cIn.value.trim()) { cIn.focus(); return; }
-      const btn = d.querySelector('.soc-comment-send');
-      btn.disabled = true; btn.textContent = '…';
-      const r = await socCall('comment', { postId: p.id, text: cIn.value.trim() }, true);
-      if (r) { cIn.value = ''; toast('💬 Comentario publicado'); refresh(); }
-      btn.disabled = false; btn.textContent = 'Enviar';
-    };
-    cIn.addEventListener('keydown', ev => { if (ev.key === 'Enter') sendComment(); });
-    d.querySelector('.soc-comment-send').addEventListener('click', sendComment);
-    d.querySelector('.sh').addEventListener('click', async () => {
-      const url = location.origin + location.pathname + '#p-' + p.id;
-      try { await navigator.clipboard.writeText(url); toast('↗ Enlace de la publicación copiado'); } catch (e) { toast(url); }
-      await socCall('share', { postId: p.id });
-      refreshSoon();
-    });
-    const sv = d.querySelector('.sv');
-    sv.addEventListener('click', async () => {
-      const on = !sv.classList.contains('on');
-      sv.classList.toggle('on', on);
-      sv.textContent = on ? '🔖 Guardado' : '🔖 Guardar';
-      const r = await socCall('save', { postId: p.id, on: on ? '1' : '0' }, true);
-      if (r) { S.saved = r.saved || S.saved; toast(on ? '🔖 Guardado' : 'Quitado de guardados'); }
-    });
-    d.querySelector('.soc-post-menu').addEventListener('click', () => toast('Opciones: usar Guardar o Compartir · abre el perfil tocando el avatar'));
-    /* ▶ vídeo de YouTube: portada + play → embed al instante */
-    const vd = d.querySelector('.soc-post-vid');
-    if (vd) vd.addEventListener('click', () => {
-      vd.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(vd.dataset.k)}?autoplay=1&rel=0" title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-      vd.classList.add('on');
-    });
-    if (p.poll) wirePoll(d, p);
-    return d;
+    const out = [];
+    if (solo) out.push(mk(solo.poster, `¡Bienvenido a XSTREAM SOCIAL! 🎉 Esta es la nueva comunidad de #cine, #series y #anime. Publica, comenta y sigue a tus creadores favoritos. Como muestra, esto es lo que verás por aquí — hablando de #SoloLeveling y de todo lo que amas. Únete a la conversación 👇`));
+    if (dune) out.push(mk('', `¿Ya viste la conversación de la semana? #DuneParte2 sigue dando de qué hablar 🏜️ Cuéntanos tu teoría sin spoilers… o con spoilers, pero avisa 😄`));
+    _welcomeCache = out;
+    return out;
   }
+
+  /* firmas de cambio: rehilar solo cuando de verdad cambió algo */
+  const commentsSig = p => (p.comments || []).map(c => (c.uid || '') + '|' + (c.at || 0) + '|' + ((c.likes || []).length)).join('~');
+  const pollSig = p => p.poll ? JSON.stringify(p.poll.votes || {}) : '';
+
+  function commentsHtml(p) {
+    const cs = p.comments || [];
+    if (!cs.length) return `<div class="soc-comments-none">Aún sin comentarios — sé el primero 👇</div>`;
+    return cs.map((c, i) => `
+      <div class="soc-comment" data-ci="${i}">
+        ${avatarHtml(c.name, 0, 'sm')}
+        <div class="soc-comment-b"><b>${esc(c.name)}</b><p>${esc(c.text)}</p><small>${ago(c.at)}</small></div>
+        <button class="soc-clike${((c.likes || []).includes(S.me.uid)) ? ' on' : ''}" data-ci="${i}" title="Me gusta el comentario">❤ ${(c.likes || []).length || ''}</button>
+      </div>`).join('');
+  }
+
   function pollHtml(p) {
     const total = Object.values(p.poll.votes || {}).reduce((a, v) => a + v.length, 0) || 0;
     const mine = Object.values(p.poll.votes || {}).some(v => v.includes(S.me.uid));
@@ -574,40 +574,247 @@
       <small style="color:var(--faint);font-size:10.5px">📊 ${total} voto${total === 1 ? '' : 's'}${mine ? '' : ' · 1 por persona'}</small>
     </div>`;
   }
-  function wirePoll(d, p) {
-    d.querySelectorAll('.soc-poll-opt').forEach(b => b.addEventListener('click', async () => {
-      const r = await socCall('vote', { postId: p.id, option: b.dataset.i }, true);
-      if (r) { toast('📊 Voto registrado'); refresh(); }
+  function wirePoll(card, pid) {
+    card.querySelectorAll('.soc-poll-opt').forEach(b => b.addEventListener('click', async () => {
+      const p = postOf(pid);
+      if (!p) return;
+      const r = await socCall('vote', { postId: pid, option: b.dataset.i }, true);
+      if (r) { toast('📊 Voto registrado'); refreshSoon(); }
     }));
   }
 
-  /* posts de bienvenida del EQUIPO — datos de ejemplo claramente identificados */
-  function welcomePosts() {
-    const solo = catFind('solo leveling', 'soraleveling') || S.catalog.find(s => s.kind !== 'pelicula') || null;
-    const dune = catFind('dune', 'dune parte dos') || S.catalog.find(s => s.kind === 'pelicula') || null;
-    const mk = (img, text) => ({
-      id: 'welcome-' + slugify(text.slice(0, 20)), uid: 'x-stream-social-team', name: 'XSTREAM · Equipo',
-      tag: '#oficial', grad: 0, text, img: img || '', link: '', poll: null, at: Date.now() - 3600e3,
-      likes: [], comments: [], shares: 0, official: true,
-    });
-    const out = [];
-    if (solo) out.push(mk(solo.poster, `¡Bienvenido a XSTREAM SOCIAL! 🎉 Esta es la nueva comunidad de #cine, #series y #anime. Publica, comenta y sigue a tus creadores favoritos. Como muestra, esto es lo que verás por aquí — hablando de #SoloLeveling y de todo lo que amas. Únete a la conversación 👇`));
-    if (dune) out.push(mk('', `¿Ya viste la conversación de la semana? #DuneParte2 sigue dando de qué hablar 🏜️ Cuéntanos tu teoría sin spoilers… o con spoilers, pero avisa 😄`));
-    return out;
+  function postCard(p) {
+    const d = document.createElement('article');
+    d.className = 'soc-card soc-post';
+    d.dataset.pid = p.id;   /* ancla para #p-<id> (enlaces de compartir) */
+    const liked = p.likes.includes(S.me.uid);
+    const saved = S.saved.includes(p.id);
+    const isTm = p.official || p.uid === 'x-stream-social-team';
+    d.innerHTML = `
+      <div class="soc-post-h">
+        ${avatarHtml(p.name, p.grad, 'lg')}
+        <div class="soc-post-user">
+          <b>${esc(p.name)} ${isTm ? '<span class="soc-verified" title="Equipo XSTREAM">✔</span>' : ''}</b>
+          <small>${esc(p.tag || '')} · ${ago(p.at)}${isTm ? ' · <span style="color:var(--blue)">EQUIPO XSTREAM</span>' : ''}</small>
+        </div>
+        <div class="soc-post-time">${hms(p.at)}</div>
+        <button class="soc-post-menu" title="Opciones">⋯</button>
+      </div>
+      ${p.text ? `<p class="soc-post-text">${withTags(p.text)}</p>` : ''}
+      ${p.img ? `<div class="soc-post-img"><img src="${esc(p.img)}" loading="lazy" alt=""></div>` : ''}
+      ${p.vid ? `<div class="soc-post-vid" data-k="${esc(p.vid)}" role="button" tabindex="0"><img src="https://i.ytimg.com/vi/${esc(p.vid)}/hqdefault.jpg" loading="lazy" alt="vídeo"><span class="soc-vid-play">▶</span></div>` : ''}
+      ${p.link ? `<a class="soc-post-link" href="${esc(p.link)}" target="_blank" rel="noopener">🔗 ${esc(p.link)}</a>` : ''}
+      ${p.poll ? pollHtml(p) : ''}
+      <div class="soc-post-acts">
+        <button class="soc-act lk ${liked ? 'on' : ''}" title="Me gusta">${liked ? '❤' : '👍'} ${p.likes.length}</button>
+        <button class="soc-act cm" title="Ir a los comentarios">💬 ${(p.comments || []).length}</button>
+        <button class="soc-act sh" title="Compartir (copia el enlace)">↗ Compartir${p.shares ? ' · ' + p.shares : ''}</button>
+        <button class="soc-act sv save ${saved ? 'on' : ''}" title="Guardar">🔖</button>
+      </div>
+      <div class="soc-comments">
+        <div class="soc-comments-list">${commentsHtml(p)}</div>
+        <div class="soc-comment-new">
+          ${avatarHtml(S.me.name, S.me.grad, 'sm')}
+          <input placeholder="Escribe un comentario…" maxlength="400">
+          <button class="soc-btn soc-btn-green soc-comment-send">Enviar</button>
+        </div>
+      </div>`;
+    wirePostCard(d, p.id);
+    return d;
   }
 
-  function renderFeed() {
+  /* todo el wiring resuelve el post VIVO por pid — los cierres nunca
+     quedan apuntando a datos viejos tras un refresco               */
+  function wirePostCard(d, pid) {
+    const lk = d.querySelector('.lk');
+    lk.addEventListener('click', async () => {
+      const p = postOf(pid); if (!p) return;
+      const on = !lk.classList.contains('on');
+      lk.classList.toggle('on', on);
+      lk.textContent = (on ? '❤' : '👍') + ' ' + Math.max(0, p.likes.length + (on ? 1 : -1));
+      const r = await socCall('like', { postId: pid, on: on ? '1' : '0' }, true);
+      if (r) {
+        const i = p.likes.indexOf(S.me.uid);
+        if (r.mine && i < 0) p.likes.push(S.me.uid);
+        if (!r.mine && i >= 0) p.likes.splice(i, 1);
+        lk.textContent = (r.mine ? '❤' : '👍') + ' ' + r.likes;
+        lk.classList.toggle('on', !!r.mine);
+      }
+    });
+    d.querySelector('.cm').addEventListener('click', () => { const i = d.querySelector('.soc-comment-new input'); if (i) i.focus(); });
+    const cIn = d.querySelector('.soc-comment-new input');
+    const cBtn = d.querySelector('.soc-comment-send');
+    const sendComment = async () => {
+      const p = postOf(pid); if (!p) return;
+      const text = cIn.value.trim();
+      if (!text) { cIn.focus(); return; }
+      cBtn.disabled = true; cBtn.textContent = '…';
+      const r = await socCall('comment', { postId: pid, text }, true);
+      if (r) {
+        cIn.value = '';
+        if (!r.deduped) {
+          p.comments = p.comments || [];
+          p.comments.push({ uid: S.me.uid, name: S.me.name, text, likes: [], at: Date.now() });
+          toast('💬 Comentario publicado');
+          const rec = feedCards.get(pid); if (rec) updateCard(rec, p);
+        }
+      }
+      cBtn.disabled = false; cBtn.textContent = 'Enviar';
+    };
+    cIn.addEventListener('keydown', ev => { if (ev.key === 'Enter') sendComment(); });
+    cBtn.addEventListener('click', sendComment);
+    /* ❤ likes de comentarios — delegado en la lista: sobrevive a rebuilds */
+    d.querySelector('.soc-comments-list').addEventListener('click', async ev => {
+      const b = ev.target.closest('.soc-clike'); if (!b) return;
+      const p = postOf(pid); if (!p) return;
+      const ci = +b.dataset.ci;
+      const c = (p.comments || [])[ci]; if (!c) return;
+      c.likes = c.likes || [];
+      const on = !c.likes.includes(S.me.uid);
+      const r = await socCall('clike', { postId: pid, ci: String(ci), on: on ? '1' : '0' }, true);
+      if (r) {
+        const i = c.likes.indexOf(S.me.uid);
+        if (r.mine && i < 0) c.likes.push(S.me.uid);
+        if (!r.mine && i >= 0) c.likes.splice(i, 1);
+        b.classList.toggle('on', !!r.mine);
+        b.textContent = '❤ ' + (r.likes || '');
+      }
+    });
+    d.querySelector('.sh').addEventListener('click', async () => {
+      const url = location.origin + location.pathname + '#p-' + pid;
+      try { await navigator.clipboard.writeText(url); toast('↗ Enlace de la publicación copiado'); } catch (e) { toast(url); }
+      await socCall('share', { postId: pid });
+    });
+    const sv = d.querySelector('.sv');
+    sv.addEventListener('click', async () => {
+      const on = !sv.classList.contains('on');
+      sv.classList.toggle('on', on);
+      const r = await socCall('save', { postId: pid, on: on ? '1' : '0' }, true);
+      if (r) { S.saved = r.saved || S.saved; toast(on ? '🔖 Guardado' : 'Quitado de guardados'); }
+    });
+    /* ⋯ menú real de la publicación */
+    d.querySelector('.soc-post-menu').addEventListener('click', ev => { ev.stopPropagation(); togglePostMenu(d, pid); });
+    /* ▶ vídeo de YouTube: portada + play → embed al instante */
+    const vd = d.querySelector('.soc-post-vid');
+    if (vd) vd.addEventListener('click', () => {
+      vd.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(vd.dataset.k)}?autoplay=1&rel=0" title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      vd.classList.add('on');
+    });
+    if (d.querySelector('.soc-poll')) wirePoll(d, pid);
+  }
+
+  /* ── menú ⋯: guardar · copiar · borrar la propia · reportar · moderación ── */
+  function closePostMenus() { document.querySelectorAll('.soc-menu').forEach(m => m.remove()); }
+  function togglePostMenu(card, pid) {
+    const existing = card.querySelector('.soc-menu');
+    closePostMenus();
+    if (existing) return;
+    const p = postOf(pid); if (!p) return;
+    const virtual = String(pid).startsWith('welcome-');
+    const mine = p.uid === S.me.uid;
+    const admin = !!(window.XAUTH && typeof XAUTH.isAdmin === 'function' && XAUTH.isAdmin());
+    const m = document.createElement('div');
+    m.className = 'soc-menu';
+    m.innerHTML = `
+      ${virtual ? '' : (mine ? '' : `<button data-m="save">${S.saved.includes(pid) ? '🔖 Quitar de guardados' : '🔖 Guardar'}</button>`)}
+      <button data-m="copy">↗ Copiar enlace de la publicación</button>
+      ${virtual ? '' : (mine || admin ? `<button data-m="del" class="danger">🗑 Borrar publicación</button>` : `<button data-m="report" class="danger">🚩 Reportar contenido</button>`)}
+      ${(!virtual && admin) ? `<button data-m="mod">🛡 Abrir panel de moderación</button>` : ''}`;
+    card.appendChild(m);
+    m.addEventListener('click', async ev => {
+      const b = ev.target.closest('[data-m]');
+      if (!b) return;
+      closePostMenus();
+      const k = b.dataset.m;
+      if (k === 'copy') {
+        const url = location.origin + location.pathname + '#p-' + pid;
+        try { await navigator.clipboard.writeText(url); toast('↗ Enlace copiado'); } catch (e) { toast(url); }
+      }
+      if (k === 'save') {
+        const on = !S.saved.includes(pid);
+        const r = await socCall('save', { postId: pid, on: on ? '1' : '0' }, true);
+        if (r) { S.saved = r.saved || S.saved; syncFeed(); toast(on ? '🔖 Guardado' : 'Quitado de guardados'); }
+      }
+      if (k === 'del') {
+        const quien = mine ? 'tu publicación' : 'la publicación de ' + (p.name || 'otro usuario');
+        if (!confirm('¿Borrar ' + quien + ' de forma definitiva?\n\nEsta acción no se puede deshacer.')) return;
+        const hdrs = (!mine && admin) ? await adminSigHeader() : null;
+        const r = await socCall('delPost', { postId: pid }, true, hdrs);
+        if (r) {
+          S.posts = S.posts.filter(x => x.id !== pid);
+          S.seenTomb.add(pid);
+          const rec = feedCards.get(pid);
+          if (rec) { rec.el.remove(); feedCards.delete(pid); }
+          syncFeed();
+          toast('🗑 Publicación borrada');
+        }
+      }
+      if (k === 'report') openReportSheet(pid);
+      if (k === 'mod') openAdminReports();
+    });
+    const away = ev => { if (!m.contains(ev.target) && !ev.target.closest('.soc-post-menu')) { m.remove(); document.removeEventListener('click', away, true); } };
+    document.addEventListener('click', away, true);
+  }
+
+  /* actualización en sitio: contadores + hilos + encuestas */
+  function updateCard(rec, p) {
+    if (!rec) return;
+    const d = rec.el;
+    const lk = d.querySelector('.lk');
+    if (lk) { const liked = p.likes.includes(S.me.uid); lk.classList.toggle('on', liked); lk.textContent = (liked ? '❤' : '👍') + ' ' + p.likes.length; }
+    const cm = d.querySelector('.cm');
+    if (cm) cm.textContent = '💬 ' + (p.comments || []).length;
+    const sh = d.querySelector('.sh');
+    if (sh) sh.textContent = '↗ Compartir' + (p.shares ? ' · ' + p.shares : '');
+    const sv = d.querySelector('.sv');
+    if (sv) sv.classList.toggle('on', S.saved.includes(p.id));
+    const csig = commentsSig(p);
+    if (csig !== rec.cmSig) {
+      rec.cmSig = csig;
+      const list = d.querySelector('.soc-comments-list');
+      if (list) list.innerHTML = commentsHtml(p);
+      /* el input de comentario NO vive en la lista: el borrador sobrevive */
+    }
+    const psig = pollSig(p);
+    if (psig !== rec.pollSig) {
+      rec.pollSig = psig;
+      const old = d.querySelector('.soc-poll');
+      if (old && p.poll) { const t = document.createElement('div'); t.innerHTML = pollHtml(p); old.replaceWith(t.firstElementChild); wirePoll(d, p.id); }
+      else if (!old && p.poll) {
+        const t = document.createElement('div'); t.innerHTML = pollHtml(p);
+        d.querySelector('.soc-post-acts').parentNode.insertBefore(t.firstElementChild, d.querySelector('.soc-post-acts'));
+        wirePoll(d, p.id);
+      }
+    }
+  }
+
+  function syncFeed() {
     const box = $('socFeed');
-    box.innerHTML = '';
-    const posts = [...S.posts, ...(S.posts.length ? [] : welcomePosts())];
+    const posts = feedList();
     if (!posts.length) {
+      for (const [, rec] of feedCards) rec.el.remove();
+      feedCards.clear();
+      box.innerHTML = '';
       $('socFeedEmpty').classList.remove('hidden');
       $('socFeedEmpty').innerHTML = 'Aún no hay publicaciones — sé el primero en escribirle a la comunidad ✍️';
       return;
     }
     $('socFeedEmpty').classList.add('hidden');
-    for (const p of posts) box.appendChild(postCard(p));
+    const ids = new Set(posts.map(p => p.id));
+    for (const [pid, rec] of feedCards) if (!ids.has(pid)) { rec.el.remove(); feedCards.delete(pid); }
+    for (let i = 0; i < posts.length; i++) {
+      const p = posts[i];
+      let rec = feedCards.get(p.id);
+      if (rec) { updateCard(rec, p); continue; }
+      const el = postCard(p);
+      rec = { el, cmSig: commentsSig(p), pollSig: pollSig(p) };
+      feedCards.set(p.id, rec);
+      let nextEl = null;
+      for (let j = i + 1; j < posts.length; j++) { const n = feedCards.get(posts[j].id); if (n) { nextEl = n.el; break; } }
+      box.insertBefore(el, nextEl);
+    }
   }
+  function renderFeed() { syncFeed(); }   /* compat con las llamadas previas */
 
   /* ═══════════ TENDENCIAS + GRUPOS ═══════════ */
   function renderTrends() {
@@ -780,7 +987,7 @@
     const box = $('socLive');
     const lives = S.stories.filter(s => s.live);
     if (!lives.length) {
-      box.innerHTML = '<div class="soc-empty">No hay eventos en vivo ahora mismo.<br>Cuando alguien marque su historia como EN VIVO aparecerá aquí con los espectadores reales conectados.</div>';
+      box.innerHTML = '<div class="soc-empty">No hay eventos en vivo ahora mismo.<br>Cuando alguien marque su historia como EN VIVO aparecerá aquí con sus espectadores reales.</div>';
       return;
     }
     box.innerHTML = '';
@@ -790,7 +997,7 @@
       d.innerHTML = `
         ${s.img ? `<img src="${esc(s.img)}" alt="">` : '<span class="soc-live-ph">🔴</span>'}
         <div class="soc-live-b"><b>${esc(s.text || 'Transmisión de ' + s.name)}</b>
-        <small>${esc(s.name)} · ${hms(s.at)}</small><small>👁 ${S.onlineCount} conectado${S.onlineCount === 1 ? '' : 's'} ahora</small></div>
+        <small>${esc(s.name)} · ${hms(s.at)}</small><small>👁 ${(s.views || []).length} espectador${(s.views || []).length === 1 ? '' : 'es'} real${(s.views || []).length === 1 ? '' : 'es'}</small></div>
         <span class="soc-live-tag">EN VIVO</span>`;
       d.addEventListener('click', () => openStoryView(s));
       box.appendChild(d);
@@ -848,8 +1055,16 @@
   function openChatPanel() { dockOpen('chat'); }
 
   let convoTimer = null;
+  const convoEtags = {};   /* cid -> { convo, index } — poll con 304 gratis */
+  function pairCid(cid) {
+    /* los DM usan la id canónica uidA~uidB (ordenada): viniendo de un
+       perfil llega el uid pelado — normalizarlo SIEMPRE              */
+    if (!cid.startsWith('g:') && !cid.includes('~')) cid = [S.me.uid, cid].sort().join('~');
+    return cid;
+  }
   async function openConvo(cid, title) {
     clearInterval(convoTimer);
+    cid = pairCid(cid);
     const isGroup = cid.startsWith('g:');
     if (isGroup && !S.follows.includes(cid)) {
       const r = await socCall('follow', { target: cid, on: '1' }, true);
@@ -865,22 +1080,31 @@
         <input id="ssMsgIn" placeholder="Escribe un mensaje…" maxlength="400">
       </div>`);
     const loadMsgs = async () => {
-      const r = await socCall('messages', { cid });
+      if (!document.getElementById('ssMsgs')) { clearInterval(convoTimer); return; }
+      if (document.hidden) return;   /* pestaña oculta: ni una petición */
+      const r = await socCall('messages', { cid, etags: JSON.stringify(convoEtags[cid] || {}) }, false, null, true);
       if (!r) return;
+      if (r.etags) convoEtags[cid] = r.etags;
+      if (r.same) return;            /* nada nuevo: el poll fue 304 gratis */
       $('ssMsgs').innerHTML = r.msgs.map(m => `
         <div class="soc-msg ${m.uid === S.me.uid ? 'me' : 'you'}">${esc(m.text)}<small>${esc(m.name)} · ${hms(m.at)}</small></div>`).join('')
         || `<div class="soc-empty">Sin mensajes todavía — rompe el hielo 👋</div>`;
       $('ssMsgs').scrollTop = 1e6;
+      if (r.cleared) refreshSoon();  /* el índice cambió: refresca el badge */
     };
-    await loadMsgs();
-    convoTimer = setInterval(loadMsgs, 6000);
+    /* el listener se monta ANTES del primer await: el usuario puede
+       escribir desde el instante en que la hoja aparece                */
     $('ssMsgIn').addEventListener('keydown', async ev => {
       if (ev.key !== 'Enter' || !$('ssMsgIn').value.trim()) return;
       /* el servidor espera: 'g:<id>' para grupos · el UID del otro para individuales */
       const to = isGroup ? cid : cid.split('~').find(x => x !== S.me.uid);
       const r = await socCall('msg', { to, text: $('ssMsgIn').value.trim() }, true);
-      if (r) { $('ssMsgIn').value = ''; loadMsgs(); refreshSoon(); }
+      if (r) { $('ssMsgIn').value = ''; convoEtags[cid] = {}; loadMsgs(); refreshSoon(); }
     });
+    convoEtags[cid] = convoEtags[cid] || {};
+    await loadMsgs();
+    clearInterval(convoTimer);
+    convoTimer = setInterval(loadMsgs, 6000);
   }
 
   /* ═══════════ ONLINE ═══════════ */
@@ -892,35 +1116,51 @@
       : '<div class="soc-empty">Nadie más conectado ahora — invita a tus amigos 👋</div>';
   }
 
-  /* ═══════════ BÚSQUEDA ═══════════ */
-  let searchTimer = null;
+  /* ═══════════ BÚSQUEDA ═══════════
+     Personas: además del feed visible, pregunta al servidor — cubre a
+     TODA la comunidad (no solo los 60 posts cargados).                    */
+  let searchTimer = null, searchSeq = 0;
   function doSearch() {
     const q = $('socSearch').value.trim().toLowerCase();
     const drop = $('socSearchDrop');
     if (q.length < 2) { drop.classList.add('hidden'); return; }
     drop.classList.remove('hidden');
+    const seq = ++searchSeq;
     const catHits = S.catalog.filter(s => (s.t || '').toLowerCase().includes(q)).slice(0, 5)
       .map(s => `<div class="soc-sr" data-cat="${esc(s.id)}"><img src="${esc(s.poster)}"><div><b>${esc(s.t)}</b><small>${esc(s.kind === 'pelicula' ? 'Película' : 'Serie')} · en el catálogo →</small></div></div>`);
-    const people = new Map();
-    for (const u of S.suggested) people.set(u.uid, u);
-    for (const p of S.posts) if (p.uid !== S.me.uid && p.name.toLowerCase().includes(q)) people.set(p.uid, { uid: p.uid, name: p.name, tag: p.tag, grad: p.grad });
-    const pplHits = [...people.values()].filter(u => u.name.toLowerCase().includes(q)).slice(0, 4)
-      .map(u => `<div class="soc-sr" data-usr="${esc(u.uid)}"><span class="soc-sr-emoji">${avatarHtml(u.name, u.grad, 'sm').slice(30, -7)}</span><div><b>${esc(u.name)}</b><small>${esc(u.tag || '')} · persona →</small></div></div>`);
+    const localPeople = new Map();
+    for (const u of S.suggested) localPeople.set(u.uid, u);
+    for (const p of S.posts) if (p.uid !== S.me.uid && p.name.toLowerCase().includes(q)) localPeople.set(p.uid, { uid: p.uid, name: p.name, tag: p.tag, grad: p.grad });
     const tagHits = q.startsWith('#')
-      ? S.posts.filter(p => ('#' + String(p.text).match(/#[\wáéíóúñ]+/g)?.join(' #') || '').toLowerCase().includes(q)).slice(0, 4)
+      ? S.posts.filter(p => String(p.text || '').toLowerCase().includes(q)).slice(0, 4)
         .map(p => `<div class="soc-sr" data-post="${esc(p.id)}"><span class="soc-sr-emoji">💬</span><div><b>${esc((p.text || '').slice(0, 46))}…</b><small>publicación →</small></div></div>`)
       : [];
-    drop.innerHTML = [...catHits, ...pplHits, ...tagHits].join('') ||
-      '<div class="soc-empty">Sin resultados para «' + esc(q) + '» — prueba con otro título o persona.</div>';
-    drop.querySelectorAll('[data-cat]').forEach(d => d.addEventListener('click', () => {
-      const s = S.catalog.find(x => x.id === d.dataset.cat);
-      if (s) window.open(catLink(s), '_self');
-    }));
-    drop.querySelectorAll('[data-usr]').forEach(d => d.addEventListener('click', () => { drop.classList.add('hidden'); openProfile(d.dataset.usr); }));
-    drop.querySelectorAll('[data-post]').forEach(d => d.addEventListener('click', () => {
-      drop.classList.add('hidden');
-      document.querySelector(`#socFeed [data-id="${d.dataset.post}"]`)?.scrollIntoView({ behavior: 'smooth' });
-    }));
+    const render = pplHits => {
+      drop.innerHTML = [...catHits, ...pplHits, ...tagHits].join('') ||
+        '<div class="soc-empty">Sin resultados para «' + esc(q) + '» — prueba con otro título o persona.</div>';
+      drop.querySelectorAll('[data-cat]').forEach(d => d.addEventListener('click', () => {
+        const s = S.catalog.find(x => x.id === d.dataset.cat);
+        if (s) window.open(catLink(s), '_self');
+      }));
+      drop.querySelectorAll('[data-usr]').forEach(d => d.addEventListener('click', () => { drop.classList.add('hidden'); openProfile(d.dataset.usr); }));
+      drop.querySelectorAll('[data-post]').forEach(d => d.addEventListener('click', () => {
+        drop.classList.add('hidden');
+        document.querySelector(`#socFeed [data-pid="${CSS.escape(d.dataset.post)}"]`)?.scrollIntoView({ behavior: 'smooth' });
+      }));
+    };
+    const localHits = [...localPeople.values()].filter(u => (u.name || '').toLowerCase().includes(q) && u.uid !== S.me.uid).slice(0, 4)
+      .map(u => `<div class="soc-sr" data-usr="${esc(u.uid)}"><span class="soc-sr-emoji">${avatarHtml(u.name, u.grad, 'sm').slice(30, -7)}</span><div><b>${esc(u.name)}</b><small>${esc(u.tag || '')} · persona →</small></div></div>`);
+    render(localHits);
+    /* refuerzo del servidor: cubre a toda la comunidad */
+    if (!q.startsWith('#')) {
+      socCall('search', { q }, false, null, true).then(r => {
+        if (!r || !r.users || seq !== searchSeq) return;
+        if ($('socSearch').value.trim().toLowerCase() !== q) return;
+        const srv = r.users.filter(u => u.uid !== S.me.uid).slice(0, 6)
+          .map(u => `<div class="soc-sr" data-usr="${esc(u.uid)}"><span class="soc-sr-emoji">${avatarHtml(u.name, u.grad, 'sm').slice(30, -7)}</span><div><b>${esc(u.name)}</b><small>${esc(u.tag || '')} · persona${u.posts ? ' · ' + u.posts + ' publicaciones' : ''} →</small></div></div>`);
+        if (srv.length) render(srv);
+      }).catch(() => { });
+    }
   }
   $('socSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(doSearch, 250); });
   document.addEventListener('click', ev => {
@@ -948,7 +1188,13 @@
   });
   applySocTheme(socTheme);
   async function markNotifsRead() {
-    if (S.notifs.some(n => !n.read)) { await socCall('notifsRead', {}, true); refreshSoon(); }
+    const unread = typeof S.notifsUnread === 'number' ? S.notifsUnread : S.notifs.filter(n => !n.read).length;
+    if (!unread) return;
+    /* respuesta inmediata: el badge se limpia ya; el servidor lo persiste */
+    S.notifsUnread = 0;
+    S.notifs.forEach(n => { n.read = true; });
+    renderCounters(); renderNotifDrop();
+    await socCall('notifsRead', {}, true);
   }
 
   /* ═══════════ HOJAS (overlays) ═══════════ */
@@ -1057,8 +1303,10 @@
           ${u.bio ? `<p style="font-size:12px;color:var(--dim);margin-top:4px">${esc(u.bio)}</p>` : ''}
         </div>
       </div>
-      ${mine ? `<div style="display:flex;gap:8px;margin-bottom:12px">
+      ${mine ? `<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
         <button class="soc-btn" id="ssBio">✎ Editar bio</button>
+        <button class="soc-btn" id="ssSec">🔐 Seguridad y respaldo</button>
+        ${isLocalAdmin() ? '<button class="soc-btn" id="ssMods">🛡 Panel de moderación</button>' : ''}
         <a class="soc-btn" href="../">🎬 Mi catálogo</a>
       </div>` : `<div style="margin-bottom:12px">
         <button class="soc-btn soc-btn-blue" data-follow="${esc(uid)}">${S.follows.includes(uid) ? 'Siguiendo ✓' : 'Seguir'}</button>
@@ -1078,6 +1326,8 @@
         const r = await socCall('profile', { bio: S.bio, interests: JSON.stringify(S.interests) }, true);
         if (r) { toast('✅ Perfil actualizado'); openProfile(uid); }
       });
+      $('ssSec')?.addEventListener('click', () => openSecurity());
+      $('ssMods')?.addEventListener('click', () => openAdminReports());
     } else {
       $('socSheet').querySelector('[data-follow]')?.addEventListener('click', async ev => {
         const on = !S.follows.includes(uid) ? '1' : '0';
@@ -1088,25 +1338,188 @@
     }
   }
 
-  /* ═══════════ CICLO DE VIDA ═══════════ */
-  let refreshT = null;
+  /* ═══════════ 🚩 REPORTE · 🛡 MODERACIÓN · 🔐 SEGURIDAD ═══════════ */
+  const isLocalAdmin = () => !!(window.XAUTH && typeof XAUTH.isAdmin === 'function' && XAUTH.isAdmin());
+
+  function openReportSheet(pid) {
+    const REASONS = ['Spam o publicidad engañosa', 'Contenido ofensivo o abusivo', 'Suplantación de identidad', 'Spoilers sin aviso', 'Otro motivo'];
+    openSheet(`
+      <div class="soc-card-h"><span>🚩 Reportar contenido</span></div>
+      <p style="color:var(--faint);font-size:12px;line-height:1.6;margin-bottom:10px">
+        Cuéntanos qué pasa con esta publicación. Solo tú y el equipo ven tu reporte; el autor no se entera de quién reportó.</p>
+      <div id="ssRsn">
+        ${REASONS.map((r, i) => `<label class="soc-report-opt"><input type="radio" name="ssRep" value="${esc(r)}"${i === 0 ? ' checked' : ''}> ${esc(r)}</label>`).join('')}
+      </div>
+      <div style="margin-top:14px"><button class="soc-btn soc-btn-green" id="ssRepGo">Enviar reporte</button></div>`);
+    $('ssRepGo').addEventListener('click', async () => {
+      const sel = $('ssRsn').querySelector('input:checked');
+      const r = await socCall('report', { postId: pid, reason: sel ? sel.value : 'Otro motivo' }, true);
+      if (r) { toast('🚩 Reporte enviado — el equipo lo revisará'); closeSheet(); }
+    });
+  }
+
+  async function openAdminReports() {
+    const hdr = await adminSigHeader();
+    if (!hdr) { toast('⚠ Este dispositivo no tiene la clave de administrador', true); return; }
+    const r = await socCall('adminState', {}, false, hdr);
+    if (!r) return;
+    const items = r.reports || [];
+    openSheet(`
+      <div class="soc-card-h"><span>🛡 Panel de moderación</span><small>${items.length} reporte${items.length === 1 ? '' : 's'}</small></div>
+      ${items.length ? items.map(rp => `
+        <div class="soc-report-item">
+          <div class="soc-report-t">
+            <b>${esc(rp.name || 'Anónimo')}</b> <small>· ${ago(rp.at)}</small>
+            <p><span class="soc-report-why">${esc(rp.reason)}</span>${rp.postBy ? ' — publicación de ' + esc(rp.postBy) : ''}<br>«${esc(rp.snippet || '')}»</p>
+          </div>
+          <div class="soc-report-acts">
+            <button class="soc-btn" data-rd="${esc(rp.id)}">✓ Descartar</button>
+            <button class="soc-btn soc-btn-green" data-rdel="${esc(rp.postId)}">🗑 Borrar publicación</button>
+          </div>
+        </div>`).join('') : '<div class="soc-empty">Sin reportes pendientes — la comunidad está tranquila.</div>'}
+      <p style="color:var(--faint);font-size:11px;margin-top:10px">Cada acción viaja firmada con la clave que publica el catálogo: nadie más puede moderar.</p>`);
+    const sheet = $('socSheet');
+    sheet.querySelectorAll('[data-rd]').forEach(b => b.addEventListener('click', async () => {
+      const h = await adminSigHeader();
+      const rr = await socCall('dismissReport', { reportId: b.dataset.rd }, true, h);
+      if (rr) { toast('✓ Reporte descartado'); openAdminReports(); }
+    }));
+    sheet.querySelectorAll('[data-rdel]').forEach(b => b.addEventListener('click', async () => {
+      if (!confirm('¿Borrar esta publicación reportada? La acción es definitiva.')) return;
+      const h = await adminSigHeader();
+      const rr = await socCall('delPost', { postId: b.dataset.rdel }, true, h);
+      if (rr) {
+        S.posts = S.posts.filter(x => x.id !== b.dataset.rdel);
+        S.seenTomb.add(b.dataset.rdel);
+        syncFeed();
+        toast('🗑 Publicación borrada');
+        openAdminReports();
+      }
+    }));
+  }
+
+  function openSecurity() {
+    openSheet(`
+      <div class="soc-card-h"><span>🔐 Seguridad y respaldo</span></div>
+      <p style="color:var(--faint);font-size:12px;line-height:1.6;margin-bottom:12px">
+        Tu cuenta vive en este dispositivo: identidad + clave de firma ECDSA. Si borras los datos del
+        navegador o cambias de equipo, sin respaldo la cuenta queda bloqueada para siempre. Exporta un
+        respaldo <b>cifrado con tu frase</b> y guárdalo donde guardas lo importante.</p>
+      <b style="font-size:12px">📤 Exportar respaldo cifrado</b>
+      <div class="soc-sec-row">
+        <input id="ssSecPass1" type="password" placeholder="Frase secreta (mín. 6 caracteres)" autocomplete="new-password">
+        <button class="soc-btn soc-btn-green" id="ssSecExp">Crear respaldo</button>
+      </div>
+      <textarea id="ssSecBlob" rows="4" spellcheck="false" placeholder="Aquí aparece tu respaldo cifrado — cópialo y guárdalo. Para restaurar en otro dispositivo, pégalo aquí abajo con su frase." style="width:100%;margin-top:9px;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:10px;font:11.5px/1.5 ui-monospace,monospace;outline:none;word-break:break-all"></textarea>
+      <div style="margin-top:8px"><button class="soc-btn" id="ssSecCopy">⧉ Copiar respaldo</button></div>
+      <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+      <b style="font-size:12px">📥 Restaurar en este dispositivo</b>
+      <p style="color:var(--faint);font-size:11.5px;margin:4px 0 8px">Pega el respaldo Y su frase. Reemplaza la cuenta actual de este dispositivo por la del respaldo.</p>
+      <div class="soc-sec-row">
+        <input id="ssSecPass2" type="password" placeholder="Frase secreta del respaldo" autocomplete="off">
+        <button class="soc-btn" id="ssSecImp">Restaurar cuenta</button>
+      </div>
+      <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+      <b style="font-size:12px">🔁 Rotar clave de firma</b>
+      <p style="color:var(--faint);font-size:11.5px;margin:4px 0 8px">¿Crees que alguien pudo ver tu clave? Genera una nueva firmada con la vieja: la comunidad verifica al instante y la vieja queda revocada.</p>
+      <div class="soc-sec-row">
+        <input id="ssSecPass3" type="password" placeholder="Confirma con tu frase de respaldo actual" autocomplete="off">
+        <button class="soc-btn" id="ssSecRot">Rotar clave</button>
+      </div>`);
+    $('ssSecExp').addEventListener('click', async () => {
+      const pass = $('ssSecPass1').value;
+      if (!pass || pass.length < 6) { toast('⚠ La frase necesita al menos 6 caracteres', true); return; }
+      const blob = await XAUTH.exportIdentityEncrypted(pass);
+      if (!blob) { toast('⚠ No se pudo crear el respaldo', true); return; }
+      $('ssSecBlob').value = blob;
+      toast('🔐 Respaldo creado — cópialo en un lugar seguro');
+    });
+    $('ssSecCopy').addEventListener('click', async () => {
+      const v = $('ssSecBlob').value.trim();
+      if (!v) { toast('⚠ Primero crea el respaldo', true); return; }
+      try { await navigator.clipboard.writeText(v); toast('⧉ Respaldo copiado — guárdalo donde guardes lo importante'); }
+      catch (e) { toast('Copia manual: selecciona el texto del cuadro', true); }
+    });
+    $('ssSecImp').addEventListener('click', async () => {
+      const blob = $('ssSecBlob').value.trim();
+      const pass = $('ssSecPass2').value;
+      if (!blob.startsWith('XBAK1.') || !pass) { toast('⚠ Pega el respaldo completo y su frase', true); return; }
+      if (!confirm('Restaurar reemplaza la cuenta ACTUAL de este dispositivo por la del respaldo. ¿Continuar?')) return;
+      const res = await XAUTH.importIdentityEncrypted(pass, blob);
+      if (res && res.ok) {
+        toast('🗝 Cuenta restaurada: ' + res.name + ' — recargando…');
+        setTimeout(() => location.reload(), 900);
+      } else {
+        toast('⚠ ' + (res && res.msg ? res.msg : 'No se pudo restaurar'), true);
+      }
+    });
+    $('ssSecRot').addEventListener('click', async () => {
+      if (!confirm('Rotar la clave: se genera una nueva firmada con la vieja. El respaldo que tengas de la vieja dejará de servir — exporta uno nuevo después. ¿Continuar?')) return;
+      try {
+        const pair = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']);
+        const jwkPriv = await crypto.subtle.exportKey('jwk', pair.privateKey);
+        const jwkPub = await crypto.subtle.exportKey('jwk', pair.publicKey);
+        const pubB64 = b64FromBytes(new Uint8Array(await crypto.subtle.exportKey('spki', pair.publicKey)));
+        const r = await socCall('rotate', { newPubKey: pubB64 }, true);
+        if (!r) return;
+        const ok = await XAUTH.installSigningKeys(jwkPriv, jwkPub);
+        if (ok) {
+          S.myPubKey = pubB64;
+          toast('🔁 Clave rotada — este dispositivo ya firma con la nueva');
+          $('ssSecPass3').value = '';
+        } else toast('⚠ El servidor aceptó la clave nueva pero falló instalarla localmente — reintenta', true);
+      } catch (e) { toast('⚠ No se pudo rotar la clave', true); }
+    });
+  }
+
+  /* ═══════════ CICLO DE VIDA ═══════════
+     · refresh usa ETags: «same» = cero payload, cero re-render
+     · fusiona por archivo: solo re-renderiza lo que de verdad cambió
+     · el latido viaja PEGADO al state (beat=1) cada ~2 min — nada de
+       reescribir presence.json por su cuenta
+     · pestaña oculta: ni refresco ni latidos (offline honrado)     */
+  let refreshT = null, stateTimer = null, refreshing = false;
   const refreshSoon = () => { clearTimeout(refreshT); refreshT = setTimeout(refresh, 600); };
   async function refresh() {
-    const j = await socCall('state');
-    if (!j) return;
-    S.posts = j.posts || []; S.stories = j.stories || []; S.groups = j.groups || [];
-    S.suggested = j.suggested || []; S.follows = j.follows || []; S.saved = j.saved || [];
-    S.convos = j.convos || []; S.notifs = j.notifs || [];
-    S.onlineCount = j.onlineCount || 0; S.onlineUsers = j.onlineUsers || [];
-    if (j.me) { S.bio = j.me.bio || ''; S.interests = j.me.interests || []; }
-    renderMe(); renderCounters(); renderNotifDrop();
-    renderInterests(); renderStories(); renderFeed();
-    renderTrends(); renderGroups(); renderFeatured(); renderSuggested(); renderLive();
-    renderChat(); renderOnline();
-    /* #p-<id> en la URL → resalta esa publicación */
-    const pid = (location.hash.match(/^#p-(.+)$/) || [])[1];
-    if (pid) { const el = document.querySelector(`[data-pid="${pid}"]`); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+    if (!S.ready || refreshing) return;
+    refreshing = true;
+    try {
+      const params = { etags: JSON.stringify(S.etags) };
+      if (Date.now() - (S.lastBeatAt || 0) > 120000) params.beat = '1';
+      const j = await socCall('state', params, true, null, true);
+      if (!j) return;
+      if (j.beatAt) S.lastBeatAt = j.beatAt;
+      if (j.same) return;                       /* nada cambió en ningún archivo */
+      if (j.etags) S.etags = j.etags;
+      if (!j.postsSame) {
+        S.posts = j.posts || []; S.stories = j.stories || []; S.groups = j.groups || [];
+        S.suggested = j.suggested || []; S.follows = j.follows || []; S.saved = j.saved || [];
+        if (j.me) { S.bio = j.me.bio || ''; S.interests = j.me.interests || []; }
+        if (Array.isArray(j.tomb)) for (const t of j.tomb) S.seenTomb.add(t.id);
+        renderMe(); renderInterests(); renderStories(); syncFeed();
+        renderTrends(); renderGroups(); renderFeatured(); renderSuggested(); renderLive();
+      }
+      if (!j.presenceSame) {
+        S.notifs = j.notifs || []; S.notifsUnread = j.notifsUnread || 0;
+        S.onlineCount = j.onlineCount || 0; S.onlineUsers = j.onlineUsers || [];
+        renderNotifDrop(); renderOnline();
+      }
+      if (!j.indexSame) S.convos = j.convos || [];
+      renderCounters(); renderChat();
+      /* #p-<id> en la URL → resalta esa publicación */
+      const pid = (location.hash.match(/^#p-(.+)$/) || [])[1];
+      if (pid) { const el = document.querySelector(`[data-pid="${CSS.escape(pid)}"]`); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+    } finally { refreshing = false; }
   }
+  function startTimers(now) {
+    clearInterval(stateTimer);
+    stateTimer = setInterval(() => { if (!document.hidden) refresh(); }, 45000);
+    if (now) refresh();
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearInterval(stateTimer);   /* oculto: silencio total */
+    else startTimers(true);                           /* visible: recupera al vuelo */
+  });
 
   async function boot() {
     /* esperar la identidad del dispositivo (auth.js) */
@@ -1117,6 +1530,7 @@
       return;
     }
     S.me = XAUTH.id;
+    S.ready = true;
     /* 🔗 enlaces al sitio principal que funcionan en web Y en local:
        en file:// apuntan a ../index.html (si no, el navegador enseña el
        listado de la carpeta en vez de abrir la app)                        */
@@ -1124,24 +1538,13 @@
     document.querySelectorAll('.soc-topnav a.on').forEach(a => { if (location.protocol === 'file:') a.href = './'; });
     /* mi clave pública para el TOFU del servidor (imprescindible firmar) */
     if (typeof XAUTH.pubKeyB64 === 'function') S.myPubKey = (await XAUTH.pubKeyB64()) || '';
-    /* bio/intereses ya guardados */
-    const j = await socCall('state');
-    if (j) {
-      S.posts = j.posts || []; S.stories = j.stories || []; S.groups = j.groups || [];
-      S.suggested = j.suggested || []; S.follows = j.follows || []; S.saved = j.saved || [];
-      S.convos = j.convos || []; S.notifs = j.notifs || [];
-      S.onlineCount = j.onlineCount || 0; S.onlineUsers = j.onlineUsers || [];
-      if (j.me) { S.bio = j.me.bio || ''; S.interests = j.me.interests || []; }
-    }
-    renderMe(); renderCounters(); renderNotifDrop(); renderInterests();
-    renderStories(); renderFeed(); renderTrends(); renderGroups();
-    renderSuggested(); renderLive(); renderChat(); renderOnline();
-    /* latido de presencia + refresco de estado — TODO firmado con la clave del dispositivo */
-    socCall('beat', {}, true).catch(() => { });
-    setInterval(() => socCall('beat', {}, true).catch(() => { }), 60000);
-    setInterval(refresh, 45000);
-    await loadCatalog();
-    renderFeatured(); renderTrends(); renderFeed();
+    /* primera carga: state firmado CON latido → registra la cuenta y marca en línea */
+    await refresh();
+    startTimers(false);
+    loadCatalog().then(() => {
+      _welcomeCache = null;        /* los posts de bienvenida usan pósters reales */
+      renderFeatured(); renderTrends(); syncFeed();
+    }).catch(() => { });
     document.title = 'XSTREAM SOCIAL — La comunidad audiovisual';
   }
   boot();

@@ -1,49 +1,89 @@
 /* ═══════════════════════════════════════════════════════════
-   🌐 XSTREAM SOCIAL — backend de la comunidad (v2, CAS)
-   Almacén: GitHub rama chat-data, archivo social.json
+   🌐 XSTREAM SOCIAL — backend de la comunidad (v3)
+   Almacén: GitHub rama chat-data, ARCHIVOS SEPARADOS por dominio
+   (v2 guardaba TODO en social.json: cada latido reescribía el
+   archivo completo y el chat lo pisaba cada 6 segundos → bajo
+   carga todo eran 409 y rate-limit. v3 divide para que cada
+   dominio conflictúe solo consigo mismo):
 
-   v2 — ARQUITECTURA COMPARE-AND-SWAP (lo que aprendieron las
-   pruebas): escribir el archivo completo con una foto vieja PIERDE
-   eventos y DUPLICA publicaciones bajo ráfagas. Ahora:
-   · cada op es una función pura que se RE-APLICA sobre una base
-     FRESCA dentro del bucle de escritura (leer → aplicar → PUT con
-     el sha de ESA lectura → 409 = releer y reaplicar);
-   · PUT usa el blob-sha del mismo intento (nunca reutiliza shas);
-   · guardas de idempotencia: posts con id determinista por
-     (usuario+texto+hora) y dedupe de 60s en comentarios/mensajes,
-     así un reintento nunca duplica lo que sí llegó a aterrizar.
+     social/posts.json        usuarios, publicaciones, historias,
+                              grupos, lápidas (tomb) y reportes
+     social/presence.json     latidos, notificaciones, leídos
+     social/convos-index.json índice de conversaciones (resumen)
+     social/convos/<cid>.json mensajes de cada conversación
+     social/archive-<mes>.json historia preservada al podar
 
-   SEGURIDAD (igual que v1, verificada con pruebas reales):
-   · uid + clave ECDSA del dispositivo (TOFU al primer uso);
-   · TODA escritura firmada «social-<uid>:<hora>»;
-   · tras el registro, la clave de otro → 403 (anti-suplantación);
-   · rate-limits: 30 posts/día, 20 msg/min, 1 historia activa;
-   · notificaciones SOLO por eventos reales.                   */
+   LECTURAS con ETag/If-None-Match: GitHub responde 304 y las
+   peticiones condicionales NO consumen rate-limit. El cliente
+   manda sus etags → «same:true» sin re-descargar nada.
+
+   MIGRACIÓN: la primera petición tras desplegar detecta el
+   social.json viejo (o su ausencia) y lo reparte entre los
+   archivos nuevos automáticamente.
+
+   SEGURIDAD v3 (todo lo de v2 + parámetros firmados):
+   · la firma ahora cubre op + TODOS los parámetros
+     «soc3|<uid>|<hora>|<op>|<canon>» — una firma capturada ya
+     NO sirve para otra operación ni otro contenido (v2 firmaba
+     un texto fijo por hora);
+   · hora con frescura ±1h (anti-replay lejano);
+   · TOFU de la clave del dispositivo (igual que siempre);
+   · uids RESERVADOS: el registro nuevo solo acepta el formato
+     real de dispositivo (x-<20hex>); «x-stream-*» y similares
+     requieren SOCIAL_TEAM_SECRET (var de entorno) → nadie puede
+     robar la cuenta oficial;
+   · URLs validadas en el SERVIDOR (http/https + host con punto):
+     ni javascript: ni data: en enlaces/imágenes;
+   · moderación: borrar la propia publicación, reportar, panel
+     de administración con la misma clave ECDSA que firma el
+     catálogo (header x-social-admin);
+   · rotación de clave firmada con la clave vieja.
+
+   ESCRITURAS CAS por archivo (leer → aplicar → PUT con el sha
+   de ESA lectura; 409 → releer y reaplicar) + guardas de
+   idempotencia (ids deterministas, dedupe 60s).            */
 'use strict';
 
 const GH_API = 'https://api.github.com';
 const REPO = process.env.GH_REPO || 'Dcardkevein15/pelisfull';
-const PATH = 'social.json';
-const DATA_BRANCH = 'chat-data';
+const DATA_BRANCH = process.env.GH_BRANCH_DATA || 'chat-data';
 const MAX_POSTS_DAY = 30;
 const MAX_MSG_MIN = 20;
 const STORY_TTL = 24 * 3600e3;
-const ONLINE_MS = 5 * 60e3;
+const ONLINE_MS = 6 * 60e3;
+const BEAT_WRITE_MS = 150e3;      /* el latido solo escribe si pasó esto del último */
 const MAX_POSTS = 400;
 const MAX_NOTIFS = 50;
 const MAX_CONV_MSGS = 250;
+const MAX_TOMB = 200;
+const MAX_REPORTS = 300;
+const MAX_USERS = 2500;
 const DEDUPE_MS = 60000;
 const AV_GRADS = [0, 1, 2, 3, 4, 5, 6, 7];
+const CAS_ATTEMPTS = 6;
 
-const DEF = () => ({
-  v: 2,
-  users: {},
-  posts: [],
-  stories: [],
-  convos: {},
-  notifs: {},
-  groups: [],
-});
+/* 🔑 clave pública del admin (la misma que firma catalog.json y
+   api/chat.js). Se puede sobreescribir con SOCIAL_ADMIN_PUB sin
+   tocar código.                                              */
+const ADMIN_PUB_B64 = process.env.SOCIAL_ADMIN_PUB ||
+  'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkO2b+Vm4MNlm+97FaZdXilRkF8KCr0XfqjhtQ00wc8SCsUAz6zA60rxYqnHuRIY7fNJCL6rCYDP5W5DOaNnorA==';
+
+/* uids que nadie puede reclamar por TOFU */
+const RESERVED_UIDS = ['x-stream-social-team', 'admin', 'administrador', 'xstream', 'equipo', 'staff', 'moderador', 'soporte'];
+const UID_DEVICE_RE = /^x-[0-9a-f]{20}$/;
+
+/* ── rutas de los archivos ── */
+const P_POSTS = 'social/posts.json';
+const P_PRESENCE = 'social/presence.json';
+const P_INDEX = 'social/convos-index.json';
+const P_LEGACY = 'social.json';
+const fileOfCid = cid => 'social/convos/' + String(cid).replace(/[^a-zA-Z0-9~-]/g, '-') + '.json';
+const archivePath = ms => 'social/archive-' + new Date(ms).toISOString().slice(0, 7) + '.json';
+
+const POSTS_SEED = () => ({ v: 3, users: {}, posts: [], stories: [], groups: [], tomb: [], reports: [] });
+const PRESENCE_SEED = () => ({ v: 3, beats: {}, notifs: {}, readNotifs: {} });
+const INDEX_SEED = () => ({ v: 3, convos: {}, rl: {} });
+const CONVO_SEED = () => ({ v: 3, msgs: [] });
 
 function seedGroups(db) {
   db.groups = [
@@ -58,119 +98,371 @@ function seedGroups(db) {
 
 module.exports.config = { maxDuration: 10 };
 
-/* ── firma de usuario: TOFU + verificación ECDSA ── */
-async function verifyUser(db, uid, sigB64, pubB64) {
+/* ═══════════ ALMACÉN — GitHub contents API con ETags ═══════════
+   Los 304 de GitHub no consumen rate-limit: el cliente guarda los
+   etags que le devolvemos y los devuelve en la siguiente petición. */
+const GH_HEADERS = () => ({
+  Authorization: `token ${process.env.GH_TOKEN}`,
+  Accept: 'application/vnd.github+json',
+});
+
+/* lee UN archivo: { content, sha, etag } | { same:true, etag }
+   | { missing:true } | null (error de red/almacén)            */
+async function ghReadFile(path, etag) {
+  try {
+    const headers = GH_HEADERS();
+    if (etag) headers['If-None-Match'] = String(etag);
+    const r = await fetch(`${GH_API}/repos/${REPO}/contents/${path}?ref=${DATA_BRANCH}`, { headers, cache: 'no-store' });
+    if (r.status === 304) return { same: true, etag: String(etag) };
+    if (r.status === 404) return { missing: true };
+    if (!r.ok) {
+      /* >1MB: contents devuelve 403 con el sha en el cuerpo → git blobs */
+      const t = await r.text().catch(() => '');
+      try {
+        const j = JSON.parse(t);
+        if (j && j.sha && (r.status === 403 || r.status === 422)) return await ghReadBlob(j.sha, r.headers.get('etag'));
+      } catch (e) { }
+      console.error('social ghReadFile ' + path + ' ' + r.status);
+      return null;
+    }
+    const j = await r.json();
+    if (j && j.type === 'file' && typeof j.content === 'string') {
+      return { content: Buffer.from(j.content, 'base64').toString('utf8'), sha: j.sha, etag: r.headers.get('etag') };
+    }
+    if (j && j.type === 'file' && j.encoding === 'none' && j.sha) {
+      return await ghReadBlob(j.sha, r.headers.get('etag'));
+    }
+    return null;
+  } catch (e) {
+    console.error('social ghReadFile: ' + e.message);
+    return null;
+  }
+}
+
+async function ghReadBlob(sha, etag) {
+  try {
+    const r = await fetch(`${GH_API}/repos/${REPO}/git/blobs/${sha}`, { headers: GH_HEADERS(), cache: 'no-store' });
+    if (!r.ok) return null;
+    const j = await r.json();
+    if (!j || typeof j.content !== 'string') return null;
+    return { content: Buffer.from(j.content, 'base64').toString('utf8'), sha, etag };
+  } catch (e) { return null; }
+}
+
+async function ghPutFile(path, content, sha) {
+  try {
+    const body = {
+      message: `social ${path} ${new Date().toISOString()} [skip ci]`,
+      content: Buffer.from(content).toString('base64'),
+      branch: DATA_BRANCH,
+    };
+    if (sha) body.sha = sha;
+    const r = await fetch(`${GH_API}/repos/${REPO}/contents/${path}`, {
+      method: 'PUT', cache: 'no-store',
+      headers: {
+        Authorization: `token ${process.env.GH_TOKEN}`,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    if (r.ok) return true;
+    const t = await r.text().catch(() => '');
+    console.error('social ghPutFile ' + path + ' ' + r.status + ': ' + t.slice(0, 160));
+    return r.status;
+  } catch (e) {
+    console.error('social ghPutFile: ' + e.message);
+    return null;
+  }
+}
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const parseOr = (txt, seed) => {
+  try {
+    const j = JSON.parse(String(txt));
+    if (j && typeof j === 'object') return j;
+  } catch (e) { }
+  return seed();
+};
+
+/* ═══════════ MIGRACIÓN social.json → archivos v3 ═══════════ */
+async function ensureFiles() {
+  try {
+    const postsSnap = await ghReadFile(P_POSTS);
+    if (postsSnap && postsSnap.content != null) return true;   /* ya está todo */
+    /* ¿hay datos viejos que repartir? */
+    let legacy = null;
+    const leg = await ghReadFile(P_LEGACY);
+    if (leg && leg.content != null) {
+      try { legacy = JSON.parse(leg.content); } catch (e) { legacy = null; }
+    }
+    const posts = POSTS_SEED();
+    const presence = PRESENCE_SEED();
+    const index = INDEX_SEED();
+    seedGroups(posts);
+    if (legacy && typeof legacy === 'object') {
+      posts.users = legacy.users || {};
+      posts.posts = legacy.posts || [];
+      posts.stories = legacy.stories || [];
+      posts.groups = (legacy.groups && legacy.groups.length) ? legacy.groups : posts.groups;
+      posts.tomb = [];
+      presence.notifs = legacy.notifs || {};
+      const reads = {};
+      for (const uid of Object.keys(posts.users)) {
+        const u = posts.users[uid];
+        if (u && u.lastRead) reads[uid] = u.lastRead;
+        if (u && u.readNotifs) presence.readNotifs[uid] = u.readNotifs;
+        if (u && (u.beat || u.createdAt)) presence.beats[uid] = { beat: u.beat || u.createdAt, name: u.name || '', tag: u.tag || '', grad: u.grad || 0 };
+      }
+      const convos = legacy.convos || {};
+      for (const cid of Object.keys(convos)) {
+        const msgs = Array.isArray(convos[cid]) ? convos[cid] : [];
+        if (!msgs.length) continue;
+        const last = msgs[msgs.length - 1];
+        index.convos[cid] = {
+          at: last.at, last: String(last.text || '').slice(0, 80), lastUid: last.uid,
+          uids: cid.startsWith('g:') ? [] : cid.split('~'),
+          unread: {},
+        };
+        /* el últimoRead migrado marca como leído hasta donde estaba */
+        for (const uid of index.convos[cid].uids) {
+          const lr = (reads[uid] || {})[cid] || 0;
+          index.convos[cid].unread[uid] = msgs.filter(m => m.at > lr && m.uid !== uid).length;
+        }
+        const wr = await ghPutFile(fileOfCid(cid), JSON.stringify({ v: 3, msgs: msgs.slice(-MAX_CONV_MSGS) }), null);
+        if (wr !== true && wr !== 422 && wr !== 409) return false;
+      }
+    }
+    for (const [path, data] of [[P_POSTS, posts], [P_PRESENCE, presence], [P_INDEX, index]]) {
+      const snap = await ghReadFile(path);
+      if (snap && snap.content != null) continue;              /* otro lo hizo */
+      if (snap && snap.same) continue;
+      const wr = await ghPutFile(path, JSON.stringify(data), null);
+      if (wr !== true && wr !== 422 && wr !== 409) return false;
+    }
+    return true;
+  } catch (e) {
+    console.error('social ensureFiles: ' + e.message);
+    return false;
+  }
+}
+
+/* ═══════════ DOMINIOS — lectura + CAS por archivo ═══════════ */
+async function readDomain(path, seed, etag, allowMissing) {
+  let snap = await ghReadFile(path, etag);
+  if (snap && snap.missing) {
+    if (allowMissing) return { db: seed(), same: false, etag: null, sha: null, missing: true };
+    const ok = await ensureFiles();
+    if (!ok) return null;
+    snap = await ghReadFile(path);
+    if (snap && snap.missing) return null;
+  }
+  if (!snap || snap.content == null) {
+    if (snap && snap.same) return { db: null, same: true, etag: snap.etag, sha: null };
+    return null;
+  }
+  return { db: parseOr(snap.content, seed), same: false, etag: snap.etag, sha: snap.sha };
+}
+
+async function casWrite(path, seed, mutate, allowMissing) {
+  for (let attempt = 1; attempt <= CAS_ATTEMPTS; attempt++) {
+    const dom = await readDomain(path, seed, null, allowMissing);
+    if (!dom) return { fail: { status: 503, error: 'el almacén no responde — reintenta en unos segundos' } };
+    if (dom.same) { await ensureFiles(); continue; }
+    const db = dom.db;
+    const out = await mutate(db);
+    if (out && out.fail) return out;
+    if (out && out.nowrite) return out;
+    const wr = await ghPutFile(path, JSON.stringify(db), dom.sha);
+    if (wr === true) return out;
+    await sleep(300 * attempt);                                /* 409/congestión: releer y RE-APLICAR */
+  }
+  return { fail: { status: 503, error: 'la comunidad está muy activa ahora mismo — reintenta en unos segundos' } };
+}
+
+/* ═══════════ SEGURIDAD ═══════════ */
+
+/* URL válida para enlaces/imágenes: http(s) + host con punto,
+   sin caracteres de control. Nada de javascript:/data:/vbscript: */
+function safeHttpUrl(u, max) {
+  try {
+    const s = String(u || '').trim();
+    if (!s || s.length > (max || 500)) return '';
+    if (/[^\x20-\x7E]/.test(s)) return '';
+    const url = new URL(s);
+    if (!/^https?:$/.test(url.protocol)) return '';
+    if (!/^([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i.test(url.hostname)) return '';
+    if (url.username || url.password) return '';
+    return s;
+  } catch (e) { return ''; }
+}
+
+/* imagen: SIEMPRE https (evita mixed-content y píxeles http) */
+function safeImgUrl(u) { return safeHttpUrl(u, 500).startsWith('https://') ? safeHttpUrl(u, 500) : ''; }
+
+function canonOf(b) {
+  return Object.keys(b)
+    .filter(k => !['hora', 'pubKey', 'sig'].includes(k))
+    .sort()
+    .map(k => `${k}=${String(b[k])}`)
+    .join('&');
+}
+
+/* firma que cubre op + TODOS los parámetros (v3) */
+async function verifyUser(db, uid, sigB64, b, op) {
   try {
     if (!uid || !/^(x-)?[a-z0-9-]{6,40}$/i.test(uid)) return false;
     const u = db.users[uid];
-    const key64 = (u && u.pubKey) ? u.pubKey : (pubB64 || '');
+    const key64 = (u && u.pubKey) ? u.pubKey : (String(b.pubKey || '').slice(0, 200) || '');
     if (!key64) return false;
+    const isNew = !u || !u.pubKey;
+    if (isNew) {
+      /* registro nuevo: solo uids de dispositivo reales, o equipo
+         oficial con el secreto de aprovisionamiento                */
+      const teamOk = process.env.SOCIAL_TEAM_SECRET && String(b.teamSecret || '') === process.env.SOCIAL_TEAM_SECRET;
+      if (RESERVED_UIDS.includes(uid) || /^x-stream/i.test(uid)) {
+        if (!teamOk) return false;
+      } else if (!UID_DEVICE_RE.test(uid)) {
+        return false;
+      }
+    }
+    const hora = parseInt(b.hora, 10);
+    const nowH = Math.floor(Date.now() / 3600000);
+    if (!isFinite(hora) || hora > nowH || nowH - hora > 1) return false;   /* frescura ±1h */
+    const msg = new TextEncoder().encode(`soc3|${uid}|${hora}|${op}|${canonOf(b)}`);
     const key = await crypto.subtle.importKey('spki', Buffer.from(key64, 'base64'), { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
     const sig = Buffer.from(String(sigB64 || ''), 'base64');
     if (!sig.length) return false;
-    const hora = Math.floor(Date.now() / 3600000);
-    for (const h of [hora, hora - 1]) {
-      const data = new TextEncoder().encode('social-' + uid + ':' + h);
-      if (await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, key, sig, data)) {
-        if (!u) db.users[uid] = { uid, follows: [], saved: [], lastRead: {}, interests: [] };
-        if (!db.users[uid].pubKey) db.users[uid].pubKey = key64;
-        if (!db.users[uid].uid) db.users[uid].uid = uid;
-        return true;
-      }
+    if (!(await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, key, sig, msg))) return false;
+    if (isNew) {
+      const nu = db.users[uid] || (db.users[uid] = { uid, follows: [], saved: [], interests: [] });
+      nu.uid = uid;
+      nu.pubKey = key64;
     }
-  } catch (e) { console.error('social verify: ' + e.message); }
-  return false;
+    return true;
+  } catch (e) {
+    console.error('social verify: ' + e.message);
+    return false;
+  }
 }
 
+/* admin: firma con la clave que firma el catálogo (como api/chat.js) */
+async function isAdminSig(sigB64) {
+  try {
+    if (!sigB64 || !ADMIN_PUB_B64) return false;
+    const key = await crypto.subtle.importKey('spki', Buffer.from(ADMIN_PUB_B64, 'base64'), { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+    const sig = Buffer.from(String(sigB64), 'base64');
+    if (!sig.length) return false;
+    const h = Math.floor(Date.now() / 3600000);
+    for (const hora of [h, h - 1]) {
+      const data = new TextEncoder().encode('xstream-social-admin:' + hora);
+      if (await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, key, sig, data)) return true;
+    }
+    return false;
+  } catch (e) { return false; }
+}
+
+/* ═══════════ utilidades de dominio ═══════════ */
 function touchUser(db, uid, b) {
-  const u = db.users[uid] || (db.users[uid] = { uid, follows: [], saved: [], lastRead: {}, interests: [] });
+  const u = db.users[uid] || (db.users[uid] = { uid, follows: [], saved: [], interests: [] });
   u.uid = uid;
-  if (b.name) u.name = String(b.name).slice(0, 40);
-  if (b.tag) u.tag = String(b.tag).slice(0, 6);
-  if (b.grad !== undefined && AV_GRADS.includes(+b.grad)) u.grad = +b.grad;
-  if (b.flag) u.flag = String(b.flag).slice(0, 4);
-  return u;
+  let changed = false;
+  if (b.name && u.name !== String(b.name).slice(0, 40)) { u.name = String(b.name).slice(0, 40); changed = true; }
+  if (b.tag && u.tag !== String(b.tag).slice(0, 6)) { u.tag = String(b.tag).slice(0, 6); changed = true; }
+  if (b.grad !== undefined && AV_GRADS.includes(+b.grad) && u.grad !== +b.grad) { u.grad = +b.grad; changed = true; }
+  if (b.flag && u.flag !== String(b.flag).slice(0, 4)) { u.flag = String(b.flag).slice(0, 4); changed = true; }
+  u.lastActive = Date.now();
+  return { u, changed };
 }
 
-function notify(db, toUid, type, byName, text) {
-  if (!toUid || !(toUid in db.users)) return;
-  const list = db.notifs[toUid] || (db.notifs[toUid] = []);
-  list.unshift({ id: 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), type, byName: String(byName || '').slice(0, 40), text: String(text || '').slice(0, 90), at: Date.now(), read: false });
-  if (list.length > MAX_NOTIFS) db.notifs[toUid] = list.slice(0, MAX_NOTIFS);
+function userSummary(db, uid) {
+  const u = db.users[uid] || {};
+  return { uid, name: u.name || 'Usuario', tag: u.tag || '', grad: u.grad || 0 };
 }
 
-/* id determinista: reintentos con el mismo texto en la misma hora → misma id */
 function stableId(prefix, uid, text) {
-  const h = require('crypto').createHash('sha256').update(prefix + '|' + uid + '|' + String(text || '') + '|' + Math.floor(Date.now() / 3600000)).digest('base64url').slice(0, 10);
+  const h = require('crypto').createHash('sha256')
+    .update(prefix + '|' + uid + '|' + String(text || '') + '|' + Math.floor(Date.now() / 3600000))
+    .digest('base64url').slice(0, 10);
   return prefix + h;
 }
 const deduped = (arr, uid, text) =>
   arr.some(x => x.uid === uid && x.text === String(text) && Date.now() - (x.at || 0) < DEDUPE_MS);
 
-function prune(db) {
+/* notificación — dominio presence, best-effort con dedupe 60s.
+   `known`: el llamador ya verificó que el destinatario existe
+   (autor del post, objetivo del DM…) — evita notificar a uids basura.
+   `bySender`: para mensajes — 1 timbre por remitente en 60s aunque
+   mande varios textos distintos (no martillar el timbre en ráfagas) */
+async function notifyBestEffort(toUid, type, byName, text, known, bySender) {
+  if (!toUid) return;
+  await casWrite(P_PRESENCE, PRESENCE_SEED, db => {
+    if (!known && !(toUid in db.beats)) return { resp: { ok: true }, nowrite: true };
+    const list = db.notifs[toUid] || (db.notifs[toUid] = []);
+    const last = list[0];
+    const sameSender = last && last.type === type && last.byName === String(byName).slice(0, 40);
+    const sameEvt = sameSender && (bySender || last.text === String(text).slice(0, 90));
+    if (sameEvt && Date.now() - last.at < DEDUPE_MS) {
+      return { resp: { ok: true }, nowrite: true };
+    }
+    list.unshift({ id: 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), type, byName: String(byName || '').slice(0, 40), text: String(text || '').slice(0, 90), at: Date.now(), read: false });
+    if (list.length > MAX_NOTIFS) db.notifs[toUid] = list.slice(0, MAX_NOTIFS);
+    return { resp: { ok: true } };
+  });
+}
+
+/* poda + ARCHIVO de la historia antes de tirar nada */
+async function prune(db) {
   const now = Date.now();
   db.stories = (db.stories || []).filter(s => now - s.at < STORY_TTL);
-  db.posts = (db.posts || []).slice(-MAX_POSTS);
-  for (const uid of Object.keys(db.notifs || {})) {
-    if (db.notifs[uid].length > MAX_NOTIFS) db.notifs[uid] = db.notifs[uid].slice(0, MAX_NOTIFS);
+  db.tomb = (db.tomb || []).slice(0, MAX_TOMB);
+  db.reports = (db.reports || []).slice(0, MAX_REPORTS);
+  const overflow = (db.posts || []).length - MAX_POSTS;
+  if (overflow > 0) {
+    const dropped = db.posts.splice(0, overflow);
+    const byMonth = {};
+    for (const p of dropped) (byMonth[new Date(p.at).toISOString().slice(0, 7)] || (byMonth[new Date(p.at).toISOString().slice(0, 7)] = [])).push(p);
+    let archived = true;
+    for (const month of Object.keys(byMonth)) {
+      const path = 'social/archive-' + month + '.json';
+      const snap = await ghReadFile(path);
+      if (!snap || (snap.content == null && !snap.missing)) { archived = false; break; }
+      const arc = snap.missing ? { v: 3, posts: [] } : parseOr(snap.content, () => ({ v: 3, posts: [] }));
+      const have = new Set((arc.posts || []).map(p => p.id));
+      for (const p of byMonth[month]) if (!have.has(p.id)) (arc.posts || (arc.posts = [])).push(p);
+      const wr = await ghPutFile(path, JSON.stringify(arc), snap.missing ? null : snap.sha);
+      if (wr !== true && wr !== 422 && wr !== 409) { archived = false; break; }
+    }
+    /* si el archivo falló, restauramos: se volverá a intentar en la
+       próxima poda — nunca se pierde historia sin archivarla        */
+    if (!archived) db.posts = dropped.concat(db.posts);
   }
-  for (const cid of Object.keys(db.convos || {})) {
-    if (db.convos[cid].length > MAX_CONV_MSGS) db.convos[cid] = db.convos[cid].slice(-MAX_CONV_MSGS);
-  }
-  /* techo de usuarios: si crece demasiado, fuera los sin actividad
-     >30d que nunca publicaron (los activos y con posts se quedan)   */
   const uids = Object.keys(db.users || {});
-  if (uids.length > 4000) {
+  if (uids.length > MAX_USERS) {
     for (const uid of uids) {
       const u = db.users[uid];
-      const last = u.beat || u.createdAt || 0;
-      if (now - last > 30 * 864e5 && !db.posts.some(p => p.uid === uid)) delete db.users[uid];
-      if (Object.keys(db.users).length <= 3000) break;
+      if (now - (u.lastActive || u.createdAt || 0) > 30 * 864e5 && !(db.posts || []).some(p => p.uid === uid)) delete db.users[uid];
+      if (Object.keys(db.users).length <= MAX_USERS - 500) break;
     }
   }
 }
 
 function convoIdOf(a, b) { return [a, b].sort().join('~'); }
 
-function convoSummary(db, uid) {
-  const out = [];
-  for (const cid of Object.keys(db.convos || {})) {
-    if (!cid.includes(uid)) continue;
-    const msgs = db.convos[cid];
-    const last = msgs[msgs.length - 1];
-    if (!last) continue;
-    const lastRead = (db.users[uid] && db.users[uid].lastRead && db.users[uid].lastRead[cid]) || 0;
-    const unread = msgs.filter(m => m.at > lastRead && m.uid !== uid).length;
-    const isGroup = cid.startsWith('g:');
-    const other = cid.split('~').find(x => x !== uid) || '';
-    const otherU = !isGroup && db.users[other];
-    out.push({
-      id: cid, last: last.text.slice(0, 80), at: last.at, unread,
-      lastIsMine: last.uid === uid,
-      peerName: isGroup ? (db.groups.find(g => 'g:' + g.id === cid) || {}).name || 'Grupo' : (otherU ? otherU.name + ' ' + (otherU.tag || '') : 'Usuario'),
-      peerGrad: isGroup ? 2 : (otherU ? otherU.grad || 0 : 0),
-      peerOnline: !!(otherU && otherU.beat && Date.now() - otherU.beat < ONLINE_MS),
-    });
-  }
-  out.sort((a, b) => b.at - a.at);
-  return out.slice(0, 30);
-}
-
-/* ═══════════ OPS — funciones puras sobre la base fresca ═══════════
-   Cada op recibe ctx = { db, b, uid } y devuelve { resp } | { fail: { status, error } }.
-   Se RE-APLICAN sobre base fresca en cada intento del bucle CAS.   */
+/* ═══════════ OPS ═══════════ */
 const OPS = {
   async profile({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+    const { u } = touchUser(db, uid, b);
     if (b.bio !== undefined) u.bio = String(b.bio).slice(0, 200);
     if (b.interests !== undefined) {
       try { u.interests = (JSON.parse(String(b.interests)) || []).slice(0, 10).map(x => String(x).slice(0, 20)); } catch (e) { }
     }
+    await prune(db);
     return { resp: { ok: true, user: { name: u.name, tag: u.tag, bio: u.bio || '', interests: u.interests } } };
   },
 
   async post({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+    const { u } = touchUser(db, uid, b);
     const isOfficial = uid === 'x-stream-social-team';
     if (!isOfficial) {
       const today = new Date().toISOString().slice(0, 10);
@@ -179,7 +471,9 @@ const OPS = {
       u.postsToday++;
     }
     const text = String(b.text || '').trim().slice(0, 800);
-    if (!text && !b.img) return { fail: { status: 400, error: 'la publicación está vacía' } };
+    const img = safeImgUrl(b.img);
+    const link = safeHttpUrl(b.link, 400);
+    if (!text && !img && !b.vid) return { fail: { status: 400, error: 'la publicación está vacía' } };
     let poll = null;
     if (b.poll) {
       try {
@@ -187,42 +481,59 @@ const OPS = {
         if (opts.length >= 2) poll = { o: opts, votes: {} };
       } catch (e) { }
     }
-    const id = stableId('p', uid, text + '|' + (b.img || '') + '|' + (b.vid || '') + '|' + (b.link || '') + '|' + (b.poll || ''));
-    /* id determinista → un reintento ACTUALIZA la misma publicación, jamás la duplica */
+    const id = stableId('p', uid, text + '|' + img + '|' + (b.vid || '') + '|' + link + '|' + (b.poll || ''));
     const post = {
       id, uid, name: u.name || 'Usuario', tag: u.tag || '', grad: u.grad || 0, flag: u.flag || '',
-      text, img: b.img ? String(b.img).slice(0, 500) : '',
-      vid: b.vid && /^[A-Za-z0-9_-]{6,20}$/.test(String(b.vid)) ? String(b.vid) : '',
-      link: b.link ? String(b.link).slice(0, 400) : '',
-      poll, at: Date.now(), likes: [], comments: [], shares: 0, official: isOfficial,
+      text, img, vid: b.vid && /^[A-Za-z0-9_-]{6,20}$/.test(String(b.vid)) ? String(b.vid) : '',
+      link, poll, at: Date.now(), likes: [], comments: [], shares: 0, official: isOfficial,
     };
     const i = db.posts.findIndex(p => p.id === id);
     if (i >= 0) db.posts[i] = post; else db.posts.push(post);
-    prune(db);
+    await prune(db);
     return { resp: { ok: true, post } };
   },
 
   async comment({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+    const { u } = touchUser(db, uid, b);
     const p = db.posts.find(x => x.id === b.postId);
     const text = String(b.text || '').trim().slice(0, 400);
     if (!p) return { fail: { status: 404, error: 'publicación no encontrada' } };
     if (!text) return { fail: { status: 400, error: 'comentario vacío' } };
     if (deduped(p.comments, uid, text)) return { resp: { ok: true, comments: p.comments.length, deduped: true } };
-    p.comments.push({ uid, name: u.name, text, at: Date.now() });
+    p.comments.push({ uid, name: u.name, text, likes: [], at: Date.now() });
     if (p.comments.length > 100) p.comments = p.comments.slice(-100);
-    if (p.uid !== uid) notify(db, p.uid, 'comment', u.name, 'comentó tu publicación: «' + text.slice(0, 50) + '»');
+    await prune(db);
+    if (p.uid !== uid) await notifyBestEffort(p.uid, 'comment', u.name, 'comentó tu publicación: «' + text.slice(0, 50) + '»', true);
     return { resp: { ok: true, comments: p.comments.length } };
   },
 
+  /* ❤️ like en un comentario (por índice — estable: solo se añaden) */
+  async clike({ db, b, uid }) {
+    touchUser(db, uid, b);
+    const p = db.posts.find(x => x.id === b.postId);
+    if (!p) return { fail: { status: 404, error: 'publicación no encontrada' } };
+    const ci = parseInt(b.ci, 10);
+    if (!isFinite(ci) || ci < 0 || ci >= (p.comments || []).length) return { fail: { status: 400, error: 'comentario no encontrado' } };
+    const c = p.comments[ci];
+    c.likes = c.likes || [];
+    const on = String(b.on || '') === '1';
+    const i = c.likes.indexOf(uid);
+    let mine;
+    if (on && i < 0) { if (c.likes.length < 100) c.likes.push(uid); mine = true; }
+    else if (!on && i >= 0) { c.likes.splice(i, 1); mine = false; }
+    else mine = c.likes.includes(uid);
+    return { resp: { ok: true, likes: c.likes.length, mine } };
+  },
+
   async like({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+    const { u } = touchUser(db, uid, b);
     const p = db.posts.find(x => x.id === b.postId);
     if (!p) return { fail: { status: 404, error: 'publicación no encontrada' } };
     const on = String(b.on || '') === '1';
     const i = p.likes.indexOf(uid);
-    if (on && i < 0) { p.likes.push(uid); if (p.uid !== uid) notify(db, p.uid, 'like', u.name, 'le gusta tu publicación'); }
+    if (on && i < 0) { p.likes.push(uid); if (p.uid !== uid) await notifyBestEffort(p.uid, 'like', u.name, 'le gusta tu publicación', true); }
     if (!on && i >= 0) p.likes.splice(i, 1);
+    await prune(db);
     return { resp: { ok: true, likes: p.likes.length, mine: p.likes.includes(uid) } };
   },
 
@@ -238,7 +549,7 @@ const OPS = {
   },
 
   async save({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+    const { u } = touchUser(db, uid, b);
     const p = db.posts.find(x => x.id === b.postId);
     if (!p) return { fail: { status: 404, error: 'publicación no encontrada' } };
     u.saved = u.saved || [];
@@ -257,7 +568,7 @@ const OPS = {
   },
 
   async follow({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+    const { u } = touchUser(db, uid, b);
     const target = String(b.target || '');
     if (!target || target === uid) return { fail: { status: 400, error: 'objetivo inválido' } };
     u.follows = u.follows || [];
@@ -265,81 +576,289 @@ const OPS = {
     const i = u.follows.indexOf(target);
     if (on && i < 0) {
       u.follows.push(target);
-      if (!target.startsWith('g:')) notify(db, target, 'follow', u.name, 'empezó a seguirte');
+      if (!target.startsWith('g:')) await notifyBestEffort(target, 'follow', u.name, 'empezó a seguirte', target in db.users);
     }
     if (!on && i >= 0) u.follows.splice(i, 1);
     return { resp: { ok: true } };
   },
 
   async story({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+    const { u } = touchUser(db, uid, b);
     const text = String(b.text || '').slice(0, 120);
-    const img = b.img ? String(b.img).slice(0, 500) : '';
+    const img = safeImgUrl(b.img);
     if (!text && !img) return { fail: { status: 400, error: 'historia vacía' } };
     db.stories = (db.stories || []).filter(s => s.uid !== uid);
-    db.stories.push({ id: stableId('s', uid, text + img), uid, name: u.name, tag: u.tag, grad: u.grad || 0, img, text, live: String(b.live || '') === '1', at: Date.now() });
+    db.stories.push({ id: stableId('s', uid, text + img), uid, name: u.name, tag: u.tag, grad: u.grad || 0, img, text, live: String(b.live || '') === '1', views: [], at: Date.now() });
+    await prune(db);
     return { resp: { ok: true } };
   },
 
-  async msg({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
+  /* 👀 apertura de historia: cuenta espectadores reales (1 por persona) */
+  async storyView({ db, b, uid }) {
+    touchUser(db, uid, b);
+    const s = (db.stories || []).find(x => x.id === b.sid);
+    if (!s) return { resp: { ok: true, views: 0 }, nowrite: true };
+    s.views = s.views || [];
+    if (s.views.includes(uid)) return { resp: { ok: true, views: s.views.length }, nowrite: true };
+    if (s.views.length < 100) s.views.push(uid);
+    return { resp: { ok: true, views: s.views.length } };
+  },
+
+  /* 🗑 borrar la PROPIA publicación (o cualquiera siendo admin) */
+  async delPost({ db, b, uid, adminOk }) {
+    touchUser(db, uid, b);
+    const p = db.posts.find(x => x.id === b.postId);
+    if (!p) return { fail: { status: 404, error: 'publicación no encontrada' } };
+    if (p.uid !== uid && !adminOk) return { fail: { status: 403, error: 'solo el autor o un moderador puede borrarla' } };
+    db.posts = db.posts.filter(x => x.id !== p.id);
+    db.tomb = db.tomb || [];
+    db.tomb.unshift({ id: p.id, at: Date.now() });
+    db.reports = (db.reports || []).filter(r => r.postId !== p.id);
+    await prune(db);
+    return { resp: { ok: true } };
+  },
+
+  /* 🚩 reportar contenido (1 reporte por persona y publicación) */
+  async report({ db, b, uid }) {
+    const { u } = touchUser(db, uid, b);
+    const p = db.posts.find(x => x.id === b.postId);
+    if (!p) return { fail: { status: 404, error: 'publicación no encontrada' } };
+    db.reports = db.reports || [];
+    if (db.reports.some(r => r.postId === p.id && r.uid === uid)) return { resp: { ok: true, dup: true }, nowrite: true };
+    const reason = String(b.reason || 'otro').slice(0, 80);
+    db.reports.unshift({ id: 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), postId: p.id, postBy: p.name, snippet: String(p.text || '').slice(0, 90), uid, name: u.name || '', reason, at: Date.now() });
+    if (db.reports.length > MAX_REPORTS) db.reports = db.reports.slice(0, MAX_REPORTS);
+    return { resp: { ok: true } };
+  },
+
+  async dismissReport({ db, b, adminOk }) {
+    if (!adminOk) return { fail: { status: 403, error: 'solo el administrador' } };
+    db.reports = (db.reports || []).filter(r => r.id !== String(b.reportId || ''));
+    return { resp: { ok: true } };
+  },
+
+  async msg({ db, b, uid, postsDb }) {
+    const u = postsDb.users[uid] || {};
     const text = String(b.text || '').trim().slice(0, 400);
     if (!text) return { fail: { status: 400, error: 'mensaje vacío' } };
     const minNow = Math.floor(Date.now() / 60000);
-    if (u.msgsAt !== minNow) { u.msgsAt = minNow; u.msgsMin = 0; }
-    if ((u.msgsMin || 0) >= MAX_MSG_MIN) return { fail: { status: 429, error: 'demasiados mensajes seguidos — espera un momento' } };
-    u.msgsMin++;
     let cid = String(b.to || '');
     if (cid.startsWith('g:')) {
       const gid = cid.slice(2);
-      if (!db.groups.some(g => g.id === gid)) return { fail: { status: 404, error: 'grupo no encontrado' } };
+      if (!(postsDb.groups || []).some(g => g.id === gid)) return { fail: { status: 404, error: 'grupo no encontrado' } };
       if (!(u.follows || []).includes(cid)) return { fail: { status: 403, error: 'únete al grupo antes de escribir' } };
     } else {
-      if (!(cid in db.users)) return { fail: { status: 404, error: 'ese usuario no existe aún en la comunidad' } };
+      if (!(cid in postsDb.users)) return { fail: { status: 404, error: 'ese usuario no existe aún en la comunidad' } };
       cid = convoIdOf(uid, cid);
     }
-    const list = db.convos[cid] || (db.convos[cid] = []);
-    if (deduped(list, uid, text)) return { resp: { ok: true, cid, deduped: true } };
-    list.push({ uid, name: u.name, text, at: Date.now() });
-    u.lastRead = u.lastRead || {};
-    u.lastRead[cid] = Date.now();
+    /* límite de ritmo + índice de la conversación (dominio convos) */
+    const idxOut = await casWrite(P_INDEX, INDEX_SEED, ix => {
+      if (ix.rl[uid] && ix.rl[uid].min === minNow) {
+        if (ix.rl[uid].n >= MAX_MSG_MIN) return { fail: { status: 429, error: 'demasiados mensajes seguidos — espera un momento' } };
+        ix.rl[uid].n++;
+      } else {
+        ix.rl[uid] = { min: minNow, n: 1 };
+      }
+      const e = ix.convos[cid] || (ix.convos[cid] = { uids: cid.startsWith('g:') ? [] : cid.split('~'), unread: {} });
+      e.at = Date.now();
+      e.last = text.slice(0, 80);
+      e.lastUid = uid;
+      if (!cid.startsWith('g:') && e.unread) {
+        const other = cid.split('~').find(x => x !== uid);
+        if (other) e.unread[other] = (e.unread[other] || 0) + 1;
+      }
+      return { resp: { ok: true, cid } };
+    });
+    if (idxOut.fail) return idxOut;
+    /* el mensaje en su propio archivo (sin conflictos con otros chats) */
+    const cOut = await casWrite(fileOfCid(cid), CONVO_SEED, cv => {
+      if (deduped(cv.msgs, uid, text)) return { resp: { ok: true, cid, deduped: true } };
+      cv.msgs.push({ uid, name: u.name, text, at: Date.now() });
+      if (cv.msgs.length > MAX_CONV_MSGS) cv.msgs = cv.msgs.slice(-MAX_CONV_MSGS);
+      return { resp: { ok: true, cid } };
+    }, true);
+    if (cOut.fail) return cOut;
+    /* notificación del mensaje — solo para chats individuales */
     if (!cid.startsWith('g:')) {
       const other = cid.split('~').find(x => x !== uid);
-      notify(db, other, 'msg', u.name, 'te escribió: «' + text.slice(0, 50) + '»');
+      await notifyBestEffort(other, 'msg', u.name, 'te escribió: «' + text.slice(0, 50) + '»', true, true);
     }
-    prune(db);
     return { resp: { ok: true, cid } };
   },
 
-  async read({ db, b, uid }) {
-    const u = touchUser(db, uid, b);
-    u.lastRead = u.lastRead || {};
-    u.lastRead[String(b.cid || '')] = Date.now();
+  /* 🔁 rotación de clave: firmada con la VIEJA, instala la nueva */
+  async rotate({ db, b, uid }) {
+    const u = db.users[uid];
+    if (!u || !u.pubKey) return { fail: { status: 404, error: 'aún no has participado — no hay clave registrada que rotar' } };
+    const npk = String(b.newPubKey || '');
+    if (!/^[A-Za-z0-9+/=]{80,200}$/.test(npk)) return { fail: { status: 400, error: 'clave nueva inválida' } };
+    u.pubKey = npk;
+    u.lastActive = Date.now();
     return { resp: { ok: true } };
-  },
-
-  async notifsRead({ db, uid }) {
-    if (!db.users[uid]) return { fail: { status: 404, error: 'usuario sin registro' } };
-    db.users[uid].readNotifs = Date.now();
-    return { resp: { ok: true } };
-  },
-
-  async beat({ db, b, uid }) {
-    /* latido de presencia — solo escribe si el último fue hace >60s (y
-       ahora con reintentos CAS: ya no se pierde contra otra escritura)  */
-    if (!uid) return { fail: { status: 400, error: 'sin uid' } };
-    const u = touchUser(db, uid, b);
-    const stale = !u.beat || Date.now() - u.beat > 60000;
-    u.beat = Date.now();
-    u.createdAt = u.createdAt || Date.now();
-    return stale ? { resp: { ok: true } } : { resp: { ok: true }, nowrite: true };
   },
 };
 
+/* ═══════════ ESTADO — delta por archivo con ETags ═══════════
+   El cliente manda sus etags y recibe SOLO lo que cambió:
+   · los 3 archivos sin cambios  → { same:true }  (cero payload)
+   · posts.json cambió           → posts+stories+groups+me+tomb…
+   · presence.json cambió        → notifs+online…
+   · índice cambió               → resumen de conversaciones
+   …y `postsSame/presenceSame/indexSame` indica qué conservar.   */
+async function opState(b, uid, sig) {
+  const etagsIn = (() => {
+    try { return JSON.parse(String(b.etags || '{}')) || {}; } catch (e) { return {}; }
+  })();
+  const beatDue = String(b.beat || '') === '1';
+  /* latido pendiente → lectura autoritativa de posts+presence
+     (hace falta el contenido para verificar la firma)             */
+  const postsDom = await readDomain(P_POSTS, POSTS_SEED, beatDue ? null : etagsIn.posts);
+  if (!postsDom) return { status: 503, json: { ok: false, error: 'el almacén no responde — reintenta' } };
+  const presDom = await readDomain(P_PRESENCE, PRESENCE_SEED, beatDue ? null : etagsIn.presence);
+  if (!presDom) return { status: 503, json: { ok: false, error: 'el almacén no responde — reintenta' } };
+  const idxDom = await readDomain(P_INDEX, INDEX_SEED, etagsIn.index);
+  if (!idxDom) return { status: 503, json: { ok: false, error: 'el almacén no responde — reintenta' } };
+
+  const postsSame = !!postsDom.same;
+  const presSame = !!presDom.same;
+  const idxSame = !!idxDom.same;
+  const etags = {
+    posts: postsSame ? (etagsIn.posts || '') : (postsDom.etag || ''),
+    presence: presSame ? (etagsIn.presence || '') : (presDom.etag || ''),
+    index: idxSame ? (etagsIn.index || '') : (idxDom.etag || ''),
+  };
+  if (postsSame && presSame && idxSame) return { status: 200, json: { ok: true, same: true, etags } };
+
+  const postsDb = postsSame ? POSTS_SEED() : postsDom.db;
+  const presDb = presSame ? PRESENCE_SEED() : presDom.db;
+  const idxDb = idxSame ? INDEX_SEED() : idxDom.db;
+
+  if (!postsSame) {
+    if (!postsDb.groups || !postsDb.groups.length) seedGroups(postsDb);
+    await prune(postsDb);
+  }
+
+  const now = Date.now();
+  const me = uid ? (postsDb.users[uid] || null) : null;
+
+  /* ── latido + registro/actualización del perfil (solo si toca) ── */
+  let beatAt = null;
+  if (beatDue && sig) {
+    const registeredBefore = !!(postsSame ? null : postsDb.users[uid]?.pubKey);
+    const ok = await verifyUser(postsDb, uid, sig, b, 'state');
+    if (ok) {
+      const { changed } = touchUser(postsDb, uid, b);
+      const u = postsDb.users[uid];
+      const postsDirty = !registeredBefore || changed || !u.createdAt;
+      if (!u.createdAt) u.createdAt = now;
+      /* presence: escribir SOLO si mi latido pasó de BEAT_WRITE_MS
+         o cambió mi perfil visible — y con el sha de ESTA lectura   */
+      const mine = presDb.beats[uid];
+      const stale = !mine || !mine.beat || now - mine.beat > BEAT_WRITE_MS;
+      const fieldsChanged = mine && (mine.name !== (u.name || '') || mine.tag !== (u.tag || '') || (mine.grad || 0) !== (u.grad || 0));
+      if (stale || fieldsChanged) {
+        presDb.beats[uid] = { beat: now, name: u.name || '', tag: u.tag || '', grad: u.grad || 0, at: now };
+        const wr = await ghPutFile(P_PRESENCE, JSON.stringify(presDb), presSame ? null : presDom.sha);
+        if (wr !== true) {
+          /* 409: otro latido ganó — releer y decidir de nuevo */
+          await casWrite(P_PRESENCE, PRESENCE_SEED, db2 => {
+            const m2 = db2.beats[uid];
+            const st2 = !m2 || !m2.beat || now - m2.beat > BEAT_WRITE_MS;
+            if (!st2) return { resp: { ok: true }, nowrite: true };
+            db2.beats[uid] = { beat: now, name: u.name || '', tag: u.tag || '', grad: u.grad || 0, at: now };
+            return { resp: { ok: true } };
+          }).catch(() => { });
+        }
+      }
+      if (postsDirty) {
+        const wr = await ghPutFile(P_POSTS, JSON.stringify(postsDb), postsSame ? null : postsDom.sha);
+        if (wr !== true) {
+          await casWrite(P_POSTS, POSTS_SEED, db2 => {
+            if (!db2.users[uid]) return { resp: { ok: true }, nowrite: true };
+            const u2 = touchUser(db2, uid, b).u;
+            u2.createdAt = u2.createdAt || now;
+            return { resp: { ok: true } };
+          }).catch(() => { });
+        }
+      }
+      beatAt = now;
+    }
+  }
+
+  const resp = { ok: true, etags };
+  if (postsSame) resp.postsSame = true;
+  if (presSame) resp.presenceSame = true;
+  if (idxSame) resp.indexSame = true;
+
+  /* ── dominio POSTS ── */
+  if (!postsSame) {
+    resp.posts = postsDb.posts.slice(-60).reverse();
+    resp.stories = postsDb.stories.slice(-40).reverse();
+    resp.groups = (postsDb.groups || []).map(g => ({ ...g, members: Object.values(postsDb.users).filter(u2 => (u2.follows || []).includes('g:' + g.id)).length }));
+    resp.follows = me ? (me.follows || []) : [];
+    resp.saved = me ? (me.saved || []) : [];
+    resp.me = me ? { bio: me.bio || '', interests: me.interests || [], name: me.name, tag: me.tag } : null;
+    resp.tomb = (postsDb.tomb || []).slice(0, MAX_TOMB);
+    resp.suggested = uid
+      ? Object.values(postsDb.users)
+        .filter(u2 => u2.uid && u2.uid !== uid && !(me && (me.follows || []).includes(u2.uid)))
+        .sort((a, z) => ((presDb.beats[z.uid] || {}).beat || z.lastActive || 0) - ((presDb.beats[a.uid] || {}).beat || a.lastActive || 0))
+        .map(u2 => ({ uid: u2.uid, name: u2.name, tag: u2.tag, grad: u2.grad || 0, bio: u2.bio || '', online: !!(presDb.beats[u2.uid] && now - presDb.beats[u2.uid].beat < ONLINE_MS), posts: postsDb.posts.filter(p => p.uid === u2.uid).length, followsMe: !!(me && (u2.follows || []).includes(uid)) }))
+        .slice(0, 12)
+      : [];
+  }
+
+  /* ── dominio PRESENCE ── */
+  if (!presSame) {
+    const readNotifs = presDb.readNotifs?.[uid] || 0;
+    let notifsUnread = 0;
+    const myNotifs = uid ? (presDb.notifs[uid] || []).slice(0, 30).map(n => {
+      const read = (n.at || 0) <= readNotifs;
+      if (!read) notifsUnread++;
+      return { ...n, read };
+    }) : [];
+    resp.notifs = myNotifs;
+    resp.notifsUnread = notifsUnread;
+    resp.onlineCount = Object.values(presDb.beats || {}).filter(m => m && m.beat && now - m.beat < ONLINE_MS).length;
+    resp.onlineUsers = Object.entries(presDb.beats || {})
+      .filter(([, m]) => m && m.beat && now - m.beat < ONLINE_MS)
+      .slice(0, 20)
+      .map(([u2, m]) => ({ uid: u2, name: m.name, grad: m.grad || 0 }));
+  }
+
+  /* ── dominio ÍNDICE — resumen de conversaciones ── */
+  if (!idxSame) {
+    const convos = [];
+    if (uid) {
+      for (const cid of Object.keys(idxDb.convos || {})) {
+        const e = idxDb.convos[cid];
+        const isGroup = cid.startsWith('g:');
+        if (!isGroup && !cid.includes(uid)) continue;
+        const other = !isGroup ? cid.split('~').find(x => x !== uid) : '';
+        const otherU = !isGroup ? postsDb.users[other] : null;
+        convos.push({
+          id: cid, last: e.last || '', at: e.at || 0,
+          unread: isGroup ? 0 : ((e.unread || {})[uid] || 0),
+          lastIsMine: e.lastUid === uid,
+          peerName: isGroup ? ((postsDb.groups || []).find(g => 'g:' + g.id === cid) || {}).name || 'Grupo' : (otherU ? otherU.name + ' ' + (otherU.tag || '') : 'Usuario'),
+          peerGrad: isGroup ? 2 : (otherU ? otherU.grad || 0 : 0),
+          peerOnline: !!(otherU && presDb.beats[other] && now - presDb.beats[other].beat < ONLINE_MS),
+        });
+      }
+      convos.sort((a, b2) => b2.at - a.at);
+    }
+    resp.convos = convos.slice(0, 30);
+  }
+
+  if (beatAt) resp.beatAt = beatAt;
+  return { status: 200, json: resp };
+}
+
+/* ═══════════ HANDLER ═══════════ */
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,x-social-sig');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,x-social-sig,x-social-admin');
   res.setHeader('Cache-Control', 'no-store, max-age=0');
   if (req.method === 'OPTIONS') return res.status(204).end();
 
@@ -349,76 +868,131 @@ module.exports = async function handler(req, res) {
     else if (typeof req.body === 'string' && req.body) { try { Object.assign(b, JSON.parse(req.body)); } catch (e) { } }
     const op = String(b.op || 'state');
     const uid = String(b.uid || '');
-    const sig = String(req.headers['x-social-sig'] || b.sig || '');
+    const sig = String(req.headers['x-social-sig'] || '');
+    const adminSig = String(req.headers['x-social-admin'] || '');
+    const adminOk = adminSig ? await isAdminSig(adminSig) : false;
 
-    /* ── lecturas (una sola pasada, sin CAS) ── */
-    if (op === 'state' || op === 'feed' || op === 'messages') {
-      const snap = await readSocial();
-      const db = snap.db;
-      if (!db.groups || !db.groups.length) seedGroups(db);
-      const today = new Date().toISOString().slice(0, 10);
-      if (op === 'messages') {
-        const cid = String(b.cid || '');
-        if (!cid.includes(uid)) return res.status(403).json({ ok: false, error: 'conversación ajena' });
-        const msgs = (db.convos[cid] || []).slice(-80);
-        const u = db.users[uid];
-        if (u) { u.lastRead = u.lastRead || {}; u.lastRead[cid] = Date.now(); await writeSocial(db, snap.sha); }
-        return res.status(200).json({ ok: true, msgs });
-      }
-      /* op === state/feed */
-      prune(db);
-      const now = Date.now();
-      const readNotifs = (db.users[uid] && db.users[uid].readNotifs) || 0;
-      const me = db.users[uid] || null;
-      const myNotifs = uid ? (db.notifs[uid] || []).slice(0, 30) : [];
-      return res.status(200).json({
-        ok: true,
-        posts: db.posts.slice(-60).reverse(),
-        stories: db.stories.slice(-40).reverse(),
-        groups: db.groups.map(g => ({ ...g, members: Object.values(db.users).filter(u => (u.follows || []).includes('g:' + g.id)).length })),
-        suggested: uid
-          ? Object.values(db.users)
-            .filter(u => u.uid && u.uid !== uid && !(me && (me.follows || []).includes(u.uid)))
-            .sort((a, z) => (z.beat || 0) - (a.beat || 0))
-            .map(u => ({ uid: u.uid, name: u.name, tag: u.tag, grad: u.grad || 0, bio: u.bio || '', online: !!(u.beat && now - u.beat < ONLINE_MS), posts: db.posts.filter(p => p.uid === u.uid).length, followsMe: !!(me && (u.follows || []).includes(uid)) }))
-            .slice(0, 12)
-          : [],
-        follows: me ? (me.follows || []) : [],
-        saved: me ? (me.saved || []) : [],
-        me: me ? { bio: me.bio || '', interests: me.interests || [], name: me.name, tag: me.tag } : null,
-        convos: uid ? convoSummary(db, uid) : [],
-        notifs: myNotifs,
-        notifsUnread: myNotifs.filter(n => n.at > readNotifs).length,
-        onlineCount: Object.values(db.users).filter(u => u.beat && now - u.beat < ONLINE_MS).length,
-        onlineUsers: Object.values(db.users)
-          .filter(u => u.beat && now - u.beat < ONLINE_MS)
-          .slice(0, 20)
-          .map(u => ({ uid: u.uid, name: u.name, grad: u.grad || 0 })),
-        _today: today,
-      });
+    /* ── estado global (con delta ETag + latido) ── */
+    if (op === 'state') {
+      const out = await opState(b, uid, sig);
+      return res.status(out.status).json(out.json);
     }
 
-    /* ── escrituras: CAS — re-aplicar sobre base fresca hasta 6 intentos ── */
-    const opFn = OPS[op];
-    if (!opFn) return res.status(400).json({ ok: false, error: 'op desconocida: ' + op });
-    let lastFail = null;
-    for (let attempt = 1; attempt <= 6; attempt++) {
-      const snap = await readSocial();
-      const db = snap.db;
-      if (!db.groups || !db.groups.length) seedGroups(db);
-      if (!(await verifyUser(db, uid, sig, b.pubKey))) {
+    /* ── búsqueda de personas en TODA la comunidad (no solo 60 posts) ── */
+    if (op === 'search') {
+      const q = String(b.q || '').trim().toLowerCase();
+      if (q.length < 2) return res.status(200).json({ ok: true, users: [] });
+      const dom = await readDomain(P_POSTS, POSTS_SEED);
+      if (!dom || dom.same || !dom.db) return res.status(200).json({ ok: true, users: [] });
+      const users = Object.values(dom.db.users || {})
+        .filter(u => u && u.uid && u.name && String(u.name).toLowerCase().includes(q))
+        .slice(0, 12)
+        .map(u => ({ uid: u.uid, name: u.name, tag: u.tag || '', grad: u.grad || 0, posts: (dom.db.posts || []).filter(p => p.uid === u.uid).length }));
+      return res.status(200).json({ ok: true, users });
+    }
+
+    /* ── mensajes de una conversación (poll liviano con ETag) ── */
+    if (op === 'messages') {
+      const cid = String(b.cid || '');
+      if (!cid) return res.status(400).json({ ok: false, error: 'falta cid' });
+      if (!cid.startsWith('g:') && uid && !cid.includes(uid)) return res.status(403).json({ ok: false, error: 'conversación ajena' });
+      const etagsIn = (() => { try { return JSON.parse(String(b.etags || '{}')) || {}; } catch (e) { return {}; } })();
+      const [convoDom, idxDom] = await Promise.all([
+        readDomain(fileOfCid(cid), CONVO_SEED, etagsIn.convo, true),
+        readDomain(P_INDEX, INDEX_SEED, etagsIn.index),
+      ]);
+      if (!convoDom || !idxDom) return res.status(503).json({ ok: false, error: 'el almacén no responde — reintenta' });
+      const etags = {
+        convo: convoDom.same ? (convoDom.etag || etagsIn.convo || '') : (convoDom.etag || ''),
+        index: idxDom.same ? (idxDom.etag || etagsIn.index || '') : (idxDom.etag || ''),
+      };
+      /* limpiar MI contador de no-leídos del índice (solo si hay) —
+         la limpieza NO amplifica: solo escribe si de verdad había   */
+      let cleared = false;
+      if (uid && !idxDom.same && idxDom.db.convos?.[cid]?.unread?.[uid] > 0) {
+        const out = await casWrite(P_INDEX, INDEX_SEED, ix => {
+          const e = ix.convos[cid];
+          if (e && e.unread && (e.unread[uid] || 0) > 0) { e.unread[uid] = 0; return { resp: { ok: true } }; }
+          return { resp: { ok: true }, nowrite: true };
+        });
+        cleared = !out.fail;
+      }
+      if (convoDom.same && !cleared) return res.status(200).json({ ok: true, same: true, etags });
+      const msgs = (convoDom.same ? [] : (convoDom.db.msgs || [])).slice(-80);
+      return res.status(200).json({ ok: true, msgs, etags, cleared });
+    }
+
+    /* ── panel de moderación (solo admin) ── */
+    if (op === 'adminState') {
+      if (!adminOk) return res.status(403).json({ ok: false, error: 'solo el administrador' });
+      const dom = await readDomain(P_POSTS, POSTS_SEED);
+      if (!dom || dom.same || !dom.db) return res.status(200).json({ ok: true, reports: [] });
+      return res.status(200).json({ ok: true, reports: (dom.db.reports || []).slice(0, 60) });
+    }
+
+    /* ── escrituras: CAS por dominio con firma v3 ── */
+    if (!OPS[op] && op !== 'notifsRead') return res.status(400).json({ ok: false, error: 'op desconocida: ' + op });
+
+    /* notifsRead: dominio PRESENCE (el timbre vive ahí) */
+    if (op === 'notifsRead') {
+      const out = await casWrite(P_PRESENCE, PRESENCE_SEED, db => {
+        if (!(uid in db.beats) && !(uid in db.notifs)) return { resp: { ok: true }, nowrite: true };
+        if (!(db.notifs[uid] || []).length) return { resp: { ok: true }, nowrite: true };
+        db.readNotifs = db.readNotifs || {};
+        db.readNotifs[uid] = Date.now();
+        return { resp: { ok: true } };
+      });
+      if (out.fail) return res.status(out.fail.status).json({ ok: false, error: out.fail.error });
+      return res.status(200).json(out.resp || { ok: true });
+    }
+
+    /* msg: lee posts (usuarios/grupos/membresía) pero SOLO lo
+       escribe si el registro del usuario cambió (registro/TOFU)  */
+    if (op === 'msg') {
+      const postsDom = await readDomain(P_POSTS, POSTS_SEED);
+      if (!postsDom || postsDom.same || !postsDom.db) return res.status(503).json({ ok: false, error: 'el almacén no responde — reintenta' });
+      const postsDb = postsDom.db;
+      if (!postsDb.groups || !postsDb.groups.length) seedGroups(postsDb);
+      const registeredBefore = !!postsDb.users[uid]?.pubKey;
+      if (!(await verifyUser(postsDb, uid, sig, b, op))) {
         return res.status(403).json({ ok: false, error: 'firma inválida — cada acción se firma con la clave de tu dispositivo' });
       }
-      const out = await opFn({ db, b, uid });
+      const { changed } = touchUser(postsDb, uid, b);
+      const out = await OPS.msg({ db: null, b, uid, postsDb });
+      if (out.fail) return res.status(out.fail.status).json({ ok: false, error: out.fail.error });
+      if (!registeredBefore || changed) {
+        const wr = await ghPutFile(P_POSTS, JSON.stringify(postsDb), postsDom.sha);
+        if (wr !== true) {
+          await casWrite(P_POSTS, POSTS_SEED, db2 => {
+            if (!db2.users[uid]) return { resp: { ok: true }, nowrite: true };
+            touchUser(db2, uid, b);
+            return { resp: { ok: true } };
+          }).catch(() => { });
+        }
+      }
+      return res.status(200).json(out.resp);
+    }
+
+    /* el resto: un solo dominio (posts) con reintentos CAS */
+    let lastFail = null;
+    for (let attempt = 1; attempt <= CAS_ATTEMPTS; attempt++) {
+      const postsDom = await readDomain(P_POSTS, POSTS_SEED);
+      if (!postsDom || postsDom.same || !postsDom.db) {
+        if (postsDom && postsDom.same) { await ensureFiles(); continue; }
+        return res.status(503).json({ ok: false, error: 'el almacén no responde — reintenta en unos segundos' });
+      }
+      const db = postsDom.db;
+      if (!db.groups || !db.groups.length) seedGroups(db);
+      if (!(await verifyUser(db, uid, sig, b, op))) {
+        return res.status(403).json({ ok: false, error: 'firma inválida — cada acción se firma con la clave de tu dispositivo' });
+      }
+      const out = await OPS[op]({ db, b, uid, adminOk });
       if (out.fail) return res.status(out.fail.status).json({ ok: false, error: out.fail.error });
       if (out.nowrite) { out.resp.w = 'skip'; return res.status(200).json(out.resp); }
-      const wr = await writeSocial(db, snap.sha);
-      if (wr === true) {
-        out.resp.w = 'ok';
-        return res.status(200).json(out.resp);
-      }
+      const wr = await ghPutFile(P_POSTS, JSON.stringify(db), postsDom.sha);
+      if (wr === true) { out.resp.w = 'ok'; return res.status(200).json(out.resp); }
       lastFail = wr;
-      await new Promise(r2 => setTimeout(r2, 350 * attempt));   /* 409/congestión: releer y RE-APLICAR */
+      await sleep(300 * attempt);
     }
     return res.status(503).json({ ok: false, error: 'la comunidad está muy activa ahora mismo — reintenta en unos segundos (' + lastFail + ')' });
   } catch (e) {
@@ -426,78 +1000,3 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ ok: false, error: e.message });
   }
 };
-
-/* ── GitHub como almacén — lectura viva + PUT con el sha del MISMO intento ── */
-async function ghGet(path) {
-  const GHH = { Authorization: `token ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json' };
-  const cs = await fetch(`${GH_API}/repos/${REPO}/commits?path=${path}&sha=${DATA_BRANCH}&per_page=1&t=${Date.now()}`, { cache: 'no-store', headers: GHH });
-  if (!cs.ok) { console.error('social ghGet commits ' + cs.status); return null; }
-  const cl = await cs.json();
-  if (!cl || !cl[0] || !cl[0].sha) return null;
-  const commitSha = cl[0].sha;
-  let sha = null;
-  try {
-    const cc = await fetch(`${GH_API}/repos/${REPO}/commits/${commitSha}?t=${Date.now()}`, { cache: 'no-store', headers: GHH });
-    if (cc.ok) {
-      const det = await cc.json();
-      const f = (det.files || []).find(x => x.filename === path);
-      if (f) sha = f.sha;
-    }
-  } catch (e) { console.error('social ghGet blobsha: ' + e.message); }
-  let content = null;
-  try {
-    const jz = await fetch(`https://cdn.jsdelivr.net/gh/${REPO}@${commitSha}/${path}?t=${Date.now()}`, { cache: 'no-store' });
-    if (jz.ok) {
-      content = await jz.text();
-      if (content && content.length < 10) content = null;
-    }
-  } catch (e) { console.error('social ghGet jsdelivr: ' + e.message); }
-  if (content == null) {
-    try {
-      const rr = await fetch(`https://raw.githubusercontent.com/${REPO}/${commitSha}/${path}?t=${Date.now()}`, { cache: 'no-store' });
-      if (rr.ok) content = await rr.text();
-      else console.error('social ghGet raw@' + commitSha.slice(0, 8) + ' ' + rr.status);
-    } catch (e) { console.error('social ghGet raw: ' + e.message); }
-  }
-  if (content == null) return null;
-  return { sha, content };
-}
-
-async function readSocial() {
-  try {
-    const f = await ghGet(PATH);
-    if (f) {
-      const parsed = JSON.parse(f.content);
-      if (parsed && typeof parsed === 'object' && parsed.users) return { db: parsed, sha: f.sha };
-    }
-  } catch (e) { console.error('social readSocial: ' + e.message); }
-  return { db: DEF(), sha: null };
-}
-
-async function writeSocial(db, sha) {
-  const r = await ghPut(PATH, JSON.stringify(db), sha);
-  return r === true ? true : r;
-}
-
-async function ghPut(path, content, sha) {
-  const body = {
-    message: `social ${new Date().toISOString()} [skip ci]`,
-    content: Buffer.from(content).toString('base64'),
-    branch: DATA_BRANCH,
-  };
-  if (sha) body.sha = sha;
-  const r = await fetch(`${GH_API}/repos/${REPO}/contents/${path}`, {
-    method: 'PUT', cache: 'no-store',
-    headers: {
-      Authorization: `token ${process.env.GH_TOKEN}`,
-      Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
-  if (!r.ok) {
-    const t = await r.text().catch(() => '');
-    console.error('social ghPut ' + r.status + ': ' + t.slice(0, 200));
-  }
-  return r.ok ? true : r.status;
-}

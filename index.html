@@ -74,6 +74,10 @@
     <input id="searchInput" type="text" placeholder="Buscar serie… ( / )" autocomplete="off">
   </div>
   <div class="top-actions">
+    <a id="comunidadLink" href="social/" class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none" title="Comunidad XSTREAM — publica, comenta, chatea y sigue a los fans del cine y el anime">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.4"/><path d="M15.8 14.2c2.6.2 4.3 1.9 4.7 4.3"/></svg>
+      <span>Comunidad</span>
+    </a>
     <div class="accent-pick collapsed" id="accentPick" title="Color de acento">
       <button class="accent-mini" id="accentMini" title="Cambiar color de acento" aria-label="Cambiar color de acento"></button>
     </div>
@@ -117,6 +121,13 @@
     </button>
   </div>
 </header>
+<script>
+  /* file://: social/ mostraría el listado de la carpeta — apuntar al index real */
+  if (location.protocol === 'file:') {
+    const cl = document.getElementById('comunidadLink');
+    if (cl) cl.href = 'social/index.html';
+  }
+</script>
 
 <div class="layout">
 
