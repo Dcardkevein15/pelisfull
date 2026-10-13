@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791934850466,
+ "at": 1791935764682,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1TvhGunm0xEYLxcmyYmW3Z_Mk3XdHTkJ0/view?usp=sharing",
@@ -8,9 +8,9 @@
    "title": "Doctor Strange",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 5,
-   "nextRetryAt": 1791934725337,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 9,
+   "nextRetryAt": 1791935859715,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -22,21 +22,8 @@
    "status": "queued",
    "name": "",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 4,
-   "nextRetryAt": 1791934887746,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1hWh6WqSCBX9Fo-PQViKzAiRomsGBnuT6/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Motoqueiro Fantasma",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 2,
-   "nextRetryAt": 1791934625664,
+   "attempts": 7,
+   "nextRetryAt": 1791935776302,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
