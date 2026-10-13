@@ -4555,8 +4555,17 @@ function clearAddressHash() {
 
 /* ── Abrir un enlace compartido (soporta formato nuevo limpio y clásico) ── */
 function openFromHash() {
-  const h = location.hash.replace(/^#\/?/, '');
-  if (!h) return false;
+  const h0 = location.hash.replace(/^#\/?/, '');
+  if (!h0) return false;
+  /* ✎ sufijo ?editar: abre el episodio Y activa el modo edición en el
+     mismo clic (lo usa el Reparador para llevarte directo al vídeo malo) */
+  const wantsEdit = h0.endsWith('?editar');
+  const h = wantsEdit ? h0.slice(0, -7) : h0;
+  const autoEdit = () => {
+    if (!wantsEdit) return;
+    setEditing(true);
+    if (editing) toast('✎ Modo edición listo — arregla el vídeo y publica');
+  };
   let p = null;
   try { p = new URLSearchParams(h); } catch (e) { }
   const esClasico = p && p.has('s') && p.has('e');
@@ -4603,6 +4612,7 @@ function openFromHash() {
     loadEpisode(epN, true);
     renderSeries(els.searchInput.value);
     toast('▶ Enlace compartido cargado');
+    autoEdit();
     return true;
   }
 
