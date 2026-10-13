@@ -1,20 +1,7 @@
 {
  "v": 1,
- "at": 1791929113270,
+ "at": 1791929324897,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/1luK6mpqwnzv0z80BPlRFB-maNe6rauUI/view",
-   "type": "drive-file",
-   "title": "El odio que siembras",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 5,
-   "nextRetryAt": 1791928310984,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/1YQvdAeNOKxeV6PT6wCUnYOKbXE2VT_Mg/view",
    "type": "drive-file",
@@ -274,34 +261,6 @@
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1TvYer7_vJhkscyT286TQJ9jdypsqelhQ/view",
-   "type": "drive-file",
-   "title": "La fuga de las gallinas",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791928209836
-  },
-  {
-   "url": "https://drive.google.com/file/d/1L_y_Cufqde0VRrZyYmnvQXMAQuXlBc4F/view",
-   "type": "drive-file",
-   "title": "Espíritu: O corcel indomable",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791928211565
   },
   {
    "url": "https://drive.google.com/file/d/0BxLl-c-B4sJxQlBhUk5LOXlCeDQ/view",
