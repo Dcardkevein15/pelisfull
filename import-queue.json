@@ -1,45 +1,13 @@
 {
  "v": 1,
- "at": 1791857838062,
+ "at": 1791859143973,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/13bYS5Erh4kyFdDdTG8iArHzdCUtSM3y9/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Libro Verde: O guia",
-   "status": "done",
-   "name": "Libro Verde: O guia",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791857656215,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-13bYS5Erh4kyFdDdTG8iArHzdCUtSM",
-     "t": "Libro Verde: O guia",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=13bYS5Erh4kyFdDdTG8iArHzdCUtSM3y9&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/13bYS5Erh4kyFdDdTG8iArHzdCUtSM3y9/view"
-      }
-     ],
-     "at": 1791857838374,
-     "genreTmdbDone": false
-    }
-   ],
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/1ULk7bYbZaolr9NwzIOEp6Z53bFR8JGCk/view",
    "type": "drive-file",
    "title": "Sonic: O Filme",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Sonic: O Filme",
    "error": "HTTP 401",
    "attempts": 1,
    "nextRetryAt": 1791857657041,
