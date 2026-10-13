@@ -2484,31 +2484,29 @@ function renderSeries(filter = '') {
     return;
   }
 
-  /* ⚡⚡ MODO QUIETO (edición): misma pestaña, mismos filtros y búsqueda →
-     la columna NO se reconstruye: solo se REEMPLAZAN las tarjetas cuyo
-     contenido cambió (título, captura, favorito, activa…). El scroll y el
-     resto de tarjetas quedan exactamente donde estaban — al editar ves el
-     resultado al instante, en sitio, sin perseguir tu posición.         */
+  /* ⚡⚡ MODO QUIETO (clic / editar / renombrar): mismo contexto Y mismo
+     conjunto de series en el mismo orden → la columna NO se reconstruye:
+     solo se REEMPLAZAN las tarjetas ya montadas cuyo contenido cambió
+     (título, activa, favorito, miniatura…). El scroll y las demás tarjetas
+     quedan exactamente donde estaban. La comparación es por CONJUNTO DE
+     IDS (no por nº de tarjetas montadas): con el render perezoso casi
+     nunca estaban todas montadas y la condición anterior caía SIEMPRE al
+     render completo, recargando la columna y tirando el scroll arriba —
+     exactamente lo que no debe pasar.                                   */
   const skey = [state.tab, state.sortMode || 'manual', favOnly ? 1 : 0, tagFilter || '', q].join('|');
-  if (els.seriesList._skey === skey && els.seriesList.querySelector('.s-item')) {
-    const cards = [...els.seriesList.querySelectorAll('.s-item')];
+  const idsig = list.map(s => s.id).join(',');
+  if (els.seriesList._skey === skey && els.seriesList._sids === idsig && els.seriesList.querySelector('.s-item')) {
     const byId = new Map(list.map(s => [s.id, s]));
-    let visibles = 0;
-    for (const old of cards) {
+    for (const old of [...els.seriesList.querySelectorAll('.s-item')]) {
       const s = byId.get(old.dataset.sid);
-      if (!s) continue;                      /* la serie salió de la lista → render completo */
-      visibles++;
+      if (!s) continue;                      /* salió de la lista → render completo */
       const sig = seriesCardSig(s);
       if (old.dataset.sig !== sig) {
         const fresh = buildSeriesCard(s, -1);   /* -1: sin shimmer en parches */
         old.replaceWith(fresh);                 /* mismo hueco → scroll intacto */
       }
     }
-    if (visibles === cards.length && cards.length === list.length) {
-      els.seriesList._skey = skey;
-      return;                                   /* ✔ columna quieta, solo lo editado cambió */
-    }
-    /* el set cambió (serie nueva/quitada) → render completo, scroll abajo */
+    return;                                   /* ✔ columna quieta: solo lo que cambió se actualizó */
   }
 
   /* render completo (pestaña/filtro/búsqueda nuevos o set distinto) */
@@ -2516,8 +2514,10 @@ function renderSeries(filter = '') {
   const sy = els.sideScroll ? els.sideScroll.scrollTop : 0;
   /* ⚡ render perezoso: solo se crean las primeras tarjetas visibles
      y el resto se agrega automáticamente al hacer scroll.
-     (en PC el nº de series puede ser enorme; esto hace la app instantánea) */
-  lazyRender(els.seriesList, list, (s, idx) => buildSeriesCard(s, idx));
+     (en PC el nº de series puede ser enorme; esto hace la app instantánea)
+     sy = pre-monta por adelantado hasta superar la posición previa de
+     scroll, para que la restauración de abajo pueda sostenerse.        */
+  lazyRender(els.seriesList, list, (s, idx) => buildSeriesCard(s, idx), 30, sy);
   /* 📌 SIEMPRE restaura el scroll — fusionar/renombrar/borrar una
      película NO debe saltar la columna arriba. Antes solo se restauraba
      si el set era idéntico, y al fusionar (una menos) saltaba.        */
@@ -2532,6 +2532,7 @@ function renderSeries(filter = '') {
     requestAnimationFrame(rest);
   }
   els.seriesList._skey = skey;
+  els.seriesList._sids = idsig;
   /* 🎴 tarjetas de género: visibles (y al día) solo en la pestaña Películas */
   try { renderGenreRow(); } catch (e) { }
 }
@@ -2808,7 +2809,7 @@ const thumbObserver = new IntersectionObserver(entries => {
    cuanto el usuario se acerca al final del scroll, se inyecta el
    siguiente bloque al instante. Solo lo necesario: carga mínima.  */
 const _lazyIO = new WeakMap();
-function lazyRender(container, items, renderItem, chunk = 30) {
+function lazyRender(container, items, renderItem, chunk = 30, targetY = 0) {
   /* si ya había una observación anterior en este contenedor, la cancelamos */
   if (_lazyIO.has(container)) { _lazyIO.get(container).disconnect(); _lazyIO.delete(container); }
   container.innerHTML = '';
@@ -2834,6 +2835,15 @@ function lazyRender(container, items, renderItem, chunk = 30) {
   _lazyIO.set(container, io);
   io.observe(sentinel);
   renderMore(); /* primer bloque visible al instante */
+  /* 📌 pre-monto para restaurar scroll profundo: tras un render completo
+     con la columna ya bajada, el DOM perezoso solo montaba el primer
+     bloque y la restauración del scroll se clavaba arriba. Montamos por
+     adelantado hasta superar la posición previa (+ margen) y así el
+     scrollTop se restaura de verdad.                                      */
+  if (targetY > 0) {
+    let guard = 0;
+    while (idx < items.length && container.scrollHeight < targetY + 2000 && guard++ < 200) renderMore();
+  }
 }
 
 function deferThumb(s, ep, cell) {
