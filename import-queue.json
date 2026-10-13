@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791930524897,
+ "at": 1791930704905,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/13JGlMpCAcWfvMc6BSg0t453wvduB73Or/view",
@@ -8,22 +8,9 @@
    "title": "Aguamarina",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (timeout, sin red, HTTP 401, HTTP 408).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 7,
-   "nextRetryAt": 1791930445799,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1SNbB7K7yKW2r4n_-ydZvoHG3ePkzn_OM/view",
-   "type": "drive-file",
-   "title": "Parasita",
-   "status": "queued",
-   "name": "",
    "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 6,
-   "nextRetryAt": 1791930562302,
+   "attempts": 8,
+   "nextRetryAt": 1791930734182,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
