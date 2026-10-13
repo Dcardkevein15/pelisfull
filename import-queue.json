@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791928212065,
+ "at": 1791929113270,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1luK6mpqwnzv0z80BPlRFB-maNe6rauUI/view",
@@ -276,37 +276,6 @@
    "syncedAt": 1791675754524
   },
   {
-   "url": "https://drive.google.com/file/d/1J5YVhVsNlnWHegTJc2u7CBP_uVWltCJj/view",
-   "type": "drive-file",
-   "title": "Formiguinhaz",
-   "status": "done",
-   "name": "F0rm1gu1nhaz 1998 My Sabrigo GdriveFIlmes",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1J5YVhVsNlnWHegTJc2u7CBP_uVWlt",
-     "t": "F0rm1gu1nhaz 1998 My Sabrigo GdriveFIlmes",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1J5YVhVsNlnWHegTJc2u7CBP_uVWltCJj&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1J5YVhVsNlnWHegTJc2u7CBP_uVWltCJj/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
    "url": "https://drive.google.com/file/d/1TvYer7_vJhkscyT286TQJ9jdypsqelhQ/view",
    "type": "drive-file",
    "title": "La fuga de las gallinas",
@@ -319,37 +288,6 @@
    "payload": null,
    "syncedAt": 1791675754524,
    "failedAt": 1791928209836
-  },
-  {
-   "url": "https://drive.google.com/file/d/1ew1CQU83tjUNVdw6BlP2MKKPei-zBSH1/view",
-   "type": "drive-file",
-   "title": "El camino hacia El dorado",
-   "status": "done",
-   "name": "O Caminho para El Dorado My Sabrigo Gdrive Filmes",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1ew1CQU83tjUNVdw6BlP2MKKPei-zB",
-     "t": "O Caminho para El Dorado My Sabrigo Gdrive Filmes",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1ew1CQU83tjUNVdw6BlP2MKKPei-zBSH1&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1ew1CQU83tjUNVdw6BlP2MKKPei-zBSH1/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1L_y_Cufqde0VRrZyYmnvQXMAQuXlBc4F/view",
