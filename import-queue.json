@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791930224901,
+ "at": 1791930524897,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/13JGlMpCAcWfvMc6BSg0t453wvduB73Or/view",
@@ -8,9 +8,9 @@
    "title": "Aguamarina",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 6,
-   "nextRetryAt": 1791930021747,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (timeout, sin red, HTTP 401, HTTP 408).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 7,
+   "nextRetryAt": 1791930445799,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -21,22 +21,9 @@
    "title": "Parasita",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 5,
-   "nextRetryAt": 1791930282975,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1_AFZvwMf0ZzeeFfYiIedMhg6D0Y0cAOp/view",
-   "type": "drive-file",
-   "title": "Mi madre es una pieza III",
-   "status": "queued",
-   "name": "",
-   "error": "HTTP 401",
-   "attempts": 4,
-   "nextRetryAt": 1791928315392,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 6,
+   "nextRetryAt": 1791930562302,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
