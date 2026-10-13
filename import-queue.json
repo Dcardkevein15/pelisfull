@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791867359747,
+ "at": 1791883765494,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/13rS5YF0CBCVo865ybYTZzgrOpxD_ucg8/view",
@@ -8,9 +8,9 @@
    "title": "Wifi Ralph: Quebrando a internet",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 6,
-   "nextRetryAt": 1791867287380,
+   "error": "HTTP 401",
+   "attempts": 7,
+   "nextRetryAt": 1791883863414,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -21,9 +21,9 @@
    "title": "Como Branquelas",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 6,
-   "nextRetryAt": 1791867394025,
+   "error": "HTTP 401",
+   "attempts": 7,
+   "nextRetryAt": 1791883864137,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -35,8 +35,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791857677191,
+   "attempts": 2,
+   "nextRetryAt": 1791883865042,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -48,8 +48,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791857677961,
+   "attempts": 2,
+   "nextRetryAt": 1791883865823,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -58,14 +58,15 @@
    "url": "https://drive.google.com/file/d/1WvHlH1YOoXzxiR4TuQJFpjdtsEpDn9DT/view",
    "type": "drive-file",
    "title": "Titanic",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883746600
   },
   {
    "url": "https://drive.google.com/file/d/13JGlMpCAcWfvMc6BSg0t453wvduB73Or/view",
@@ -73,9 +74,9 @@
    "title": "Aguamarina",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791883867739,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -86,9 +87,9 @@
    "title": "El pozo",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791883868578,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -99,9 +100,9 @@
    "title": "Parasita",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791883869497,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -110,144 +111,262 @@
    "url": "https://drive.google.com/file/d/18RQNrfcLIqeb7qkiz3DJumFj0wUyj0S_/view",
    "type": "drive-file",
    "title": "Interestelar",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883750313
   },
   {
    "url": "https://drive.google.com/file/d/1lloRNkr3fefDKlp91YQZGao_oqjVPOS4/view?usp=sharing",
    "type": "drive-file",
    "title": "Milagre na cela 7",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883751095
   },
   {
    "url": "https://drive.google.com/file/d/1COr2OkyxYL37BtGywW6QZqupePEcbp2u/view",
    "type": "drive-file",
    "title": "Las aventuras de Sharkboy y Lavagirl",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883751818
   },
   {
    "url": "https://drive.google.com/file/d/16hlipG-3Ek4XW6EDogxmRUj_C5PvUdtM/view",
    "type": "drive-file",
    "title": "Érase una vez",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Era Uma Vez HDTV PradO",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-16hlipG-3Ek4XW6EDogxmRUj_C5PvU",
+     "t": "Era Uma Vez HDTV PradO",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=16hlipG-3Ek4XW6EDogxmRUj_C5PvUdtM&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/16hlipG-3Ek4XW6EDogxmRUj_C5PvUdtM/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1imJuCFRv1Dbtbi8rRrqMU_rgSPuusOoU/view",
    "type": "drive-file",
    "title": "En la naturaleza salvaje",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883753600
   },
   {
    "url": "https://drive.google.com/file/d/1F3oxr7039RQbiKTcZ-QjEBVIBRp-k_aR/view",
    "type": "drive-file",
    "title": "Mulan II",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "mulan 2",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1F3oxr7039RQbiKTcZ-QjEBVIBRp-k",
+     "t": "mulan 2",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1F3oxr7039RQbiKTcZ-QjEBVIBRp-k_aR&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1F3oxr7039RQbiKTcZ-QjEBVIBRp-k_aR/view"
+      }
+     ],
+     "genre": "comedia",
+     "tags": [
+      "Comedia"
+     ],
+     "genreTmdbDone": true
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1cWnkWswdEYOdqu3439hnjzCJygIJ8Hlm/view?usp=sharing",
    "type": "drive-file",
    "title": "Los Pitufos",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Os Smurfs (2011) [] { 6CH} Dublado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1cWnkWswdEYOdqu3439hnjzCJygIJ8",
+     "t": "Os Smurfs (2011) [] { 6CH} Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1cWnkWswdEYOdqu3439hnjzCJygIJ8Hlm&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1cWnkWswdEYOdqu3439hnjzCJygIJ8Hlm/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1sHB7X1EeMbQb917_coiol6mlj_OEiyHZ/view?usp=sharing",
    "type": "drive-file",
    "title": "Los Pitufos II",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Os Smurfs 2 (2013) [] {} Dublado",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1sHB7X1EeMbQb917_coiol6mlj_OEi",
+     "t": "Os Smurfs 2 (2013) [] {} Dublado",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1sHB7X1EeMbQb917_coiol6mlj_OEiyHZ&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1sHB7X1EeMbQb917_coiol6mlj_OEiyHZ/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1f1O1ntdXfVryPqAL4IS3Ui3FgvU_26FG/view?usp=drivesdk",
    "type": "drive-file",
    "title": "Los Pitufos y la aldea perdida",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Os Smurfs e a Vila Perdida 2017 DUBLADO-WWW BLUDV COM",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1f1O1ntdXfVryPqAL4IS3Ui3FgvU_2",
+     "t": "Os Smurfs e a Vila Perdida 2017 DUBLADO-WWW BLUDV COM",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1f1O1ntdXfVryPqAL4IS3Ui3FgvU_26FG&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1f1O1ntdXfVryPqAL4IS3Ui3FgvU_26FG/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1wvUzwDUuIx7ZWqEppqdj-OGcNKRKRnzP/view",
    "type": "drive-file",
    "title": "Mi madre es un personaje",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "Minha Mãe É Uma Peça @drivefilmesz",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-1wvUzwDUuIx7ZWqEppqdj-OGcNKRKR",
+     "t": "Minha Mãe É Uma Peça @drivefilmesz",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=1wvUzwDUuIx7ZWqEppqdj-OGcNKRKRnzP&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/1wvUzwDUuIx7ZWqEppqdj-OGcNKRKRnzP/view"
+      }
+     ]
+    }
+   ],
+   "syncedAt": 1791675754524,
+   "processedBy": "cloud"
   },
   {
    "url": "https://drive.google.com/file/d/1QcFGTZWwNQ2Buzh0MmQjyoyGtGy8DNJr/view?usp=sharing",
    "type": "drive-file",
    "title": "Mi madre es una pieza II",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883759065
   },
   {
    "url": "https://drive.google.com/file/d/1_AFZvwMf0ZzeeFfYiIedMhg6D0Y0cAOp/view",
@@ -255,9 +374,9 @@
    "title": "Mi madre es una pieza III",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791883879930,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -266,66 +385,71 @@
    "url": "https://drive.google.com/file/d/1LnNq-ZB85NEh98TpKyV2hFlzA3pKWX_A/view",
    "type": "drive-file",
    "title": "Como era yo antes de ti",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883760800
   },
   {
    "url": "https://drive.google.com/file/d/1Asi-ud8jGOOXlERBrg2KUN8SCult0RLY/view",
    "type": "drive-file",
    "title": "Me llama por tu nombre",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883761882
   },
   {
    "url": "https://drive.google.com/file/d/1Dik9bcu-Hr3MBmj86uPsWaabdwsn4blU/view",
    "type": "drive-file",
    "title": "Cenicienta",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883762992
   },
   {
    "url": "https://drive.google.com/file/d/1iLrnNqiNubyxPg5azlQ3Hcq3d9OcefJi/view",
    "type": "drive-file",
    "title": "Cenicienta II",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883763854
   },
   {
    "url": "https://drive.google.com/file/d/1L6yiM4_moQiL66poFJcWjbCiJzk32rcp/view",
    "type": "drive-file",
    "title": "Cenicienta III",
-   "status": "queued",
+   "status": "failed-final",
    "name": "",
-   "error": "",
-   "attempts": 0,
+   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
+   "attempts": 1,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
+   "syncedAt": 1791675754524,
+   "failedAt": 1791883764994
   },
   {
    "url": "https://drive.google.com/file/d/1QmJTH5bDLQD3RpQ9F7ITSIcnSPrsjW40/view",
