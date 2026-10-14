@@ -1,29 +1,16 @@
 {
  "v": 1,
- "at": 1791986952924,
+ "at": 1791987990420,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/1B2KepScP2w69N6Sdq2cmsZ3qY3tAaK2W/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Pantera Negra",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 7,
-   "nextRetryAt": 1791986339320,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/0B_s87pjxoqmYcS1xbVVscXRNWm8/view",
    "type": "drive-file",
    "title": "Bruce Lee - O Dragão Chinês",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 3,
-   "nextRetryAt": 1791974045873,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 5,
+   "nextRetryAt": 1791987743166,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -34,9 +21,9 @@
    "title": "Enrolados",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791974057509,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, HTTP 401, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 2,
+   "nextRetryAt": 1791987457987,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
