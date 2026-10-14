@@ -645,11 +645,13 @@
     }
 
     if (cat.by !== undefined && !okStr(cat.by, 120)) return false;
-    /* 🔗 acortador: mapa de códigos → destinos (relativos del dominio o http(s)) */
+    /* 🔗 acortador: mapa de códigos → destinos (relativos del dominio o http(s)).
+       Cada episodio compartido genera un código (~20k/mes) — el tope de
+       20000 quedó pequeño con el uso real: 100000 da margen por años.    */
     if (cat.links !== undefined) {
       if (!cat.links || typeof cat.links !== 'object' || Array.isArray(cat.links) || !noBadKeys(cat.links)) return false;
       const ks = Object.keys(cat.links);
-      if (ks.length > 20000) return false;
+      if (ks.length > 100000) return false;
       for (const k of ks) {
         if (!/^[a-z0-9][a-z0-9-]{1,14}$/i.test(k)) return false;
         const l = cat.links[k];
@@ -1286,6 +1288,29 @@
           if (c.url !== undefined && !/^https?:\/\//i.test(escX(c.url))) razones.push(`Canal «${escX(c.name).slice(0, 30)}»: URL inválida`);
         }
         if (!Array.isArray(payload.series) || !payload.series.length) razones.push('el paquete saldría sin ninguna serie');
+        /* 🔗 mapa del acortador: exceder el tope bloquea TODO el catálogo
+           (fue el culpable silencioso del «validación integral»)          */
+        const nLinks = payload.links ? Object.keys(payload.links).length : 0;
+        if (nLinks > 100000) razones.push(`el mapa de enlaces cortos tiene ${nLinks} códigos (máx 100000)`);
+        for (const [k, l] of Object.entries(payload.links || {}).slice(0, 300000)) {
+          if (!/^[a-z0-9][a-z0-9-]{1,14}$/i.test(k)) { razones.push(`enlace corto «${k}»: código inválido`); break; }
+          if (!l || typeof l !== 'object' || typeof l.dest !== 'string' || !l.dest || l.dest.length > 2048) { razones.push(`enlace corto «${k}»: destino inválido`); break; }
+          if (!(/^https?:\/\//i.test(l.dest) || l.dest.startsWith('/') || l.dest.startsWith('#'))) { razones.push(`enlace corto «${k}»: el destino no empieza por http(s):// / #`); break; }
+        }
+        /* 🖼 posters y thumbs de episodio: un solo data:URI con mime raro
+           (p. ej. svg+xml) tumba el catálogo completo                   */
+        for (const s of (payload.series || [])) {
+          const nombre = escX(s.t).slice(0, 40) || escX(s.id).slice(0, 40);
+          const badThumb = u => typeof u === 'string' && u.length > 300000 ||
+            (typeof u === 'string' && u.startsWith('data:image/') && !/^data:image\/(png|jpe?g|webp|gif|avif);/i.test(u));
+          if (s.poster && (badThumb(s.poster) || (!/^https?:\/\//i.test(s.poster) && !s.poster.startsWith('data:image/')))) razones.push(`«${nombre}»: póster inválido`);
+          if (s.seasons) for (const kk of Object.keys(s.seasons)) if (!/^\d{1,3}$/.test(kk)) { razones.push(`«${nombre}»: clave de temporada «${kk}» inválida`); break; }
+          for (const e of (s.episodes || [])) {
+            if (typeof e.n !== 'number' || !isFinite(e.n) || e.n < 0) { razones.push(`«${nombre}»: episodio sin número válido`); break; }
+            if (e.thumb && (badThumb(e.thumb) || (!/^https?:\/\//i.test(e.thumb) && !e.thumb.startsWith('data:image/')))) { razones.push(`«${nombre}» episodio ${e.n}: miniatura inválida`); break; }
+            if (e.sub !== undefined && e.sub !== '' && !/^https?:\/\//i.test(e.sub)) { razones.push(`«${nombre}» episodio ${e.n}: URL de subtítulos inválida`); break; }
+          }
+        }
       } catch (e) { }
       const detalle = razones.length ? razones.slice(0, 3).join('  ·  ') : 'un registro no supera la validación integral (revisa lo último editado)';
       axToast(`🚨 Publicación BLOQUEADA: ${detalle}. Corrige ese registro y vuelve a publicar.`, true);
