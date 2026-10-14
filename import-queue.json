@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791938551002,
+ "at": 1791938764440,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1I3tHbVr1aLR819g6VuHCsN82dY12Tl_L/view?usp=sharing",
@@ -8,9 +8,9 @@
    "title": "Hulk",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 7,
-   "nextRetryAt": 1791935776302,
+   "error": "HTTP 401",
+   "attempts": 8,
+   "nextRetryAt": 1791938639950,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -21,9 +21,9 @@
    "title": "Motiqueiro Fantasma: Espíritu de Venganza",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 2,
-   "nextRetryAt": 1791936008595,
+   "error": "HTTP 401",
+   "attempts": 3,
+   "nextRetryAt": 1791938640824,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -35,8 +35,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791928327170,
+   "attempts": 2,
+   "nextRetryAt": 1791938641497,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -48,70 +48,10 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791928327990,
+   "attempts": 2,
+   "nextRetryAt": 1791938642440,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1G5fZdb3ukcWuE_-ekjJQHS8JAXlwWQv3/view",
-   "type": "drive-file",
-   "title": "Los pingüinos de Madagascar",
-   "status": "done",
-   "name": "Os Pinguins De Madagascar 2015 Dublado WWW CINEDRIVEHDYT TK",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1G5fZdb3ukcWuE_-ekjJQHS8JAXlwW",
-     "t": "Os Pinguins De Madagascar 2015 Dublado WWW CINEDRIVEHDYT TK",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1G5fZdb3ukcWuE_-ekjJQHS8JAXlwWQv3&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1G5fZdb3ukcWuE_-ekjJQHS8JAXlwWQv3/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/0B3baqLuxK3DaTDhqMU5mV21uSFU/view",
-   "type": "drive-file",
-   "title": "El Poderoso Chefinho",
-   "status": "done",
-   "name": "O Poderoso Chefinho - Dublado - HD https://assistirfilmesnocelular blogspot com ",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-0B3baqLuxK3DaTDhqMU5mV21uSFU-v",
-     "t": "O Poderoso Chefinho - Dublado - HD https://assistirfilmesnocelular blogspot com ",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=0B3baqLuxK3DaTDhqMU5mV21uSFU&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/0B3baqLuxK3DaTDhqMU5mV21uSFU/view"
-      }
-     ]
-    }
-   ],
    "syncedAt": 1791675754524
   },
   {
@@ -120,144 +60,43 @@
    "title": "Bruce Lee - O Dragão Chinês",
    "status": "queued",
    "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791938652656,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1oKKRkON0hmAY3CEtjgzLs1TnU99DA3Qj/view",
-   "type": "drive-file",
-   "title": "Mientras Dormías",
-   "status": "done",
-   "name": "Enquanto Você Dormia 1995 Dublado",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1oKKRkON0hmAY3CEtjgzLs1TnU99DA",
-     "t": "Enquanto Você Dormia 1995 Dublado",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1oKKRkON0hmAY3CEtjgzLs1TnU99DA3Qj&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1oKKRkON0hmAY3CEtjgzLs1TnU99DA3Qj/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1ot62walHydIpD472RFpWxw9Wp5IcIxE4/view",
-   "type": "drive-file",
-   "title": "",
-   "status": "done",
-   "name": "@CineClubeTV - Dr Dolittle 2020",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1ot62walHydIpD472RFpWxw9Wp5IcI",
-     "t": "@CineClubeTV - Dr Dolittle 2020",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1ot62walHydIpD472RFpWxw9Wp5IcIxE4&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1ot62walHydIpD472RFpWxw9Wp5IcIxE4/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1sMTemXfpBJVA6gXbvWCQTvxTsA-LAbt8/view",
-   "type": "drive-file",
-   "title": "Dois Irmãos: Una Jornada Fantástica",
-   "status": "done",
-   "name": "Dois Irmaos Uma Jornada Fantastica 2020 DUBLADO-UNIVERSO3GP",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1sMTemXfpBJVA6gXbvWCQTvxTsA-LA",
-     "t": "Dois Irmaos Uma Jornada Fantastica 2020 DUBLADO-UNIVERSO3GP",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1sMTemXfpBJVA6gXbvWCQTvxTsA-LAbt8&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1sMTemXfpBJVA6gXbvWCQTvxTsA-LAbt8/view"
-      }
-     ]
-    }
-   ],
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1YuP3OCF49L-BbPxd3Y6GrCkDSGgmIJqL/view",
-   "type": "drive-file",
-   "title": "Artemis Fowl: El Mundo Secreto",
-   "status": "done",
-   "name": "Artemis Fowl: O Mundo Secreto [2020]",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-1YuP3OCF49L-BbPxd3Y6GrCkDSGgmI",
-     "t": "Artemis Fowl: O Mundo Secreto [2020]",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=1YuP3OCF49L-BbPxd3Y6GrCkDSGgmIJqL&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/1YuP3OCF49L-BbPxd3Y6GrCkDSGgmIJqL/view"
-      }
-     ]
-    }
-   ],
    "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/10J56nrKixtOpg53vm4uJmfCMBsD0OF3H/view?usp=drivesdk",
    "type": "drive-file",
    "title": "La Hora de Su Muerte",
-   "status": "queued",
-   "name": "",
+   "status": "done",
+   "name": "La Hora de Su Muerte",
    "error": "",
    "attempts": 0,
    "nextRetryAt": 0,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-10J56nrKixtOpg53vm4uJmfCMBsD0O",
+     "t": "La Hora de Su Muerte",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=10J56nrKixtOpg53vm4uJmfCMBsD0OF3H&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/10J56nrKixtOpg53vm4uJmfCMBsD0OF3H/view"
+      }
+     ],
+     "at": 1791938757701,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
