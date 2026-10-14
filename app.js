@@ -5856,6 +5856,39 @@ document.getElementById('clClose')?.addEventListener('click', () => {
   clearInterval(iqMonitorTimer);
   renderQueuePill();   /* el pill vuelve justo al cerrar el monitor */
 });
+
+/* ═══════════ 🗑 CANCELAR TODA LA IMPORTACIÓN ═══════════
+   Detiene el proceso LOCAL al instante (flag + abort del bucle),
+   limpia TODA la cola (pendientes + completados), la sube a la
+   nube para que ningún dispositivo la reanude, y cierra el monitor. */
+let iqCancelled = false;   /* el bucle de processImportQueue lo revisa en cada iteración */
+function iqCancelAll() {
+  if (!importQueue.length) { toast('No hay ninguna importación en curso'); return; }
+  const pend = importQueue.filter(q => q.status === 'queued').length;
+  if (!pend && !importRunning && !iqCloudActive) { toast('No hay importación activa que cancelar'); return; }
+  const n = importQueue.length;
+  /* 1) matar el bucle local YA */
+  iqCancelled = true;
+  importRunning = false;
+  iqBackground = false;
+  iqCloudActive = false;
+  clearInterval(iqScheduleTimer);   /* parar el reintento programado */
+  /* 2) enterrar TODO (pendientes + procesados): jamás se re-adoptan */
+  iqDeadAdd(importQueue.map(q => q.url));
+  importQueue = [];
+  iqMerged = 0;
+  iqPersist();
+  iqSyncRemote();   /* que la nube también quede limpia al instante */
+  /* 3) cerrar monitor + pill + modal de importación */
+  document.getElementById('modalCloud')?.classList.add('hidden');
+  clearInterval(iqMonitorTimer);
+  els.modalDrive?.classList.add('hidden');
+  renderQueuePill();
+  iqCancelled = false;   /* reset para permitir futuras importaciones */
+  toast(`🗑 Importación cancelada — ${n} enlace${n === 1 ? '' : 's'} fuera de la cola`);
+}
+document.getElementById('clCancel')?.addEventListener('click', () => iqCancelAll());
+document.getElementById('iqCancelPill')?.addEventListener('click', ev => { ev.stopPropagation(); iqCancelAll(); });
 document.getElementById('modalCloud')?.addEventListener('click', ev => {
   if (ev.target.id === 'modalCloud') {
     ev.target.classList.add('hidden');
@@ -5928,6 +5961,7 @@ async function processImportQueue() {
   const createdMovies = [];   /* películas creadas en la tanda → detección de sagas */
   try {
     while (true) {
+      if (iqCancelled) break;   /* 🗑 CANCELAR TODO: se detiene al instante */
       const next = importQueue.find(q => q.status === 'queued' && (q.nextRetryAt || 0) <= Date.now());
       if (!next) break;
       renderQueuePill();
