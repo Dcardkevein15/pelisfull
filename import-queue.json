@@ -1,18 +1,37 @@
 {
  "v": 1,
- "at": 1791987990420,
+ "at": 1791992233532,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/0B_s87pjxoqmYcS1xbVVscXRNWm8/view",
    "type": "drive-file",
    "title": "Bruce Lee - O Dragão Chinês",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "status": "done",
+   "name": "Bruce Lee - O Dragão Chinês",
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, sin red, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
    "attempts": 5,
-   "nextRetryAt": 1791987743166,
+   "nextRetryAt": 1791988707351,
    "addedAt": 1791675754521,
-   "payload": null,
+   "payload": [
+    {
+     "id": "file-https-drive-google-com-file-d-0B_s87pjxoqmYcS1xbVVscXRNWm8-v",
+     "t": "Bruce Lee - O Dragão Chinês",
+     "jp": "🎬",
+     "tag": "Google Drive · Archivo",
+     "g": 6,
+     "kind": "pelicula",
+     "poster": "https://drive.google.com/thumbnail?id=0B_s87pjxoqmYcS1xbVVscXRNWm8&sz=w1000",
+     "episodes": [
+      {
+       "n": 1,
+       "t": "▶ Ver",
+       "url": "https://drive.google.com/file/d/0B_s87pjxoqmYcS1xbVVscXRNWm8/view"
+      }
+     ],
+     "at": 1791992234463,
+     "genreTmdbDone": false
+    }
+   ],
    "syncedAt": 1791675754524
   },
   {
@@ -21,9 +40,9 @@
    "title": "Enrolados",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, HTTP 401, timeout).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 2,
-   "nextRetryAt": 1791987457987,
+   "error": "HTTP 401",
+   "attempts": 1,
+   "nextRetryAt": 1791974057509,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
