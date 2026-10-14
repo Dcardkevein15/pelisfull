@@ -1,20 +1,7 @@
 {
  "v": 1,
- "at": 1791993674413,
+ "at": 1791993746242,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/0B23jIx5gZY-gQ0pkQjh4UENBVm8/view",
-   "type": "drive-file",
-   "title": "Enrolados",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (timeout, HTTP 408, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 2,
-   "nextRetryAt": 1791992725626,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/0B2vsb91p1MdwZHZHOUZnOV9FWWs/view",
    "type": "drive-file",
@@ -29,74 +16,9 @@
    "syncedAt": 1791675754524
   },
   {
-   "url": "https://drive.google.com/file/d/1KEZUvKuDfLHeUHMXIk-JrQCFP4SLLy-0/view",
-   "type": "drive-file",
-   "title": "La Ventana Secreta",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/0B6vCCJL7cjugQnBUQUJRdDAwajA/view",
-   "type": "drive-file",
-   "title": "A Espera De Um Milagre",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
    "url": "https://drive.google.com/file/d/0B7ysov_6JBtfMTZubnpxUXYwMXM/view",
    "type": "drive-file",
    "title": "Cementerio Maldito",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1A64R-JLdyT3KcsI30W0FLOjTEGjTFmtz/view",
-   "type": "drive-file",
-   "title": "Cemitério Maldito2",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1EzJzDoOZ1u9-KXRhue5RVR-JPzXOKSva/view",
-   "type": "drive-file",
-   "title": "Llamas de la Venganza",
-   "status": "queued",
-   "name": "",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/1CvXvHfeVr8yQ9X3lQtljyyu_dagtGN0d/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Convención De Las Brujas",
    "status": "queued",
    "name": "",
    "error": "",
