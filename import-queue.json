@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791938541728,
+ "at": 1791938551002,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1I3tHbVr1aLR819g6VuHCsN82dY12Tl_L/view?usp=sharing",
@@ -8,9 +8,9 @@
    "title": "Hulk",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 8,
-   "nextRetryAt": 1791938639950,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 7,
+   "nextRetryAt": 1791935776302,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -21,9 +21,9 @@
    "title": "Motiqueiro Fantasma: Espíritu de Venganza",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 3,
-   "nextRetryAt": 1791938640824,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 2,
+   "nextRetryAt": 1791936008595,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -35,8 +35,8 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 2,
-   "nextRetryAt": 1791938641497,
+   "attempts": 1,
+   "nextRetryAt": 1791928327170,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -48,53 +48,11 @@
    "status": "queued",
    "name": "",
    "error": "HTTP 401",
-   "attempts": 2,
-   "nextRetryAt": 1791938642440,
+   "attempts": 1,
+   "nextRetryAt": 1791928327990,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/0BxLl-c-B4sJxQlBhUk5LOXlCeDQ/view",
-   "type": "drive-file",
-   "title": "Madagascar",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938523320
-  },
-  {
-   "url": "https://drive.google.com/file/d/0BxLl-c-B4sJxRTR1LVp1V2RoZ3M/view",
-   "type": "drive-file",
-   "title": "Madagascar 2",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938524185
-  },
-  {
-   "url": "https://drive.google.com/file/d/1905d_sEXW_7KV2SmFQ9xd-ADEgHT5E29/view",
-   "type": "drive-file",
-   "title": "Madagascar 3",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938524844
   },
   {
    "url": "https://drive.google.com/file/d/1G5fZdb3ukcWuE_-ekjJQHS8JAXlwWQv3/view",
@@ -124,78 +82,7 @@
      ]
     }
    ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1VIaJ8UgoAJkIBtjtLjm1WIXJ0kFbLfAK/view",
-   "type": "drive-file",
-   "title": "Monstruos vs alienígenas",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938526349
-  },
-  {
-   "url": "https://drive.google.com/file/d/1Ybdav_Unp5JZyqY08EdkIteYGc__Vyco/view",
-   "type": "drive-file",
-   "title": "Kung Fu Panda",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938527042
-  },
-  {
-   "url": "https://drive.google.com/file/d/1-qhjsmlTqwgR7itseOBTnTslGEOID_6r/view",
-   "type": "drive-file",
-   "title": "Kung Fu Panda 2",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938527899
-  },
-  {
-   "url": "https://drive.google.com/file/d/1SsKQ09uVDcAv2Z2r4ixtF90apoyMntsr/view",
-   "type": "drive-file",
-   "title": "Kong fu panda 3",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938528617
-  },
-  {
-   "url": "https://drive.google.com/file/d/13VakvkvXBE7BSiE3P_8d6zS5SDjucffT/view",
-   "type": "drive-file",
-   "title": "MegaMente",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938529781
+   "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/0B3baqLuxK3DaTDhqMU5mV21uSFU/view",
@@ -225,22 +112,7 @@
      ]
     }
    ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1TgMkgbWra-U8-o5_EDvpyMXIDEmF9IZ6/view",
-   "type": "drive-file",
-   "title": "Trolls",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938531791
+   "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/0B_s87pjxoqmYcS1xbVVscXRNWm8/view",
@@ -248,9 +120,9 @@
    "title": "Bruce Lee - O Dragão Chinês",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791938652656,
+   "error": "",
+   "attempts": 0,
+   "nextRetryAt": 0,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
@@ -283,50 +155,7 @@
      ]
     }
    ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1aebmo68IbqI7DUyl2i0u7q_nOKMA3uVV/view",
-   "type": "drive-file",
-   "title": "After 2: Depois Da Verdade",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938534356
-  },
-  {
-   "url": "https://drive.google.com/file/d/1Ig9J5fb4ei2t8Lqdy0jwr2M661wbgRRs/view",
-   "type": "drive-file",
-   "title": "Jojo Rabbit",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938535560
-  },
-  {
-   "url": "https://drive.google.com/file/d/1-4EqdNkBFzf64f3JlgB2IyHxZv1erh4b/view",
-   "type": "drive-file",
-   "title": "",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938536678
+   "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1ot62walHydIpD472RFpWxw9Wp5IcIxE4/view",
@@ -356,22 +185,7 @@
      ]
     }
    ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/1rCPYuQDLvvkxfsDxHm9hLtozMZNdDtDg/view",
-   "type": "drive-file",
-   "title": "El Faro",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 403) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938538265
+   "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1sMTemXfpBJVA6gXbvWCQTvxTsA-LAbt8/view",
@@ -401,8 +215,7 @@
      ]
     }
    ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
+   "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/1YuP3OCF49L-BbPxd3Y6GrCkDSGgmIJqL/view",
@@ -432,22 +245,7 @@
      ]
     }
    ],
-   "syncedAt": 1791675754524,
-   "processedBy": "cloud"
-  },
-  {
-   "url": "https://drive.google.com/file/d/195eAL_Xo_jMFClIc1sUhsAkclP-PcoCa/view",
-   "type": "drive-file",
-   "title": "Magnates del Crimen",
-   "status": "failed-final",
-   "name": "",
-   "error": "[PERMANENTE] el archivo no existe o fue borrado (HTTP 404) — pega el enlace correcto",
-   "attempts": 1,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524,
-   "failedAt": 1791938541228
+   "syncedAt": 1791675754524
   },
   {
    "url": "https://drive.google.com/file/d/10J56nrKixtOpg53vm4uJmfCMBsD0OF3H/view?usp=drivesdk",
