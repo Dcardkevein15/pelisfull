@@ -5857,38 +5857,63 @@ document.getElementById('clClose')?.addEventListener('click', () => {
   renderQueuePill();   /* el pill vuelve justo al cerrar el monitor */
 });
 
-/* ═══════════ 🗑 CANCELAR TODA LA IMPORTACIÓN ═══════════
-   Detiene el proceso LOCAL al instante (flag + abort del bucle),
-   limpia TODA la cola (pendientes + completados), la sube a la
-   nube para que ningún dispositivo la reanude, y cierra el monitor. */
-let iqCancelled = false;   /* el bucle de processImportQueue lo revisa en cada iteración */
+/* ═══════════ 🗑 CANCELAR TODA LA IMPORTACIÓN (a prueba de balas) ═══════════
+   El proceso de importación tiene 5 caminos de reanudación:
+   1. El bucle while de processImportQueue (local, en vivo)
+   2. iqRetryTimer (setTimeout programado del reintento)
+   3. setInterval cada 2min que re-llama processImportQueue
+   4. iqPollRemote cada 30s que puede traer la cola desde GitHub
+   5. iqSyncRemote que puede traer la cola del repo remoto
+   Este cancelar los CORTA todos: flag persistente + limpiar todos los
+   timers + vaciar la cola + empujar la cola vacía a la nube + bloquear
+   iqSyncRemote de traer nada de vuelta mientras esté cancelado.        */
+let iqCancelled = false;   /* 🗑 PERMANENTE hasta que el usuario inicie una importación NUEVA */
 function iqCancelAll() {
-  if (!importQueue.length) { toast('No hay ninguna importación en curso'); return; }
-  const pend = importQueue.filter(q => q.status === 'queued').length;
-  if (!pend && !importRunning && !iqCloudActive) { toast('No hay importación activa que cancelar'); return; }
+  if (!importQueue.length && !importRunning) { toast('No hay ninguna importación en curso'); return; }
   const n = importQueue.length;
-  /* 1) matar el bucle local YA */
+
+  /* 1) MATAR EL FLAG: el bucle, el intervalo y el poll lo respetan */
   iqCancelled = true;
-  importRunning = false;
-  iqBackground = false;
-  iqCloudActive = false;
-  clearInterval(iqScheduleTimer);   /* parar el reintento programado */
-  /* 2) enterrar TODO (pendientes + procesados): jamás se re-adoptan */
+
+  /* 2) MATAR TODOS LOS TIMERS */
+  clearTimeout(iqRetryTimer);
+  iqRetryTimer = null;
+
+  /* 3) VACIAR LA COLA COMPLETA y enterrar TODO para siempre */
   iqDeadAdd(importQueue.map(q => q.url));
   importQueue = [];
   iqMerged = 0;
   iqPersist();
-  iqSyncRemote();   /* que la nube también quede limpia al instante */
-  /* 3) cerrar monitor + pill + modal de importación */
+
+  /* 4) DETENER EL PROCESO LOCAL */
+  importRunning = false;
+  iqBackground = false;
+  iqCloudActive = false;
+
+  /* 5) CERRAR MONITOR + PILL + MODAL DE IMPORTACIÓN */
   document.getElementById('modalCloud')?.classList.add('hidden');
   clearInterval(iqMonitorTimer);
   els.modalDrive?.classList.add('hidden');
+
+  /* 6) EMPUJAR COLA VACÍA A LA NUBE (así ningún dispositivo la reanuda) */
+  iqSyncRemote().catch(() => { });
+
+  /* 7) OCULTAR EL PILL */
   renderQueuePill();
-  iqCancelled = false;   /* reset para permitir futuras importaciones */
-  toast(`🗑 Importación cancelada — ${n} enlace${n === 1 ? '' : 's'} fuera de la cola`);
+
+  toast(`🗑 Importación cancelada — ${n} enlace${n === 1 ? '' : 's'} eliminados para siempre`);
 }
 document.getElementById('clCancel')?.addEventListener('click', () => iqCancelAll());
 document.getElementById('iqCancelPill')?.addEventListener('click', ev => { ev.stopPropagation(); iqCancelAll(); });
+
+/* 🔓 desbloquear: SOLO cuando el usuario inicia una importación NUEVA */
+function iqUnblock() {
+  if (iqCancelled) {
+    iqCancelled = false;
+    clearTimeout(iqRetryTimer);
+    iqRetryTimer = null;
+  }
+}
 document.getElementById('modalCloud')?.addEventListener('click', ev => {
   if (ev.target.id === 'modalCloud') {
     ev.target.classList.add('hidden');
@@ -5952,6 +5977,7 @@ const romanToInt = r => { const map = { i: 1, ii: 2, iii: 3, iv: 4, v: 5, vi: 6,
    reintentos automáticos (backoff 2m→5m→15m→1h→4h→24h) y dedup.       */
 async function processImportQueue() {
   if (importRunning) return;
+  if (iqCancelled) return;   /* 🗑 cancelado: nada vuelve a procesar */
   /* sin sesión del equipo la cola queda congelada (retoma al volver) */
   if (!canAdmin()) return;
   if (!importQueue.some(q => q.status === 'queued' && (q.nextRetryAt || 0) <= Date.now())) return;
@@ -6265,6 +6291,7 @@ document.getElementById('driveReviewPend')?.addEventListener('click', () => {
 /* ⚡ botón Importar: encola TODO y lo manda a la ☁ NUBE (GitHub Actions) */
 els.confirmDrive.addEventListener('click', async () => {
   if (!needAdmin()) return;
+  iqUnblock();   /* 🔓 una importación NUEVA desbloquea una cancelación anterior */
   const text = els.driveFolderUrl.value;
   const links = parseImportLinks(text);
   const valid = links.filter(l => l.type);
@@ -6801,8 +6828,8 @@ setTimeout(async () => {
   }
 }, 5000);
 /* latido: cada 30s mira si la nube terminó algo · cada 2min retoma vencidos */
-setInterval(() => { if (!importRunning) iqPollRemote(); }, 30e3);
-setInterval(() => { if (!importRunning && canAdmin()) processImportQueue(); }, 120e3);
+setInterval(() => { if (!importRunning && !iqCancelled) iqPollRemote(); }, 30e3);
+setInterval(() => { if (!importRunning && !iqCancelled && canAdmin()) processImportQueue(); }, 120e3);
 
 els.driveFolderBtn.addEventListener('click', () => {
   els.modalDrive.classList.remove('hidden');
