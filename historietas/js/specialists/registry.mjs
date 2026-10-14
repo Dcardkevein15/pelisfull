@@ -38,7 +38,7 @@ export function fullTeam(category) {
 /** Miembros del equipo que trabajan en una fase concreta. */
 export function teamForPhase(category, phase) {
   const own = category.equipo.filter((s) => s.fases.includes(phase));
-  const shared = [VISUAL_DIRECTOR, CONTINUITY_GUARDIAN].filter((s) => s.fases.includes(phase));
+  const shared = [CONTINUITY_GUARDIAN].filter((s) => s.fases.includes(phase));
   if (phase === 'impacto' && !own.length) {
     // respaldo: cualquier cirujano del género
     return [...category.equipo.filter((s) => /cirujan/i.test(s.rol)), ...shared];

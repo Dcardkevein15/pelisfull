@@ -1,0 +1,5 @@
+# El taller escribe aquí su almacenamiento local persistente (driver 'local')
+# y el token de desarrollo (studio-token.txt). Nada de esto se commitea ni se despliega.
+data/
+node_modules/
+*.log

@@ -12,7 +12,7 @@ import { el, icon, toast } from './ui/components.mjs';
 bootApp();
 
 /* Marca de versión: confirma de un vistazo qué build corre el navegador (pie de página). */
-const VERSION = 'v3.0 · Solo texto + PDF + Taller de Ilustración';
+const VERSION = 'v3.1 · Taller con persistencia real (Vercel Blob / local)';
 (() => {
   const foot = document.querySelector('.foot');
   if (foot) foot.append(' · ' + VERSION);

@@ -297,6 +297,54 @@
 /* estado activo de botones */
 .btn.is-on { border-color: var(--accent); color: var(--accent); }
 
+/* tabs del Taller */
+.taller__tabs { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.taller__tab {
+  display: inline-flex; gap: 7px; align-items: center; cursor: pointer;
+  background: transparent; border: 1px solid var(--line-soft); color: var(--muted);
+  padding: 7px 14px; border-radius: 999px; font-size: 13px; transition: all .15s ease;
+}
+.taller__tab:hover { color: var(--ink); border-color: var(--line); }
+.taller__tab.is-sel { background: var(--accent); border-color: var(--accent); color: #14161c; font-weight: 700; }
+
+/* panel genérico del Taller (Personajes / Memoria) */
+.taller__panel { display: flex; flex-direction: column; gap: 16px; }
+.taller__panel-head { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 14px 16px; }
+.taller__panel-title { display: flex; gap: 9px; align-items: center; font-family: var(--font-display); font-size: 18px; }
+.taller__ficha-head { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.taller__carta--ficha { padding: 14px; }
+.taller__refs { display: flex; gap: 8px; flex-wrap: wrap; }
+.taller__ref { position: relative; width: 64px; height: 64px; border-radius: 8px; overflow: hidden; border: 2px solid var(--line); cursor: pointer; }
+.taller__ref img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.taller__ref.is-ok { border-color: var(--ok); }
+.taller__ref.is-off { opacity: .35; }
+.taller__ref-tipo { position: absolute; bottom: 0; left: 0; right: 0; font-size: 8.5px; text-align: center; background: rgba(13,14,18,.8); color: var(--ink); padding: 1px 2px; }
+
+/* estado de ilustración dentro del hueco */
+.taller__hueco { position: relative; }
+.taller__hueco img { border-radius: var(--radius-s); }
+.taller__hueco--correccion { border-color: rgba(240, 168, 60, .7); }
+.taller__hueco--error { border-color: rgba(226, 99, 92, .7); }
+.taller__estado-chip {
+  font-size: 9.5px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
+  border-radius: 999px; padding: 3px 8px; border: 1px solid var(--line);
+  background: rgba(13,14,18,.85); color: var(--ink-soft);
+}
+.taller__estado-chip--aprobada { color: var(--ok); border-color: var(--ok); }
+.taller__estado-chip--requiere_correccion { color: var(--accent); border-color: var(--accent); }
+.taller__estado-chip--en_revision { color: var(--ink); }
+.taller__estado-chip--generando { color: var(--accent-deep); }
+.taller__estado-chip--error { color: var(--err); border-color: var(--err); }
+.taller__hueco[data-estado='trabajando']::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: repeating-linear-gradient(45deg, rgba(240,168,60,.12) 0 12px, transparent 12px 24px);
+  animation: tallerTrabajo 1.2s linear infinite;
+}
+@keyframes tallerTrabajo { to { background-position: 34px 0; } }
+.taller__hueco[data-estado='ok'] { border-style: solid; border-color: rgba(88, 201, 140, .45); }
+.taller__hueco[data-estado='error'] { border-color: rgba(226, 99, 92, .6); }
+.taller__hueco[data-estado='pendiente'] { border-color: var(--line); }
+
 /* ================= TALLER DE ILUSTRACIÓN (Parte 2) ================= */
 .taller { display: flex; flex-direction: column; gap: 18px; }
 .taller__head { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }

@@ -1,12 +1,12 @@
-/* domain.test.mjs — modelo de libro, continuidad y assets. */
+/* domain.test.mjs — modelo de libro, continuidad textual y elenco (v3.0).
+   Las semillas, cámaras y pesos visuales viven en el Taller (Parte 2). */
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createBook, normalizeChapter, normalizeOutline, computeStats, keyChapterIndexes, PHASES, normalizeFuente } from '../js/domain/book.mjs';
-import { seedForPanel, cameraFor, nextCamera, compressBible, dnaLine, styleLockFor, refsForParagraph, CAMERA_SHOTS } from '../js/domain/continuity.mjs';
-import { createAsset, assetDnaLine, generateAssetPortrait } from '../js/domain/assets.mjs';
+import { createBook, normalizeChapter, normalizeOutline, computeStats, keyChapterIndexes, PHASES, normalizeFuente, normalizePortada } from '../js/domain/book.mjs';
+import { compressBible, dnaLine, lastParagraphs, outlineDigest } from '../js/domain/continuity.mjs';
+import { createAsset, assetDnaLine, craftAssetDNA } from '../js/domain/assets.mjs';
 import { getCategory } from '../js/specialists/registry.mjs';
-import { hashString } from '../js/core/utils.mjs';
 import { MockClient } from './helpers.mjs';
 
 const BRIEF = {
@@ -22,9 +22,12 @@ test('createBook crea el esqueleto con defaults coherentes', () => {
   assert.equal(b.brief.categoryId, 'thriller');
   assert.equal(b.brief.capitulos.cantidad, 2);
   assert.equal(b.brief.parrafosPorCapitulo, 3);
-  assert.deepEqual(b.brief.pases, { impacto: true, visual: true });
+  assert.deepEqual(b.brief.pases, { impacto: true });
+  assert.equal(b.studio, null, 'el Taller se abre al entrar (Parte 2)');
+  assert.deepEqual(b.meta.portada, { autor: '', anio: '', dedicatoria: '' });
   assert.equal(b.chapters.length, 0);
-  assert.equal(PHASES.length, 8);
+  assert.equal(PHASES.length, 7, 'v3.0: sin fase visual');
+  assert.ok(PHASES.every((p) => p.id !== 'visual'));
 });
 
 test('createBook acota los parámetros extremos', () => {
@@ -50,23 +53,21 @@ test('normalizeOutline e normalizeChapter rellenan ids y recortan al tope', () =
   const norm = normalizeChapter(rawCh, chapter, 3);
   assert.equal(norm.paragraphs.length, 3);
   assert.equal(norm.paragraphs[0].personajesPresentes[0], 'Ana');
-  assert.equal(norm.paragraphs[0].panel.status, 'pendiente');
-  assert.ok(norm.paragraphs.every((p) => p.id));
+  assert.ok(norm.paragraphs.every((p) => p.id), 'todo párrafo con id');
+  assert.ok(norm.paragraphs.every((p) => p.panel === undefined), 'v3.0: sin estado de panel en los párrafos');
 });
 
-test('computeStats suma capítulos, palabras y paneles', () => {
+test('computeStats suma capítulos y palabras (sin paneles)', () => {
   const b = createBook(BRIEF);
   b.chapters = [
-    { titulo: 'a', paragraphs: [{ texto: 'uno dos tres cuatro', panel: { status: 'ok' } }, { texto: 'cinco', panel: { status: 'error' } }] },
-    { titulo: 'b', paragraphs: [{ texto: 'seis', panel: { status: 'pendiente' } }] },
+    { titulo: 'a', paragraphs: [{ texto: 'uno dos tres cuatro' }, { texto: 'cinco' }] },
+    { titulo: 'b', paragraphs: [{ texto: 'seis' }] },
   ];
   computeStats(b);
   assert.equal(b.stats.chapters, 2);
   assert.equal(b.stats.paragraphs, 3);
   assert.equal(b.stats.words, 6);
-  assert.equal(b.stats.panels, 3);
-  assert.equal(b.stats.panelsOk, 1);
-  assert.equal(b.stats.panelsFail, 1);
+  assert.equal(b.stats.panels, undefined, 'v3.0: la prosa no tiene paneles');
 });
 
 test('keyChapterIndexes marca apertura, medio, penúltimo y final', () => {
@@ -116,25 +117,15 @@ test('createBook lleva la fuente del manuscrito y normalizeOutline recoge las se
   assert.deepEqual(out[2].seccionesFuente, [3]);
 });
 
-test('las semillas son deterministas y varían por párrafo', () => {
-  const s1 = seedForPanel('libro', 0, 0, 0);
-  assert.equal(s1, seedForPanel('libro', 0, 0, 0));
-  assert.notEqual(s1, seedForPanel('libro', 0, 1, 0));
-  assert.notEqual(s1, seedForPanel('otro', 0, 0, 0));
-  assert.notEqual(s1, seedForPanel('libro', 0, 0, 1));
+test('normalizePortada acota autor, año y dedicatoria', () => {
+  const p = normalizePortada({ autor: 'a'.repeat(300), anio: '2026', dedicatoria: 'd'.repeat(900) });
+  assert.ok(p.autor.length <= 80);
+  assert.equal(p.anio, '2026');
+  assert.ok(p.dedicatoria.length <= 400);
+  assert.deepEqual(normalizePortada(undefined), { autor: '', anio: '', dedicatoria: '' });
 });
 
-test('la rotación de cámaras abre con establishing y no repite consecutivos', () => {
-  const K = 8;
-  const shots = Array.from({ length: K }, (_, i) => cameraFor(0, i, K, '').id);
-  assert.equal(shots[0], 'establishing_wide');
-  for (let i = 1; i < K; i++) assert.notEqual(shots[i], shots[i - 1], 'repetido en ' + i);
-  const sugerido = cameraFor(2, 3, 8, 'contrapicado');
-  assert.equal(sugerido.id, 'low_angle');
-  assert.equal(nextCamera('establishing_wide').id, CAMERA_SHOTS[4].id);
-});
-
-test('compressBible y dnaLine contienen el canon', () => {
+test('compressBible, dnaLine y continuidad textual contienen el canon', () => {
   const b = createBook(BRIEF);
   b.meta.titulo = 'La Casa';
   b.biblia.mundo = 'Mundo X';
@@ -147,78 +138,40 @@ test('compressBible y dnaLine contienen el canon', () => {
   const dna = dnaLine(b.personajes[0]);
   assert.ok(dna.startsWith('Ana —'));
   assert.ok(dna.includes('Same face, same outfit'));
+  // el ADN canónico queda en la biblia: el Taller (Parte 2) lo usará para dibujar
 });
 
-test('styleLockFor inyecta estilo y disciplina de continuidad', () => {
-  const cat = getCategory('noir');
-  const lock = styleLockFor(cat);
-  assert.ok(lock.includes('noir'));
-  assert.ok(lock.includes('identical faces'));
-});
-
-test('refsForParagraph devuelve las referencias de personajes presentes con imagen', () => {
-  const assetAna = createAsset({ nombre: 'Ana', tipo: 'personaje', descripcion: 'x' });
-  assetAna.dataURL = 'data:image/png;base64,AAA';
-  const assetsById = { [assetAna.id]: assetAna };
+test('lastParagraphs y outlineDigest sirven la continuidad entre capítulos', () => {
   const b = createBook(BRIEF);
-  b.personajes = [{ nombre: 'Ana', assetId: assetAna.id }, { nombre: 'Bruno', assetId: 'no-existe' }];
-  const refs = refsForParagraph(b, { personajesPresentes: ['ana', 'Bruno'] }, assetsById);
-  assert.equal(refs.length, 1);
-  assert.equal(refs[0], assetAna.dataURL);
+  b.chapters = normalizeOutline({ capitulos: [
+    { numero: 1, titulo: 'Uno', sinopsis: 'Ana abre la puerta.', cliffhanger: 'algo la mira' },
+    { numero: 2, titulo: 'Dos', sinopsis: 'Ana cierra la puerta.', cliffhanger: '' },
+  ] });
+  b.chapters[0].paragraphs = [{ texto: 'Primera línea.' }, { texto: 'La última del capítulo uno.' }];
+  const prev = lastParagraphs(b, 1);
+  assert.ok(prev.includes('La última del capítulo uno.'));
+  assert.ok(prev.includes('CLIFFHANGER ABIERTO'));
+  assert.equal(lastParagraphs(b, 0), '(Este es el primer capítulo.)');
+  const digest = outlineDigest(b);
+  assert.ok(digest.includes('Cap 2 — Dos'));
+  assert.ok(digest.includes('Ana cierra la puerta.'));
 });
 
-test('assets: createAsset y assetDnaLine', () => {
+test('assets: createAsset y assetDnaLine (canon textual)', () => {
   const a = createAsset({ nombre: 'Llave de sal', tipo: 'objeto', descripcion: 'Abre la puerta 12', dnaEn: 'an iron key with salt crust' });
   assert.equal(a.tipo, 'objeto');
   assert.ok(assetDnaLine(a).includes('Llave de sal'));
   assert.ok(assetDnaLine(a).includes('iron key'));
 });
 
-test('generateAssetPortrait dibuja retratos 1:1 (flujo v1.4) con ADN, estilo y semilla determinista', async () => {
+test('craftAssetDNA convierte descripción textual en ADN visual (puente al Taller)', async () => {
   const client = new MockClient();
-  const a = createAsset({ nombre: 'Ana', tipo: 'personaje', descripcion: 'la heredera' });
-  a.aparienciaEn = 'short black hair, olive skin';
-  a.vestuarioEn = 'red wool coat';
-  a.rasgoDistintivoEn = 'scar over left eyebrow';
-
-  const blob = await generateAssetPortrait(client, a, { styleEn: 'misty gothic comic' });
-  assert.ok(blob.size > 0);
-  const call = client.imageCalls[0];
-  assert.ok(call.prompt.includes('Character reference portrait of Ana'));
-  assert.ok(call.prompt.includes('head and shoulders'), 'retrato clásico del flujo v1.4');
-  assert.ok(call.prompt.includes('red wool coat'), 'inyecta el vestuario bloqueado');
-  assert.ok(call.prompt.includes('misty gothic comic'), 'inyecta el estilo de la categoría');
-  assert.ok(call.prompt.includes('no text'));
-  assert.equal(call.aspect, '1:1', '1:1 — la configuración probada con la clave del autor');
-  assert.equal(call.seed, hashString(a.id) % 2147483647, 'semilla determinista por asset');
-
-  const client2 = new MockClient();
-  await generateAssetPortrait(client2, a, { styleEn: 'misty gothic comic' });
-  assert.equal(client2.imageCalls[0].seed, call.seed, 'misma semilla en otra sesión');
-
-  const v2 = new MockClient();
-  await generateAssetPortrait(v2, a, { version: 1 });
-  assert.notEqual(v2.imageCalls[0].seed, call.seed, 'regenerar cambia la semilla');
-});
-
-test('generateAssetPortrait: paisajes y objetos con prompts específicos; ADN ausente usa la descripción', async () => {
-  const client = new MockClient();
-  const paisaje = createAsset({ nombre: 'La Casa Vela', tipo: 'paisaje', descripcion: 'una casa con hambre entre la niebla' });
-  await generateAssetPortrait(client, paisaje, {});
-  assert.ok(client.imageCalls[0].prompt.includes('Establishing concept art of La Casa Vela'));
-  assert.ok(client.imageCalls[0].prompt.includes('niebla'), 'usa la descripción si no hay ADN');
-  assert.equal(client.imageCalls[0].aspect, '1:1');
-
-  const objeto = createAsset({ nombre: 'Llave de sal', tipo: 'objeto', descripcion: 'herrumbre blanca' });
-  await generateAssetPortrait(client, objeto, {});
-  assert.ok(client.imageCalls[1].prompt.includes('Hero prop concept render of Llave de sal'));
-});
-
-test('createBook normaliza idioma y extensión de párrafo', () => {
-  const b = createBook({ ...BRIEF, idioma: 'en', extensionParrafo: 'amplia' });
-  assert.equal(b.brief.idioma, 'en');
-  assert.equal(b.brief.extensionParrafo, 'amplia');
-  const d = createBook({ ...BRIEF, extensionParrafo: 'cualquier cosa' });
-  assert.equal(d.brief.extensionParrafo, 'normal');
-  assert.equal(d.brief.idioma, 'es');
+  client.chat = async () => JSON.stringify({
+    resumen_es: 'una llave antigua',
+    apariencia_en: 'an ancient iron key crusted with white salt',
+    vestuario_en: '',
+    rasgo_distintivo_en: 'teeth worn smooth',
+  });
+  const raw = await craftAssetDNA(client, { nombre: 'Llave de sal', tipo: 'objeto', descripcion: 'llave de la puerta 12' });
+  assert.ok(raw.includes('ancient iron key'));
 });

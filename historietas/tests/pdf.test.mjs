@@ -69,10 +69,10 @@ test('buildPDF produce un PDF 1.4 válido con portada, índice y capítulos', ()
   assert.ok(str.includes('D. Cardona'));
   assert.ok(str.includes('2026'));
   assert.ok(str.includes('Para quienes esperan junto a la puerta'));
-  // índice con folios reales
+  // índice con folios reales (el guion largo se aplana a '-' en el literal PDF)
   assert.ok(str.includes('Contenido'));
-  assert.ok(str.includes('Capítulo 1 — La herencia'));
-  assert.ok(str.includes('Capítulo 2 — La primera puerta'));
+  assert.ok(str.includes('Capítulo 1 - La herencia'));
+  assert.ok(str.includes('Capítulo 2 - La primera puerta'));
   // cuerpo: acentos de la prosa intactos
   assert.ok(str.includes('acción, más allá'));
   assert.ok(str.includes('la puerta siguiente ya está abierta'), 'cliffhanger en cursiva');

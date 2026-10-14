@@ -60,7 +60,7 @@ test('los assets del autor entran como canon en todos los prompts de diseño', (
   const assets = [createAsset({ nombre: 'Perla Negra', tipo: 'objeto', descripcion: 'Un dije que chista sangre' })];
   const { user } = buildCharactersPrompt(BRIEF, { titulo: 'X', logline: 'Y' }, { mundo: 'M' }, assets);
   assert.ok(user.includes('Perla Negra'));
-  assert.ok(user.includes('CANON SAGRADOS'));
+  assert.ok(user.includes('CANON SAGRADO'));
   const { user: u2 } = buildConceptPrompt(BRIEF, assets);
   assert.ok(u2.includes('Perla Negra'));
 });

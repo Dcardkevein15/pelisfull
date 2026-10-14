@@ -96,7 +96,7 @@ function seedGroups(db) {
   ];
 }
 
-module.exports.config = { maxDuration: 60 };
+module.exports.config = { maxDuration: 10 };
 
 /* ═══════════ ALMACÉN — GitHub contents API con ETags ═══════════
    Los 304 de GitHub no consumen rate-limit: el cliente guarda los

@@ -1,12 +1,18 @@
 # Historietas — Fábrica de Historias Magistrales
 
-> Doce salas de especialistas literarios forjan libros ilustrados completos:
-> título, subtítulo, tabla de contenido, capítulos y **un panel por párrafo** con
-> personajes coherentes de la primera a la última página.
+> Doce salas de especialistas literarios forjan tu libro completo: título,
+> subtítulo, mapa de capítulos y prosa magistral. El libro se DESCARGA en PDF
+> con su portada (autor, año, dedicatoria). Cuando el texto está terminado,
+> el **Taller de Ilustración** (Parte 2) lo ilustra capítulo a capítulo.
 
 App 100 % estática (HTML + CSS + JS, sin build, sin dependencias) que vive en
 `public/historietas/` y se sirve en **`/historietas`** del monorepo. También
 funciona standalone con `ABRIR-HISTORIETAS.bat`.
+
+**v3.0 — SOLO TEXTO**: la creación del libro (arquitectura principal) está
+completamente separada de la creación de imágenes. Las ilustraciones se
+procesan en el Taller, un capítulo por sesión, y solo se avanza al siguiente
+cuando la calidad está confirmada. La narración de voz quedó intacta.
 
 ---
 
@@ -16,7 +22,7 @@ funciona standalone con `ABRIR-HISTORIETAS.bat`.
 |---|---|---|
 | Integrado (recomendado) | el servidor Next del monorepo ya la sirve; los rewrites de `next.config.ts` puentean la API | `http://localhost:9002/historietas` |
 | Standalone | doble clic en `ABRIR-HISTORIETAS.bat` (arranca `server.js`, puerto 9130, con puente CORS) | `http://localhost:9130/` |
-| Tests (Node 18+) | `node --test tests/*.test.mjs` | 132 pruebas, sin red |
+| Tests (Node 18+) | `node --test tests/*.test.mjs` | 131 pruebas, sin red |
 
 ## Clave de API (gratuita)
 
@@ -25,109 +31,127 @@ funciona standalone con `ABRIR-HISTORIETAS.bat`.
 
 La clave se guarda solo en `localStorage` de tu navegador. Nunca viaja a ningún
 servidor salvo a la API de NVIDIA (Authorization Bearer), y el puente del mismo
-origen (`/historietas/api/…`) solo admite como destino `integrate.api.nvidia.com`
-y `ai.api.nvidia.com`.
+origen (`/historietas/api/…`) solo admite como destino `integrate.api.nvidia.com`.
 
-## Modelos (elegidos tras investigar el catálogo, Oct 2026)
+## Modelo (elegidos tras investigar el catálogo, Oct 2026)
 
-- **Escritura — `moonshotai/kimi-k3`** (recomendado): 2.8T parámetros MoE, multimodal
-  (entiende las imágenes que subas), 1M de contexto. Alternas: Nemotron 3 Ultra 550B,
-  DeepSeek V4 Pro, GLM 5.3; rápidos: Nemotron 3.5 Lightning, GLM 5.3 Flash.
-- **Paneles — `black-forest-labs/flux.2-klein-4b`** (recomendado): el más nuevo y rapidísimo.
-  La coherencia de personajes se sostiene con ADN visual canónico + semilla determinista.
-  Alternas: FLUX.1 Schnell (4 pasos), FLUX.1 Kontext (reencuadra un panel manteniendo
-  al personaje idéntico), SD 3.5 Large. Nota técnica: el endpoint alojado valida
-  `width`/`height` contra una lista cerrada y rechaza el campo `image` — la app usa
-  solo dimensiones del esquema oficial y coherencia por ADN+semilla.
+- **Escritura — `moonshotai/kimi-k3`** (recomendado): 2.8T parámetros MoE,
+  multimodal, 1M de contexto. Alternas: Nemotron 3 Ultra, DeepSeek V4 Pro,
+  GLM 5.3; rápidos: Nemotron 3.5 Lightning, GLM 5.3 Flash.
 
-## Cómo forja un libro (pipeline)
+## Cómo forja un libro (pipeline de TEXTO)
 
 ```
 Concepto → Biblia → Personajes → Esquema → Escritura (cap a cap)
-        → Pase de impacto (capítulos clave) → Guion visual → Paneles → Listo
+         → Pase de impacto (capítulos clave) → Libro terminado
 ```
 
-### Perfeccionar tu propio libro (nuevo)
+### Perfeccionar tu propio libro
 
 En **Nueva historia** puedes **arrastrar tu manuscrito** (PDF, DOCX, TXT o MD — o pegar el
-texto). El editor literario forense de la sala lo analiza y **rellena TODO el encargo
-automáticamente**: título, tono, punto de vista, público, tipo de final, época, premisa,
-intensidades, género detectado y elenco del original (con ADN visual para los paneles).
+texto). El editor literario forense lo analiza y **rellena TODO el encargo
+automáticamente**: título, tono, punto de vista, público, tipo de final, época,
+premisa, intensidades, género detectado y elenco del original (con ADN visual
+para las ilustraciones).
 
 Después decides el nivel de personalización de la mejora:
-- **Fidelidad**: Alta (respetar trama, escenas y final) · Equilibrada · Audaz (reimaginar)
+- **Fidelidad**: Alta (respetar trama, escenas y final) · Equilibrada · Audaz
 - **Prosa**: Pulir (toques mínimos) · Editorial · Plena voz de la sala
 - **Preservar**: nombres de personajes, tu final, tus escenas clave (checkboxes)
 - **Indicaciones de mejora**: pre-llenadas con el diagnóstico honesto del manuscrito
-  (fortalezas y debilidades detectadas) y editables.
 
-La reescritura usa un **canon de secciones** del original (resumen + cita literal de cada
-parte, en orden): el esquema cubre todas las secciones y cada capítulo recibe las suyas,
-con la voz literal del autor como referencia. Novelas largas se digieren por partes y se
-sintetizan automáticamente. El flujo manual original sigue intacto.
+La reescritura usa un **canon de secciones** del original (resumen + cita literal
+de cada parte, en orden): el esquema cubre todas las secciones y cada capítulo
+recibe las suyas, con la voz literal del autor como referencia.
 
-- **12 categorías**, cada una con su **sala de 6 especialistas** con oficio propio
+### Portada del libro (adornos del autor)
+
+En el asistente (paso 4) y desde el lector (**Portada**) puedes escribir el
+**autor**, el **año** y la **dedicatoria**. Estos datos viven en la portada
+tipográfica de la app y en la primera página del PDF (con página de dedicatoria
+propia).
+
+### Descarga en PDF (arriba a la derecha en el lector)
+
+El libro terminado se descarga como **PDF real** generado al vuelo con cero
+dependencias: portada con título/subtítulo/autor/año, página de dedicatoria,
+**índice con folios reales** (doble pasada de paginación) y capítulos con folio
+al pie. Los acentos viajan en WinAnsi con las métricas reales de Helvetica.
+
+- **12 categorías**, cada una con su sala de 6 especialistas con oficio propio
   (showrunner, arquitecto del mundo, psicólogo, tejedor de tramas, prosista y
-  cirujano de giros) más la **Directora Visual** y el **Guardián de Continuidad**.
-- **Capítulos**: modo libre (la sala decide 12-22) o **exactos** (15, 20, 25 o los que
-  digas — se re-pide el esquema hasta cuadrar y se ajusta con respaldo determinista).
-- **Un panel por párrafo**: ADN visual canónico (apariencia + vestuario bloqueados),
-  semilla determinista por párrafo, cámaras que sirven al **beat narrativo**
-  (pools por rol: diálogo → planos de conversación, acción → tracking/contrapicados,
-  revelación → detallísimos) y estilo visual de la categoría bloqueado en cada prompt,
-  con una sola fuente de paleta (la biblia de la obra manda).
-- **Hojas de personaje**: la forja dibuja un retrato canónico de cada personaje
-  antes que los paneles. Con FLUX.1 Kontext ese retrato viaja como **imagen ancla
-  de cada panel** (caras idénticas de verdad); con FLUX.2 Klein es la referencia
-  facial del Guardián Visual y puedes regenerarla desde el lector.
-- **Guardián Visual (QA por visión)**: tras generar cada panel, el modelo multimodal
-  lo inspecciona contra el ADN, la escena pedida y las hojas de personaje; si detecta
-  texto pintado, caras fuera de canon o anatomía rota, **re-dibuja el panel con
-  corrección quirúrgica automática** (1 intento; fail-open: nunca tumba la forja).
-- **Lettering de cómic real**: los diálogos del párrafo se componen como **globos
-  CON DUEÑO sobre el panel** — la Directora Visual atribuye cada cita exacta a su
-  personaje (chip con su nombre, 1.º hablante a la izquierda, 2.º a la derecha,
-  máx. 2 por viñeta para legibilidad perfecta). Overlay HTML determinista — nunca
-  se le pide texto al modelo de imagen. Conmutable en la barra del lector.
-- **Prueba de continuidad con un clic** (Ajustes → Diagnóstico): genera **2 paneles
-  consecutivos** del mismo personaje con las semillas consecutivas de un libro real,
-  verifica que comparten ADN canónico y estilo, y el **Guardián Visual compara el
-  panel 2 contra el panel 1** — comprueba tú mismo que cada imagen continúa a la
-  anterior antes de forjar el libro entero.
-- **Páginas de cómic**: en modo Cómic y pantallas anchas los paneles forman una
-  retícula de viñetas; los **splash** (momento cumbre del capítulo) abren la página
-  completa, y los primeros planos bajan a 4:3 íntimo en libros 16:9.
-- **Auto-ablandado del filtro de contenido**: si la API rechaza una escena
-  (CONTENT_FILTERED), la sala la reescribe menos gráfica y reintenta sola.
-- **Narración de voz súper realista**: cada párrafo tiene su botón circular
-  **▶**, y al narrar aparece un **reproductor flotante profesional** (glass +
-  degradado ámbar, ecualizador animado, pausa/detener, barra de progreso del
-  libro). El libro se narra solo con las **voces neuronales del navegador** —
-  instantáneas y gratis; en Edge/Chrome son las "Online Natural" de Microsoft,
-  elegidas automáticamente, con selector de voz y velocidad. El texto **se pinta
-  de amarillo EN TIEMPO REAL** palabra a palabra (interpolación por frase
-  recalibrada por cada palabra real — funciona incluso con voces que no
-  disparan eventos), la app **recuerda por dónde quedaste** (porcentaje global
-  y barras por capítulo en el índice) y el chip **"Continuar"** te devuelve en
-  un clic a la frase exacta. (NVIDIA NIM no ofrece TTS hospedado — verificado
-  contra su referencia oficial; las voces del navegador son la mejor voz real
-  disponible sin coste ni latencia.)
-- **Modo previsualización**: en el asistente puedes forjar **solo el capítulo 1**
-  primero, revisarlo en el lector y continuar la forja completa con un clic.
-- **Tu canon es ley**: sube imágenes de personajes, objetos, paisajes o define
-  situaciones con texto; el modelo multimodal extrae su ADN visual y la sala los
-  integra con sus nombres exactos en trama, diálogos y paneles. El asistente te
-  avisa si algún personaje del elenco se forja sin su retrato.
+  cirujano de giros) más el **Guardián de Continuidad** en el pase de impacto.
+- **Capítulos**: modo libre (la sala decide 12-22) o **exactos** (se re-pide el
+  esquema hasta cuadrar y se ajusta con respaldo determinista).
+- **Tu canon es ley**: personajes, objetos, paisajes y situaciones definidos
+  con texto se integran con sus nombres exactos en trama y diálogos; su
+  **ADN visual** queda guardado como canon para el Taller de Ilustración.
 - **Todo controlable a mano**: premisa o "Inspírame", título, tono, POV, época,
-  público, 5 intensidades (emoción/psicología/acción/romance/oscuridad), tipo de
-  final, notas de exigencias, párrafos por capítulo, formato de panel, modelos,
-  Guardián Visual y hojas de personaje (Ajustes).
-- **Robusta**: checkpoints tras cada paso (reanuda donde iba si recargas o pausas),
-  cancelación, reintentos con backoff, tolerancia a paneles fallidos, re-rolls y
-  cambio de encuadre por panel desde el lector, reescritura completa por capítulo,
-  barra de progreso honesta (estimación exacta por capítulo escrito).
-- **Salida**: lector en modo Cómic o Novela con TOC, exportación JSON,
-  **HTML autocontenido** (imágenes incrustadas) e impresión/PDF con CSS de imprenta.
+  público, 5 intensidades, tipo de final, notas de exigencias, párrafos por
+  capítulo, modelo de escritura.
+- **Robusta**: checkpoints tras cada paso (reanuda donde iba si recargas o
+  pausas), cancelación, reintentos con backoff, modo previsualización
+  (forjar solo el capítulo 1 primero), edición de párrafos y reforja por
+  capítulo desde el lector.
+- **Narración de voz súper realista**: reproductor flotante profesional
+  (pausa/detener/progreso), voces neuronales del navegador elegidas
+  automáticamente, karaoke en tiempo real palabra a palabra y **memoria de
+  lectura** con un clic ("Continuar · 43% · cap 05").
+- **Salida**: lector en prosa con TOC, PDF, exportación JSON, **HTML
+  autocontenido** e impresión con CSS de imprenta.
+
+## El Taller de Ilustración (Parte 2) — FUNCIONAL
+
+Cuando el texto está terminado, el botón **Ir al Taller** abre la segunda parte:
+un sistema profesional de ilustración narrativa con **persistencia real**.
+
+**Qué hace hoy (verificado E2E contra el servidor real):**
+- **Sesión privada**: el servidor emite una cookie httpOnly firmada con tu token
+  de propietario. Sin sesión, la API deniega TODO (401) — incluidas las imágenes.
+- **Fichas permanentes de personajes**: ID estable para toda la novela, ADN
+  visual, rasgos invariables/mutables, historial de versiones y estado de
+  aprobación. Importa el elenco del libro o crea fichas a mano.
+- **Referencias visuales**: sube imágenes por tipo (frontal, lateral, tres
+  cuartos, cuerpo completo, expresión), aprueba UNA maestra por tipo — las
+  versiones anteriores se conservan siempre.
+- **Memoria narrativa**: analiza el capítulo completo (escenas, presentes,
+  vestuario, objetos, saltos temporales), distingue hechos del texto de
+  interpretaciones de la IA y puedes corregirla a mano.
+- **Trabajos paso a paso**: cada llamada al servidor ilustra UN párrafo y
+  persiste el avance (patrón serverless): progreso visible, reanudación tras
+  cualquier interrupción, sin duplicados, reintentos con tope de intentos.
+- **Versionado**: regenerar crea v2 sin borrar v1; la aprobada nunca se pierde.
+- **QA automático**: cada ilustración se evalúa por visión contra el párrafo,
+  el canon y la referencia aprobada (fail-open: el QA nunca destruye nada).
+  La decisión final siempre es del autor: **Confirmar calidad → siguiente capítulo**.
+
+### Persistencia (sin Firebase, sin Google)
+
+| Entorno | Almacenamiento | Qué necesitas |
+|---|---|---|
+| **Vercel (producción)** | **Vercel Blob** — imágenes Y metadatos JSON con claves persistentes (`projects/<id>/…`) | Una credencial gratuita: `BLOB_READ_WRITE_TOKEN` |
+| **Local (server.js)** | **Sistema de archivos** en `data/` (gitignored) — persistente en tu máquina | Nada: el token se genera e imprime en consola |
+
+### Configuración de Vercel (5 minutos, sin código)
+
+1. **Instalar dependencia** (ya añadida a `package.json`): el próximo `npm install`/deploy la trae (`@vercel/blob`).
+2. **Crear el Blob Store**: Vercel → tu proyecto → *Storage* → *Blob* → Create (plan gratuito). Vercel crea la variable `BLOB_READ_WRITE_TOKEN` automáticamente.
+3. **Variables de entorno** (Vercel → Settings → Environment Variables):
+   - `HISTORIETAS_STUDIO_TOKEN` — un secreto largo que TÚ eliges (p. ej. `openssl rand -hex 32`). Es el token de inicio de sesión del Taller.
+   - `NVIDIA_API_KEY` — tu clave `nvapi-…` **del lado del servidor** (nunca más en el navegador).
+   - Opcionales: `HISTORIETAS_IMAGE_MODEL` (por defecto `black-forest-labs/flux.2-klein-4b`), `HISTORIETAS_TEXT_MODEL` (`moonshotai/kimi-k3`), `HISTORIETAS_PROVIDER` (`nvidia` | `mock` | `none`).
+4. **Desplegar**: `git push` — el rewrite `/historietas/api/studio/*` ya vive en `next.config.ts`.
+
+### En local (ABRIR-HISTORIETAS.bat)
+
+- El servidor genera tu token de desarrollo en `data/studio-token.txt` y lo imprime en consola la primera vez.
+- Con `set HISTORIETAS_PROVIDER=mock && node server.js` pruebas TODO el flujo sin gastar créditos (PNG de prueba etiquetado); con `NVIDIA_API_KEY` en el entorno genera de verdad.
+
+### Verificado vs pendiente de credenciales
+
+| Verificado (131 pruebas + E2E HTTP contra el servidor real) | Requiere tus credenciales |
+|---|---|
+| Persistencia local real (archivos en disco sobreviven), Vercel Blob (contrato idéntico — driver probado en tests de contrato), sesión httpOnly, fichas, referencias, memoria narrativa, trabajos paso a paso, versiones, QA fail-open, assets privados, límites de tamaño y rate | Generación con NVIDIA real (necesita `NVIDIA_API_KEY` en el servidor), Blob en producción (necesita `BLOB_READ_WRITE_TOKEN` en Vercel), análisis narrativo con Kimi real |
 
 ## Estructura
 
@@ -136,17 +160,19 @@ public/historietas/
 ├── index.html            shell SPA (hash router)
 ├── css/                  tokens + base + vistas
 ├── js/
-│   ├── core/             utils, events, store, db (IndexedDB), router, app
-│   ├── api/              models.mjs (catálogo), client.mjs (NVIDIA NIM)
-│   ├── domain/           book.mjs, assets.mjs, continuity.mjs, lettering.mjs
+│   ├── core/             utils, events, store, db (IndexedDB), router, app, draft
+│   ├── api/              models.mjs (catálogo de texto), client.mjs (NVIDIA NIM texto)
+│   ├── domain/           book.mjs, assets.mjs, continuity.mjs, manuscript.mjs
 │   ├── specialists/      shared.mjs + 12 categorías + registry.mjs
-│   ├── prompts/          writers.mjs (7 fases), images.mjs (paneles)
-│   ├── engine/           pipeline.mjs (orquestador), imagegen.mjs (fábrica de paneles), panelqa.mjs (Guardián Visual), tts.mjs (narración con karaoke)
-│   ├── ui/               components + 5 vistas (biblioteca, asistente, forja, lector, ajustes)
+│   ├── prompts/          writers.mjs (6 fases de texto)
+│   ├── export/           pdf.mjs (generador de PDF puro, cero dependencias)
+│   ├── studio/            state.mjs (modelo del Taller de Ilustración — Parte 2)
+│   ├── engine/            pipeline.mjs (orquestador), tts.mjs (narración con karaoke)
+│   ├── ui/                components + 6 vistas (biblioteca, asistente, forja, lector, taller, ajustes)
 │   └── main.mjs          arranque y rutas
 ├── server.js             standalone + puente CORS (puerto 9130)
 ├── ABRIR-HISTORIETAS.bat
-├── tests/                132 pruebas Node (sin red, cliente simulado)
+├── tests/                131 pruebas Node + E2E HTTP (tests/e2e-taller.mjs)
 ├── AGENTS.md             mapa técnico para IA
 └── README.md
 ```
