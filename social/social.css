@@ -34,9 +34,10 @@ a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar-thumb{background:#152438;border-radius:99px}
 ::-webkit-scrollbar-thumb:hover{background:#1d3a55}
 
-/* ── rejilla general ── topbar · sidebar compacta · centro · DOCK FIJO ── */
+/* ── rejilla general ── topbar · sidebar compacta · centro · DOCK FIJO ──
+   Dock comunidad +25% ancho (336→420) a peticion del admin            */
 .soc-app{
-  display:grid;grid-template-columns:142px minmax(0,1fr) 336px;
+  display:grid;grid-template-columns:142px minmax(0,1fr) 420px;
   grid-template-rows:60px minmax(0,1fr);
   grid-template-areas:"top top top" "side main dock";
   gap:0 14px;height:100vh;padding:0 14px;
@@ -202,7 +203,9 @@ a{color:inherit;text-decoration:none}
 
 /* ── crear publicación ───────────────────────────────────── */
 .soc-create{display:flex;gap:11px}
-.soc-create-body{flex:1;min-width:0}
+/* container: el publicador se adapta al ANCHO REAL que recibe,
+   no al del viewport (la columna central varía con el dock)   */
+.soc-create-body{flex:1;min-width:0;container-type:inline-size}
 .soc-create textarea{
   width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;
   color:var(--ink);font:inherit;padding:10px 12px;resize:vertical;min-height:52px;outline:none;
@@ -215,6 +218,14 @@ a{color:inherit;text-decoration:none}
 }
 .soc-tool:hover{color:var(--ink);border-color:var(--faint)}
 .soc-tools .soc-btn-green{margin-left:auto}
+/* ── publicador responsivo (container query): cuando el espacio real
+   es estrecho, los botones forman una rejilla 2×2 y Publicar pasa a
+   fila propia ocupando todo el ancho — con espacio sobra, fila flex  */
+@container (max-width:559px){
+  .soc-tools{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+  .soc-tool{display:flex;align-items:center;justify-content:center;text-align:center}
+  .soc-tools .soc-btn-green{grid-column:1/-1;margin:2px 0 0;justify-content:center}
+}
 .soc-attach{
   margin-top:9px;padding:9px;border:1px dashed var(--line);border-radius:10px;
   background:var(--panel);font-size:12px;color:var(--dim);display:flex;gap:9px;align-items:center;
@@ -580,12 +591,12 @@ a{color:inherit;text-decoration:none}
    El DOCK es PERMANENTE: nunca se esconde en escritorio/tablet — solo
    en móvil (<920px, donde físicamente no cabe) se abre con el botón   */
 @media (max-width:1280px){
-  .soc-app{grid-template-columns:132px minmax(0,1fr) 300px}
+  .soc-app{grid-template-columns:132px minmax(0,1fr) 375px}
   .soc-search{max-width:340px}
   .soc-topnav a{padding:7px 8px;font-size:11.5px}
 }
 @media (max-width:1150px){
-  .soc-app{grid-template-columns:126px minmax(0,1fr) 288px;gap:0 10px;padding:0 10px}
+  .soc-app{grid-template-columns:126px minmax(0,1fr) 360px;gap:0 10px;padding:0 10px}
   .soc-col-left{display:none}
 }
 @media (max-width:980px){
