@@ -1,29 +1,16 @@
 {
  "v": 1,
- "at": 1791985894354,
+ "at": 1791986952924,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/1gK5zs6IqtZvAtA1ETcgVQ_Jl1vY7a7sa/view?usp=sharing",
-   "type": "drive-file",
-   "title": "El Increíble Hulk",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 8,
-   "nextRetryAt": 1791984819305,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/1B2KepScP2w69N6Sdq2cmsZ3qY3tAaK2W/view?usp=sharing",
    "type": "drive-file",
    "title": "Pantera Negra",
    "status": "queued",
    "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 6,
-   "nextRetryAt": 1791984521976,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (sin red, HTTP 408, timeout, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 7,
+   "nextRetryAt": 1791986339320,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
