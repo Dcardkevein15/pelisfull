@@ -1,20 +1,7 @@
 {
  "v": 1,
- "at": 1791935764682,
+ "at": 1791937748415,
  "queue": [
-  {
-   "url": "https://drive.google.com/file/d/1TvhGunm0xEYLxcmyYmW3Z_Mk3XdHTkJ0/view?usp=sharing",
-   "type": "drive-file",
-   "title": "Doctor Strange",
-   "status": "queued",
-   "name": "",
-   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
-   "attempts": 9,
-   "nextRetryAt": 1791935859715,
-   "addedAt": 1791675754521,
-   "payload": null,
-   "syncedAt": 1791675754524
-  },
   {
    "url": "https://drive.google.com/file/d/1I3tHbVr1aLR819g6VuHCsN82dY12Tl_L/view?usp=sharing",
    "type": "drive-file",
@@ -34,9 +21,9 @@
    "title": "Motiqueiro Fantasma: Espíritu de Venganza",
    "status": "queued",
    "name": "",
-   "error": "HTTP 401",
-   "attempts": 1,
-   "nextRetryAt": 1791928326455,
+   "error": "⚠ Los lectores públicos están saturados ahora mismo (HTTP 408, timeout, sin red, HTTP 401).Inténtalo de nuevo en un minuto — suele pasar.Para que NUNCA falle: u",
+   "attempts": 2,
+   "nextRetryAt": 1791936008595,
    "addedAt": 1791675754521,
    "payload": null,
    "syncedAt": 1791675754524
