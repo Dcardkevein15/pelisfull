@@ -1,6 +1,6 @@
 {
  "v": 1,
- "at": 1791938764440,
+ "at": 1791941780902,
  "queue": [
   {
    "url": "https://drive.google.com/file/d/1I3tHbVr1aLR819g6VuHCsN82dY12Tl_L/view?usp=sharing",
@@ -65,38 +65,6 @@
    "nextRetryAt": 1791938652656,
    "addedAt": 1791675754521,
    "payload": null,
-   "syncedAt": 1791675754524
-  },
-  {
-   "url": "https://drive.google.com/file/d/10J56nrKixtOpg53vm4uJmfCMBsD0OF3H/view?usp=drivesdk",
-   "type": "drive-file",
-   "title": "La Hora de Su Muerte",
-   "status": "done",
-   "name": "La Hora de Su Muerte",
-   "error": "",
-   "attempts": 0,
-   "nextRetryAt": 0,
-   "addedAt": 1791675754521,
-   "payload": [
-    {
-     "id": "file-https-drive-google-com-file-d-10J56nrKixtOpg53vm4uJmfCMBsD0O",
-     "t": "La Hora de Su Muerte",
-     "jp": "🎬",
-     "tag": "Google Drive · Archivo",
-     "g": 6,
-     "kind": "pelicula",
-     "poster": "https://drive.google.com/thumbnail?id=10J56nrKixtOpg53vm4uJmfCMBsD0OF3H&sz=w1000",
-     "episodes": [
-      {
-       "n": 1,
-       "t": "▶ Ver",
-       "url": "https://drive.google.com/file/d/10J56nrKixtOpg53vm4uJmfCMBsD0OF3H/view"
-      }
-     ],
-     "at": 1791938757701,
-     "genreTmdbDone": false
-    }
-   ],
    "syncedAt": 1791675754524
   },
   {
