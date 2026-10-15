@@ -56,6 +56,10 @@ a{color:inherit;text-decoration:none}
   display:flex;align-items:center;gap:16px;
   border-bottom:1px solid var(--line);padding:0 2px;
   background:rgba(3,10,19,.94);backdrop-filter:blur(10px);
+  /* 🥅 z-index: sus desplegables (cuenta, campana, búsqueda) cuelgan por
+     debajo de la barra; sin esto, la columna del chat (que pinta después
+     en el DOM) los tapa y quedan inclicables                          */
+  z-index:100;position:relative;
 }
 .soc-brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
 .soc-logo{
@@ -422,7 +426,17 @@ a{color:inherit;text-decoration:none}
   position:absolute;top:6px;left:6px;background:var(--hot);color:#fff;
   font:800 8px Inter;padding:2px 6px;border-radius:4px;letter-spacing:.4px;
 }
-.soc-feat-nav{display:flex;justify-content:center;gap:5px;margin-top:10px}
+.soc-feat-nav{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:10px}
+/* ‹ › : flechas para pasar el carrusel de destacados a voluntad */
+.soc-feat-arrow{
+  width:22px;height:22px;min-width:22px;border-radius:7px;cursor:pointer;
+  display:grid;place-items:center;
+  background:var(--card);border:1px solid var(--line);color:var(--dim);
+  font:800 14px/1 Inter,sans-serif;padding-bottom:2px;
+  transition:all .15s;
+}
+.soc-feat-arrow:hover{color:var(--ink);border-color:var(--faint);background:var(--panel)}
+.soc-feat-arrow:active{transform:scale(.92)}
 .soc-feat-nav i{width:6px;height:6px;border-radius:50%;background:var(--line)}
 .soc-feat-nav i.on{background:var(--green)}
 
@@ -505,32 +519,18 @@ a{color:inherit;text-decoration:none}
 .soc-mob a{position:relative;font-size:19px;padding:6px 12px;border-radius:9px;color:var(--faint)}
 .soc-mob a.on{color:var(--green);background:var(--green-dk)}
 
-/* ═══════════ 🚀 SOCIAL DOCK — columna derecha con pestañas ═══════════ */
+/* ═══════════ 🚀 SOCIAL DOCK — columna derecha con pestañas ═══════════
+   Sin cabecera «XSTREAM COMUNIDAD»: las pestañas viven arriba del todo
+   (todo el espacio superior para el contenido, a petición del admin).  */
 .soc-dock{
   grid-area:dock;min-width:0;display:flex;flex-direction:column;
   border-left:1px solid var(--line);
   background:linear-gradient(180deg,rgba(7,19,33,.6),rgba(3,10,19,.2) 120px);
   margin:0 -14px -0px 0;padding:0 0 0 0;
 }
-.soc-dock-head{
-  display:flex;align-items:center;gap:10px;
-  padding:16px 16px 12px;border-bottom:1px solid var(--line);
-}
-.soc-dock-pulse{
-  width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0;
-  animation:dockPulse 1.8s ease-in-out infinite;
-}
 @keyframes dockPulse{
   0%,100%{box-shadow:0 0 0 0 rgba(0,230,118,.55)}
   50%{box-shadow:0 0 0 7px rgba(0,230,118,0)}
-}
-.soc-dock-brand{font:900 13.5px Inter;letter-spacing:.6px}
-.soc-dock-brand i{font-style:normal;color:var(--green)}
-.soc-dock-chip{
-  margin-left:auto;display:flex;align-items:center;gap:5px;
-  background:var(--green-dk);border:1px solid var(--green);
-  color:var(--green);font:800 10.5px Inter;
-  border-radius:99px;padding:4px 10px;flex-shrink:0;
 }
 .soc-dock-tabs{
   display:flex;gap:5px;padding:12px 14px 0;
@@ -553,24 +553,20 @@ a{color:inherit;text-decoration:none}
 .soc-dock-body{
   flex:1;overflow-y:auto;overflow-x:hidden;
   padding:12px 14px 14px;scrollbar-gutter:stable;
+  display:flex;flex-direction:column;   /* la pestaña Chat puede llenar el alto */
 }
 .soc-dock-tab{display:none}
-.soc-dock-tab.on{display:block;animation:dockTabIn .24s cubic-bezier(.2,1.1,.4,1)}
+.soc-dock-tab.on{display:flex;flex-direction:column;flex:1;min-height:0;animation:dockTabIn .24s cubic-bezier(.2,1.1,.4,1)}
+/* descubre/vivo: tarjetas a altura natural (la columna scrollea como siempre) */
+.soc-dock-tab.on > .soc-card{flex:0 0 auto}
+/* chat: la tarjeta llena la columna — el chat vive dentro */
+.soc-dock-tab[data-tb="chat"].on > .soc-card{flex:1;min-height:0;display:flex;flex-direction:column}
 @keyframes dockTabIn{from{opacity:0;transform:translateX(14px)}}
-.soc-dock-foot{
-  border-top:1px solid var(--line);
-  padding:12px 14px;
-  display:flex;gap:11px;align-items:center;
-  background:linear-gradient(160deg,var(--green-dk),var(--panel) 80%);
-}
-.soc-dock-foot .soc-promo-x{
-  width:36px;height:36px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;
-  background:var(--green);color:#03130B;font:900 18px 'Archivo Black',Inter;
-  box-shadow:0 0 14px rgba(0,230,118,.45);
-}
-.soc-dock-foot .soc-promo-b{flex:1;min-width:0}
-.soc-dock-foot .soc-promo-b b{display:block;font-size:11.5px;line-height:1.4;margin-bottom:8px}
-.soc-dock-foot .soc-btn{padding:7px 14px;font-size:11px}
+/* 🪦 EL ASIDE FANTASMA: .soc-col-left usa grid-area:left, un área que NO
+   existe en el template — el navegador lo auto-colocaba en una FILA implícita
+   debajo del dock, robándole altura a la columna (el chat medía 286px en
+   vez de llenar la ventana). Ya era invisible/malpuesto: se neutraliza.  */
+@media (min-width:1151px){.soc-col-left{display:none}}
 
 /* tarjetas de película del dock: hover con zoom + brillo verde */
 .soc-dock .soc-feat{gap:9px}
@@ -638,12 +634,10 @@ body.light .soc-search-drop,body.light .soc-me-drop,body.light .soc-notif-drop{
   background:#fff;box-shadow:0 18px 50px rgba(20,40,70,.18);border-color:var(--line)
 }
 body.light .soc-dock{background:linear-gradient(180deg,rgba(222,232,244,.55),rgba(242,245,249,0) 120px)}
-body.light .soc-dock-chip{background:var(--green-dk);color:#06774A}
 body.light .soc-overlay{background:rgba(18,32,50,.45)}
 body.light .soc-sheet{background:#fff;box-shadow:0 24px 70px rgba(20,40,70,.3)}
 body.light .soc-toast{background:rgba(255,255,255,.97);box-shadow:0 12px 34px rgba(20,40,70,.22)}
 body.light .soc-mob{background:rgba(255,255,255,.97)}
-body.light .soc-dock-foot{background:linear-gradient(160deg,#C9FADE,#fff 80%)}
 body.light .soc-msg.me{background:#DFFCE9}
 body.light .soc-poll-opt .fill{background:#D6F5E4}
 body.light .soc-verified{color:#fff}
@@ -737,3 +731,795 @@ body.light ::-webkit-scrollbar-thumb{background:#C4CFDC}
 .soc-preview-meta small{color:rgba(255,255,255,.75);font-size:11px}
 .soc-preview-story{margin:13px 2px;font-size:12.5px;line-height:1.7;color:var(--dim);max-height:150px;overflow-y:auto}
 .soc-preview-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   💬 EL CHAT DE LA WEB DE PELÍCULAS — incrustado en el dock social
+   El chat real (chat.js): salas, DMs, enlaces con tarjeta, música,
+   mini-reproductor… Copia fiel de sus estilos (más abajo), con esta
+   capa fina de adaptación al ancho/altura de la columna comunidad.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* el wrapper llena la tarjeta y el panel del chat llena el wrapper */
+.soc-embed-wrap{flex:1;min-height:340px;display:flex;flex-direction:column}
+.soc-embed-chat{
+  --acid:#d8ff3e;          /* acento del chat original */
+  --panel2:#0A1727;        /* token del chat mapeado a la paleta social */
+  flex:1;min-height:0;
+  display:flex;flex-direction:column;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;position:relative;
+}
+
+/* «Restaurar» pertenece al panel de películas — en social no aplica */
+.soc-embed-chat #chatRestoreBtn{display:none!important}
+
+/* columna de conectados un poco más fina para el dock */
+.soc-embed-chat .chat-users{width:148px}
+
+/* móviles: el modo chat-open de chat.js (≤900px) no debe estirar el
+   panel más allá del dock-overlay — el alto lo manda el flex del dock */
+@media (max-width:900px){
+  body.chat-open .soc-dock .chat-panel{height:auto!important;overflow:hidden;border-radius:var(--r)}
+  body.chat-open .soc-dock .chat-compose{position:static;box-shadow:none}
+}
+
+/* los mensajes heredan el scroll del chat, no el de la columna social */
+.soc-embed-chat .chat-msgs{overscroll-behavior:contain}
+
+/* ═══ 🎬 ESTILOS DEL CHAT — copia del styles.css de la web de películas ═══ */
+.sidebar,.topbar,.search-box,.s-item,.ep,.btn-ghost,.btn-mini,.badge,.modal,.pill {
+  transition:background-color .3s ease,color .3s ease,border-color .3s ease;
+}
+
+.btn-acid {background:var(--acid);color:#111}
+
+.btn-acid:hover {transform:translateY(-1px);box-shadow:0 6px 20px rgba(216,255,62,.25)}
+
+.btn-ghost {background:var(--panel);border:1px solid var(--line);color:var(--ink)}
+
+.btn-ghost:hover {border-color:var(--acid);color:var(--acid)}
+
+.btn-ghost.active {background:var(--hot);border-color:var(--hot);color:#fff}
+
+.btn-mini {padding:6px 12px;font-size:11.5px;background:var(--panel2);border:1px solid var(--line);color:var(--dim)}
+
+.btn-mini:hover {color:var(--acid);border-color:var(--acid)}
+
+.btn-mini.danger:hover {color:var(--hot);border-color:var(--hot)}
+
+body.tab-hentai .btn-acid {color:#221114}
+
+.cbtn-cc.cc-on {color:#111;background:var(--acid);border-color:var(--acid)}
+
+body.editing .ep-thumb {display:none}
+
+/* modo edición */
+body.editing .episodes-grid {grid-template-columns:1fr}
+
+body.editing .ep {
+  aspect-ratio:auto;flex-direction:row;align-items:center;gap:12px;padding:10px 12px;
+}
+
+body.editing .ep:hover {transform:none}
+
+body.editing .ep .num {font-size:15px;min-width:34px}
+
+body.editing .ep .lbl {min-width:110px}
+
+.btn-mini.peril:hover {color:var(--hot);border-color:var(--hot)}
+
+.btn-mini.bell-on {color:var(--acid);border-color:var(--acid)}
+
+.btn-mini.fav-on {color:var(--hot);border-color:var(--hot)}
+
+.tv-tools .btn-mini {flex:1;font-size:11px;padding:7px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.side-tools .chip-filter {flex:1 1 auto;justify-content:center;text-align:center;padding:6px 8px;font-size:10.5px}
+
+.chip-filter {
+  background:var(--panel);border:1px solid var(--line);border-radius:999px;
+  color:var(--dim);font-size:11px;padding:6px 12px;cursor:pointer;transition:.15s;white-space:nowrap;
+}
+
+.chip-filter:hover {border-color:var(--hot);color:var(--hot)}
+
+.chip-filter.on {background:var(--hot);border-color:var(--hot);color:#fff}
+
+body.editing .ep-note {background:var(--panel2);border:1px solid var(--line);border-radius:7px;width:26px;height:26px;color:var(--dim);font-size:11px}
+
+body.editing .ep-note:hover {color:var(--acid);border-color:var(--acid)}
+
+body.editing .ep-note.has {color:var(--acid)}
+
+#ptabChat .chat-badge {background:#241a02;color:#ffd75e}
+
+.chat-badge {display:inline-grid;place-items:center;min-width:18px;height:18px;border-radius:999px;
+  background:var(--hot);color:#fff;font-size:10px;padding:0 5px;font-family:'JetBrains Mono'}
+
+.panel-page.hidden,.chat-panel.hidden {display:none}
+
+/* ═══════ 💬 CHAT — diseño ═══════ */
+.chat-panel {display:flex;flex-direction:column;min-height:0;background:var(--panel);border-radius:var(--r);
+  border:1px solid var(--line);overflow:hidden;position:relative;
+  /* PC y TABLET: desde las pestañas «Contenido/Chat» hasta la caja de
+     escribir cabe TODO a la vista: barra 62px + margen 26 + pestañas ~54
+     = 142px; con límite del 85% del alto en pantallas grandes          */
+  height:min(85dvh, calc(100dvh - 142px))}
+
+/* ═══════ BARRA DEL CHAT: UNA SOLA LÍNEA, 50% + 50% — PC, TABLET Y MÓVIL ═
+   Izquierda (MÁX 50%): SOLO los chips de salas — se deslizan con scroll
+   horizontal dentro de su propia mitad (general, anime, películas, series,
+   hentai… entran todas por muchas que haya). Derecha (el otro 50%): TODOS
+   los botones (📩 ● 🖼 ❤ ⚙…) pegados a la derecha. Así, en cualquier
+   pantalla, NADA cae a una segunda fila y la cabecera queda delgada.
+   En pantallas muy angostas los chips ceden (encogen) y los botones mandan */
+.chat-top {flex-wrap:nowrap}
+
+.chat-top .chat-rooms {flex:0 1 50%;max-width:50%;min-width:80px}
+
+.chat-top .spacer {flex:1 1 auto;min-width:6px}
+
+/* ⭐ tú en la lista de conectados: marcado con ácido para reconocerte */
+.chat-user.me {background:rgba(216,255,62,.09);border:1px solid rgba(216,255,62,.45);
+  box-shadow:inset 3px 0 0 var(--acid)}
+
+.chat-user.me .u-name {color:var(--acid);font-weight:800}
+
+.chat-user .u-me {margin-left:auto;font:800 9px 'JetBrains Mono';letter-spacing:1px;color:#111;
+  background:var(--acid);border-radius:999px;padding:1px 7px;text-transform:uppercase}
+
+.chat-panel.has-bg .chat-msg {background:rgba(14,14,22,.8)}
+
+.chat-panel.has-bg .chat-empty,.chat-panel.has-bg .chat-inbox {box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
+/* ── BARRA SUPERIOR DEL CHAT (remodelada) ──
+   PC/tablet: los chips de salas + TODOS los botones van en UNA sola fila
+   (nada de altura regalada). Móvil: chips en su fila + botones en otra   */
+.chat-top {display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(16,16,26,.92),rgba(12,12,19,.82));backdrop-filter:blur(8px);
+  flex-wrap:wrap;position:relative;z-index:60}
+
+/* chips de salas — PC/tablet: comparten la MISMA fila con los botones de
+   acción (📩 ● ✍ 🖼 ❤ ⚙) para no robar altura al chat; si sobran, scroll
+   horizontal suave dentro de la fila                                     */
+.chat-rooms {flex:1 1 auto;min-width:150px;display:flex;gap:7px;overflow-x:auto;padding:2px 1px 4px;
+  scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+
+.chat-rooms::-webkit-scrollbar {height:5px}
+
+.chat-rooms::-webkit-scrollbar-thumb {background:var(--line);border-radius:99px}
+
+.room-chip {flex:none;display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;
+  background:var(--panel2);border:1px solid var(--line);color:var(--ink);font:600 12.5px 'Inter',system-ui;
+  cursor:pointer;white-space:nowrap;transition:transform .15s,border-color .15s,box-shadow .15s}
+
+.room-chip .rc-n {font:700 10px 'JetBrains Mono';background:rgba(0,0,0,.25);border:1px solid var(--line);
+  padding:2px 8px;border-radius:999px;color:#4ade80}
+
+.room-chip:hover {border-color:var(--acid);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.35)}
+
+.room-chip.on {background:linear-gradient(135deg,#ffca28,#ffb300);border-color:#ffca28;color:#241a02;
+  box-shadow:0 4px 15px rgba(255,180,0,.35)}
+
+.room-chip.on .rc-n {background:rgba(0,0,0,.18);border-color:transparent;color:#241a02}
+
+.room-chip.full {opacity:.55}
+
+.room-chip.full .rc-n {color:var(--dim)}
+
+/* los botones de acción: parejos, con reposo elegante */
+.chat-top .chip-filter {height:34px;min-width:34px;justify-content:center;gap:6px;padding:6px 11px;
+  border-radius:10px;transition:transform .15s,border-color .15s,box-shadow .15s}
+
+.chat-top .chip-filter:hover {transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.35)}
+
+/* avatar redondo reutilizable (cabeceras de mensaje y lista de usuarios) */
+.chat-ava {width:22px;height:22px;border-radius:50%;flex:none;box-shadow:0 1px 5px rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.14)}
+
+/* los botones nunca se salen: en pantallas angostas caen a la segunda fila */
+.chat-top .chip-filter {flex:none;white-space:nowrap}
+
+.chat-roomsel {flex:1;min-width:0;max-width:250px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+  padding:7px 10px;color:var(--ink);font-size:12px;font-weight:600;outline:none}
+
+.chat-roomsel:focus {border-color:var(--acid)}
+
+.chat-online {font-family:'JetBrains Mono';font-size:11px;color:#4ade80;white-space:nowrap}
+
+.chat-top .spacer {flex:1}
+
+.chip-filter {background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--ink);
+  padding:6px 11px;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+
+.chip-filter:hover {border-color:var(--acid)}
+
+.chip-filter .chat-badge {margin-left:2px}
+
+.chat-main {flex:1;min-height:0;position:relative;overflow:hidden}
+
+.chat-bg {position:absolute;inset:0;background-size:cover;background-position:center;opacity:1;pointer-events:none}
+
+.chat-stage {position:relative;height:100%;display:flex;min-height:0}
+
+.chat-msgs {flex:1;min-width:0;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;
+  scroll-behavior:smooth;overscroll-behavior:contain}
+
+.chat-users {width:170px;flex:none;overflow-y:auto;border-left:1px solid var(--line);padding:8px;display:flex;
+  flex-direction:column;gap:4px;background:rgba(0,0,0,.16)}
+
+.chat-online {color:#4ade80}
+
+.chat-user .u-ava {width:24px;height:24px}
+
+.chat-user .u-name {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.chat-empty {margin:20px auto;color:var(--dim);font-size:12.5px;text-align:center;max-width:280px}
+
+.chat-msg {max-width:82%;align-self:flex-start;background:rgba(14,14,22,.72);backdrop-filter:blur(9px);
+  border:1px solid var(--line);border-radius:14px 14px 14px 4px;padding:8px 11px;position:relative;
+  box-shadow:0 2px 10px rgba(0,0,0,.28)}
+
+.chat-msg.mine {align-self:flex-end;background:rgba(48,50,18,.72);border-color:rgba(216,255,62,.4);border-radius:14px 14px 4px 14px}
+
+.chat-head {display:flex;align-items:baseline;gap:6px;margin-bottom:3px;flex-wrap:wrap}
+
+.chat-who {background:none;border:none;color:var(--acid);font-size:11.5px;font-weight:700;cursor:pointer;padding:0;text-align:left}
+
+.chat-who:hover {text-decoration:underline}
+
+.chat-role {font-size:9.5px;padding:1px 7px;border-radius:999px;font-weight:700}
+
+.chat-role.admin {background:rgba(216,255,62,.16);color:var(--acid)}
+
+.chat-role.mod {background:rgba(124,58,237,.2);color:#b79cff}
+
+.chat-time {font-size:9.5px;color:var(--dim);font-family:'JetBrains Mono'}
+
+.chat-body {font-size:13px;line-height:1.45;word-break:break-word;white-space:pre-wrap}
+
+.chat-link {color:var(--acid);text-decoration:underline;text-underline-offset:2px}
+
+.chat-fav {position:absolute;top:-6px;right:-6px;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);
+  background:var(--panel2);font-size:12px;cursor:pointer;display:grid;place-items:center;opacity:0;transition:opacity .15s}
+
+.chat-msg:hover .chat-fav {opacity:1}
+
+.chat-fav.on {opacity:1;border-color:var(--hot)}
+
+.chat-del {position:absolute;bottom:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);
+  background:var(--panel2);font-size:10px;color:var(--dim);cursor:pointer;display:grid;place-items:center;opacity:0;transition:opacity .15s}
+
+.chat-msg:hover .chat-del {opacity:1}
+
+.chat-del:hover {border-color:var(--hot);color:var(--hot)}
+
+/* acciones por mensaje (reaccionar, citar, editar) — DESPEGADAS arriba-derecha
+   y solo al pasar el mouse (PC) o al TOCAR la burbuja (móvil/tablet). Nunca
+   tapan el nombre porque flotan fuera, sobre la esquina.                */
+.chat-actions {position:absolute;top:-11px;right:8px;left:auto;display:none;gap:2px;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px;padding:2px;box-shadow:0 5px 16px rgba(0,0,0,.45);z-index:3}
+
+.chat-msg:hover .chat-actions,
+.chat-msg.act-open .chat-actions {display:flex}
+
+.chat-act {background:none;border:none;padding:5px 7px;font-size:13px;cursor:pointer;border-radius:6px;color:var(--ink)}
+
+.chat-act:hover {background:var(--panel2)}
+
+/* cita al responder */
+.chat-quote {border-left:3px solid var(--acid);background:rgba(216,255,62,.06);border-radius:4px 8px 8px 4px;
+  padding:4px 9px;margin-top:5px;font-size:11.5px;max-width:100%;overflow:hidden}
+
+.chat-quote b {font-size:10.5px;color:var(--acid);display:block}
+
+.chat-quote span {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+
+/* imagen en mensaje */
+.chat-img {max-width:220px;max-height:180px;border-radius:9px;margin-top:5px;cursor:pointer;display:block;
+  border:1px solid var(--line)}
+
+.chat-img:hover {border-color:var(--acid)}
+
+/* reacciones */
+.chat-reactions {display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+
+.chat-reaction {background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 9px;
+  font-size:11px;cursor:pointer;color:var(--ink)}
+
+.chat-reaction:hover {border-color:var(--acid)}
+
+.chat-reaction.on {border-color:var(--acid);color:var(--acid);background:rgba(216,255,62,.08)}
+
+/* panel de emojis rápido (aparece encima del mensaje) */
+.chat-emoji-panel {position:absolute;bottom:calc(100% + 4px);left:0;z-index:6;display:flex;gap:2px;
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+
+.chat-emoji {background:none;border:none;font-size:18px;padding:5px 7px;cursor:pointer;border-radius:8px}
+
+.chat-emoji:hover {background:var(--panel2)}
+
+/* franja de edición / cita arriba del input */
+.chat-qstrip {display:none;align-items:center;gap:8px;padding:6px 10px;margin:0 10px 6px;border:1px solid var(--acid);
+  border-radius:10px;background:rgba(216,255,62,.06);font-size:11px}
+
+.chat-qstrip:not(.hidden) {display:flex}
+
+.chat-qstrip .cq-l {font-weight:700;color:var(--acid);white-space:nowrap}
+
+.chat-qstrip .cq-t {flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--dim)}
+
+.chat-qstrip .cq-x {background:none;border:none;color:var(--dim);cursor:pointer;font-size:14px;padding:2px 6px}
+
+.chat-qstrip .cq-x:hover {color:var(--hot)}
+
+/* imagen cargando antes de enviar */
+.chat-imgchip {display:none;align-items:center;gap:8px;margin:0 12px 6px;padding:6px 9px;border:1px solid var(--line);
+  border-radius:10px;background:var(--panel2);font-size:11px}
+
+.chat-imgchip:not(.hidden) {display:flex}
+
+.chat-imgchip img {width:36px;height:36px;object-fit:cover;border-radius:6px}
+
+.chat-imgchip .cq-x {margin-left:auto}
+
+/* silenciar */
+.chat-user .chat-mute {margin-left:auto;opacity:.55;font-size:12px}
+
+.chat-user .chat-mute:hover {opacity:1;color:var(--hot)}
+
+/* tarjetas de vista previa de enlace */
+.chat-card {display:flex;flex-direction:column;gap:4px;margin-top:7px;background:rgba(0,0,0,.32);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden;text-decoration:none;color:var(--ink)}
+
+.chat-card:hover {border-color:var(--acid)}
+
+.chat-card img {width:100%;max-height:130px;object-fit:cover}
+
+.cc-t {font-size:12px;font-weight:700;padding:0 10px}
+
+.cc-d {font-size:11px;color:var(--dim);padding:0 10px}
+
+.cc-h {font-size:9.5px;color:var(--dim);font-family:'JetBrains Mono';padding:0 10px 9px}
+
+.chat-user {display:flex;align-items:center;gap:7px;padding:7px 9px;background:none;border:1px solid transparent;
+  border-radius:9px;color:var(--ink);font-size:12px;cursor:pointer;text-align:left}
+
+.chat-user:hover {background:var(--panel)}
+
+.chat-user i {font-style:normal;color:#4ade80;font-size:9px}
+
+.chat-user.off {opacity:.55}
+
+.chat-user.off i {color:#666}
+
+.chat-user b {font-size:11px}
+
+/* la caja de escribir va PEGADA al borde inferior del panel visible
+   (sticky): el chat puede scrollear, y ella no se mueve ni deja huecos  */
+.chat-compose {display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:var(--panel);
+  position:sticky;bottom:0;z-index:35}
+
+.chat-compose input {flex:1;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+  padding:10px 16px;color:var(--ink);font-size:13px;outline:none}
+
+.chat-compose input:focus {border-color:var(--acid)}
+
+.chat-compose .btn-acid {width:44px;min-width:44px;height:44px;border-radius:50%;padding:0;justify-content:center;font-size:16px}
+
+/* bandeja (DMs/favoritos) flotante */
+.chat-inbox {position:absolute;inset:52px 10px auto;z-index:40;background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.65);max-height:70%;overflow-y:auto;display:flex;flex-direction:column}
+
+.chat-inbox.hidden {display:none}
+
+.chat-inbox-head {position:sticky;top:0;background:var(--panel);padding:10px 14px;font-weight:700;font-size:13px;
+  border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+
+.chat-x {cursor:pointer;color:var(--dim)}
+
+.chat-x:hover {color:var(--hot)}
+
+.chat-inbox-item {padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;position:relative}
+
+.chat-inbox-item:hover {background:var(--panel2)}
+
+.chat-inbox-item:last-child {border-bottom:none}
+
+.chat-inbox-t {font-size:12.5px;font-weight:700}
+
+.chat-inbox-p {font-size:11px;color:var(--dim);margin-top:2px}
+
+.chat-inbox-item .chat-badge {position:absolute;right:12px;top:12px}
+
+/* panel de ajustes del chat (admin) */
+.chat-set-wrap {position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+  display:grid;place-items:center;padding:16px}
+
+.chat-set {background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;max-width:420px;width:100%;
+  display:flex;flex-direction:column;gap:10px;max-height:88vh;overflow-y:auto}
+
+.chat-set label {font-size:12px;color:var(--dim);display:flex;flex-direction:column;gap:4px;font-weight:600}
+
+.chat-set input,.chat-set textarea {background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+  padding:8px 10px;color:var(--ink);font-size:12.5px;font-family:'JetBrains Mono';outline:none;resize:vertical}
+
+.chat-set input:focus,.chat-set textarea:focus {border-color:var(--acid)}
+
+.chat-hint {font-size:10.5px;color:var(--dim);margin:0}
+
+.chat-set .btn-acid {justify-content:center}
+
+.chat-setrow {display:flex;align-items:end;gap:8px;flex-wrap:wrap}
+
+.chat-setrow .btn-acid {flex:1;justify-content:center}
+
+.chat-bgprev {height:110px;border-radius:12px;background-size:cover;background-position:center;border:1px solid var(--line)}
+
+/* selector de fondo por dispositivo: 3 columnas (una fila en móvil pequeño sería demasiado angosto) */
+.bg-slots {display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+
+.bg-slot {border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px}
+
+.bg-slot.here {border-color:var(--acid)}
+
+.bg-slot-head {font-size:12px;font-weight:700}
+
+.bg-slot-prev {height:74px;border-radius:9px;background:var(--panel2) center/cover;border:1px dashed var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--dim)}
+
+.bg-slot-btns {display:flex;flex-wrap:wrap;gap:5px}
+
+/* chat PANTALLA COMPLETA (responsive — se adapta a cualquier dispositivo):
+   100% de altura REAL — la fila de pestañas se esconde; «Restaurar» flota */
+body.chat-full .episodes-panel {
+  position:fixed;inset:0;margin:0;z-index:118;display:flex;flex-direction:column;
+  background:var(--bg);border-radius:0;padding:0 0 env(safe-area-inset-bottom,0px);
+}
+
+body.chat-full .panel-tabs {display:none}
+
+body.chat-full .chat-panel {flex:1;min-height:0;height:auto!important;border-radius:0;overflow:hidden;display:flex;flex-direction:column}
+
+/* ⤓ Restaurar: un chip más de la barra del chat, visible SOLO expandido */
+.chat-restore {display:none}
+
+body.chat-full .chat-restore {display:inline-flex;align-items:center;background:var(--acid);color:#111;border-color:var(--acid)}
+
+body.chat-full .chat-restore:hover {transform:translateY(-1px);filter:brightness(1.08)}
+
+body.chat-full .chat-main {flex:1;min-height:0}
+
+body.chat-full .chat-stage {height:100%}
+
+body.chat-full .chat-msgs {max-height:none!important;height:100%}
+
+/* circulito de ayuda arriba-derecha */
+.chat-help {
+  width:22px;height:22px;min-width:22px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;font-weight:900;color:#111;background:var(--acid);border:none;cursor:pointer;
+  box-shadow:0 0 0 0 rgba(216,255,62,.35);animation:helpPulse 3s ease-in-out infinite;
+}
+
+.chat-help:hover {transform:scale(1.12)}
+
+/* tarjetas de ENLACES INTERNOS / videos — diseño de PORTADA de cine:
+   miniatura 2:3 COMPLETA (sin recortes) + info elegante al lado      */
+.chat-card-own {
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:9px;cursor:default;
+  background:linear-gradient(160deg,rgba(24,24,38,.94) 0%,rgba(11,11,19,.97) 100%);
+  border:1px solid rgba(216,255,62,.22);border-radius:14px;padding:10px;
+  transition:border-color .18s,transform .18s,box-shadow .18s;
+}
+
+.chat-card-own:hover {
+  border-color:rgba(216,255,62,.6);
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px rgba(0,0,0,.5),0 0 20px rgba(216,255,62,.14);
+}
+
+/* brillo que recorre la tarjeta suavemente */
+.chat-card-own::after {
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.05) 45%,rgba(216,255,62,.07) 50%,transparent 65%);
+  transform:translateX(-110%);animation:ccShine 3.6s ease-in-out infinite;
+}
+
+.cc-main {display:flex;gap:11px;align-items:stretch;min-width:0}
+
+.cc-thumb {
+  position:relative;flex:none;width:76px;aspect-ratio:2/3;border-radius:10px;overflow:hidden;
+  background:linear-gradient(150deg,#23233a,#101018);background-size:cover;background-position:center;
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 7px 20px rgba(0,0,0,.5);
+  display:grid;place-items:center;
+}
+
+.cc-thumb i {font-style:normal;font-size:27px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6))}
+
+.cc-info {flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:2px 4px 0 0}
+
+.cc-kind {
+  align-self:flex-start;font:800 8.5px 'JetBrains Mono';letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--acid);background:rgba(216,255,62,.1);border:1px solid rgba(216,255,62,.32);
+  border-radius:999px;padding:3px 9px;
+}
+
+.cc-t {font-size:13.2px;font-weight:800;line-height:1.32;color:#f4f4fb;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+
+.cc-t i {color:var(--acid);font-style:normal}
+
+.cc-d {font-size:10.5px;color:var(--dim);line-height:1.4}
+
+.cc-brand {
+  position:absolute;top:8px;right:10px;pointer-events:none;
+  font:800 7.5px 'Archivo Black';letter-spacing:1px;color:rgba(216,255,62,.5);
+}
+
+.cc-bts {display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:2}
+
+.cc-open,.cc-here {border-radius:10px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer;transition:.15s}
+
+.cc-open {background:var(--acid);color:#111;border:none;box-shadow:0 6px 18px rgba(216,255,62,.28)}
+
+.cc-open:hover {filter:brightness(1.08);transform:translateY(-1px)}
+
+.cc-here {background:rgba(255,157,46,.16);color:#ffc66e;border:1px solid rgba(255,157,46,.5)}
+
+.cc-here:hover {background:rgba(255,157,46,.3)}
+
+/* 🎬 mini-reproductor flotante (arrastrable por su barra) */
+.chat-mini {
+  position:fixed;right:14px;bottom:86px;z-index:140;width:min(360px,86vw);
+  background:#0c0c14;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 22px 60px rgba(0,0,0,.65);touch-action:none;
+}
+
+.cm-bar {display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--panel2);cursor:grab;user-select:none}
+
+.cm-bar:active {cursor:grabbing}
+
+.cm-grip {color:var(--dim);font-size:13px}
+
+.cm-title {flex:1;font-size:11.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.cm-x {background:none;border:none;color:var(--dim);font-size:13px;cursor:pointer;padding:3px 6px;border-radius:7px}
+
+.cm-x:hover {background:var(--hot);color:#fff}
+
+.cm-vid {width:100%;aspect-ratio:16/9;background:#000;display:block}
+
+/* 🎵 dock de música */
+.chat-music {border-top:1px solid var(--line);background:var(--panel);padding:8px 10px 9px}
+
+.cmu-cats {display:flex;gap:6px;overflow-x:auto;padding-bottom:7px;scrollbar-width:none}
+
+.cmu-cats::-webkit-scrollbar {display:none}
+
+.cmu-cat {flex:0 0 auto;border:1px solid var(--line);background:var(--panel2);color:var(--dim);border-radius:999px;padding:5px 11px;font-size:11px;font-weight:700;cursor:pointer;transition:.15s}
+
+.cmu-cat:hover {color:var(--ink);border-color:var(--acid)}
+
+.cmu-cat.on {background:var(--acid);color:#111;border-color:var(--acid)}
+
+.cmu-row {display:flex;align-items:center;gap:8px}
+
+.cmu-btn {width:32px;height:32px;min-width:32px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--ink);font-size:13px;cursor:pointer;display:grid;place-items:center;transition:.15s}
+
+.cmu-btn:hover {border-color:var(--acid)}
+
+.cmu-play {background:var(--acid);color:#111;border-color:var(--acid)}
+
+.cmu-now {flex:1;min-width:0;line-height:1.25;overflow:hidden}
+
+.cmu-now b {display:block;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.cmu-now span {display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.cmu-viz {width:110px;height:30px;flex:0 0 auto;border-radius:8px;background:#0a0a12}
+
+.chat-music.noviz .cmu-viz {background:linear-gradient(90deg,#0a0a12 30%,#15130a 50%,#0a0a12 70%);background-size:200% 100%;animation:synSk 1.6s linear infinite}
+
+/* 🎵 dock de música PRO: lista vertical bonita */
+.chat-music {border-top:1px solid var(--line);background:var(--panel)}
+
+.chat-music .cmu-cats {padding:8px 10px 6px}
+
+.cmu-list {max-height:34vh;overflow-y:auto;display:flex;flex-direction:column;gap:5px;padding:2px 8px;scrollbar-width:thin}
+
+body.chat-full .cmu-list {max-height:44vh}
+
+.cmu-track {
+  position:relative;display:flex;align-items:center;gap:10px;text-align:left;
+  background:rgba(14,14,22,.72);border:1px solid var(--line);border-radius:12px;
+  padding:8px 10px;cursor:pointer;overflow:hidden;
+  animation:trackIn .3s cubic-bezier(.2,1.2,.3,1) both;animation-delay:var(--d,0ms);
+}
+
+.cmu-track::after {content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(216,255,62,.06),transparent);transform:translateX(-100%);transition:transform .5s;pointer-events:none}
+
+.cmu-track:hover {border-color:var(--acid);transform:translateX(3px)}
+
+.cmu-track:hover::after {transform:translateX(100%)}
+
+.cmu-track.on {border-color:var(--acid);background:rgba(216,255,62,.08)}
+
+.ct-ava {width:38px;height:38px;min-width:38px;border-radius:9px;overflow:hidden;display:grid;place-items:center;background:var(--panel2);font-size:16px}
+
+.ct-ava img {width:100%;height:100%;object-fit:cover}
+
+.ct-meta {flex:1;min-width:0;line-height:1.3}
+
+.ct-meta b {display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.ct-meta span {display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.ct-side {display:flex;align-items:center;gap:7px;flex:0 0 auto}
+
+.ct-src {font:800 8.5px 'JetBrains Mono';letter-spacing:.6px;color:#6ee7b7;border:1px solid rgba(110,231,183,.4);border-radius:999px;padding:2px 7px}
+
+.ct-src.yt {color:#ff6b81;border-color:rgba(255,107,129,.4)}
+
+.ct-dur {font:600 9.5px 'JetBrains Mono';color:var(--dim)}
+
+.ct-eq {width:20px;text-align:center;color:var(--acid);font-size:11px;font-weight:900}
+
+.cmu-track.on .ct-eq {display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+
+.cmu-track.on .ct-eq u {width:3px;background:var(--acid);animation:eqB .7s ease-in-out infinite;text-decoration:none}
+
+.cmu-track.on .ct-eq u:nth-child(2) {animation-delay:.18s;height:100%}
+
+.cmu-track.on .ct-eq u:nth-child(1) {height:60%}
+
+.cmu-track.on .ct-eq u:nth-child(3) {animation-delay:.36s;height:40%}
+
+.cmu-loading {display:flex;flex-direction:column;gap:8px;padding:10px 4px}
+
+.cmu-loading i {display:block;height:34px;border-radius:12px;background:linear-gradient(90deg,var(--panel) 25%,var(--panel2) 50%,var(--panel) 75%);background-size:200% 100%;animation:synSk 1.2s linear infinite}
+
+.cmu-empty {text-align:center;color:var(--dim);font-size:11.5px;padding:16px 10px}
+
+.cmu-row {padding:7px 10px 9px;border-top:1px solid var(--line)}
+
+.chat-music.cmu-busy .cmu-list {opacity:.55;pointer-events:none}
+
+.chat-mini .cm-frame {width:100%;aspect-ratio:16/9;background:#000;border:0;display:block}
+
+/* 👤 conectados: sin puntico — el CÍRCULO del avatar es el que se ilumina.
+   nombre más pegado al avatar.                               */
+.chat-user {gap:6px;padding:6px 8px}
+
+.chat-user .u-avaw {position:relative;width:26px;height:26px;min-width:26px;border-radius:50%;display:grid;place-items:center}
+
+.chat-user .u-ava {width:26px;height:26px;display:block;border-radius:50%}
+
+.chat-user .u-avaw::after {content:'';position:absolute;inset:-2px;border-radius:50%;border:2px solid transparent;transition:.25s}
+
+.chat-user .u-avaw.on::after {border-color:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.65)}
+
+.chat-user.off .u-ava {filter:grayscale(.75) brightness(.72)}
+
+.chat-user .u-name {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+
+/* 🎵 pulido del dock: filas MÁS ALTAS y legibles, sin sello «MP3»,
+   ecualizador sutil solo en la pista activa (sin recargar la lista) */
+.cmu-track {padding:11px 12px;min-height:60px;gap:12px}
+
+.ct-ava {width:46px;height:46px;min-width:46px;font-size:19px;border-radius:11px}
+
+.ct-meta b {font-size:12.8px;font-weight:700;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.32}
+
+.ct-meta span {font-size:10.8px;margin-top:2px}
+
+.ct-src {display:none}
+
+/* adiós sello MP3/YouTube del final */
+.ct-dur {font-size:10.5px}
+
+.ct-eq {display:inline-flex;gap:2.5px;align-items:flex-end;height:14px;width:22px;visibility:hidden}
+
+.cmu-track.on .ct-eq {visibility:visible}
+
+.ct-eq u {width:3.5px;background:var(--acid);border-radius:2px;transform:scaleY(.45);transform-origin:bottom}
+
+.ct-eq u:nth-child(1) {height:60%}
+
+.ct-eq u:nth-child(2) {height:100%}
+
+.ct-eq u:nth-child(3) {height:42%}
+
+.chat-music.playing .ct-eq u {animation:eqB .8s ease-in-out infinite}
+
+.chat-music.playing .ct-eq u:nth-child(2) {animation-delay:.18s}
+
+.chat-music.playing .ct-eq u:nth-child(3) {animation-delay:.36s}
+
+/* la caja del chat EN MODO BÚSQUEDA DE MÚSICA llama la atención sola */
+.chat-compose.music-on #chatInput {
+  border-color:var(--acid);
+  box-shadow:0 0 0 2px rgba(216,255,62,.30),0 0 22px rgba(216,255,62,.16);
+  animation:muPulse 1.9s ease-in-out infinite;
+}
+
+.chat-compose.music-on #chatInput::placeholder {color:var(--acid);opacity:.85}
+
+.chat-compose.music-on #chatSend {background:linear-gradient(135deg,#ffd24a,#ff9d2e 55%,#ff5c84);color:#221200}
+
+/* pausado = ecualizador quieto (el orden lo da la cascada) */
+.chat-music:not(.playing) .ct-eq u {animation:none!important}
+
+/* 🎵 DOCK EXPANDIDO: con la música abierta ocupa TODO el chat
+   (ancho y alto completos) — los mensajes esperan su turno          */
+.chat-panel.music-on .chat-main {display:none}
+
+.chat-panel.music-on .chat-music {
+  flex:1;min-height:0;display:flex;flex-direction:column;border-top:1px solid var(--line);
+}
+
+.chat-panel.music-on .chat-music .cmu-list {flex:1;max-height:none;min-height:0}
+
+.cmu-more {text-align:center;color:var(--dim);font:600 10px 'JetBrains Mono';letter-spacing:1px;padding:10px 0 4px;text-transform:uppercase}
+
+.cmu-list {scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+
+/* 🎛 mini-reproductor PRO: controles propios + modo TEATRO (expandido) */
+.cm-controls {display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--panel);border-top:1px solid var(--line)}
+
+.cmc {background:none;border:none;color:var(--dim);font-size:13px;cursor:pointer;padding:3px 5px;border-radius:7px;transition:.12s}
+
+.cmc:hover {color:var(--acid);background:var(--panel2)}
+
+.cmc-play {color:var(--acid);font-size:15px}
+
+.cm-seek {position:relative;flex:1;height:16px;cursor:pointer}
+
+.cm-seek::before {content:'';position:absolute;left:0;right:0;top:7px;height:3px;background:var(--line);border-radius:3px}
+
+.cm-seek-buf {position:absolute;left:0;top:7px;height:3px;background:rgba(216,255,62,.22);border-radius:3px;width:0}
+
+.cm-seek-fill {position:absolute;left:0;top:7px;height:3px;background:var(--acid);border-radius:3px;width:0}
+
+.cm-seek-knob {position:absolute;top:4px;width:9px;height:9px;margin-left:-4px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px rgba(216,255,62,.6)}
+
+.cm-time {font:600 9.5px 'JetBrains Mono';color:var(--dim);min-width:74px;text-align:center}
+
+.cm-vol {width:56px;accent-color:var(--acid);height:3px}
+
+.cmc-next {margin-left:2px}
+
+/* modo iframe: YouTube/Drive traen sus controles → escondemos los nuestros */
+.chat-mini.cm-iframe .cm-controls {display:none}
+
+/* ⛶ TEATRO: expande el mini a casi toda la pantalla al instante */
+.chat-mini.theater {
+  left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;
+  transform:translate(-50%,-50%);
+  width:min(1080px,96vw)!important;z-index:150;
+  box-shadow:0 40px 120px rgba(0,0,0,.8);
+}
+
+.chat-mini.theater .cm-vid {aspect-ratio:16/9}
+
+.chat-mini:fullscreen {border-radius:0;width:100vw!important}
+
+.chat-mini:fullscreen .cm-bar {display:none}
+
+/* 🎵 carga de categoría: skeleton con nombre del género */
+.cmu-loading {display:flex;flex-direction:column;gap:8px;padding:12px 6px;align-items:stretch}
+
+.cmu-loading-txt {text-align:center;color:var(--dim);font:600 10.5px 'JetBrains Mono';letter-spacing:1.2px;padding-top:4px}
+
+/* ❤ corazones de canciones (grandes) + ⬇ descarga */
+.ct-side {gap:6px}
+
+.ct-fav {font-size:19px;cursor:pointer;color:var(--dim);transition:.15s;line-height:1;font-weight:400;padding:2px 3px;border-radius:8px}
+
+.ct-fav:hover {transform:scale(1.25);color:#ff5c84}
+
+.ct-fav.on {color:#ff2e63;filter:drop-shadow(0 0 6px rgba(255,46,99,.55));animation:favPop .3s cubic-bezier(.2,1.6,.4,1)}
+
+.ct-dl {font-size:14px;cursor:pointer;color:var(--dim);transition:.15s;padding:3px 4px;border-radius:8px;font-weight:400}
+
+.ct-dl:hover {color:var(--acid);transform:translateY(2px)}

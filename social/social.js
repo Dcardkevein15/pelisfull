@@ -905,8 +905,19 @@
         ${c.kind !== 'pelicula' ? '<span class="soc-feat-badge">EN EMISIÓN</span>' : '<span class="soc-feat-play">▶</span>'}
         <span class="soc-feat-t">${esc(c.t.slice(0, 30))}<small>${esc(c.kind === 'pelicula' ? 'Película completa' : 'Serie · ' + (c.episodes || []).length + ' caps')}</small></span>
       </button>`).join('');
-    nav.innerHTML = pages.map((_, i) => `<i class="${i === featPage ? 'on' : ''}" data-fp="${i}"></i>`).join('');
+    /* ‹ puntitos › : flechas para pasar a voluntad + puntos de posición.
+       La rotación automática sigue (6s) — cada paso manual reinicia el
+       conteo, así el auto no pisa el navigation del usuario.            */
+    nav.innerHTML = pages.length > 1
+      ? '<button class="soc-feat-arrow" data-d="-1" title="Anterior">‹</button>'
+        + pages.map((_, i) => `<i class="${i === featPage ? 'on' : ''}" data-fp="${i}"></i>`).join('')
+        + '<button class="soc-feat-arrow" data-d="1" title="Siguiente">›</button>'
+      : '';
     nav.querySelectorAll('i').forEach(dot => dot.addEventListener('click', () => { featPage = +dot.dataset.fp; renderFeatured(); }));
+    nav.querySelectorAll('.soc-feat-arrow').forEach(ar => ar.addEventListener('click', () => {
+      featPage = (featPage + Number(ar.dataset.d) + pages.length) % pages.length;
+      renderFeatured();
+    }));
     grid.querySelectorAll('.soc-feat-it').forEach(b => b.addEventListener('click', () => {
       const c = pool.find(x => x.id === b.dataset.fid);
       if (c) openCatalogPreview(c);
@@ -1037,8 +1048,25 @@
   document.querySelectorAll('#socChatFilters button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('#socChatFilters button').forEach(x => x.classList.toggle('on', x === b));
     S.chatFilter = b.dataset.f;
+    applyChatFilter();
     renderChat();
   }));
+
+  /* ═══════════ 🎬 CHAT REAL DE LA WEB DE PELÍCULAS EN «TODOS» ═══════════
+     «Todos» → el chat vivo (chat.js) embebido en la columna comunidad.
+     «Amigos» / «Grupos» → las conversaciones sociales (por ahora igual).  */
+  function applyChatFilter() {
+    const embed = document.getElementById('socEmbedChat');
+    const convos = document.getElementById('socConvos');
+    if (embed) embed.classList.toggle('hidden', S.chatFilter !== 'todos');
+    if (convos) convos.classList.toggle('hidden', S.chatFilter === 'todos');
+    /* al volver al chat: los mensajes saltan abajo (donde se escribe ahora) */
+    if (S.chatFilter === 'todos') {
+      const box = document.getElementById('chatMsgs');
+      if (box) setTimeout(() => { box.scrollTop = box.scrollHeight; }, 60);
+    }
+  }
+  applyChatFilter();
 
   /* ═══════════ 🚀 SOCIAL DOCK — pestañas que cambian AL INSTANTE ═══════════ */
   function dockTab(t) {
@@ -1109,7 +1137,9 @@
 
   /* ═══════════ ONLINE ═══════════ */
   function renderOnline() {
-    $('socOnlineCount').textContent = S.onlineCount;
+    /* el chip «en línea» de la cabecera del dock ya no existe — el conteo
+       vive ahora solo en la pestaña Vivo (sin crash si falta el elemento) */
+    if ($('socOnlineCount')) $('socOnlineCount').textContent = S.onlineCount;
     const box = $('socOnline');
     box.innerHTML = S.onlineUsers.length
       ? S.onlineUsers.map(u => avatarHtml(u.name, u.grad, 'sm').replace('<span', `<span title="${esc(u.name)}"`)).join('')

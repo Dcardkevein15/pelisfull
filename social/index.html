@@ -119,13 +119,9 @@
   </aside>
 
   <!-- ══════════ SOCIAL DOCK — la columna derecha unificada: pestañas
-       que cambian al instante (Chat · Descubre · Vivo) + footer promo ══════════ -->
+       que cambian al instante (Chat · Descubre · Vivo). Sin cabecera
+       (todo el espacio arriba para las pestañas) y sin pie promo   ══════════ -->
   <aside class="soc-dock" id="socDock">
-    <div class="soc-dock-head">
-      <span class="soc-dock-pulse"></span>
-      <b class="soc-dock-brand">XSTREAM <i>COMUNIDAD</i></b>
-      <span class="soc-dock-chip"><b id="socOnlineCount">0</b> en línea</span>
-    </div>
     <nav class="soc-dock-tabs" id="socDockTabs">
       <button class="on" data-t="chat"><span>💬</span> Chat</button>
       <button data-t="descubre"><span>✨</span> Descubre</button>
@@ -133,14 +129,50 @@
     </nav>
     <div class="soc-dock-body">
       <section class="soc-dock-tab on" data-tb="chat">
-        <div class="soc-card">
+        <div class="soc-card soc-chat-card">
           <div class="soc-card-h"><span>💬 Chat y comunidad</span></div>
           <div class="soc-chat-filters" id="socChatFilters">
             <button class="on" data-f="todos">Todos</button>
             <button data-f="amigos">Amigos</button>
             <button data-f="grupos">Grupos</button>
           </div>
-          <div class="soc-convos" id="socConvos"></div>
+          <!-- TODOS: el chat REAL de la web de películas (chat.js) en vivo -->
+          <div class="soc-embed-wrap" id="socEmbedChat">
+            <div class="chat-panel soc-embed-chat" id="panelChat">
+              <div class="chat-top">
+                <button class="chip-filter hidden" id="chatBackBtn" title="Volver a la sala">← Sala</button>
+                <div id="chatRooms" class="chat-rooms" title="Salas del chat — toca una para entrar"></div>
+                <button class="chip-filter" id="chatInboxBtn" title="Mensajes privados">📩 <b id="chatDmBadge" class="chat-badge hidden">0</b></button>
+                <button class="chat-online chip-filter" id="chatOnline" title="Usuarios en línea — toca para ver la lista">● 0</button>
+                <span class="spacer"></span>
+                <button class="chip-filter hidden" id="chatSettingsBtn" title="Ajustes del chat (admin)">⚙</button>
+                <button class="chip-filter" id="chatBgBtn" title="Fondo del chat — elige una imagen (local en tu dispositivo)">🖼</button>
+                <button class="chip-filter" id="chatMusicBtn" title="🎵 Música mientras chateas — listas MP3 que se arman solas">🎵</button>
+                <button class="chip-filter" id="chatFavsBtn" title="Mis enlaces favoritos ❤ — se quedan aunque el chat se limpie">❤</button>
+                <button class="chat-help" id="chatHelpBtn" title="Guía rápida: qué puedes hacer en este chat">?</button>
+                <button class="chip-filter chat-restore" id="chatRestoreBtn" title="Restaurar — volver a la vista normal">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 5H5a1 1 0 0 0-1 1v4M15 5h4a1 1 0 0 1 1 1v4M20 14v4a1 1 0 0 1-1 1h-4M9 19H5a1 1 0 0 1-1-1v-4"/></svg>
+                </button>
+              </div>
+              <div class="chat-main" id="chatMain">
+                <div class="chat-bg" id="chatBg"></div>
+                <div class="chat-stage">
+                  <div class="chat-msgs" id="chatMsgs"></div>
+                  <div class="chat-users" id="chatUsers"></div>
+                </div>
+              </div>
+              <!-- 🎵 mini-dock de música (se abre con el 🎵 de arriba) -->
+              <div class="chat-music hidden" id="chatMusic"></div>
+              <div class="chat-compose">
+                <button class="chip-filter" id="chatImgBtn" title="Compartir imagen (se sube, no un enlace)">📷</button>
+                <input type="text" id="chatInput" placeholder="Escribe en el chat… (enlaces se ven con tarjeta)" maxlength="2000" autocomplete="off">
+                <button class="btn btn-acid" id="chatSend">➤</button>
+              </div>
+              <div class="chat-inbox hidden" id="chatInbox"></div>
+            </div>
+          </div>
+          <!-- AMIGOS / GRUPOS: las conversaciones sociales (como hoy) -->
+          <div class="soc-convos hidden" id="socConvos"></div>
         </div>
       </section>
       <section class="soc-dock-tab" data-tb="descubre">
@@ -165,13 +197,6 @@
         </div>
       </section>
     </div>
-    <div class="soc-dock-foot">
-      <div class="soc-promo-x">X</div>
-      <div class="soc-promo-b">
-        <b>Conecta, comparte y vive la experiencia XSTREAM</b>
-        <a class="soc-btn soc-btn-green" href="../" data-main="">¡Únete ahora!</a>
-      </div>
-    </div>
   </aside>
 
 </div>
@@ -192,11 +217,40 @@
 
 <div class="soc-toasts" id="socToasts"></div>
 
+<!-- 🎬 mini-reproductor flotante del chat (arrastrable) — vive en el body
+     para poder flotar sobre toda la página social                        -->
+<div class="chat-mini hidden" id="chatMini"></div>
+
+<!-- anclas invisibles para el switchTab interno de chat.js (vive en la web
+     de películas y espera los tabs del panel principal; aquí no existen) -->
+<div class="hidden" id="ptabContent"></div>
+<div class="hidden" id="ptabChat"></div>
+<div class="hidden" id="panelContent"></div>
+
 <script>
+  /* ═══ shims: chat.js espera utilidades del app de películas ═══ */
+  window.loadScript = window.loadScript || (src => new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = () => rej(new Error('load ' + src));
+    document.head.appendChild(s);
+  }));
+  window.slugify = window.slugify || (t => String(t == null ? '' : t).toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''));
+  window.uiModal = window.uiModal || (s => {
+    const w = document.createElement('div');
+    w.className = 'chat-set-wrap';
+    w.innerHTML = '<div class="chat-set"><b style="font-size:15px">' + (s.icon || '') + ' ' + (s.title || '') + '</b>'
+      + '<div style="font-size:12.5px;line-height:1.6">' + (s.sub || '') + '</div>'
+      + '<button class="btn btn-acid" style="align-self:flex-end">' + (s.okLabel || 'OK') + '</button></div>';
+    w.addEventListener('click', ev => { if (ev.target === w || ev.target.closest('button')) w.remove(); });
+    document.body.appendChild(w);
+  });
+
   if (location.protocol === 'file:') {
-    document.write('<script src="../auth.js"><\/script><script src="social.js"><\/script>');
+    document.write('<script src="../auth.js"><\/script><script src="social.js"><\/script><script src="../chat.js"><\/script>');
   } else {
-    document.write('<script src="/auth.js"><\/script><script src="/social/social.js"><\/script>');
+    document.write('<script src="/auth.js"><\/script><script src="/social/social.js"><\/script><script src="/chat.js"><\/script>');
   }
 </script>
 </body>
