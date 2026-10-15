@@ -56,26 +56,18 @@
     </div>
   </header>
 
-  <!-- ══════════ SIDEBAR IZQUIERDA ══════════ -->
-  <aside class="soc-side">
+  <!-- ══════════ RAIL IZQUIERDO — contraído: solo iconos ══════════ -->
+  <aside class="soc-side" id="socSide">
     <nav class="soc-side-nav" id="socSideNav">
-      <a class="on" data-nav="inicio"><span>🏠</span> Inicio</a>
-      <a data-nav="explorar"><span>🧭</span> Explorar</a>
-      <a data-nav="foro"><span>🧵</span> Foro</a>
-      <a data-nav="amigos"><span>👥</span> Amigos</a>
-      <a data-nav="grupos"><span>⬡</span> Grupos</a>
-      <a data-nav="mensajes"><span>💬</span> Mensajes <b class="soc-red hidden" id="socSideMsg"></b></a>
-      <a data-nav="notificaciones"><span>🔔</span> Notificaciones <b class="soc-red hidden" id="socSideNotif"></b></a>
-      <a data-nav="perfil"><span>🧑</span> Mi perfil</a>
+      <a class="on" data-nav="inicio" title="Inicio"><span>🏠</span></a>
+      <a data-nav="explorar" title="Explorar"><span>🧭</span></a>
+      <a data-nav="foro" title="Foro"><span>🧵</span></a>
+      <a data-nav="amigos" title="Amigos"><span>👥</span></a>
+      <a data-nav="grupos" title="Grupos"><span>⬡</span></a>
+      <a data-nav="mensajes" title="Mensajes"><span>💬</span><b class="soc-red hidden" id="socSideMsg"></b></a>
+      <a data-nav="notificaciones" title="Notificaciones"><span>🔔</span><b class="soc-red hidden" id="socSideNotif"></b></a>
+      <a data-nav="perfil" title="Mi perfil"><span>🧑</span></a>
     </nav>
-    <div class="soc-side-sec">TUS INTERESES</div>
-    <div class="soc-interests" id="socInterests"></div>
-    <div class="soc-premium">
-      <div class="soc-crown">👑</div>
-      <b>XSTREAM PREMIUM</b>
-      <p>Sin anuncios, todo desbloqueado y funciones sociales exclusivas.</p>
-      <a class="soc-btn soc-btn-green" href="../" data-main="" target="_self">Ver planes</a>
-    </div>
   </aside>
 
   <!-- ══════════ COLUMNA CENTRAL ══════════ -->
@@ -130,17 +122,21 @@
     </nav>
     <div class="soc-dock-body">
       <section class="soc-dock-tab on" data-tb="foro">
-        <div class="soc-card soc-foro-card">
-          <div class="soc-card-h">
-            <span>🧵 Foro XSTREAM</span>
-            <a href="javascript:void 0" id="foroNew" title="Crear un tema nuevo">+ Tema</a>
+        <div class="foro-bg" id="foroBg"></div>
+        <div class="soc-foro-card" id="foroRoot">
+          <div class="foro-top">
+            <b class="foro-brand">🧵 FORO <i>XSTREAM</i></b>
+            <span class="foro-toolbar">
+              <button class="foro-tool" id="foroSeed" title="🤖 Agente: crear automáticamente los temas del catálogo (solo admin)">🤖<small>Temas</small></button>
+              <button class="foro-tool" id="foroBgBtn" title="🖼 Fondo del foro — sube TU imagen (local en tu dispositivo)">🖼<small>Fondo</small></button>
+              <button class="foro-tool foro-tool-main" id="foroNew" title="Crear un tema nuevo">＋<small>Tema</small></button>
+            </span>
           </div>
-          <!-- nichos: películas · series · anime · hentai · doramas · drama · general -->
-          <div class="foro-cats" id="foroCats"></div>
-          <!-- sub-foros: las series más famosas del catálogo real por nicho -->
-          <div class="foro-subs" id="foroSubs"></div>
-          <!-- lista de hilos -->
-          <div class="foro-list" id="foroList"></div>
+          <div class="foro-crumb hidden" id="foroCrumb"></div>
+          <!-- forobeta: HOME (boards verticales) · BOARD (hilos) · HILO -->
+          <div class="foro-view" id="foroHome"></div>
+          <div class="foro-view hidden" id="foroBoard"></div>
+          <div class="foro-view hidden" id="foroThread"></div>
         </div>
       </section>
       <section class="soc-dock-tab" data-tb="descubre">

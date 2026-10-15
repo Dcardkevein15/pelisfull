@@ -30,14 +30,13 @@ body{
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 a{color:inherit;text-decoration:none}
 .hidden{display:none!important}
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-thumb{background:#152438;border-radius:99px}
-::-webkit-scrollbar-thumb:hover{background:#1d3a55}
+/* 🕶 scrolls INVISIBLES en toda la red social: se scrollea igual, sin cajas feas */
+::-webkit-scrollbar{width:0;height:0;display:none}
+*{scrollbar-width:none}
 
-/* ── rejilla general ── topbar · sidebar compacta · centro · DOCK FIJO ──
-   Dock comunidad: +25% y luego +15% adicional (336→420→483)          */
+/* ── rejilla general ── rail de iconos · red social 50% · FORO 50% ── */
 .soc-app{
-  display:grid;grid-template-columns:142px minmax(0,1fr) 483px;
+  display:grid;grid-template-columns:64px minmax(0,1fr) minmax(0,1fr);
   grid-template-rows:60px minmax(0,1fr);
   grid-template-areas:"top top top" "side main dock";
   gap:0 14px;height:100vh;padding:0 14px;
@@ -143,11 +142,10 @@ a{color:inherit;text-decoration:none}
 /* ── SIDEBAR ─────────────────────────────────────────────── */
 .soc-side{padding-top:14px}
 .soc-side-nav{display:flex;flex-direction:column;gap:2px}
-.soc-side-nav a{
-  display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:9px;
-  font:600 11.5px Inter;color:var(--dim);border:1px solid transparent;cursor:pointer;
-  white-space:nowrap;
-}
+.soc-side-nav a{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;font-size:20px;color:var(--dim);transition:all .18s cubic-bezier(.2,1.2,.4,1);margin:0 auto}
+.soc-side-nav a:hover{color:var(--ink);background:var(--card);transform:translateY(-2px) scale(1.06)}
+.soc-side-nav a.on{color:var(--green);background:var(--green-dk);box-shadow:0 6px 18px rgba(0,230,118,.25)}
+.soc-side-nav a .soc-red{position:absolute;top:4px;right:4px}
 .soc-side-nav a span{font-size:14px;width:18px;text-align:center;flex-shrink:0}
 .soc-side-nav a span.soc-nav-av{width:20px;height:20px;border-radius:50%;font-size:9px;font-weight:900;display:grid;place-items:center;color:#03130B;background-image:var(--g,var(--grad-a));background-size:cover}
 .soc-side-nav a:hover{background:var(--card);color:var(--ink)}
@@ -156,13 +154,6 @@ a{color:inherit;text-decoration:none}
   margin-left:auto;background:var(--hot);color:#fff;border-radius:99px;
   font:800 9px Inter;padding:2px 6px;min-width:16px;text-align:center;
 }
-.soc-side-sec{margin:14px 9px 7px;font:800 9px Inter;letter-spacing:.8px;color:var(--faint);white-space:nowrap}
-.soc-interests{display:flex;flex-direction:column;gap:2px;padding:0 4px}
-.soc-int{
-  display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;
-  background:transparent;border:1px solid transparent;
-  font:600 11px Inter;color:var(--dim);cursor:pointer;text-align:left;
-  white-space:nowrap;
 }
 .soc-int i{
   width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
@@ -170,22 +161,10 @@ a{color:inherit;text-decoration:none}
 }
 .soc-int:hover{background:var(--card);color:var(--ink)}
 .soc-int.on{color:var(--ink);background:var(--green-dk);border-color:var(--green)}
-.soc-premium{
-  margin-top:auto;padding:11px;border-radius:var(--r);text-align:center;
-  background:linear-gradient(160deg,var(--card),var(--panel));
-  border:1px solid var(--line);
-}
+
 .soc-side{display:flex;flex-direction:column}
 .soc-crown{font-size:22px;filter:drop-shadow(0 0 12px rgba(0,230,118,.5))}
-.soc-premium b{display:block;margin:5px 0 4px;font-size:11.5px;letter-spacing:.2px}
-.soc-premium p{color:var(--faint);font-size:9.5px;line-height:1.45;margin-bottom:9px}
-.soc-premium .soc-btn{width:100%;padding:7px 8px;font-size:10.5px}
 
-/* ── tarjetas base ───────────────────────────────────────── */
-.soc-card{
-  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
-  padding:13px 14px;margin-bottom:14px;
-}
 .soc-card-h{
   display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;
   font:800 13px Inter;color:var(--ink);
@@ -238,7 +217,9 @@ a{color:inherit;text-decoration:none}
 .soc-attach .soc-x{margin-left:auto}
 
 /* ── historias ───────────────────────────────────────────── */
-.soc-stories{display:flex;gap:13px;overflow-x:auto;padding:3px 2px 5px;scrollbar-width:thin}
+.soc-stories{display:flex;gap:13px;overflow-x:auto;padding:3px 10px 5px;
+  mask-image:linear-gradient(90deg,transparent,#000 14px,#000 calc(100% - 14px),transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14px,#000 calc(100% - 14px),transparent)}
 .soc-story{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;width:68px;cursor:pointer}
 .soc-story-ring{
   width:60px;height:60px;border-radius:50%;padding:2.5px;
@@ -560,7 +541,8 @@ a{color:inherit;text-decoration:none}
 /* descubre/vivo: tarjetas a altura natural (la columna scrollea como siempre) */
 .soc-dock-tab.on > .soc-card{flex:0 0 auto}
 /* chat: la tarjeta llena la columna — el chat vive dentro */
-.soc-dock-tab[data-tb="foro"].on > .soc-card{flex:1;min-height:0;display:flex;flex-direction:column}
+.soc-dock-tab[data-tb="foro"].on{position:relative;overflow:hidden}
+.soc-dock-tab[data-tb="foro"].on > .soc-foro-card{flex:1;min-height:0;display:flex;flex-direction:column}
 @keyframes dockTabIn{from{opacity:0;transform:translateX(14px)}}
 /* 🪦 EL ASIDE FANTASMA: .soc-col-left usa grid-area:left, un área que NO
    existe en el template — el navegador lo auto-colocaba en una FILA implícita
@@ -587,12 +569,12 @@ a{color:inherit;text-decoration:none}
    El DOCK es PERMANENTE: nunca se esconde en escritorio/tablet — solo
    en móvil (<920px, donde físicamente no cabe) se abre con el botón   */
 @media (max-width:1280px){
-  .soc-app{grid-template-columns:132px minmax(0,1fr) 431px}
+  .soc-app{grid-template-columns:56px minmax(0,1fr) minmax(0,1fr)}
   .soc-search{max-width:340px}
   .soc-topnav a{padding:7px 8px;font-size:11.5px}
 }
 @media (max-width:1150px){
-  .soc-app{grid-template-columns:126px minmax(0,1fr) 414px;gap:0 10px;padding:0 10px}
+  .soc-app{grid-template-columns:56px minmax(0,1fr) minmax(0,1fr);gap:0 10px;padding:0 10px}
   .soc-col-left{display:none}
 }
 @media (max-width:980px){
@@ -732,98 +714,159 @@ body.light ::-webkit-scrollbar-thumb{background:#C4CFDC}
 .soc-preview-story{margin:13px 2px;font-size:12.5px;line-height:1.7;color:var(--dim);max-height:150px;overflow-y:auto}
 .soc-preview-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
 
+/* ═══════════ 🧵 FORO XSTREAM — estilo forobeta: boards · hilos · posts ═══════════
+   Estructura vertical clásica de foro real: HOME (lista de boards),
+   BOARD (lista de hilos con su autor/respuestas/último) e HILO (posts
+   con respuestas inline). Fondo personalizable por el usuario.       */
 
+/* fondo del foro: TU imagen (localStorage) con velo oscuro para leer encima */
+.foro-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:var(--foro-bg-image) center/cover no-repeat,linear-gradient(180deg,#071321 0%,#030A13 100%);
+  opacity:.35;filter:saturate(1.1)}
+body:not(.has-foro-bg) .foro-bg{opacity:1;filter:none;background:linear-gradient(180deg,#071321 0%,#030A13 100%)}
+body.has-foro-bg .foro-bg{opacity:.3}
 
-/* ═══════════ 🧵 FORO XSTREAM — la columna comunidad es del foro ═══════════ */
-.foro-cats{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;margin-bottom:10px}
-.foro-cat{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:7px 11px;border-radius:99px;
-  border:1px solid var(--line);background:var(--panel);color:var(--dim);
-  font:700 11.5px Inter;white-space:nowrap;cursor:pointer;transition:all .15s}
-.foro-cat:hover{color:var(--ink);border-color:var(--faint)}
-.foro-cat.on{background:var(--green-dk);border-color:var(--green);color:var(--green)}
+.soc-foro-card{position:relative;z-index:1;flex:1;min-height:0;display:flex;flex-direction:column;padding:12px 12px 14px;gap:10px}
 
-/* sub-foros: las series más fuertes del catálogo real */
-.foro-subs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:thin;margin-bottom:12px}
-.foro-sub{flex-shrink:0;width:64px;display:flex;flex-direction:column;gap:3px;align-items:center;background:none;border:none;cursor:pointer;padding:0}
-.foro-sub img{width:64px;height:92px;object-fit:cover;border-radius:8px;border:2px solid var(--line);transition:all .15s}
-.foro-sub i{font:600 9.5px Inter;color:var(--dim);text-align:center;line-height:1.25;font-style:normal;max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.foro-sub small{font:700 8.5px Inter;color:var(--faint)}
-.foro-sub:hover img{border-color:var(--faint);transform:translateY(-2px)}
-.foro-sub.on img{border-color:var(--green);box-shadow:0 6px 18px rgba(0,230,118,.3)}
-.foro-sub.on i{color:var(--green)}
+/* ── barra del foro: marca + herramientas ── */
+.foro-top{display:flex;align-items:center;gap:10px;padding:0 2px}
+.foro-brand{font:900 15px 'Archivo Black',Inter,sans-serif;letter-spacing:.4px;color:var(--ink);white-space:nowrap}
+.foro-brand i{font-style:normal;color:var(--green)}
+.foro-toolbar{margin-left:auto;display:flex;gap:7px}
+.foro-tool{display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;
+  padding:7px 11px;border-radius:11px;border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--card),var(--panel));color:var(--dim);
+  font-size:15px;transition:all .16s cubic-bezier(.2,1.2,.4,1)}
+.foro-tool small{font:800 8.5px Inter;letter-spacing:.4px}
+.foro-tool:hover{color:var(--ink);border-color:var(--faint);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.foro-tool-main{color:#03130B;border-color:var(--green);
+  background:linear-gradient(135deg,#00E676,#5df5a4);box-shadow:0 6px 18px rgba(0,230,118,.35)}
+.foro-tool-main:hover{color:#03130B;border-color:#5df5a4;box-shadow:0 10px 26px rgba(0,230,118,.5)}
 
-/* lista de hilos */
-.foro-list{flex:1;min-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:2px;scrollbar-width:thin}
-.foro-th{display:block;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:11px;
-  padding:10px 12px;cursor:pointer;transition:all .15s;width:100%}
-.foro-th:hover{border-color:var(--faint);background:var(--card);transform:translateY(-1px)}
-.foro-th-t{font:700 13px Inter;color:var(--ink);line-height:1.35;margin-bottom:5px}
-.foro-pin{margin-right:2px}
-.foro-th-sub{font:600 10.5px Inter;color:var(--blue);margin-bottom:4px}
-.foro-th-prev{font:400 11.5px Inter;color:var(--dim);line-height:1.45;margin-bottom:7px;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.foro-th-meta{display:flex;align-items:center;gap:6px;font:600 10.5px Inter;color:var(--faint);flex-wrap:wrap}
-.foro-th-meta b{color:var(--dim);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.foro-th-stats{margin-left:auto;background:var(--card);border:1px solid var(--line);padding:2px 8px;border-radius:99px;color:var(--dim)}
+/* ── migas de pan: Foro ‹ Board ‹ Hilo ── */
+.foro-crumb{display:flex;align-items:center;gap:8px;font:700 12px Inter;color:var(--faint);padding:0 2px}
+.foro-crumb button{color:var(--green);font:inherit;cursor:pointer;padding:3px 8px;border-radius:8px;transition:background .15s}
+.foro-crumb button:hover{background:var(--green-dk)}
+.foro-crumb b{color:var(--ink);font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── vistas (home/board/thread) ── */
+.foro-view{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:2px}
+
+/* ── HOME estilo forobeta: cada board es una fila vertical ── */
+.foro-board-row{display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;width:100%;
+  padding:13px 14px;border-radius:14px;border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--card),var(--panel));transition:all .18s cubic-bezier(.2,1.2,.4,1)}
+.foro-board-row:hover{border-color:var(--faint);transform:translateX(4px);box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.foro-board-ic{width:46px;height:46px;min-width:46px;border-radius:12px;display:grid;place-items:center;font-size:22px;
+  background:var(--green-dk);border:1px solid var(--green);box-shadow:0 6px 16px rgba(0,230,118,.18)}
+.foro-board-b{flex:1;min-width:0}
+.foro-board-name{font:800 14px Inter;color:var(--ink);display:flex;align-items:center;gap:8px}
+.foro-board-desc{font:500 11px Inter;color:var(--faint);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.foro-board-stats{text-align:right;flex-shrink:0}
+.foro-board-n{font:800 13px Inter;color:var(--green)}
+.foro-board-n small{display:block;font:600 9px Inter;color:var(--faint);letter-spacing:.3px}
+.foro-board-last{font:600 10px Inter;color:var(--faint);margin-top:4px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── BOARD: barra de género/temas + filas de hilos ── */
+.foro-chips{display:flex;gap:6px;overflow-x:auto;padding:2px 10px;
+  mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.foro-chip{flex-shrink:0;padding:6px 13px;border-radius:99px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--line);background:var(--panel);color:var(--dim);font:700 11px Inter;transition:all .15s}
+.foro-chip:hover{color:var(--ink);border-color:var(--faint)}
+.foro-chip.on{color:#03130B;background:linear-gradient(135deg,#00E676,#5df5a4);border-color:var(--green);font-weight:800}
+
+.foro-th{display:flex;align-items:center;gap:11px;text-align:left;cursor:pointer;width:100%;
+  padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--panel);transition:all .15s}
+.foro-th:hover{border-color:var(--faint);background:var(--card);transform:translateX(3px)}
+.foro-th-thumb{width:38px;height:54px;min-width:38px;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:var(--card)}
+.foro-th-emoji{width:38px;height:38px;min-width:38px;border-radius:10px;display:grid;place-items:center;font-size:17px;
+  background:var(--card);border:1px solid var(--line)}
+.foro-th-main{flex:1;min-width:0}
+.foro-th-t{font:700 12.5px/1.35 Inter;color:var(--ink);display:flex;align-items:center;gap:6px}
+.foro-th-t .foro-tag{flex-shrink:0;font:800 8.5px Inter;letter-spacing:.5px;padding:2px 7px;border-radius:5px}
+.ft-pin{background:var(--green-dk);color:var(--green)}
+.ft-lock{background:rgba(255,48,79,.14);color:#ffb3c0}
+.ft-hot{background:rgba(255,134,0,.14);color:#ff9f0a}
+.ft-bot{background:rgba(8,169,244,.12);color:var(--blue)}
+.foro-th-meta{font:600 10px Inter;color:var(--faint);margin-top:4px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.foro-th-meta b{color:var(--dim)}
 .foro-badge{font-size:10px}
 .foro-badge.b-admin{color:#ffd60a}
 .foro-badge.b-mod{color:var(--blue)}
 .foro-badge.b-user{color:var(--faint)}
+.foro-th-counts{flex-shrink:0;text-align:center;padding:0 6px}
+.foro-th-counts b{display:block;font:800 13px Inter;color:var(--ink)}
+.foro-th-counts small{font:600 8.5px Inter;color:var(--faint);letter-spacing:.4px}
+.foro-th-last{flex-shrink:0;text-align:right;max-width:110px;font:600 9.5px Inter;color:var(--faint)}
+.foro-th-last b{display:block;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .foro-dot{color:var(--faint)}
-.foro-empty{padding:22px 8px;text-align:center;color:var(--faint);font:600 12px Inter;line-height:1.6}
+.foro-empty{padding:26px 10px;text-align:center;color:var(--faint);font:600 12.5px Inter;line-height:1.7}
 .foro-empty.small{padding:12px 4px;font-size:11.5px}
 
-/* hoja de detalle del hilo */
-.foro-detail{padding:2px 2px 10px}
-.foro-detail-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
-.foro-detail-cat{font:800 10.5px Inter;color:var(--blue);background:rgba(8,169,244,.1);
-  border:1px solid rgba(8,169,244,.25);padding:3px 9px;border-radius:99px}
-.foro-flag{font:800 10px Inter;color:var(--green);background:var(--green-dk);padding:3px 9px;border-radius:99px}
-.foro-flag.lock{color:#ffb3c0;background:rgba(255,48,79,.12)}
-.foro-detail-title{font:800 17px Inter;color:var(--ink);line-height:1.3;margin-bottom:6px}
-.foro-op-meta{display:flex;align-items:center;gap:6px;font:600 11px Inter;color:var(--faint);margin:6px 0;flex-wrap:wrap}
-.foro-op-meta b{color:var(--dim)}
-.foro-body{font:400 13px/1.6 Inter;color:var(--ink);margin:8px 0;word-break:break-word;overflow-wrap:anywhere}
+/* ── HILO: posts estilo foro real ── */
+.foro-post{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px 14px;animation:foroPostIn .25s cubic-bezier(.2,1.1,.4,1)}
+.foro-post.op{background:linear-gradient(180deg,var(--card),var(--panel));border-color:rgba(0,230,118,.25)}
+.foro-post.mine{border-color:rgba(0,230,118,.35)}
+@keyframes foroPostIn{from{opacity:0;transform:translateY(8px)}}
+.foro-post-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.foro-post-ava{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:800 13px Inter;color:#fff;border:2px solid var(--line)}
+.foro-post-who{font:800 12px Inter;color:var(--ink)}
+.foro-post-role{font:800 8.5px Inter;letter-spacing:.4px;padding:2px 8px;border-radius:99px}
+.pr-admin{background:rgba(255,214,10,.14);color:#ffd60a}
+.pr-mod{background:rgba(8,169,244,.12);color:var(--blue)}
+.pr-user{background:var(--card);color:var(--faint)}
+.foro-post-when{margin-left:auto;font:600 10px Inter;color:var(--faint)}
+.foro-post-body{font:400 13px/1.65 Inter;color:var(--ink);margin:9px 0 4px;word-break:break-word;overflow-wrap:anywhere}
+.foro-body{font:400 13px/1.65 Inter;color:var(--ink);margin:8px 0;word-break:break-word;overflow-wrap:anywhere}
 .foro-lnk{color:var(--blue);font-weight:600;text-decoration:underline;word-break:break-all}
-.foro-linkcard{display:block;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;
-  background:var(--panel);color:var(--blue);font:600 12px Inter;word-break:break-all}
+.foro-media{display:block;width:100%;max-height:400px;object-fit:contain;border-radius:12px;border:1px solid var(--line);margin:8px 0;background:#000}
+video.foro-media{max-height:320px}
+.foro-linkcard{display:block;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--blue);font:600 12px Inter;word-break:break-all;transition:border-color .15s}
 .foro-linkcard:hover{border-color:var(--blue)}
-.foro-media{display:block;width:100%;max-height:420px;object-fit:contain;border-radius:11px;border:1px solid var(--line);margin:8px 0;background:#000}
-video.foro-media{max-height:340px}
-.foro-actions{display:flex;gap:8px;margin:10px 0 4px;flex-wrap:wrap}
-.foro-act-btn{padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:var(--panel);
-  color:var(--dim);font:700 11.5px Inter;cursor:pointer;transition:all .15s}
-.foro-act-btn:hover{color:var(--ink);border-color:var(--faint)}
+.foro-post-acts{display:flex;gap:7px;margin-top:8px;flex-wrap:wrap}
+.foro-act-btn{padding:6px 13px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--dim);
+  font:700 11px Inter;cursor:pointer;transition:all .15s}
+.foro-act-btn:hover{color:var(--ink);border-color:var(--faint);transform:translateY(-1px)}
 .foro-act-btn.on{color:var(--hot);border-color:var(--hot);background:rgba(255,48,79,.08)}
 .foro-act-btn.warn:hover{color:var(--hot);border-color:var(--hot)}
-.foro-act-btn.small{padding:4px 10px;font-size:10.5px;margin-top:4px}
-.foro-replies-h{font:800 12px Inter;color:var(--ink);margin:14px 0 8px;padding-top:10px;border-top:1px solid var(--line)}
-.foro-replies{display:flex;flex-direction:column;gap:8px}
-.foro-reply{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:9px 11px}
-.foro-reply.mine{border-color:rgba(0,230,118,.35)}
+.foro-act-btn.green{color:#03130B;border-color:var(--green);background:linear-gradient(135deg,#00E676,#5df5a4);font-weight:800}
+.foro-act-btn.green:hover{color:#03130B;box-shadow:0 6px 18px rgba(0,230,118,.4)}
 .foro-reply-del{margin-left:auto;background:none;border:none;color:var(--faint);cursor:pointer;font-size:11px;padding:2px 6px;border-radius:6px}
 .foro-reply-del:hover{color:var(--hot)}
-.foro-locknote{margin-top:10px;padding:10px;border-radius:10px;background:rgba(255,48,79,.07);
-  border:1px solid rgba(255,48,79,.2);color:#ffb3c0;font:600 11.5px Inter}
-.foro-compose{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.foro-locknote{margin-top:10px;padding:11px;border-radius:11px;background:rgba(255,48,79,.07);border:1px solid rgba(255,48,79,.2);color:#ffb3c0;font:600 11.5px Inter}
+.foro-compose{display:flex;flex-direction:column;gap:8px;margin-top:4px;padding:12px;border-radius:13px;border:1px dashed var(--line);background:var(--card)}
 .foro-compose textarea,.foro-compose input,.foro-new textarea,.foro-new input{
   background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--ink);
-  font:400 13px Inter;padding:10px 12px;outline:none;width:100%}
+  font:400 13px Inter;padding:10px 12px;outline:none;width:100%;transition:border-color .15s}
 .foro-compose textarea:focus,.foro-new textarea:focus,.foro-compose input:focus,.foro-new input:focus{border-color:var(--green)}
 
-/* hoja de nuevo tema */
+/* ── hoja de nuevo tema (mismos botones llamativos) ── */
 .foro-new{display:flex;flex-direction:column;gap:10px;padding-bottom:8px}
 .foro-new-label{font:700 11px Inter;color:var(--faint)}
-.foro-new-btn{align-self:flex-end;padding:10px 22px;font-size:12.5px}
+.foro-new-btn{align-self:flex-end;padding:11px 26px;font:800 13px Inter;border-radius:12px;
+  background:linear-gradient(135deg,#00E676,#5df5a4);color:#03130B;border:1px solid var(--green);cursor:pointer;
+  box-shadow:0 8px 22px rgba(0,230,118,.35);transition:all .16s}
+.foro-new-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,230,118,.5)}
+.foro-new-btn:disabled{opacity:.5;cursor:wait}
 
-/* cuerpo scrolleable de la hoja de conversaciones (DMs) */
+/* chips de nicho reutilizados en la hoja nueva */
+.foro-cats{display:flex;gap:6px;overflow-x:auto;padding:2px 10px;
+  mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.foro-cat{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--dim);font:700 11.5px Inter;white-space:nowrap;transition:all .15s}
+.foro-cat:hover{color:var(--ink);border-color:var(--faint)}
+.foro-cat.on{background:var(--green-dk);border-color:var(--green);color:var(--green)}
+
+/* hoja scrolleable de conversaciones (DMs) */
 .soc-sheet-pad{max-height:60vh;overflow-y:auto;padding:2px}
 
-/* responsive: el foro respira en el dock y en el sheet a cualquier ancho */
+/* responsive del foro */
 @media (max-width:560px){
-  .foro-sub{width:56px}
-  .foro-sub img{width:56px;height:81px}
+  .foro-board-last{display:none}
+  .foro-th-last{display:none}
   .foro-detail-title{font-size:15px}
-  .foro-th-meta b{max-width:110px}
-  .foro-compose textarea{min-height:72px}
+  .foro-post-body,.foro-body{font-size:12.5px}
+  .foro-compose textarea{min-height:70px}
 }
