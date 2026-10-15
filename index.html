@@ -222,6 +222,29 @@
         <iframe id="driveFrame" class="drive-frame" title="Google Drive"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 
+        <!-- 🎬 PREMIUM VERTICAL — solo móvil/tablet en vertical: el video
+             de fondo ocupa casi toda la pantalla; play transparente dorado
+             al centro; membresía $1/mes arriba; sistema de monedas abajo -->
+        <div class="vprem" id="vPrem" aria-hidden="true">
+          <video class="vprem-bg" id="vPremBg" muted loop playsinline preload="none"></video>
+          <div class="vprem-top" id="vPremTop">
+            <span class="vt-crown">👑</span>
+            <div class="vt-txt">
+              <b>Membresía <span class="vt-price">$1<small>/mes</small></span></b>
+              <small>Sin límites · Sin anuncios · Todo abierto</small>
+            </div>
+            <button class="vt-get" id="vPremGet">Obtener</button>
+          </div>
+          <button class="vprem-play" id="vPremPlay" title="Reproducir" aria-label="Reproducir">
+            <svg viewBox="0 0 24 24" width="44" height="44" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="vprem-bottom" id="vPremBottom">
+            <span class="vb-coins">🪙 <b id="vPremCoins">0</b></span>
+            <small class="vb-hint">Monedas gratis cada día</small>
+            <button class="vb-earn" id="vPremEarn">Ganar <b id="vPremReward">+100</b> 🪙</button>
+          </div>
+        </div>
+
         <!-- overlay estado vacío -->
         <div class="player-empty" id="playerEmpty">
           <div class="empty-logo">▶</div>

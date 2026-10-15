@@ -3750,3 +3750,115 @@ body.admin-on #driveFolderBtn.hidden,
 body.staff-on #driveFolderBtn.hidden,
 body.admin-on #coinsAdminBtn.hidden,
 body.staff-on #coinsAdminBtn.hidden{display:none!important}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   🎬 PREMIUM VERTICAL — reproductor casi pantalla completa SOLO en
+   móvil/tablet en vertical: video de fondo (premium.mp4) completo,
+   play transparente con aro DORADO al centro, membresía $1/mes arriba
+   y sistema de monedas abajo. Escritorio y horizontal: intactos (16/9).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* oculto por defecto (escritorio y horizontal jamás lo ven) */
+.vprem{display:none}
+.vprem-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.vprem-play{display:none}
+
+/* ── 📱 VERTICAL: el reproductor se vuelve una pantalla ── */
+@media (max-width:920px) and (orientation:portrait){
+  .player{
+    aspect-ratio:9/16;                 /* el video es vertical: mismo tamaño */
+    width:auto;
+    max-width:100vw;
+    height:calc(100dvh - 84px);        /* casi TODA la pantalla */
+    margin:0 auto;
+    border-radius:18px;
+  }
+  .player video#video{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;
+  }
+  .player .drive-frame{
+    position:absolute;inset:0;width:100%;height:100%;z-index:2;border:0;
+  }
+
+  /* el fondo premium: activo solo en vertical */
+  .vprem{display:block;position:absolute;inset:0;z-index:1;overflow:hidden;border-radius:inherit}
+
+  /* ➤ PLAY: centro TRANSPARENTE con aro dorado — el oro rodea, NO tapa */
+  .vprem-play{
+    display:grid;place-items:center;
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:92px;height:92px;border-radius:50%;
+    background:rgba(6,6,10,.16);                       /* cristal casi invisible */
+    border:2.5px solid #ffd24a;
+    color:#ffd24a;
+    box-shadow:0 0 0 7px rgba(255,210,74,.14), 0 0 34px rgba(255,210,74,.28), 0 18px 50px rgba(0,0,0,.55);
+    backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+    cursor:pointer;z-index:3;
+    transition:transform .18s cubic-bezier(.2,1.2,.4,1), box-shadow .18s;
+    animation:vpremBreath 2.8s ease-in-out infinite;
+  }
+  .vprem-play svg{margin-left:5px;filter:drop-shadow(0 0 8px rgba(255,210,74,.55))}
+  .vprem-play:active{transform:translate(-50%,-50%) scale(.9)}
+  @keyframes vpremBreath{
+    0%,100%{box-shadow:0 0 0 7px rgba(255,210,74,.14), 0 0 34px rgba(255,210,74,.28), 0 18px 50px rgba(0,0,0,.55)}
+    50%{box-shadow:0 0 0 11px rgba(255,210,74,.10), 0 0 48px rgba(255,210,74,.42), 0 18px 50px rgba(0,0,0,.55)}
+  }
+
+  /* 👑 MEMBRESÍA $1/mes — arriba, contenedor dorado compacto */
+  .vprem-top{
+    position:absolute;top:0;left:0;right:0;z-index:3;
+    display:flex;align-items:center;gap:9px;
+    padding:10px 12px;
+    background:linear-gradient(180deg,rgba(8,8,12,.88),rgba(8,8,12,.62) 70%,transparent);
+    border-bottom:1px solid rgba(255,210,74,.22);
+  }
+  .vt-crown{font-size:21px;filter:drop-shadow(0 0 10px rgba(255,210,74,.5))}
+  .vt-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .vt-txt b{font:800 13px Inter,sans-serif;color:#ffd24a;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vt-txt small{font:600 9.5px Inter,sans-serif;color:#d9c98f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vt-price small{font-size:10px;font-weight:700;color:#e8d9a8}
+  .vt-get{
+    flex-shrink:0;padding:8px 16px;border-radius:99px;cursor:pointer;
+    font:800 12px Inter,sans-serif;color:#1c1400;
+    background:linear-gradient(135deg,#ffd24a,#ffb730);
+    border:1px solid #ffd24a;
+    box-shadow:0 6px 20px rgba(255,183,48,.4);
+    transition:transform .15s,box-shadow .15s;
+  }
+  .vt-get:active{transform:scale(.94)}
+
+  /* 🪙 SISTEMA DE MONEDAS — abajo, contenedor bonito y responsive */
+  .vprem-bottom{
+    position:absolute;bottom:0;left:0;right:0;z-index:3;
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));
+    background:linear-gradient(0deg,rgba(8,8,12,.92),rgba(8,8,12,.6) 70%,transparent);
+    border-top:1px solid rgba(255,210,74,.16);
+  }
+  .vb-coins{
+    display:flex;align-items:center;gap:5px;
+    font:800 13px Inter,sans-serif;color:#ffd24a;
+    background:rgba(255,210,74,.1);border:1px solid rgba(255,210,74,.35);
+    padding:6px 12px;border-radius:99px;white-space:nowrap;
+  }
+  .vb-hint{flex:1;min-width:70px;font:600 9.5px Inter,sans-serif;color:#d9c98f;text-align:center}
+  .vb-earn{
+    padding:8px 14px;border-radius:99px;cursor:pointer;white-space:nowrap;
+    font:800 11.5px Inter,sans-serif;color:#eaf7ff;
+    background:rgba(8,169,244,.12);border:1px solid rgba(8,169,244,.45);
+    transition:transform .15s;
+  }
+  .vb-earn:active{transform:scale(.94)}
+
+  /* cuando la bóveda/anuncio/estado vacío cubren el reproductor,
+     el play dorado no estorva (las barras quedan debajo de la bóveda z15) */
+  .player.playing .vprem-play{display:none}
+
+  /* tablets verticales: el reproductor centrado con aire a los lados */
+  @media (min-width:600px){
+    .vt-txt b{font-size:14px}
+    .vt-txt small{font-size:10.5px}
+    .vprem-play{width:104px;height:104px}
+  }
+}

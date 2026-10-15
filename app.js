@@ -7602,6 +7602,76 @@ function showVault(s, ep) {
   vault.classList.remove('hidden');
 }
 
+/* ═══════════ 🎬 PREMIUM VERTICAL ═══════════
+   Solo móvil/tablet EN VERTICAL: el reproductor se vuelve casi pantalla
+   completa con el video premium.mp4 de fondo (mudo, en bucle), un PLAY
+   transparente con aro dorado al centro, la membresía $1/mes arriba y
+   el sistema de monedas abajo. En horizontal/escritorio: cero cambios. */
+(function vPremInit() {
+  const PREM_VIDEO = 'https://archive.org/download/premium_20261015/premium.mp4';
+  const wrap = document.getElementById('vPrem');
+  const bg = document.getElementById('vPremBg');
+  const vid = document.getElementById('video');
+  const playBtn = document.getElementById('vPremPlay');
+  const top = document.getElementById('vPremTop');
+  if (!wrap || !bg || !playBtn) return;
+
+  /* 📱 activo SOLO en vertical (max-width 920 + portrait) */
+  const mq = matchMedia('(max-width:920px) and (orientation:portrait)');
+  const applyMode = () => {
+    if (mq.matches) {
+      if (!bg.getAttribute('src')) bg.src = PREM_VIDEO;
+      bg.play().catch(() => { });
+    } else {
+      bg.pause();
+      if (bg.getAttribute('src')) { bg.removeAttribute('src'); bg.load(); }
+    }
+  };
+  if (mq.addEventListener) mq.addEventListener('change', applyMode);
+  applyMode();
+
+  /* ➤ el botón dorado reproduce como el reproductor normal */
+  playBtn.addEventListener('click', () => { if (vid && vid.src) vid.play().catch(() => { }); });
+  const syncPlay = () => {
+    const busy = !!(vid && vid.src && !vid.paused && !vid.ended);
+    playBtn.style.display = busy ? 'none' : '';
+  };
+  if (vid) {
+    vid.addEventListener('play', syncPlay);
+    vid.addEventListener('pause', syncPlay);
+    vid.addEventListener('loadeddata', syncPlay);
+  }
+
+  /* 👑 membresía arriba: si ya eres VIP, la barrita no hace falta */
+  const syncTop = () => {
+    try { top.classList.toggle('hidden', !!(window.COINS && COINS.isVip && COINS.isVip())); } catch (e) { }
+  };
+
+  /* 🪙 monedas abajo: saldo vivo + botón de recompensas (mismo anuncio) */
+  const coinsEl = document.getElementById('vPremCoins');
+  const rewEl = document.getElementById('vPremReward');
+  const syncCoins = () => {
+    try {
+      if (window.COINS && COINS.getState) coinsEl.textContent = COINS.getState().coins || 0;
+      if (window.COINS && COINS.getConfig) rewEl.textContent = '+' + (COINS.getConfig().adReward || 100);
+    } catch (e) { }
+  };
+  const earnBtn = document.getElementById('vPremEarn');
+  if (earnBtn) earnBtn.addEventListener('click', () => {
+    if (typeof showAdwall !== 'function') return;
+    showAdwall(() => { syncCoins(); });          /* tras el anuncio: saldo fresco */
+  });
+  const getBtn = document.getElementById('vPremGet');
+  if (getBtn) getBtn.addEventListener('click', () => {
+    if (typeof showExplainModal === 'function') showExplainModal();
+  });
+
+  /* refresco ligero: solo en vertical y cada 6 s (el saldo viaja del servidor) */
+  setInterval(() => { if (mq.matches && !document.hidden) { syncCoins(); syncTop(); } }, 6000);
+  setTimeout(() => { syncCoins(); syncTop(); }, 800);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) { syncCoins(); syncTop(); } });
+})();
+
 /* cobrar y abrir — con animación de la bóveda desvaneciéndose */
 async function doUnlock(s, ep) {
   const r = await COINS.confirmUnlock(s.id, ep.n, s);
