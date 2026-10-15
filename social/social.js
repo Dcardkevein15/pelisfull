@@ -199,6 +199,7 @@
     document.querySelectorAll('#socSideNav a, .soc-mob a').forEach(a => a.classList.toggle('on', a.dataset.nav === view));
     if (view === 'inicio') { $('socFeed').scrollIntoView({ behavior: 'smooth' }); closeSheets(); }
     if (view === 'explorar') openExplore();
+    if (view === 'foro') { closeSheets(); dockOpen('foro'); foroFetch(); }
     if (view === 'amigos') openFriends();
     if (view === 'grupos') openGroups();
     if (view === 'mensajes') openChatPanel();
@@ -1035,6 +1036,8 @@
     for (const c of list) {
       const d = document.createElement('div');
       d.className = 'soc-convo';
+      d.dataset.cid = c.id;
+      d.dataset.cname = c.peerName || '';
       d.innerHTML = `
         ${avatarHtml(c.peerName, c.group ? 1 : 2)}
         <div class="soc-convo-b"><b>${esc(c.peerName)}${c.peerOnline ? ' <span class="soc-dot on" style="display:inline-block"></span>' : ''}</b>
@@ -1048,25 +1051,8 @@
   document.querySelectorAll('#socChatFilters button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('#socChatFilters button').forEach(x => x.classList.toggle('on', x === b));
     S.chatFilter = b.dataset.f;
-    applyChatFilter();
     renderChat();
   }));
-
-  /* ═══════════ 🎬 CHAT REAL DE LA WEB DE PELÍCULAS EN «TODOS» ═══════════
-     «Todos» → el chat vivo (chat.js) embebido en la columna comunidad.
-     «Amigos» / «Grupos» → las conversaciones sociales (por ahora igual).  */
-  function applyChatFilter() {
-    const embed = document.getElementById('socEmbedChat');
-    const convos = document.getElementById('socConvos');
-    if (embed) embed.classList.toggle('hidden', S.chatFilter !== 'todos');
-    if (convos) convos.classList.toggle('hidden', S.chatFilter === 'todos');
-    /* al volver al chat: los mensajes saltan abajo (donde se escribe ahora) */
-    if (S.chatFilter === 'todos') {
-      const box = document.getElementById('chatMsgs');
-      if (box) setTimeout(() => { box.scrollTop = box.scrollHeight; }, 60);
-    }
-  }
-  applyChatFilter();
 
   /* ═══════════ 🚀 SOCIAL DOCK — pestañas que cambian AL INSTANTE ═══════════ */
   function dockTab(t) {
@@ -1080,7 +1066,22 @@
     if (getComputedStyle(dock).display === 'none') dock.classList.add('show');
     if (tab) dockTab(tab);
   }
-  function openChatPanel() { dockOpen('chat'); }
+  /* 💬 mensajes (DMs): el dock es del FORO — la lista de conversaciones
+     se abre en un sheet (el chat de 1 a 1 ya vive en sheets)             */
+  function openChatPanel() {
+    renderChat();
+    openSheet(`
+      <div class="soc-card-h"><span>💬 Mensajes</span></div>
+      <div class="soc-sheet-pad" id="socConvoSheet"></div>`);
+    const sheetBody = $('socConvoSheet');
+    const clone = $('socConvos');
+    if (clone && sheetBody) {
+      sheetBody.innerHTML = clone.innerHTML;
+      sheetBody.querySelectorAll('.soc-convo').forEach(row => {
+        row.addEventListener('click', () => { const id = row.dataset.cid, name = row.dataset.cname; if (id) openConvo(id, name || 'Conversación'); });
+      });
+    }
+  }
 
   let convoTimer = null;
   const convoEtags = {};   /* cid -> { convo, index } — poll con 304 gratis */
@@ -1541,6 +1542,275 @@
       if (pid) { const el = document.querySelector(`[data-pid="${CSS.escape(pid)}"]`); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
     } finally { refreshing = false; }
   }
+  /* ═══════════ 🧵 FORO XSTREAM — hilos por nicho, con rango y sincronizado ═══════════
+     Nichos: general · películas · series · anime · hentai · doramas · drama.
+     Los sub-foros nacen del CATÁLOGO REAL (las series más fuertes por caps).
+     Rangos sincronizados: 👑 admin del sitio = admin · 🛡 moderadores
+     nombrados por el admin · 👤 usuarios — el rango viaja en cada hilo.  */
+  const FORO_CATS = [
+    ['general', '💬', 'General'], ['peliculas', '🎬', 'Películas'], ['series', '📺', 'Series'],
+    ['anime', '🌸', 'Anime'], ['hentai', '🔞', 'Hentai'], ['doramas', '🎭', 'Doramas'], ['drama', '🎞', 'Drama'],
+  ];
+  const F = { cat: 'general', sub: '', etag: '', threads: [], mods: [], timer: null, loaded: false };
+
+  function foroMyRole() {
+    if (isLocalAdmin()) return 'admin';
+    if (S.me && F.mods.includes(S.me.uid)) return 'mod';
+    return 'user';
+  }
+  const foroBadge = role => role === 'admin' ? '<b class="foro-badge b-admin" title="Administrador">👑</b>'
+    : role === 'mod' ? '<b class="foro-badge b-mod" title="Moderador">🛡</b>'
+      : '<b class="foro-badge b-user" title="Usuario">👤</b>';
+
+  function foroWhen(ts) {
+    const d = Date.now() - (ts || 0);
+    if (d < 60e3) return 'ahora';
+    if (d < 36e5) return 'hace ' + Math.floor(d / 60e3) + ' min';
+    if (d < 864e5) return 'hace ' + Math.floor(d / 36e5) + ' h';
+    if (d < 30 * 864e5) return 'hace ' + Math.floor(d / 864e5) + ' d';
+    return new Date(ts).toLocaleDateString('es', { day: 'numeric', month: 'short' });
+  }
+
+  /* enlaces vivos en el cuerpo: b.yapido.click/ver/abren en la app, el resto _blank */
+  function foroLinkify(text) {
+    return esc(text).replace(/(https?:\/\/[^\s<]+)/g, u => {
+      const mine = /yapido\.click/.test(u);
+      return `<a href="${u}" ${mine ? '' : 'target="_blank" rel="noopener"'} class="foro-lnk">🔗 ${u.length > 42 ? u.slice(0, 42) + '…' : u}</a>`;
+    }).replace(/\n/g, '<br>');
+  }
+
+  function foroMedia(m) {
+    if (!m) return '';
+    if (/\.(mp4|webm|m3u8|mov)(\?|#|$)/i.test(m)) return `<video src="${esc(m)}" controls playsinline class="foro-media"></video>`;
+    if (/\.(png|jpe?g|gif|webp|avif)(\?|#|$)/i.test(m)) return `<img src="${esc(m)}" loading="lazy" class="foro-media" alt="">`;
+    return `<a class="foro-linkcard" href="${esc(m)}" ${/yapido\.click/.test(m) ? '' : 'target="_blank" rel="noopener"'}>🔗 ${esc(m.slice(0, 64))}</a>`;
+  }
+
+  /* las series más fuertes del nicho (catálogo real, sincronizado) */
+  function foroSubsPool() {
+    const pool = (S.catalog || []).filter(c => c.poster && (c.episodes || []).length);
+    let list = [];
+    if (F.cat === 'peliculas') list = pool.filter(c => c.kind === 'pelicula' && !c.hentai);
+    else if (F.cat === 'series') list = pool.filter(c => c.kind === 'serie' && !c.hentai);
+    else if (F.cat === 'anime') list = pool.filter(c => c.kind === 'serie' && !c.hentai).slice(1);
+    else if (F.cat === 'hentai') list = pool.filter(c => c.hentai);
+    else if (F.cat === 'doramas') list = pool.filter(c => /dorama/i.test(c.t));
+    else if (F.cat === 'drama') list = pool.filter(c => /drama/i.test(c.t));
+    return list.slice().sort((a, b) => (b.episodes || []).length - (a.episodes || []).length).slice(0, 10);
+  }
+  const foroSubName = sub => {
+    const c = (S.catalog || []).find(x => slugify(x.t) === sub);
+    return c ? c.t : sub;
+  };
+
+  async function foroWrite(op, params) {
+    let extra = null;
+    if (isLocalAdmin()) { try { extra = await adminSigHeader(); } catch (e) { } }
+    return socCall(op, params, true, extra);
+  }
+
+  async function foroFetch(force) {
+    const j = await socCall('forum', (F.etag && !force) ? { etag: F.etag } : {}, false, null, true);
+    if (j && j.same) return true;
+    if (j && j.ok) {
+      F.etag = j.etag || '';
+      F.threads = j.threads || [];
+      F.mods = j.mods || [];
+      F.loaded = true;
+      foroRender();
+      return true;
+    }
+    return false;
+  }
+
+  function foroRender() {
+    const cats = $('foroCats'), subs = $('foroSubs'), list = $('foroList');
+    if (!cats || !list) return;
+    /* nichos */
+    cats.innerHTML = FORO_CATS.map(([id, ic, nm]) =>
+      `<button class="foro-cat${F.cat === id ? ' on' : ''}" data-c="${id}"><span>${ic}</span>${nm}</button>`).join('');
+    cats.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { F.cat = b.dataset.c; F.sub = ''; foroRender(); }));
+    /* sub-foros del catálogo real */
+    const pool = foroSubsPool();
+    subs.innerHTML = `<button class="foro-sub${F.sub ? '' : ' on'}" data-s="">🌐 Todo el nicho</button>`
+      + pool.map(c => `<button class="foro-sub${F.sub === slugify(c.t) ? ' on' : ''}" data-s="${esc(slugify(c.t))}" title="${esc(c.t)}">
+          <img src="${esc(c.poster)}" loading="lazy" alt=""><i>${esc(c.t.slice(0, 17))}${c.t.length > 17 ? '…' : ''}</i><small>${(c.episodes || []).length} caps</small>
+        </button>`).join('');
+    subs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { F.sub = b.dataset.s; foroRender(); }));
+    /* hilos del nicho (+sub si hay), fijados primero */
+    let threads = F.threads.filter(t => t.cat === F.cat);
+    if (F.sub) threads = threads.filter(t => t.sub === F.sub);
+    threads = threads.slice().sort((a, b) => ((b.pin ? 1 : 0) - (a.pin ? 1 : 0)) || (b.at - a.at));
+    if (!threads.length) {
+      list.innerHTML = `<div class="foro-empty">${F.loaded
+        ? `🚀 Nadie ha abierto un tema aquí${F.sub ? ' sobre <b>' + esc(foroSubName(F.sub)) + '</b>' : ''} — estrena el nicho con <b>+ Tema</b>`
+        : '⏳ Cargando el foro…'}</div>`;
+      return;
+    }
+    list.innerHTML = threads.map(t => `
+      <button class="foro-th" data-tid="${esc(t.id)}">
+        <div class="foro-th-t">${t.pin ? '<span class="foro-pin">📌</span>' : ''}${t.lock ? '<span class="foro-pin">🔒</span>' : ''}${esc(t.title)}</div>
+        ${t.sub ? `<div class="foro-th-sub">↳ ${esc(foroSubName(t.sub))}</div>` : ''}
+        ${t.body ? `<div class="foro-th-prev">${esc(t.body.slice(0, 110))}${t.body.length > 110 ? '…' : ''}</div>` : ''}
+        <div class="foro-th-meta">
+          ${foroBadge(t.role)}<b>${esc(t.name)}</b>
+          <span class="foro-dot">·</span><span>${foroWhen(t.at)}</span>
+          <span class="foro-th-stats">💬 ${(t.replies || []).length} · ❤ ${(t.likes || []).length}</span>
+        </div>
+      </button>`).join('');
+    list.querySelectorAll('.foro-th').forEach(b => b.addEventListener('click', () => {
+      const t = F.threads.find(x => x.id === b.dataset.tid);
+      if (t) foroOpenThread(t);
+    }));
+  }
+
+  /* 🧵 abrir un hilo: ficha completa con respuestas, likes y acciones de staff */
+  function foroOpenThread(t) {
+    const me = S.me ? S.me.uid : '';
+    const staff = foroMyRole() !== 'user';
+    const mine = t.by === me;
+    const liked = (t.likes || []).includes(me);
+    openSheet(`
+      <div class="foro-detail">
+        <div class="foro-detail-head">
+          <span class="foro-detail-cat">${(() => { const c = FORO_CATS.find(x => x[0] === t.cat); return c ? c[1] + ' ' + c[2] : t.cat; })()}</span>
+          ${t.pin ? '<span class="foro-flag">📌 FIJADO</span>' : ''}${t.lock ? '<span class="foro-flag lock">🔒 CERRADO</span>' : ''}
+        </div>
+        <h3 class="foro-detail-title">${esc(t.title)}</h3>
+        ${t.sub ? `<div class="foro-th-sub" style="margin-bottom:6px">↳ ${esc(foroSubName(t.sub))} · <a href="${catLink((S.catalog || []).find(c => slugify(c.t) === t.sub) || { kind: 'serie', t: t.sub })}" class="foro-lnk">ver en XSTREAM →</a></div>` : ''}
+        <div class="foro-op-meta">${foroBadge(t.role)}<b>${esc(t.name)}</b><span class="foro-dot">·</span><span>${foroWhen(t.at)}</span></div>
+        ${t.body ? `<div class="foro-body">${foroLinkify(t.body)}</div>` : ''}
+        ${foroMedia(t.media)}
+        <div class="foro-actions">
+          <button class="foro-act-btn${liked ? ' on' : ''}" id="fLikeBtn">❤ ${(t.likes || []).length}</button>
+          ${(staff || mine) ? `<button class="foro-act-btn warn" id="fDelBtn">🗑 Borrar</button>` : ''}
+          ${staff ? `<button class="foro-act-btn" id="fPinBtn">${t.pin ? 'Quitar 📌' : 'Fijar 📌'}</button>
+                    <button class="foro-act-btn" id="fLockBtn">${t.lock ? 'Reabrir 🔓' : 'Cerrar 🔒'}</button>` : ''}
+        </div>
+        <div class="foro-replies-h">💬 ${(t.replies || []).length} ${(t.replies || []).length === 1 ? 'respuesta' : 'respuestas'}</div>
+        <div class="foro-replies" id="fReplies">${(t.replies || []).map(r => `
+          <div class="foro-reply${r.by === me ? ' mine' : ''}" data-rid="${esc(r.id)}">
+            <div class="foro-op-meta">${foroBadge(r.role)}<b>${esc(r.name)}</b><span class="foro-dot">·</span><span>${foroWhen(r.at)}</span>
+              ${(staff || r.by === me) ? `<button class="foro-reply-del" data-delrid="${esc(r.id)}" title="Borrar respuesta">✕</button>` : ''}
+            </div>
+            ${r.body ? `<div class="foro-body">${foroLinkify(r.body)}</div>` : ''}
+            ${foroMedia(r.media)}
+            <button class="foro-act-btn small${(r.likes || []).includes(me) ? ' on' : ''}" data-rlid="${esc(r.id)}">❤ ${(r.likes || []).length}</button>
+          </div>`).join('') || '<div class="foro-empty small">Sé el primero en responder ✍️</div>'}</div>
+        ${t.lock && !staff
+        ? '<div class="foro-locknote">🔒 Este hilo está cerrado — solo el equipo puede responder.</div>'
+        : `<div class="foro-compose">
+             <textarea id="fReplyText" rows="3" placeholder="${t.lock ? 'Responder (hilo cerrado — solo equipo)' : 'Escribe tu respuesta…'} (enlaces e imágenes con URL)" maxlength="2000"></textarea>
+             <input type="url" id="fReplyMedia" placeholder="https:// imagen o vídeo (opcional)" maxlength="600">
+             <button class="soc-btn soc-btn-green" id="fReplyBtn">Responder</button>
+           </div>`}
+      </div>`, true);
+
+    const refreshThread = async () => {
+      const okF = await foroFetch(true);
+      const fresh = okF ? F.threads.find(x => x.id === t.id) : null;
+      if (fresh) foroOpenThread(fresh);
+      else closeSheet();
+    };
+    const q = id => document.getElementById(id);
+    if (q('fLikeBtn')) q('fLikeBtn').addEventListener('click', async () => {
+      await foroWrite('fLike', { tid: t.id }); refreshThread();
+    });
+    if (q('fDelBtn')) q('fDelBtn').addEventListener('click', async () => {
+      if (!confirm('¿Borrar este hilo?')) return;
+      const j = await foroWrite('fDel', { tid: t.id });
+      if (j) { toast('🗑 Hilo borrado'); closeSheet(); foroFetch(true); }
+    });
+    if (q('fPinBtn')) q('fPinBtn').addEventListener('click', async () => {
+      await foroWrite('fPin', { tid: t.id, on: t.pin ? '0' : '1' }); refreshThread();
+    });
+    if (q('fLockBtn')) q('fLockBtn').addEventListener('click', async () => {
+      await foroWrite('fLock', { tid: t.id, on: t.lock ? '0' : '1' }); refreshThread();
+    });
+    if (q('fReplyBtn')) q('fReplyBtn').addEventListener('click', async () => {
+      const body = q('fReplyText').value.trim();
+      const media = q('fReplyMedia').value.trim();
+      if (!body && !media) { toast('Respuesta vacía', true); return; }
+      q('fReplyBtn').disabled = true;
+      const j = await foroWrite('fReply', { tid: t.id, body, media });
+      if (j) { toast('💬 Respondido'); refreshThread(); }
+      else if (q('fReplyBtn')) q('fReplyBtn').disabled = false;
+    });
+    document.querySelectorAll('#fReplies [data-rlid]').forEach(b => b.addEventListener('click', async ev => {
+      ev.stopPropagation();
+      await foroWrite('fLike', { tid: t.id, rid: b.dataset.rlid }); refreshThread();
+    }));
+    document.querySelectorAll('#fReplies [data-delrid]').forEach(b => b.addEventListener('click', async ev => {
+      ev.stopPropagation();
+      if (!confirm('¿Borrar esta respuesta?')) return;
+      const j = await foroWrite('fDel', { tid: t.id, rid: b.dataset.delrid });
+      if (j) { toast('🗑 Respuesta borrada'); refreshThread(); }
+    }));
+  }
+
+  /* ➕ crear un tema: nicho + serie del catálogo (opcional) + título + cuerpo + medio */
+  function foroNewSheet() {
+    const pool = (S.catalog || []).filter(c => c.poster && (c.episodes || []).length)
+      .slice().sort((a, b) => (b.episodes || []).length - (a.episodes || []).length).slice(0, 14);
+    openSheet(`
+      <div class="foro-new">
+        <div class="soc-card-h"><span>➕ Nuevo tema</span></div>
+        <div class="foro-cats" id="fnCats">${FORO_CATS.map(([id, ic, nm]) =>
+          `<button class="foro-cat${F.cat === id ? ' on' : ''}" data-c="${id}"><span>${ic}</span>${nm}</button>`).join('')}</div>
+        <div class="foro-new-label">🏷 ¿De qué serie? (opcional — del catálogo real)</div>
+        <div class="foro-subs" id="fnSubs">
+          <button class="foro-sub on" data-s="">Sin serie</button>
+          ${pool.map(c => `<button class="foro-sub" data-s="${esc(slugify(c.t))}" data-name="${esc(c.t)}" title="${esc(c.t)}">
+            <img src="${esc(c.poster)}" loading="lazy" alt=""><i>${esc(c.t.slice(0, 17))}${c.t.length > 17 ? '…' : ''}</i></button>`).join('')}
+        </div>
+        <input type="text" id="fnTitle" placeholder="Título del tema (mínimo 3 letras)" maxlength="120">
+        <textarea id="fnBody" rows="5" placeholder="Cuéntalo: opinión, pregunta, guía… los enlaces se vuelven clicables" maxlength="4000"></textarea>
+        <input type="url" id="fnMedia" placeholder="https:// imagen o vídeo para acompañar (opcional)" maxlength="600">
+        <button class="soc-btn soc-btn-green foro-new-btn" id="fnGo">🚀 Publicar tema</button>
+      </div>`, true);
+    let pickCat = F.cat, pickSub = '';
+    document.querySelectorAll('#fnCats .foro-cat').forEach(b => b.addEventListener('click', () => {
+      pickCat = b.dataset.c;
+      document.querySelectorAll('#fnCats .foro-cat').forEach(x => x.classList.toggle('on', x === b));
+    }));
+    document.querySelectorAll('#fnSubs .foro-sub').forEach(b => b.addEventListener('click', () => {
+      pickSub = b.dataset.s || '';
+      document.querySelectorAll('#fnSubs .foro-sub').forEach(x => x.classList.toggle('on', x === b));
+      if (b.dataset.name) {
+        const inp = document.getElementById('fnTitle');
+        if (!inp.value.trim()) inp.value = b.dataset.name + ' — ';
+        inp.focus();
+      }
+    }));
+    document.getElementById('fnGo').addEventListener('click', async () => {
+      const title = document.getElementById('fnTitle').value.trim();
+      const body = document.getElementById('fnBody').value.trim();
+      const media = document.getElementById('fnMedia').value.trim();
+      if (title.length < 3) { toast('El título es muy corto', true); return; }
+      if (!body && !media) { toast('El tema está vacío — escribe algo o añade un enlace', true); return; }
+      const btn = document.getElementById('fnGo');
+      btn.disabled = true;
+      const j = await foroWrite('fNew', { cat: pickCat, sub: pickSub, title, body, media });
+      btn.disabled = false;
+      if (j && j.thread) {
+        toast('🚀 Tema publicado');
+        closeSheet();
+        F.cat = pickCat; F.sub = pickSub;
+        await foroFetch(true);
+        foroRender();
+        if (j.thread.id) foroOpenThread(j.thread);
+      }
+    });
+  }
+  if ($('foroNew')) $('foroNew').addEventListener('click', foroNewSheet);
+
+  function foroInit() {
+    foroRender();
+    foroFetch(true);
+    clearInterval(F.timer);
+    F.timer = setInterval(() => { if (!document.hidden) foroFetch(); }, 45000);
+  }
+
   function startTimers(now) {
     clearInterval(stateTimer);
     stateTimer = setInterval(() => { if (!document.hidden) refresh(); }, 45000);
@@ -1574,6 +1844,7 @@
     loadCatalog().then(() => {
       _welcomeCache = null;        /* los posts de bienvenida usan pósters reales */
       renderFeatured(); renderTrends(); syncFeed();
+      foroInit();                  /* 🧵 el foro arranca con el catálogo (sub-foros reales) */
     }).catch(() => { });
     document.title = 'XSTREAM SOCIAL — La comunidad audiovisual';
   }

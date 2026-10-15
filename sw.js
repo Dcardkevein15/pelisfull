@@ -1,8 +1,8 @@
 ﻿/* XÃ‚Â·STREAM service worker Ã¢â‚¬â€ cachea el app shell para carga instantÃƒÂ¡nea/offline */
 /* Ã¢Å¡Â  IMPORTANTE: cualquier cambio visible en la app requiere subir esta versiÃƒÂ³n
    (v24 Ã¢â€ â€™ v25Ã¢â‚¬Â¦) para que los usuarios reciban los archivos nuevos.            */
-const CACHE = 'xstream-v210';
-const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'chat.js', 'coins.js', 'icon.svg', 'manifest.json'];
+const CACHE = 'xstream-v211';
+const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'chat.js', 'coins.js', 'icon.svg', 'manifest.json', 'social/index.html', 'social.html'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
@@ -34,6 +34,11 @@ self.addEventListener('fetch', e => {
         caches.open(CACHE).then(c => c.put(e.request, clone));
       }
       return res;
-    }).catch(() => caches.match('index.html')))
+    }).catch(() => {
+      /* 🧭 offline: cada superficie cae a SU propio shell — nunca abrir la
+         página principal cuando el usuario pedía el foro social          */
+      if (/\/social/.test(new URL(url).pathname)) return caches.match('social/index.html');
+      return caches.match('index.html');
+    }))
   );
 });
