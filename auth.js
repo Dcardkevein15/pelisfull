@@ -44,7 +44,7 @@
        importa allí tu clave privada (Perfil → «🔐 Firma del catálogo») o
        actualiza esta pública — publishCatalog autoverifica y BLOQUEA con un
        aviso grande cualquier publicación cuya firma no cuadre. */
-    catalogPubKey: 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkO2b+Vm4MNlm+97FaZdXilRkF8KCr0XfqjhtQ00wc8SCsUAz6zA60rxYqnHuRIY7fNJCL6rCYDP5W5DOaNnorA==',
+    catalogPubKey: '',
     tgSite: 'https://dcardkevein15.github.io/pelisfull/',   /* tu web pública (para el botón ▶ Ver ahora) */
     ghRepo: 'Dcardkevein15/pelisfull',
     ghBranch: 'main',
