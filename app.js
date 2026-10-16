@@ -7603,39 +7603,107 @@ function showVault(s, ep) {
 }
 
 /* ═══════════ 🎬 PREMIUM VERTICAL ═══════════
-   Solo móvil/tablet EN VERTICAL: el reproductor se vuelve casi pantalla
+   Solo móvil/tablet EN VERTICAL: el reproductor se vuelve pantalla
    completa con el video premium.mp4 de fondo (mudo, en bucle), un PLAY
    transparente con aro dorado al centro, la membresía $1/mes arriba y
-   el sistema de monedas abajo. En horizontal/escritorio: cero cambios. */
+   el sistema de monedas abajo. En horizontal/escritorio: cero cambios.
+   ⚡ Reproducción profesional:
+   · enlace DIRECTO al nodo de archive.org (sin redirect → arranque
+     instantáneo)
+   · la PRIMERA IMAGEN del video se pinta al instante (miniatura
+     capturada y guardada la primera vez + salto a 0.001s) — jamás negro
+   · reproducción según el SCROLL: visible → rueda; fuera de vista →
+     se pausa y ahorra datos; vuelve → continúa donde iba            */
 (function vPremInit() {
-  const PREM_VIDEO = 'https://archive.org/download/premium_20261015/premium.mp4';
+  /* ⚡ el nodo DIRECTO arranca sin redirect; si la red del usuario no lo
+     alcanza, el fallback /download hace el salto 302 por él            */
+  const PREM_DIRECT = 'https://ia800806.us.archive.org/4/items/premium_20261015/premium.mp4';
+  const PREM_FALLBACK = 'https://archive.org/download/premium_20261015/premium.mp4';
+  const POSTER_KEY = 'xprem-poster';
   const wrap = document.getElementById('vPrem');
   const bg = document.getElementById('vPremBg');
   const vid = document.getElementById('video');
   const playBtn = document.getElementById('vPremPlay');
   const top = document.getElementById('vPremTop');
+  const playerEl = document.getElementById('playerArea');
   if (!wrap || !bg || !playBtn) return;
+
+  /* 🖼 miniatura instantánea si quedó capturada de una visita anterior */
+  try {
+    const savedPoster = localStorage.getItem(POSTER_KEY);
+    if (savedPoster) bg.setAttribute('poster', savedPoster);
+  } catch (e) { }
+
+  /* 📸 al llegar los datos: pintar el PRIMER FRAME ya (salto a 0.001s)
+     e intentar guardarlo como miniatura para las próximas visitas      */
+  const grabFirstFrame = () => {
+    try { bg.currentTime = 0.001; } catch (e) { }
+    if (bg.getAttribute('poster')) return;
+    try {
+      if (bg.videoWidth) {
+        const cv = document.createElement('canvas');
+        cv.width = Math.min(bg.videoWidth, 640);
+        cv.height = Math.round(cv.width * bg.videoHeight / bg.videoWidth);
+        cv.getContext('2d').drawImage(bg, 0, 0, cv.width, cv.height);
+        const url = cv.toDataURL('image/jpeg', 0.72);
+        bg.setAttribute('poster', url);
+        try { localStorage.setItem(POSTER_KEY, url); } catch (e) { }
+      }
+    } catch (e) { }        /* canvas tainted por CORS: el frame igual se pinta */
+  };
+  bg.addEventListener('loadeddata', grabFirstFrame, { once: true });
+
+  /* 🔁 conmutador directo→fallback con perro guardián de 7 s            */
+  const usingFallback = () => (bg.currentSrc || bg.getAttribute('src') || '').includes('/download/');
+  const setSrc = (url) => { bg.src = url; bg.load(); bg.play().catch(() => { }); };
+  bg.addEventListener('error', () => {
+    if (!usingFallback()) setSrc(PREM_FALLBACK);
+  }, { passive: true });
+  let watchdog = null;
+  const armWatchdog = () => {
+    clearTimeout(watchdog);
+    if (!mq.matches) return;
+    watchdog = setTimeout(() => {
+      if (bg.readyState === 0 && !usingFallback()) setSrc(PREM_FALLBACK);
+    }, 7000);
+  };
 
   /* 📱 activo SOLO en vertical (max-width 920 + portrait) */
   const mq = matchMedia('(max-width:920px) and (orientation:portrait)');
   const applyMode = () => {
     if (mq.matches) {
-      if (!bg.getAttribute('src')) bg.src = PREM_VIDEO;
+      if (!bg.getAttribute('src')) { setSrc(PREM_DIRECT); armWatchdog(); }
       bg.preload = 'auto';
       bg.play().catch(() => { });
-      /* 🛡 red de seguridad: si el navegador pospuso el autoplay, el primer
-         toque de la pantalla lo arranca — jamás pantalla negra            */
+      /* 🛡 si el navegador pospuso el autoplay, el primer toque lo arranca */
       if (!wrap.__touchFallback) {
         wrap.__touchFallback = 1;
-        document.addEventListener('touchstart', () => { if (mq.matches && bg.paused) bg.play().catch(() => { }); }, { once: false, passive: true });
-        document.addEventListener('click', () => { if (mq.matches && bg.paused) bg.play().catch(() => { }); }, { passive: true });
+        document.addEventListener('touchstart', () => { if (mq.matches && bg.paused && inView) bg.play().catch(() => { }); }, { once: false, passive: true });
+        document.addEventListener('click', () => { if (mq.matches && bg.paused && inView) bg.play().catch(() => { }); }, { passive: true });
       }
     } else {
+      clearTimeout(watchdog);
       bg.pause();
       if (bg.getAttribute('src')) { bg.removeAttribute('src'); bg.load(); }
     }
   };
   if (mq.addEventListener) mq.addEventListener('change', applyMode);
+
+  /* 📜 reproducción SEGÚN EL SCROLL (vertical): rueda cuando el reproductor
+     está en pantalla; fuera de vista → pausa (ahorro de datos); al volver,
+     continúa exactamente donde iba                                        */
+  let inView = true;
+  if ('IntersectionObserver' in window && playerEl) {
+    const io = new IntersectionObserver(entries => {
+      for (const en of entries) {
+        inView = en.intersectionRatio >= 0.35;
+        if (!mq.matches) return;
+        if (inView) bg.play().catch(() => { });
+        else bg.pause();
+      }
+    }, { threshold: [0, 0.35, 0.75] });
+    io.observe(playerEl);
+  }
   applyMode();
 
   /* ➤ el botón dorado reproduce como el reproductor normal. Si el candado
