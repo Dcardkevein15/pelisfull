@@ -377,6 +377,22 @@ body.tab-hentai #hxHearts{display:block}
    ancho a partes iguales — sin desbordar nunca el viewport. */
 @media (max-width:900px){
   .episodes-head{align-items:flex-start}
+
+  /* 🎬 relacionadas en vertical: 2 por hilera GRANDES con vida */
+  .rel-row{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:12px!important}
+  .rel-row .ep{aspect-ratio:16/9!important;border-radius:14px!important;overflow:hidden;border:1px solid var(--line)!important;transition:transform .2s,border-color .2s,box-shadow .2s}
+  .rel-row .ep img{width:100%!important;height:100%!important;object-fit:cover!important}
+  .rel-row .ep:hover{border-color:var(--acid);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+  .rel-row .ep .ep-num{font-size:15px!important;padding:6px 10px!important}
+  .rel-row .ep .ep-t{font-size:12px!important;padding:4px 10px 8px!important}
+
+  /* margen obligatorio a los bordes de pantalla */
+  .player-shell{padding:12px 14px 50px}
+  .stage-badges{padding:10px 14px}
+  .episodes-list{padding:0 14px}
+  .related-wrap{padding:0 14px}
+  .continue-row{padding:0 14px}
+
   .episodes-tools{width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
   .episodes-tools .btn-mini{justify-content:center;overflow:hidden;text-overflow:ellipsis}
 }
@@ -3991,6 +4007,8 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
     transition:opacity .5s ease,visibility .5s;
   }
   .voffer.on{opacity:1;visibility:visible;pointer-events:auto}
+  /* 🛡 escudo táctil: nada por debajo del intermediario responde a toques */
+  .voffer.on .voffer-shade{pointer-events:auto}
   .voffer-shade{
     position:absolute;inset:0;pointer-events:none;
     background:linear-gradient(180deg,rgba(4,4,9,.62) 0%,transparent 26%,transparent 44%,rgba(4,4,9,.78) 100%);
@@ -4026,6 +4044,8 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   .vo-btn-green:hover,.vo-btn-blue:hover,.vo-btn-gold:hover{filter:brightness(1.08)}
 
   /* el intermediario es el único protagonista cuando está en pantalla */
+  /* el selector de velocidad y los controles del player JAMAS interfieren con el intermediario */
+  .stage:has(.player .voffer.on) .stage-badges{pointer-events:none;opacity:.3}
   .player:has(.voffer.on) .vprem-top,
   .player:has(.voffer.on) .vprem-bottom,
   .player:has(.voffer.on) .vprem-play,

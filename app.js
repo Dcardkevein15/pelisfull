@@ -7748,17 +7748,30 @@ function showVault(s, ep) {
   bg.addEventListener('loadeddata', grabFirstFrame, { once: true });
   bg.addEventListener('loadedmetadata', () => { try { bg.currentTime = 0.001; } catch (e) { } }, { once: true });
 
-  /* 📱 activo SOLO en vertical (max-width 920 + portrait) */
+  /* ═══ 📱 activo SOLO en vertical (max-width 920 + portrait) ═══
+     El video premium SOLO rueda para capítulos BLOQUEADOS. Cuando el
+     video real (película/serie) reproduce, el preview se CORTA COMPLETO:
+     pausa, sin sonido, invisible — cero interferencia.                */
   const mq = matchMedia('(max-width:920px) and (orientation:portrait)');
+  const killPreview = () => {
+    bg.pause();
+    bg.muted = true;
+    if (playerEl) playerEl.classList.add('vprem-solo');
+  };
+  /* el video real arranca → MATAR el preview al instante */
+  if (vid) {
+    vid.addEventListener('play', () => { if (mq.matches) killPreview(); });
+    vid.addEventListener('playing', () => { if (mq.matches) killPreview(); });
+  }
   const applyMode = () => {
     if (mq.matches) {
+      /* si el capítulo YA está desbloqueado y reproduciendo: preview MUERTO */
+      if (vid && vid.src && !vid.paused) { killPreview(); return; }
       if (!bg.getAttribute('src')) { bg.src = PREM_VIDEO; bg.load(); }
       bg.preload = 'auto';
       bg.loop = false;                   /* UNA sola vez — jamás bucle */
       bg.muted = false;                  /* 🔊 audio SIEMPRE activo */
       bg.play().catch(() => { });
-      /* 🛡 si el navegador exige un gesto (política de autoplay con sonido),
-         el primer toque arranca el video CON audio */
       if (!wrap.__touchFallback) {
         wrap.__touchFallback = 1;
         document.addEventListener('touchstart', () => {
@@ -7881,7 +7894,9 @@ function showVault(s, ep) {
   const prerollShown = {};
   window.__premPreroll = (key, done) => {
     if (typeof done !== 'function') return;
-    if (!mq.matches || prerollShown[key]) { done(); return; }   /* escritorio o ya visto: flujo original */
+    /* si el video real ya está reproduciéndose o ya corrió el preview:
+       CERO preview — directo al contenido */
+    if (!mq.matches || prerollShown[key] || (vid && vid.src && !vid.paused)) { done(); return; }
     prerollShown[key] = 1;
     driving = bg;
     let finished = false;
@@ -7890,7 +7905,9 @@ function showVault(s, ep) {
       finished = true;
       bg.removeEventListener('ended', finish);
       bg.removeEventListener('timeupdate', at8s);
-      /* sin bucle JAMÁS: el video queda en su último frame */
+      /* sin bucle JAMÁS: el preview queda MUERTO — ni audio ni visual */
+      bg.pause();
+      bg.muted = true;
       if (playerEl) playerEl.classList.remove('vprem-solo', 'vprem-tap');
       done();                            /* 8s: el intermediario entra */
     };
