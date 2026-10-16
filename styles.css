@@ -3934,6 +3934,7 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   /* los estados vacíos (elije capítulo / pega enlace) ya no tapan el
      video: el preview ES el contenido por defecto del reproductor     */
   .player-empty,.player-nourl{display:none!important}
+  video#video:not([src]){display:none!important}   /* sin enlace: no tapar el preview */
 
   /* barra de controles glass justo encima de la barra de monedas */
   .vprem-controls{
@@ -4001,7 +4002,7 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
     opacity:0;transform:translateY(14px);transition:all .55s cubic-bezier(.2,1.2,.4,1);
   }
   .voffer-top{top:16px}
-  .voffer-bottom{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .voffer-bottom{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
   .voffer.on .voffer-top{opacity:1;transform:none;transition-delay:.15s}
   .voffer.on .voffer-bottom{opacity:1;transform:none;transition-delay:.28s}
   .vo-crown{font-size:23px;filter:drop-shadow(0 0 12px rgba(255,210,74,.6))}
@@ -4024,9 +4025,15 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   .vo-btn.cant{opacity:.35;pointer-events:none}
   .vo-btn-green:hover,.vo-btn-blue:hover,.vo-btn-gold:hover{filter:brightness(1.08)}
 
+  /* el intermediario es el único protagonista cuando está en pantalla */
+  .player:has(.voffer.on) .vprem-top,
+  .player:has(.voffer.on) .vprem-bottom,
+  .player:has(.voffer.on) .vprem-play,
+  .player:has(.voffer.on) .vprem-controls{display:none!important}
+
   @media (min-width:600px){
     .voffer-top{top:22px}
-    .voffer-bottom{bottom:calc(22px + env(safe-area-inset-bottom,0px))}
+    .voffer-bottom{bottom:calc(104px + env(safe-area-inset-bottom,0px))}
     .voffer-top b{font-size:15.5px}
     .vo-lock-line{font-size:16px}
     .vo-btn{padding:13px 24px;font-size:13.5px}

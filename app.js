@@ -7737,12 +7737,25 @@ function showVault(s, ep) {
     if (mq.matches) {
       if (!bg.getAttribute('src')) { bg.src = PREM_VIDEO; bg.load(); }
       bg.preload = 'auto';
+      bg.loop = false;                   /* UNA sola vez — jamás bucle */
+      bg.muted = false;                  /* 🔊 audio SIEMPRE activo */
       bg.play().catch(() => { });
-      /* 🛡 si el navegador pospuso el autoplay, el primer toque lo arranca */
+      /* 🛡 si el navegador exige un gesto (política de autoplay con sonido),
+         el primer toque arranca el video CON audio */
       if (!wrap.__touchFallback) {
         wrap.__touchFallback = 1;
-        document.addEventListener('touchstart', () => { if (mq.matches && bg.paused && inView) bg.play().catch(() => { }); }, { once: false, passive: true });
-        document.addEventListener('click', () => { if (mq.matches && bg.paused && inView) bg.play().catch(() => { }); }, { passive: true });
+        document.addEventListener('touchstart', () => {
+          if (mq.matches && bg.paused && inView) {
+            if (bg.ended) { try { bg.currentTime = 0; } catch (e) { } }
+            bg.play().catch(() => { });
+          }
+        }, { once: false, passive: true });
+        document.addEventListener('click', () => {
+          if (mq.matches && bg.paused && inView) {
+            if (bg.ended) { try { bg.currentTime = 0; } catch (e) { } }
+            bg.play().catch(() => { });
+          }
+        }, { passive: true });
       }
     } else {
       bg.pause();
@@ -7770,9 +7783,11 @@ function showVault(s, ep) {
   applyMode();
 
   /* ➤ el botón dorado alterna REPRODUCIR/PAUSAR del preview (con el
-     candado o sin episodio, el preview es el protagonista)             */
+     candado o sin episodio, el preview es el protagonista). Al terminar
+     el video, vuelve a arrancarlo DESDE CERO con audio               */
   playBtn.addEventListener('click', () => {
     if (vid && vid.src && !vid.paused) { vid.pause().catch(() => { }); return; }
+    if (bg.ended) { try { bg.currentTime = 0; } catch (e) { } }
     if (bg.paused) bg.play().catch(() => { }); else bg.pause();
   });
   const syncPlay = () => {
@@ -7823,7 +7838,7 @@ function showVault(s, ep) {
       vid.addEventListener('timeupdate', vcSync);
       vid.addEventListener('volumechange', vcSync);
     }
-    vcPlay.addEventListener('click', () => { const el = driving; if (el.paused) el.play().catch(() => { }); else el.pause(); });
+    vcPlay.addEventListener('click', () => { const el = driving; if (el.ended) { try { el.currentTime = 0; } catch (e) { } } if (el.paused) el.play().catch(() => { }); else el.pause(); });
     vcMute.addEventListener('click', () => { const el = driving; el.muted = !el.muted; if (!el.muted && el.paused && el === bg) el.play().catch(() => { }); });
     vcSeek.addEventListener('input', () => { vcSeek.__dragging = true; });
     vcSeek.addEventListener('change', () => {
@@ -7858,7 +7873,7 @@ function showVault(s, ep) {
       finished = true;
       bg.removeEventListener('ended', finish);
       bg.removeEventListener('timeupdate', at8s);
-      bg.loop = true;                    /* de vuelta al ambiente en bucle */
+      /* sin bucle JAMÁS: el video queda en su último frame */
       if (playerEl) playerEl.classList.remove('vprem-solo', 'vprem-tap');
       done();                            /* 8s: el intermediario entra */
     };
@@ -7868,6 +7883,7 @@ function showVault(s, ep) {
     bg.addEventListener('timeupdate', at8s);
     bg.addEventListener('ended', finish, { once: true });
     bg.loop = false;                     /* el pre-roll corre UNA vez */
+    bg.muted = false;                    /* 🔊 con audio siempre */
     try { bg.currentTime = 0; } catch (e) { }
     /* 🎬 el preview corre SOLO — nada encima del video */
     if (playerEl) playerEl.classList.add('vprem-solo');
