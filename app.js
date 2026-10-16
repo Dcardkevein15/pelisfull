@@ -7603,11 +7603,28 @@ function showPremOffer(s, ep) {
       sub: '<div style="text-align:left;font-size:12.5px;line-height:1.7"><b>' + escapeHtml(s.t) + (ep.n != null ? ' · Capítulo ' + ep.n : '') + '</b><br><br>Costo: <b style="color:#ff6b81">' + price + ' 🪙</b> — queda abierto <b>para siempre</b><br>Tu saldo pasaría de <b style="color:var(--acid)">' + st.coins + '</b> a <b style="color:var(--acid)">' + (st.coins - price) + ' 🪙</b><br>¿Confirmas?</div>',
     }).then(r => { if (r) { close(); doUnlock(s, ep); } }).catch(() => { });
   };
-  /* 📺 ganar monedas: el MISMO anuncio de recompensas; al volver, oferta fresca */
-  document.getElementById('voEarn').onclick = () => {
-    close();
-    showAdwall(() => showPremOffer(s, ep));
-  };
+  /* 📺 ganar monedas: el MISMO anuncio de recompensas; al volver, oferta fresca.
+     Blindado: respuesta inmediata al toque + verificación con diagnóstico      */
+  const earnBtn2 = document.getElementById('voEarn');
+  if (earnBtn2) {
+    const abrirAnuncio = (ev) => {
+      if (earnBtn2.__busy) return;
+      earnBtn2.__busy = 1;
+      toast('📺 Abriendo el anuncio…');
+      try { close(); showAdwall(() => showPremOffer(s, ep)); }
+      catch (e) { toast('⚠ Error al abrir el anuncio: ' + (e && e.message ? e.message.slice(0, 60) : 'desconocido'), true); }
+      /* verificación: si en 600ms el adwall no está a la vista, decirlo claro */
+      setTimeout(() => {
+        earnBtn2.__busy = 0;
+        const ad = document.getElementById('adwall');
+        if (!ad || ad.classList.contains('hidden')) {
+          toast('⚠ El anuncio no se abrió — ¿tienes un bloqueador activo? Revisa que x.yapido.click pueda mostrar publicidad', true);
+        }
+      }, 600);
+    };
+    earnBtn2.addEventListener('click', abrirAnuncio);
+    earnBtn2.addEventListener('touchend', (ev) => { ev.preventDefault(); abrirAnuncio(ev); }, { passive: false });
+  }
   /* 👑 premium: el MISMO modal de membresía */
   document.getElementById('voVip').onclick = () => { if (typeof showExplainModal === 'function') showExplainModal(); };
   /* 🛡 rescate del servidor (paridad con la bóveda): si ya está pagado, entra directo */
