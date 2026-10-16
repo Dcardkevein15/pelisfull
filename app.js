@@ -7593,13 +7593,13 @@ function showPremOffer(s, ep) {
   unlockBtn.classList.toggle('cant', !hasEnough);
   const close = () => {
     offer.classList.remove('on');
-    /* 🛡 liberar TODO lo que estaba oculto */
+    /* 🛡 liberar TODO: controles, barras y volver al player pequeño */
     document.querySelectorAll('.vprem-top, .vprem-bottom, .vprem-play, .vprem-controls, .stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => {
       el.style.display = '';
       el.style.pointerEvents = '';
       el.style.opacity = '';
     });
-    if (playerEl) playerEl.classList.remove('vprem-solo');
+    if (playerEl) playerEl.classList.remove('vprem-full', 'vprem-solo');
   };
   offer.classList.add('on');
   /* 🛡 OCULTAR todo lo demás por JS directo (sin :has()) — las barras
@@ -7772,10 +7772,20 @@ function showVault(s, ep) {
     bg.muted = true;
     if (playerEl) playerEl.classList.add('vprem-solo');
   };
-  /* el video real arranca → MATAR el preview al instante */
+  /* el video real arranca → MATAR el preview + VOLVER al player pequeño */
   if (vid) {
-    vid.addEventListener('play', () => { if (mq.matches) killPreview(); });
-    vid.addEventListener('playing', () => { if (mq.matches) killPreview(); });
+    vid.addEventListener('play', () => {
+      if (mq.matches) {
+        killPreview();
+        if (playerEl) playerEl.classList.remove('vprem-full', 'vprem-solo', 'vprem-tap');
+      }
+    });
+    vid.addEventListener('playing', () => {
+      if (mq.matches) {
+        killPreview();
+        if (playerEl) playerEl.classList.remove('vprem-full', 'vprem-solo', 'vprem-tap');
+      }
+    });
   }
   const applyMode = () => {
     if (mq.matches) {
@@ -7831,23 +7841,8 @@ function showVault(s, ep) {
   }
   applyMode();
 
-  /* ➤ el botón dorado alterna REPRODUCIR/PAUSAR del preview (con el
-     candado o sin episodio, el preview es el protagonista). Al terminar
-     el video, vuelve a arrancarlo DESDE CERO con audio               */
-  playBtn.addEventListener('click', () => {
-    if (vid && vid.src && !vid.paused) { vid.pause().catch(() => { }); return; }
-    if (bg.ended) { try { bg.currentTime = 0; } catch (e) { } }
-    if (bg.paused) bg.play().catch(() => { }); else bg.pause();
-  });
-  const syncPlay = () => {
-    const busy = !!(vid && vid.src && !vid.paused && !vid.ended);
-    playBtn.style.display = busy ? 'none' : '';
-  };
-  if (vid) {
-    vid.addEventListener('play', syncPlay);
-    vid.addEventListener('pause', syncPlay);
-    vid.addEventListener('loadeddata', syncPlay);
-  }
+  /* ➤ botón dorado ELIMINADO del centro — solo arriba (membresía) y
+     abajo (ganar + reproducir). Sin botón central.                     */
 
   /* ═══ 🎛 CONTROLES DE REPRODUCTOR NORMAL sobre los DOS videos ═══
      transparentes, solo los menús exactos: play/pausa · barra de
@@ -7923,10 +7918,12 @@ function showVault(s, ep) {
     const cleanup = () => {
       if (cleanupDone) return;
       cleanupDone = true;
-      /* solo AQUI se corta el video — cuando terminó TODO su contenido */
       bg.pause();
       bg.muted = true;
-      if (playerEl) playerEl.classList.remove('vprem-solo', 'vprem-tap');
+      /* quitar vprem-solo para que no muestre barras, pero MANTENER
+         vprem-full mientras el candado está en pantalla (se quita
+         cuando el video real arranca)                                   */
+      if (playerEl) playerEl.classList.remove('vprem-solo');
     };
     const finish = () => {
       if (finished) return;
@@ -7951,8 +7948,8 @@ function showVault(s, ep) {
     bg.loop = false;                     /* el pre-roll corre UNA vez */
     bg.muted = false;                    /* 🔊 con audio hasta el final */
     try { bg.currentTime = 0; } catch (e) { }
-    /* 🎬 el preview corre SOLO — nada encima del video */
-    if (playerEl) playerEl.classList.add('vprem-solo');
+    /* 🎬 el preview corre SOLO — nada encima del video, PANTALLA COMPLETA */
+    if (playerEl) { playerEl.classList.add('vprem-solo'); playerEl.classList.add('vprem-full'); }
     const ok = bg.play();
     if (ok && ok.catch) ok.catch(() => {
       /* 🛡 navegador exige gesto (ahorro de datos / batería): NO saltar
