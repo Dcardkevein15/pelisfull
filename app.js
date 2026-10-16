@@ -7593,11 +7593,19 @@ function showPremOffer(s, ep) {
   unlockBtn.classList.toggle('cant', !hasEnough);
   const close = () => {
     offer.classList.remove('on');
-    /* 🛡 liberar los controles del reproductor (JS directo — sin :has()) */
-    document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = ''; el.style.opacity = ''; });
+    /* 🛡 liberar TODO lo que estaba oculto */
+    document.querySelectorAll('.vprem-top, .vprem-bottom, .vprem-play, .vprem-controls, .stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => {
+      el.style.display = '';
+      el.style.pointerEvents = '';
+      el.style.opacity = '';
+    });
+    if (playerEl) playerEl.classList.remove('vprem-solo');
   };
   offer.classList.add('on');
-  /* 🛡 ESCUDO TOTAL: bloquear TODO lo que está debajo por JS directo */
+  /* 🛡 OCULTAR todo lo demás por JS directo (sin :has()) — las barras
+     ambientales, controles custom, y botones del player JAMÁS se ven
+     mientras el intermediario está en pantalla                      */
+  document.querySelectorAll('.vprem-top, .vprem-bottom, .vprem-play, .vprem-controls').forEach(el => { el.style.display = 'none'; });
   document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = 'none'; });
   /* 🪙 pagar monedas: la MISMA confirmación y el MISMO cobro de siempre */
   unlockBtn.onclick = () => {
@@ -7931,6 +7939,11 @@ function showVault(s, ep) {
       bg.addEventListener('ended', cleanup, { once: true });
       /* respaldo: si el video no dispara ended en 15s, limpiar igual */
       setTimeout(cleanup, 15000);
+      /* 🔇 al terminar: video TOTALMENTE muerto (sin vprem-solo que
+         muestre las barras ambientales — quedan ocultas por el voffer) */
+      bg.addEventListener('ended', () => {
+        if (playerEl) playerEl.classList.add('vprem-solo');
+      }, { once: true });
     };
     /* ⏱ el intermediario entra a los 8 SEGUNDOS pero el video sigue */
     const at8s = () => { try { if (bg.currentTime >= 8) finish(); } catch (e) { } };
