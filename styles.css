@@ -4051,6 +4051,12 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   .player:has(.voffer.on) .vprem-play,
   .player:has(.voffer.on) .vprem-controls{display:none!important}
 
+  /* 🎛 controles NATIVOS: cuando el video real tiene src y reproduce,
+     los del navegador mandan (auto-ocultan tras 3-4s solos). Mi barra
+     custom se apaga para NO duplicar botones sobre el video.          */
+  .player:has(video#video[src]) .vprem-controls{display:none!important}
+  .player:has(video#video[src]) .vprem-play{display:none!important}
+
   @media (min-width:600px){
     .voffer-top{top:112px}
     .voffer-bottom{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
