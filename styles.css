@@ -3969,10 +3969,9 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 
 
 /* ═══════════════════════════════════════════════════════════════
-   💰 NUEVO INTERMEDIARIO MÓVIL (voffer) — diseñado EXCLUSIVAMENTE
-   para vertical: el preview corre LIMPIO (solo el video) y AL
-   TERMINAR estos contenedores entran con transiciones profesionales
-   ofreciendo monedas / premium. La lógica de cobro es la de siempre.
+   💰 INTERMEDIARIO MÓVIL — SIN contenedores ni bordes: solo texto
+   y botones flotando. 👑 Membresía ARRIBA · 🔒 bloqueada ABAJO.
+   Entra a los 8s del preview con transición profesional.
    ═══════════════════════════════════════════════════════════════ */
 .voffer{display:none}
 
@@ -3981,6 +3980,8 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 .player.vprem-solo .vprem-bottom,
 .player.vprem-solo .vprem-play,
 .player.vprem-solo .vprem-controls{display:none!important}
+/* ...salvo que el navegador exija un gesto: el botón dorado queda listo */
+.player.vprem-tap .vprem-play{display:grid!important}
 
 @media (max-width:920px) and (orientation:portrait){
   .voffer{
@@ -3990,64 +3991,45 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   }
   .voffer.on{opacity:1;visibility:visible;pointer-events:auto}
   .voffer-shade{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(4,4,9,.55),rgba(4,4,9,.82));
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    transform:scale(1.06);transition:transform .6s ease;
+    position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(4,4,9,.62) 0%,transparent 26%,transparent 44%,rgba(4,4,9,.78) 100%);
   }
-  .voffer.on .voffer-shade{transform:none}
-  .voffer-body{
-    position:absolute;inset:0;display:flex;flex-direction:column;
-    justify-content:flex-end;gap:10px;padding:18px 14px calc(18px + env(safe-area-inset-bottom,0px));
+  .voffer-top,.voffer-bottom{
+    position:absolute;left:0;right:0;display:flex;flex-direction:column;
+    align-items:center;gap:5px;text-align:center;padding:0 22px;
+    text-shadow:0 2px 14px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9);
+    opacity:0;transform:translateY(14px);transition:all .55s cubic-bezier(.2,1.2,.4,1);
   }
-  .voffer-head{display:flex;flex-direction:column;align-items:center;gap:3px;margin-bottom:6px;
-    opacity:0;transform:translateY(18px);transition:all .5s cubic-bezier(.2,1.2,.4,1) .12s}
-  .voffer.on .voffer-head{opacity:1;transform:none}
-  .vo-lock{font-size:30px;filter:drop-shadow(0 0 14px rgba(255,46,99,.5))}
-  .voffer-head h2{font:900 19px 'Archivo Black',Inter,sans-serif;color:var(--ink);letter-spacing:.4px}
-  .voffer-head small{font:600 11.5px Inter;color:var(--dim)}
-
-  .vo-card{
-    display:flex;align-items:center;gap:12px;padding:13px 14px;
-    border-radius:16px;border:1px solid var(--line);
-    background:rgba(14,12,18,.72);
-    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    box-shadow:0 12px 34px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
-    opacity:0;transform:translateY(26px) scale(.96);
-    transition:opacity .5s ease,transform .5s cubic-bezier(.2,1.2,.4,1);
-  }
-  .voffer.on .vo-card{opacity:1;transform:none}
-  .voffer.on .vo-coins{transition-delay:.2s}
-  .voffer.on .vo-earn{transition-delay:.3s}
-  .voffer.on .vo-vip{transition-delay:.4s}
-  .vo-ic{width:42px;height:42px;min-width:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--panel2)}
-  .vo-coins .vo-ic{border:1px solid rgba(216,255,62,.35)}
-  .vo-earn .vo-ic{border:1px solid rgba(139,92,246,.4)}
-  .vo-vip .vo-ic{border:1px solid rgba(255,210,74,.5);filter:drop-shadow(0 0 8px rgba(255,210,74,.35))}
-  .vo-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-  .vo-b b{font:800 13px Inter;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .vo-b small{font:600 10.5px Inter;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .vo-price{color:#ffd24a;margin-left:4px}
+  .voffer-top{top:16px}
+  .voffer-bottom{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .voffer.on .voffer-top{opacity:1;transform:none;transition-delay:.15s}
+  .voffer.on .voffer-bottom{opacity:1;transform:none;transition-delay:.28s}
+  .vo-crown{font-size:23px;filter:drop-shadow(0 0 12px rgba(255,210,74,.6))}
+  .voffer-top b{font:800 14px Inter;color:#ffd24a}
+  .voffer-top small{font:600 10px Inter;color:#e8d9a8}
   .vo-price small{font-size:10px;color:#e8d9a8}
+  .vo-lock-line{font:800 14.5px Inter;color:var(--ink)}
+  .vo-sub{font:600 10.5px Inter;color:var(--dim);max-width:300px}
+  .vo-coins-line{font:700 11px 'JetBrains Mono',monospace;color:#ffd24a}
+  .vo-actions{display:flex;gap:9px;margin-top:5px}
   .vo-btn{
-    flex-shrink:0;padding:12px 16px;border-radius:13px;cursor:pointer;
-    font:800 12px Inter;letter-spacing:.2px;border:none;
+    padding:12px 20px;border-radius:99px;cursor:pointer;border:none;
+    font:800 12.5px Inter;letter-spacing:.2px;
     transition:transform .15s,box-shadow .15s,filter .15s;
   }
   .vo-btn:active{transform:scale(.93)}
   .vo-btn-green{color:#03130B;background:linear-gradient(135deg,#00E676,#5df5a4);box-shadow:0 8px 22px rgba(0,230,118,.4)}
-  .vo-btn-green:hover{filter:brightness(1.08)}
   .vo-btn-blue{color:#fff;background:linear-gradient(135deg,#8b5cf6,#ec4899);box-shadow:0 8px 22px rgba(139,92,246,.35)}
-  .vo-btn-blue:hover{filter:brightness(1.1)}
   .vo-btn-gold{color:#1c1400;background:linear-gradient(135deg,#ffd24a,#ffb730);box-shadow:0 8px 22px rgba(255,183,48,.45)}
-  .vo-btn-gold:hover{filter:brightness(1.07)}
   .vo-btn.cant{opacity:.35;pointer-events:none}
+  .vo-btn-green:hover,.vo-btn-blue:hover,.vo-btn-gold:hover{filter:brightness(1.08)}
 
   @media (min-width:600px){
-    .voffer-body{padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px))}
-    .vo-card{padding:15px 16px}
-    .vo-b b{font-size:14.5px}
-    .vo-b small{font-size:11.5px}
-    .vo-btn{padding:13px 20px;font-size:13px}
+    .voffer-top{top:22px}
+    .voffer-bottom{bottom:calc(22px + env(safe-area-inset-bottom,0px))}
+    .voffer-top b{font-size:15.5px}
+    .vo-lock-line{font-size:16px}
+    .vo-btn{padding:13px 24px;font-size:13.5px}
   }
 }
+

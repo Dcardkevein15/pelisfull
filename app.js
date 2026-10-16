@@ -7585,10 +7585,10 @@ function showPremOffer(s, ep) {
   const cfg = COINS.getConfig() || {};
   const reward = cfg.adReward || 100;
   const hasEnough = st.coins >= price;
-  document.getElementById('voTitle').textContent = 'Capítulo bloqueado';
-  document.getElementById('voSub').textContent = (s ? s.t : '') + (ep && ep.n != null ? ' · Capítulo ' + ep.n : '') + ' — elige cómo verlo';
+  document.getElementById('voTitle').textContent = (s && s.kind === 'pelicula') ? 'Película bloqueada' : 'Capítulo bloqueado';
+  document.getElementById('voSub').textContent = (s ? s.t : '') + (ep && ep.n != null ? ' · Capítulo ' + ep.n : '');
   document.getElementById('voCoinsTxt').textContent = 'Cuesta ' + price + ' 🪙 · tienes ' + st.coins + ' 🪙';
-  document.getElementById('voEarnTxt').textContent = 'Mira un anuncio y recibe +' + reward + ' 🪙';
+  document.getElementById('voRewardTxt').textContent = '+' + reward;
   const unlockBtn = document.getElementById('voUnlock');
   unlockBtn.classList.toggle('cant', !hasEnough);
   const close = () => offer.classList.remove('on');
@@ -7852,23 +7852,47 @@ function showVault(s, ep) {
     if (!mq.matches || prerollShown[key]) { done(); return; }   /* escritorio o ya visto: flujo original */
     prerollShown[key] = 1;
     driving = bg;
-    /* 🎬 el preview corre SOLO — nada encima del video */
-    if (playerEl) playerEl.classList.add('vprem-solo');
-    bg.loop = false;                     /* el pre-roll corre UNA vez */
     let finished = false;
     const finish = () => {
       if (finished) return;
       finished = true;
       bg.removeEventListener('ended', finish);
+      bg.removeEventListener('timeupdate', at8s);
       bg.loop = true;                    /* de vuelta al ambiente en bucle */
-      if (playerEl) playerEl.classList.remove('vprem-solo');
-      done();
+      if (playerEl) playerEl.classList.remove('vprem-solo', 'vprem-tap');
+      done();                            /* 8s: el intermediario entra */
     };
+    /* ⏱ el video dura 10s: el intermediario entra a los 8 SEGUNDOS
+       (respaldado por el final natural por si dura menos)            */
+    const at8s = () => { try { if (bg.currentTime >= 8) finish(); } catch (e) { } };
+    bg.addEventListener('timeupdate', at8s);
     bg.addEventListener('ended', finish, { once: true });
+    bg.loop = false;                     /* el pre-roll corre UNA vez */
     try { bg.currentTime = 0; } catch (e) { }
+    /* 🎬 el preview corre SOLO — nada encima del video */
+    if (playerEl) playerEl.classList.add('vprem-solo');
     const ok = bg.play();
-    if (ok && ok.catch) ok.catch(() => finish());   /* autoplay bloqueado → no frenar el flujo */
-    setTimeout(() => { if (bg.readyState === 0) finish(); }, 5000);   /* video imposible → seguir */
+    if (ok && ok.catch) ok.catch(() => {
+      /* 🛡 navegador exige gesto (ahorro de datos / batería): NO saltar
+         el video — botón dorado listo para arrancarlo con UN toque      */
+      if (playerEl) { playerEl.classList.remove('vprem-solo'); playerEl.classList.add('vprem-tap'); }
+      const onTap = () => {
+        bg.play().then(() => {
+          if (playerEl) { playerEl.classList.add('vprem-solo'); playerEl.classList.remove('vprem-tap'); }
+        }).catch(() => { });
+        playBtn.removeEventListener('click', onTap);
+      };
+      playBtn.addEventListener('click', onTap);
+      /* si el usuario toca la pantalla entera también arranca */
+      const touchStart = () => {
+        bg.play().then(() => {
+          if (playerEl) { playerEl.classList.add('vprem-solo'); playerEl.classList.remove('vprem-tap'); }
+        }).catch(() => { });
+        document.removeEventListener('touchstart', touchStart);
+      };
+      document.addEventListener('touchstart', touchStart, { passive: true });
+    });
+    setTimeout(() => { if (bg.readyState === 0 && !finished) { if (playerEl) playerEl.classList.remove('vprem-solo'); finish(); } }, 6000);
   };
 
   /* 👑 membresía arriba: si ya eres VIP, la barrita no hace falta */
