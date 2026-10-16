@@ -7621,7 +7621,15 @@ function showVault(s, ep) {
   const applyMode = () => {
     if (mq.matches) {
       if (!bg.getAttribute('src')) bg.src = PREM_VIDEO;
+      bg.preload = 'auto';
       bg.play().catch(() => { });
+      /* 🛡 red de seguridad: si el navegador pospuso el autoplay, el primer
+         toque de la pantalla lo arranca — jamás pantalla negra            */
+      if (!wrap.__touchFallback) {
+        wrap.__touchFallback = 1;
+        document.addEventListener('touchstart', () => { if (mq.matches && bg.paused) bg.play().catch(() => { }); }, { once: false, passive: true });
+        document.addEventListener('click', () => { if (mq.matches && bg.paused) bg.play().catch(() => { }); }, { passive: true });
+      }
     } else {
       bg.pause();
       if (bg.getAttribute('src')) { bg.removeAttribute('src'); bg.load(); }

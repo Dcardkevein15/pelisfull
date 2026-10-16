@@ -3761,19 +3761,21 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 
 /* oculto por defecto (escritorio y horizontal jamás lo ven) */
 .vprem{display:none}
-.vprem-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.player .vprem-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0c0c13;object-position:center}
 .vprem-play{display:none}
 
 /* ── 📱 VERTICAL: el reproductor se vuelve una pantalla ── */
 @media (max-width:920px) and (orientation:portrait){
   .player{
-    aspect-ratio:9/16;                 /* el video es vertical: mismo tamaño */
-    width:auto;
+    aspect-ratio:auto;
+    width:100vw;                        /* PANTALLA COMPLETA real, orilla a orilla */
     max-width:100vw;
-    height:calc(100dvh - 84px);        /* casi TODA la pantalla */
-    margin:0 auto;
-    border-radius:18px;
+    height:calc(100dvh - 62px);         /* todo el alto bajo la barra superior    */
+    margin:0 0 0 calc(50% - 50vw);       /* full-bleed incluso con padding del shell */
+    border-radius:0;border-left:none;border-right:none;border-bottom:none;
   }
+  /* el mini-reproductor flotante NO aplica en vertical: nada encoge la pantalla */
+  .player-anchor.mini>.player{position:relative!important;width:100vw!important;max-width:100vw!important;height:calc(100dvh - 62px)!important;margin:0 0 0 calc(50% - 50vw)!important;border-radius:0!important;box-shadow:none!important}
   .player video#video{
     position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;
   }
@@ -3915,4 +3917,17 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
      está en pantalla (evita información duplicada tras el cristal)   */
   .player:has(.vault:not(.hidden)) .vprem-top,
   .player:has(.vault:not(.hidden)) .vprem-bottom{display:none}
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   🚧 TEMPORAL (petición del admin): en móvil/tablet VERTICAL el
+   candado NO se muestra — solo el reproductor, para ver cómo queda.
+   Para reactivar el candado: borrar este bloque.
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width:920px) and (orientation:portrait){
+  .vault{display:none!important}
+  /* con el candado fuera, las barras premium regresan siempre */
+  .player:has(.vault:not(.hidden)) .vprem-top,
+  .player:has(.vault:not(.hidden)) .vprem-bottom{display:flex}
 }
