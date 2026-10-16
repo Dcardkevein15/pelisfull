@@ -3862,3 +3862,57 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
     .vprem-play{width:104px;height:104px}
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   🔒 CANDADO DE CRISTAL — en móvil/tablet VERTICAL la bóveda ya no es
+   una pared estática: es un overlay GLASS compacto flotando SOBRE el
+   video premium que se reproduce detrás. El video es el protagonista;
+   el candadito se ve marcado pero deja ver TODO detrás.
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width:920px) and (orientation:portrait){
+  /* sin fondo de membresía.png ni velo oscuro: el video brilla */
+  .vault .vault-bg{display:none}
+  .vault::after{background:linear-gradient(180deg,rgba(4,4,9,.06) 0%,transparent 30%,rgba(4,4,9,.22) 100%)}
+
+  /* apilado compacto en la parte baja: el video queda despejado arriba */
+  .vault-body{flex-direction:column;justify-content:flex-end;padding:12px;gap:9px}
+  .vault-left,.vault-right{flex:none;width:100%;max-width:100%}
+
+  /* tarjetas de CRISTAL: translúcidas + blur, marcadas por su color */
+  .vl-card{
+    border-radius:16px;border:1.5px solid rgba(255,46,99,.5);
+    background:rgba(10,8,13,.55);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 14px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07);
+  }
+  .vr-card{
+    border-radius:16px;border:1.5px solid rgba(255,210,74,.55);
+    background:rgba(10,8,13,.5);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 14px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07);
+  }
+
+  /* candado: compacto y legible sin estorbar */
+  .vl-scroll{padding:10px 12px 6px;column-gap:8px;row-gap:6px}
+  .vault h2{font-size:15px}
+  .vl-icon svg{width:26px;height:26px}
+  .vault-price{padding:5px 12px}
+  .vault-sub{font-size:10.5px}
+  .vl-fixed{padding:0 12px 11px;gap:7px}
+  .vault-play{padding:12px 16px;border-radius:13px}
+  .vault-earn{padding:10px 14px;border-radius:13px}
+  .vault-explain{display:none}            /* simple: sin texto extra */
+
+  /* membresía: una tira fina dorada (la lista completa vive en el modal) */
+  .vr-head{padding:10px 12px 4px;gap:8px}
+  .vr-head h3{font-size:13px}
+  .vr-price{font-size:14px}
+  .vr-benefits{display:none}               /* simple: solo corona + precio */
+  .vr-get{margin:0 12px 11px;padding:10px 14px;font-size:12px}
+
+  /* las barras premium del reproductor se apagan cuando el candado
+     está en pantalla (evita información duplicada tras el cristal)   */
+  .player:has(.vault:not(.hidden)) .vprem-top,
+  .player:has(.vault:not(.hidden)) .vprem-bottom{display:none}
+}

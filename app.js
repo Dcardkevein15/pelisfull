@@ -7630,8 +7630,18 @@ function showVault(s, ep) {
   if (mq.addEventListener) mq.addEventListener('change', applyMode);
   applyMode();
 
-  /* ➤ el botón dorado reproduce como el reproductor normal */
-  playBtn.addEventListener('click', () => { if (vid && vid.src) vid.play().catch(() => { }); });
+  /* ➤ el botón dorado reproduce como el reproductor normal. Si el candado
+     de cristal está en pantalla, el PROTAGONISTA es el video premium:
+     un toque activa su sonido (el video ya rueda mudo de fondo)          */
+  playBtn.addEventListener('click', () => {
+    const vault = document.getElementById('paywall');
+    if (vault && !vault.classList.contains('hidden')) {
+      bg.muted = !bg.muted;
+      if (bg.paused) bg.play().catch(() => { });
+      return;
+    }
+    if (vid && vid.src) vid.play().catch(() => { });
+  });
   const syncPlay = () => {
     const busy = !!(vid && vid.src && !vid.paused && !vid.ended);
     playBtn.style.display = busy ? 'none' : '';
