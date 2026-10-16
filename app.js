@@ -7591,8 +7591,26 @@ function showPremOffer(s, ep) {
   document.getElementById('voRewardTxt').textContent = '+' + reward;
   const unlockBtn = document.getElementById('voUnlock');
   unlockBtn.classList.toggle('cant', !hasEnough);
-  const close = () => offer.classList.remove('on');
+  const close = () => {
+    offer.classList.remove('on');
+    /* 🛡 liberar los controles del reproductor (JS directo — sin :has()) */
+    document.querySelectorAll('.stage-badges, #playerShell .speed, #autoplayBtn, #downloadBtn').forEach(el => { el.style.pointerEvents = ''; el.style.opacity = ''; });
+  };
   offer.classList.add('on');
+  /* 🛡 ESCUDO TOTAL: bloquear TODO lo que está debajo por JS directo —
+     ni el selector de velocidad NI ningún control del player pueden
+     responder a toques mientras el intermediario está en pantalla     */
+  document.querySelectorAll('.stage-badges, #playerShell .speed, #autoplayBtn, #downloadBtn').forEach(el => { el.style.pointerEvents = 'none'; });
+  /* 🛡 ESCUDO TÁCTIL ABSOLUTO: el intermediario se come TODOS los toques.
+     Nada de abajo (velocidad, controles, player) puede recibir un solo
+     clic — ni por error, ni por toque desplazado, NI POR NINGÚN MOTIVO  */
+  if (!offer.__shielded) {
+    offer.__shielded = 1;
+    ['touchstart', 'touchend', 'touchmove', 'click', 'pointerdown', 'pointerup', 'mousedown', 'mouseup', 'tap'].forEach(evt => {
+      offer.addEventListener(evt, e => { e.stopPropagation(); }, { capture: true, passive: false });
+    });
+  }
+
   /* 🪙 pagar monedas: la MISMA confirmación y el MISMO cobro de siempre */
   unlockBtn.onclick = () => {
     if (!hasEnough) { toast('⚠ No tienes suficientes monedas — gana con 📺', true); return; }
