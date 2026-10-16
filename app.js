@@ -8040,26 +8040,7 @@ function showAdwall(onDone) {
     bannerWrap.style.display = 'none';
     placeholder.style.display = 'grid';
     placeholder.classList.add('blocked');
-    /* 🎁 MODO CORTESÍA: si el anuncio no carga (bloqueador, red), el usuario
-       igual puede ganar sus monedas con una espera de cortesía — el sistema
-       de monetización de verdad sigue intacto para los que SÍ ven el anuncio */
-    if (phase === 'waiting') {
-      msg.innerHTML = '🎁 <b>El anuncio no cargó</b> — recompensa de cortesía en <b>5</b> s…';
-      let courtesyLeft = 5;
-      const courtesyTimer = setInterval(() => {
-        courtesyLeft--;
-        if (courtesyLeft > 0) {
-          msg.innerHTML = '🎁 <b>El anuncio no cargó</b> — recompensa de cortesía en <b>' + courtesyLeft + '</b> s…';
-        } else {
-          clearInterval(courtesyTimer);
-          if (phase === 'waiting') {
-            phase = 'reward';
-            adLoaded = true; /* activar el flujo de recompensa */
-            autoReward();
-          }
-        }
-      }, 1000);
-    }
+    msg.innerHTML = '🚫 <b>El anuncio no cargó</b> — sin anuncio no hay cuenta regresiva';
   };
 
   let phase = 'waiting';        /* waiting → counting → post-click → reward */
