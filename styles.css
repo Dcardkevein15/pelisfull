@@ -3986,18 +3986,17 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 
 
 /* ═══════════════════════════════════════════════════════════════
-   💰 INTERMEDIARIO MÓVIL — SIN contenedores ni bordes: solo texto
-   y botones flotando. 👑 Membresía ARRIBA · 🔒 bloqueada ABAJO.
-   Entra a los 8s del preview con transición profesional.
+   💰 INTERMEDIARIO MÓVIL — botones GRANDES y BIEN ARRIBA. Membresía
+   en barra horizontal arriba; bloqueada a media pantalla con botones
+   de 48px de alto (mínimo Apple). Cero contenedores — solo texto
+   flotante y botones llamativos. Escudo: pointerEvents por JS.
    ═══════════════════════════════════════════════════════════════ */
 .voffer{display:none}
 
-/* 🎬 PREVIEW SOLO: durante el pre-roll NADA encima del video */
 .player.vprem-solo .vprem-top,
 .player.vprem-solo .vprem-bottom,
 .player.vprem-solo .vprem-play,
 .player.vprem-solo .vprem-controls{display:none!important}
-/* ...salvo que el navegador exija un gesto: el botón dorado queda listo */
 .player.vprem-tap .vprem-play{display:grid!important}
 
 @media (max-width:920px) and (orientation:portrait){
@@ -4007,62 +4006,64 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
     transition:opacity .5s ease,visibility .5s;
   }
   .voffer.on{opacity:1;visibility:visible;pointer-events:auto}
-  /* 🛡 escudo táctil: nada por debajo del intermediario responde a toques */
-  .voffer.on .voffer-shade{pointer-events:auto}
   .voffer-shade{
-    position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(180deg,rgba(4,4,9,.62) 0%,transparent 26%,transparent 44%,rgba(4,4,9,.78) 100%);
+    position:absolute;inset:0;pointer-events:auto;
+    background:linear-gradient(180deg,rgba(4,4,9,.55) 0%,rgba(4,4,9,.15) 30%,rgba(4,4,9,.35) 60%,rgba(4,4,9,.85) 100%);
   }
-  .voffer-top,.voffer-bottom{
-    position:absolute;left:0;right:0;display:flex;flex-direction:column;
-    align-items:center;gap:5px;text-align:center;padding:0 22px;
-    text-shadow:0 2px 14px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9);
-    opacity:0;transform:translateY(14px);transition:all .55s cubic-bezier(.2,1.2,.4,1);
+
+  /* 👑 MEMBRESÍA: barra horizontal arriba */
+  .voffer-top{
+    position:absolute;top:14px;left:14px;right:14px;z-index:17;
+    display:flex;align-items:center;gap:10px;padding:10px 14px;
+    border-radius:16px;
+    background:rgba(12,10,16,.72);border:1px solid rgba(255,210,74,.35);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    opacity:0;transform:translateY(-16px);
+    transition:all .5s cubic-bezier(.2,1.2,.4,1) .12s;
   }
-  .voffer-top{top:106px}
-  .voffer-bottom{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
-  .voffer.on .voffer-top{opacity:1;transform:none;transition-delay:.15s}
-  .voffer.on .voffer-bottom{opacity:1;transform:none;transition-delay:.28s}
-  .vo-crown{font-size:23px;filter:drop-shadow(0 0 12px rgba(255,210,74,.6))}
-  .voffer-top b{font:800 14px Inter;color:#ffd24a}
-  .voffer-top small{font:600 10px Inter;color:#e8d9a8}
+  .voffer.on .voffer-top{opacity:1;transform:none}
+  .vo-crown{font-size:22px;flex-shrink:0;filter:drop-shadow(0 0 10px rgba(255,210,74,.5))}
+  .vo-top-txt{flex:1;min-width:0;font:800 13px Inter;color:#ffd24a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vo-price{margin-left:6px}
   .vo-price small{font-size:10px;color:#e8d9a8}
-  .vo-lock-line{font:800 14.5px Inter;color:var(--ink)}
-  .vo-sub{font:600 10.5px Inter;color:var(--dim);max-width:300px}
-  .vo-coins-line{font:700 11px 'JetBrains Mono',monospace;color:#ffd24a}
-  .vo-actions{display:flex;gap:9px;margin-top:5px}
+  .vo-btn-top{flex-shrink:0;padding:10px 18px!important;font-size:12px!important}
+
+  /* 🔒 BLOQUEADA: a media pantalla, botones GRANDES 48px */
+  .voffer-bottom{
+    position:absolute;left:14px;right:14px;bottom:140px;z-index:17;
+    display:flex;flex-direction:column;align-items:center;gap:7px;
+    text-align:center;padding:0 10px;
+    text-shadow:0 2px 14px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9);
+    opacity:0;transform:translateY(20px);
+    transition:all .55s cubic-bezier(.2,1.2,.4,1) .28s;
+  }
+  .voffer.on .voffer-bottom{opacity:1;transform:none}
+  .vo-lock-line{font:800 15.5px Inter;color:var(--ink)}
+  .vo-sub{font:600 11px Inter;color:var(--dim);max-width:280px}
+  .vo-coins-line{font:700 12px 'JetBrains Mono',monospace;color:#ffd24a}
+  .vo-actions{display:flex;gap:12px;margin-top:8px;width:100%;justify-content:center}
   .vo-btn{
-    padding:12px 20px;border-radius:99px;cursor:pointer;border:none;
-    font:800 12.5px Inter;letter-spacing:.2px;
+    padding:16px 24px;border-radius:14px;cursor:pointer;border:none;
+    font:800 14px Inter;letter-spacing:.3px;min-height:48px;min-width:130px;
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
     transition:transform .15s,box-shadow .15s,filter .15s;
   }
-  .vo-btn:active{transform:scale(.93)}
-  .vo-btn-green{color:#03130B;background:linear-gradient(135deg,#00E676,#5df5a4);box-shadow:0 8px 22px rgba(0,230,118,.4)}
-  .vo-btn-blue{color:#fff;background:linear-gradient(135deg,#8b5cf6,#ec4899);box-shadow:0 8px 22px rgba(139,92,246,.35)}
+  .vo-btn:active{transform:scale(.94)}
+  .vo-btn-big{flex:1;max-width:180px}
+  .vo-btn-green{color:#03130B;background:linear-gradient(135deg,#00E676,#5df5a4);box-shadow:0 10px 28px rgba(0,230,118,.45)}
+  .vo-btn-blue{color:#fff;background:linear-gradient(135deg,#8b5cf6,#ec4899);box-shadow:0 10px 28px rgba(139,92,246,.4)}
   .vo-btn-gold{color:#1c1400;background:linear-gradient(135deg,#ffd24a,#ffb730);box-shadow:0 8px 22px rgba(255,183,48,.45)}
   .vo-btn.cant{opacity:.35;pointer-events:none}
   .vo-btn-green:hover,.vo-btn-blue:hover,.vo-btn-gold:hover{filter:brightness(1.08)}
 
-  /* el intermediario es el único protagonista cuando está en pantalla */
-  /* el selector de velocidad y los controles del player JAMAS interfieren con el intermediario */
-  .stage:has(.player .voffer.on) .stage-badges{pointer-events:none;opacity:.3}
-  .player:has(.voffer.on) .vprem-top,
-  .player:has(.voffer.on) .vprem-bottom,
-  .player:has(.voffer.on) .vprem-play,
-  .player:has(.voffer.on) .vprem-controls{display:none!important}
-
-  /* 🎛 controles NATIVOS: cuando el video real tiene src y reproduce,
-     los del navegador mandan (auto-ocultan tras 3-4s solos). Mi barra
-     custom se apaga para NO duplicar botones sobre el video.          */
-  .player:has(video#video[src]) .vprem-controls{display:none!important}
-  .player:has(video#video[src]) .vprem-play{display:none!important}
-
   @media (min-width:600px){
-    .voffer-top{top:112px}
-    .voffer-bottom{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
-    .voffer-top b{font-size:15.5px}
-    .vo-lock-line{font-size:16px}
-    .vo-btn{padding:13px 24px;font-size:13.5px}
+    .voffer-top{top:20px;left:20px;right:20px;padding:12px 16px}
+    .vo-top-txt{font-size:14.5px}
+    .voffer-bottom{bottom:160px;left:20px;right:20px}
+    .vo-lock-line{font-size:17px}
+    .vo-btn{padding:18px 30px;font-size:15px;min-height:52px}
   }
+}
+
 }
 
