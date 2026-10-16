@@ -7615,10 +7615,9 @@ function showVault(s, ep) {
    · reproducción según el SCROLL: visible → rueda; fuera de vista →
      se pausa y ahorra datos; vuelve → continúa donde iba            */
 (function vPremInit() {
-  /* ⚡ el nodo DIRECTO arranca sin redirect; si la red del usuario no lo
-     alcanza, el fallback /download hace el salto 302 por él            */
-  const PREM_DIRECT = 'https://ia800806.us.archive.org/4/items/premium_20261015/premium.mp4';
-  const PREM_FALLBACK = 'https://archive.org/download/premium_20261015/premium.mp4';
+  /* ⚡ video INTERNO (mismo origen): sin redirects, sin terceros, sin
+     esperas de red externa — arranque instantáneo garantizado           */
+  const PREM_VIDEO = 'fondo/premium.mp4';
   const POSTER_KEY = 'xprem-poster';
   const wrap = document.getElementById('vPrem');
   const bg = document.getElementById('vPremBg');
@@ -7628,14 +7627,16 @@ function showVault(s, ep) {
   const playerEl = document.getElementById('playerArea');
   if (!wrap || !bg || !playBtn) return;
 
-  /* 🖼 miniatura instantánea si quedó capturada de una visita anterior */
+  /* 🖼 miniatura instantánea si quedó capturada de una visita anterior —
+     misma origen → canvas limpio → la PRIMERA IMAGEN siempre se guarda */
   try {
     const savedPoster = localStorage.getItem(POSTER_KEY);
     if (savedPoster) bg.setAttribute('poster', savedPoster);
   } catch (e) { }
 
   /* 📸 al llegar los datos: pintar el PRIMER FRAME ya (salto a 0.001s)
-     e intentar guardarlo como miniatura para las próximas visitas      */
+     y guardarlo como miniatura — las próximas visitas la muestran
+     ANTES de que la red descargue un solo byte                        */
   const grabFirstFrame = () => {
     try { bg.currentTime = 0.001; } catch (e) { }
     if (bg.getAttribute('poster')) return;
@@ -7649,30 +7650,16 @@ function showVault(s, ep) {
         bg.setAttribute('poster', url);
         try { localStorage.setItem(POSTER_KEY, url); } catch (e) { }
       }
-    } catch (e) { }        /* canvas tainted por CORS: el frame igual se pinta */
+    } catch (e) { }
   };
   bg.addEventListener('loadeddata', grabFirstFrame, { once: true });
-
-  /* 🔁 conmutador directo→fallback con perro guardián de 7 s            */
-  const usingFallback = () => (bg.currentSrc || bg.getAttribute('src') || '').includes('/download/');
-  const setSrc = (url) => { bg.src = url; bg.load(); bg.play().catch(() => { }); };
-  bg.addEventListener('error', () => {
-    if (!usingFallback()) setSrc(PREM_FALLBACK);
-  }, { passive: true });
-  let watchdog = null;
-  const armWatchdog = () => {
-    clearTimeout(watchdog);
-    if (!mq.matches) return;
-    watchdog = setTimeout(() => {
-      if (bg.readyState === 0 && !usingFallback()) setSrc(PREM_FALLBACK);
-    }, 7000);
-  };
+  bg.addEventListener('loadedmetadata', () => { try { bg.currentTime = 0.001; } catch (e) { } }, { once: true });
 
   /* 📱 activo SOLO en vertical (max-width 920 + portrait) */
   const mq = matchMedia('(max-width:920px) and (orientation:portrait)');
   const applyMode = () => {
     if (mq.matches) {
-      if (!bg.getAttribute('src')) { setSrc(PREM_DIRECT); armWatchdog(); }
+      if (!bg.getAttribute('src')) { bg.src = PREM_VIDEO; bg.load(); }
       bg.preload = 'auto';
       bg.play().catch(() => { });
       /* 🛡 si el navegador pospuso el autoplay, el primer toque lo arranca */
@@ -7682,16 +7669,16 @@ function showVault(s, ep) {
         document.addEventListener('click', () => { if (mq.matches && bg.paused && inView) bg.play().catch(() => { }); }, { passive: true });
       }
     } else {
-      clearTimeout(watchdog);
       bg.pause();
       if (bg.getAttribute('src')) { bg.removeAttribute('src'); bg.load(); }
     }
   };
   if (mq.addEventListener) mq.addEventListener('change', applyMode);
 
-  /* 📜 reproducción SEGÚN EL SCROLL (vertical): rueda cuando el reproductor
-     está en pantalla; fuera de vista → pausa (ahorro de datos); al volver,
-     continúa exactamente donde iba                                        */
+  /* 📜 reproducción SEGÚN EL SCROLL (vertical): el video INICIA al llegar
+     al área del reproductor, SIGUE reproduciéndose mientras está en
+     pantalla, y al salir de vista se pausa (ahorro de datos) — al volver
+     continúa exactamente donde iba                                     */
   let inView = true;
   if ('IntersectionObserver' in window && playerEl) {
     const io = new IntersectionObserver(entries => {

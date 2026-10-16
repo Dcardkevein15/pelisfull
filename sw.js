@@ -1,8 +1,8 @@
 ﻿/* XÃ‚Â·STREAM service worker Ã¢â‚¬â€ cachea el app shell para carga instantÃƒÂ¡nea/offline */
 /* Ã¢Å¡Â  IMPORTANTE: cualquier cambio visible en la app requiere subir esta versiÃƒÂ³n
    (v24 Ã¢â€ â€™ v25Ã¢â‚¬Â¦) para que los usuarios reciban los archivos nuevos.            */
-const CACHE = 'xstream-v216';
-const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'chat.js', 'coins.js', 'icon.svg', 'manifest.json', 'social/index.html', 'social.html'];
+const CACHE = 'xstream-v217';
+const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'chat.js', 'coins.js', 'icon.svg', 'manifest.json', 'social/index.html', 'social.html', 'fondo/premium.mp4'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
@@ -26,7 +26,7 @@ self.addEventListener('fetch', e => {
   if (url.includes('catalog.json')) return;
   /* videos y APIs: siempre de la red (nunca cachear streams) */
   if (url.includes('googleapis') || url.includes('drive.google') || url.includes('archive.org')
-    || url.includes('gtv-videos-bucket') || /\.(mp4|webm|mkv|m4v|ts)(\?|$)/i.test(url)) return;
+    || url.includes('gtv-videos-bucket') || (/\.(mp4|webm|mkv|m4v|ts)(\?|$)/i.test(url) && !/fondo\/premium\.mp4/.test(url))) return;
   e.respondWith(
     caches.match(e.request).then(hit => hit || fetch(e.request).then(res => {
       if (e.request.method === 'GET' && res.ok) {
