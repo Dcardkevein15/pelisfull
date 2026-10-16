@@ -3466,6 +3466,18 @@ function isStaff() {
   } catch (e) { return false; }   /* ante cualquier error: CON candado */
 }
 
+/* ═══ 🎬 PRE-ROLL (solo móvil/tablet vertical) ═══
+   En vertical el capítulo abre así: 1) preview premium.mp4 primero,
+   2) al terminar → el INTERMEDIARIO de siempre (monedas / membresía $1
+   — el flujo de monetización queda INTACTO) o el capítulo si ya está
+   desbloqueado, 3) el usuario elige ahí y el video comienza.
+   Fuera de vertical: done() inmediato — el flujo original de escritorio
+   ni se entera. Una sola pasada de preview por capítulo y sesión.      */
+function premRoll(key, done) {
+  if (window.__premPreroll) window.__premPreroll(key, done);
+  else if (typeof done === 'function') done();
+}
+
 function loadEpisode(epN, autoplayNow = true) {
   const s = getSeries(current.seriesId);
   if (!s) return;
@@ -3505,7 +3517,9 @@ function loadEpisode(epN, autoplayNow = true) {
     const unlockDays = (COINS.getConfig().unlockDays || 7) * 86400000;
     const stillUnlocked = unlockAt && (Date.now() - unlockAt) < unlockDays;
     if (!stillUnlocked) {
-      showVault(s, ep);
+      /* 🎬 en vertical: primero el preview, DESPUÉS el intermediario —
+         el candado y su flujo (monedas/membresía) quedan INTACTOS      */
+      premRoll(s.id + ':' + ep.n, () => showVault(s, ep));
       /* 🛡️ RESCATE DEL SERVIDOR: si este navegador perdió el localStorage
          (incógnito nuevo, limpieza, otro dispositivo) pero el SERVIDOR sí
          tiene el capítulo pagado (wallet.json — queda abierto los días que
@@ -3620,7 +3634,8 @@ function loadEpisode(epN, autoplayNow = true) {
       startDriveTracking(s.id, ep.n);
       els.nowPlaying.textContent += ' · DRIVE ▶';
       renderEpisodes();
-      v.play().catch(() => toast('Pulsa play para iniciar (Drive directo)'));
+      /* 🎬 en vertical: preview primero → el Drive arranca al terminarlo */
+      premRoll(s.id + ':' + ep.n, () => v.play().catch(() => toast('Pulsa play para iniciar (Drive directo)')));
     };
     const onErr = () => {
       if (directOk) return;
@@ -3696,7 +3711,8 @@ function loadEpisode(epN, autoplayNow = true) {
     }
     attachSpanishSubs(ep.sub); // 🇪🇸 subtítulos automáticos si la fuente los trae
     if (autoplayNow) {
-      v.play().catch(() => toast('Pulsa play para iniciar (autoplay bloqueado)'));
+      /* 🎬 en vertical: preview primero → el capítulo arranca al terminarlo */
+      premRoll(s.id + ':' + ep.n, () => v.play().catch(() => toast('Pulsa play para iniciar (autoplay bloqueado)')));
     }
   })();
   renderEpisodes();
@@ -7693,17 +7709,11 @@ function showVault(s, ep) {
   }
   applyMode();
 
-  /* ➤ el botón dorado reproduce como el reproductor normal. Si el candado
-     de cristal está en pantalla, el PROTAGONISTA es el video premium:
-     un toque activa su sonido (el video ya rueda mudo de fondo)          */
+  /* ➤ el botón dorado alterna REPRODUCIR/PAUSAR del preview (con el
+     candado o sin episodio, el preview es el protagonista)             */
   playBtn.addEventListener('click', () => {
-    const vault = document.getElementById('paywall');
-    if (vault && !vault.classList.contains('hidden')) {
-      bg.muted = !bg.muted;
-      if (bg.paused) bg.play().catch(() => { });
-      return;
-    }
-    if (vid && vid.src) vid.play().catch(() => { });
+    if (vid && vid.src && !vid.paused) { vid.pause().catch(() => { }); return; }
+    if (bg.paused) bg.play().catch(() => { }); else bg.pause();
   });
   const syncPlay = () => {
     const busy = !!(vid && vid.src && !vid.paused && !vid.ended);
@@ -7714,6 +7724,89 @@ function showVault(s, ep) {
     vid.addEventListener('pause', syncPlay);
     vid.addEventListener('loadeddata', syncPlay);
   }
+
+  /* ═══ 🎛 CONTROLES DE REPRODUCTOR NORMAL sobre los DOS videos ═══
+     transparentes, solo los menús exactos: play/pausa · barra de
+     progreso · tiempo · sonido · pantalla completa. Gobiernan el video
+     ACTIVO: el preview durante el pre-roll, el capítulo cuando rueda.  */
+  const vcPlay = document.getElementById('vcPlay');
+  const vcSeek = document.getElementById('vcSeek');
+  const vcTime = document.getElementById('vcTime');
+  const vcMute = document.getElementById('vcMute');
+  const vcFull = document.getElementById('vcFull');
+  let driving = bg;                      /* elemento que gobierna la barra */
+  if (vid) vid.addEventListener('play', () => { driving = vid; vcSync(); });
+  const fmt = s => { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  const vcSync = () => {
+    if (!vcPlay) return;
+    const el = driving;
+    const playing = !el.paused && !el.ended;
+    vcPlay.querySelector('.vc-play').style.display = playing ? 'none' : '';
+    vcPlay.querySelector('.vc-pause').style.display = playing ? '' : 'none';
+    vcMute.querySelector('.vc-vol').style.display = el.muted ? 'none' : '';
+    vcMute.querySelector('.vc-mute').style.display = el.muted ? '' : 'none';
+    if (el.duration && isFinite(el.duration)) {
+      const pct = (el.currentTime / el.duration) * 1000;
+      if (!vcSeek.__dragging) vcSeek.value = pct;
+      vcSeek.style.setProperty('--vc-fill', (pct / 10) + '%');
+      vcTime.textContent = fmt(el.currentTime) + ' / ' + fmt(el.duration);
+    }
+  };
+  if (vcPlay) {
+    bg.addEventListener('play', vcSync);
+    bg.addEventListener('pause', vcSync);
+    bg.addEventListener('timeupdate', vcSync);
+    bg.addEventListener('volumechange', vcSync);
+    if (vid) {
+      vid.addEventListener('play', vcSync);
+      vid.addEventListener('pause', vcSync);
+      vid.addEventListener('timeupdate', vcSync);
+      vid.addEventListener('volumechange', vcSync);
+    }
+    vcPlay.addEventListener('click', () => { const el = driving; if (el.paused) el.play().catch(() => { }); else el.pause(); });
+    vcMute.addEventListener('click', () => { const el = driving; el.muted = !el.muted; if (!el.muted && el.paused && el === bg) el.play().catch(() => { }); });
+    vcSeek.addEventListener('input', () => { vcSeek.__dragging = true; });
+    vcSeek.addEventListener('change', () => {
+      const el = driving;
+      if (isFinite(el.duration)) el.currentTime = (vcSeek.value / 1000) * el.duration;
+      vcSeek.__dragging = false;
+    });
+    vcFull.addEventListener('click', () => {
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => { });
+      else if (playerEl) (playerEl.requestFullscreen ? playerEl.requestFullscreen() : playerEl.webkitRequestFullscreen && playerEl.webkitRequestFullscreen());
+    });
+    vcSync();
+  }
+
+  /* ═══ 🎬 PRE-ROLL CONECTADO — el flujo de dos videos ═══
+     1) abre el capítulo → el PREVIEW premium.mp4 corre primero (una
+        sola vez por capítulo y por sesión, con controles normales)
+     2) al TERMINAR el preview → aparece el INTERMEDIARIO (el candado:
+        monedas / membresía $1 — el sistema EXACTO de siempre, la
+        monetización queda 100% intacta) o, si ya está desbloqueado,
+        el capítulo arranca solo
+     3) según lo que escoja el usuario ahí → comienza el video           */
+  const prerollShown = {};
+  window.__premPreroll = (key, done) => {
+    if (typeof done !== 'function') return;
+    if (!mq.matches || prerollShown[key]) { done(); return; }   /* escritorio o ya visto: flujo original */
+    prerollShown[key] = 1;
+    driving = bg;
+    bg.loop = false;                     /* el pre-roll corre UNA vez */
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      bg.removeEventListener('ended', finish);
+      bg.loop = true;                    /* de vuelta al ambiente en bucle */
+      done();
+    };
+    bg.addEventListener('ended', finish, { once: true });
+    try { bg.currentTime = 0; } catch (e) { }
+    const ok = bg.play();
+    if (ok && ok.catch) ok.catch(() => finish());   /* autoplay bloqueado → no frenar el flujo */
+    setTimeout(() => { if (bg.readyState === 0) finish(); }, 5000);   /* video imposible → seguir */
+  };
 
   /* 👑 membresía arriba: si ya eres VIP, la barrita no hace falta */
   const syncTop = () => {
