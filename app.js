@@ -7594,23 +7594,11 @@ function showPremOffer(s, ep) {
   const close = () => {
     offer.classList.remove('on');
     /* 🛡 liberar los controles del reproductor (JS directo — sin :has()) */
-    document.querySelectorAll('.stage-badges, #playerShell .speed, #autoplayBtn, #downloadBtn').forEach(el => { el.style.pointerEvents = ''; el.style.opacity = ''; });
+    document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = ''; el.style.opacity = ''; });
   };
   offer.classList.add('on');
-  /* 🛡 ESCUDO TOTAL: bloquear TODO lo que está debajo por JS directo —
-     ni el selector de velocidad NI ningún control del player pueden
-     responder a toques mientras el intermediario está en pantalla     */
-  document.querySelectorAll('.stage-badges, #playerShell .speed, #autoplayBtn, #downloadBtn').forEach(el => { el.style.pointerEvents = 'none'; });
-  /* 🛡 ESCUDO TÁCTIL ABSOLUTO: el intermediario se come TODOS los toques.
-     Nada de abajo (velocidad, controles, player) puede recibir un solo
-     clic — ni por error, ni por toque desplazado, NI POR NINGÚN MOTIVO  */
-  if (!offer.__shielded) {
-    offer.__shielded = 1;
-    ['touchstart', 'touchend', 'touchmove', 'click', 'pointerdown', 'pointerup', 'mousedown', 'mouseup', 'tap'].forEach(evt => {
-      offer.addEventListener(evt, e => { e.stopPropagation(); }, { capture: true, passive: false });
-    });
-  }
-
+  /* 🛡 ESCUDO TOTAL: bloquear TODO lo que está debajo por JS directo */
+  document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = 'none'; });
   /* 🪙 pagar monedas: la MISMA confirmación y el MISMO cobro de siempre */
   unlockBtn.onclick = () => {
     if (!hasEnough) { toast('⚠ No tienes suficientes monedas — gana con 📺', true); return; }
@@ -7790,21 +7778,26 @@ function showVault(s, ep) {
       bg.loop = false;                   /* UNA sola vez — jamás bucle */
       bg.muted = false;                  /* 🔊 audio SIEMPRE activo */
       bg.play().catch(() => { });
-      if (!wrap.__touchFallback) {
-        wrap.__touchFallback = 1;
-        document.addEventListener('touchstart', () => {
-          if (mq.matches && bg.paused && inView) {
-            if (bg.ended) { try { bg.currentTime = 0; } catch (e) { } }
-            bg.play().catch(() => { });
-          }
-        }, { once: false, passive: true });
-        document.addEventListener('click', () => {
-          if (mq.matches && bg.paused && inView) {
-            if (bg.ended) { try { bg.currentTime = 0; } catch (e) { } }
-            bg.play().catch(() => { });
-          }
-        }, { passive: true });
+  /* 🛡 si el navegador exige un gesto, el primer toque arranca el video.
+     PERO una vez el preview ya corrió en esta página, JAMÁS se reinicia
+     — ni con toques, ni con clicks, ni por error: queda muerto         */
+  let prerollDead = false;
+  if (!wrap.__touchFallback) {
+    wrap.__touchFallback = 1;
+    document.addEventListener('touchstart', () => {
+      if (mq.matches && bg.paused && inView && !prerollDead && !bg.ended) {
+        bg.play().catch(() => { });
       }
+    }, { once: false, passive: true });
+    document.addEventListener('click', () => {
+      if (mq.matches && bg.paused && inView && !prerollDead && !bg.ended) {
+        bg.play().catch(() => { });
+      }
+    }, { passive: true });
+  }
+  /* marcar como muerto cuando el preroll termina o el video real arranca */
+  bg.addEventListener('ended', () => { prerollDead = true; });
+  if (vid) vid.addEventListener('play', () => { prerollDead = true; bg.pause(); bg.muted = true; });
     } else {
       bg.pause();
       if (bg.getAttribute('src')) { bg.removeAttribute('src'); bg.load(); }
@@ -7918,24 +7911,32 @@ function showVault(s, ep) {
     prerollShown[key] = 1;
     driving = bg;
     let finished = false;
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      bg.removeEventListener('ended', finish);
-      bg.removeEventListener('timeupdate', at8s);
-      /* sin bucle JAMÁS: el preview queda MUERTO — ni audio ni visual */
+    let cleanupDone = false;
+    const cleanup = () => {
+      if (cleanupDone) return;
+      cleanupDone = true;
+      /* solo AQUI se corta el video — cuando terminó TODO su contenido */
       bg.pause();
       bg.muted = true;
       if (playerEl) playerEl.classList.remove('vprem-solo', 'vprem-tap');
-      done();                            /* 8s: el intermediario entra */
     };
-    /* ⏱ el video dura 10s: el intermediario entra a los 8 SEGUNDOS
-       (respaldado por el final natural por si dura menos)            */
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      bg.removeEventListener('timeupdate', at8s);
+      /* 🎬 a los 8s: el intermediario ENTRA pero el video SIGUE SONANDO
+         hasta su final natural (10s) — JAMÁS cortamos el audio antes     */
+      done();
+      /* el cleanup real (pausa + mute) solo al terminar el video */
+      bg.addEventListener('ended', cleanup, { once: true });
+      /* respaldo: si el video no dispara ended en 15s, limpiar igual */
+      setTimeout(cleanup, 15000);
+    };
+    /* ⏱ el intermediario entra a los 8 SEGUNDOS pero el video sigue */
     const at8s = () => { try { if (bg.currentTime >= 8) finish(); } catch (e) { } };
     bg.addEventListener('timeupdate', at8s);
-    bg.addEventListener('ended', finish, { once: true });
     bg.loop = false;                     /* el pre-roll corre UNA vez */
-    bg.muted = false;                    /* 🔊 con audio siempre */
+    bg.muted = false;                    /* 🔊 con audio hasta el final */
     try { bg.currentTime = 0; } catch (e) { }
     /* 🎬 el preview corre SOLO — nada encima del video */
     if (playerEl) playerEl.classList.add('vprem-solo');
