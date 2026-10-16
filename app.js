@@ -7572,8 +7572,68 @@ function trackPlayback() {
    · Ya desbloqueado → NUNCA la ve de nuevo (permanente)
    · Usuario normal: bóveda siempre visible; botones SIEMPRE a la vista
    · Al confirmar «Reproducir ahora» → modal de confirmación → cobrar → abrir */
+/* ═══ 💰 NUEVO INTERMEDIARIO MÓVIL (vertical) ═══
+   showVault redirige aquí en vertical: contenedores diseñados solo
+   para móvil que aparecen AL TERMINAR el preview con transiciones
+   profesionales. La lógica de cobro es LA MISMA de siempre (uiModal
+   de confirmación → doUnlock → wallet; showAdwall; VIP).            */
+function showPremOffer(s, ep) {
+  const offer = document.getElementById('vPremOffer');
+  if (!offer || typeof COINS === 'undefined') return;
+  const price = COINS.priceOf(s);
+  const st = COINS.getState();
+  const cfg = COINS.getConfig() || {};
+  const reward = cfg.adReward || 100;
+  const hasEnough = st.coins >= price;
+  document.getElementById('voTitle').textContent = 'Capítulo bloqueado';
+  document.getElementById('voSub').textContent = (s ? s.t : '') + (ep && ep.n != null ? ' · Capítulo ' + ep.n : '') + ' — elige cómo verlo';
+  document.getElementById('voCoinsTxt').textContent = 'Cuesta ' + price + ' 🪙 · tienes ' + st.coins + ' 🪙';
+  document.getElementById('voEarnTxt').textContent = 'Mira un anuncio y recibe +' + reward + ' 🪙';
+  const unlockBtn = document.getElementById('voUnlock');
+  unlockBtn.classList.toggle('cant', !hasEnough);
+  const close = () => offer.classList.remove('on');
+  offer.classList.add('on');
+  /* 🪙 pagar monedas: la MISMA confirmación y el MISMO cobro de siempre */
+  unlockBtn.onclick = () => {
+    if (!hasEnough) { toast('⚠ No tienes suficientes monedas — gana con 📺', true); return; }
+    if (typeof uiModal !== 'function') { close(); doUnlock(s, ep); return; }
+    uiModal({
+      icon: '🪙', title: '¿Desbloquear este capítulo?', danger: false,
+      okLabel: 'Sí, cobrar ' + price + ' 🪙',
+      sub: '<div style="text-align:left;font-size:12.5px;line-height:1.7"><b>' + escapeHtml(s.t) + (ep.n != null ? ' · Capítulo ' + ep.n : '') + '</b><br><br>Costo: <b style="color:#ff6b81">' + price + ' 🪙</b> — queda abierto <b>para siempre</b><br>Tu saldo pasaría de <b style="color:var(--acid)">' + st.coins + '</b> a <b style="color:var(--acid)">' + (st.coins - price) + ' 🪙</b><br>¿Confirmas?</div>',
+    }).then(r => { if (r) { close(); doUnlock(s, ep); } }).catch(() => { });
+  };
+  /* 📺 ganar monedas: el MISMO anuncio de recompensas; al volver, oferta fresca */
+  document.getElementById('voEarn').onclick = () => {
+    close();
+    showAdwall(() => showPremOffer(s, ep));
+  };
+  /* 👑 premium: el MISMO modal de membresía */
+  document.getElementById('voVip').onclick = () => { if (typeof showExplainModal === 'function') showExplainModal(); };
+  /* 🛡 rescate del servidor (paridad con la bóveda): si ya está pagado, entra directo */
+  if (typeof COINS.checkAsync === 'function') {
+    COINS.checkAsync(s.id, ep.n, s).then(r => {
+      if (r && r.ok && r.reason === 'unlocked' && offer.classList.contains('on')) {
+        close();
+        loadEpisode(ep.n, true);
+      }
+    }).catch(() => { });
+  }
+  /* si el episodio arranca (p.ej. pagando), la oferta se retira sola */
+  const v = document.getElementById('video');
+  if (v && !v.__offerHook) {
+    v.__offerHook = 1;
+    v.addEventListener('play', () => document.getElementById('vPremOffer')?.classList.remove('on'));
+  }
+}
+
 function showVault(s, ep) {
-  const vault = document.getElementById('paywall');
+  /* 📱 en VERTICAL el intermediario son los contenedores NUEVOS móviles;
+     el resto del flujo de monetización queda exactamente igual           */
+  try {
+    if (window.matchMedia('(max-width:920px) and (orientation:portrait)').matches) return showPremOffer(s, ep);
+  } catch (e) { }
+  const vault = document.getElementById("paywall");
   if (!vault) return;
   const price = COINS.priceOf(s);
   const st = COINS.getState();
@@ -7792,6 +7852,8 @@ function showVault(s, ep) {
     if (!mq.matches || prerollShown[key]) { done(); return; }   /* escritorio o ya visto: flujo original */
     prerollShown[key] = 1;
     driving = bg;
+    /* 🎬 el preview corre SOLO — nada encima del video */
+    if (playerEl) playerEl.classList.add('vprem-solo');
     bg.loop = false;                     /* el pre-roll corre UNA vez */
     let finished = false;
     const finish = () => {
@@ -7799,6 +7861,7 @@ function showVault(s, ep) {
       finished = true;
       bg.removeEventListener('ended', finish);
       bg.loop = true;                    /* de vuelta al ambiente en bucle */
+      if (playerEl) playerEl.classList.remove('vprem-solo');
       done();
     };
     bg.addEventListener('ended', finish, { once: true });

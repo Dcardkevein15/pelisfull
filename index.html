@@ -244,8 +244,43 @@
             <button class="vb-earn" id="vPremEarn">Ganar <b id="vPremReward">+100</b> 🪙</button>
           </div>
         </div>
-        <!-- 🎛 controles del reproductor (hermanos de la capa premium: gobiernan
-             TANTO el preview como el video del capítulo — dos videos conectados) -->
+        <!-- 💰 NUEVO INTERMEDIARIO MÓVIL — contenedores diseñados EXCLUSIVAMENTE
+             para vertical: aparecen con transición AL TERMINAR el preview,
+             ofreciendo monedas / premium. La lógica de cobro es la de siempre -->
+        <div class="voffer" id="vPremOffer" aria-hidden="true">
+          <div class="voffer-shade"></div>
+          <div class="voffer-body">
+            <div class="voffer-head">
+              <span class="vo-lock">🔒</span>
+              <h2 id="voTitle">Capítulo bloqueado</h2>
+              <small id="voSub">Elige cómo verlo</small>
+            </div>
+            <div class="vo-card vo-coins">
+              <span class="vo-ic">🪙</span>
+              <div class="vo-b">
+                <b>Desbloquear con monedas</b>
+                <small id="voCoinsTxt">Cuesta 100 🪙 · tienes 500 🪙</small>
+              </div>
+              <button class="vo-btn vo-btn-green" id="voUnlock">Reproducir ahora</button>
+            </div>
+            <div class="vo-card vo-earn">
+              <span class="vo-ic">📺</span>
+              <div class="vo-b">
+                <b>Ganar monedas gratis</b>
+                <small id="voEarnTxt">Mira un anuncio y recibe +100 🪙</small>
+              </div>
+              <button class="vo-btn vo-btn-blue" id="voEarn">Ganar</button>
+            </div>
+            <div class="vo-card vo-vip">
+              <span class="vo-ic">👑</span>
+              <div class="vo-b">
+                <b>Membresía Premium <span class="vo-price">$1<small>/mes</small></span></b>
+                <small>Sin límites · Sin anuncios · Todo abierto</small>
+              </div>
+              <button class="vo-btn vo-btn-gold" id="voVip">Obtener</button>
+            </div>
+          </div>
+        </div>
         <div class="vprem-controls" id="vPremControls">
           <button class="vc-btn" id="vcPlay" title="Reproducir / Pausar">
             <svg class="vc-play" viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
