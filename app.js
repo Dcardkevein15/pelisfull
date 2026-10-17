@@ -7593,19 +7593,11 @@ function showPremOffer(s, ep) {
   unlockBtn.classList.toggle('cant', !hasEnough);
   const close = () => {
     offer.classList.remove('on');
-    /* 🛡 liberar TODO: controles, barras y volver al player pequeño */
-    document.querySelectorAll('.vprem-top, .vprem-bottom, .vprem-play, .vprem-controls, .stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => {
-      el.style.display = '';
-      el.style.pointerEvents = '';
-      el.style.opacity = '';
-    });
-    if (playerEl) playerEl.classList.remove('vprem-full', 'vprem-solo');
+    /* 🛡 liberar los controles del reproductor (JS directo — sin :has()) */
+    document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = ''; el.style.opacity = ''; });
   };
   offer.classList.add('on');
-  /* 🛡 OCULTAR todo lo demás por JS directo (sin :has()) — las barras
-     ambientales, controles custom, y botones del player JAMÁS se ven
-     mientras el intermediario está en pantalla                      */
-  document.querySelectorAll('.vprem-top, .vprem-bottom, .vprem-play, .vprem-controls').forEach(el => { el.style.display = 'none'; });
+  /* 🛡 ESCUDO TOTAL: bloquear TODO lo que está debajo por JS directo */
   document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = 'none'; });
   /* 🪙 pagar monedas: la MISMA confirmación y el MISMO cobro de siempre */
   unlockBtn.onclick = () => {
@@ -7772,21 +7764,10 @@ function showVault(s, ep) {
     bg.muted = true;
     if (playerEl) playerEl.classList.add('vprem-solo');
   };
-  /* el video real arranca → MATAR el preview + ENCOGER el player a 16:9 */
+  /* el video real arranca → MATAR el preview al instante */
   if (vid) {
-    vid.addEventListener('play', () => {
-      if (mq.matches) {
-        killPreview();
-        bg.muted = true;
-        if (playerEl) { playerEl.classList.add('player-shrink'); playerEl.classList.remove('vprem-full', 'vprem-solo', 'vprem-tap'); }
-      }
-    });
-    vid.addEventListener('playing', () => {
-      if (mq.matches) {
-        killPreview();
-        if (playerEl) playerEl.classList.add('player-shrink');
-      }
-    });
+    vid.addEventListener('play', () => { if (mq.matches) killPreview(); });
+    vid.addEventListener('playing', () => { if (mq.matches) killPreview(); });
   }
   const applyMode = () => {
     if (mq.matches) {
@@ -7842,8 +7823,23 @@ function showVault(s, ep) {
   }
   applyMode();
 
-  /* ➤ botón dorado ELIMINADO del centro — solo arriba (membresía) y
-     abajo (ganar + reproducir). Sin botón central.                     */
+  /* ➤ el botón dorado alterna REPRODUCIR/PAUSAR del preview (con el
+     candado o sin episodio, el preview es el protagonista). Al terminar
+     el video, vuelve a arrancarlo DESDE CERO con audio               */
+  playBtn.addEventListener('click', () => {
+    if (vid && vid.src && !vid.paused) { vid.pause().catch(() => { }); return; }
+    if (bg.ended) { try { bg.currentTime = 0; } catch (e) { } }
+    if (bg.paused) bg.play().catch(() => { }); else bg.pause();
+  });
+  const syncPlay = () => {
+    const busy = !!(vid && vid.src && !vid.paused && !vid.ended);
+    playBtn.style.display = busy ? 'none' : '';
+  };
+  if (vid) {
+    vid.addEventListener('play', syncPlay);
+    vid.addEventListener('pause', syncPlay);
+    vid.addEventListener('loadeddata', syncPlay);
+  }
 
   /* ═══ 🎛 CONTROLES DE REPRODUCTOR NORMAL sobre los DOS videos ═══
      transparentes, solo los menús exactos: play/pausa · barra de
@@ -7919,11 +7915,10 @@ function showVault(s, ep) {
     const cleanup = () => {
       if (cleanupDone) return;
       cleanupDone = true;
+      /* solo AQUI se corta el video — cuando terminó TODO su contenido */
       bg.pause();
       bg.muted = true;
-      /* SIN quitar clases de pantalla completa — el candado sigue en
-         pantalla completa hasta que el usuario pague y el video real
-         arranque (que es quien pone player-shrink)                      */
+      if (playerEl) playerEl.classList.remove('vprem-solo', 'vprem-tap');
     };
     const finish = () => {
       if (finished) return;
@@ -7936,23 +7931,15 @@ function showVault(s, ep) {
       bg.addEventListener('ended', cleanup, { once: true });
       /* respaldo: si el video no dispara ended en 15s, limpiar igual */
       setTimeout(cleanup, 15000);
-      /* 🔇 al terminar: video TOTALMENTE muerto (sin vprem-solo que
-         muestre las barras ambientales — quedan ocultas por el voffer) */
-      bg.addEventListener('ended', () => {
-        if (playerEl) playerEl.classList.add('vprem-solo');
-      }, { once: true });
     };
-    /* 🎬 PANTALLA COMPLETA siempre — los contenedores (membresía arriba,
-       monedas abajo) visibles DESDE QUE EL VIDEO ARRANCA. El intermediario
-       está ahí desde el primer segundo.                                 */
-    const at8s = () => { try { if (bg.currentTime >= 0.5) finish(); } catch (e) { } };
+    /* ⏱ el intermediario entra a los 8 SEGUNDOS pero el video sigue */
+    const at8s = () => { try { if (bg.currentTime >= 8) finish(); } catch (e) { } };
     bg.addEventListener('timeupdate', at8s);
     bg.loop = false;                     /* el pre-roll corre UNA vez */
     bg.muted = false;                    /* 🔊 con audio hasta el final */
     try { bg.currentTime = 0; } catch (e) { }
-    /* 🎬 PANTALLA COMPLETA siempre — SIN ocultar los contenedores:
-       la membresía arriba y las monedas abajo se ven DESDE EL INICIO
-       del video (no a los 8s)                                          */
+    /* 🎬 el preview corre SOLO — nada encima del video */
+    if (playerEl) playerEl.classList.add('vprem-solo');
     const ok = bg.play();
     if (ok && ok.catch) ok.catch(() => {
       /* 🛡 navegador exige gesto (ahorro de datos / batería): NO saltar
