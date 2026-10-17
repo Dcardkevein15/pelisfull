@@ -3791,6 +3791,20 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
     margin:0 0 0 calc(50% - 50vw);       /* full-bleed incluso con padding del shell */
     border-radius:0;border-left:none;border-right:none;border-bottom:none;
   }
+
+  /* 📐 MARGENES OBLIGATORIOS: todo el contenido bajo el video respetar
+     los mismos bordes — título, botones, capítulos, relacionadas, etc.   */
+  .player-shell{padding:0 14px 60px}
+  .stage-badges{padding:10px 14px;margin:0 -14px;width:calc(100% + 28px)}
+  .episodes-list{padding:0 14px}
+  .related-wrap,.rel-row{padding:0 14px}
+  .continue-row{padding:0 14px}
+  .episodes-hint{padding:0 14px}
+  .panel-page .panelContent{padding:14px}
+  .episodes-head{padding:0 14px}
+  .episodes-tools{margin:0 14px}
+  .syn-wrap,.syn-cast,.syn-gal{padding:0 14px}
+
   /* el mini-reproductor flotante NO aplica en vertical: nada encoge la pantalla */
   .player-anchor.mini>.player{position:relative!important;width:100vw!important;max-width:100vw!important;height:calc(100dvh - 62px)!important;margin:0 0 0 calc(50% - 50vw)!important;border-radius:0!important;box-shadow:none!important}
   .player video#video{
@@ -4081,3 +4095,17 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   .episodes-tools{padding:0 14px}
   .episodes-head{padding:0 14px}
 }
+
+
+/* ═══ ALINEACIÓN del contenido bajo el video con su ancho ═══
+   TODOS los elementos (título, botones, capítulos, relacionadas)
+   comparten el MISMO margen lateral que el reproductor.            */
+.player-shell{max-width:1080px;margin:0 auto;padding:16px 20px 60px}
+.stage-badges{padding:0 0;margin:0 0 10px}
+.episodes-head{padding:0;margin:0 0 10px}
+.episodes-list{padding:0}
+.episodes-tools{padding:0;margin:0 0 10px}
+.related-wrap{padding:0}
+.continue-row{padding:0}
+.genre-row{padding:0}
+.panel-tab-row{padding:0}
