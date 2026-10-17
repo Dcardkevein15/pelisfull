@@ -4050,8 +4050,8 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   }
   .vo-btn:active{transform:scale(.94)}
   .vo-btn-big{flex:1;max-width:180px}
-  .vo-btn-green{color:#03130B;background:linear-gradient(135deg,#00E676,#5df5a4);box-shadow:0 10px 28px rgba(0,230,118,.45)}
-  .vo-btn-blue{color:#fff;background:linear-gradient(135deg,#8b5cf6,#ec4899);box-shadow:0 10px 28px rgba(139,92,246,.4)}
+  .vo-btn-green{color:#00E676;background:rgba(0,230,118,.30);border:2px solid rgba(0,230,118,.8);box-shadow:0 8px 24px rgba(0,230,118,.2)}
+  .vo-btn-blue{color:#c4b5fd;background:rgba(139,92,246,.30);border:2px solid rgba(139,92,246,.8);box-shadow:0 8px 24px rgba(139,92,246,.15)}
   .vo-btn-gold{color:#1c1400;background:linear-gradient(135deg,#ffd24a,#ffb730);box-shadow:0 8px 22px rgba(255,183,48,.45)}
   .vo-btn.cant{opacity:.35;pointer-events:none}
   .vo-btn-green:hover,.vo-btn-blue:hover,.vo-btn-gold:hover{filter:brightness(1.08)}
