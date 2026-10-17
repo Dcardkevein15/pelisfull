@@ -7593,11 +7593,14 @@ function showPremOffer(s, ep) {
   unlockBtn.classList.toggle('cant', !hasEnough);
   const close = () => {
     offer.classList.remove('on');
-    /* 🛡 liberar los controles del reproductor (JS directo — sin :has()) */
+    /* 🛡 liberar TODO: controles + barras ambientales visibles de nuevo */
     document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = ''; el.style.opacity = ''; });
+    document.querySelectorAll('.vprem-top, .vprem-bottom, .vprem-play, .vprem-controls').forEach(el => { el.style.display = ''; });
   };
   offer.classList.add('on');
-  /* 🛡 ESCUDO TOTAL: bloquear TODO lo que está debajo por JS directo */
+  /* 🛡 OCULTAR las barras ambientales (vprem) mientras el candado está
+     en pantalla — puramente visual, no afecta los botones            */
+  document.querySelectorAll('.vprem-top, .vprem-bottom, .vprem-play, .vprem-controls').forEach(el => { el.style.display = 'none'; });
   document.querySelectorAll('.stage-badges, #speed, #autoplayBtn, #downloadBtn, .cbtn').forEach(el => { el.style.pointerEvents = 'none'; });
   /* 🪙 pagar monedas: la MISMA confirmación y el MISMO cobro de siempre */
   unlockBtn.onclick = () => {

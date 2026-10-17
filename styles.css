@@ -4013,12 +4013,12 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 
   /* 👑 MEMBRESÍA: barra horizontal arriba */
   .voffer-top{
-    position:absolute;top:14px;left:14px;right:14px;z-index:17;
-    display:flex;align-items:center;gap:10px;padding:10px 14px;
-    border-radius:16px;
-    background:rgba(12,10,16,.72);border:1px solid rgba(255,210,74,.35);
-    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    opacity:0;transform:translateY(-16px);
+    position:absolute;top:0;left:0;right:0;z-index:17;
+    display:flex;flex-direction:row;align-items:center;gap:9px;
+    padding:12px 14px;
+    background:linear-gradient(180deg,rgba(8,8,12,.88),rgba(8,8,12,.62) 70%,transparent);
+    border-bottom:1px solid rgba(255,210,74,.22);
+    opacity:0;transform:translateY(-14px);
     transition:all .5s cubic-bezier(.2,1.2,.4,1) .12s;
   }
   .voffer.on .voffer-top{opacity:1;transform:none}
@@ -4026,7 +4026,7 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   .vo-top-txt{flex:1;min-width:0;font:800 13px Inter;color:#ffd24a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .vo-price{margin-left:6px}
   .vo-price small{font-size:10px;color:#e8d9a8}
-  .vo-btn-top{flex-shrink:0;padding:10px 18px!important;font-size:12px!important}
+  .vo-btn-top{flex-shrink:0;margin-left:6px;padding:9px 18px!important;font-size:12px!important}
 
   /* 🔒 BLOQUEADA: a media pantalla, botones GRANDES 48px */
   .voffer-bottom{
