@@ -3783,16 +3783,24 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 
 /* ── 📱 VERTICAL: el reproductor se vuelve una pantalla ── */
 @media (max-width:920px) and (orientation:portrait){
-  /* 🎬 PANTALLA COMPLETA: SOLO durante el preview + candado.
-     Cuando el video REAL arranca, se quita vprem-full → vuelve al
-     reproductor pequeño horizontal de siempre (16:9)                 */
-  .player.vprem-full{
+  /* 🎬 PANTALLA COMPLETA SIEMPRE en vertical — el premium.mp4, el candado
+     y los contenedores viven en fullscreen. SOLO cuando el video REAL
+     arranca (pagaron), la clase .player-shrink lo vuelve pequeño 16:9 */
+  .player{
     aspect-ratio:auto;
     width:100vw;
     max-width:100vw;
     height:calc(100dvh - 62px);
     margin:0 0 0 calc(50% - 50vw);
     border-radius:0;border-left:none;border-right:none;border-bottom:none;
+  }
+  /* 🎬 cuando pagaron y el video real reproduce: player pequeño normal */
+  .player.player-shrink{
+    aspect-ratio:16/9;
+    width:100%;
+    max-width:100%;height:auto;
+    margin:0;
+    border-radius:14px;border:1px solid var(--line);
   }
   /* el mini-reproductor flotante NO aplica en vertical: nada encoge la pantalla */
   .player-anchor.mini>.player:not(.vprem-full){position:relative!important;width:auto!important;height:auto!important;margin:0!important;border-radius:14px!important;box-shadow:0 24px 70px rgba(0,0,0,.55)!important}

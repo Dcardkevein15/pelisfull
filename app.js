@@ -7772,18 +7772,19 @@ function showVault(s, ep) {
     bg.muted = true;
     if (playerEl) playerEl.classList.add('vprem-solo');
   };
-  /* el video real arranca → MATAR el preview + VOLVER al player pequeño */
+  /* el video real arranca → MATAR el preview + ENCOGER el player a 16:9 */
   if (vid) {
     vid.addEventListener('play', () => {
       if (mq.matches) {
         killPreview();
-        if (playerEl) playerEl.classList.remove('vprem-full', 'vprem-solo', 'vprem-tap');
+        bg.muted = true;
+        if (playerEl) { playerEl.classList.add('player-shrink'); playerEl.classList.remove('vprem-full', 'vprem-solo', 'vprem-tap'); }
       }
     });
     vid.addEventListener('playing', () => {
       if (mq.matches) {
         killPreview();
-        if (playerEl) playerEl.classList.remove('vprem-full', 'vprem-solo', 'vprem-tap');
+        if (playerEl) playerEl.classList.add('player-shrink');
       }
     });
   }
@@ -7920,10 +7921,9 @@ function showVault(s, ep) {
       cleanupDone = true;
       bg.pause();
       bg.muted = true;
-      /* quitar vprem-solo para que no muestre barras, pero MANTENER
-         vprem-full mientras el candado está en pantalla (se quita
-         cuando el video real arranca)                                   */
-      if (playerEl) playerEl.classList.remove('vprem-solo');
+      /* SIN quitar clases de pantalla completa — el candado sigue en
+         pantalla completa hasta que el usuario pague y el video real
+         arranque (que es quien pone player-shrink)                      */
     };
     const finish = () => {
       if (finished) return;
@@ -7942,14 +7942,17 @@ function showVault(s, ep) {
         if (playerEl) playerEl.classList.add('vprem-solo');
       }, { once: true });
     };
-    /* ⏱ el intermediario entra a los 8 SEGUNDOS pero el video sigue */
-    const at8s = () => { try { if (bg.currentTime >= 8) finish(); } catch (e) { } };
+    /* 🎬 PANTALLA COMPLETA siempre — los contenedores (membresía arriba,
+       monedas abajo) visibles DESDE QUE EL VIDEO ARRANCA. El intermediario
+       está ahí desde el primer segundo.                                 */
+    const at8s = () => { try { if (bg.currentTime >= 0.5) finish(); } catch (e) { } };
     bg.addEventListener('timeupdate', at8s);
     bg.loop = false;                     /* el pre-roll corre UNA vez */
     bg.muted = false;                    /* 🔊 con audio hasta el final */
     try { bg.currentTime = 0; } catch (e) { }
-    /* 🎬 el preview corre SOLO — nada encima del video, PANTALLA COMPLETA */
-    if (playerEl) { playerEl.classList.add('vprem-solo'); playerEl.classList.add('vprem-full'); }
+    /* 🎬 PANTALLA COMPLETA siempre — SIN ocultar los contenedores:
+       la membresía arriba y las monedas abajo se ven DESDE EL INICIO
+       del video (no a los 8s)                                          */
     const ok = bg.play();
     if (ok && ok.catch) ok.catch(() => {
       /* 🛡 navegador exige gesto (ahorro de datos / batería): NO saltar
