@@ -4023,17 +4023,19 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   .voffer-top{
     position:absolute;top:0;left:0;right:0;z-index:17;
     display:flex;flex-direction:row;align-items:center;gap:9px;
-    padding:12px 14px;
+    padding:12px 14px;justify-content:space-between;
     background:linear-gradient(180deg,rgba(8,8,12,.88),rgba(8,8,12,.62) 70%,transparent);
     border-bottom:1px solid rgba(255,210,74,.22);
     opacity:0;transform:translateY(-14px);
     transition:all .5s cubic-bezier(.2,1.2,.4,1) .12s;
   }
-  .voffer-bottom{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  .voffer-bottom{bottom:calc(60px + env(safe-area-inset-bottom,0px))}
   .voffer.on .voffer-top{opacity:1;transform:none;transition-delay:.15s}
   .voffer.on .voffer-bottom{opacity:1;transform:none;transition-delay:.28s}
   .vo-crown{font-size:23px;filter:drop-shadow(0 0 12px rgba(255,210,74,.6))}
-  .voffer-top b{font:800 13.5px Inter;color:#ffd24a;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .voffer-top .vo-top-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .voffer-top .vo-top-txt b{font:800 13.5px Inter;color:#ffd24a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .voffer-top .vo-top-txt small{font:600 9px Inter;color:#e8d9a8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .voffer-top small{font:600 9.5px Inter;color:#e8d9a8;display:block;margin-top:1px}
   .vo-price small{font-size:10px;color:#e8d9a8}
   .vo-lock-line{font:800 14.5px Inter;color:var(--ink)}
@@ -4046,8 +4048,8 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
     transition:transform .15s,box-shadow .15s,filter .15s;
   }
   .vo-btn:active{transform:scale(.93)}
-  .vo-btn-green{color:#03130B;background:linear-gradient(135deg,#00E676,#5df5a4);box-shadow:0 8px 22px rgba(0,230,118,.4)}
-  .vo-btn-blue{color:#fff;background:linear-gradient(135deg,#8b5cf6,#ec4899);box-shadow:0 8px 22px rgba(139,92,246,.35)}
+  .vo-btn-green{color:#00E676;background:rgba(0,230,118,.12);border:2px solid rgba(0,230,118,.7);box-shadow:0 8px 24px rgba(0,230,118,.25)}
+  .vo-btn-blue{color:#c4b5fd;background:rgba(139,92,246,.14);border:2px solid rgba(139,92,246,.65);box-shadow:0 8px 24px rgba(139,92,246,.2)}
   .vo-btn-gold{color:#1c1400;background:linear-gradient(135deg,#ffd24a,#ffb730);box-shadow:0 8px 22px rgba(255,183,48,.45)}
   .vo-btn.cant{opacity:.35;pointer-events:none}
   .vo-btn-green:hover,.vo-btn-blue:hover,.vo-btn-gold:hover{filter:brightness(1.08)}
@@ -4068,8 +4070,8 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 
   @media (min-width:600px){
     
-    .voffer-bottom{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
-    .voffer-top b{font-size:15px}
+    .voffer-bottom{bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+    .voffer-top .vo-top-txt b{font-size:14.5px}
     .voffer-top{padding:14px 16px}
     .vo-lock-line{font-size:16px}
     .vo-btn{padding:13px 24px;font-size:13.5px}
