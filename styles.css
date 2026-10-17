@@ -4043,8 +4043,8 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
   .vo-coins-line{font:700 12px 'JetBrains Mono',monospace;color:#ffd24a}
   .vo-actions{display:flex;gap:12px;margin-top:8px;width:100%;justify-content:center}
   .vo-btn{
-    padding:16px 24px;border-radius:14px;cursor:pointer;border:none;
-    font:800 14px Inter;letter-spacing:.3px;min-height:48px;min-width:130px;
+    padding:27px 41px;border-radius:14px;cursor:pointer;border:none;
+    font:800 24px Inter;letter-spacing:.3px;min-height:82px;min-width:221px;
     display:inline-flex;align-items:center;justify-content:center;gap:6px;
     transition:transform .15s,box-shadow .15s,filter .15s;
   }
