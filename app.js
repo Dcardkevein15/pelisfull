@@ -3073,13 +3073,15 @@ function renderEpisodes() {
   els.addEpBtn.classList.remove('hidden');
   els.insertEpBtn.classList.remove('hidden');
 
-  /* ═══ 🌌 VISTA UNIVERSO — franquicia con varias series fusionadas ═══
-     Si la entrada tiene varias temporadas que en realidad son SERIES
-     DISTINTAS (Dragon Ball + DBZ + GT…), la lista clásica se sustituye
-     por una vista de saga: cada serie en su línea horizontal expandible,
-     todo cronológico (TMDB), películas del universo, tarjetas grises
-     para lo que falta enlace y añadirlo al instante siendo admin.     */
-  if (s.kind !== 'pelicula' && uniFranchiseCheck(s)) {
+  /* ═══ 🌌 VISTA UNIVERSO — franquicia de varias series/películas fusionadas ═══
+     Si la entrada contiene varias temporadas que en realidad son SERIES
+     DISTINTAS (Dragon Ball + DBZ + GT…), o una SAGA de películas cuyas
+     partes son cintas distintas, la lista clásica se sustituye por la
+     vista de universo: línea de tiempo cronológica COMPLETA (TMDB),
+     películas del universo, tarjetas grises para lo que falta enlace y
+     añadirlo al instante siendo admin. Lo que ya funcionaba (serie de
+     un enlace, temporadas de la MISMA serie) queda exactamente igual. */
+  if (uniFranchiseCheck(s)) {
     renderSagasView(s);
     return;
   }
@@ -9646,7 +9648,19 @@ function uniLabelNorm(t) { return uniNorm(String(t || '')
   .replace(/temporada|season|parte|saga|cour|arco/gi, ' ')
   .replace(/\d+\s*[-–—]\s*\d+/g, ' ')
   .replace(/\b\d{1,4}\b/g, ' ')).trim(); }
-function uniClean(t) { return uniNorm(String(t || '').replace(/temporada \d+|capitulos?|complet[oa]s?/gi, ' ')).trim(); }
+function uniClean(t) { return uniNorm(String(t || '')
+  .replace(/temporada \d+|capitulos?|complet[oa]s?|pelicul[ae]s?|movies?|saga de|en espanol|latino/gi, ' ')).trim(); }
+/* ¿se parecen estos dos nombres? (igual > contiene > tokens en común) */
+function uniSim(a, b) {
+  const A = uniNorm(a), B = uniNorm(b);
+  if (!A || !B) return false;
+  if (A === B || A.includes(B) || B.includes(A)) return true;
+  const ta = new Set(A.split(' ').filter(w => w.length >= 4));
+  const tb = new Set(B.split(' ').filter(w => w.length >= 4));
+  if (!ta.size || !tb.size) return false;
+  let common = 0; for (const w of ta) if (tb.has(w)) common++;
+  return common >= 2 && common / Math.min(ta.size, tb.size) >= 0.5;
+}
 
 /* ¿esta entrada parece una FRANQUICIA de varias series? (rápido, local) */
 function uniFranchiseCheck(s) {
@@ -9680,61 +9694,68 @@ async function uniFamily(s) {
   const words = uniClean(s.t).split(' ');
   const base = words.slice(0, Math.min(2, words.length)).join(' ') || uniClean(s.t);
   const fam = { sig, series: [], movies: [], base };
-  try {
-    const r = await uniTmdb('/search/tv', '&query=' + encodeURIComponent(base || s.t) + '&page=1');
-    const seen = new Set();
-    for (const it of (r.results || [])) {
-      const nm = uniNorm(it.name || it.original_name || '');
-      if (!nm) continue;
-      const nb = uniNorm(base);
-      const related = nb && (nm.startsWith(nb) || nm.includes(' ' + nb) || nm.includes(nb + ' ')) ;
-      if (!related) continue;
-      if (seen.has(it.id)) continue;
-      seen.add(it.id);
-      fam.series.push({
-        id: it.id, name: it.name || it.original_name,
-        poster: it.poster_path ? 'https://image.tmdb.org/t/p/w342' + it.poster_path : '',
-        air: it.first_air_date || '', until: it.last_air_date || '',
-        overview: (it.overview || '').trim(), epCount: 0,
-      });
-    }
-    fam.series.sort((a, b) => (a.air || '9999').localeCompare(b.air || '9999'));
-  } catch (e) { }
-  /* detalles (total de episodios) para las 6 primeras — barato y útil */
-  for (const f of fam.series.slice(0, 6)) {
+  /* las entradas de PELÍCULAS no muestran filas de series del universo:
+     sus líneas horizontales son las películas/partes — solo sección 🎞   */
+  if (s.kind !== 'pelicula') {
     try {
-      const d = await uniTmdb('/tv/' + f.id);
-      f.epCount = d.number_of_episodes || 0;
-      if (!f.overview) f.overview = (d.overview || '').trim();
+      const r = await uniTmdb('/search/tv', '&query=' + encodeURIComponent(base || s.t) + '&page=1');
+      const seen = new Set();
+      for (const it of (r.results || [])) {
+        const nm = uniNorm(it.name || it.original_name || '');
+        if (!nm) continue;
+        const nb = uniNorm(base);
+        const related = nb && (nm.startsWith(nb) || nm.includes(' ' + nb) || nm.includes(nb + ' '));
+        if (!related) continue;
+        if (seen.has(it.id)) continue;
+        seen.add(it.id);
+        fam.series.push({
+          id: it.id, name: it.name || it.original_name,
+          poster: it.poster_path ? 'https://image.tmdb.org/t/p/w342' + it.poster_path : '',
+          air: it.first_air_date || '', until: it.last_air_date || '',
+          overview: (it.overview || '').trim(), epCount: 0,
+        });
+      }
+      fam.series.sort((a, b) => (a.air || '9999').localeCompare(b.air || '9999'));
     } catch (e) { }
+    /* detalles (total de episodios) para las 6 primeras — barato y útil */
+    for (const f of fam.series.slice(0, 6)) {
+      try {
+        const d = await uniTmdb('/tv/' + f.id);
+        f.epCount = d.number_of_episodes || 0;
+        if (!f.overview) f.overview = (d.overview || '').trim();
+      } catch (e) { }
+    }
   }
-  /* películas: primero COLECCIÓN oficial de TMDB, si no búsqueda */
+  /* 🎞 TODAS las películas del universo: hasta 4 colecciones oficiales
+     de TMDB (una franquicia suele tener varias: DB, DBZ, Super…) MÁS la
+     búsqueda por nombre — se fusionan, se deduplican y se ordenan por
+     fecha: NINGUNA película se queda fuera.                               */
+  const movieIds = new Set();
+  const pushMovie = (p) => {
+    if (!p || !p.id || !p.title || movieIds.has(p.id)) return;
+    movieIds.add(p.id);
+    fam.movies.push({
+      id: p.id, title: p.title || p.original_title || '',
+      poster: p.poster_path ? 'https://image.tmdb.org/t/p/w342' + p.poster_path : '',
+      date: p.release_date || '', overview: (p.overview || '').trim(),
+    });
+  };
   try {
     const col = await uniTmdb('/search/collection', '&query=' + encodeURIComponent(base || s.t));
-    const cid = ((col.results || [])[0] || {}).id;
-    if (cid) {
-      const det = await uniTmdb('/collection/' + cid);
-      const parts = (det.parts || []).map(p => ({
-        id: p.id, title: p.title || p.original_title || '',
-        poster: p.poster_path ? 'https://image.tmdb.org/t/p/w342' + p.poster_path : '',
-        date: p.release_date || '', overview: (p.overview || '').trim(),
-      })).filter(p => p.title && p.date);
-      const nb = uniNorm(base);
-      fam.movies = parts.filter(p => !nb || uniNorm(p.title).includes(nb) || base.split(' ')[0] && uniNorm(p.title).includes(uniNorm(base.split(' ')[0])))
-        .sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999')).slice(0, 14);
+    const cols = ((col.results || []).filter(c => uniSim(c.name || '', base || s.t) || uniNorm(c.name || '').startsWith(uniNorm(base || 'x'))).slice(0, 4));
+    for (const c of cols) {
+      try {
+        const det = await uniTmdb('/collection/' + c.id);
+        (det.parts || []).forEach(p => pushMovie({ ...p, title: p.title, id: p.id, poster_path: p.poster_path, release_date: p.release_date, overview: p.overview }));
+      } catch (e) { }
     }
   } catch (e) { }
-  if (!fam.movies.length) {
-    try {
-      const r = await uniTmdb('/search/movie', '&query=' + encodeURIComponent(base || s.t) + '&page=1');
-      const nb = uniNorm(base);
-      const w0 = uniNorm((base.split(' ')[0] || ''));
-      fam.movies = (r.results || [])
-        .filter(m => m.release_date && (uniNorm(m.title).startsWith(nb) || uniNorm(m.title).includes(w0)))
-        .map(m => ({ id: m.id, title: m.title, poster: m.poster_path ? 'https://image.tmdb.org/t/p/w342' + m.poster_path : '', date: m.release_date, overview: (m.overview || '').trim() }))
-        .sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999')).slice(0, 10);
-    } catch (e) { }
-  }
+  try {
+    const r = await uniTmdb('/search/movie', '&query=' + encodeURIComponent(base || s.t) + '&page=1');
+    (r.results || []).filter(m => m.release_date && uniSim(m.title || '', (base || '') + ' ' + (base || '').split(' ')[0])).forEach(m => pushMovie(m));
+  } catch (e) { }
+  fam.movies = fam.movies.filter(p => p.title && p.date)
+    .sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999')).slice(0, 30);
   uniCacheSet(ck, fam);
   return fam;
 }
@@ -9764,43 +9785,74 @@ async function renderSagasView(s) {
 function uniSagaDisplayName(label) {
   return String(label || '').replace(/^\s*(temporada|season|parte)\s*\d+\s*[—–-]\s*/i, '').trim() || label;
 }
-/* mejor pareja TMDB para una etiqueta: exacta > prefijo > contiene */
+/* mejor pareja TMDB para una etiqueta: solapamiento de palabras relativo
+   al nombre MÁS LARGO (evita que «Dragon Ball Heroes» robe el hueco de
+   «Dragon Ball» — la saga original queda libre para su sitio 1986)     */
 function uniMatchTm(ln, famSeries) {
-  let best = null, bestScore = 0;
+  let best = null, bestScore = -1;
   for (const f of famSeries) {
     const fn = uniNorm(f.name);
     if (!fn || !ln) continue;
-    let sc = 0;
-    if (fn === ln) sc = 3;
-    else if (fn.startsWith(ln) || ln.startsWith(fn)) sc = 2;
-    else if (fn.includes(ln) || ln.includes(fn)) sc = 1;
+    const ta = new Set(ln.split(' ')), tb = new Set(fn.split(' '));
+    let common = 0; for (const w of ta) if (tb.has(w)) common++;
+    const sc = (fn === ln ? 10 : 0) + 10 * common / Math.max(ta.size, tb.size);
     if (sc > bestScore) { bestScore = sc; best = f; }
   }
   return best;
 }
+/* similitud FINA para películas: ignora las palabras de la franquicia
+   (dragon, ball…) y las cortas — el parecido real vive en el resto del
+   título («batalla», «dioses», «fusion»…). Así «DBZ Cap 45» JAMÁS se
+   casa con una película por decir «dragon ball»                        */
+function uniSimX(a, b, drop) {
+  const dropSet = new Set(uniNorm(drop).split(' ').filter(w => w.length >= 3));
+  const tok = t => { const s = new Set(); for (const w of uniNorm(t).split(' ')) { if (w.length >= 3 && !dropSet.has(w)) s.add(w); } return s; };
+  const A = tok(a), B = tok(b);
+  if (!A.size || !B.size) return false;
+  let common = 0; for (const w of A) if (B.has(w)) common++;
+  const ratio = common / Math.min(A.size, B.size);
+  if (A.size === 1 && B.size === 1) return common === 1;   /* «Fusión» */
+  return common >= 2 && ratio >= 0.7;
+}
 function uniSagasOf(s, fam) {
   const seas = Object.keys(s.seasons || {}).map(Number).sort((a, b) => a - b);
-  const rows = seas.map((se, i) => {
+  const list = [];
+  seas.forEach(se => {
     const epsS = s.episodes.filter(e => (e.season || 1) === se);
     const label = s.seasons[se] || ('Temporada ' + se);
     const ln = uniLabelNorm(label);
-    const tm = uniMatchTm(ln, fam.series || []);
-    return { se, epsS, label, name: uniSagaDisplayName(label), tm, nConLinks: epsS.filter(e => e.url).length, color: UNI_COLORS[i % UNI_COLORS.length] };
+    let tm = uniMatchTm(ln, fam.series || []);
+    /* entradas de PELÍCULAS: cada parte se casa con su película de TMDB
+       (por similitud fina del nombre) para heredar año, póster y sinopsis */
+    if (!tm && s.kind === 'pelicula') {
+      const nb = uniClean(s.t);
+      const mv = (fam.movies || []).find(m => uniSimX(label, m.title, nb) || uniSimX(ln, m.title, nb));
+      if (mv) tm = { id: mv.id, name: mv.title, poster: mv.poster, air: mv.date, until: '', overview: mv.overview, epCount: 0, isMovie: true };
+    }
+    list.push({ se, epsS, label, name: uniSagaDisplayName(label), tm, nConLinks: epsS.filter(e => e.url).length, missing: false });
   });
-  /* orden CRONOLÓGICO por fecha de estreno en TMDB (lo local al final) */
-  rows.sort((a, b) => ((a.tm && a.tm.air || '9999') < (b.tm && b.tm.air || '9999') ? -1
-    : (a.tm && a.tm.air || '9999') > (b.tm && b.tm.air || '9999') ? 1 : a.se - b.se));
-  /* sagas del universo que FALTAN en el catálogo local */
+  /* 🌌 las sagas del universo que FALTAN entran a la MISMA línea de
+     tiempo: el universo se muestra COMPLETO y en orden cronológico —
+     lo que no está en el catálogo queda en blanco y negro            */
   const present = new Set();
-  for (const r of rows) present.add(uniNorm(r.tm ? r.tm.name : r.name));
-  const missing = (fam.series || []).filter(f => !present.has(uniNorm(f.name)) && f.poster).slice(0, 4);
-  return { rows, missing };
+  for (const r of list) present.add(uniNorm(r.tm ? r.tm.name : r.name));
+  for (const f of (fam.series || [])) {
+    if (present.has(uniNorm(f.name)) || !f.poster) continue;
+    list.push({ se: null, epsS: [], label: f.name, name: f.name, tm: f, nConLinks: 0, missing: true });
+  }
+  /* UNA sola cronología: fecha de estreno TMDB; lo local sin TMDB al final */
+  list.sort((a, b) => {
+    const aa = (a.tm && a.tm.air) || '9999-99-99', bb = (b.tm && b.tm.air) || '9999-99-99';
+    if (aa !== bb) return aa < bb ? -1 : 1;
+    return (a.se || 999) - (b.se || 999);
+  });
+  list.forEach((r, i) => { r.color = UNI_COLORS[i % UNI_COLORS.length]; });
+  return { rows: list, missing: list.filter(r => r.missing) };
 }
 function paintSagas(s, grid, fam) {
   const { rows, missing } = uniSagasOf(s, fam);
   const admin = canAdmin();
   const conLinks = s.episodes.filter(e => e.url).length;
-  const nSeries = rows.length + missing.length;
   const nMovies = (fam.movies || []).length;
   const el = (cls, html) => { const d = document.createElement('div'); d.className = cls; d.innerHTML = html; return d; };
   grid.innerHTML = '';
@@ -9809,20 +9861,16 @@ function paintSagas(s, grid, fam) {
     <div class="sb-inner">
       <b class="sb-title">🌌 Universo ${escapeHtml((fam.base || uniClean(s.t)).replace(/\b\w/g, c => c.toUpperCase()))}</b>
       <div class="sb-stats">
-        <span>${nSeries} series</span><span>${s.episodes.length} capítulos</span>
+        <span>${rows.length} serie${rows.length === 1 ? '' : 's'} del universo</span><span>${s.episodes.length} capítulos</span>
         <span class="sb-ok">${conLinks} con enlace</span>${nMovies ? `<span>${nMovies} películas</span>` : ''}
       </div>
     </div>`);
   grid.appendChild(ban);
-  /* filas de saga */
+  /* 🌌 UNA sola línea de tiempo: presentes y faltantes juntos, en orden
+     cronológico real — el universo se muestra COMPLETO, lo que falta en
+     blanco y negro                                                    */
   for (const r of rows) {
-    grid.appendChild(sagaRowEl(s, r, admin));
-  }
-  /* sagas que faltan (solo con TMDB) */
-  if (missing.length) {
-    const mh = el('saga-missing-h', `✨ ${missing.length} serie${missing.length > 1 ? 's' : ''} más de este universo ${admin ? '— añádelas con un clic' : 'que aún no está en el catálogo'}`);
-    grid.appendChild(mh);
-    for (const m of missing) grid.appendChild(sagaMissingEl(s, m, admin));
+    grid.appendChild(r.missing ? sagaMissingEl(s, r.tm, admin) : sagaRowEl(s, r, admin));
   }
   /* películas del universo */
   if ((fam.movies || []).length) grid.appendChild(sagaMoviesEl(s, fam.movies, admin));
@@ -9851,8 +9899,36 @@ function sagaRowEl(s, r, admin) {
       ${r.tm && r.tm.overview ? `<p class="saga-ov">${escapeHtml(r.tm.overview.slice(0, 150))}${r.tm.overview.length > 150 ? '…' : ''}</p>` : ''}
     </div>
     <div class="saga-strip">${strip}</div>
+    ${admin ? '<button class="saga-del" title="Eliminar esta saga del universo">🗑</button>' : ''}
     <button class="saga-toggle" title="${open ? 'Cerrar y resumir' : 'Expandir y ver todos los capítulos'}">${open ? '✕' : '⌄'}</button>`;
   wrap.appendChild(row);
+  /* 🗑 ADMIN: eliminar esta saga del universo en cualquier momento */
+  if (admin) {
+    const delBtn = row.querySelector('.saga-del');
+    delBtn.addEventListener('click', async ev => {
+      ev.stopPropagation();
+      if (s.episodes.length === r.epsS.length) return toast('Es la única saga — usa 🗑 Eliminar para borrar la serie completa', true);
+      const conf = await uiModal({
+        icon: '🗑', title: `Eliminar «${escapeHtml(r.name.slice(0, 30))}» del universo`, okLabel: 'Eliminar saga', danger: true,
+        sub: `Se quitan <b>${r.epsS.length} capítulo${r.epsS.length === 1 ? '' : 's'}</b> de esta saga (con sus enlaces). El resto del universo queda intacto.`,
+      });
+      if (!conf) return;
+      const epActual = s.episodes.find(e => e.n === current.ep);
+      const prog = (state.progress || {})[s.id] || {};
+      s.episodes = s.episodes.filter(e => (e.season || 1) !== r.se);
+      const nuevoProg = {};
+      s.episodes.forEach((e, i) => { if (prog[e.n]) nuevoProg[i + 1] = prog[e.n]; e.n = i + 1; });
+      state.progress[s.id] = nuevoProg;
+      delete s.seasons[r.se];
+      SAGA_OPEN.delete(key);
+      if (current.seriesId === s.id) {
+        current.ep = epActual && s.episodes.includes(epActual) ? epActual.n : null;
+        if (current.ep == null) { els.nowPlaying.textContent = ''; clearAddressHash(); }
+      }
+      save(); renderEpisodes(); renderSeries(els.searchInput.value);
+      toast(`🗑 «${r.name.slice(0, 24)}» eliminada del universo`);
+    });
+  }
   /* expandir: rejilla de capítulos + cierre instantáneo con ✕ */
   const toggle = () => {
     const isOpen = SAGA_OPEN.has(key);
@@ -9864,7 +9940,7 @@ function sagaRowEl(s, r, admin) {
     });
   };
   row.querySelector('.saga-toggle').addEventListener('click', toggle);
-  row.addEventListener('click', ev => { if (ev.target.closest('.saga-toggle')) return; toggle(); });
+  row.addEventListener('click', ev => { if (ev.target.closest('.saga-toggle,.saga-del')) return; toggle(); });
   if (open) {
     wrap.dataset.sagakey = key;
     const g = document.createElement('div');
@@ -10036,19 +10112,20 @@ function sagaMoviesEl(s, movies, admin) {
   const strip = document.createElement('div');
   strip.className = 'saga-movies';
   const norm = uniNorm;
-  const rows = uniSagasOf(s, { series: [], movies: [] }).rows;
+  const nb = uniClean(s.t);
   for (const mv of movies) {
-    const mn = norm(mv.title);
-    /* ¿la película ya vive dentro de la franquicia? (temporada o capítulo) */
+    /* ¿la película ya vive dentro de la franquicia? — similitud FINA
+       (sin las palabras de la franquicia) contra temporadas y capítulos:
+       «DBZ Cap 45» JAMÁS se casa con una película por decir «dragon ball» */
     let target = null;
     for (const se of Object.keys(s.seasons || {})) {
-      if (norm(s.seasons[se]).includes(mn) || (mn.length > 4 && mn.includes(norm(s.seasons[se])))) {
+      if (uniSimX(s.seasons[se], mv.title, nb)) {
         const ep = s.episodes.find(e => (e.season || 1) === +se && e.url);
         if (ep) { target = ep; break; }
       }
     }
     if (!target) {
-      target = s.episodes.find(e => e.url && (norm(e.t).includes(mn) || (mn.length > 4 && mn.includes(norm(e.t)))));
+      target = s.episodes.find(e => e.url && uniSimX(e.t, mv.title, nb));
     }
     const has = !!target;
     const card = document.createElement('div');
@@ -10064,7 +10141,7 @@ function sagaMoviesEl(s, movies, admin) {
     else if (admin) card.querySelector('.smv-add').addEventListener('click', ev => { ev.stopPropagation(); uniAddMovie(s, mv); });
     strip.appendChild(card);
   }
-  wrap.appendChild(el2('div', 'saga-movies-h', `🎞 Películas del universo <small>en orden cronológico</small>`));
+  wrap.appendChild(el2('div', 'saga-movies-h', `🎞 Películas del universo <small>${movies.length} · en orden cronológico</small>`));
   wrap.appendChild(strip);
   return wrap;
 }

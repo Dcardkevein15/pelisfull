@@ -4391,3 +4391,11 @@ body.chat-full .episodes-panel{max-width:none}
 @media (prefers-reduced-motion:reduce){
   .saga-row,.saga-mv,.saga-toggle,.saga-fly,.saga-grid{animation:none!important;transition:none!important}
 }
+.saga-del{
+  flex-shrink:0;width:32px;height:32px;border-radius:10px;cursor:pointer;
+  display:grid;place-items:center;font-size:14px;
+  color:#ffb3c0;background:rgba(255,48,79,.1);
+  border:1px solid rgba(255,48,79,.35);
+  transition:all .16s;
+}
+.saga-del:hover{background:rgba(255,48,79,.25);border-color:#ff6b81;box-shadow:0 0 16px rgba(255,48,79,.35)}
