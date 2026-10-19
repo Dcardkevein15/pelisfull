@@ -4167,3 +4167,227 @@ body.chat-full .episodes-panel{max-width:none}
   .player-shell > .stage-info,
   .player-shell > .episodes-panel{padding-left:0;padding-right:0}
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   🌌 VISTA UNIVERSO / SAGAS — franquicias de varias series fusionadas
+   Panel neón cósmico: cada saga en su línea horizontal expandible, orden
+   cronológico real (TMDB), películas del universo, tarjetas grises para
+   lo que falta y ＋ enlace instantáneo para el admin.
+   ═════════════════════════════════════════════════════════════════════ */
+.episodes-grid.sagas-mode{display:flex;flex-direction:column;gap:14px;overflow:visible}
+
+/* ── banner del universo ── */
+.saga-banner{
+  position:relative;overflow:hidden;border-radius:16px;padding:16px 18px;
+  background:
+    radial-gradient(420px 120px at 88% -40%,rgba(255,157,46,.22),transparent 70%),
+    radial-gradient(380px 110px at 8% 130%,rgba(55,198,255,.18),transparent 70%),
+    linear-gradient(135deg,#0b1030 0%,#101438 55%,#0a0d24 100%);
+  border:1px solid rgba(124,110,255,.35);
+  box-shadow:0 0 0 1px rgba(55,198,255,.12),0 14px 40px rgba(4,6,18,.6);
+}
+.saga-banner::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 30%,rgba(255,255,255,.8),transparent 60%),
+    radial-gradient(1px 1px at 30% 70%,rgba(255,255,255,.55),transparent 60%),
+    radial-gradient(1.5px 1.5px at 55% 20%,rgba(255,255,255,.7),transparent 60%),
+    radial-gradient(1px 1px at 72% 55%,rgba(255,255,255,.5),transparent 60%),
+    radial-gradient(1.5px 1.5px at 86% 78%,rgba(255,255,255,.75),transparent 60%);
+}
+.sb-title{
+  display:block;font:900 clamp(17px,2.4vw,24px) 'Archivo Black',Inter,sans-serif;
+  letter-spacing:.6px;color:#fff;text-shadow:0 0 22px rgba(55,198,255,.55),0 0 44px rgba(255,157,46,.3);
+}
+.sb-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px;position:relative;z-index:1}
+.sb-stats span{
+  font:700 10.5px Inter;color:#cdd6ff;letter-spacing:.4px;
+  border:1px solid rgba(124,110,255,.4);border-radius:99px;padding:3px 11px;
+  background:rgba(20,16,56,.55);backdrop-filter:blur(6px);
+}
+.sb-stats .sb-ok{color:#b7ff5e;border-color:rgba(183,255,94,.45)}
+
+/* ── fila de saga (línea horizontal expandible) ── */
+.saga-block{display:flex;flex-direction:column;gap:0}
+.saga-row{
+  position:relative;display:flex;align-items:center;gap:13px;
+  padding:13px 14px;border-radius:15px;cursor:pointer;
+  background:linear-gradient(180deg,rgba(16,20,56,.92),rgba(10,13,36,.94));
+  border:1px solid color-mix(in srgb,var(--sg,#37c6ff) 38%,transparent);
+  box-shadow:0 0 0 1px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05);
+  transition:transform .18s cubic-bezier(.2,1.2,.4,1),box-shadow .18s,border-color .18s;
+}
+.saga-row:hover{
+  transform:translateY(-2px);
+  border-color:var(--sg,#37c6ff);
+  box-shadow:0 12px 34px rgba(2,4,16,.65),0 0 24px color-mix(in srgb,var(--sg,#37c6ff) 26%,transparent);
+}
+.saga-row.open{border-color:var(--sg,#37c6ff);box-shadow:0 0 28px color-mix(in srgb,var(--sg,#37c6ff) 22%,transparent)}
+.saga-row.no-links{border-style:dashed}
+.saga-poster{
+  width:56px;height:80px;min-width:56px;border-radius:10px;overflow:hidden;flex-shrink:0;
+  display:grid;place-items:center;font-size:22px;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--sg,#37c6ff) 18%,#0b0e26),#0b0e26);
+  border:1px solid color-mix(in srgb,var(--sg,#37c6ff) 45%,transparent);
+  box-shadow:0 6px 18px rgba(2,4,16,.5);
+}
+.saga-poster img{width:100%;height:100%;object-fit:cover;display:block}
+.saga-meta{flex:1;min-width:0}
+.saga-name{
+  display:block;font:800 14.5px Inter;color:#fff;letter-spacing:.3px;
+  text-shadow:0 0 14px color-mix(in srgb,var(--sg,#37c6ff) 40%,transparent);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.saga-years{font:600 10px 'JetBrains Mono';color:#8f9cff;margin-left:8px}
+.saga-count{display:block;font:600 10.5px Inter;color:#aab3d9;margin-top:3px}
+.saga-count em{font-style:normal;color:#b7ff5e}
+.saga-row.no-links .saga-count em{color:#ffb35e}
+.saga-ov{
+  font:400 11px/1.5 Inter;color:#9aa3c9;margin-top:5px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.saga-strip{display:flex;gap:5px;flex-shrink:0}
+.saga-strip img{width:44px;height:30px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,.14)}
+.saga-strip i{
+  font:700 10px 'JetBrains Mono';font-style:normal;color:#8f9cff;
+  width:44px;height:30px;border-radius:6px;display:grid;place-items:center;
+  background:rgba(20,16,56,.6);border:1px dashed rgba(124,110,255,.4);
+}
+.saga-toggle{
+  flex-shrink:0;width:36px;height:36px;border-radius:11px;cursor:pointer;
+  display:grid;place-items:center;font:800 16px Inter;
+  color:var(--sg,#37c6ff);background:rgba(20,16,56,.6);
+  border:1px solid color-mix(in srgb,var(--sg,#37c6ff) 55%,transparent);
+  transition:all .16s;
+}
+.saga-toggle:hover{background:var(--sg,#37c6ff);color:#0a0d24;box-shadow:0 0 18px color-mix(in srgb,var(--sg,#37c6ff) 55%,transparent)}
+/* rejilla de capítulos expandida */
+.saga-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px;
+  padding:12px 4px 4px;animation:sagaGridIn .22s cubic-bezier(.2,1.1,.4,1);
+}
+@keyframes sagaGridIn{from{opacity:0;transform:translateY(-6px)}}
+
+/* ── tarjetas SIN ENLACE: blanco y negro + ＋ instantáneo ── */
+.saga-grid .ep.falta,.ep.falta{
+  filter:grayscale(1) brightness(.72);
+  border-style:dashed;border-color:rgba(255,255,255,.25);
+}
+.ep-falta-tag{
+  position:absolute;top:26px;left:6px;right:6px;text-align:center;
+  font:800 8.5px Inter;letter-spacing:.5px;text-transform:uppercase;
+  color:#d7dbe8;text-shadow:0 1px 4px #000;
+}
+.ep .ep-add{
+  position:absolute;bottom:5px;left:5px;right:5px;z-index:4;
+  padding:6px 4px;border-radius:9px;cursor:pointer;
+  font:800 10px Inter;letter-spacing:.3px;color:#0a0d24;
+  background:linear-gradient(135deg,#ffd24a,#ff9d2e);
+  box-shadow:0 6px 18px rgba(255,157,46,.35);
+  transition:all .15s;
+}
+.ep .ep-add:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.saga-grid .ep{position:relative;cursor:pointer}
+.saga-grid .ep.has-thumb{cursor:pointer}
+.saga-grid .ep.falta{cursor:default}
+.saga-grid .ep.falta .lbl{color:#c9cddb}
+.saga-grid .ep.flash-on{animation:sagaOn .8s cubic-bezier(.2,1.2,.4,1)}
+@keyframes sagaOn{
+  0%{filter:grayscale(1) brightness(.72)}
+  40%{filter:none;box-shadow:0 0 30px rgba(183,255,94,.6)}
+  100%{filter:none}
+}
+
+/* ── saga que FALTA en el catálogo ── */
+.saga-missing-h{font:700 11px Inter;color:#9aa3c9;letter-spacing:.4px;padding:2px 4px}
+.saga-row.saga-missing{opacity:.88;border-style:dashed}
+.saga-row.saga-missing .saga-name{color:#dfe4ff}
+.saga-addbtn{
+  flex-shrink:0;padding:9px 14px;border-radius:11px;cursor:pointer;
+  font:800 11px Inter;color:#0a0d24;
+  background:linear-gradient(135deg,#b7ff5e,#37ffb0);
+  box-shadow:0 6px 20px rgba(55,255,176,.3);transition:all .16s;
+}
+.saga-addbtn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(55,255,176,.45)}
+.saga-falta-badge{
+  flex-shrink:0;font:700 10px Inter;color:#8f9cff;
+  border:1px solid rgba(124,110,255,.5);border-radius:99px;padding:5px 11px;
+}
+
+/* ── 🎞 películas del universo ── */
+.saga-movies-wrap{display:flex;flex-direction:column;gap:9px}
+.saga-movies-h{font:800 13.5px Inter;color:#fff;letter-spacing:.3px;padding:4px 4px 0}
+.saga-movies-h small{color:#8f9cff;font:600 10px Inter;margin-left:8px}
+.saga-movies{
+  display:flex;gap:11px;overflow-x:auto;padding:3px 4px 8px;
+  mask-image:linear-gradient(90deg,transparent,#000 10px,#000 calc(100% - 10px),transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10px,#000 calc(100% - 10px),transparent);
+}
+.saga-mv{
+  position:relative;flex:0 0 152px;height:238px;border-radius:14px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(180deg,#12163f,#0a0d24);
+  border:1px solid rgba(124,110,255,.35);
+  transition:transform .2s cubic-bezier(.2,1.2,.4,1),box-shadow .2s,border-color .2s;
+}
+.saga-mv img{width:100%;height:100%;object-fit:cover;display:block}
+.saga-mv .saga-mv-emoji{position:absolute;inset:0;display:grid;place-items:center;font-size:34px}
+.smv-b{
+  position:absolute;inset:auto 0 0 0;padding:34px 9px 9px;
+  background:linear-gradient(180deg,transparent,rgba(6,8,24,.94) 62%);
+}
+.smv-b b{display:block;font:700 11.5px/1.3 Inter;color:#fff}
+.smv-b small{display:block;font:400 9.5px/1.45 Inter;color:#b9c1e6;margin-top:3px}
+.smv-play{
+  position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;font-size:13px;color:#0a0d24;
+  background:#b7ff5e;box-shadow:0 0 18px rgba(183,255,94,.55);
+}
+.saga-mv.has{border-color:rgba(183,255,94,.4)}
+.saga-mv.has:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 14px 34px rgba(183,255,94,.22);border-color:#b7ff5e}
+.saga-mv.falta{filter:grayscale(1) brightness(.72);border-style:dashed;cursor:default}
+.saga-mv.falta.has-admin,.saga-mv.falta .smv-add{filter:none}
+.saga-mv.falta:hover{transform:none;box-shadow:none}
+.smv-add{
+  position:absolute;bottom:9px;left:9px;right:9px;z-index:3;
+  padding:7px 4px;border-radius:9px;cursor:pointer;
+  font:800 10px Inter;color:#0a0d24;
+  background:linear-gradient(135deg,#ffd24a,#ff9d2e);
+  box-shadow:0 6px 18px rgba(255,157,46,.35);
+}
+.smv-falta{position:absolute;top:8px;left:8px;font:800 8.5px Inter;color:#fff;background:rgba(6,8,24,.8);border-radius:6px;padding:3px 7px;letter-spacing:.4px}
+
+/* ── 💬 panel flotante (hover en escritorio) ── */
+.saga-fly{
+  position:fixed;z-index:400;width:250px;border-radius:15px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(16,20,56,.98),rgba(8,10,28,.98));
+  border:1px solid rgba(55,198,255,.5);
+  box-shadow:0 22px 60px rgba(2,4,16,.8),0 0 30px rgba(55,198,255,.18);
+  animation:sagaFlyIn .18s cubic-bezier(.2,1.2,.4,1);
+  pointer-events:auto;
+}
+@keyframes sagaFlyIn{from{opacity:0;transform:translateY(8px) scale(.97)}}
+.saga-fly img{width:100%;height:130px;object-fit:cover;display:block}
+.sf-body{padding:10px 12px 12px}
+.sf-body small{display:block;font:700 9.5px Inter;color:#37c6ff;letter-spacing:.5px;margin-bottom:3px}
+.sf-body b{display:block;font:800 12.5px/1.3 Inter;color:#fff}
+.sf-body p{font:400 10.5px/1.5 Inter;color:#aab3d9;margin-top:5px}
+.sf-play,.sf-add{
+  width:100%;margin-top:9px;padding:9px;border-radius:10px;cursor:pointer;
+  font:800 11.5px Inter;color:#0a0d24;
+  background:linear-gradient(135deg,#b7ff5e,#37ffb0);
+  box-shadow:0 8px 22px rgba(55,255,176,.35);
+}
+.sf-add{background:linear-gradient(135deg,#ffd24a,#ff9d2e);box-shadow:0 8px 22px rgba(255,157,46,.35)}
+
+/* ── responsive ── */
+@media (max-width:920px){
+  .saga-row{flex-wrap:wrap;gap:10px;padding:11px 12px}
+  .saga-poster{width:46px;height:66px;min-width:46px}
+  .saga-strip{order:5;width:100%;overflow-x:auto}
+  .saga-ov{-webkit-line-clamp:1}
+  .saga-mv{flex:0 0 124px;height:200px}
+  .saga-toggle{width:32px;height:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  .saga-row,.saga-mv,.saga-toggle,.saga-fly,.saga-grid{animation:none!important;transition:none!important}
+}

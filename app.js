@@ -2961,6 +2961,7 @@ async function stapeThumbScrape(stId) {
 function renderEpisodes() {
   const s = getSeries(current.seriesId);
   els.episodesGrid.innerHTML = '';
+  els.episodesGrid.classList.remove('sagas-mode');
   if (!s) {
     els.episodesTitle.textContent = 'Capítulos';
     els.episodesGrid.innerHTML = '<div class="episodes-hint">← Selecciona una serie o película para empezar</div>';
@@ -2971,6 +2972,7 @@ function renderEpisodes() {
   }
   /* ── Vista PELÍCULA suelta: relacionadas… — pero una SAGA muestra sus partes ── */
   els.episodesGrid.classList.remove('rel-movies');
+  els.episodesGrid.classList.remove('sagas-mode');
   const esSagaPeli = s.kind === 'pelicula' && (s.episodes.length > 1 || (s.seasons && Object.keys(s.seasons).length > 0));
   if (s.kind === 'pelicula' && !esSagaPeli) {
     const esOva = isOvaEntry(s);
@@ -3070,6 +3072,17 @@ function renderEpisodes() {
   els.delSeriesBtn.classList.remove('hidden');
   els.addEpBtn.classList.remove('hidden');
   els.insertEpBtn.classList.remove('hidden');
+
+  /* ═══ 🌌 VISTA UNIVERSO — franquicia con varias series fusionadas ═══
+     Si la entrada tiene varias temporadas que en realidad son SERIES
+     DISTINTAS (Dragon Ball + DBZ + GT…), la lista clásica se sustituye
+     por una vista de saga: cada serie en su línea horizontal expandible,
+     todo cronológico (TMDB), películas del universo, tarjetas grises
+     para lo que falta enlace y añadirlo al instante siendo admin.     */
+  if (s.kind !== 'pelicula' && uniFranchiseCheck(s)) {
+    renderSagasView(s);
+    return;
+  }
 
   /* etiquetas de posición (los capítulos dobles ocupan dos números) */
   computeEpDisplay(s);
@@ -9609,4 +9622,477 @@ if (window.XAUTH) {
   if (state.epg && state.epg.url && Date.now() - (state.epg.at || 0) > 6 * 3600e3 && canAdmin()) {
     epgDownload(state.epg.url).catch(() => { });
   }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   🌌 UNIVERSO / SAGAS — vista de franquicia para series fusionadas
+   Cuando una entrada contiene varias SERIES DISTINTAS (Dragon Ball +
+   DBZ + GT… fusionadas por arrastre), la sección de capítulos se vuelve
+   un panel de universo: cada saga en su línea horizontal expandible,
+   orden cronológico real vía TMDB, películas del universo, tarjetas en
+   blanco y negro para lo que falta enlace y, siendo admin, añadirlo al
+   instante sin salir de aquí. Lo que ya funcionaba (serie simple de un
+   enlace, o temporadas de la MISMA serie) queda exactamente igual.
+   ═══════════════════════════════════════════════════════════════════ */
+const UNI_TTL = 12 * 3600e3;                       /* 12 h de caché TMDB */
+const UNI_COLORS = ['#ff9d2e', '#37c6ff', '#ff5ea8', '#ffd24a', '#8f6bff', '#37ffb0', '#ff6b6b', '#5eead4'];
+const SAGA_OPEN = new Set();                        /* filas expandidas: sid|se */
+/* function declarations: accesibles desde renderEpisodes incluso antes
+   de que este bloque termine de evaluarse (hoisting, sin TDZ)          */
+function uniNorm(t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+  .replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim(); }
+function uniLabelNorm(t) { return uniNorm(String(t || '')
+  .replace(/temporada|season|parte|saga|cour|arco/gi, ' ')
+  .replace(/\d+\s*[-–—]\s*\d+/g, ' ')
+  .replace(/\b\d{1,4}\b/g, ' ')).trim(); }
+function uniClean(t) { return uniNorm(String(t || '').replace(/temporada \d+|capitulos?|complet[oa]s?/gi, ' ')).trim(); }
+
+/* ¿esta entrada parece una FRANQUICIA de varias series? (rápido, local) */
+function uniFranchiseCheck(s) {
+  const seas = Object.keys(s.seasons || {});
+  if (seas.length < 2) return false;
+  if (!s.episodes.some(e => (e.season || 1) > 1)) return false;
+  const labels = seas.map(k => uniLabelNorm(s.seasons[k])).filter(Boolean);
+  if (labels.length < 2) return false;
+  /* misma serie dividida en temporadas → todas las etiquetas quedan
+     IGUALES tras normalizar («NARUTO 1-22» → «naruto shippuden»)…  */
+  return new Set(labels).size >= 2;
+}
+
+/* ── TMDB con caché (sessionStorage, 12 h) ── */
+const UNI_KEY = '03e66e3a69ab27b33648570df1c843df';
+function uniCacheGet(k) { try { const c = JSON.parse(sessionStorage.getItem('xuni-' + k) || 'null'); if (c && Date.now() - c.at < UNI_TTL) return c.v; } catch (e) { } return null; }
+function uniCacheSet(k, v) { try { sessionStorage.setItem('xuni-' + k, JSON.stringify({ at: Date.now(), v })); } catch (e) { } }
+async function uniJ(url) {
+  const hit = uniCacheGet(url); if (hit) return hit;
+  const r = await fetch(url); if (!r.ok) throw new Error('TMDB ' + r.status);
+  const j = await r.json(); uniCacheSet(url, j); return j;
+}
+const uniTmdb = (path, q) => uniJ(`https://api.themoviedb.org/3${path}?api_key=${UNI_KEY}&language=es-ES${q || ''}`);
+
+/* familia de la franquicia en TMDB: series hermanas + películas, en orden */
+async function uniFamily(s) {
+  const sig = JSON.stringify(s.seasons || {}) + '|' + s.t;
+  const ck = 'fam-' + s.id;
+  const hit = uniCacheGet(ck);
+  if (hit && hit.sig === sig) return hit;
+  const words = uniClean(s.t).split(' ');
+  const base = words.slice(0, Math.min(2, words.length)).join(' ') || uniClean(s.t);
+  const fam = { sig, series: [], movies: [], base };
+  try {
+    const r = await uniTmdb('/search/tv', '&query=' + encodeURIComponent(base || s.t) + '&page=1');
+    const seen = new Set();
+    for (const it of (r.results || [])) {
+      const nm = uniNorm(it.name || it.original_name || '');
+      if (!nm) continue;
+      const nb = uniNorm(base);
+      const related = nb && (nm.startsWith(nb) || nm.includes(' ' + nb) || nm.includes(nb + ' ')) ;
+      if (!related) continue;
+      if (seen.has(it.id)) continue;
+      seen.add(it.id);
+      fam.series.push({
+        id: it.id, name: it.name || it.original_name,
+        poster: it.poster_path ? 'https://image.tmdb.org/t/p/w342' + it.poster_path : '',
+        air: it.first_air_date || '', until: it.last_air_date || '',
+        overview: (it.overview || '').trim(), epCount: 0,
+      });
+    }
+    fam.series.sort((a, b) => (a.air || '9999').localeCompare(b.air || '9999'));
+  } catch (e) { }
+  /* detalles (total de episodios) para las 6 primeras — barato y útil */
+  for (const f of fam.series.slice(0, 6)) {
+    try {
+      const d = await uniTmdb('/tv/' + f.id);
+      f.epCount = d.number_of_episodes || 0;
+      if (!f.overview) f.overview = (d.overview || '').trim();
+    } catch (e) { }
+  }
+  /* películas: primero COLECCIÓN oficial de TMDB, si no búsqueda */
+  try {
+    const col = await uniTmdb('/search/collection', '&query=' + encodeURIComponent(base || s.t));
+    const cid = ((col.results || [])[0] || {}).id;
+    if (cid) {
+      const det = await uniTmdb('/collection/' + cid);
+      const parts = (det.parts || []).map(p => ({
+        id: p.id, title: p.title || p.original_title || '',
+        poster: p.poster_path ? 'https://image.tmdb.org/t/p/w342' + p.poster_path : '',
+        date: p.release_date || '', overview: (p.overview || '').trim(),
+      })).filter(p => p.title && p.date);
+      const nb = uniNorm(base);
+      fam.movies = parts.filter(p => !nb || uniNorm(p.title).includes(nb) || base.split(' ')[0] && uniNorm(p.title).includes(uniNorm(base.split(' ')[0])))
+        .sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999')).slice(0, 14);
+    }
+  } catch (e) { }
+  if (!fam.movies.length) {
+    try {
+      const r = await uniTmdb('/search/movie', '&query=' + encodeURIComponent(base || s.t) + '&page=1');
+      const nb = uniNorm(base);
+      const w0 = uniNorm((base.split(' ')[0] || ''));
+      fam.movies = (r.results || [])
+        .filter(m => m.release_date && (uniNorm(m.title).startsWith(nb) || uniNorm(m.title).includes(w0)))
+        .map(m => ({ id: m.id, title: m.title, poster: m.poster_path ? 'https://image.tmdb.org/t/p/w342' + m.poster_path : '', date: m.release_date, overview: (m.overview || '').trim() }))
+        .sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999')).slice(0, 10);
+    } catch (e) { }
+  }
+  uniCacheSet(ck, fam);
+  return fam;
+}
+
+/* ── RENDER de la vista universo (dos fases: local al instante + TMDB) ── */
+async function renderSagasView(s) {
+  const grid = els.episodesGrid;
+  if (!grid) return;
+  grid.classList.add('sagas-mode');
+  els.episodesTitle.textContent = `${s.t} — universo · ${s.episodes.length} capítulos`;
+  /* ⏳ microtask: si este render nace DURANTE la evaluación inicial del
+     script (primer renderEpisodes de la página), los const/let de este
+     módulo aún no existen. Ceder aquí garantiza que la continuación corra
+     con el módulo ya inicializado (cero TDZ, cero parpadeos).          */
+  await Promise.resolve();
+  if (current.seriesId !== s.id) return;
+  /* 🚀 FASE 1: pintar YA con los datos locales (filas, expandir, grises) */
+  paintSagas(s, grid, { sig: '', series: [], movies: [], base: uniClean(s.t) });
+  /* 🌌 FASE 2: enriquecer con TMDB (orden cronológico, sinopsis, sagas
+     y películas que faltan) — con caché de 12 h, la 2ª visita es directa */
+  const fam = await uniFamily(s).catch(() => null);
+  /* el usuario pudo cambiar de serie mientras llegaba TMDB */
+  if (current.seriesId !== s.id || !uniFranchiseCheck(s)) return;
+  if (fam) paintSagas(s, grid, fam);
+}
+/* nombre limpio de la saga para MOSTRAR (sin «Temporada N —» del merge) */
+function uniSagaDisplayName(label) {
+  return String(label || '').replace(/^\s*(temporada|season|parte)\s*\d+\s*[—–-]\s*/i, '').trim() || label;
+}
+/* mejor pareja TMDB para una etiqueta: exacta > prefijo > contiene */
+function uniMatchTm(ln, famSeries) {
+  let best = null, bestScore = 0;
+  for (const f of famSeries) {
+    const fn = uniNorm(f.name);
+    if (!fn || !ln) continue;
+    let sc = 0;
+    if (fn === ln) sc = 3;
+    else if (fn.startsWith(ln) || ln.startsWith(fn)) sc = 2;
+    else if (fn.includes(ln) || ln.includes(fn)) sc = 1;
+    if (sc > bestScore) { bestScore = sc; best = f; }
+  }
+  return best;
+}
+function uniSagasOf(s, fam) {
+  const seas = Object.keys(s.seasons || {}).map(Number).sort((a, b) => a - b);
+  const rows = seas.map((se, i) => {
+    const epsS = s.episodes.filter(e => (e.season || 1) === se);
+    const label = s.seasons[se] || ('Temporada ' + se);
+    const ln = uniLabelNorm(label);
+    const tm = uniMatchTm(ln, fam.series || []);
+    return { se, epsS, label, name: uniSagaDisplayName(label), tm, nConLinks: epsS.filter(e => e.url).length, color: UNI_COLORS[i % UNI_COLORS.length] };
+  });
+  /* orden CRONOLÓGICO por fecha de estreno en TMDB (lo local al final) */
+  rows.sort((a, b) => ((a.tm && a.tm.air || '9999') < (b.tm && b.tm.air || '9999') ? -1
+    : (a.tm && a.tm.air || '9999') > (b.tm && b.tm.air || '9999') ? 1 : a.se - b.se));
+  /* sagas del universo que FALTAN en el catálogo local */
+  const present = new Set();
+  for (const r of rows) present.add(uniNorm(r.tm ? r.tm.name : r.name));
+  const missing = (fam.series || []).filter(f => !present.has(uniNorm(f.name)) && f.poster).slice(0, 4);
+  return { rows, missing };
+}
+function paintSagas(s, grid, fam) {
+  const { rows, missing } = uniSagasOf(s, fam);
+  const admin = canAdmin();
+  const conLinks = s.episodes.filter(e => e.url).length;
+  const nSeries = rows.length + missing.length;
+  const nMovies = (fam.movies || []).length;
+  const el = (cls, html) => { const d = document.createElement('div'); d.className = cls; d.innerHTML = html; return d; };
+  grid.innerHTML = '';
+  /* banner del universo */
+  const ban = el('saga-banner', `
+    <div class="sb-inner">
+      <b class="sb-title">🌌 Universo ${escapeHtml((fam.base || uniClean(s.t)).replace(/\b\w/g, c => c.toUpperCase()))}</b>
+      <div class="sb-stats">
+        <span>${nSeries} series</span><span>${s.episodes.length} capítulos</span>
+        <span class="sb-ok">${conLinks} con enlace</span>${nMovies ? `<span>${nMovies} películas</span>` : ''}
+      </div>
+    </div>`);
+  grid.appendChild(ban);
+  /* filas de saga */
+  for (const r of rows) {
+    grid.appendChild(sagaRowEl(s, r, admin));
+  }
+  /* sagas que faltan (solo con TMDB) */
+  if (missing.length) {
+    const mh = el('saga-missing-h', `✨ ${missing.length} serie${missing.length > 1 ? 's' : ''} más de este universo ${admin ? '— añádelas con un clic' : 'que aún no está en el catálogo'}`);
+    grid.appendChild(mh);
+    for (const m of missing) grid.appendChild(sagaMissingEl(s, m, admin));
+  }
+  /* películas del universo */
+  if ((fam.movies || []).length) grid.appendChild(sagaMoviesEl(s, fam.movies, admin));
+}
+function sagaRowEl(s, r, admin) {
+  const wrap = document.createElement('div');
+  wrap.className = 'saga-block';
+  const key = s.id + '|' + r.se;
+  const open = SAGA_OPEN.has(key);
+  const tmb = r.epsS.length ? (getEpThumb(s, r.epsS[0]) || (parseDriveId(r.epsS[0].url || '') ? driveThumbUrl(parseDriveId(r.epsS[0].url), 320) : '')) : '';
+  const poster = (r.tm && r.tm.poster) || s.poster || tmb;
+  const years = r.tm && r.tm.air ? `${r.tm.air.slice(0, 4)}${r.tm.until && r.tm.until.slice(0, 4) !== r.tm.air.slice(0, 4) ? '–' + r.tm.until.slice(0, 4) : ''}` : '';
+  const strip = r.epsS.slice(0, 6).map(e => {
+    const th = getEpThumb(s, e) || (parseDriveId(e.url || '') ? driveThumbUrl(parseDriveId(e.url), 160) : '');
+    return th ? `<img src="${escapeHtml(th)}" loading="lazy" alt="" onerror="this.remove()">` : `<i>${e.n}</i>`;
+  }).join('');
+  const row = document.createElement('div');
+  row.className = 'saga-row' + (open ? ' open' : '') + (r.nConLinks ? '' : ' no-links');
+  row.style.setProperty('--sg', r.color);
+  row.innerHTML = `
+    <span class="saga-poster">${poster ? `<img src="${escapeHtml(poster)}" loading="lazy" alt="" onerror="this.remove()">` : '📺'}</span>
+    <div class="saga-meta">
+      <b class="saga-name">${escapeHtml(r.name)}</b>
+      ${years ? `<span class="saga-years">${years}</span>` : ''}
+      <span class="saga-count">${r.epsS.length} cap${r.epsS.length === 1 ? '' : 's'} · <em>${r.nConLinks ? `${r.nConLinks} con enlace` : 'sin enlaces aún'}</em></span>
+      ${r.tm && r.tm.overview ? `<p class="saga-ov">${escapeHtml(r.tm.overview.slice(0, 150))}${r.tm.overview.length > 150 ? '…' : ''}</p>` : ''}
+    </div>
+    <div class="saga-strip">${strip}</div>
+    <button class="saga-toggle" title="${open ? 'Cerrar y resumir' : 'Expandir y ver todos los capítulos'}">${open ? '✕' : '⌄'}</button>`;
+  wrap.appendChild(row);
+  /* expandir: rejilla de capítulos + cierre instantáneo con ✕ */
+  const toggle = () => {
+    const isOpen = SAGA_OPEN.has(key);
+    if (isOpen) SAGA_OPEN.delete(key); else SAGA_OPEN.add(key);
+    renderEpisodes();
+    if (!isOpen) requestAnimationFrame(() => {
+      const b = els.episodesGrid.querySelector(`[data-sagakey="${CSS.escape(key)}"]`);
+      if (b) b.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+  row.querySelector('.saga-toggle').addEventListener('click', toggle);
+  row.addEventListener('click', ev => { if (ev.target.closest('.saga-toggle')) return; toggle(); });
+  if (open) {
+    wrap.dataset.sagakey = key;
+    const g = document.createElement('div');
+    g.className = 'saga-grid';
+    wrap.appendChild(g);
+    lazyRender(g, r.epsS, ep => sagaEpCell(s, ep, r.label), 30);
+  }
+  return wrap;
+}
+/* tarjeta de capítulo en la vista universo */
+function sagaEpCell(s, ep, sagaLabel) {
+  const pr = ((state.progress || {})[s.id] || {})[ep.n];
+  const cell = document.createElement('div');
+  cell.dataset.epn = ep.n;
+  cell.className = 'ep' + ' ' + epSourceClass(ep.url) + (current.ep === ep.n ? ' playing' : '')
+    + (pr && pr.done ? ' watched' : '') + (ep.url ? '' : ' falta');
+  const driveId = parseDriveId(ep.url || '');
+  const iaId = !getEpThumb(s, ep) && !driveId
+    ? (String(ep.url || '').match(/archive\.org\/(?:download|details|embed)\/([\w-]+)/i) || [])[1] : null;
+  const thumbSrc = getEpThumb(s, ep) || (driveId ? driveThumbUrl(driveId, 320) : null) || (iaId ? `https://archive.org/services/img/${iaId}` : null);
+  if (thumbSrc) cell.classList.add('has-thumb');
+  const resume = pr && !pr.done && pr.t > 20 ? `<span class="ep-resume" title="Continuar donde lo dejaste">▶ ${fmt(pr.t)}</span>` : '';
+  cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
+    + `<span class="num">${ep.n}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
+    + (pr && !pr.done && pr.d ? `<div class="ep-progress"><i style="width:${Math.round(pr.t / pr.d * 100)}%"></i></div>` : '')
+    + resume
+    + (ep.url ? '' : '<span class="ep-falta-tag">sin enlace</span>');
+  if (ep.url) {
+    cell.addEventListener('click', () => loadEpisode(ep.n, true));
+    cell.addEventListener('dblclick', ev => { ev.preventDefault(); loadEpisode(ep.n, true); miniPinned = true; setMini(true); });
+    deferThumb(s, ep, cell);
+    /* ✓ marcar visto */
+    const wc = document.createElement('span');
+    wc.className = 'ep-check' + (pr && pr.done ? ' done' : '');
+    wc.title = pr && pr.done ? 'Marcar como NO visto' : 'Marcar como visto';
+    wc.textContent = '✓';
+    wc.addEventListener('click', ev => {
+      ev.stopPropagation();
+      state.progress[s.id] = state.progress[s.id] || {};
+      const cur = state.progress[s.id][ep.n] || { t: 0, d: 0 };
+      cur.done = !(cur.done === true); cur.at = Date.now();
+      state.progress[s.id][ep.n] = cur;
+      save(); renderEpisodes();
+    });
+    cell.appendChild(wc);
+  } else if (canAdmin()) {
+    /* ＋ enlace instantáneo sin salir de la vista */
+    const add = document.createElement('button');
+    add.className = 'ep-add';
+    add.title = 'Añadir el enlace de este capítulo al instante';
+    add.textContent = '＋ Enlace';
+    add.addEventListener('click', ev => { ev.stopPropagation(); uniQuickLink(s, ep); });
+    cell.appendChild(add);
+    cell.title = 'Sin enlace — pulsa ＋ Enlace para encender esta tarjeta';
+  }
+  uniFlyBind(cell, s, ep, sagaLabel);
+  return cell;
+}
+/* 💬 panel flotante al pasar el ratón (solo escritorio con puntero) */
+let _flyEl = null, _flyT = null;
+function uniFlyHide() { if (_flyEl) _flyEl.remove(); _flyEl = null; }
+function uniFlyBind(cell, s, ep, sagaLabel) {
+  if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  cell.addEventListener('mouseenter', () => {
+    clearTimeout(_flyT);
+    _flyT = setTimeout(() => {
+      uniFlyHide();
+      const driveId = parseDriveId(ep.url || '');
+      const th = getEpThumb(s, ep) || (driveId ? driveThumbUrl(driveId, 640) : null);
+      const pr = ((state.progress || {})[s.id] || {})[ep.n];
+      const fly = document.createElement('div');
+      fly.className = 'saga-fly';
+      fly.innerHTML = `
+        ${th ? `<img src="${escapeHtml(th)}" alt="">` : ''}
+        <div class="sf-body">
+          <small>🌌 ${escapeHtml(sagaLabel)} · E${ep.n}</small>
+          <b>${escapeHtml(ep.t)}</b>
+          ${ep.note ? `<p>📝 ${escapeHtml(ep.note.slice(0, 90))}</p>` : ''}
+          <p>${ep.url ? '▶ Lista para ver — elige y arranca al instante.' : '⏳ Aún sin enlace.'}${pr && !pr.done && pr.t > 15 ? ` · viste hasta ${fmt(pr.t)}` : ''}</p>
+          ${ep.url ? '<button class="sf-play">▶ Ver ahora</button>' : (canAdmin() ? '<button class="sf-add">＋ Añadir enlace</button>' : '')}
+        </div>`;
+      document.body.appendChild(fly);
+      const r = cell.getBoundingClientRect();
+      const fw = 250, fh = fly.offsetHeight || 260;
+      let x = r.right + 12; if (x + fw > innerWidth - 10) x = Math.max(10, r.left - fw - 12);
+      let y = Math.min(Math.max(10, r.top + r.height / 2 - fh / 2), innerHeight - fh - 10);
+      fly.style.left = x + 'px'; fly.style.top = y + 'px';
+      _flyEl = fly;
+      const play = fly.querySelector('.sf-play');
+      if (play) play.addEventListener('click', () => { uniFlyHide(); loadEpisode(ep.n, true); });
+      const ad = fly.querySelector('.sf-add');
+      if (ad) ad.addEventListener('click', () => { uniFlyHide(); uniQuickLink(s, ep); });
+    }, 240);
+  });
+  cell.addEventListener('mouseleave', () => { clearTimeout(_flyT); setTimeout(() => { const to = document.querySelector('.saga-fly:hover'); if (!to) uniFlyHide(); }, 120); });
+}
+/* 🔗 admin: pegar el enlace EN SITIO — la tarjeta se enciende al instante */
+async function uniQuickLink(s, ep) {
+  const r = await uiModal({
+    icon: '🔗', title: `Encender «${escapeHtml((ep.t || '').slice(0, 34))}»`,
+    sub: `${escapeHtml(s.t)} · E${ep.n} — pega el enlace y la tarjeta se enciende al instante.`,
+    okLabel: '⚡ Encender',
+    fields: [{ key: 'url', label: 'URL (mp4/webm/m3u8, Drive o Streamtape)', placeholder: 'https://…', maxlength: 600 }],
+  });
+  if (!r) return;
+  const url = String(r.url || '').trim();
+  if (!/^https?:\/\//.test(url)) return toast('⚠ Ese enlace no vale — debe empezar por http(s)://', true);
+  ep.url = url; save();
+  try { unmarkBroken(s.id, ep.n, true); } catch (e) { }
+  toast('⚡ Enlace añadido — tarjeta encendida');
+  renderEpisodes();
+  renderSeries(els.searchInput.value);
+  requestAnimationFrame(() => {
+    const c = els.episodesGrid.querySelector(`[data-epn="${ep.n}"]`);
+    if (c) { c.classList.add('ep-flash'); c.scrollIntoView({ block: 'center', behavior: 'smooth' }); const ee = s.episodes.find(x => x.n === ep.n); if (ee) deferThumb(s, ee, c); }
+  });
+}
+/* ✨ saga del universo que falta → crearla completa (todas sus tarjetas) */
+async function uniAddMissingSaga(s, m) {
+  if (!needAdmin()) return;
+  const total = m.epCount || 0;
+  const r = await uiModal({
+    icon: '🌌', title: `Añadir «${escapeHtml(m.name)}» al universo`,
+    okLabel: 'Crear saga',
+    sub: `Se crea la temporada <b>«${escapeHtml(m.name)}»</b> dentro de «<b>${escapeHtml(s.t)}</b>» con <b>${total || '?'} tarjetas</b> de capítulo (en gris, sin enlace) usando los títulos reales de TMDB.<br>Después pegas cada enlace con ＋ y las tarjetas se encienden una a una.`,
+  });
+  if (!r) return;
+  try {
+    const det = await uniTmdb('/tv/' + m.id);
+    const tmSeasons = Math.min(det.number_of_seasons || 1, 8);
+    const nextSeason = 1 + Math.max(...s.episodes.map(e => e.season || 1), 1);
+    let offset = s.episodes.reduce((mx, e) => Math.max(mx, e.n || 0), 0);
+    let created = 0;
+    for (let sn = 1; sn <= tmSeasons; sn++) {
+      let eps = [];
+      try { eps = (await uniTmdb('/tv/' + m.id + '/season/' + sn)).episodes || []; } catch (e) { }
+      if (!eps.length && sn > 1) continue;
+      for (let i = 0; i < eps.length; i++) {
+        s.episodes.push({ n: ++offset, t: (eps[i].name || `Episodio ${i + 1}`).slice(0, 90), url: '', season: nextSeason, srcSeason: 'tmdb-' + m.id });
+        created++;
+      }
+    }
+    if (!created) for (let i = 0; i < (total || 0); i++) s.episodes.push({ n: ++offset, t: `Episodio ${i + 1}`, url: '', season: nextSeason, srcSeason: 'tmdb-' + m.id });
+    s.seasons = s.seasons || {};
+    s.seasons[nextSeason] = m.name.slice(0, 44);
+    save(); renderEpisodes();
+    toast(`🌌 «${m.name}» añadida con ${created || total} tarjetas — pega los enlaces con ＋`);
+  } catch (e) { toast('⚠ TMDB no respondió — inténtalo otra vez', true); }
+}
+function sagaMissingEl(s, m, admin) {
+  const d = document.createElement('div');
+  d.className = 'saga-row saga-missing' + (admin ? ' can-add' : '');
+  d.innerHTML = `
+    <span class="saga-poster">${m.poster ? `<img src="${escapeHtml(m.poster)}" loading="lazy" alt="">` : '✨'}</span>
+    <div class="saga-meta">
+      <b class="saga-name">${escapeHtml(m.name)}</b>
+      <span class="saga-years">${m.air ? m.air.slice(0, 4) : ''}${m.epCount ? ` · ${m.epCount} caps` : ''}</span>
+      ${m.overview ? `<p class="saga-ov">${escapeHtml(m.overview.slice(0, 130))}${m.overview.length > 130 ? '…' : ''}</p>` : ''}
+      <span class="saga-count"><em>falta en el catálogo</em></span>
+    </div>
+    ${admin ? '<button class="saga-addbtn">＋ Añadir saga</button>' : '<span class="saga-falta-badge">Próximamente</span>'}`;
+  if (admin) d.querySelector('.saga-addbtn').addEventListener('click', ev => { ev.stopPropagation(); uniAddMissingSaga(s, m); });
+  return d;
+}
+/* 🎞 películas del universo — tarjetas espectaculares cronológicas */
+function sagaMoviesEl(s, movies, admin) {
+  const wrap = document.createElement('div');
+  wrap.className = 'saga-movies-wrap';
+  const strip = document.createElement('div');
+  strip.className = 'saga-movies';
+  const norm = uniNorm;
+  const rows = uniSagasOf(s, { series: [], movies: [] }).rows;
+  for (const mv of movies) {
+    const mn = norm(mv.title);
+    /* ¿la película ya vive dentro de la franquicia? (temporada o capítulo) */
+    let target = null;
+    for (const se of Object.keys(s.seasons || {})) {
+      if (norm(s.seasons[se]).includes(mn) || (mn.length > 4 && mn.includes(norm(s.seasons[se])))) {
+        const ep = s.episodes.find(e => (e.season || 1) === +se && e.url);
+        if (ep) { target = ep; break; }
+      }
+    }
+    if (!target) {
+      target = s.episodes.find(e => e.url && (norm(e.t).includes(mn) || (mn.length > 4 && mn.includes(norm(e.t)))));
+    }
+    const has = !!target;
+    const card = document.createElement('div');
+    card.className = 'saga-mv' + (has ? ' has' : ' falta');
+    card.innerHTML = `
+      ${mv.poster ? `<img src="${escapeHtml(mv.poster)}" loading="lazy" alt="" onerror="this.remove()">` : '<span class="saga-mv-emoji">🎬</span>'}
+      <div class="smv-b">
+        <b>${escapeHtml(mv.title)}</b>
+        <small>${mv.date ? mv.date.slice(0, 4) : ''} · ${mv.overview ? escapeHtml(mv.overview.slice(0, 90)) + (mv.overview.length > 90 ? '…' : '') : 'Película del universo'}</small>
+      </div>
+      ${has ? '<span class="smv-play">▶</span>' : (admin ? '<button class="smv-add">＋ Enlace</button>' : '<span class="smv-falta">sin enlace</span>')}`;
+    if (has) card.addEventListener('click', () => loadEpisode(target.n, true));
+    else if (admin) card.querySelector('.smv-add').addEventListener('click', ev => { ev.stopPropagation(); uniAddMovie(s, mv); });
+    strip.appendChild(card);
+  }
+  wrap.appendChild(el2('div', 'saga-movies-h', `🎞 Películas del universo <small>en orden cronológico</small>`));
+  wrap.appendChild(strip);
+  return wrap;
+}
+function el2(tag, cls, html) { const d = document.createElement(tag); d.className = cls; d.innerHTML = html; return d; }
+/* ＋ película que falta → capítulo nuevo con su enlace, sin salir de aquí */
+async function uniAddMovie(s, mv) {
+  if (!needAdmin()) return;
+  const r = await uiModal({
+    icon: '🎬', title: `Encender «${escapeHtml(mv.title.slice(0, 40))}»`,
+    sub: 'Se crea al instante como capítulo de la sección de películas de esta franquicia.',
+    okLabel: '⚡ Crear y encender',
+    fields: [{ key: 'url', label: 'URL (mp4/webm/m3u8, Drive o Streamtape)', placeholder: 'https://…', maxlength: 600 }],
+  });
+  if (!r) return;
+  const url = String(r.url || '').trim();
+  if (!/^https?:\/\//.test(url)) return toast('⚠ Ese enlace no vale — debe empezar por http(s)://', true);
+  s.seasons = s.seasons || {};
+  let peliSe = Object.keys(s.seasons).find(k => /pel[ií]cul|movie|ova|cin[eé]/i.test(s.seasons[k]));
+  if (!peliSe) {
+    peliSe = 1 + Math.max(...s.episodes.map(e => e.season || 1), 1);
+    s.seasons[peliSe] = '🎬 Películas del universo';
+  } else peliSe = +peliSe;
+  const n = s.episodes.reduce((mx, e) => Math.max(mx, e.n || 0), 0) + 1;
+  s.episodes.push({ n, t: mv.title.slice(0, 90), url, season: peliSe, ova: /ova/i.test(mv.title) || undefined });
+  save(); renderEpisodes(); renderSeries(els.searchInput.value);
+  toast(`⚡ «${mv.title.slice(0, 30)}» creada y encendida`);
+  requestAnimationFrame(() => {
+    const c = els.episodesGrid.querySelector(`[data-epn="${n}"]`);
+    if (c) { c.classList.add('ep-flash'); c.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+  });
 }
