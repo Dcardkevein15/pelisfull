@@ -3577,6 +3577,11 @@ function loadEpisode(epN, autoplayNow = true) {
     els.video.load();
     els.noUrl.classList.remove('hidden');
     els.bigPlay.classList.add('hidden');
+    /* sin contenido real: el preview premium vuelve como relleno del
+       reproductor (único caso donde el candado puede verse sin candado) */
+    const vpremWrap = document.getElementById('vPrem');
+    if (vpremWrap) vpremWrap.classList.remove('vprem-off');
+    if (els.playerArea) els.playerArea.classList.remove('vprem-solo', 'vprem-tap', 'content-on');
     renderEpisodes();
     return;
   }
@@ -3601,6 +3606,9 @@ function loadEpisode(epN, autoplayNow = true) {
     const v = els.video;
     els.spinner.classList.remove('hidden');
     driveDirectTry = true;
+    /* capítulo desbloqueado: el preview del candado NO debe verse NUNCA —
+       corta su audio y oculta la capa al instante                       */
+    if (window.__killPremPreview) window.__killPremPreview();
 
     const CANDIDATE_URLS = [
       `https://drive.google.com/uc?export=download&confirm=1&id=${driveId}`,
@@ -3634,8 +3642,10 @@ function loadEpisode(epN, autoplayNow = true) {
       startDriveTracking(s.id, ep.n);
       els.nowPlaying.textContent += ' · DRIVE ▶';
       renderEpisodes();
-      /* 🎬 en vertical: preview primero → el Drive arranca al terminarlo */
-      premRoll(s.id + ':' + ep.n, () => v.play().catch(() => toast('Pulsa play para iniciar (Drive directo)')));
+      /* 🎬 capítulo DESBLOQUEADO → arranca DIRECTO, sin preview del candado.
+         El preview SOLO existe en el flujo del candado (loadEpisode → showVault);
+         aquí el usuario ya pagó/está desbloqueado: CERO intermediarios.     */
+      v.play().catch(() => toast('Pulsa play para iniciar (Drive directo)'));
     };
     const onErr = () => {
       if (directOk) return;
@@ -3668,6 +3678,8 @@ function loadEpisode(epN, autoplayNow = true) {
   if (stape) {
     attachSpanishSubs(null); // Streamtape soporta subtítulos propios en su embed
     exitExtMode();
+    /* capítulo desbloqueado: preview apagado + formato horizontal */
+    if (window.__killPremPreview) window.__killPremPreview();
     startDriveTracking(s.id, ep.n); // cronómetro aproximado para progreso/stats
     const v = els.video;
     v.pause();
@@ -3694,6 +3706,8 @@ function loadEpisode(epN, autoplayNow = true) {
   exitExtMode();
 
   const v = els.video;
+  /* capítulo desbloqueado: apagar el preview del candado desde YA */
+  if (window.__killPremPreview) window.__killPremPreview();
   /* reanudar donde te quedaste */
   const pr = ((state.progress || {})[s.id] || {})[ep.n];
   state.lastPlayed[s.id] = Date.now();
@@ -3711,8 +3725,9 @@ function loadEpisode(epN, autoplayNow = true) {
     }
     attachSpanishSubs(ep.sub); // 🇪🇸 subtítulos automáticos si la fuente los trae
     if (autoplayNow) {
-      /* 🎬 en vertical: preview primero → el capítulo arranca al terminarlo */
-      premRoll(s.id + ':' + ep.n, () => v.play().catch(() => toast('Pulsa play para iniciar (autoplay bloqueado)')));
+      /* 🎬 capítulo DESBLOQUEADO → reproducción DIRECTA, sin preview del
+         candado (el preview solo vive en el flujo del candado)          */
+      v.play().catch(() => toast('Pulsa play para iniciar (autoplay bloqueado)'));
     }
   })();
   renderEpisodes();
@@ -7766,7 +7781,18 @@ function showVault(s, ep) {
     bg.pause();
     bg.muted = true;
     if (playerEl) playerEl.classList.add('vprem-solo');
+    /* 🛡 ocultar la CAPA COMPLETA del preview: sin esto, el último frame
+       del candado (o su póster) quedaba pintado ENCIMA del video real y
+       la barra de progreso del preview seguía visible junto a la del
+       reproductor (dos líneas apiladas). Con vprem-off desaparece todo. */
+    if (wrap) wrap.classList.add('vprem-off');
+    /* 🎬 FORMATO HORIZONTAL: con el video real en escena el reproductor
+       vuelve a 16:9 — la pantalla vertical completa es solo del candado */
+    if (playerEl) playerEl.classList.add('content-on');
   };
+  /* helper global: loadEpisode apaga el preview al cargar un capítulo
+     desbloqueado (corta audio + oculta la capa al instante)           */
+  window.__killPremPreview = killPreview;
   /* el video real arranca → MATAR el preview al instante */
   if (vid) {
     vid.addEventListener('play', () => { if (mq.matches) killPreview(); });
@@ -7913,6 +7939,10 @@ function showVault(s, ep) {
     if (!mq.matches || prerollShown[key] || (vid && vid.src && !vid.paused)) { done(); return; }
     prerollShown[key] = 1;
     driving = bg;
+    /* el preview vuelve a la pantalla: quitar cualquier vprem-off previo
+       y VOLVER al formato vertical completo (el del candado)            */
+    if (wrap) wrap.classList.remove('vprem-off');
+    if (playerEl) { playerEl.classList.remove('vprem-solo', 'vprem-tap'); playerEl.classList.remove('content-on'); }
     let finished = false;
     let cleanupDone = false;
     const cleanup = () => {

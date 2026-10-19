@@ -3809,6 +3809,17 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 
   /* el mini-reproductor flotante NO aplica en vertical: nada encoge la pantalla */
   .player-anchor.mini>.player{position:relative!important;width:100vw!important;max-width:100vw!important;height:calc(100dvh - 62px)!important;margin:0 0 0 calc(50% - 50vw)!important;border-radius:0!important;box-shadow:none!important}
+
+  /* ═══ 🎬 CONTENIDO REAL = FORMATO HORIZONTAL ═══
+     La pantalla vertical completa es SOLO para el preview del candado.
+     En cuanto el video real (película/serie/anime, desbloqueado o premium)
+     entra en escena, el reproductor VUELVE a su formato natural 16:9.     */
+  .player.content-on{
+    aspect-ratio:16/9;
+    width:100%;max-width:100%;height:auto;
+    margin:0 auto;
+    border-radius:14px;border:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
   .player video#video{
     position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;
   }
@@ -4014,6 +4025,11 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 .player.vprem-solo .vprem-play,
 .player.vprem-solo .vprem-controls{display:none!important}
 .player.vprem-tap .vprem-play{display:grid!important}
+/* 🛡 video real en pantalla: la capa del preview se OCULTA COMPLETA
+   (última frame del candado + su barra de progreso jamás encima).
+   OJO: vprem-off vive en el WRAP (#vPrem), no en .player — el selector
+   correcto es .player .vprem-off (descendencia), NO .player.vprem-off  */
+.player .vprem.vprem-off{display:none!important}
 
 @media (max-width:920px) and (orientation:portrait){
   .voffer{
@@ -4111,3 +4127,43 @@ body.staff-on #coinsAdminBtn.hidden{display:none!important}
 .continue-row{padding:0}
 .genre-row{padding:0}
 .panel-tab-row{padding:0}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MÁRGENES DEL CONTENIDO BAJO EL VIDEO — sincronizados con el reproductor
+   Tras reparar el anidamiento del HTML, .stage-info y #episodesPanel viven
+   DENTRO de .player-shell: heredan su columna (max-width:1080px, centrada,
+   20px de padding lateral) — el MISMO inset que el video, siempre.        */
+.player-shell > .stage-info{
+  max-width:none;
+  margin:18px 0 6px;
+  padding:0;
+}
+.player-shell > .episodes-panel{
+  max-width:none;
+  margin:26px 0 32px;   /* 32px = margen inferior al llegar al final del scroll */
+  padding:0;
+}
+/* compatibilidad: si alguna vista los deja como hijos directos de .stage */
+.stage > .stage-info{max-width:1080px;margin:18px auto 6px;padding:0 20px}
+.stage > .episodes-panel{max-width:1080px;margin:26px auto 32px;padding:0 20px}
+/* el chat a PANTALLA COMPLETA ignora la columna: sigue siendo fixed inset:0 */
+body.chat-full .episodes-panel{max-width:none}
+
+/* 📱 VERTICAL (móvil/tablet en portrait): el shell ya aporta 16px de padding
+   lateral — el contenido de abajo no necesita compensación extra; se
+   neutralizan las reglas viejas que daban doble margen interior.           */
+@media (max-width:920px) and (orientation:portrait){
+  .player-shell > .stage-info,
+  .player-shell > .episodes-panel{padding-left:0;padding-right:0}
+  .player-shell > .episodes-panel{margin-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+  .episodes-head{padding:0!important;margin:0 0 10px!important}
+  .episodes-tools{padding:0!important;margin:0 0 10px!important}
+  .rel-row,.related-wrap,.episodes-hint,
+  .continue-row,.episodes-grid.rel-movies{padding-left:0!important;padding-right:0!important}
+}
+
+/* 📱 APÁISADO pequeño (móvil de lado): el shell ya usa 10px aquí */
+@media (max-width:900px) and (orientation:landscape){
+  .player-shell > .stage-info,
+  .player-shell > .episodes-panel{padding-left:0;padding-right:0}
+}

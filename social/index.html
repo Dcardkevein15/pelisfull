@@ -25,8 +25,8 @@
       <span class="soc-brandname">XSTREAM<b>SOCIAL</b></span>
     </a>
     <div class="soc-search" id="socSearchWrap">
-      <span class="soc-search-ic">🔍</span>
-      <input id="socSearch" type="text" placeholder="Buscar películas, series, personas, grupos..." autocomplete="off" spellcheck="false">
+      <svg class="soc-search-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="socSearch" type="text" placeholder="Buscar películas, series, anime, personas, grupos..." autocomplete="off" spellcheck="false">
       <div class="soc-search-drop hidden" id="socSearchDrop"></div>
     </div>
     <nav class="soc-topnav">
@@ -56,24 +56,26 @@
     </div>
   </header>
 
-  <!-- ══════════ RAIL IZQUIERDO — contraído: solo iconos ══════════ -->
+  <!-- ══════════ NAVEGACIÓN LATERAL — riel de iconos con tooltip ══════════ -->
   <aside class="soc-side" id="socSide">
     <nav class="soc-side-nav" id="socSideNav">
-      <a class="on" data-nav="inicio" title="Inicio"><span>🏠</span></a>
-      <a data-nav="explorar" title="Explorar"><span>🧭</span></a>
-      <a data-nav="foro" title="Foro"><span>🧵</span></a>
-      <a data-nav="amigos" title="Amigos"><span>👥</span></a>
-      <a data-nav="grupos" title="Grupos"><span>⬡</span></a>
-      <a data-nav="mensajes" title="Mensajes"><span>💬</span><b class="soc-red hidden" id="socSideMsg"></b></a>
-      <a data-nav="notificaciones" title="Notificaciones"><span>🔔</span><b class="soc-red hidden" id="socSideNotif"></b></a>
-      <a data-nav="perfil" title="Mi perfil"><span>🧑</span></a>
+      <a class="on" data-nav="inicio" data-tip="Inicio" aria-label="Inicio"><span>🏠</span></a>
+      <a data-nav="foro" data-tip="Foro" aria-label="Foro"><span>🧵</span></a>
+      <a data-nav="explorar" data-tip="Explorar" aria-label="Explorar"><span>🧭</span></a>
+      <a data-nav="amigos" data-tip="Amigos" aria-label="Amigos"><span>👥</span></a>
+      <a data-nav="grupos" data-tip="Grupos" aria-label="Grupos"><span>⬡</span></a>
+      <a data-nav="mensajes" data-tip="Mensajes" aria-label="Mensajes"><span>💬</span><b class="soc-red hidden" id="socSideMsg"></b></a>
+      <a data-nav="notificaciones" data-tip="Notificaciones" aria-label="Notificaciones"><span>🔔</span><b class="soc-red hidden" id="socSideNotif"></b></a>
+      <a data-nav="guardados" data-tip="Guardados" aria-label="Guardados"><span>🔖</span></a>
+      <a data-nav="config" data-tip="Configuración" aria-label="Configuración"><span>⚙️</span></a>
+      <a data-nav="perfil" data-tip="Mi perfil" aria-label="Mi perfil"><span>🧑</span></a>
     </nav>
   </aside>
 
   <!-- ══════════ COLUMNA CENTRAL ══════════ -->
   <main class="soc-main">
 
-    <!-- Publicar -->
+    <!-- Publicar — compositor dorado -->
     <section class="soc-card soc-create">
       <span class="soc-avatar me" id="socCreateAvatar">?</span>
       <div class="soc-create-body">
@@ -84,7 +86,7 @@
           <button class="soc-tool" data-tool="encuesta" title="Crear una encuesta">📊 Encuesta</button>
           <button class="soc-tool" data-tool="enlace" title="Añadir un enlace">🔗 Enlace</button>
           <button class="soc-tool" data-tool="gif" title="Añadir un GIF o imagen por URL">🎞 GIF</button>
-          <button class="soc-btn soc-btn-green" id="socPublish">Publicar</button>
+          <button class="soc-btn soc-btn-gold" id="socPublish">🚀 Publicar</button>
         </div>
       </div>
     </section>
@@ -99,41 +101,49 @@
     <div class="soc-feed-empty hidden" id="socFeedEmpty"></div>
   </main>
 
-  <!-- ══════════ COLUMNA IZQUIERDA INTERNA: TENDENCIAS + GRUPOS ══════════ -->
-  <aside class="soc-col-left">
-    <section class="soc-card">
-      <div class="soc-card-h"><span>🔥 Tendencias ahora</span><small># de la comunidad</small></div>
-      <div class="soc-trends" id="socTrends"></div>
-    </section>
-    <section class="soc-card">
-      <div class="soc-card-h"><span>⬡ Grupos recomendados</span></div>
-      <div class="soc-groups" id="socGroups"></div>
-    </section>
-  </aside>
-
-  <!-- ══════════ SOCIAL DOCK — la columna derecha unificada: pestañas
-       que cambian al instante (Chat · Descubre · Vivo). Sin cabecera
-       (todo el espacio arriba para las pestañas) y sin pie promo   ══════════ -->
+  <!-- ══════════ COLUMNA DERECHA PRINCIPAL: FORO + DESCUBRE + VIVO ══════════ -->
   <aside class="soc-dock" id="socDock">
     <nav class="soc-dock-tabs" id="socDockTabs">
       <button class="on" data-t="foro"><span>🧵</span> Foro</button>
       <button data-t="descubre"><span>✨</span> Descubre</button>
-      <button data-t="vivo"><span>🔴</span> Vivo</button>
+      <button data-t="vivo"><span>🔴</span> En vivo</button>
     </nav>
     <div class="soc-dock-body">
       <section class="soc-dock-tab on" data-tb="foro">
         <div class="foro-bg" id="foroBg"></div>
         <div class="soc-foro-card" id="foroRoot">
-          <div class="foro-top">
-            <b class="foro-brand">🧵 FORO <i>XSTREAM</i></b>
-            <span class="foro-toolbar">
+
+          <!-- ═══ cabecera del foro ═══ -->
+          <div class="foro-head">
+            <span class="foro-head-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </span>
+            <div class="foro-head-t">
+              <b>FORO <i>XSTREAM</i></b>
+              <small>La comunidad donde las mejores conversaciones nunca se detienen.</small>
+            </div>
+          </div>
+
+          <!-- ═══ toolbar: Temas · Fondo · Crear tema ═══ -->
+          <div class="foro-toolbar">
+            <span class="foro-toolbar-acts">
               <button class="foro-tool" id="foroSeed" title="🤖 Agente: crear automáticamente los temas del catálogo (solo admin)">🤖<small>Temas</small></button>
               <button class="foro-tool" id="foroBgBtn" title="🖼 Fondo del foro — sube TU imagen (local en tu dispositivo)">🖼<small>Fondo</small></button>
-              <button class="foro-tool foro-tool-main" id="foroNew" title="Crear un tema nuevo">＋<small>Tema</small></button>
+              <button class="foro-tool foro-tool-main" id="foroNew" title="Crear un tema nuevo">＋<small>Crear tema</small></button>
             </span>
           </div>
+
+          <!-- ═══ buscador de temas ═══ -->
+          <div class="foro-search">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="foroSearch" type="text" placeholder="Buscar temas en el foro..." autocomplete="off" spellcheck="false">
+          </div>
+
+          <!-- ═══ chips de categoría + ordenación (pintadas por JS) ═══ -->
+          <div class="foro-ctl" id="foroCtl"></div>
+
           <div class="foro-crumb hidden" id="foroCrumb"></div>
-          <!-- forobeta: HOME (boards verticales) · BOARD (hilos) · HILO -->
+          <!-- forobeta: HOME (tarjetas de categoría) · BOARD (hilos) · HILO -->
           <div class="foro-view" id="foroHome"></div>
           <div class="foro-view hidden" id="foroBoard"></div>
           <div class="foro-view hidden" id="foroThread"></div>
@@ -144,6 +154,10 @@
           <div class="soc-card-h"><span>👑 Contenido destacado</span><a href="../" data-main="" id="socFeatAll">Ver todo →</a></div>
           <div class="soc-feat" id="socFeat"></div>
           <div class="soc-feat-nav" id="socFeatNav"></div>
+        </div>
+        <div class="soc-card">
+          <div class="soc-card-h"><span>🔥 Tendencias ahora</span><small># de la comunidad</small></div>
+          <div class="soc-trends" id="socTrends"></div>
         </div>
         <div class="soc-card">
           <div class="soc-card-h"><span>👥 Personas que quizás conozcas</span></div>
@@ -161,6 +175,22 @@
         </div>
       </section>
     </div>
+  </aside>
+
+  <!-- ══════════ PANEL COMPLEMENTARIO: tendencias del foro + usuarios activos + grupos ══════════ -->
+  <aside class="soc-col-right">
+    <section class="soc-card">
+      <div class="soc-card-h"><span>🔥 Temas en tendencia</span></div>
+      <div class="soc-ftrend" id="socForoTrends"></div>
+    </section>
+    <section class="soc-card">
+      <div class="soc-card-h"><span>👥 Usuarios activos</span></div>
+      <div class="soc-active" id="socActive"></div>
+    </section>
+    <section class="soc-card">
+      <div class="soc-card-h"><span>⬡ Grupos recomendados</span></div>
+      <div class="soc-groups" id="socGroups"></div>
+    </section>
   </aside>
 
 </div>

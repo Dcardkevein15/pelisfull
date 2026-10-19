@@ -243,6 +243,23 @@
             <small class="vb-hint">Monedas gratis cada día</small>
             <button class="vb-earn" id="vPremEarn">Ganar <b id="vPremReward">+100</b> 🪙</button>
           </div>
+          <!-- 🎛 barra de controles del preview: vive DENTRO de #vPrem para que
+               se oculte junto con toda la capa del candado (vprem-off)      -->
+          <div class="vprem-controls" id="vPremControls">
+            <button class="vc-btn" id="vcPlay" title="Reproducir / Pausar">
+              <svg class="vc-play" viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="vc-pause" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <input type="range" class="vc-seek" id="vcSeek" min="0" max="1000" value="0" step="1" title="Avanzar el video">
+            <span class="vc-time" id="vcTime">0:00 / 0:00</span>
+            <button class="vc-btn" id="vcMute" title="Sonido / Silencio">
+              <svg class="vc-vol" viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8a5 5 0 0 1 0 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+              <svg class="vc-mute" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" style="display:none"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <button class="vc-btn" id="vcFull" title="Pantalla completa">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5H5a1 1 0 0 0-1 1v4M15 5h4a1 1 0 0 1 1 1v4M20 14v4a1 1 0 0 1-1 1h-4M9 19H5a1 1 0 0 1-1-1v-4"/></svg>
+            </button>
+          </div>
         </div>
         <!-- 💰 INTERMEDIARIO MÓVIL — sin contenedores ni bordes: solo texto
              y botones. Membresía ARRIBA, película bloqueada ABAJO. Aparece
@@ -264,27 +281,6 @@
               <button class="vo-btn vo-btn-blue vo-btn-big" id="voEarn">📺 Ganar <span id="voRewardTxt">+50</span> 🪙</button>
               <button class="vo-btn vo-btn-green vo-btn-big" id="voUnlock">▶ Reproducir ahora</button>
             </div>
-          </div>
-        </div>
-        <div class="vprem-controls" id="vPremControls">
-          <button class="vc-btn" id="vcPlay" title="Reproducir / Pausar">
-            <svg class="vc-play" viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            <svg class="vc-pause" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-          </button>
-          <input type="range" class="vc-seek" id="vcSeek" min="0" max="1000" value="0" step="1" title="Avanzar el video">
-          <span class="vc-time" id="vcTime">0:00 / 0:00</span>
-          <button class="vc-btn" id="vcMute" title="Sonido / Silencio">
-            <svg class="vc-vol" viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8a5 5 0 0 1 0 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-            <svg class="vc-mute" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" style="display:none"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </button>
-          <button class="vc-btn" id="vcFull" title="Pantalla completa">
-            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5H5a1 1 0 0 0-1 1v4M15 5h4a1 1 0 0 1 1 1v4M20 14v4a1 1 0 0 1-1 1h-4M9 19H5a1 1 0 0 1-1-1v-4"/></svg>
-          </button>
-        </div>
-          <div class="vprem-bottom" id="vPremBottom">
-            <span class="vb-coins">🪙 <b id="vPremCoins">0</b></span>
-            <small class="vb-hint">Monedas gratis cada día</small>
-            <button class="vb-earn" id="vPremEarn">Ganar <b id="vPremReward">+100</b> 🪙</button>
           </div>
         </div>
 
