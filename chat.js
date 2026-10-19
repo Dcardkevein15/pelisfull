@@ -116,6 +116,14 @@
        caja JAMÁS se mueve ni deja hueco debajo                             */
     document.body.classList.toggle('chat-open', isChat);
     if (isChat) {
+      /* 🎵 ENTRAR a Chat cierra el reproductor de música: si el dock 🎵 quedó
+         abierto tapaba el chat y el usuario tenía que pulsar Música otra vez
+         para verlo. Lógica correcta: Chat → se ve el CHAT; el botón Música
+         (o las tarjetas de género) lo vuelven a abrir cuando se pida.
+         Se usa el MISMO toggle real del dock para restaurar búsqueda,
+         placeholder y estado del botón sin duplicar lógica.              */
+      const dockM = $('chatMusic'), mbM = $('chatMusicBtn');
+      if (dockM && mbM && !dockM.classList.contains('hidden')) mbM.click();
       ensureRoom().then(() => beat());
       renderMsgs();          /* pintar inmediato aunque el poll ya vendrá */
       if (S.view === 'dm') markDmRead();
