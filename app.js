@@ -9840,8 +9840,9 @@ function uniSagasOf(s, fam) {
     if (present.has(uniNorm(f.name)) || !f.poster) continue;
     list.push({ se: null, epsS: [], label: f.name, name: f.name, tm: f, nConLinks: 0, missing: true });
   }
-  /* UNA sola cronología: fecha de estreno TMDB; lo local sin TMDB al final */
-  list.sort((a, b) => {
+  /* UNA sola cronología: fecha de estreno TMDB; lo local sin TMDB al final.
+     Si el ADMIN arrastró (s.sagaManual), su orden manda: se respeta tal cual */
+  if (!s.sagaManual) list.sort((a, b) => {
     const aa = (a.tm && a.tm.air) || '9999-99-99', bb = (b.tm && b.tm.air) || '9999-99-99';
     if (aa !== bb) return aa < bb ? -1 : 1;
     return (a.se || 999) - (b.se || 999);
@@ -9899,9 +9900,51 @@ function sagaRowEl(s, r, admin) {
       ${r.tm && r.tm.overview ? `<p class="saga-ov">${escapeHtml(r.tm.overview.slice(0, 150))}${r.tm.overview.length > 150 ? '…' : ''}</p>` : ''}
     </div>
     <div class="saga-strip">${strip}</div>
+    ${admin ? '<button class="saga-add" title="Añadir capítulo / video a esta saga — pegar enlaces o importar de archive.org">＋ Capítulo</button>' : ''}
     ${admin ? '<button class="saga-del" title="Eliminar esta saga del universo">🗑</button>' : ''}
     <button class="saga-toggle" title="${open ? 'Cerrar y resumir' : 'Expandir y ver todos los capítulos'}">${open ? '✕' : '⌄'}</button>`;
   wrap.appendChild(row);
+  /* ＋ ADMIN: añadir capítulos/videos a ESTA saga (importador dedicado) */
+  if (admin) {
+    row.querySelector('.saga-add').addEventListener('click', ev => { ev.stopPropagation(); uniImportToSaga(s, r); });
+  }
+  /* 🖱 ADMIN: arrastrar la fila para reordenar las sagas — queda guardado */
+  if (admin) {
+    row.draggable = true;
+    row.addEventListener('dragstart', ev => {
+      window.__uniDragSe = r.se;
+      row.classList.add('dragging');
+      try { ev.dataTransfer.setData('text/plain', String(r.se)); ev.dataTransfer.effectAllowed = 'move'; } catch (e) { }
+    });
+    row.addEventListener('dragend', () => row.classList.remove('dragging'));
+    row.addEventListener('dragover', ev => { ev.preventDefault(); row.classList.add('drop-above'); });
+    row.addEventListener('dragleave', () => row.classList.remove('drop-above'));
+    row.addEventListener('drop', ev => {
+      ev.preventDefault();
+      row.classList.remove('drop-above');
+      const from = window.__uniDragSe;
+      window.__uniDragSe = null;
+      if (from == null || from === r.se) return;
+      /* nueva orden de las temporadas PRESENTES según el orden visual actual */
+      const visOrder = [...els.episodesGrid.querySelectorAll('[data-unise]')].map(el2 => +el2.dataset.unise).filter(x => x > 0);
+      let seq = visOrder.length ? visOrder : Object.keys(s.seasons || {}).map(Number).sort((a, b) => a - b);
+      if (!seq.length) return;
+      const idxFrom = seq.indexOf(from), idxTo = seq.indexOf(r.se);
+      if (idxFrom < 0 || idxTo < 0) return;
+      seq.splice(idxFrom, 1);
+      seq.splice(idxTo, 0, from);
+      /* remapea las claves de temporada al nuevo orden y congela el orden
+         manual (el arrastre del admin MANDA sobre la cronología TMDB)      */
+      const map = {}; seq.forEach((oldSe, i) => map[oldSe] = i + 1);
+      const newSeasons = {}; seq.forEach((oldSe, i) => newSeasons[i + 1] = s.seasons[oldSe]);
+      s.episodes.forEach(e => { if (e.season) e.season = map[e.season] || e.season; });
+      s.seasons = newSeasons;
+      s.sagaManual = 1;
+      save(); renderEpisodes();
+      toast('⇅ Orden de sagas guardado — puedes arrastrarlas cuando quieras');
+    });
+  }
+  wrap.dataset.unise = r.se;
   /* 🗑 ADMIN: eliminar esta saga del universo en cualquier momento */
   if (admin) {
     const delBtn = row.querySelector('.saga-del');
@@ -9946,12 +9989,14 @@ function sagaRowEl(s, r, admin) {
     const g = document.createElement('div');
     g.className = 'saga-grid';
     wrap.appendChild(g);
-    lazyRender(g, r.epsS, ep => sagaEpCell(s, ep, r.label), 30);
+    lazyRender(g, r.epsS, (ep, i) => sagaEpCell(s, ep, r, i + 1), 30);
   }
   return wrap;
 }
 /* tarjeta de capítulo en la vista universo */
-function sagaEpCell(s, ep, sagaLabel) {
+function sagaEpCell(s, ep, r, dispNum) {
+  const sagaLabel = r.name || r.label;
+  const num = dispNum || ep.n;   /* cada saga cuenta desde 1 — numeración propia */
   const pr = ((state.progress || {})[s.id] || {})[ep.n];
   const cell = document.createElement('div');
   cell.dataset.epn = ep.n;
@@ -9964,7 +10009,7 @@ function sagaEpCell(s, ep, sagaLabel) {
   if (thumbSrc) cell.classList.add('has-thumb');
   const resume = pr && !pr.done && pr.t > 20 ? `<span class="ep-resume" title="Continuar donde lo dejaste">▶ ${fmt(pr.t)}</span>` : '';
   cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
-    + `<span class="num">${ep.n}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
+    + `<span class="num">${num}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
     + (pr && !pr.done && pr.d ? `<div class="ep-progress"><i style="width:${Math.round(pr.t / pr.d * 100)}%"></i></div>` : '')
     + resume
     + (ep.url ? '' : '<span class="ep-falta-tag">sin enlace</span>');
@@ -9996,13 +10041,13 @@ function sagaEpCell(s, ep, sagaLabel) {
     cell.appendChild(add);
     cell.title = 'Sin enlace — pulsa ＋ Enlace para encender esta tarjeta';
   }
-  uniFlyBind(cell, s, ep, sagaLabel);
+  uniFlyBind(cell, s, ep, sagaLabel, num);
   return cell;
 }
 /* 💬 panel flotante al pasar el ratón (solo escritorio con puntero) */
 let _flyEl = null, _flyT = null;
 function uniFlyHide() { if (_flyEl) _flyEl.remove(); _flyEl = null; }
-function uniFlyBind(cell, s, ep, sagaLabel) {
+function uniFlyBind(cell, s, ep, sagaLabel, dispNum) {
   if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   cell.addEventListener('mouseenter', () => {
     clearTimeout(_flyT);
@@ -10016,7 +10061,7 @@ function uniFlyBind(cell, s, ep, sagaLabel) {
       fly.innerHTML = `
         ${th ? `<img src="${escapeHtml(th)}" alt="">` : ''}
         <div class="sf-body">
-          <small>🌌 ${escapeHtml(sagaLabel)} · E${ep.n}</small>
+          <small>🌌 ${escapeHtml(sagaLabel)} · E${dispNum || ep.n}</small>
           <b>${escapeHtml(ep.t)}</b>
           ${ep.note ? `<p>📝 ${escapeHtml(ep.note.slice(0, 90))}</p>` : ''}
           <p>${ep.url ? '▶ Lista para ver — elige y arranca al instante.' : '⏳ Aún sin enlace.'}${pr && !pr.done && pr.t > 15 ? ` · viste hasta ${fmt(pr.t)}` : ''}</p>
@@ -10064,31 +10109,21 @@ async function uniAddMissingSaga(s, m) {
   const total = m.epCount || 0;
   const r = await uiModal({
     icon: '🌌', title: `Añadir «${escapeHtml(m.name)}» al universo`,
-    okLabel: 'Crear saga',
-    sub: `Se crea la temporada <b>«${escapeHtml(m.name)}»</b> dentro de «<b>${escapeHtml(s.t)}</b>» con <b>${total || '?'} tarjetas</b> de capítulo (en gris, sin enlace) usando los títulos reales de TMDB.<br>Después pegas cada enlace con ＋ y las tarjetas se encienden una a una.`,
+    okLabel: 'Crear saga e importar',
+    sub: `Se crea la saga <b>«${escapeHtml(m.name)}»</b> dentro de «<b>${escapeHtml(s.t)}</b>» (TMDB conoce ${total || '?'} episodios con sus nombres exactos) y se abre el <b>importador dedicado</b>: pega tus enlaces o importa de archive.org y las tarjetas se crean solas — nombres y números correctos, sin rellenar una por una.`,
   });
   if (!r) return;
-  try {
-    const det = await uniTmdb('/tv/' + m.id);
-    const tmSeasons = Math.min(det.number_of_seasons || 1, 8);
-    const nextSeason = 1 + Math.max(...s.episodes.map(e => e.season || 1), 1);
-    let offset = s.episodes.reduce((mx, e) => Math.max(mx, e.n || 0), 0);
-    let created = 0;
-    for (let sn = 1; sn <= tmSeasons; sn++) {
-      let eps = [];
-      try { eps = (await uniTmdb('/tv/' + m.id + '/season/' + sn)).episodes || []; } catch (e) { }
-      if (!eps.length && sn > 1) continue;
-      for (let i = 0; i < eps.length; i++) {
-        s.episodes.push({ n: ++offset, t: (eps[i].name || `Episodio ${i + 1}`).slice(0, 90), url: '', season: nextSeason, srcSeason: 'tmdb-' + m.id });
-        created++;
-      }
-    }
-    if (!created) for (let i = 0; i < (total || 0); i++) s.episodes.push({ n: ++offset, t: `Episodio ${i + 1}`, url: '', season: nextSeason, srcSeason: 'tmdb-' + m.id });
-    s.seasons = s.seasons || {};
-    s.seasons[nextSeason] = m.name.slice(0, 44);
-    save(); renderEpisodes();
-    toast(`🌌 «${m.name}» añadida con ${created || total} tarjetas — pega los enlaces con ＋`);
-  } catch (e) { toast('⚠ TMDB no respondió — inténtalo otra vez', true); }
+  /* crea SOLO el contenedor de la saga — las tarjetas nacen del importador
+     (enlaces pegados o videos de archive.org), con nombre TMDB por posición */
+  const nextSeason = 1 + Math.max(...s.episodes.map(e => e.season || 1), 1);
+  s.seasons = s.seasons || {};
+  s.seasons[nextSeason] = m.name.slice(0, 44);
+  save(); renderEpisodes();
+  toast(`🌌 «${m.name}» creada — importa sus capítulos ahora`);
+  /* abre el importador EN SITIO con los datos TMDB de esta saga */
+  requestAnimationFrame(() => {
+    uniImportToSaga(s, { se: nextSeason, epsS: [], label: s.seasons[nextSeason], name: m.name, tm: m, nConLinks: 0, color: '#37c6ff' });
+  });
 }
 function sagaMissingEl(s, m, admin) {
   const d = document.createElement('div');
@@ -10172,4 +10207,171 @@ async function uniAddMovie(s, mv) {
     const c = els.episodesGrid.querySelector(`[data-epn="${n}"]`);
     if (c) { c.classList.add('ep-flash'); c.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
   });
+}
+
+/* ═══════════ 📥 IMPORTAR A LA SAGA — modal dedicado: pegar enlaces + archive.org
+   Abierto DESDE cada saga (＋ Capítulo) y desde «Añadir saga»: los enlaces
+   que se pegan (o TODOS los videos de un enlace/carrito de archive.org)
+   se convierten en capítulos de ESA saga, con los nombres y números
+   EXACTOS de TMDB por posición. Nada de rellenar tarjeta por tarjeta.  */
+async function uniTmdbEpsOfSaga(r) {
+  if (!r || !r.tm || r.tm.isMovie) return null;
+  const key = 'tveps-' + r.tm.id;
+  const hit = uniCacheGet(key);
+  if (hit) return hit;
+  try {
+    /* TODAS las temporadas de TMDB concatenadas — las series largas viven
+       divididas en temporadas de ~39: se unen (en paralelo, rapidísimo)
+       para tener el nombre de CADA capítulo de la saga completa         */
+    const det = await uniTmdb('/tv/' + r.tm.id);
+    const nSea = Math.min(det.number_of_seasons || 1, 8);
+    const names = [];
+    const seasonLists = await Promise.all(
+      Array.from({ length: nSea }, (_, i) => uniTmdb('/tv/' + r.tm.id + '/season/' + (i + 1)).catch(() => null)));
+    for (const d of seasonLists) if (d && d.episodes) for (const e of d.episodes) names.push(e.name || '');
+    uniCacheSet(key, names);
+    return names.length ? names : null;
+  } catch (e) { return null; }
+}
+/* crea los capítulos dentro de la saga r — numeración GLOBAL interna y
+   nombre por prioridad: título del usuario > nombre real del archivo >
+   nombre EXACTO de TMDB por posición > Capítulo N                      */
+function uniAppendEpsToSaga(s, r, items, tmNames) {
+  if (!items || !items.length) return 0;
+  let n = s.episodes.reduce((mx, e) => Math.max(mx, e.n || 0), 0);
+  let pos = r.epsS ? r.epsS.length : (s.episodes.filter(e => (e.season || 1) === (r.se || 1)).length);
+  let made = 0;
+  for (const it of items) {
+    if (!it || !it.url) continue;
+    let t = (it.t || '').trim();
+    if (!t && tmNames && tmNames[pos]) t = tmNames[pos];
+    if (!t) t = (it.file || '').replace(/\.[a-z0-9]{2,4}$/i, '').replace(/[_.]+/g, ' ').trim();
+    if (!t) t = `Capítulo ${pos + 1}`;
+    s.episodes.push({ n: ++n, t: String(t).slice(0, 90), url: it.url, season: r.se || 1, sub: null });
+    pos++; made++;
+  }
+  if (made) { liftTombstone(s); save(); }
+  return made;
+}
+/* el modal en sí — dos pestañas, sin salir de los relacionados */
+async function uniImportToSaga(s, r) {
+  if (!needAdmin()) return;
+  const tmNames = r && r.tm ? (await uniTmdbEpsOfSaga(r).catch(() => null)) : null;
+  const have = r.epsS ? r.epsS.length : s.episodes.filter(e => (e.season || 1) === (r.se || 1)).length;
+  const sagaName = r.name || r.label || 'la saga';
+  const ov = document.createElement('div');
+  ov.className = 'uni-imp';
+  ov.innerHTML = `
+    <div class="uni-card">
+      <button class="uni-x" title="Cerrar">✕</button>
+      <div class="uni-h">
+        <b>＋ ${escapeHtml(sagaName.slice(0, 34))}</b>
+        <small>${escapeHtml(s.t.slice(0, 30))} · ya tiene ${have} cap${have === 1 ? '' : 's'} en la saga${tmNames ? ` · TMDB conoce ${tmNames.length} nombres exactos` : ''}</small>
+      </div>
+      <div class="uni-tabs">
+        <button class="on" data-t="links">🔗 Pegar enlaces</button>
+        <button data-t="ia">🌐 Archive.org</button>
+      </div>
+      <!-- pestaña 1: pegar enlaces -->
+      <div class="uni-pane on" data-p="links">
+        <textarea rows="6" placeholder="Un enlace por línea — o escribe un título encima del enlace y ese nombre manda.&#10;Los que llegan sin título reciben el nombre EXACTO de TMDB por posición (${have + 1}, ${have + 2}…)"></textarea>
+        <div class="uni-prev hidden"></div>
+        <button class="uni-go">⚡ Importar a esta saga</button>
+      </div>
+      <!-- pestaña 2: buscador archive.org -->
+      <div class="uni-pane" data-p="ia">
+        <div class="uni-ia-search">
+          <input type="text" placeholder="Buscar en archive.org (serie, temporada, capítulos…)" value="${escapeHtml((r.tm ? r.tm.name : sagaName).slice(0, 60))}">
+          <button class="uni-ia-btn">🔍 Buscar</button>
+        </div>
+        <div class="uni-ia-res"></div>
+      </div>
+    </div>`;
+  document.body.appendChild(ov);
+  const close = () => ov.remove();
+  ov.querySelector('.uni-x').addEventListener('click', close);
+  ov.addEventListener('click', ev => { if (ev.target === ov) close(); });
+  /* pestañas */
+  const panes = [...ov.querySelectorAll('.uni-pane')];
+  ov.querySelectorAll('.uni-tabs button').forEach(b => b.addEventListener('click', () => {
+    ov.querySelectorAll('.uni-tabs button').forEach(x => x.classList.toggle('on', x === b));
+    panes.forEach(p => p.classList.toggle('on', p.dataset.p === b.dataset.t));
+  }));
+  /* ── pestaña 1: pegar enlaces con vista previa en vivo ── */
+  const ta = ov.querySelector('.uni-pane[data-p="links"] textarea');
+  const prev = ov.querySelector('.uni-prev');
+  const go = ov.querySelector('.uni-go');
+  let links = [];
+  ta.addEventListener('input', () => {
+    links = parseImportLinks(ta.value);
+    if (!ta.value.trim()) { prev.classList.add('hidden'); go.disabled = true; go.textContent = '⚡ Importar a esta saga'; return; }
+    const ok = links.filter(l => l.type).length;
+    prev.classList.remove('hidden');
+    prev.innerHTML = `<b>${ok}</b> enlace${ok === 1 ? '' : 's'} listo${ok === 1 ? '' : 's'}` +
+      (links.some(l => !l.type) ? ` · <em>⚠ ${links.filter(l => !l.type).length} no reconocido(s)</em>` : '') +
+      (tmNames ? `<br><small>Recibirán los nombres de TMDB: «${escapeHtml((tmNames[have] || '').slice(0, 34))}», «${escapeHtml((tmNames[have + 1] || '').slice(0, 30))}»…</small>` : '');
+    go.disabled = !ok;
+    go.textContent = ok ? `⚡ Importar ${ok} a esta saga` : '⚡ Importar a esta saga';
+  });
+  go.disabled = true;
+  go.addEventListener('click', () => {
+    const items = links.filter(l => l.type).map(l => ({ t: l.title || '', url: l.url }));
+    const made = uniAppendEpsToSaga(s, r, items, tmNames);
+    close();
+    if (!made) return toast('⚠ Nada importado — revisa los enlaces', true);
+    toast(`⚡ ${made} capítulo${made === 1 ? '' : 's'} añadido${made === 1 ? '' : 's'} a «${sagaName.slice(0, 20)}»`);
+    renderEpisodes(); renderSeries(els.searchInput.value);
+    requestAnimationFrame(() => {
+      const b = els.episodesGrid.querySelector(`[data-sagakey="${CSS.escape(s.id + '|' + (r.se || 1))}"]`);
+      if (b) b.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+  });
+  /* ── pestaña 2: archive.org — buscar ítems, importar TODOS sus videos ── */
+  const resBox = ov.querySelector('.uni-ia-res');
+  const iaQ = ov.querySelector('.uni-ia-search input');
+  const iaSearch = async () => {
+    const q = iaQ.value.trim();
+    if (!q) return;
+    resBox.innerHTML = '<div class="uni-ia-msg">🔍 Buscando en archive.org…</div>';
+    try {
+      const p = new URLSearchParams({ q: `(${q}) AND mediatype:movies`, rows: '14', page: '1', output: 'json' });
+      ['identifier', 'title', 'year', 'downloads'].forEach(f => p.append('fl[]', f));
+      const res = await fetch(`https://archive.org/advancedsearch.php?${p.toString()}`);
+      const data = await res.json();
+      const docs = ((data.response && data.response.docs) || []).filter(d => d.identifier && d.title);
+      resBox.innerHTML = '';
+      if (!docs.length) { resBox.innerHTML = '<div class="uni-ia-msg">Sin resultados — prueba con el nombre en inglés o más corto.</div>'; return; }
+      for (const d of docs) {
+        const year = String(d.year || '').slice(0, 4);
+        const title = Array.isArray(d.title) ? d.title[0] : String(d.title || '');
+        const card = document.createElement('div');
+        card.className = 'uni-ia-card';
+        card.innerHTML = `
+          <img loading="lazy" src="https://archive.org/services/img/${encodeURIComponent(d.identifier)}" alt="" onerror="this.style.opacity=.15">
+          <div class="uni-ia-b"><b title="${escapeHtml(title)}">${escapeHtml(title.slice(0, 52))}</b><small>${year ? year + ' · ' : ''}${(d.downloads || 0).toLocaleString()} desc.</small></div>
+          <button class="uni-ia-add" title="Importar TODOS los videos de este enlace a la saga">＋ Importar</button>`;
+        card.querySelector('.uni-ia-add').addEventListener('click', async ev => {
+          const b = ev.target.closest('button');
+          b.disabled = true; b.textContent = '⏳ Leyendo…';
+          try {
+            const media = await cineFetchMedia(d.identifier);
+            if (!media || !media.vids.length) { b.textContent = '⚠ sin videos'; setTimeout(() => { b.disabled = false; b.textContent = '＋ Importar'; }, 1400); return; }
+            const items = media.vids.map(v => ({ url: v.url, file: v.name }));
+            const made = uniAppendEpsToSaga(s, r, items, tmNames);
+            close();
+            toast(`🌐 ${made} capítulo${made === 1 ? '' : 's'} importado${made === 1 ? '' : 's'} de archive.org a «${sagaName.slice(0, 20)}»`);
+            renderEpisodes(); renderSeries(els.searchInput.value);
+            requestAnimationFrame(() => {
+              const bb = els.episodesGrid.querySelector(`[data-sagakey="${CSS.escape(s.id + '|' + (r.se || 1))}"]`);
+              if (bb) bb.scrollIntoView({ block: 'start', behavior: 'smooth' });
+            });
+          } catch (e) { b.textContent = '⚠ error'; setTimeout(() => { b.disabled = false; b.textContent = '＋ Importar'; }, 1400); }
+        });
+        resBox.appendChild(card);
+      }
+    } catch (e) { resBox.innerHTML = '<div class="uni-ia-msg">⚠ Sin conexión con archive.org — inténtalo otra vez.</div>'; }
+  };
+  ov.querySelector('.uni-ia-btn').addEventListener('click', iaSearch);
+  iaQ.addEventListener('keydown', ev => { if (ev.key === 'Enter') iaSearch(); });
+  setTimeout(() => ta.focus(), 60);
 }
