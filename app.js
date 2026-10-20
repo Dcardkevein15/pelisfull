@@ -2579,6 +2579,15 @@ function mergeSeason(dragged, target) {
   target.seasons[nextSeason] = nombreT.slice(0, 44);
 
   state.series.splice(state.series.indexOf(dragged), 1);
+  /* 🪦 LÁPIDA DE LA FUSIÓN: la serie arrastrada deja de existir COMO TAL.
+     Sin esto, la «fusión por unión» del sync la RESUCITABA en cuanto
+     llegaba el catálogo publicado (que aún la traía) — el merge se
+     deshacía solo al recargar. La lápida es más nueva que su `at`, así
+     el sync la ignora, VIAJA al publicar y limpia también los demás
+     dispositivos. Si algún día se re-importa a propósito, liftTombstone
+     la revive.                                                          */
+  state.deleted = state.deleted || {};
+  state.deleted[dragged.id] = Date.now();
   delete state.progress[dragged.id];
   state.broken = (state.broken || []).filter(b => b.sid !== dragged.id);
   if (!target.poster) refetchPoster(target);
