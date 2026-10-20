@@ -2552,27 +2552,18 @@ function reorderSeries(dragId, targetId) {
 
 /* convierte «dragged» en una nueva TEMPORADA dentro de «target»:
    los capítulos se numeran en continuación (N+1…) y su progreso migra */
-async function mergeSeason(dragged, target) {
+function mergeSeason(dragged, target) {
   target.seasons = target.seasons || {};
   if (!target.seasons[1]) target.seasons[1] = target.t;
   target.episodes.forEach(e => { if (!e.season) e.season = 1; });
   const nextSeason = 1 + Math.max(...target.episodes.map(e => e.season || 1), 1);
   let offset = target.episodes.reduce((m, e) => Math.max(m, e.n || 0), 0);
-  /* 🧹 DEDUPE POR URL — el merge es IDEMPOTENTE: los enlaces que ya viven en
-     el destino NO se duplican. Si TODO está repetido es una serie que ya
-     fusionaste antes: se pregunta QUÉ hacer — JAMÁS se borra en silencio. */
-  const urlSet = new Set(target.episodes.map(e => String(e.url || '').trim()).filter(Boolean));
-  let added = 0, dupes = 0;
   dragged.episodes.forEach((e, i) => {
-    const u = String(e.url || '').trim();
-    if (u && urlSet.has(u)) { dupes++; return; }   /* ya vive en el destino */
-    if (u) urlSet.add(u);
     const nn = ++offset;
     target.episodes.push({
       n: nn, t: e.t || `Capítulo ${i + 1}`, url: e.url || '', sub: e.sub || null,
       note: e.note, season: nextSeason, srcSeason: dragged.id,
     });
-    added++;
     /* migra el progreso/vistos del capítulo antiguo a su nuevo número */
     const pr = ((state.progress || {})[dragged.id] || {})[e.n];
     if (pr) {
@@ -2580,29 +2571,6 @@ async function mergeSeason(dragged, target) {
       state.progress[target.id][nn] = pr;
     }
   });
-  /* 🧩 TODO el contenido ya estaba fusionado → explicar y decidir:
-     quitar sella la fusión con lápida (deja de resucitar); cancelar
-     deja la serie en la lista tal cual — nada se pierde nunca         */
-  if (!added && dragged.episodes.length) {
-    const r = await uiModal({
-      icon: '🧩', title: `«${escapeHtml(dragged.t.slice(0, 30))}» ya está dentro de «${escapeHtml(target.t.slice(0, 24))}»`,
-      okLabel: '🧹 Quitar la duplicada',
-      sub: `Sus <b>${dupes} enlaces</b> ya existen en «<b>${escapeHtml(target.t)}</b>» — esta serie ya fue fusionada antes.<br><br><b>Quitar</b> la saca de la lista y sella la fusión con lápida (no vuelve a aparecer al recargar ni al publicar; su contenido sigue intacto dentro de «${escapeHtml(target.t)}»).<br><b>Cancelar</b> no toca nada.`,
-    });
-    if (!r) { toast('Nada cambió — «' + dragged.t.slice(0, 24) + '» sigue en la lista'); return; }
-    state.series.splice(state.series.indexOf(dragged), 1);
-    state.deleted = state.deleted || {};
-    state.deleted[dragged.id] = Date.now();
-    delete state.progress[dragged.id];
-    state.broken = (state.broken || []).filter(b => b.sid !== dragged.id);
-    save();
-    const gEl = els.seriesList.querySelector(`[data-sid="${CSS.escape(dragged.id)}"]`);
-    if (gEl) gEl.remove();
-    els.seriesList._skey = null;
-    renderSeries(els.searchInput.value);
-    toast(`🧹 «${dragged.t.slice(0, 24)}» quitada — su contenido vive dentro de «${target.t.slice(0, 20)}»`);
-    return;
-  }
   /* nombre legible para la cabecera: temporada (series) o parte (sagas de películas) */
   const esSaga = target.kind === 'pelicula';
   let nombreT = dragged.t.replace(/^.*?[·\-:]\s*/, '').trim();
@@ -2611,13 +2579,11 @@ async function mergeSeason(dragged, target) {
   target.seasons[nextSeason] = nombreT.slice(0, 44);
 
   state.series.splice(state.series.indexOf(dragged), 1);
-  /* 🪦 LÁPIDA DE LA FUSIÓN: la serie arrastrada deja de existir COMO TAL.
-     Sin esto, la «fusión por unión» del sync la RESUCITABA en cuanto
-     llegaba el catálogo publicado (que aún la traía) — el merge se
-     deshacía solo al recargar. La lápida es más nueva que su `at`, así
-     el sync la ignora, VIAJA al publicar y limpia también los demás
-     dispositivos. Si algún día se re-importa a propósito, liftTombstone
-     la revive.                                                          */
+  /* 🪦 LÁPIDA DE LA FUSIÓN: sin esto, la «fusión por unión» del sync
+     resucitaba la serie arrastrada en cuanto llegaba el catálogo (que
+     aún la traía) — el merge se deshacía solo al recargar. La lápida
+     viaja al publicar y solo liftTombstone (re-importar a propósito)
+     la puede revivir.                                                    */
   state.deleted = state.deleted || {};
   state.deleted[dragged.id] = Date.now();
   delete state.progress[dragged.id];
@@ -2637,10 +2603,9 @@ async function mergeSeason(dragged, target) {
   try { renderGenreRow(); } catch (e) { }
   renderEpisodes();
   selectSeries(target.id);
-  const dupeNote = dupes ? ` · ${dupes} enlace${dupes === 1 ? '' : 's'} repetido${dupes === 1 ? '' : 's'} ignorado${dupes === 1 ? '' : 's'} (ya estaban)` : '';
   toast(esSaga
-    ? `🎬 «${dragged.t}» ahora es la Parte ${nextSeason} de la saga «${target.t}»${dupeNote}`
-    : `🧩 «${dragged.t}» ahora es la Temporada ${nextSeason} de «${target.t}»${dupeNote}`);
+    ? `🎬 «${dragged.t}» ahora es la Parte ${nextSeason} de la saga «${target.t}»`
+    : `🧩 «${dragged.t}» ahora es la Temporada ${nextSeason} de «${target.t}»`);
 }
 
 /* panelito flotante al soltar una serie sobre otra: Mover o Unir como temporada */
@@ -3555,38 +3520,12 @@ function loadEpisode(epN, autoplayNow = true) {
   syncAddressBar();
   /* 4. pintar título y chips del capítulo elegido */
   els.empty.classList.add('hidden');
-  /* 🔢 numeración POR SAGA: cada serie cuenta desde 1 dentro de su propia
-     temporada (la fusión renumera en global internamente, pero el usuario
-     ve el número de SU serie — Naruto cap 1 = «E1», Shippuden cap 498 =
-     «E498», nunca el global tipo E701)                                    */
-  const seOf = ep.season || 1;
-  const epsS = s.episodes.filter(e => (e.season || 1) === seOf);
-  const posEp = (epsS.findIndex(e => e.n === ep.n) + 1) || ep.n;
-  els.nowPlaying.textContent = `${s.t} · E${posEp}`;
-  document.title = `Ver ${s.t} capítulo ${posEp} online gratis — X·STREAM`;
+  els.nowPlaying.textContent = `${s.t} · E${ep.n}`;
+  document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
   els.shareBtn.classList.remove('hidden');
   syncDownloadBtn();
   els.flagBtn.classList.toggle('hidden', !ep.url);
   renderEpisodes();
-  /* 💊 píldora del capítulo: SIEMPRE visible (bloqueado o no — antes solo se
-     creaba tras desbloquear y en los capítulos con candado quedaba pegado
-     el número del capítulo ANTERIOR, ej. «E701 - cap498» en el cap 1)    */
-  {
-    const viejo = document.getElementById('epNowBtn');
-    if (viejo) viejo.remove();
-    const sagaName = (s.seasons && s.seasons[seOf]) || '';
-    const pill = document.createElement('button');
-    pill.id = 'epNowBtn';
-    pill.className = 'ep-now';
-    const realVal = epRealNum(ep);
-    pill.textContent = realVal && realVal !== posEp ? `E${posEp} · cap ${realVal}` : `E${posEp}`;
-    pill.title = (sagaName ? sagaName + ' · ' : '') + (realVal && realVal !== posEp
-      ? `Número real en la fuente: ${realVal} — clic: saltar a su tarjeta`
-      : 'Clic: saltar a su tarjeta en la lista');
-    pill.addEventListener('click', () => scrollToEpCard(ep.n));
-    /* justo DESPUÉS del título, antes de los chips ANIME/episodios… */
-    els.stageBadges.parentElement.insertBefore(pill, els.stageBadges);
-  }
 
   /* ── 🪙 PAYWALL: el check usa localStorage directamente (la fuente
      más confiable — el objeto en memoria puede reinicializarse). ── */
@@ -3628,10 +3567,26 @@ function loadEpisode(epN, autoplayNow = true) {
        quedaba pegado ENCIMA del video desbloqueado (se oía el audio
        detrás del candado). Al cerrar y reabrir la página "funcionaba"
        porque la bóveda nacía oculta.                                      */
-     hidePaywall();
+    hidePaywall();
   }
   /* si ya estaba desbloqueado o es staff → reproducir directamente */
-  document.title = `Ver ${s.t} capítulo ${posEp} online gratis — X·STREAM`;
+  /* 💊 píldora clickable: número REAL (si el título lo trae) → salto a su tarjeta */
+  {
+    const viejo = document.getElementById('epNowBtn');
+    if (viejo) viejo.remove();
+    const pill = document.createElement('button');
+    pill.id = 'epNowBtn';
+    pill.className = 'ep-now';
+    const realVal = epRealNum(ep);
+    pill.textContent = realVal && realVal !== ep.n ? `E${ep.n} · cap ${realVal}` : `E${ep.n}`;
+    pill.title = realVal && realVal !== ep.n
+      ? `Número real en la fuente: ${realVal} — clic: saltar a su tarjeta`
+      : 'Clic: saltar a su tarjeta en la lista';
+    pill.addEventListener('click', () => scrollToEpCard(ep.n));
+    /* justo DESPUÉS del título, antes de los chips ANIME/episodios… */
+    els.stageBadges.parentElement.insertBefore(pill, els.stageBadges);
+  }
+    document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
   els.shareBtn.classList.remove('hidden');
   syncDownloadBtn();
   els.flagBtn.classList.toggle('hidden', !ep.url);
