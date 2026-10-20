@@ -2558,12 +2558,22 @@ function mergeSeason(dragged, target) {
   target.episodes.forEach(e => { if (!e.season) e.season = 1; });
   const nextSeason = 1 + Math.max(...target.episodes.map(e => e.season || 1), 1);
   let offset = target.episodes.reduce((m, e) => Math.max(m, e.n || 0), 0);
+  /* 🧹 DEDUPE POR URL — el merge es IDEMPOTENTE: si arrastras una serie
+     cuyo contenido YA está fusionado (un fantasma resucitado de antes),
+     los enlaces repetidos NO se duplican. Si TODO está repetido, la saga
+     nueva ni se crea: la serie se limpia y se lapida, sin ensuciar.     */
+  const urlSet = new Set(target.episodes.map(e => String(e.url || '').trim()).filter(Boolean));
+  let added = 0, dupes = 0;
   dragged.episodes.forEach((e, i) => {
+    const u = String(e.url || '').trim();
+    if (u && urlSet.has(u)) { dupes++; return; }   /* ya vive en el destino */
+    if (u) urlSet.add(u);
     const nn = ++offset;
     target.episodes.push({
       n: nn, t: e.t || `Capítulo ${i + 1}`, url: e.url || '', sub: e.sub || null,
       note: e.note, season: nextSeason, srcSeason: dragged.id,
     });
+    added++;
     /* migra el progreso/vistos del capítulo antiguo a su nuevo número */
     const pr = ((state.progress || {})[dragged.id] || {})[e.n];
     if (pr) {
@@ -2571,6 +2581,22 @@ function mergeSeason(dragged, target) {
       state.progress[target.id][nn] = pr;
     }
   });
+  /* TODO el contenido ya estaba fusionado → no crear saga vacía: es un
+     fantasma de una fusión anterior. Se limpia silenciosamente.         */
+  if (!added && dragged.episodes.length) {
+    state.series.splice(state.series.indexOf(dragged), 1);
+    state.deleted = state.deleted || {};
+    state.deleted[dragged.id] = Date.now();
+    delete state.progress[dragged.id];
+    state.broken = (state.broken || []).filter(b => b.sid !== dragged.id);
+    save();
+    const gEl = els.seriesList.querySelector(`[data-sid="${CSS.escape(dragged.id)}"]`);
+    if (gEl) gEl.remove();
+    els.seriesList._skey = null;
+    renderSeries(els.searchInput.value);
+    toast(`🧹 «${dragged.t.slice(0, 26)}» ya estaba dentro de «${target.t.slice(0, 22)}» — fantasma limpiado para siempre`);
+    return;
+  }
   /* nombre legible para la cabecera: temporada (series) o parte (sagas de películas) */
   const esSaga = target.kind === 'pelicula';
   let nombreT = dragged.t.replace(/^.*?[·\-:]\s*/, '').trim();
