@@ -804,6 +804,7 @@
     const h = await sha256(String(pass || '').trim());
     if (h && h === CONFIG.adminHash) {
       ID.admin = true;
+      ID.adminKey = h;   /* 🧿 huella de la clave con la que desbloqueaste ESTE dispositivo */
       ID.everAdmin = true;   /* 🛡 una vez admin, SIEMPRE se fusiona (nunca pisan tu biblioteca) */
       writeAll(); applyRole(); renderChip();
       return true;
@@ -814,6 +815,21 @@
   function lockAdmin() {
     if (!ID) return;
     ID.admin = false; writeAll(); applyRole(); renderChip();
+  }
+  /* 🔄 CADUCIDAD DE SESIÓN AL CAMBIAR LA CLAVE: cada dispositivo guarda la
+     huella (SHA-256) de la frase con la que desbloqueó admin. En cada
+     arranque se compara contra la clave ACTUAL de la web — si cambiaste
+     adminHash, todos los dispositivos desbloqueados con la frase vieja
+     (o sin huella, de antes de este sistema) vuelven a ser LECTORES:
+     hay que desbloquear de nuevo con la clave nueva. ID.everAdmin NO se
+     toca (solo protege tu biblioteca de ser pisada; no da permisos). */
+  function validateAdminSession() {
+    if (ID && ID.admin && ID.adminKey !== CONFIG.adminHash) {
+      ID.admin = false;
+      delete ID.adminKey;
+      writeAll();
+      try { axToast('🔒 La clave de administrador cambió — vuelve a desbloquear con la nueva'); } catch (e) { }
+    }
   }
   function applyRole() {
     const admin = isAdmin();
@@ -3122,6 +3138,7 @@ xhr.setRequestHeader('Content-Type', 'application/json');
         const deeper = normalizeIdentity(await idbRead()) || normalizeIdentity(await cacheRead());
         if (deeper && (!lsRead())) {
           ID = deeper; ID.restored = true;
+          validateAdminSession();   /* 🔄 la identidad rescatada también caduca si la clave cambió */
           writeAll(); renderChip(); applyRole();
         }
       })();
@@ -3133,6 +3150,7 @@ xhr.setRequestHeader('Content-Type', 'application/json');
       bootUI();
     }
     ID.visits = (ID.visits || 0) + 1;
+    validateAdminSession();   /* 🔄 clave cambiada → sesión admin caducada en este dispositivo */
     writeAll();
     /* 🕊 NADA de navigator.storage.persist(): ese permiso de «almacenamiento
        persistente» asusta a la gente y no aporta nada visible — la identidad
