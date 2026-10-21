@@ -85,6 +85,17 @@ const PRESENCE_SEED = () => ({ v: 3, beats: {}, notifs: {}, readNotifs: {} });
 const INDEX_SEED = () => ({ v: 3, convos: {}, rl: {} });
 const CONVO_SEED = () => ({ v: 3, msgs: [] });
 
+/* ═══ 🧵 FORO — dominio propio: hilos de la comunidad por nicho ═══ */
+const P_FORUM = 'social/forum.json';
+const FORUM_SEED = () => ({ v: 1, threads: [], mods: [], tomb: [] });
+const FORUM_CATS = ['general', 'peliculas', 'series', 'anime', 'hentai', 'doramas', 'drama'];
+const FORUM_MAX_THREADS = 2000;
+const FORUM_MAX_REPLIES = 80;
+const FORUM_TOMB_MAX = 600;
+const FORUM_NEW_DAY = 15;      /* hilos nuevos por usuario al día   */
+const FORUM_REPLY_DAY = 60;    /* respuestas por usuario al día     */
+const FORUM_SEED_BATCH = 250;  /* máx ítems por tanda del agente    */
+
 function seedGroups(db) {
   db.groups = [
     { id: 'animelove', name: 'AnimeLove', desc: 'Grupo oficial · Todo el anime, capítulo a capítulo', official: true },
@@ -233,7 +244,7 @@ async function ensureFiles() {
         if (wr !== true && wr !== 422 && wr !== 409) return false;
       }
     }
-    for (const [path, data] of [[P_POSTS, posts], [P_PRESENCE, presence], [P_INDEX, index]]) {
+    for (const [path, data] of [[P_POSTS, posts], [P_PRESENCE, presence], [P_INDEX, index], [P_FORUM, FORUM_SEED()]]) {
       const snap = await ghReadFile(path);
       if (snap && snap.content != null) continue;              /* otro lo hizo */
       if (snap && snap.same) continue;
@@ -855,6 +866,178 @@ async function opState(b, uid, sig) {
 }
 
 /* ═══════════ HANDLER ═══════════ */
+/* ═══════════ 🧵 FORO — rangos, poda y operaciones ═══════════
+   Los rangos se SINCRONIZAN con la app: el ADMIN del sitio (firma
+   oficial x-social-admin) es admin del foro y puede nombrar MODS
+   (lista persistente en forum.json); el resto son usuarios. El
+   rango del autor viaja grabado en cada hilo y cada respuesta.  */
+function forumRole(fdb, uid, adminOk) {
+  if (adminOk) return 'admin';
+  if ((fdb.mods || []).includes(uid)) return 'mod';
+  return 'user';
+}
+const FORUM_STAFF = r => r === 'admin' || r === 'mod';
+function forumPrune(fdb) {
+  fdb.tomb = (fdb.tomb || []).slice(-FORUM_TOMB_MAX);
+  const alive = fdb.threads.filter(t => !t.del);
+  const over = alive.length - FORUM_MAX_THREADS;
+  if (over > 0) {
+    const drop = alive.filter(t => !t.pin).sort((a, b) => (a.at || 0) - (b.at || 0)).slice(0, over);
+    for (const t of drop) t.del = t.at || Date.now();
+  }
+  for (const t of fdb.threads) {
+    if (t.replies && t.replies.length > FORUM_MAX_REPLIES) t.replies = t.replies.slice(-FORUM_MAX_REPLIES);
+    if (t.likes && t.likes.length > 2000) t.likes = [...new Set(t.likes)];
+  }
+}
+const FORUM_OPS = {
+  /* ✍️ crear un hilo (tema) en un nicho */
+  async fNew({ db, b, uid, role, user }) {
+    if (!FORUM_CATS.includes(String(b.cat || ''))) return { fail: { status: 400, error: 'categoría inválida' } };
+    const title = String(b.title || '').trim().slice(0, 120);
+    const body = String(b.body || '').trim().slice(0, 4000);
+    const media = safeHttpUrl(b.media, 600);
+    if (title.length < 3) return { fail: { status: 400, error: 'el título es muy corto (mínimo 3 letras)' } };
+    if (!body && !media) return { fail: { status: 400, error: 'el hilo está vacío — escribe algo o añade un enlace' } };
+    if (role === 'user') {
+      const dayAgo = Date.now() - 864e5;
+      const mine24 = db.threads.filter(t => t.by === uid && (t.at || 0) > dayAgo).length;
+      if (mine24 >= FORUM_NEW_DAY) return { fail: { status: 429, error: 'descansa un poco: máximo ' + FORUM_NEW_DAY + ' hilos al día' } };
+    }
+    const id = stableId('f', uid, title + '|' + b.cat + '|' + body.slice(0, 120) + '|' + media);
+    if ((db.tomb || []).some(t => t.id === id)) return { fail: { status: 403, error: 'este hilo fue eliminado por el equipo y no puede volver tal cual' } };
+    const prev = db.threads.find(t => t.id === id);
+    if (prev) return { resp: { ok: true, thread: prev, deduped: true } };
+    const t = {
+      id, cat: String(b.cat), sub: String(b.sub || '').slice(0, 90), title, body, media,
+      by: uid, name: (user && user.name) || 'Usuario', tag: (user && user.tag) || '', role,
+      at: Date.now(), likes: [], replies: [], pin: false, lock: false,
+    };
+    db.threads.push(t);
+    forumPrune(db);
+    return { resp: { ok: true, thread: t } };
+  },
+
+  /* 💬 responder en un hilo */
+  async fReply({ db, b, uid, role, user }) {
+    const t = db.threads.find(x => x.id === b.tid);
+    if (!t || t.del) return { fail: { status: 404, error: 'el hilo no existe (o fue eliminado)' } };
+    if (t.lock && !FORUM_STAFF(role)) return { fail: { status: 423, error: 'el hilo está cerrado — solo el equipo puede responder' } };
+    const body = String(b.body || '').trim().slice(0, 2000);
+    const media = safeHttpUrl(b.media, 600);
+    if (!body && !media) return { fail: { status: 400, error: 'respuesta vacía' } };
+    if (role === 'user') {
+      const dayAgo = Date.now() - 864e5;
+      let mine24 = 0;
+      for (const th of db.threads) for (const r of (th.replies || [])) if (r.by === uid && (r.at || 0) > dayAgo) mine24++;
+      if (mine24 >= FORUM_REPLY_DAY) return { fail: { status: 429, error: 'muchas respuestas hoy — hasta mañana' } };
+    }
+    const id = stableId('r', uid, t.id + '|' + body.slice(0, 100) + '|' + media);
+    if (t.replies.some(r => r.id === id)) return { resp: { ok: true, replies: t.replies.length, deduped: true } };
+    t.replies.push({ id, by: uid, name: (user && user.name) || 'Usuario', role, body, media, at: Date.now(), likes: [] });
+    forumPrune(db);
+    return { resp: { ok: true, replies: t.replies.length, reply: t.replies[t.replies.length - 1] } };
+  },
+
+  /* ❤️ like a un hilo o a una respuesta (toggle) */
+  async fLike({ db, b, uid }) {
+    const t = db.threads.find(x => x.id === b.tid);
+    if (!t || t.del) return { fail: { status: 404, error: 'el hilo no existe' } };
+    let arr = t.likes;
+    if (b.rid) {
+      const r = (t.replies || []).find(x => x.id === b.rid);
+      if (!r) return { fail: { status: 404, error: 'respuesta no encontrada' } };
+      arr = r.likes = r.likes || [];
+    }
+    const i = arr.indexOf(uid);
+    if (i >= 0) arr.splice(i, 1); else arr.push(uid);
+    return { resp: { ok: true, likes: arr.length, on: i < 0 } };
+  },
+
+  /* 🗑 borrar hilo (autor o equipo) o respuesta (autor o equipo) */
+  async fDel({ db, b, uid, role }) {
+    const t = db.threads.find(x => x.id === b.tid);
+    if (!t) return { fail: { status: 404, error: 'el hilo no existe' } };
+    if (b.rid) {
+      const ri = (t.replies || []).findIndex(x => x.id === b.rid);
+      if (ri < 0) return { fail: { status: 404, error: 'respuesta no encontrada' } };
+      if (t.replies[ri].by !== uid && !FORUM_STAFF(role)) return { fail: { status: 403, error: 'solo el autor o el equipo puede borrar' } };
+      t.replies.splice(ri, 1);
+      return { resp: { ok: true, replies: t.replies.length } };
+    }
+    if (t.by !== uid && !FORUM_STAFF(role)) return { fail: { status: 403, error: 'solo el autor o el equipo puede borrar' } };
+    t.del = Date.now();
+    (db.tomb = db.tomb || []).push({ id: t.id, at: t.del });
+    forumPrune(db);
+    return { resp: { ok: true, deleted: true } };
+  },
+
+  /* 📌 fijar hilo (solo equipo) */
+  async fPin({ db, b, role }) {
+    if (!FORUM_STAFF(role)) return { fail: { status: 403, error: 'solo el equipo fija hilos' } };
+    const t = db.threads.find(x => x.id === b.tid);
+    if (!t || t.del) return { fail: { status: 404, error: 'el hilo no existe' } };
+    t.pin = String(b.on || '') === '1';
+    return { resp: { ok: true, pin: !!t.pin } };
+  },
+
+  /* 🔒 cerrar hilo (solo equipo) */
+  async fLock({ db, b, role }) {
+    if (!FORUM_STAFF(role)) return { fail: { status: 403, error: 'solo el equipo cierra hilos' } };
+    const t = db.threads.find(x => x.id === b.tid);
+    if (!t || t.del) return { fail: { status: 404, error: 'el hilo no existe' } };
+    t.lock = String(b.on || '') === '1';
+    return { resp: { ok: true, lock: !!t.lock } };
+  },
+
+  /* 🤖 AGENTE SEMBRADOR: el admin crea EN LOTE los temas oficiales del
+     catálogo (un hilo por serie/película). Idempotente por id: los que
+     ya existen se saltan; las lápidas también se respetan.           */
+  async fSeed({ db, b, uid, role, user }) {
+    if (role !== 'admin') return { fail: { status: 403, error: 'solo el administrador siembra el catálogo' } };
+    let items = [];
+    try { items = JSON.parse(String(b.items || '[]')) || []; } catch (e) { }
+    if (!Array.isArray(items) || !items.length) return { fail: { status: 400, error: 'tanda vacía' } };
+    items = items.slice(0, FORUM_SEED_BATCH);
+    const byId = new Map(db.threads.map(t => [t.id, t]));
+    const tombs = new Set((db.tomb || []).map(t => t.id));
+    let created = 0, skipped = 0;
+    for (const it of items) {
+      if (!FORUM_CATS.includes(String(it.cat || ''))) { skipped++; continue; }
+      const title = String(it.title || '').trim().slice(0, 120);
+      const body = String(it.body || '').trim().slice(0, 4000);
+      const media = safeHttpUrl(it.media, 600);
+      if (title.length < 3) { skipped++; continue; }
+      const id = stableId('f', 'seed', it.cat + '|' + title);
+      if (byId.has(id) || tombs.has(id)) { skipped++; continue; }
+      const t = {
+        id, cat: String(it.cat), sub: String(it.sub || '').slice(0, 90), title, body, media,
+        by: uid, name: 'XSTREAM', role: 'admin',
+        at: Date.now() - (db.threads.length + 1), bot: 1, official: 1,
+        likes: [], replies: [], pin: false, lock: false,
+      };
+      db.threads.push(t);
+      byId.set(id, t);
+      created++;
+    }
+    if (created) forumPrune(db);
+    return { resp: { ok: true, created, skipped } };
+  },
+
+  /* 🛡 nombrar/retirar moderadores (solo admin del sitio) */
+  async fMod({ db, b, role }) {
+    if (role !== 'admin') return { fail: { status: 403, error: 'solo el administrador nombra moderadores' } };
+    const target = String(b.target || '').trim();
+    if (!/^(x-)?[a-z0-9-]{6,40}$/i.test(target)) return { fail: { status: 400, error: 'uid inválida' } };
+    db.mods = db.mods || [];
+    const on = String(b.on || '') === '1';
+    const i = db.mods.indexOf(target);
+    if (on && i < 0) db.mods.push(target);
+    if (!on && i >= 0) db.mods.splice(i, 1);
+    return { resp: { ok: true, mods: db.mods } };
+  },
+};
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -931,7 +1114,7 @@ module.exports = async function handler(req, res) {
     }
 
     /* ── escrituras: CAS por dominio con firma v3 ── */
-    if (!OPS[op] && op !== 'notifsRead') return res.status(400).json({ ok: false, error: 'op desconocida: ' + op });
+    if (!OPS[op] && !FORUM_OPS[op] && op !== 'notifsRead' && op !== 'forum') return res.status(400).json({ ok: false, error: 'op desconocida: ' + op });
 
     /* notifsRead: dominio PRESENCE (el timbre vive ahí) */
     if (op === 'notifsRead') {
@@ -971,6 +1154,55 @@ module.exports = async function handler(req, res) {
         }
       }
       return res.status(200).json(out.resp);
+    }
+
+    /* ═══ 🧵 FORO — lectura de hilos con delta ETag ═══ */
+    if (op === 'forum') {
+      const dom = await readDomain(P_FORUM, FORUM_SEED, String(b.etag || ''), true);
+      if (!dom) return res.status(503).json({ ok: false, error: 'el foro no responde — reintenta' });
+      if (dom.same) return res.status(200).json({ ok: true, same: true, etag: String(b.etag || '') });
+      const fdb = dom.db;
+      return res.status(200).json({ ok: true, etag: dom.etag, mods: fdb.mods || [], threads: fdb.threads.filter(t => !t.del) });
+    }
+
+    /* ═══ 🧵 FORO — escrituras: la identidad se verifica en posts.json
+       (ahí viven las claves) y los datos viven en forum.json          ═══ */
+    if (FORUM_OPS[op]) {
+      const postsDom = await readDomain(P_POSTS, POSTS_SEED);
+      if (!postsDom || postsDom.same || !postsDom.db) return res.status(503).json({ ok: false, error: 'el almacén no responde — reintenta' });
+      if (!(await verifyUser(postsDom.db, uid, sig, b, op))) {
+        return res.status(403).json({ ok: false, error: 'firma inválida — cada acción se firma con la clave de tu dispositivo' });
+      }
+      const registeredBefore = !!postsDom.db.users[uid]?.pubKey;
+      const { changed } = touchUser(postsDom.db, uid, b);
+      if (!registeredBefore || changed) {
+        const wr = await ghPutFile(P_POSTS, JSON.stringify(postsDom.db), postsDom.sha);
+        if (wr !== true) {
+          await casWrite(P_POSTS, POSTS_SEED, db2 => {
+            if (!db2.users[uid]) return { resp: { ok: true }, nowrite: true };
+            touchUser(db2, uid, b);
+            return { resp: { ok: true } };
+          }).catch(() => { });
+        }
+      }
+      const u = postsDom.db.users[uid] || {};
+      const user = { name: u.name || 'Usuario', tag: u.tag || '', grad: u.grad || 0 };
+      let lastFail = null;
+      for (let attempt = 1; attempt <= CAS_ATTEMPTS; attempt++) {
+        const dom = await readDomain(P_FORUM, FORUM_SEED, null, true);
+        if (!dom || !dom.db) {
+          return res.status(503).json({ ok: false, error: 'el foro no responde — reintenta en unos segundos' });
+        }
+        const role = forumRole(dom.db, uid, adminOk);
+        const out = await FORUM_OPS[op]({ db: dom.db, b, uid, role, user });
+        if (out.fail) return res.status(out.fail.status).json({ ok: false, error: out.fail.error });
+        if (out.nowrite) return res.status(200).json(out.resp);
+        const wr = await ghPutFile(P_FORUM, JSON.stringify(dom.db), dom.sha);
+        if (wr === true) { out.resp.w = 'ok'; return res.status(200).json(out.resp); }
+        lastFail = wr;
+        await sleep(300 * attempt);
+      }
+      return res.status(503).json({ ok: false, error: 'el foro está muy activo — reintenta en unos segundos (' + lastFail + ')' });
     }
 
     /* el resto: un solo dominio (posts) con reintentos CAS */
