@@ -88,6 +88,7 @@ function load() {
         /* migraciones de versiones anteriores */
         state.trash = Array.isArray(state.trash) ? state.trash : [];
         state.deleted = state.deleted || {}; /* 🪦 lápidas: borrados intencionales que viajan en el catálogo */
+        state.delSeasons = state.delSeasons || {}; /* 🪦 lápidas de TEMPORADA/saga: lo eliminado dentro de una franquicia jamás resucita */
         state.progress = state.progress || {};
         state.contHide = state.contHide || {}; /* series quitadas de «Sigue viendo» con la ✕ */
         state.lastPlayed = state.lastPlayed || {};
@@ -647,6 +648,31 @@ function liftTombstone(s) {
   if (!s || !s.id) return;
   s.at = Date.now();
   if (state.deleted && state.deleted[s.id]) delete state.deleted[s.id];
+}
+/* ═══ 🪦 LÁPIDAS DE TEMPORADA — lo eliminado queda eliminado ═══
+   state.delSeasons = { [serieId]: { [temporada]: ts } }. Al borrar una
+   saga/temporada se entierra aquí; viaja en el catálogo (delSeasons) y
+   toda fusión posterior (otro PC con la copia vieja, la cola de la nube,
+   un re-merge) la RESPETA. Solo revive si vuelves a añadir contenido a
+   esa temporada a propósito (fusionar por arrastre, ＋ de la saga…).
+   La temporada 1 es la serie madre: no se entierra (para eso está la
+   papelera de series completas).                                        */
+function seasonBury(s, se) {
+  if (!s || !s.id || !(se > 1)) return;
+  state.delSeasons = state.delSeasons || {};
+  state.delSeasons[s.id] = state.delSeasons[s.id] || {};
+  state.delSeasons[s.id][se] = Date.now();
+}
+function seasonDead(s, se) {
+  const m = (state.delSeasons || {})[s && s.id];
+  return !!(m && se > 1 && m[se]);
+}
+function seasonRevive(s, se) {
+  const m = (state.delSeasons || {})[s && s.id];
+  if (m && se > 1 && m[se]) {
+    delete m[se];
+    if (!Object.keys(m).length) delete state.delSeasons[s.id];
+  }
 }
 const getEp = epN => { const s = getSeries(current.seriesId); return s && s.episodes.find(e => e.n === epN); };
 
@@ -2615,6 +2641,7 @@ function mergeSeason(dragged, target) {
     state.deleted = state.deleted || {};
     state.deleted[dragged.id] = Date.now();
     delete state.progress[dragged.id];
+    seasonRevive(target, nextSeason);   /* 🪦 su contenido existe: la temporada vuelve a estar viva */
     save();
     const card = els.seriesList.querySelector(`[data-sid="${CSS.escape(dragged.id)}"]`);
     if (card) card.remove();
@@ -2654,6 +2681,7 @@ function mergeSeason(dragged, target) {
   delete state.progress[dragged.id];
   state.broken = (state.broken || []).filter(b => b.sid !== dragged.id);
   if (!target.poster) refetchPoster(target);
+  seasonRevive(target, nextSeason);   /* 🪦 le entró contenido a esa temporada a propósito → revive */
   save();
   /* 📌 SCROLL QUIETO: NO re-renderizar toda la columna (que resetea el
      scroll arriba) — solo quitar LA tarjeta fusionada del DOM y actualizar
@@ -3242,6 +3270,7 @@ function renderEpisodes() {
           s.episodes.forEach((e, i) => { if (prog[e.n]) nuevoProg[i + 1] = prog[e.n]; e.n = i + 1; });
           state.progress[s.id] = nuevoProg;
           if (s.seasons) delete s.seasons[se];
+          seasonBury(s, se);   /* 🪦 la temporada eliminada viaja en el catálogo: ningún otro dispositivo ni fusión la revive */
           if (current.seriesId === s.id) {
             current.ep = epActual && s.episodes.includes(epActual) ? epActual.n : null;
             if (current.ep == null) { els.nowPlaying.textContent = ''; clearAddressHash(); }
@@ -6590,7 +6619,13 @@ function iqAdoptCloud(items) {
         /* ya estaba (importado local antes): solo entran capítulos NUEVOS —
            el título/edits LOCALES mandan (el usuario pudo renombrar en la
            revisión; la nube no pisa su trabajo)                          */
-        if ((s.episodes || []).length > (live.episodes || []).length) { live.episodes = s.episodes; merged++; }
+        if ((s.episodes || []).length > (live.episodes || []).length) {
+          /* 🪦 respetar las temporadas eliminadas a propósito: el payload
+             de la nube puede traer una copia vieja con sagas ya borradas */
+          const m = (state.delSeasons || {})[s.id];
+          const limpios = m ? s.episodes.filter(e => !((e.season || 1) > 1 && m[e.season])) : s.episodes;
+          if (limpios.length > (live.episodes || []).length) { live.episodes = limpios; merged++; }
+        }
         if (s.genre && !live.genre) applyMovieGenre(live, s.genre);
         if (s.poster && !live.poster) live.poster = s.poster;
       } else {
@@ -10069,6 +10104,7 @@ function sagaRowEl(s, r, admin) {
       s.episodes.forEach((e, i) => { if (prog[e.n]) nuevoProg[i + 1] = prog[e.n]; e.n = i + 1; });
       state.progress[s.id] = nuevoProg;
       delete s.seasons[r.se];
+      seasonBury(s, r.se);   /* 🪦 la saga eliminada viaja en el catálogo: ningún otro dispositivo ni fusión la revive */
       SAGA_OPEN.delete(key);
       if (current.seriesId === s.id) {
         current.ep = epActual && s.episodes.includes(epActual) ? epActual.n : null;
@@ -10224,6 +10260,7 @@ async function uniAddMissingSaga(s, m) {
   const nextSeason = 1 + Math.max(...s.episodes.map(e => e.season || 1), 1);
   s.seasons = s.seasons || {};
   s.seasons[nextSeason] = m.name.slice(0, 44);
+  seasonRevive(s, nextSeason);   /* 🪦 crear la saga a propósito revive esa temporada */
   save(); renderEpisodes();
   toast(`🌌 «${m.name}» creada — importa sus capítulos ahora`);
   /* abre el importador EN SITIO con los datos TMDB de esta saga */
@@ -10356,7 +10393,7 @@ function uniAppendEpsToSaga(s, r, items, tmNames) {
     s.episodes.push({ n: ++n, t: String(t).slice(0, 90), url: it.url, season: r.se || 1, sub: null });
     pos++; made++;
   }
-  if (made) { liftTombstone(s); save(); }
+  if (made) { liftTombstone(s); seasonRevive(s, r.se); save(); }
   return made;
 }
 /* el modal en sí — dos pestañas, sin salir de los relacionados */

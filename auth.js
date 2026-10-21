@@ -1110,9 +1110,12 @@
     for (const t of state.trash || []) {
       if (t && t.series && t.series.id) del[t.series.id] = Math.max(del[t.series.id] || 0, t.deletedAt || 0);
     }
+    /* 🪦 lápidas de TEMPORADA/saga: lo que el equipo ELIMINÓ dentro de una
+       franquicia también viaja — ningún otro dispositivo puede devolverlo */
+    const delSeasons = (state.delSeasons && typeof state.delSeasons === 'object' && !Array.isArray(state.delSeasons)) ? state.delSeasons : {};
     return {
       app: 'xstream', v: Date.now(), by: ID.name + ' ' + ID.tag,
-      at: new Date().toISOString(), n: series.length + channels.length, series, channels, del,
+      at: new Date().toISOString(), n: series.length + channels.length, series, channels, del, delSeasons,
       tvSources: state.tvSources || {},
       links: state.links || {},                     /* 🔗 acortador b.yapido.click */
       linksDom: state.linksDom || 'https://x.yapido.click',
@@ -2755,6 +2758,20 @@ xhr.setRequestHeader('Content-Type', 'application/json');
         if (!state.deleted[id] || state.deleted[id] < at) state.deleted[id] = at;
       }
     }
+    /* 🪦 lápidas de TEMPORADA/saga: los lectores también las aprenden — si
+       este dispositivo algún día publica, no devuelve lo ya eliminado */
+    if (cat.delSeasons && typeof cat.delSeasons === 'object' && !Array.isArray(cat.delSeasons)) {
+      state.delSeasons = state.delSeasons || {};
+      for (const [sid, seas] of Object.entries(cat.delSeasons)) {
+        if (!seas || typeof seas !== 'object' || Array.isArray(seas)) continue;
+        state.delSeasons[sid] = state.delSeasons[sid] || {};
+        for (const [se, at] of Object.entries(seas)) {
+          const seN = +se, atN = +at;
+          if (!seN || !isFinite(atN)) continue;
+          if (!state.delSeasons[sid][seN] || state.delSeasons[sid][seN] < atN) state.delSeasons[sid][seN] = atN;
+        }
+      }
+    }
     const newIds = new Set(cat.series.map(s => s.id));
     /* los stubs temporales creados al abrir un enlace compartido deben
        DISOLVERSE dentro de la serie original cuando el catálogo llega    */
@@ -3056,6 +3073,34 @@ xhr.setRequestHeader('Content-Type', 'application/json');
       });
     }
 
+    /* 🪦 PASO 0b — LÁPIDAS DE TEMPORADA: lo que el equipo ELIMINÓ dentro de
+       una franquicia (saga/Temporada N) se aprende (manda la más nueva) y se
+       EJECUTA en tu copia local: esas temporadas se purgan de tu biblioteca
+       y los episodios que lleguen en la fusión JAMÁS las re-añaden. Sin esto,
+       un catálogo viejo de otro PC devolvía lo ya borrado en cada recarga. */
+    let purgedSeas = 0;
+    state.delSeasons = state.delSeasons || {};
+    const dSeas = (cat.delSeasons && typeof cat.delSeasons === 'object' && !Array.isArray(cat.delSeasons)) ? cat.delSeasons : {};
+    for (const [sid, seas] of Object.entries(dSeas)) {
+      if (!seas || typeof seas !== 'object' || Array.isArray(seas)) continue;
+      state.delSeasons[sid] = state.delSeasons[sid] || {};
+      for (const [se, at] of Object.entries(seas)) {
+        const seN = +se, atN = +at;
+        if (!seN || !isFinite(atN)) continue;
+        if (!state.delSeasons[sid][seN] || state.delSeasons[sid][seN] < atN) state.delSeasons[sid][seN] = atN;
+      }
+    }
+    for (const s of state.series) {
+      const m = state.delSeasons[s.id];
+      if (!m) continue;
+      const antes = (s.episodes || []).length;
+      s.episodes = (s.episodes || []).filter(e => !((e.season || 1) > 1 && m[e.season]));
+      if (s.episodes.length !== antes) {
+        if (s.seasons) for (const k of Object.keys(m)) delete s.seasons[k];
+        purgedSeas++;
+      }
+    }
+
     for (const cs of cat.series || []) {
       /* series con lápida activa NO resucitan aunque lleguen en la fusión */
       const tAt = state.deleted[cs.id];
@@ -3071,8 +3116,10 @@ xhr.setRequestHeader('Content-Type', 'application/json');
          si ambos lo tienen, solo se rellenan los campos que te falten */
       local.episodes = local.episodes || [];
       const byN = new Map(local.episodes.map(e => [e.n, e]));
+      const tSeas = state.delSeasons[cs.id];   /* 🪦 temporadas eliminadas a propósito */
       let touched = false;
       for (const re of cs.episodes || []) {
+        if (tSeas && (re.season || 1) > 1 && tSeas[re.season]) continue;   /* lápida activa: no resucita */
         const le = byN.get(re.n);
         if (!le) { local.episodes.push(re); byN.set(re.n, re); addE++; touched = true; continue; }
         ['t', 'url', 'sub', 'season', 'ova', 'srcOva', 'srcSeason', 'thumb'].forEach(k => {
@@ -3117,7 +3164,7 @@ xhr.setRequestHeader('Content-Type', 'application/json');
        vuelva a aplicar encima (ya contiene todo lo suyo)                */
     state.catalogMeta = { v: cat.v, at: Date.now(), n: (cat.series ? cat.series.length : 0) + (cat.channels ? cat.channels.length : 0) };
     if (API.save) API.save();
-    if (addS || addE || addCh || killed) axToast(`🔄 Fusión aplicada: +${addS} series, +${addE} capítulos, +${addCh} canales${killed ? ` · 🪦 ${killed} borrada(s) por el equipo (→ papelera)` : ''} — tu contenido se conserva`);
+    if (addS || addE || addCh || killed || purgedSeas) axToast(`🔄 Fusión aplicada: +${addS} series, +${addE} capítulos, +${addCh} canales${killed ? ` · 🪦 ${killed} borrada(s) por el equipo (→ papelera)` : ''}${purgedSeas ? ` · 🪦 ${purgedSeas} temporada(s) eliminada(s) del equipo purgada(s)` : ''} — tu contenido se conserva`);
   }
 
   /* ═══════════ ARRANQUE ═══════════ */
