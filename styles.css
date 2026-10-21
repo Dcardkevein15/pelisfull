@@ -4302,6 +4302,17 @@ body.chat-full .episodes-panel{max-width:none}
 .saga-missing-h{font:700 11px Inter;color:#9aa3c9;letter-spacing:.4px;padding:2px 4px}
 .saga-row.saga-missing{opacity:.88;border-style:dashed}
 .saga-row.saga-missing .saga-name{color:#dfe4ff}
+/* 🌌 lo que FALTA en el catálogo se ve en BLANCO Y NEGRO (igual que las
+   películas sin enlace) — lo disponible, a todo color. El admin recupera
+   el color al acercarse (para leer el botón ＋ Añadir saga)            */
+.saga-row.saga-missing .saga-poster img,
+.saga-row.saga-missing .saga-strip img,
+.saga-row.saga-missing .saga-poster{filter:grayscale(1) brightness(.72)}
+.saga-row.saga-missing .saga-meta{color:#9aa3c9}
+.saga-row.saga-missing .saga-ov{color:#8a93b8}
+.saga-row.saga-missing.can-add .saga-addbtn{filter:none}
+.saga-row.saga-missing.can-add:hover .saga-poster img,
+.saga-row.saga-missing.can-add:hover .saga-strip img{filter:grayscale(.35) brightness(.85)}
 .saga-addbtn{
   flex-shrink:0;padding:9px 14px;border-radius:11px;cursor:pointer;
   font:800 11px Inter;color:#0a0d24;
@@ -4399,6 +4410,16 @@ body.chat-full .episodes-panel{max-width:none}
   transition:all .16s;
 }
 .saga-del:hover{background:rgba(255,48,79,.25);border-color:#ff6b81;box-shadow:0 0 16px rgba(255,48,79,.35)}
+
+/* ✎ renombrar saga (admin) — mismo tamaño que 🗑, tinta neutra */
+.saga-ren{
+  flex-shrink:0;width:32px;height:32px;border-radius:10px;cursor:pointer;
+  display:grid;place-items:center;font-size:13px;
+  color:#dfe4ff;background:rgba(216,255,62,.08);
+  border:1px solid rgba(216,255,62,.3);
+  transition:all .16s;
+}
+.saga-ren:hover{background:rgba(216,255,62,.18);border-color:var(--acid);box-shadow:0 0 16px rgba(216,255,62,.25)}
 
 /* ═══ 📥 IMPORTADOR DE SAGA + arrastre de filas + botones ═══ */
 .saga-add{

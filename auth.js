@@ -2729,6 +2729,16 @@ xhr.setRequestHeader('Content-Type', 'application/json');
   /* aplicar el catálogo publicado (solo lectores; el admin ES la fuente) */
   function applyCatalog(cat) {
     const state = API.getState();
+    /* 🪦 LÁPIDAS del catálogo: se aprenden también aquí (lectores). Si este
+       dispositivo algún día publica —o su cola de importación local guarda
+       un payload viejo de algo ya fusionado— la lápida lo bloquea y no
+       resucita lo que otro fusionó/borró a propósito.                       */
+    if (cat.del && typeof cat.del === 'object' && !Array.isArray(cat.del)) {
+      state.deleted = state.deleted || {};
+      for (const [id, at] of Object.entries(cat.del)) {
+        if (!state.deleted[id] || state.deleted[id] < at) state.deleted[id] = at;
+      }
+    }
     const newIds = new Set(cat.series.map(s => s.id));
     /* los stubs temporales creados al abrir un enlace compartido deben
        DISOLVERSE dentro de la serie original cuando el catálogo llega    */
@@ -3060,6 +3070,20 @@ xhr.setRequestHeader('Content-Type', 'application/json');
         }
       }
       if (touched) local.episodes.sort((a, b) => (a.n || 0) - (b.n || 0));
+      /* 🏷 BACKFILL de etiquetas: los capítulos que llegaron pueden traer
+         TEMPORADAS que tu mapa aún no conoce (otro PC fusionó algo y su
+         etiqueta no viaja en los episodios) → se etiquetan para que la
+         vista universo no muestre cajas sin nombre.                          */
+      if (local.episodes.length) {
+        local.seasons = local.seasons || {};
+        const faltan = local.episodes.some(e => (e.season || 1) > 1 && !local.seasons[e.season]);
+        if (faltan) {
+          for (const e of local.episodes) {
+            const se = e.season || 1;
+            if (se > 1 && !local.seasons[se]) local.seasons[se] = (local.kind === 'pelicula' ? 'Parte ' : 'Temporada ') + se;
+          }
+        }
+      }
     }
     /* canales TV: unión por id (los tuyos manuales siempre se quedan) */
     if (Array.isArray(cat.channels)) {

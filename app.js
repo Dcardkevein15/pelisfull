@@ -2556,14 +2556,52 @@ function mergeSeason(dragged, target) {
   target.seasons = target.seasons || {};
   if (!target.seasons[1]) target.seasons[1] = target.t;
   target.episodes.forEach(e => { if (!e.season) e.season = 1; });
-  const nextSeason = 1 + Math.max(...target.episodes.map(e => e.season || 1), 1);
+  /* 🧠 DETECCIÓN: ¿esta serie ya vive dentro del destino?
+     1) por su id — episodios con srcSeason de una fusión previa;
+     2) por SIMILITUD del título con una temporada ya creada
+        («Dragon Ball GT» → la temporada «Dragon Ball GT» que ya existe).
+     Si matchea, lo nuevo entra EN ELLA — rellenando huecos (caps sin
+     enlace que corresponden al mismo número real) y adoptando el
+     título bien escrito. Si no matchea, nace una temporada NUEVA
+     con SU NOMBRE ORIGINAL como etiqueta (nunca «Temporada N — …»). */
+  const nombreOrig = (uniSagaDisplayName(dragged.t) || dragged.t || '').slice(0, 44);
+  const yaUnida = target.episodes.find(e => e.srcSeason === dragged.id);
+  let simKey = null;
+  if (!yaUnida) {
+    for (const [k, lbl] of Object.entries(target.seasons || {})) {
+      if (+k <= 1) continue;                       /* la 1ª es la serie madre */
+      if (uniSimX(uniSagaDisplayName(lbl), nombreOrig, target.t)) { simKey = +k; break; }
+    }
+  }
+  const intoSeason = yaUnida ? (yaUnida.season || 1) : simKey;
+  const nextSeason = intoSeason || 1 + Math.max(...target.episodes.map(e => e.season || 1), 1);
+  const urlYa = new Set(target.episodes.map(e => (e.url || '').trim()).filter(Boolean));
+  const epsDestino = intoSeason ? target.episodes.filter(e => (e.season || 1) === intoSeason) : null;
   let offset = target.episodes.reduce((m, e) => Math.max(m, e.n || 0), 0);
+  let nuevos = 0, rellenados = 0;
   dragged.episodes.forEach((e, i) => {
+    if (e.url && urlYa.has((e.url || '').trim())) return;   /* ya vive dentro → no duplicar */
+    /* 🩹 HUECO: mismo número REAL que un capítulo SIN enlace de la
+       temporada destino → se enciende y adopta el título original     */
+    if (epsDestino && e.url) {
+      const real = epRealNum(e);
+      const hueco = real ? epsDestino.find(de => !de.url && epRealNum(de) === real) : null;
+      if (hueco) {
+        hueco.url = e.url;
+        if (e.t) hueco.t = e.t;
+        if (e.sub) hueco.sub = e.sub;
+        hueco.srcSeason = dragged.id;
+        epsDestino.splice(epsDestino.indexOf(hueco), 1);   /* ya encendido: no re-matchear */
+        rellenados++;
+        return;
+      }
+    }
     const nn = ++offset;
     target.episodes.push({
       n: nn, t: e.t || `Capítulo ${i + 1}`, url: e.url || '', sub: e.sub || null,
-      note: e.note, season: nextSeason, srcSeason: dragged.id,
+      note: e.note, season: intoSeason || nextSeason, srcSeason: dragged.id,
     });
+    nuevos++;
     /* migra el progreso/vistos del capítulo antiguo a su nuevo número */
     const pr = ((state.progress || {})[dragged.id] || {})[e.n];
     if (pr) {
@@ -2571,12 +2609,25 @@ function mergeSeason(dragged, target) {
       state.progress[target.id][nn] = pr;
     }
   });
-  /* nombre legible para la cabecera: temporada (series) o parte (sagas de películas) */
+  if (intoSeason && !nuevos && !rellenados) {
+    /* ya estaba entera dentro: solo se quita la entrada suelta y fin */
+    state.series.splice(state.series.indexOf(dragged), 1);
+    state.deleted = state.deleted || {};
+    state.deleted[dragged.id] = Date.now();
+    delete state.progress[dragged.id];
+    save();
+    const card = els.seriesList.querySelector(`[data-sid="${CSS.escape(dragged.id)}"]`);
+    if (card) card.remove();
+    toast(`✅ «${dragged.t}» ya estaba completa dentro de «${target.t}» (temporada ${nextSeason}) — solo se retiró la entrada suelta`);
+    renderEpisodes();
+    selectSeries(target.id);
+    return;
+  }
   const esSaga = target.kind === 'pelicula';
-  let nombreT = dragged.t.replace(/^.*?[·\-:]\s*/, '').trim();
-  const reLabel = esSaga ? /parte|saga|secuela|^II+$|^I{2,}$|\bIV\b/i : /temporada|season/i;
-  if (!reLabel.test(nombreT)) nombreT = `${esSaga ? 'Parte' : 'Temporada'} ${nextSeason} — ${nombreT}`.slice(0, 44);
-  target.seasons[nextSeason] = nombreT.slice(0, 44);
+  /* 🏷 ETIQUETA = NOMBRE ORIGINAL de la serie arrastrada — nunca
+     «Temporada N — …». Si la temporada ya existía, su nombre se respeta
+     (puedes renombrarla cuando quieras con ✎).                        */
+  if (!target.seasons[nextSeason]) target.seasons[nextSeason] = nombreOrig;
 
   state.series.splice(state.series.indexOf(dragged), 1);
   /* 🪦 LÁPIDA DE LA FUSIÓN: sin esto, la «fusión por unión» del sync
@@ -2586,6 +2637,20 @@ function mergeSeason(dragged, target) {
      la puede revivir.                                                    */
   state.deleted = state.deleted || {};
   state.deleted[dragged.id] = Date.now();
+  /* 🔁 ANTI-RESURRECCIÓN (nube): la cola de importación de GitHub NO puede
+     devolver esta serie — sus enlaces quedan como REVISADOS y salen de
+     la cola local y remota. Solo un re-import A PROPÓSITO la revive.   */
+  try {
+    const urls = importQueue
+      .filter(q => Array.isArray(q.payload) && q.payload.some(p => p && p.id === dragged.id))
+      .map(q => q.url).filter(Boolean);
+    if (urls.length) {
+      iqReviewedAdd(urls);
+      importQueue = importQueue.filter(q => !urls.includes(q.url));
+      iqPersist();
+      iqSyncRemote().catch(() => { });
+    }
+  } catch (e) { }
   delete state.progress[dragged.id];
   state.broken = (state.broken || []).filter(b => b.sid !== dragged.id);
   if (!target.poster) refetchPoster(target);
@@ -2603,9 +2668,13 @@ function mergeSeason(dragged, target) {
   try { renderGenreRow(); } catch (e) { }
   renderEpisodes();
   selectSeries(target.id);
-  toast(esSaga
-    ? `🎬 «${dragged.t}» ahora es la Parte ${nextSeason} de la saga «${target.t}»`
-    : `🧩 «${dragged.t}» ahora es la Temporada ${nextSeason} de «${target.t}»`);
+  toast(intoSeason
+    ? (esSaga
+      ? `🎬 «${dragged.t}» → «${target.t}» · parte ${nextSeason} actualizada${rellenados ? ` (+${rellenados} rellenado${rellenados === 1 ? '' : 's'})` : ''}${nuevos ? ` · +${nuevos} cap${nuevos === 1 ? '' : 's'}` : ''}`
+      : `🧩 «${dragged.t}» → «${target.t}» · temporada ${nextSeason} actualizada${rellenados ? ` (+${rellenados} rellenado${rellenados === 1 ? '' : 's'})` : ''}${nuevos ? ` · +${nuevos} cap${nuevos === 1 ? '' : 's'}` : ''}`)
+    : esSaga
+      ? `🎬 «${dragged.t}» ahora es la Parte ${nextSeason} de la saga «${target.t}»`
+      : `🧩 «${dragged.t}» ahora es la Temporada ${nextSeason} de «${target.t}»`);
 }
 
 /* panelito flotante al soltar una serie sobre otra: Mover o Unir como temporada */
@@ -2659,6 +2728,10 @@ function unmergeSeason(s, se, epsS, label) {
     current.ep = epActual && s.episodes.includes(epActual) ? epActual.n : null;
   }
   state.series.push(nueva);
+  /* 🪦 extraer a propósito LEVANTA la lápida de su id original: si seguía
+     enterrada, el catálogo publicado la traería pero ninguna fusión futura
+     la dejaría vivir en otros dispositivos                                 */
+  liftTombstone(nueva);
   if (nueva.anime && !nueva.poster) queuePoster(nueva, true);
   save();
   renderSeries(els.searchInput.value);
@@ -3520,8 +3593,27 @@ function loadEpisode(epN, autoplayNow = true) {
   syncAddressBar();
   /* 4. pintar título y chips del capítulo elegido */
   els.empty.classList.add('hidden');
-  els.nowPlaying.textContent = `${s.t} · E${ep.n}`;
-  document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
+  /* 🔢 NÚMERO REAL ANTE TODO: la fuente lo trae en el título ("Naruto
+     Shippuden - 498") → se muestra ESA numeración desde el primer clic,
+     desbloqueado o no. La posición interna (E701 en una serie fusionada
+     de 703 caps) solo queda como detalle en el tooltip.                 */
+  const realNum = epRealNum(ep);
+  const numTxt = realNum && realNum !== ep.n ? `Cap. ${realNum}` : `E${ep.n}`;
+  els.nowPlaying.textContent = `${s.t} · ${numTxt}`;
+  document.title = `Ver ${s.t} capítulo ${realNum || ep.n} online gratis — X·STREAM`;
+  {
+    const viejo = document.getElementById('epNowBtn');
+    if (viejo) viejo.remove();
+    const pill = document.createElement('button');
+    pill.id = 'epNowBtn';
+    pill.className = 'ep-now';
+    pill.textContent = numTxt;
+    pill.title = realNum && realNum !== ep.n
+      ? `Capítulo ${realNum} de la fuente (posición interna E${ep.n}) — clic: saltar a su tarjeta`
+      : 'Clic: saltar a su tarjeta en la lista';
+    pill.addEventListener('click', () => scrollToEpCard(ep.n));
+    els.stageBadges.parentElement.insertBefore(pill, els.stageBadges);
+  }
   els.shareBtn.classList.remove('hidden');
   syncDownloadBtn();
   els.flagBtn.classList.toggle('hidden', !ep.url);
@@ -3570,23 +3662,6 @@ function loadEpisode(epN, autoplayNow = true) {
     hidePaywall();
   }
   /* si ya estaba desbloqueado o es staff → reproducir directamente */
-  /* 💊 píldora clickable: número REAL (si el título lo trae) → salto a su tarjeta */
-  {
-    const viejo = document.getElementById('epNowBtn');
-    if (viejo) viejo.remove();
-    const pill = document.createElement('button');
-    pill.id = 'epNowBtn';
-    pill.className = 'ep-now';
-    const realVal = epRealNum(ep);
-    pill.textContent = realVal && realVal !== ep.n ? `E${ep.n} · cap ${realVal}` : `E${ep.n}`;
-    pill.title = realVal && realVal !== ep.n
-      ? `Número real en la fuente: ${realVal} — clic: saltar a su tarjeta`
-      : 'Clic: saltar a su tarjeta en la lista';
-    pill.addEventListener('click', () => scrollToEpCard(ep.n));
-    /* justo DESPUÉS del título, antes de los chips ANIME/episodios… */
-    els.stageBadges.parentElement.insertBefore(pill, els.stageBadges);
-  }
-    document.title = `Ver ${s.t} capítulo ${ep.n} online gratis — X·STREAM`;
   els.shareBtn.classList.remove('hidden');
   syncDownloadBtn();
   els.flagBtn.classList.toggle('hidden', !ep.url);
@@ -6519,6 +6594,13 @@ function iqAdoptCloud(items) {
         if (s.genre && !live.genre) applyMovieGenre(live, s.genre);
         if (s.poster && !live.poster) live.poster = s.poster;
       } else {
+        /* 🪦 ANTI-RESURRECCIÓN: si esta serie fue FUSIONADA o borrada a
+           propósito (lápida activa más nueva que su registro), la nube
+           NO puede devolverla. Antes esto resucitaba la serie arrastrada
+           al recargar — y al re-fusionarla se copiaba otra vez (temporadas
+           duplicadas). Solo un re-import A PROPÓSITO (liftTombstone) revive. */
+        const tAt = (state.deleted || {})[s.id];
+        if (tAt && tAt > (s.importedAt || s.at || 0)) continue;
         state.series.push(s);
         freshIds.add(s.id);
         applied.push(s);
@@ -9907,10 +9989,27 @@ function sagaRowEl(s, r, admin) {
       ${r.tm && r.tm.overview ? `<p class="saga-ov">${escapeHtml(r.tm.overview.slice(0, 150))}${r.tm.overview.length > 150 ? '…' : ''}</p>` : ''}
     </div>
     <div class="saga-strip">${strip}</div>
+    ${admin ? '<button class="saga-ren" title="Renombrar esta saga — el nombre que quieras, cuando quieras">✎</button>' : ''}
     ${admin ? '<button class="saga-add" title="Añadir capítulo / video a esta saga — pegar enlaces o importar de archive.org">＋ Capítulo</button>' : ''}
     ${admin ? '<button class="saga-del" title="Eliminar esta saga del universo">🗑</button>' : ''}
     <button class="saga-toggle" title="${open ? 'Cerrar y resumir' : 'Expandir y ver todos los capítulos'}">${open ? '✕' : '⌄'}</button>`;
   wrap.appendChild(row);
+  /* ✎ ADMIN: renombrar la saga en cualquier momento (el nombre es SUYO) */
+  if (admin) {
+    row.querySelector('.saga-ren').addEventListener('click', async ev => {
+      ev.stopPropagation();
+      const r2 = await uiModal({
+        icon: '✎', title: 'Renombrar saga', okLabel: 'Guardar',
+        sub: `En el universo de «<b>${escapeHtml(s.t)}</b>» · ${r.epsS.length} cap${r.epsS.length === 1 ? '' : 's'}.`,
+        fields: [{ key: 't', label: 'Nombre de la saga', value: r.label, maxlength: 44, placeholder: 'Ej: Dragon Ball GT' }],
+      });
+      if (!r2 || !r2.t.trim() || r2.t.trim() === r.label) return;
+      s.seasons = s.seasons || {};
+      s.seasons[r.se] = r2.t.trim().slice(0, 44);
+      save(); renderEpisodes();
+      toast(`✎ Saga renombrada → ${s.seasons[r.se]}`);
+    });
+  }
   /* ＋ ADMIN: añadir capítulos/videos a ESTA saga (importador dedicado) */
   if (admin) {
     row.querySelector('.saga-add').addEventListener('click', ev => { ev.stopPropagation(); uniImportToSaga(s, r); });
