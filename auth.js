@@ -27,7 +27,7 @@
 
   /* ─────────── CONFIG ─────────── */
   const CONFIG = {
-    adminHash: 'e0a86d9fb010c6c427c9bd21c699402de3ef3cce2926213568798f5ebdb15efb',
+    adminHash: '6b14d3291c2a4b927ee23435dc146751829b6e7c03520983277a91979fa69f40',
     lsKey: 'xstream-auth-v1',
     idbName: 'xstream-auth', idbStore: 'identity', idbKey: 'me',
     cacheName: 'xstream-auth-v1', cacheUrl: './xauth-identity.json',
