@@ -4266,6 +4266,10 @@ body.chat-full .episodes-panel{max-width:none}
   display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px;
   padding:12px 4px 4px;animation:sagaGridIn .22s cubic-bezier(.2,1.1,.4,1);
 }
+/* 📝 modo edición: la cuadrícula de la saga se vuelve lista de 1 columna —
+   las cajas de enlace de los capítulos del universo quedan IGUAL que en la
+   vista clásica (anchas, con el enlace visible dentro)                     */
+body.editing .saga-grid{grid-template-columns:1fr}
 @keyframes sagaGridIn{from{opacity:0;transform:translateY(-6px)}}
 
 /* ── tarjetas SIN ENLACE: blanco y negro + ＋ instantáneo ── */

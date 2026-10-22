@@ -10150,6 +10150,90 @@ function sagaEpCell(s, ep, r, dispNum) {
   const thumbSrc = getEpThumb(s, ep) || (driveId ? driveThumbUrl(driveId, 320) : null) || (iaId ? `https://archive.org/services/img/${iaId}` : null);
   if (thumbSrc) cell.classList.add('has-thumb');
   const resume = pr && !pr.done && pr.t > 20 ? `<span class="ep-resume" title="Continuar donde lo dejaste">▶ ${fmt(pr.t)}</span>` : '';
+  if (editing) {
+    /* 📝 MODO EDICIÓN en el universo: la celda se convierte en la MISMA caja
+       de edición de la vista clásica — enlace + nota + orden dentro de su
+       saga + tarjeta doble + eliminar. «Editar enlaces» funciona igual en
+       universos, películas y series: siempre ves el enlace en la caja.   */
+    cell.style.cursor = 'default';
+    cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
+      + `<span class="num">${num}</span><span class="lbl">${escapeHtml(ep.t)}</span>`;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'ep-url' + (ep.url ? ' has' : '');
+    input.placeholder = 'URL directa (.mp4/.webm/m3u8) o enlace de Google Drive…';
+    input.value = ep.url || '';
+    input.addEventListener('change', () => {
+      ep.url = input.value.trim();
+      save();
+      if (ep.url) unmarkBroken(s.id, ep.n, true);
+      input.classList.toggle('has', !!ep.url);
+      toast(ep.url ? `✔ Enlace guardado — ${s.t} ep ${ep.n}` : 'Enlace eliminado');
+      renderSeries(els.searchInput.value);
+      if (current.ep === ep.n) loadEpisode(ep.n, false);
+    });
+    const del = document.createElement('button');
+    del.className = 'ep-del';
+    del.textContent = '×';
+    del.title = 'Eliminar capítulo';
+    del.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (s.episodes.length <= 1) return toast('La serie necesita al menos 1 capítulo', true);
+      const idx = s.episodes.indexOf(ep);
+      trash.push({ seriesId: s.id, index: idx, ep: { n: ep.n, t: ep.t, url: ep.url } });
+      syncUndoBtn();
+      s.episodes.splice(idx, 1);
+      s.episodes.forEach((e, i) => e.n = i + 1);
+      if (current.ep === ep.n) {
+        current.ep = null;
+        clearAddressHash();
+        els.nowPlaying.textContent = '';
+        els.flagBtn.classList.add('hidden');
+      }
+      state.broken = (state.broken || []).filter(b => !(b.sid === s.id && b.ep === ep.n));
+      save(); renderEpisodes(); renderSeries(els.searchInput.value);
+      toast('Capítulo eliminado — pulsa «↩ Deshacer» para recuperarlo');
+    });
+    const noteBtn = document.createElement('button');
+    noteBtn.className = 'ep-note' + (ep.note ? ' has' : '');
+    noteBtn.textContent = '📝';
+    noteBtn.title = ep.note ? 'Nota: ' + ep.note : 'Añadir nota';
+    noteBtn.addEventListener('click', ev => {
+      ev.stopPropagation();
+      const nueva = prompt(`Nota para ${s.t} E${ep.n}:`, ep.note || '');
+      if (nueva === null) return;
+      ep.note = nueva.trim() || undefined;
+      if (!ep.note) delete ep.note;
+      save(); renderEpisodes();
+      toast(ep.note ? '📝 Nota guardada' : 'Nota eliminada');
+    });
+    const mvUp = document.createElement('button');
+    mvUp.className = 'ep-mv'; mvUp.textContent = '▲'; mvUp.title = 'Subir dentro de su saga';
+    mvUp.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (moveEpWithinSeason(s, ep, 'up')) { save(); renderEpisodes(); renderSeries(els.searchInput.value); }
+      else toast('Ya es el primero de su saga', true);
+    });
+    const mvDn = document.createElement('button');
+    mvDn.className = 'ep-mv'; mvDn.textContent = '▼'; mvDn.title = 'Bajar dentro de su saga';
+    mvDn.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (moveEpWithinSeason(s, ep, 'down')) { save(); renderEpisodes(); renderSeries(els.searchInput.value); }
+      else toast('Ya es el último de su saga', true);
+    });
+    const dbl = document.createElement('button');
+    dbl.className = 'ep-dblbtn' + (ep.span > 1 ? ' on' : '');
+    dbl.textContent = '2×';
+    dbl.title = ep.span > 1 ? 'Volver a tarjeta simple' : 'Capítulo DOBLE: esta tarjeta vale por dos números';
+    dbl.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (ep.span && ep.span > 1) delete ep.span; else ep.span = 2;
+      save(); renderEpisodes(); renderSeries(els.searchInput.value);
+      toast(ep.span ? '🔀 Tarjeta doble: ocupará dos números' : 'Tarjeta simple otra vez');
+    });
+    cell.append(input, noteBtn, mvUp, mvDn, dbl, del);
+    return cell;
+  }
   cell.innerHTML = (thumbSrc ? `<img class="ep-thumb" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" onerror="this.remove()">` : '')
     + `<span class="num">${num}</span><span class="lbl">${escapeHtml(ep.t)}</span>`
     + (pr && !pr.done && pr.d ? `<div class="ep-progress"><i style="width:${Math.round(pr.t / pr.d * 100)}%"></i></div>` : '')
