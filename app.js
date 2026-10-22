@@ -10224,25 +10224,254 @@ function uniFlyBind(cell, s, ep, sagaLabel, dispNum) {
   });
   cell.addEventListener('mouseleave', () => { clearTimeout(_flyT); setTimeout(() => { const to = document.querySelector('.saga-fly:hover'); if (!to) uniFlyHide(); }, 120); });
 }
+/* ═══ 🌐 BUSCADOR PROFUNDO DE ARCHIVE.ORG — compartido por TODAS las tarjetas ═══
+   Antes: 14 resultados, una página, sin filtros. Ahora:
+   · páginas de 50 con «Cargar 50 más» → profundidad real (hay miles de ítems)
+   · filtros: DURACIÓN real (medida de sus archivos: <60 / >60 min), idioma,
+     año y orden (populares / tendencia semana / recientes / año)
+   · cada resultado muestra su duración REAL y al elegir, decide el caller */
+async function iaDuration(id) {
+  try { const hit = uniCacheGet('iadur-' + id); if (hit != null) return hit; } catch (e) { }
+  try {
+    const media = await cineFetchMedia(id);
+    const dur = media ? Math.round(media.runtime || Math.max(0, ...(media.vids || []).map(v => v.len || 0))) : 0;
+    try { uniCacheSet('iadur-' + id, dur); } catch (e) { }
+    return dur;
+  } catch (e) { return 0; }
+}
+const iaFmtDur = s => !s ? '—' : s >= 3600 ? `${Math.floor(s / 3600)}h ${Math.round((s % 3600) / 60)}m` : `${Math.round(s / 60)} min`;
+function uniIaDeepSearch(mount, { query = '', onPick } = {}) {
+  if (!mount) return;
+  mount.innerHTML = `
+    <div class="uni-ia-search">
+      <input type="text" placeholder="Buscar en archive.org — título, saga, película, capítulo…" value="${escapeHtml(String(query).slice(0, 80))}">
+      <button class="uni-ia-btn">🔍 Buscar</button>
+    </div>
+    <div class="uni-ia-filters">
+      <select data-f="dur" title="Duración real de los videos del ítem (medida archivo por archivo)">
+        <option value="">⏱ Duración: cualquiera</option>
+        <option value="lt60">⏱ Menos de 60 min</option>
+        <option value="gt60">⏱ Más de 60 min</option>
+      </select>
+      <select data-f="lang" title="Idioma del contenido">
+        <option value="">🗣 Idioma: cualquiera</option>
+        <option value="es">🗣 Español</option>
+        <option value="en">🗣 Inglés</option>
+      </select>
+      <select data-f="year" title="Año de publicación del ítem">
+        <option value="">📅 Año: cualquiera</option>
+        <option value="new">📅 2000 o más</option>
+        <option value="90">📅 80s–90s</option>
+        <option value="old">📅 Antes de 1980</option>
+      </select>
+      <select data-f="sort" title="Orden de los resultados">
+        <option value="-downloads">⭐ Más descargados</option>
+        <option value="-week">🔥 Tendencia (semana)</option>
+        <option value="-addeddate">🆕 Añadidos recientemente</option>
+        <option value="-year">🗓 Más nuevos por año</option>
+      </select>
+    </div>
+    <div class="uni-ia-res"></div>
+    <button class="uni-ia-more hidden" type="button">🌐 Cargar 50 más…</button>`;
+  const resBox = mount.querySelector('.uni-ia-res');
+  const input = mount.querySelector('.uni-ia-search input');
+  const moreBtn = mount.querySelector('.uni-ia-more');
+  let page = 0, total = 0, busy = false;
+  const filters = () => { const o = {}; mount.querySelectorAll('.uni-ia-filters select').forEach(s => o[s.dataset.f] = s.value); return o; };
+  const buildQ = () => {
+    const f = filters();
+    const q = input.value.trim().replace(/[:()\[\]"~*]/g, ' ').replace(/\s+/g, ' ').trim();
+    let l = q ? `(${q}) AND mediatype:movies` : 'mediatype:movies';
+    if (f.lang === 'es') l += ' AND (language:spa OR language:spanish OR language:"español")';
+    if (f.lang === 'en') l += ' AND (language:eng OR language:english)';
+    if (f.year === 'new') l += ' AND year:[2000 TO *]';
+    if (f.year === '90') l += ' AND year:[1980 TO 1999]';
+    if (f.year === 'old') l += ' AND year:[* TO 1979]';
+    return { q: l, sort: f.sort || '-downloads' };
+  };
+  const passDur = (f, sec) => f.dur === 'lt60' ? sec > 0 && sec < 3600 : f.dur === 'gt60' ? sec >= 3600 : true;
+  const fillDurations = async () => {
+    const f = filters();
+    const pend = [...resBox.querySelectorAll('.uni-ia-card:not([data-durdone])')];
+    const budget = f.dur ? pend : pend.slice(0, 12);   /* sin filtro activo: solo las primeras (amable con archive.org) */
+    for (let i = 0; i < budget.length; i += 4) {
+      /* 🐢 pacing: archive.org limita por ráfagas — lotes chicos con respiro */
+      if (i) await new Promise(r2 => setTimeout(r2, 350));
+      await Promise.all(budget.slice(i, i + 4).map(async card => {
+        const sec = await iaDuration(card.dataset.iaid);
+        card.dataset.durdone = '1';
+        card.dataset.sec = sec;
+        const b = card.querySelector('.uni-ia-dur');
+        if (b) b.textContent = iaFmtDur(sec);
+        card.classList.toggle('dur-out', !passDur(f, sec));
+      }));
+    }
+    const vis = resBox.querySelectorAll('.uni-ia-card:not(.dur-out)').length;
+    if (f.dur && !vis && moreBtn.classList.contains('hidden')) {
+      resBox.insertAdjacentHTML('beforeend', '<div class="uni-ia-msg">Nada en esta página cumple la duración — dale a «Cargar 50 más» o cambia el filtro.</div>');
+    }
+  };
+  const search = async () => {
+    if (busy) return;
+    busy = true;
+    const { q, sort } = buildQ();
+    const p = new URLSearchParams({ q, rows: '50', page: String(page + 1), output: 'json' });
+    ['identifier', 'title', 'year', 'downloads'].forEach(fl => p.append('fl[]', fl));
+    p.append('sort[]', sort);
+    if (page === 0) resBox.innerHTML = '<div class="uni-ia-msg">🔍 Buscando en archive.org…</div>';
+    moreBtn.disabled = true; moreBtn.textContent = '⏳ Cargando…';
+    /* 🐢 archive.org limita por ráfagas: si responde ocupado (429/5xx), se
+       reintenta SOLO con pausas crecientes — el usuario ni se entera        */
+    const intentos = [0, 5000, 15000];
+    let data = null;
+    for (let i = 0; i < intentos.length; i++) {
+      if (i) {
+        moreBtn.textContent = `⏳ archive.org ocupado — reintentando (${i}/2)…`;
+        await new Promise(r2 => setTimeout(r2, intentos[i]));
+      }
+      try {
+        const res = await fetch(`https://archive.org/advancedsearch.php?${p.toString()}`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        data = await res.json();
+        break;
+      } catch (e) { data = null; }
+    }
+    try {
+      if (!data) throw new Error('sin respuesta');
+      total = (data.response && data.response.numFound) || 0;
+      const docs = ((data.response && data.response.docs) || []).filter(d => d.identifier && d.title);
+      if (page === 0) resBox.innerHTML = '';
+      if (!docs.length && page === 0) {
+        resBox.innerHTML = '<div class="uni-ia-msg">Sin resultados — prueba el nombre en inglés, más corto, o quita filtros.</div>';
+        moreBtn.classList.add('hidden'); busy = false; return;
+      }
+      for (const d of docs) {
+        const year = String(d.year || '').slice(0, 4);
+        const title = Array.isArray(d.title) ? d.title[0] : String(d.title || '');
+        const card = document.createElement('div');
+        card.className = 'uni-ia-card';
+        card.dataset.iaid = d.identifier;
+        card.innerHTML = `
+          <img loading="lazy" src="https://archive.org/services/img/${encodeURIComponent(d.identifier)}" alt="" onerror="this.style.opacity=.15">
+          <div class="uni-ia-b">
+            <b title="${escapeHtml(title)}">${escapeHtml(title.slice(0, 60))}</b>
+            <small>${year ? year + ' · ' : ''}${(d.downloads || 0).toLocaleString()} desc.</small>
+            <small class="uni-ia-dur" title="Duración real de los videos de este ítem">⏳…</small>
+          </div>
+          <button class="uni-ia-add" title="Importar TODOS los videos de este enlace">＋ Importar</button>`;
+        card.querySelector('.uni-ia-add').addEventListener('click', async ev => {
+          const b = ev.target.closest('button');
+          b.disabled = true; b.textContent = '⏳ Leyendo…';
+          try { await onPick(d, card); }
+          catch (e) { b.textContent = '⚠ error'; setTimeout(() => { b.disabled = false; b.textContent = '＋ Importar'; }, 1500); }
+        });
+        resBox.appendChild(card);
+      }
+      page++;
+      moreBtn.classList.remove('hidden');
+      moreBtn.disabled = false;
+      moreBtn.textContent = `🌐 Cargar 50 más… (${page * 50}/${total.toLocaleString()})`;
+      fillDurations();
+    } catch (e) {
+      if (page === 0) resBox.innerHTML = '<div class="uni-ia-msg">⚠ archive.org no respondió — reintenta en unos segundos.</div>';
+      moreBtn.disabled = false; moreBtn.textContent = '🌐 Reintentar';
+    }
+    busy = false;
+  };
+  mount.querySelector('.uni-ia-btn').addEventListener('click', () => { page = 0; search(); });
+  input.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); page = 0; search(); } });
+  moreBtn.addEventListener('click', () => search());
+  mount.querySelectorAll('.uni-ia-filters select').forEach(sel => sel.addEventListener('change', () => { page = 0; search(); }));
+  search();   /* búsqueda inicial con el query precargado */
+}
+/* overlay independiente del buscador profundo (para tarjetas sueltas) */
+function uniIaPickerOverlay({ query = '', onPick }) {
+  const ov = document.createElement('div');
+  ov.className = 'uni-imp uni-pick-ov';
+  ov.innerHTML = `
+    <div class="uni-card">
+      <button class="uni-x" title="Cerrar">✕</button>
+      <div class="uni-h"><b>🌐 Buscar en archive.org</b><small>Búsqueda profunda — páginas de 50, duración real, idioma y orden</small></div>
+      <div class="uni-ia-deep"></div>
+    </div>`;
+  document.body.appendChild(ov);
+  const close = () => ov.remove();
+  ov.querySelector('.uni-x').addEventListener('click', close);
+  ov.addEventListener('click', ev => { if (ev.target === ov) close(); });
+  uniIaDeepSearch(ov.querySelector('.uni-ia-deep'), {
+    query,
+    onPick: async (d, card) => { await onPick(d, card); close(); },
+  });
+  return close;
+}
+/* selector de origen para encender una tarjeta: pegar enlace o buscar en IA */
+function uniChooseSource(title, sub) {
+  return new Promise(res => {
+    const ov = document.createElement('div');
+    ov.className = 'uni-imp uni-pick-ov';
+    ov.innerHTML = `
+      <div class="uni-card">
+        <button class="uni-x" title="Cerrar">✕</button>
+        <div class="uni-h"><b>${title}</b><small>${sub}</small></div>
+        <div class="uni-src-row">
+          <button data-s="url">🔗 Pegar enlace</button>
+          <button data-s="ia" class="ia">🌐 Buscar en archive.org</button>
+        </div>
+      </div>`;
+    document.body.appendChild(ov);
+    const done = v => { ov.remove(); res(v); };
+    ov.querySelector('.uni-x').addEventListener('click', () => done(null));
+    ov.addEventListener('click', ev => { if (ev.target === ov) done(null); });
+    ov.querySelector('[data-s="url"]').addEventListener('click', () => done('url'));
+    ov.querySelector('[data-s="ia"]').addEventListener('click', () => done('ia'));
+  });
+}
 /* 🔗 admin: pegar el enlace EN SITIO — la tarjeta se enciende al instante */
 async function uniQuickLink(s, ep) {
-  const r = await uiModal({
-    icon: '🔗', title: `Encender «${escapeHtml((ep.t || '').slice(0, 34))}»`,
-    sub: `${escapeHtml(s.t)} · E${ep.n} — pega el enlace y la tarjeta se enciende al instante.`,
-    okLabel: '⚡ Encender',
-    fields: [{ key: 'url', label: 'URL (mp4/webm/m3u8, Drive o Streamtape)', placeholder: 'https://…', maxlength: 600 }],
-  });
-  if (!r) return;
-  const url = String(r.url || '').trim();
-  if (!/^https?:\/\//.test(url)) return toast('⚠ Ese enlace no vale — debe empezar por http(s)://', true);
-  ep.url = url; save();
-  try { unmarkBroken(s.id, ep.n, true); } catch (e) { }
-  toast('⚡ Enlace añadido — tarjeta encendida');
-  renderEpisodes();
-  renderSeries(els.searchInput.value);
-  requestAnimationFrame(() => {
-    const c = els.episodesGrid.querySelector(`[data-epn="${ep.n}"]`);
-    if (c) { c.classList.add('ep-flash'); c.scrollIntoView({ block: 'center', behavior: 'smooth' }); const ee = s.episodes.find(x => x.n === ep.n); if (ee) deferThumb(s, ee, c); }
+  const como = await uniChooseSource(
+    `Encender «${escapeHtml((ep.t || '').slice(0, 34))}»`,
+    'Pega el enlace directo — o déjale la búsqueda profunda a archive.org.');
+  if (!como) return;
+  if (como === 'url') {
+    const r = await uiModal({
+      icon: '🔗', title: `Encender «${escapeHtml((ep.t || '').slice(0, 34))}»`,
+      sub: `${escapeHtml(s.t)} · E${ep.n} — pega el enlace y la tarjeta se enciende al instante.`,
+      okLabel: '⚡ Encender',
+      fields: [{ key: 'url', label: 'URL (mp4/webm/m3u8, Drive o Streamtape)', placeholder: 'https://…', maxlength: 600 }],
+    });
+    if (!r) return;
+    const url = String(r.url || '').trim();
+    if (!/^https?:\/\//.test(url)) return toast('⚠ Ese enlace no vale — debe empezar por http(s)://', true);
+    ep.url = url; save();
+    try { unmarkBroken(s.id, ep.n, true); } catch (e) { }
+    toast('⚡ Enlace añadido — tarjeta encendida');
+    renderEpisodes();
+    renderSeries(els.searchInput.value);
+    requestAnimationFrame(() => {
+      const c = els.episodesGrid.querySelector(`[data-epn="${ep.n}"]`);
+      if (c) { c.classList.add('ep-flash'); c.scrollIntoView({ block: 'center', behavior: 'smooth' }); const ee = s.episodes.find(x => x.n === ep.n); if (ee) deferThumb(s, ee, c); }
+    });
+    return;
+  }
+  /* 🌐 archive.org: búsqueda profunda — el mejor video del ítem queda en ESTA tarjeta */
+  const sagaLbl = (s.seasons && s.seasons[ep.season || 1]) || '';
+  const real = epRealNum(ep);
+  uniIaPickerOverlay({
+    query: `${s.t} ${sagaLbl} ${real || ''}`.trim().slice(0, 80),
+    onPick: async d => {
+      const media = await cineFetchMedia(d.identifier);
+      if (!media || !media.vids.length) { toast('⚠ Ese ítem no tiene videos reproducibles', true); return; }
+      const best = cinePickBest(media.vids);
+      ep.url = best.url; save();
+      try { unmarkBroken(s.id, ep.n, true); } catch (e) { }
+      toast(`🌐 Tarjeta encendida desde archive.org${media.vids.length > 1 ? ` (el ítem traía ${media.vids.length} videos — el mejor quedó aquí)` : ''}`);
+      renderEpisodes();
+      renderSeries(els.searchInput.value);
+      requestAnimationFrame(() => {
+        const c = els.episodesGrid.querySelector(`[data-epn="${ep.n}"]`);
+        if (c) { c.classList.add('ep-flash'); c.scrollIntoView({ block: 'center', behavior: 'smooth' }); const ee = s.episodes.find(x => x.n === ep.n); if (ee) deferThumb(s, ee, c); }
+      });
+    },
   });
 }
 /* ✨ saga del universo que falta → crearla completa (todas sus tarjetas) */
@@ -10327,15 +10556,38 @@ function el2(tag, cls, html) { const d = document.createElement(tag); d.classNam
 /* ＋ película que falta → capítulo nuevo con su enlace, sin salir de aquí */
 async function uniAddMovie(s, mv) {
   if (!needAdmin()) return;
-  const r = await uiModal({
-    icon: '🎬', title: `Encender «${escapeHtml(mv.title.slice(0, 40))}»`,
-    sub: 'Se crea al instante como capítulo de la sección de películas de esta franquicia.',
-    okLabel: '⚡ Crear y encender',
-    fields: [{ key: 'url', label: 'URL (mp4/webm/m3u8, Drive o Streamtape)', placeholder: 'https://…', maxlength: 600 }],
+  const como = await uniChooseSource(
+    `Encender «${escapeHtml(mv.title.slice(0, 40))}»`,
+    'Se crea al instante como capítulo de la sección de películas — pega el enlace o búscalo en archive.org.');
+  if (!como) return;
+  if (como === 'url') {
+    const r = await uiModal({
+      icon: '🎬', title: `Encender «${escapeHtml(mv.title.slice(0, 40))}»`,
+      sub: 'Se crea al instante como capítulo de la sección de películas de esta franquicia.',
+      okLabel: '⚡ Crear y encender',
+      fields: [{ key: 'url', label: 'URL (mp4/webm/m3u8, Drive o Streamtape)', placeholder: 'https://…', maxlength: 600 }],
+    });
+    if (!r) return;
+    const url = String(r.url || '').trim();
+    if (!/^https?:\/\//.test(url)) return toast('⚠ Ese enlace no vale — debe empezar por http(s)://', true);
+    uniCreateMovieEp(s, mv, url);
+    toast(`⚡ «${mv.title.slice(0, 30)}» creada y encendida`);
+    return;
+  }
+  /* 🌐 archive.org: búsqueda profunda — el mejor video enciende ESTA película */
+  uniIaPickerOverlay({
+    query: mv.title.slice(0, 80),
+    onPick: async d => {
+      const media = await cineFetchMedia(d.identifier);
+      if (!media || !media.vids.length) { toast('⚠ Ese ítem no tiene videos reproducibles', true); return; }
+      const best = cinePickBest(media.vids);
+      uniCreateMovieEp(s, mv, best.url);
+      toast(`🌐 «${mv.title.slice(0, 28)}» encendida desde archive.org`);
+    },
   });
-  if (!r) return;
-  const url = String(r.url || '').trim();
-  if (!/^https?:\/\//.test(url)) return toast('⚠ Ese enlace no vale — debe empezar por http(s)://', true);
+}
+/* crea el capítulo de la película dentro de la sección «Películas del universo» */
+function uniCreateMovieEp(s, mv, url) {
   s.seasons = s.seasons || {};
   let peliSe = Object.keys(s.seasons).find(k => /pel[ií]cul|movie|ova|cin[eé]/i.test(s.seasons[k]));
   if (!peliSe) {
@@ -10345,11 +10597,11 @@ async function uniAddMovie(s, mv) {
   const n = s.episodes.reduce((mx, e) => Math.max(mx, e.n || 0), 0) + 1;
   s.episodes.push({ n, t: mv.title.slice(0, 90), url, season: peliSe, ova: /ova/i.test(mv.title) || undefined });
   save(); renderEpisodes(); renderSeries(els.searchInput.value);
-  toast(`⚡ «${mv.title.slice(0, 30)}» creada y encendida`);
   requestAnimationFrame(() => {
     const c = els.episodesGrid.querySelector(`[data-epn="${n}"]`);
     if (c) { c.classList.add('ep-flash'); c.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
   });
+  return n;
 }
 
 /* ═══════════ 📥 IMPORTAR A LA SAGA — modal dedicado: pegar enlaces + archive.org
@@ -10383,9 +10635,14 @@ function uniAppendEpsToSaga(s, r, items, tmNames) {
   if (!items || !items.length) return 0;
   let n = s.episodes.reduce((mx, e) => Math.max(mx, e.n || 0), 0);
   let pos = r.epsS ? r.epsS.length : (s.episodes.filter(e => (e.season || 1) === (r.se || 1)).length);
-  let made = 0;
+  let made = 0, yaEstaba = 0;
+  /* 🔁 el importador es IDEMPOTENTE: un enlace que ya vive en la serie NO
+     entra dos veces — re-importar la misma saga jamás duplica tarjetas   */
+  const haveUrl = new Set(s.episodes.map(e => (e.url || '').trim()).filter(Boolean));
   for (const it of items) {
     if (!it || !it.url) continue;
+    if (haveUrl.has(it.url.trim())) { yaEstaba++; continue; }
+    haveUrl.add(it.url.trim());
     let t = (it.t || '').trim();
     if (!t && tmNames && tmNames[pos]) t = tmNames[pos];
     if (!t) t = (it.file || '').replace(/\.[a-z0-9]{2,4}$/i, '').replace(/[_.]+/g, ' ').trim();
@@ -10394,6 +10651,7 @@ function uniAppendEpsToSaga(s, r, items, tmNames) {
     pos++; made++;
   }
   if (made) { liftTombstone(s); seasonRevive(s, r.se); save(); }
+  if (yaEstaba) toast(`🔁 ${yaEstaba} enlace${yaEstaba === 1 ? '' : 's'} ya existía${yaEstaba === 1 ? '' : 'n'} — no duplicado${yaEstaba === 1 ? '' : 's'}`);
   return made;
 }
 /* el modal en sí — dos pestañas, sin salir de los relacionados */
@@ -10421,13 +10679,9 @@ async function uniImportToSaga(s, r) {
         <div class="uni-prev hidden"></div>
         <button class="uni-go">⚡ Importar a esta saga</button>
       </div>
-      <!-- pestaña 2: buscador archive.org -->
+      <!-- pestaña 2: buscador PROFUNDO archive.org -->
       <div class="uni-pane" data-p="ia">
-        <div class="uni-ia-search">
-          <input type="text" placeholder="Buscar en archive.org (serie, temporada, capítulos…)" value="${escapeHtml((r.tm ? r.tm.name : sagaName).slice(0, 60))}">
-          <button class="uni-ia-btn">🔍 Buscar</button>
-        </div>
-        <div class="uni-ia-res"></div>
+        <div class="uni-ia-deep"></div>
       </div>
     </div>`;
   document.body.appendChild(ov);
@@ -10469,52 +10723,24 @@ async function uniImportToSaga(s, r) {
       if (b) b.scrollIntoView({ block: 'start', behavior: 'smooth' });
     });
   });
-  /* ── pestaña 2: archive.org — buscar ítems, importar TODOS sus videos ── */
-  const resBox = ov.querySelector('.uni-ia-res');
-  const iaQ = ov.querySelector('.uni-ia-search input');
-  const iaSearch = async () => {
-    const q = iaQ.value.trim();
-    if (!q) return;
-    resBox.innerHTML = '<div class="uni-ia-msg">🔍 Buscando en archive.org…</div>';
-    try {
-      const p = new URLSearchParams({ q: `(${q}) AND mediatype:movies`, rows: '14', page: '1', output: 'json' });
-      ['identifier', 'title', 'year', 'downloads'].forEach(f => p.append('fl[]', f));
-      const res = await fetch(`https://archive.org/advancedsearch.php?${p.toString()}`);
-      const data = await res.json();
-      const docs = ((data.response && data.response.docs) || []).filter(d => d.identifier && d.title);
-      resBox.innerHTML = '';
-      if (!docs.length) { resBox.innerHTML = '<div class="uni-ia-msg">Sin resultados — prueba con el nombre en inglés o más corto.</div>'; return; }
-      for (const d of docs) {
-        const year = String(d.year || '').slice(0, 4);
-        const title = Array.isArray(d.title) ? d.title[0] : String(d.title || '');
-        const card = document.createElement('div');
-        card.className = 'uni-ia-card';
-        card.innerHTML = `
-          <img loading="lazy" src="https://archive.org/services/img/${encodeURIComponent(d.identifier)}" alt="" onerror="this.style.opacity=.15">
-          <div class="uni-ia-b"><b title="${escapeHtml(title)}">${escapeHtml(title.slice(0, 52))}</b><small>${year ? year + ' · ' : ''}${(d.downloads || 0).toLocaleString()} desc.</small></div>
-          <button class="uni-ia-add" title="Importar TODOS los videos de este enlace a la saga">＋ Importar</button>`;
-        card.querySelector('.uni-ia-add').addEventListener('click', async ev => {
-          const b = ev.target.closest('button');
-          b.disabled = true; b.textContent = '⏳ Leyendo…';
-          try {
-            const media = await cineFetchMedia(d.identifier);
-            if (!media || !media.vids.length) { b.textContent = '⚠ sin videos'; setTimeout(() => { b.disabled = false; b.textContent = '＋ Importar'; }, 1400); return; }
-            const items = media.vids.map(v => ({ url: v.url, file: v.name }));
-            const made = uniAppendEpsToSaga(s, r, items, tmNames);
-            close();
-            toast(`🌐 ${made} capítulo${made === 1 ? '' : 's'} importado${made === 1 ? '' : 's'} de archive.org a «${sagaName.slice(0, 20)}»`);
-            renderEpisodes(); renderSeries(els.searchInput.value);
-            requestAnimationFrame(() => {
-              const bb = els.episodesGrid.querySelector(`[data-sagakey="${CSS.escape(s.id + '|' + (r.se || 1))}"]`);
-              if (bb) bb.scrollIntoView({ block: 'start', behavior: 'smooth' });
-            });
-          } catch (e) { b.textContent = '⚠ error'; setTimeout(() => { b.disabled = false; b.textContent = '＋ Importar'; }, 1400); }
-        });
-        resBox.appendChild(card);
-      }
-    } catch (e) { resBox.innerHTML = '<div class="uni-ia-msg">⚠ Sin conexión con archive.org — inténtalo otra vez.</div>'; }
-  };
-  ov.querySelector('.uni-ia-btn').addEventListener('click', iaSearch);
-  iaQ.addEventListener('keydown', ev => { if (ev.key === 'Enter') iaSearch(); });
+  /* ── pestaña 2: archive.org BÚSQUEDA PROFUNDA — páginas de 50, duración
+     real (<60 / >60 min), idioma, año y orden. Al elegir un ítem, TODOS
+     sus videos entran a esta saga con nombre TMDB por posición ── */
+  uniIaDeepSearch(ov.querySelector('.uni-pane[data-p="ia"] .uni-ia-deep'), {
+    query: (r.tm ? r.tm.name : sagaName).slice(0, 60),
+    onPick: async d => {
+      const media = await cineFetchMedia(d.identifier);
+      if (!media || !media.vids.length) { toast('⚠ Ese ítem no tiene videos reproducibles', true); return; }
+      const items = media.vids.map(v => ({ url: v.url, file: v.name }));
+      const made = uniAppendEpsToSaga(s, r, items, tmNames);
+      close();
+      toast(`🌐 ${made} capítulo${made === 1 ? '' : 's'} importado${made === 1 ? '' : 's'} de archive.org a «${sagaName.slice(0, 20)}»`);
+      renderEpisodes(); renderSeries(els.searchInput.value);
+      requestAnimationFrame(() => {
+        const bb = els.episodesGrid.querySelector(`[data-sagakey="${CSS.escape(s.id + '|' + (r.se || 1))}"]`);
+        if (bb) bb.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      });
+    },
+  });
   setTimeout(() => ta.focus(), 60);
 }

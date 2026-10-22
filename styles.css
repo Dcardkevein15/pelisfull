@@ -4499,6 +4499,21 @@ body.chat-full .episodes-panel{max-width:none}
   background:linear-gradient(135deg,#ffd24a,#ff9d2e);
 }
 .uni-imp .uni-ia-add:disabled{opacity:.6;cursor:wait}
+/* ═══ 🌐 BÚSQUEDA PROFUNDA: filtros + duración real + cargar más ═══ */
+.uni-imp .uni-ia-filters{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.uni-imp .uni-ia-filters select{background:rgba(18,20,40,.92);border:1px solid rgba(55,198,255,.25);border-radius:9px;color:#dfe4ff;font:600 10.5px Inter;padding:7px 8px;outline:none;cursor:pointer}
+.uni-imp .uni-ia-filters select:hover{border-color:#37c6ff}
+.uni-imp .uni-ia-card .uni-ia-dur{display:block;color:#5eead4;font:700 10px Inter;margin-top:1px}
+.uni-imp .uni-ia-card.dur-out{display:none}
+.uni-imp .uni-ia-more{width:100%;margin-top:10px;padding:10px;border-radius:10px;cursor:pointer;font:800 11px Inter;color:#0a0d24;background:linear-gradient(135deg,#37c6ff,#5eead4);border:none}
+.uni-imp .uni-ia-more:disabled{opacity:.55;cursor:wait}
+.uni-imp .uni-ia-more.hidden{display:none}
+/* selector de origen (pegar enlace vs buscar en archive.org) */
+.uni-src-row{display:flex;gap:10px;margin-top:14px}
+.uni-src-row button{flex:1;padding:14px 10px;border-radius:12px;cursor:pointer;font:800 12px Inter;border:1.5px solid rgba(143,156,255,.4);background:rgba(20,22,45,.85);color:#fff;transition:all .15s}
+.uni-src-row button.ia{border-color:rgba(55,198,255,.5);color:#d8f6ff}
+.uni-src-row button:hover{border-color:var(--acid,#d8ff3e);transform:translateY(-1px)}
+.uni-pick-ov{z-index:10001}
 @media (max-width:560px){
   .saga-add{padding:7px 9px;font-size:9.5px}
   .uni-imp{padding:10px}
