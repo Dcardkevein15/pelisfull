@@ -4614,9 +4614,7 @@ function syncDownloadBtn() {
   const ep = s && current.ep != null && s.episodes.find(e => e.n === current.ep);
   const ok = !!(s && ep && ep.url);
   els.downloadBtn.classList.toggle('hidden', !ok);
-  if (ok) els.downloadLbl.textContent = s.kind === 'pelicula'
-    ? (isOvaEntry(s) ? 'Descargar OVA' : 'Descargar película')
-    : 'Descargar capítulo';
+  if (ok) els.downloadLbl.textContent = 'Descargar';   /* corto siempre — el tipo ya lo sabes por el título */
 }
 
 /* ═══════════ ⬇ Descarga con pestaña de espera ═══════════
