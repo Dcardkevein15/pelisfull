@@ -3844,6 +3844,22 @@ function loadEpisode(epN, autoplayNow = true) {
      (m4v DivX, avi, mkv…), archive.org suele tener su gemelo h264 en .mp4 con
      el MISMO nombre — probamos ese primero y, si existe, queda como definitivo */
   (async () => {
+    /* 💾 COPIA LOCAL PRIMERO: si este capítulo está descargado, se reproduce
+       desde la copia guardada (mismo reproductor, FUNCIONA SIN INTERNET) */
+    if (await offlineHas(s.id, ep.n)) {
+      const localKey = offlineKey(s.id, ep.n) + '?t=' + Date.now();
+      if (!v.src.endsWith(localKey)) {
+        v.src = localKey;
+        v.load();
+      }
+      attachSpanishSubs(ep.sub);
+      if (!/OFFLINE/.test(els.nowPlaying.textContent)) els.nowPlaying.textContent += ' · 💾 OFFLINE';
+      if (autoplayNow) {
+        v.play().catch(() => toast('Pulsa play para iniciar (autoplay bloqueado)'));
+      }
+      renderEpisodes();
+      return;
+    }
     const url = await archiveBetterMp4(ep.url);
     if (url !== ep.url) { ep.url = url; save(); }
     if (!v.src.endsWith(url)) {
@@ -4609,12 +4625,117 @@ function monetizeUrl(u, vip = false) {
   return ACORTADOR_BASE + '?u=' + b64 + (vip ? '&vip=1' : '');
 }
 
+/* ═══ 📴 BIBLIOTECA OFFLINE — descargas para siempre, visibles sin internet ═══
+   El botón «Descargar» guarda el video DENTRO del navegador (Cache API,
+   servida por el Service Worker bajo /__off/…). Se reproduce en el MISMO
+   reproductor de la página aunque no haya internet, y queda guardado para
+   siempre: la activación del SW respeta su caché de descargas.          */
+const OFF_CACHE = 'xstream-offline-v1';
+const offlineKey = (sid, epN) => `/__off/${encodeURIComponent(sid)}/${epN}.mp4`;
+async function offlineHas(sid, epN) {
+  try {
+    if (!('caches' in window)) return false;
+    const c = await caches.open(OFF_CACHE);
+    return !!(await c.match(offlineKey(sid, epN), { ignoreSearch: true }));
+  } catch (e) { return false; }
+}
+/* tamaño exacto del archivo — para el reloj de progreso. La API de
+   metadatos de archive.org SÍ manda CORS (la descarga directa no).      */
+async function offlineTotalSize(url) {
+  try {
+    const m = String(url || '').match(/https?:\/\/archive\.org\/download\/([^/]+)\/(.+?)(?:\?[^\s]*)?$/i);
+    if (!m) return 0;
+    const r = await fetch(`https://archive.org/metadata/${m[1]}`);
+    if (!r.ok) return 0;
+    const j = await r.json();
+    let fname = m[2];
+    try { fname = decodeURIComponent(fname); } catch (e) { }
+    const f = (j.files || []).find(x => x.name === fname);
+    return f ? Math.max(0, +f.size || 0) : 0;
+  } catch (e) { return 0; }
+}
+/* 💾 la descarga en el MISMO botón: se convierte en un reloj que llega
+   a las 12 mientras el Service Worker trae el video, y al terminar el
+   capítulo queda guardado para siempre (reproducible sin internet).   */
+async function downloadOffline(s, ep) {
+  const key = offlineKey(s.id, ep.n);
+  if (await offlineHas(s.id, ep.n)) {
+    toast('💾 Ya está guardado — reproduciendo la copia local');
+    loadEpisode(ep.n, true);
+    return;
+  }
+  const sw = navigator.serviceWorker;
+  /* sin Service Worker (file://, navegador viejo): flujo clásico de siempre */
+  if (!sw || !sw.controller) { openWithWaitTab(ep.url, `${s.t} · ${ep.t || 'E' + ep.n}`); return; }
+  const btn = els.downloadBtn;
+  const original = btn.innerHTML;
+  btn.classList.add('dling');
+  /* 🕐 RELOJ: manecilla barriendo el dial mientras el Service Worker trae el
+     video (archive.org no manda CORS: nadie puede leer los bytes desde la
+     página — el reloj gira hasta que el SW confirma, y al confirmar la
+     manecilla clava las 12 y el botón queda «Guardado ✓»)              */
+  btn.innerHTML = `
+    <svg class="dl-clock" viewBox="0 0 26 26" width="26" height="26">
+      <circle cx="13" cy="13" r="11" fill="none" stroke="rgba(17,17,17,.28)" stroke-width="2.5"/>
+      <line class="dl-hand" x1="13" y1="13" x2="13" y2="5" stroke="#111" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="13" cy="13" r="1.9" fill="#111"/>
+    </svg>`;
+  const hand = btn.querySelector('.dl-hand');
+  const total = await offlineTotalSize(ep.url);
+  if (total > 0) toast(`⏬ Descargando ${Math.round(total / 1048576 * 10) / 10} MB — queda guardado para siempre`);
+  const ok = await new Promise(async resolve => {
+    let settled = false;
+    const finish = v => {
+      if (settled) return;
+      settled = true;
+      navigator.serviceWorker.removeEventListener('message', onMsg);
+      resolve(v);
+    };
+    const onMsg = ev => {
+      if (ev.data && ev.data.type === 'x-dl-done' && ev.data.key === key) finish(!!ev.data.ok);
+    };
+    navigator.serviceWorker.addEventListener('message', onMsg);
+    try { sw.controller.postMessage({ type: 'x-dl', url: ep.url, key }); }
+    catch (e) { finish(false); }
+    setTimeout(() => finish(false), 10 * 60 * 1000);   /* red muy lenta: corte de seguridad */
+  });
+  if (ok) {
+    /* manecilla clavada en las 12: descarga completa — estado final inmediato */
+    if (hand) { hand.style.animation = 'none'; }
+    btn.classList.remove('dling');
+    btn.classList.add('saved');
+    btn.innerHTML = original;
+    /* OJO: al reconstruir el innerHTML, el span del label es NUEVO — hay que
+       consultarlo fresco (els.downloadLbl quedó enganchado al viejo, que
+       ya no vive en el botón: escribirle ahí no se veía)                */
+    const lblAhora = btn.querySelector('#downloadLbl');
+    if (lblAhora) lblAhora.textContent = 'Guardado ✓';
+    toast('💾 Guardado para siempre — ya puedes verlo SIN internet');
+  } else {
+    btn.classList.remove('dling');
+    btn.innerHTML = original;
+    toast('⚠ No se pudo guardar aquí — abriendo el flujo clásico', true);
+    openWithWaitTab(ep.url, `${s.t} · ${ep.t || 'E' + ep.n}`);
+  }
+}
+
 function syncDownloadBtn() {
   const s = getSeries(current.seriesId);
   const ep = s && current.ep != null && s.episodes.find(e => e.n === current.ep);
   const ok = !!(s && ep && ep.url);
   els.downloadBtn.classList.toggle('hidden', !ok);
-  if (ok) els.downloadLbl.textContent = 'Descargar';   /* corto siempre — el tipo ya lo sabes por el título */
+  if (!ok) return;
+  /* el span del label puede ser NUEVO (el botón se reconstruye al morphar
+     en reloj) — siempre se consulta fresco, nunca la referencia vieja    */
+  const lblAhora = els.downloadBtn.querySelector('#downloadLbl');
+  if (lblAhora) lblAhora.textContent = 'Descargar';
+  /* 💾 ¿ya está descargado? el botón pasa a estado «guardado» */
+  offlineHas(s.id, ep.n).then(has => {
+    if (current.seriesId !== s.id || current.ep !== ep.n) return;   /* ya navegó a otro capítulo */
+    els.downloadBtn.classList.toggle('saved', has);
+    const lbl2 = els.downloadBtn.querySelector('#downloadLbl');
+    if (lbl2) lbl2.textContent = has ? 'Guardado ✓' : 'Descargar';
+  });
 }
 
 /* ═══════════ ⬇ Descarga con pestaña de espera ═══════════
@@ -4714,8 +4835,9 @@ els.downloadBtn.addEventListener('click', async () => {
       return;
     }
 
-    /* directo (archive.org, mp4, webm…): el archivo tal cual, con ventana de espera */
-    openWithWaitTab(url, `${s.t} · ${ep.t || 'E' + ep.n}`);
+    /* directo (archive.org, mp4, webm…): 💾 descarga EN el botón con reloj de
+       progreso — queda guardado para siempre y reproducible sin internet */
+    downloadOffline(s, ep);
   } finally { dlBusy = false; }
 });
 

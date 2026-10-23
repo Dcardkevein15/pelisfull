@@ -1197,6 +1197,12 @@ body.light .tag-chip.on{color:#6a9000}
 }
 .btn-dl:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 10px 30px color-mix(in srgb,var(--acid) 55%,transparent)}
 .btn-dl:active{transform:translateY(0) scale(.97)}
+/* 💾 estado «Guardado ✓» y reloj de descarga en el propio botón */
+.btn-dl.saved{background:linear-gradient(135deg,#5eead4,#37c6ff);color:#06283d;box-shadow:0 6px 22px color-mix(in srgb,#37c6ff 40%,transparent)}
+.btn-dl.dling{pointer-events:none;gap:0;padding:6px;min-width:38px;display:inline-flex;align-items:center;justify-content:center}
+/* 🕐 manecilla del reloj barriendo el dial mientras descarga */
+.btn-dl .dl-hand{transform-origin:13px 13px;animation:dlSweep 1.6s linear infinite}
+@keyframes dlSweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
 /* ═══════ CONTINUAR VIENDO ═══════ — mismo tamaño/idioma que el riel
    "Sigue viendo" de la portada (miniatura panorámica 96×56, barra 4px) */
@@ -2742,13 +2748,16 @@ body.chat-full .cmu-list{max-height:44vh}
   .stage-side .btn-music{flex:0 0 auto;padding:12px 14px;font-size:12px}
   .stage-side .btn-music span{display:inline}
 }
-/* 📱 móvil: el botón DESCARGAR conserva su etiqueta y tamaño de dedo —
-   la regla global «.btn span{display:none}» lo dejaba en un icono de
-   35×29px casi imposible de ver o acertar bajo el video (mismo patrón
-   que ya usan btn-syn y btn-music)                                */
+/* 📱 móvil: fila de botones bajo el video CENTRADA y simétrica; el botón
+   Descargar vuelve a su MERO ICONO (flechita) como antes — la regla
+   global «.btn span{display:none}» lo aplica — pero con buen tamaño de
+   dedo. Título centrado encima: todo alineado, nada «solo» o torcido. */
 @media (max-width:900px){
-  .stage-side .btn-dl{flex:0 0 auto;padding:12px 15px;font-size:12px}
-  .stage-side .btn-dl span{display:inline}
+  .stage-info{flex-direction:column;align-items:center;text-align:center;gap:12px}
+  .stage-title-row{justify-content:center;flex-wrap:wrap}
+  .stage-info p{margin-left:auto;margin-right:auto}
+  .stage-side{justify-content:center;width:100%}
+  .stage-side .btn-dl{flex:0 0 auto;padding:10px 12px}
 }
 
 /* ═══════ 🎵 MÚSICA en la portada — tarjetitas visuales por género ═══════ */
