@@ -6,7 +6,7 @@
   <atom:link href="https://x.yapido.click/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Anime, series y películas completas en español, gratis y en HD.</description>
   <language>es</language>
-  <lastBuildDate>Fri, 23 Oct 2026 11:46:21 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 23 Oct 2026 16:03:42 GMT</lastBuildDate>
   <item>
     <title>The avengers</title>
     <link>https://x.yapido.click/ver/the-avengers/</link>
@@ -89,18 +89,6 @@
       <p><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b98213-9VXeT64jUQrU.jpg" alt="Tamashii Insert" style="max-width:220px;border-radius:10px"></p>
       <p>Tamashii Insert disponible completa y en español en X·STREAM (2 capítulos).</p>
       <p><a href="https://x.yapido.click/ver/tamashii-insert/">▶ Continuar viendo: Tamashii Insert</a></p>
-    ]]></description>
-  </item>
-  <item>
-    <title>Matrix</title>
-    <link>https://x.yapido.click/ver/matrix/</link>
-    <guid isPermaLink="true">https://x.yapido.click/ver/matrix/</guid>
-    <pubDate>Fri, 23 Oct 2026 12:00:00 GMT</pubDate>
-    <media:content url="https://image.tmdb.org/t/p/w780/tpW2X2DvxtTHJ61iJ7zNYYrJihs.jpg" medium="image"/>
-    <description><![CDATA[
-      <p><img src="https://image.tmdb.org/t/p/w780/tpW2X2DvxtTHJ61iJ7zNYYrJihs.jpg" alt="Matrix" style="max-width:220px;border-radius:10px"></p>
-      <p>Thomas Anderson lleva una doble vida: por el día es programador en una importante empresa de software, y por la noche un hacker informático llamado Neo. Su vida no volverá a ser igual cuando unos misteriosos personajes le inviten a descubrir la respuesta a la pregunta que no le deja dormir: ¿qué es…</p>
-      <p><a href="https://x.yapido.click/ver/matrix/">▶ Continuar viendo: Matrix</a></p>
     ]]></description>
   </item>
   <item>
@@ -605,6 +593,18 @@
       <p><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21535-yauyQGAt3975.jpg" alt="Pandra the Animation" style="max-width:220px;border-radius:10px"></p>
       <p>Pandra the Animation disponible completa y en español en X·STREAM (2 capítulos).</p>
       <p><a href="https://x.yapido.click/ver/pandra-the-animation/">▶ Continuar viendo: Pandra the Animation</a></p>
+    ]]></description>
+  </item>
+  <item>
+    <title>Ryou Seibai! Gakuen Bishoujo Seisai Hiroku </title>
+    <link>https://x.yapido.click/ver/ryou-seibai-gakuen-bishoujo-seisai-hiroku/</link>
+    <guid isPermaLink="true">https://x.yapido.click/ver/ryou-seibai-gakuen-bishoujo-seisai-hiroku/</guid>
+    <pubDate>Sat, 17 Oct 2026 12:00:00 GMT</pubDate>
+    <media:content url="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/17537-uIuoltHLDp4C.jpg" medium="image"/>
+    <description><![CDATA[
+      <p><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/17537-uIuoltHLDp4C.jpg" alt="Ryou Seibai! Gakuen Bishoujo Seisai Hiroku " style="max-width:220px;border-radius:10px"></p>
+      <p>Ryou Seibai! Gakuen Bishoujo Seisai Hiroku  disponible completa y en español en X·STREAM (2 capítulos).</p>
+      <p><a href="https://x.yapido.click/ver/ryou-seibai-gakuen-bishoujo-seisai-hiroku/">▶ Continuar viendo: Ryou Seibai! Gakuen Bishoujo Seisai Hiroku </a></p>
     ]]></description>
   </item>
 </channel>
