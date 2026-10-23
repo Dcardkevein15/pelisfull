@@ -10564,7 +10564,8 @@ function uniIaDeepSearch(mount, { query = '', onPick } = {}) {
     if (busy) return;
     busy = true;
     const { q, sort } = buildQ();
-    const p = new URLSearchParams({ q, rows: '50', page: String(page + 1), output: 'json' });
+    /* 📄 de 10 en 10: lotes chicos que el usuario ve cargar de verdad */
+    const p = new URLSearchParams({ q, rows: '10', page: String(page + 1), output: 'json' });
     ['identifier', 'title', 'year', 'downloads'].forEach(fl => p.append('fl[]', fl));
     p.append('sort[]', sort);
     if (page === 0) resBox.innerHTML = '<div class="uni-ia-msg">🔍 Buscando en archive.org…</div>';
@@ -10590,8 +10591,9 @@ function uniIaDeepSearch(mount, { query = '', onPick } = {}) {
       total = (data.response && data.response.numFound) || 0;
       const docs = ((data.response && data.response.docs) || []).filter(d => d.identifier && d.title);
       if (page === 0) resBox.innerHTML = '';
-      if (!docs.length && page === 0) {
-        resBox.innerHTML = '<div class="uni-ia-msg">Sin resultados — prueba el nombre en inglés, más corto, o quita filtros.</div>';
+      if (!docs.length) {
+        if (page === 0) resBox.innerHTML = '<div class="uni-ia-msg">Sin resultados — prueba el nombre en inglés, más corto, o quita filtros.</div>';
+        else resBox.insertAdjacentHTML('beforeend', '<div class="uni-ia-msg">Fin de los resultados — eso es todo lo que hay.</div>');
         moreBtn.classList.add('hidden'); busy = false; return;
       }
       for (const d of docs) {
@@ -10617,9 +10619,19 @@ function uniIaDeepSearch(mount, { query = '', onPick } = {}) {
         resBox.appendChild(card);
       }
       page++;
+      /* 👀 VER que cargó: autoscroll del visor hasta la PRIMERA tarjeta nueva
+         (antes las nuevas quedaban abajo del todo, fuera de vista — el dedo
+         movía la página y no la cajita y parecía que no cargaba nada)      */
+      if (page > 1) {
+        const todas = [...resBox.querySelectorAll('.uni-ia-card')];
+        const primeraNueva = todas[todas.length - docs.length];
+        if (primeraNueva) {
+          resBox.scrollTop += primeraNueva.getBoundingClientRect().top - resBox.getBoundingClientRect().top;
+        }
+      }
       moreBtn.classList.remove('hidden');
       moreBtn.disabled = false;
-      moreBtn.textContent = `🌐 Cargar 50 más… (${page * 50}/${total.toLocaleString()})`;
+      moreBtn.textContent = `🌐 Cargar 10 más… (${page * 10}/${total.toLocaleString()})`;
       fillDurations();
     } catch (e) {
       if (page === 0) resBox.innerHTML = '<div class="uni-ia-msg">⚠ archive.org no respondió — reintenta en unos segundos.</div>';
