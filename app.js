@@ -4641,14 +4641,19 @@ const WAIT_SECONDS = 3;
 async function openWithWaitTab(url) {
   /* si el que descarga es el admin, el acortador no lo detiene con anuncios */
   const finalUrl = monetizeUrl(url, canAdmin());
-  /* abre la pestaña nueva.
-     OJO: sin 'noopener' — ese flag hace que window.open SIEMPRE devuelva null
-     y disparaba la doble apertura (nueva + navegación de esta misma).      */
-  const w = window.open(finalUrl, '_blank');
-  if (!w) {
-    /* solo si el popup fue de verdad bloqueado, navegamos esta pestaña */
-    location.href = finalUrl;
-  }
+  /* 📱 apertura por <a target="_blank">: window.open puede fallar en
+     navegadores móviles y webviews (popup bloqueado → null, o devuelve
+     una "ventana" que nunca se abre y el botón parece no hacer nada).
+     El clic sobre un ENLACE real jamás se bloquea — es la navegación
+     que todo móvil respeta. Si aun así no puede abrir nueva, el propio
+     navegador decide (pestaña nueva o la actual): siempre pasa algo.  */
+  const a = document.createElement('a');
+  a.href = finalUrl;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { try { a.remove(); } catch (e) { } }, 1200);
 }
 
 /* cierre del flujo: redirige la pestaña al enlace corto (o navega esta si está bloqueada) */

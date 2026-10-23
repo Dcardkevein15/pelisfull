@@ -2742,6 +2742,14 @@ body.chat-full .cmu-list{max-height:44vh}
   .stage-side .btn-music{flex:0 0 auto;padding:12px 14px;font-size:12px}
   .stage-side .btn-music span{display:inline}
 }
+/* 📱 móvil: el botón DESCARGAR conserva su etiqueta y tamaño de dedo —
+   la regla global «.btn span{display:none}» lo dejaba en un icono de
+   35×29px casi imposible de ver o acertar bajo el video (mismo patrón
+   que ya usan btn-syn y btn-music)                                */
+@media (max-width:900px){
+  .stage-side .btn-dl{flex:0 0 auto;padding:12px 15px;font-size:12px}
+  .stage-side .btn-dl span{display:inline}
+}
 
 /* ═══════ 🎵 MÚSICA en la portada — tarjetitas visuales por género ═══════ */
 .home-music-strip{
