@@ -778,7 +778,23 @@
     </div>
     <div class="cine-tools">
       <label class="cine-lang"><input type="checkbox" id="cineLang" checked> 🇪🇸 Solo español</label>
-      <label class="cine-lang"><input type="checkbox" id="cineMinDur" checked> ⏱ Solo +60 min</label>
+      <select id="cineMinDur" class="cine-sel" title="Duración real de los videos del ítem">
+        <option value="">⏱ Duración: cualquiera</option>
+        <option value="lt60">⏱ Menos de 60 min</option>
+        <option value="gt60" selected>⏱ Más de 60 min</option>
+      </select>
+      <select id="cineYear" class="cine-sel" title="Año de publicación del ítem">
+        <option value="">📅 Año: cualquiera</option>
+        <option value="new">📅 2000 o más</option>
+        <option value="90">📅 80s–90s</option>
+        <option value="old">📅 Antes de 1980</option>
+      </select>
+      <select id="cineSort" class="cine-sel" title="Orden de los resultados">
+        <option value="downloads">⭐ Más descargados</option>
+        <option value="week">🔥 Tendencia (semana)</option>
+        <option value="addeddate">🆕 Añadidos recientemente</option>
+        <option value="year">🗓 Más nuevos por año</option>
+      </select>
       <div class="cine-chips" id="cineChips"></div>
     </div>
     <div class="net-status hidden" id="cineStatus">🔍 Buscando…</div>

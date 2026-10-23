@@ -303,7 +303,8 @@ const els = {
   playerExt: $('playerExt'), extTitle: $('extTitle'), extHost: $('extHost'), extOpen: $('extOpen'),
   renameBtn: $('renameBtn'),
   cineBtn: $('cineBtn'), modalCine: $('modalCine'), cineQuery: $('cineQuery'), cineGo: $('cineGo'),
-  cineLang: $('cineLang'), cineMinDur: $('cineMinDur'), cineChips: $('cineChips'), cineStatus: $('cineStatus'),
+  cineLang: $('cineLang'), cineMinDur: $('cineMinDur'), cineYear: $('cineYear'), cineSort: $('cineSort'),
+  cineChips: $('cineChips'), cineStatus: $('cineStatus'),
   cineResults: $('cineResults'), closeCine: $('closeCine'),
   sortMode: $('sortMode'), favFilter: $('favFilter'), tagChips: $('tagChips'), trendsBtn: $('trendsBtn'), linksBtn: $('linksBtn'),
   exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'),
@@ -9344,50 +9345,88 @@ function cineDetectType(doc, vidCount = 0) {
   return { key: 'pelicula', label: '🎬 Película' };
 }
 
-function cineSearchUrl(q, onlyEs) {
+function cineSearchUrl(q, onlyEs, page = 1) {
   /* filtro de idioma español: metadatos + título/descripción en español */
   const es = '(language:(Spanish OR spa) OR title:(español OR latino OR castellano OR español) OR description:(español OR latino OR castellano))';
+  let l = `(${q}) AND mediatype:movies` + (onlyEs ? ` AND ${es}` : '');
+  const y = (els.cineYear && els.cineYear.value) || '';
+  if (y === 'new') l += ' AND year:[2000 TO *]';
+  if (y === '90') l += ' AND year:[1980 TO 1999]';
+  if (y === 'old') l += ' AND year:[* TO 1979]';
   const p = new URLSearchParams({
-    q: `(${q}) AND mediatype:movies` + (onlyEs ? ` AND ${es}` : ''),
-    rows: '40', page: '1', output: 'json',
-    sort: 'downloads desc',
+    q: l,
+    rows: '40', page: String(page), output: 'json',
+    sort: (((els.cineSort && els.cineSort.value) || 'downloads') + ' desc'),
   });
   /* runtime + subject: permiten filtrar por duración y detectar el tipo SIN peticiones extra */
   ['identifier', 'title', 'year', 'downloads', 'language', 'runtime', 'subject'].forEach(f => p.append('fl[]', f));
   return `https://archive.org/advancedsearch.php?${p.toString()}`;
 }
 
-async function cineSearch() {
+/* 🌐 paginación del buscador de cine: antes una sola página fija de 40 y ya —
+   ahora se puede seguir cargando de 40 en 40 hasta el fondo del archivo     */
+let cinePage = 0, cineTotal = 0, cineBusy = false;
+async function cineSearch(reset = true) {
+  if (cineBusy) return;
+  const dur = (els.cineMinDur && els.cineMinDur.value) || '';
   const q = els.cineQuery.value.trim() || 'película';
-  els.cineResults.innerHTML = '';
+  if (reset) { cinePage = 0; els.cineResults.innerHTML = ''; cineVerifyQueue.length = 0; }
+  cineBusy = true;
   els.cineStatus.classList.remove('hidden');
-  els.cineStatus.textContent = '🔍 Buscando películas…';
-  try {
-    const res = await fetch(cineSearchUrl(q, els.cineLang.checked));
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    let docs = ((data.response && data.response.docs) || []).filter(d => d.identifier && d.title);
-    /* ⏱ filtro +60 min: descarta lo que YA sabemos que es corto (runtime en los metadatos);
-       a lo que no declara duración se le hace una verificación perezosa tras pintarlo */
-    if (els.cineMinDur.checked) {
-      docs = docs.filter(d => { const sec = parseRuntime(d.runtime); return !sec || sec >= 3600; });
+  els.cineStatus.textContent = reset ? '🔍 Buscando películas…' : '⏳ Cargando más…';
+  /* 🐢 archive.org limita por ráfagas: reintentos con pausas crecientes */
+  let data = null;
+  for (let i = 0; i < 3; i++) {
+    if (i) {
+      els.cineStatus.textContent = `⏳ archive.org ocupado — reintentando (${i}/2)…`;
+      await new Promise(r => setTimeout(r, i === 1 ? 5000 : 15000));
     }
-    /* refuerzo: si el filtro ES está activo, priorizamos los que tengan language español */
-    if (els.cineLang.checked) {
-      docs = [...docs].sort((a, b) => {
-        const esA = /spanish|spa|español|castellano/i.test(String(a.language || '') + ' ' + String(a.title || '')) ? 0 : 1;
-        const esB = /spanish|spa|español|castellano/i.test(String(b.language || '') + ' ' + String(b.title || '')) ? 0 : 1;
-        return esA - esB || (b.downloads || 0) - (a.downloads || 0);
-      });
-    }
-    els.cineStatus.classList.add('hidden');
-    if (!docs.length) {
-      els.cineResults.innerHTML = `<div class="net-empty">Sin resultados ${els.cineMinDur.checked ? 'de más de 60 min ' : ''}en español. Prueba: «anime», «ovas», nombres de películas en inglés, o desmarca los filtros.</div>`;
-      return;
-    }
-    renderCineResults(docs);
-  } catch (e) {
-    els.cineStatus.textContent = '⚠ No se pudo conectar con archive.org — inténtalo de nuevo en un momento.';
+    try {
+      const res = await fetch(cineSearchUrl(q, els.cineLang.checked, cinePage + 1));
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      data = await res.json();
+      break;
+    } catch (e) { data = null; }
+  }
+  cineBusy = false;
+  if (!data) { els.cineStatus.textContent = '⚠ No se pudo conectar con archive.org — inténtalo de nuevo en un momento.'; return; }
+  cineTotal = (data.response && data.response.numFound) || 0;
+  let docs = ((data.response && data.response.docs) || []).filter(d => d.identifier && d.title);
+  /* ⏱ filtro de duración (3 vías): descarta lo que YA sabemos por runtime;
+     lo que no declara duración se verifica perezosamente tras pintarse      */
+  if (dur) {
+    docs = docs.filter(d => {
+      const sec = parseRuntime(d.runtime);
+      if (!sec) return true;
+      return dur === 'lt60' ? sec < 3600 : sec >= 3600;
+    });
+  }
+  /* refuerzo: si el filtro ES está activo, priorizamos los que tengan language español */
+  if (els.cineLang.checked) {
+    docs = [...docs].sort((a, b) => {
+      const esA = /spanish|spa|español|castellano/i.test(String(a.language || '') + ' ' + String(a.title || '')) ? 0 : 1;
+      const esB = /spanish|spa|español|castellano/i.test(String(b.language || '') + ' ' + String(b.title || '')) ? 0 : 1;
+      return esA - esB || (b.downloads || 0) - (a.downloads || 0);
+    });
+  }
+  els.cineStatus.classList.add('hidden');
+  if (reset && !docs.length) {
+    els.cineResults.innerHTML = `<div class="net-empty">Sin resultados ${dur ? (dur === 'gt60' ? 'de más de 60 min ' : 'de menos de 60 min ') : ''}en español. Prueba: «anime», «ovas», nombres de películas en inglés, o cambia los filtros.</div>`;
+    return;
+  }
+  cinePage++;
+  renderCineResults(docs, reset);
+  /* 🌐 botón «Cargar 40 más» — el archivo tiene miles: nunca más te quedas corto */
+  const prev = document.getElementById('cineMore');
+  if (prev) prev.remove();
+  if (cinePage * 40 < cineTotal) {
+    const ya = els.cineResults.querySelectorAll('.cine-card').length;
+    const more = document.createElement('button');
+    more.id = 'cineMore';
+    more.className = 'cine-more';
+    more.textContent = `🌐 Cargar 40 más… (${Math.min(ya, cinePage * 40)}/${cineTotal.toLocaleString()})`;
+    more.addEventListener('click', () => cineSearch(false));
+    els.cineResults.appendChild(more);
   }
 }
 
@@ -9404,9 +9443,8 @@ async function pumpCineVerify() {
   pumpCineVerify();
 }
 
-function renderCineResults(docs) {
-  cineVerifyQueue.length = 0; // descarta verificaciones de búsquedas anteriores
-  els.cineResults.innerHTML = '';
+function renderCineResults(docs, reset = true) {
+  if (reset) { cineVerifyQueue.length = 0; els.cineResults.innerHTML = ''; }   /* cargar más: solo las nuevas entran */
   for (const d of docs) {
     const year = String(d.year || '').slice(0, 4);
     const title = Array.isArray(d.title) ? d.title[0] : String(d.title);
@@ -9445,7 +9483,7 @@ function renderCineResults(docs) {
           setTimeout(() => card.remove(), 900);
           return;
         }
-        if (els.cineMinDur.checked && media.runtime && media.runtime < 3600) {
+        if ((els.cineMinDur && els.cineMinDur.value) === 'gt60' && media.runtime && media.runtime < 3600) {
           toast(`⏱ «${title.slice(0, 30)}» dura ${fmtDur(media.runtime)} — menos de 60 min`, true);
           card.style.opacity = '.35';
           setTimeout(() => card.remove(), 900);
@@ -9474,7 +9512,7 @@ function renderCineResults(docs) {
       const durEl = card.querySelector('.cine-dur');
       if (media.runtime) {
         if (durEl) durEl.textContent = fmtDur(media.runtime) + ' · ';
-        if (els.cineMinDur.checked && media.runtime < 3600) {
+        if (els.cineMinDur && els.cineMinDur.value === 'gt60' && media.runtime < 3600) {
           card.style.opacity = '.3';            // demasiado corto → se retira solo
           setTimeout(() => card.remove(), 700);
           return;
@@ -9636,10 +9674,12 @@ els.cineBtn.addEventListener('click', () => {
 });
 els.closeCine.addEventListener('click', () => els.modalCine.classList.add('hidden'));
 els.modalCine.addEventListener('click', ev => { if (ev.target === els.modalCine) els.modalCine.classList.add('hidden'); });
-els.cineGo.addEventListener('click', cineSearch);
+els.cineGo.addEventListener('click', () => cineSearch());
 els.cineQuery.addEventListener('keydown', ev => { if (ev.key === 'Enter') cineSearch(); });
-els.cineLang.addEventListener('change', cineSearch);
-els.cineMinDur.addEventListener('change', cineSearch);
+els.cineLang.addEventListener('change', () => cineSearch());
+els.cineMinDur.addEventListener('change', () => cineSearch());
+if (els.cineYear) els.cineYear.addEventListener('change', () => cineSearch());
+if (els.cineSort) els.cineSort.addEventListener('change', () => cineSearch());
 
 /* ═══════════ Init ═══════════ */
 load();
