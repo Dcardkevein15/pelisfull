@@ -1199,10 +1199,10 @@ body.light .tag-chip.on{color:#6a9000}
 .btn-dl:active{transform:translateY(0) scale(.97)}
 /* 💾 estado «Guardado ✓» y reloj de descarga en el propio botón */
 .btn-dl.saved{background:linear-gradient(135deg,#5eead4,#37c6ff);color:#06283d;box-shadow:0 6px 22px color-mix(in srgb,#37c6ff 40%,transparent)}
-.btn-dl.dling{pointer-events:none;gap:0;padding:6px;min-width:38px;display:inline-flex;align-items:center;justify-content:center}
-/* 🕐 manecilla del reloj barriendo el dial mientras descarga */
-.btn-dl .dl-hand{transform-origin:13px 13px;animation:dlSweep 1.6s linear infinite}
-@keyframes dlSweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.btn-dl.dling{pointer-events:none;gap:0;padding:6px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;transition:background .4s}
+.btn-dl.dling .dl-pct{font-family:Inter;letter-spacing:0}
+/* 📈 el fondo del botón cambia de color con la carga real (lo pinta JS con
+   color-mix) — transición suave para que se VEA avanzar             */
 
 /* ═══════ CONTINUAR VIENDO ═══════ — mismo tamaño/idioma que el riel
    "Sigue viendo" de la portada (miniatura panorámica 96×56, barra 4px) */

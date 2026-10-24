@@ -4670,24 +4670,50 @@ async function downloadOffline(s, ep) {
   const btn = els.downloadBtn;
   const original = btn.innerHTML;
   btn.classList.add('dling');
-  /* 🕐 RELOJ: manecilla barriendo el dial mientras el Service Worker trae el
-     video (archive.org no manda CORS: nadie puede leer los bytes desde la
-     página — el reloj gira hasta que el SW confirma, y al confirmar la
-     manecilla clava las 12 y el botón queda «Guardado ✓»)              */
+  /* 🕐 RELOJ CON CARGA REAL: un video oculto precarga el MISMO archivo
+     (los elementos <video> no necesitan CORS para fuentes cruzadas) y su
+     buffered entrega el PORCENTAJE REAL descargado de la red. El arco se
+     llena y el botón CAMBIA DE COLOR conforme avanza — no es decoración:
+     es la descarga de verdad. El Service Worker, en paralelo, guarda la
+     copia para siempre y confirma el final (x-dl-done).               */
   btn.innerHTML = `
     <svg class="dl-clock" viewBox="0 0 26 26" width="26" height="26">
-      <circle cx="13" cy="13" r="11" fill="none" stroke="rgba(17,17,17,.28)" stroke-width="2.5"/>
-      <line class="dl-hand" x1="13" y1="13" x2="13" y2="5" stroke="#111" stroke-width="2.6" stroke-linecap="round"/>
-      <circle cx="13" cy="13" r="1.9" fill="#111"/>
+      <circle class="dl-arc" cx="13" cy="13" r="11" fill="none" stroke="#ff5c5c" stroke-width="3.2"
+        stroke-linecap="round" stroke-dasharray="69.1" stroke-dashoffset="69.1" transform="rotate(-90 13 13)"/>
+      <text class="dl-pct" x="13" y="16.5" text-anchor="middle" font-size="8.5" font-weight="900" fill="currentColor">0%</text>
     </svg>`;
-  const hand = btn.querySelector('.dl-hand');
+  const arc = btn.querySelector('.dl-arc'), pctEl = btn.querySelector('.dl-pct');
+  const CIRC = 69.1;   /* 2π×11 */
+  const dlColor = p => {
+    /* rojo coral → ámbar → verde ácido: el botón cambia de color con la carga */
+    const stops = [[0, [255, 92, 92]], [0.5, [255, 176, 62]], [1, [216, 255, 62]]];
+    for (let i = 1; i < stops.length; i++) {
+      if (p <= stops[i][0]) {
+        const t = (p - stops[i - 1][0]) / (stops[i][0] - stops[i - 1][0]);
+        const c = stops[i - 1][1].map((v, k) => Math.round(v + t * (stops[i][1][k] - v)));
+        return `rgb(${c[0]},${c[1]},${c[2]})`;
+      }
+    }
+    return 'rgb(216,255,62)';
+  };
+  let medidor = null;
+  const medir = () => {
+    try {
+      if (!medidor || !medidor.buffered || !medidor.buffered.length) return null;
+      const p = medidor.buffered.end(medidor.buffered.length - 1) / (medidor.duration || 1);
+      return isFinite(p) && p > 0 ? Math.min(0.999, p) : null;
+    } catch (e) { return null; }
+  };
   const total = await offlineTotalSize(ep.url);
   if (total > 0) toast(`⏬ Descargando ${Math.round(total / 1048576 * 10) / 10} MB — queda guardado para siempre`);
   const ok = await new Promise(async resolve => {
     let settled = false;
+    let timer = null;
     const finish = v => {
       if (settled) return;
       settled = true;
+      if (timer) clearInterval(timer);
+      if (medidor) { try { medidor.pause(); medidor.removeAttribute('src'); medidor.load(); } catch (e) { } medidor = null; }
       navigator.serviceWorker.removeEventListener('message', onMsg);
       resolve(v);
     };
@@ -4697,13 +4723,33 @@ async function downloadOffline(s, ep) {
     navigator.serviceWorker.addEventListener('message', onMsg);
     try { sw.controller.postMessage({ type: 'x-dl', url: ep.url, key }); }
     catch (e) { finish(false); }
+    /* 📈 medidor real: video oculto precargando el mismo archivo */
+    try {
+      medidor = document.createElement('video');
+      medidor.muted = true;
+      medidor.preload = 'auto';
+      medidor.src = ep.url;
+      medidor.load();
+    } catch (e) { medidor = null; }
+    timer = setInterval(() => {
+      const p = medir();
+      if (p == null) return;   /* aún sin datos: el arco espera en 0% */
+      const off = CIRC * (1 - p);
+      arc.setAttribute('stroke-dashoffset', off.toFixed(1));
+      arc.setAttribute('stroke', dlColor(p));
+      pctEl.textContent = Math.round(p * 100) + '%';
+      btn.style.background = `color-mix(in srgb, ${dlColor(p)} ${Math.round(18 + p * 26)}%, var(--acid))`;
+    }, 300);
     setTimeout(() => finish(false), 10 * 60 * 1000);   /* red muy lenta: corte de seguridad */
   });
+  btn.style.background = '';
   if (ok) {
-    /* manecilla clavada en las 12: descarga completa — estado final inmediato */
-    if (hand) { hand.style.animation = 'none'; }
+    /* arco completo en verde: descarga real al 100% — estado «Guardado ✓» */
+    arc.setAttribute('stroke-dashoffset', '0');
+    arc.setAttribute('stroke', 'rgb(216,255,62)');
     btn.classList.remove('dling');
     btn.classList.add('saved');
+    btn.style.background = '';
     btn.innerHTML = original;
     /* OJO: al reconstruir el innerHTML, el span del label es NUEVO — hay que
        consultarlo fresco (els.downloadLbl quedó enganchado al viejo, que
