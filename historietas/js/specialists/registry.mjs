@@ -13,7 +13,7 @@ import historica from './categories/historica.mjs';
 import comedia from './categories/comedia.mjs';
 import infantil from './categories/infantil.mjs';
 import noir from './categories/noir.mjs';
-import { CONTINUITY_GUARDIAN, composeSystemPrompt } from './shared.mjs';
+import { VISUAL_DIRECTOR, CONTINUITY_GUARDIAN, composeSystemPrompt } from './shared.mjs';
 
 export const CATEGORIES = [
   thriller, misterio, romantica, scifi, fantasia, horror,
@@ -30,17 +30,16 @@ export function getSpecialist(id) {
   return SPECIALISTS.find((s) => s.id === id) || null;
 }
 
-/** Especialistas de una categoría (equipo propio + Guardián de Continuidad). */
+/** Especialistas de una categoría (equipo propio + universales). */
 export function fullTeam(category) {
-  return [...category.equipo, CONTINUITY_GUARDIAN];
+  return [...category.equipo, VISUAL_DIRECTOR, CONTINUITY_GUARDIAN];
 }
 
 /** Miembros del equipo que trabajan en una fase concreta. */
 export function teamForPhase(category, phase) {
   const own = category.equipo.filter((s) => s.fases.includes(phase));
-  const shared = [CONTINUITY_GUARDIAN].filter((s) => s.fases.includes(phase));
+  const shared = [VISUAL_DIRECTOR, CONTINUITY_GUARDIAN].filter((s) => s.fases.includes(phase));
   if (phase === 'impacto' && !own.length) {
-    // respaldo: cualquier cirujano del género
     return [...category.equipo.filter((s) => /cirujan/i.test(s.rol)), ...shared];
   }
   return [...own, ...shared];
@@ -53,6 +52,7 @@ const PHASE_NAMES = {
   esquema: 'Arquitectura del esquema capítulo a capítulo',
   escritura: 'Escritura del capítulo',
   impacto: 'Pase de impacto y giros',
+  visual: 'Guion visual de paneles',
 };
 
 /** Prompt de sistema completo para una fase. */

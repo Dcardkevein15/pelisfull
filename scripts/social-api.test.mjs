@@ -525,6 +525,183 @@ console.log('XSTREAM SOCIAL - backend v3\n');
   });
 }
 
+/* ═══════════ 🧵 FORO — hilos, respuestas, rangos y moderación ═══════════ */
+{
+  const { gh, handler } = await freshHandler();
+  const a = await newDevice(), b = await newDevice(), c = await newDevice();
+  const NT = { name: 'Forero', tag: '#777', grad: '2' };
+
+  await test('foro: nace vacío (sin archivo aún) y lee limpio', async () => {
+    await withFake(gh, async () => {
+      const r = await call(handler, { op: 'forum', uid: a.uid, unsigned: true });
+      assert.equal(r.status, 200);
+      assert.ok(r.body.ok && Array.isArray(r.body.threads) && r.body.threads.length === 0);
+    });
+  });
+
+  let tid = '';
+  await test('foro: crear hilo firmado con categoría y sub-foro', async () => {
+    await withFake(gh, async () => {
+      const r = await call(handler, { op: 'fNew', uid: a.uid, dev: a, ...NT, params: { cat: 'anime', sub: 'one-piece', title: 'La serie del momento', body: '¿Cuál es el mejor arco?' } });
+      assert.equal(r.status, 200, JSON.stringify(r.body));
+      assert.equal(r.body.thread.cat, 'anime');
+      assert.equal(r.body.thread.sub, 'one-piece');
+      assert.equal(r.body.thread.role, 'user');
+      assert.equal(r.body.thread.name, 'Forero');
+      tid = r.body.thread.id;
+      const rd = await call(handler, { op: 'forum', uid: a.uid, unsigned: true });
+      assert.equal(rd.body.threads.length, 1);
+    });
+  });
+
+  await test('foro: ETag delta — segunda lectura same:true', async () => {
+    await withFake(gh, async () => {
+      const r1 = await call(handler, { op: 'forum', uid: a.uid, unsigned: true });
+      const r2 = await call(handler, { op: 'forum', uid: a.uid, unsigned: true, params: { etag: r1.body.etag } });
+      assert.equal(r2.status, 200);
+      assert.ok(r2.body.same === true, 'debe responder same:true con el mismo etag');
+    });
+  });
+
+  let rid = '';
+  await test('foro: responder en un hilo', async () => {
+    await withFake(gh, async () => {
+      const r = await call(handler, { op: 'fReply', uid: b.uid, dev: b, name: 'Reponedor', tag: '#888', params: { tid, body: 'El arco de Marineford, claramente' } });
+      assert.equal(r.status, 200, JSON.stringify(r.body));
+      assert.equal(r.body.replies, 1);
+      rid = r.body.reply.id;
+    });
+  });
+
+  await test('foro: likes toggle en hilo y respuesta', async () => {
+    await withFake(gh, async () => {
+      const r1 = await call(handler, { op: 'fLike', uid: b.uid, dev: b, params: { tid } });
+      assert.equal(r1.body.likes, 1); assert.equal(r1.body.on, true);
+      const r2 = await call(handler, { op: 'fLike', uid: b.uid, dev: b, params: { tid } });
+      assert.equal(r2.body.likes, 0); assert.equal(r2.body.on, false);
+      const r3 = await call(handler, { op: 'fLike', uid: a.uid, dev: a, params: { tid, rid } });
+      assert.equal(r3.body.likes, 1);
+    });
+  });
+
+  await test('foro: categoría inválida y hilo vacío rechazados', async () => {
+    await withFake(gh, async () => {
+      const r1 = await call(handler, { op: 'fNew', uid: a.uid, dev: a, params: { cat: 'spam', title: 'x', body: 'y' } });
+      assert.equal(r1.status, 400);
+      const r2 = await call(handler, { op: 'fNew', uid: a.uid, dev: a, params: { cat: 'anime', title: 'Título válido', body: '' } });
+      assert.equal(r2.status, 400);
+    });
+  });
+
+  await test('foro: borrar respuesta ajena → 403; el autor sí puede', async () => {
+    await withFake(gh, async () => {
+      const r1 = await call(handler, { op: 'fDel', uid: c.uid, dev: c, params: { tid, rid } });
+      assert.equal(r1.status, 403);
+      const r2 = await call(handler, { op: 'fDel', uid: b.uid, dev: b, params: { tid, rid } });
+      assert.equal(r2.status, 200);
+      assert.equal(r2.body.replies, 0);
+    });
+  });
+
+  await test('foro: usuario NO puede fijar ni cerrar; el admin sí (rango sincronizado)', async () => {
+    await withFake(gh, async () => {
+      const r1 = await call(handler, { op: 'fPin', uid: a.uid, dev: a, params: { tid, on: 1 } });
+      assert.equal(r1.status, 403);
+      const r2 = await call(handler, { op: 'fLock', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { tid, on: 1 } });
+      assert.equal(r2.status, 200, JSON.stringify(r2.body));
+      assert.equal(r2.body.lock, true);
+      const r3 = await call(handler, { op: 'fPin', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { tid, on: 1 } });
+      assert.equal(r3.body.pin, true);
+      /* con el hilo cerrado, un usuario normal no puede responder… */
+      const r4 = await call(handler, { op: 'fReply', uid: c.uid, dev: c, params: { tid, body: '¿puedo?' } });
+      assert.equal(r4.status, 423);
+      /* …pero el equipo sí */
+      const r5 = await call(handler, { op: 'fReply', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { tid, body: 'Cerrado por el equipo' } });
+      assert.equal(r5.status, 200);
+    });
+  });
+
+  await test('foro: el admin nombra MOD y el mod hereda poderes de staff', async () => {
+    await withFake(gh, async () => {
+      const r1 = await call(handler, { op: 'fMod', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { target: b.uid, on: 1 } });
+      assert.equal(r1.status, 200);
+      assert.ok(r1.body.mods.includes(b.uid));
+      /* el mod NO puede nombrar mods */
+      const r2 = await call(handler, { op: 'fMod', uid: b.uid, dev: b, params: { target: c.uid, on: 1 } });
+      assert.equal(r2.status, 403);
+      /* el mod SÍ puede fijar */
+      const r3 = await call(handler, { op: 'fPin', uid: b.uid, dev: b, params: { tid, on: 0 } });
+      assert.equal(r3.status, 200);
+      assert.equal(r3.body.pin, false);
+    });
+  });
+
+  await test('foro: borrar hilo del autor → lápida; recrearlo tal cual → bloqueado', async () => {
+    await withFake(gh, async () => {
+      const r1 = await call(handler, { op: 'fDel', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { tid } });
+      assert.equal(r1.status, 200);
+      const rd = await call(handler, { op: 'forum', uid: a.uid, unsigned: true });
+      assert.equal(rd.body.threads.length, 0, 'el hilo borrado desaparece de la lista');
+      const r2 = await call(handler, { op: 'fNew', uid: a.uid, dev: a, ...NT, params: { cat: 'anime', sub: 'one-piece', title: 'La serie del momento', body: '¿Cuál es el mejor arco?' } });
+      assert.equal(r2.status, 403, 'la lápida impide resucitar el hilo tal cual');
+    });
+  });
+
+  await test('foro: tope de hilos por día para usuarios normales', async () => {
+    await withFake(gh, async () => {
+      let last = null;
+      for (let i = 0; i < 16; i++) {
+        last = await call(handler, { op: 'fNew', uid: c.uid, dev: c, name: 'Spammer', params: { cat: 'general', title: 'Hilo número ' + i, body: 'contenido ' + i } });
+      }
+      assert.equal(last.status, 429, JSON.stringify(last.body));
+    });
+  });
+
+  await test('foro: firma inválida rechazada (cada acción firmada)', async () => {
+    await withFake(gh, async () => {
+      const r = await call(handler, { op: 'fNew', uid: c.uid, unsigned: true, params: { cat: 'general', title: 'Sin firmar', body: 'no debería pasar' } });
+      assert.equal(r.status, 403);
+    });
+  });
+
+  await test('foro: 🤖 agente sembrador — lote idempotente, solo admin', async () => {
+    await withFake(gh, async () => {
+      const items = [
+        { cat: 'anime', title: 'One Piece', body: 'Hilo oficial', media: '' },
+        { cat: 'anime', title: 'Naruto', body: 'Hilo oficial', media: '' },
+        { cat: 'peliculas', title: 'Dune', body: 'Hilo oficial', media: '' },
+        { cat: 'spam', title: 'X', body: 'y', media: '' },            /* categoría inválida → skip */
+      ];
+      const p = JSON.stringify(items);
+      /* usuario normal → 403 */
+      const r0 = await call(handler, { op: 'fSeed', uid: b.uid, dev: b, params: { items: p } });
+      assert.equal(r0.status, 403);
+      /* admin → crea 3 */
+      const r1 = await call(handler, { op: 'fSeed', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { items: p } });
+      assert.equal(r1.status, 200, JSON.stringify(r1.body));
+      assert.equal(r1.body.created, 3);
+      assert.equal(r1.body.skipped, 1);
+      /* re-siembra → idempotente: 0 creados (3 existentes + 1 inválido = 4 skips) */
+      const r2 = await call(handler, { op: 'fSeed', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { items: p } });
+      assert.equal(r2.body.created, 0);
+      assert.equal(r2.body.skipped, 4);
+      /* los temas del agente salen con nombre oficial y permiten respuestas */
+      const rd = await call(handler, { op: 'forum', uid: a.uid, unsigned: true });
+      const one = rd.body.threads.find(t => t.title === 'One Piece');
+      assert.ok(one, 'el tema sembrado no aparece');
+      assert.equal(one.name, 'XSTREAM');
+      assert.equal(one.official, 1);
+      const rr = await call(handler, { op: 'fReply', uid: c.uid, dev: c, params: { tid: one.id, body: 'participando' } });
+      assert.equal(rr.status, 200);
+      /* borrar el tema sembrado y re-sembrar → la lápida lo respeta */
+      const rd2 = await call(handler, { op: 'fDel', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { tid: one.id } });
+      assert.equal(rd2.status, 200);
+      const r3 = await call(handler, { op: 'fSeed', uid: a.uid, dev: a, adminSig: await adminSigNow(), params: { items: p } });
+      assert.equal(r3.body.created, 0, 'la lápida debe impedir resucitar el tema borrado');
+    });
+  });
+}
+
 console.log('');
 if (failed) {
   console.log(`XX ${failed} prueba(s) fallaron de ${passed + failed}`);

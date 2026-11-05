@@ -6,7 +6,13 @@
 const BASE = '/historietas/api/studio';
 
 async function llamada(ruta, { method = 'GET', body } = {}) {
-  const res = await fetch(BASE + ruta, {
+  // RUTA EN UN SOLO SEGMENTO: el enrutador de Vercel (proyectos estáticos)
+  // solo pasa segmentos individuales a la función; codificamos a/b/c → a%2Fb%2Fc
+  // y el adaptador del servidor la decodifica. En local funciona igual.
+  const [p, q] = String(ruta).split('?');
+  const codificada = '/' + encodeURIComponent(p.replace(/^\//, ''));
+  const url = BASE + codificada + (q ? '?' + q : '');
+  const res = await fetch(url, {
     method,
     headers: body !== undefined ? { 'Content-Type': 'application/json' } : undefined,
     body: body !== undefined ? JSON.stringify(body) : undefined,

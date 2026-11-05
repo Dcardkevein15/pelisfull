@@ -8,14 +8,18 @@ export class MockClient {
   constructor({ textDelayMs = 0 } = {}) {
     this.textDelayMs = textDelayMs;
     this.textCalls = [];
-    this.imageCalls = []; // compatibilidad de firma: siempre vacío (solo texto)
-    this.jsonFailures = new Set(); // ordinales de chatJSON (1-based) que fallan
+    this.imageCalls = [];
+    this.imageFailures = [];
+    this.jsonFailures = new Set();
     this._jsonCalls = 0;
-    this.outlineFirstCount = null; // si se fija, la primera llamada de esquema devuelve este número
+    this.outlineFirstCount = null;
     this._outlineCalls = 0;
     this.cfgData = {
       nvApiKey: 'nvapi-mock',
       textModel: 'mock/pen',
+      imageModel: 'mock/brush',
+      imageAspect: '16:9',
+      imageConcurrency: 3,
       transport: 'auto',
       customProxyBase: '',
       parrafosPorCapitulo: 3,
@@ -140,7 +144,24 @@ export class MockClient {
     if (user.includes('"premisas"')) {
       return JSON.stringify({ premisas: ['Un farero que ya no puede dormir escucha su propia voz en la radio.'] });
     }
+    // guion visual
+    if (user.includes('"paneles": [{')) {
+      const K = (user.match(/Párrafo \d+ —/g) || []).length;
+      return JSON.stringify({ paneles: Array.from({ length: K }, (_, i) => ({
+        indice: i + 1, escena_en: 'misty hall panel ' + (i + 1), accion_en: 'moves forward', lugar_en: 'hall',
+        momento_dia: 'night', clima_luz: 'cold moonlight', encuadre: 'close_up', mood: 'dread',
+        peso: 1, dialogo: [{ personaje: 'Ana', linea: 'La puerta ya está abierta.' }],
+      })) });
+    }
     return undefined;
+  }
+
+  async generateImage({ prompt, negative, model, aspect, seed, refs, image, signal } = {}) {
+    this.imageCalls.push({ prompt, negative, model, aspect, seed, refs, image });
+    if (this.imageFailures?.includes(this.imageCalls.length - 1)) {
+      throw new Error('MOCK: fallo de imagen programado');
+    }
+    return { size: 100, type: 'image/png', buf: Buffer.from([1, 2, 3]) };
   }
 }
 

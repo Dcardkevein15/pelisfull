@@ -911,7 +911,7 @@ const FORUM_OPS = {
     const t = {
       id, cat: String(b.cat), sub: String(b.sub || '').slice(0, 90), title, body, media,
       by: uid, name: (user && user.name) || 'Usuario', tag: (user && user.tag) || '', role,
-      at: Date.now(), likes: [], replies: [], pin: false, lock: false,
+      at: Date.now(), likes: [], replies: [], views: [], pin: false, lock: false,
     };
     db.threads.push(t);
     forumPrune(db);
@@ -1014,7 +1014,7 @@ const FORUM_OPS = {
         id, cat: String(it.cat), sub: String(it.sub || '').slice(0, 90), title, body, media,
         by: uid, name: 'XSTREAM', role: 'admin',
         at: Date.now() - (db.threads.length + 1), bot: 1, official: 1,
-        likes: [], replies: [], pin: false, lock: false,
+        likes: [], replies: [], views: [], pin: false, lock: false,
       };
       db.threads.push(t);
       byId.set(id, t);
@@ -1035,6 +1035,30 @@ const FORUM_OPS = {
     if (on && i < 0) db.mods.push(target);
     if (!on && i >= 0) db.mods.splice(i, 1);
     return { resp: { ok: true, mods: db.mods } };
+  },
+
+  /* 👁 contar una visualización del hilo — una por usuario, sin duplicados */
+  async fView({ db, b, uid }) {
+    const t = db.threads.find(x => x.id === b.tid);
+    if (!t || t.del) return { fail: { status: 404, error: 'el hilo no existe' } };
+    t.views = t.views || [];
+    if (t.views.includes(uid)) return { resp: { ok: true, views: t.views.length }, nowrite: true };
+    if (t.views.length < 100000) t.views.push(uid);
+    return { resp: { ok: true, views: t.views.length } };
+  },
+
+  /* ✏️ editar un hilo propio (o el equipo edita cualquier hilo) */
+  async fEdit({ db, b, uid, role }) {
+    const t = db.threads.find(x => x.id === b.tid);
+    if (!t || t.del) return { fail: { status: 404, error: 'el hilo no existe' } };
+    if (t.by !== uid && !FORUM_STAFF(role)) return { fail: { status: 403, error: 'solo el autor o el equipo puede editar' } };
+    const title = String(b.title === undefined ? t.title : b.title).trim().slice(0, 120);
+    const body = String(b.body === undefined ? t.body : b.body).trim().slice(0, 4000);
+    const media = b.media === undefined ? t.media : safeHttpUrl(b.media, 600);
+    if (title.length < 3) return { fail: { status: 400, error: 'el título es muy corto (mínimo 3 letras)' } };
+    if (!body && !media) return { fail: { status: 400, error: 'el hilo quedaría vacío — escribe algo o deja el enlace' } };
+    t.title = title; t.body = body; t.media = media;
+    return { resp: { ok: true, thread: t } };
   },
 };
 

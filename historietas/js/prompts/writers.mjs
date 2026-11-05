@@ -221,12 +221,17 @@ export function buildChapterPrompt(book, chapterIdx) {
       'ESCRIBE EXACTAMENTE ' + K + ' PÁRRAFOS. Cada párrafo: ' + rangoParrafos(book.brief) + ', nivel literario máximo.',
       'Roles válidos por párrafo: narracion | dialogo | accion | revelacion | climax.',
       'Los diálogos van integrados en el párrafo con su línea hablada entrecomillada, con la voz exacta de cada personaje.',
+      'Para CADA párrafo describe también su panel visual (campos *_en van EN INGLÉS, concretos y pintables).',
+      'Encuadres sugeridos válidos: establishing_wide, full_shot, medium_two_shot, close_up, extreme_close_up, over_shoulder, low_angle, high_angle, dutch_angle, pov, birds_eye, profile_medium, tracking.',
       'Devuelve JSON con estas claves exactas:',
       '{"titulo_capitulo": "título final",',
       ' "parrafos": [{"texto": "el párrafo en ' + idiomaTxt(book.brief) + '",',
       '   "rol": "narracion",',
       '   "personajes_presentes": ["nombres canónicos exactos"],',
-      '   "lugar": "dónde ocurre", "momento_dia": "hora y luz"}],',
+      '   "lugar": "dónde ocurre", "momento_dia": "hora y luz",',
+      '   "accion_en": "the exact action happening, in ENGLISH",',
+      '   "escena_en": "full visual scene description in ENGLISH: subject, action, environment",',
+      '   "encuadre_sugerido": "uno de la lista"}],',
       ' "cliffhanger": "la herida abierta final",',
       ' "notas_continuidad": "qué debe recordarse en el próximo capítulo"}',
       JSON_ONLY,
@@ -254,7 +259,45 @@ export function buildImpactPrompt(book, chapterIdx) {
       'Reescribe ELEVANDO: subtexto más afilado, imágenes más viscerales, ritmo más exacto, diálogo con más filo.',
       'Conserva: la trama, los personajes presentes, los lugares y el cliffhanger (mejorarlo está permitido; cambiarlo de raíz, no).',
       'Devuelve EXACTAMENTE ' + chapter.paragraphs.length + ' párrafos con el MISMO contrato JSON que la versión actual:',
-      '{"titulo_capitulo":"…","parrafos":[{"texto":"…","rol":"…","personajes_presentes":[…],"lugar":"…","momento_dia":"…"}],"cliffhanger":"…","notas_continuidad":"…"}',
+      '{"titulo_capitulo":"…","parrafos":[{"texto":"…","rol":"…","personajes_presentes":[…],"lugar":"…","momento_dia":"…","accion_en":"…","escena_en":"…","encuadre_sugerido":"…"}],"cliffhanger":"…","notas_continuidad":"…"}',
+      JSON_ONLY,
+    ].join('\n'),
+  };
+}
+
+/* ---------------- FASE 7: GUIÓN VISUAL (ANTI-GEMELAS) ---------------- */
+
+export function buildVisualScriptPrompt(book, chapter) {
+  const category = getCategory(book.brief.categoryId);
+  const paras = chapter.paragraphs.map((p, i) =>
+    'Párrafo ' + (i + 1) + ' — presentes: ' + (p.personajesPresentes.join(', ') || '—') +
+    ' · lugar: ' + p.lugar + ' · hora: ' + p.momentoDia + ' · acción: ' + (p.accionEn || p.escenaEn)
+  ).join('\n');
+  return {
+    system: phaseSystemPrompt(category, 'visual',
+      'Traduces el capítulo a un guion de paneles: un panel por párrafo, coherentes entre sí como una secuencia de la misma película.'),
+    user: [
+      'Estilo visual de la obra (respétalo en cada panel): ' + (book.biblia.tonoVisualEn || '') + ' | Paleta: ' + (book.biblia.paletaEn || ''),
+      'Personajes (repita su diseño exacto en cada panel):\n' + (book.personajes || []).map((c) => '- ' + c.nombre + ': ' + (c.aparienciaEn || '') + ' · ' + (c.vestuarioEn || '')).join('\n'),
+      '',
+      'CAPÍTULO ' + chapter.numero + ' — ' + chapter.titulo,
+      paras,
+      '',
+      'Devuelve un panel por párrafo (' + chapter.paragraphs.length + ' en total) con JSON exacto:',
+      '{"paneles": [{"indice": 1,',
+      '  "escena_en": "complete cinematic scene in ENGLISH: who does what, where, composition",',
+      '  "accion_en": "the precise frozen moment of action, ENGLISH",',
+      '  "lugar_en": "location in ENGLISH",',
+      '  "momento_dia": "time of day",',
+      '  "clima_luz": "weather and lighting in ENGLISH",',
+      '  "encuadre": "one of: establishing_wide, full_shot, medium_two_shot, close_up, extreme_close_up, over_shoulder, low_angle, high_angle, dutch_angle, pov, birds_eye, profile_medium, tracking",',
+      '  "mood": "emotional temperature of the frame",',
+      '  "peso": 1,',
+      '  "dialogo": [{"personaje": "nombre canónico EXACTO", "linea": "la línea hablada EXACTA del párrafo"}]}',
+      'Regla de variedad: nunca repitas el mismo encuadre en dos paneles consecutivos; abre con un establishing_wide.',
+      'Regla ANTI-GEMELAS: cada panel pinta UN momento DISTINTO y concreto del párrafo — cambia composición, posición de los personajes, primer plano del detalle o ángulo; nunca reutilices la descripción de escena de otro panel ni describas el mismo instante dos veces. La escena ES la protagonista del prompt: sé específica con la acción, los objetos visibles y el entorno de ESTE párrafo.',
+      'Regla de peso: "peso": 2 SOLO para el momento más impactante del capítulo (máximo UNO por capítulo).',
+      'Regla de diálogo: SOLO en párrafos con líneas entrecomilladas, copia cada cita EXACTA en "dialogo" con su dueño (máximo 2 por panel); párrafos sin diálogo llevan "dialogo": [].',
       JSON_ONLY,
     ].join('\n'),
   };

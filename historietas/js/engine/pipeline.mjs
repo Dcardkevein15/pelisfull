@@ -9,9 +9,12 @@ import {
 import { getCategory, teamForPhase } from '../specialists/registry.mjs';
 import {
   buildBiblePrompt, buildChapterPrompt, buildCharactersPrompt, buildConceptPrompt,
-  buildImpactPrompt, buildOutlinePrompt,
+  buildImpactPrompt, buildOutlinePrompt, buildVisualScriptPrompt,
 } from '../prompts/writers.mjs';
-import { sleep } from '../core/utils.mjs';
+import { generateChapterPanels } from './imagegen.mjs';
+import { generateAssetPortrait } from '../domain/assets.mjs';
+import { blobToDataURL, sleep } from '../core/utils.mjs';
+import { styleLockFor, normalizeVisualPanel } from '../domain/continuity.mjs';
 
 export class Pipeline {
   /**
@@ -177,6 +180,27 @@ export class Pipeline {
       await this.persist(book);
     }
 
+    /* ---------- 3b. HOJAS DE PERSONAJE ---------- */
+    if ((this.client.cfg().hojasPersonaje ?? true) !== false) {
+      const pendientes = book.personajes.filter((c) => !c.retratoKey);
+      for (const chr of pendientes) {
+        if (chr.assetId && assetsById[chr.assetId]?.imageKey) continue;
+        if (signal.aborted) throw new Error('Cancelado');
+        try {
+          const blob = await this.retry(book, 'Hoja de ' + chr.nombre, () =>
+            generateAssetPortrait(this.client, chr, { styleEn: styleLockFor(category), signal }));
+          const key = 'retrato:' + book.id + ':' + chr.id;
+          await this.storage.putImage(key, blob);
+          chr.retratoKey = key;
+          this.log(book, 'Hoja de personaje lista: ' + chr.nombre);
+        } catch (e) {
+          if (signal.aborted) throw e;
+          this.log(book, 'Hoja de ' + chr.nombre + ' falló (se sigue con ADN textual): ' + String(e.message || e).slice(0, 140), 'warn');
+        }
+      }
+      if (pendientes.length) await this.persist(book);
+    }
+
     /* ---------- 4. ESQUEMA ---------- */
     if (!book.chapters.length) {
       this.setPhase(book, 'esquema');
@@ -280,8 +304,68 @@ export class Pipeline {
         await this.persist(book);
       }
 
+      // Guion visual del capítulo (una pasada, un panel por párrafo)
+      if (book.brief.pases.visual !== false && !chapter.visual.listo && chapter.paragraphs.length) {
+        const { system, user } = buildVisualScriptPrompt(book, chapter);
+        try {
+          const raw = await this.retry(book, 'Guion visual cap. ' + chapter.numero, () => this.client.chatJSON([{ role: 'system', content: system }, { role: 'user', content: user }], { signal, model: this.textModel(book) }));
+          const paneles = Array.isArray(raw?.paneles) ? raw.paneles : [];
+          chapter.paragraphs.forEach((para, j) => {
+            const pv = paneles.find((x) => Number(x.indice) === j + 1) || paneles[j] || null;
+            const norm = normalizeVisualPanel(pv);
+            if (norm) para.panelVisual = norm;
+          });
+          chapter.visual.listo = true;
+          this.log(book, 'Guion visual listo para el capítulo ' + chapter.numero + '.');
+        } catch (e) {
+          if (signal.aborted) throw e;
+          chapter.visual.listo = true;
+          this.log(book, 'Guion visual del capítulo ' + chapter.numero + ' falló; se usan los campos del párrafo. ' + e.message, 'warn');
+        }
+        await this.persist(book);
+      }
+
       book.progress.chaptersDone = i + 1;
       this.bus.emit('chapter', { bookId: book.id, idx: i, titulo: chapter.titulo, done: true });
+    }
+
+    /* ---------- 7. PANELES ---------- */
+    this.setPhase(book, 'visual');
+    addCredits(book, teamForPhase(category, 'visual'), 'visual');
+    const withRefs = {};
+    for (const a of assets) {
+      if (a.imageKey) {
+        try {
+          const blob = await this.storage.getImage(a.imageKey);
+          if (blob) withRefs[a.id] = { ...a, dataURL: await blobToDataURL(blob) };
+        } catch { /* sin referencia disponible */ }
+      }
+    }
+    const hojasByCharId = {};
+    for (const chr of book.personajes || []) {
+      try {
+        if (chr.retratoKey) {
+          const blob = await this.storage.getImage(chr.retratoKey);
+          if (blob) hojasByCharId[chr.id] = await blobToDataURL(blob);
+        } else if (chr.assetId && withRefs[chr.assetId]?.dataURL) {
+          hojasByCharId[chr.id] = withRefs[chr.assetId].dataURL;
+        }
+      } catch { /* sin hoja */ }
+    }
+    for (let i = 0; i < book.chapters.length; i++) {
+      if (signal.aborted) throw new Error('Cancelado');
+      const chapter = book.chapters[i];
+      await generateChapterPanels({
+        book, chapter, client: this.client, settings: this.modelSettings(book), storage: this.storage,
+        bus: this.bus, signal, assetsById: withRefs, hojasByCharId,
+        onPanelDone: () => {
+          book.progress.panelsDone = book.chapters.reduce((acc, c) => acc + c.paragraphs.filter((x) => x.panel.status === 'ok').length, 0);
+        },
+      });
+      chapter.visual.panelesHechos = chapter.paragraphs.every((x) => x.panel.status === 'ok');
+      computeStats(book);
+      await this.persist(book);
+      this.log(book, 'Paneles del capítulo ' + chapter.numero + ': ' + chapter.paragraphs.filter((x) => x.panel.status === 'ok').length + '/' + chapter.paragraphs.length + '.');
     }
 
     computeStats(book);
@@ -344,6 +428,17 @@ export class Pipeline {
   }
 
   textModel(book) { return book?.brief?.modelos?.texto || this._runTextModel || undefined; }
+
+  modelSettings(book) {
+    const base = this.client.cfg();
+    return {
+      imageModel: book.brief.modelos?.imagen || base.imageModel,
+      imageAspect: book.brief.modelos?.aspecto || base.imageAspect,
+      imageConcurrency: base.imageConcurrency,
+      textModel: book.brief.modelos?.texto || base.textModel,
+      panelQa: base.panelQa,
+    };
+  }
 
   /** Comprobación de vuelo: clave presente y servicio de escritura accesible.
    *  Si el modelo preferido está caído, resuelve un respaldo para toda la corrida. */

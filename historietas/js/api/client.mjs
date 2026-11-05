@@ -7,13 +7,13 @@
    - Reintentos con backoff para 429/5xx, timeouts, cancelación por AbortSignal.
    - Extracción robusta de JSON. */
 
-import { NVIDIA_TEXT_HOST } from './models.mjs';
+import { NVIDIA_TEXT_HOST, NVIDIA_GENAI_HOST, imageModelInfo, imageDims } from './models.mjs';
 import { sleep } from '../core/utils.mjs';
 
 const TIMEOUT_TEXT_MS = 300000;
 
 /** Respaldo ante caídas del servicio de un modelo (verificado en una caída real de Kimi). */
-export const TEXT_FALLBACKS = ['nvidia/nemotron-3.5-lightning-30b-a3b', 'z-ai/glm-5.3'];
+export const TEXT_FALLBACKS = ['z-ai/glm-5.3', 'nvidia/nemotron-3-ultra-550b-a55b', 'openai/gpt-oss-20b'];
 
 export class NvidiaClient {
   /**
@@ -55,6 +55,20 @@ export class NvidiaClient {
     out.push(this.origin() + '/historietas/api/nv');
     out.push(this.origin() + '/proxy/integrate.api.nvidia.com/v1');
     out.push(NVIDIA_TEXT_HOST);
+    return out;
+  }
+
+  imageCandidates() {
+    const cfg = this.cfg();
+    const out = [];
+    if (cfg.transport === 'direct') return [NVIDIA_GENAI_HOST];
+    if (cfg.transport === 'custom' && cfg.customProxyBase) return [cfg.customProxyBase.replace(/\/+$/, '') + '/ai.api.nvidia.com/v1/genai'];
+    if (cfg.transport === 'bridge') return [this.origin() + '/historietas/api/nvgen'];
+    if (cfg.transport === 'proxy') return [this.origin() + '/proxy/ai.api.nvidia.com/v1/genai'];
+    if (cfg.customProxyBase) out.push(cfg.customProxyBase.replace(/\/+$/, '') + '/ai.api.nvidia.com/v1/genai');
+    out.push(this.origin() + '/historietas/api/nvgen');
+    out.push(this.origin() + '/proxy/ai.api.nvidia.com/v1/genai');
+    out.push(NVIDIA_GENAI_HOST);
     return out;
   }
 
@@ -209,7 +223,7 @@ export class NvidiaClient {
         if (opts.signal?.aborted) throw e;
         // solo caídas del servicio prueban otro modelo; clave, créditos, límite
         // o filtro de contenido se reportan tal cual (no se disfrazan)
-        if (!/50[234]|Tiempo de espera|Failed to fetch|No se pudo hablar con la API/.test(String(e.message))) throw e;
+        if (!/50[234]|410|Tiempo de espera|Failed to fetch|No se pudo hablar con la API/.test(String(e.message))) throw e;
       }
     }
     throw ultimoError;
@@ -285,6 +299,43 @@ export class NvidiaClient {
     parsed = salvage(second);
     if (parsed === null) throw new Error('El modelo no devolvió JSON válido tras dos intentos.');
     return parsed;
+  }
+
+  /* ---------------- IMAGEN ---------------- */
+
+  async generateImage({ prompt, negative, model, aspect = '16:9', width, height, seed = 0, steps, refs, image, matchAspectToImage = false, signal } = {}) {
+    const mdl = model || this.cfg().imageModel;
+    const info = imageModelInfo(mdl);
+    if (!info) throw new Error('Modelo de imagen desconocido: ' + mdl);
+    let body;
+    if (info.tipo === 'kontext') {
+      const base = image || (Array.isArray(refs) && refs.length ? refs[0] : null);
+      body = { prompt, steps: steps || 30, cfg_scale: 3.5, seed: seed || 0 };
+      if (base) body.image = base;
+      body.aspect_ratio = base && matchAspectToImage ? 'match_input_image' : aspect;
+    } else if (info.tipo === 'sd35') {
+      const [w, h] = [width, height].every(Number.isInteger) ? [width, height] : imageDims(mdl, aspect);
+      body = { prompt, width: w, height: h, seed: seed || 0, steps: steps || 30, cfg_scale: 4.5, mode: 'base' };
+      if (negative) body.negative_prompt = negative;
+    } else {
+      const [w, h] = [width, height].every(Number.isInteger) ? [width, height] : imageDims(mdl, aspect);
+      body = { prompt, width: w, height: h, seed: seed || 0, steps: steps || 4 };
+    }
+    const data = await this.postWithTransport('image', (base) => base.replace(/\/+$/, '') + '/' + mdl, body, { timeoutMs: 180000, signal, retries: 2 });
+    const b64 = digB64(data);
+    if (b64) return b64ToBlob(b64, 'image/png');
+    const finish = data?.artifacts?.[0]?.finishReason;
+    if (finish === 'CONTENT_FILTERED') {
+      throw new Error('HTTP 422 · CONTENT_FILTERED: el filtro de seguridad de la API rechazó este prompt. Reformula la escena y reintenta.');
+    }
+    const url = digURL(data);
+    if (url) {
+      const r = await this.fetchImpl(url, { signal });
+      if (!r.ok) throw new Error('La imagen remota respondió ' + r.status);
+      const blob = await r.blob();
+      if (blob.type.startsWith('image/')) return blob;
+    }
+    throw new Error('NVIDIA no devolvió imagen (' + JSON.stringify(data).slice(0, 180) + ')' + (finish ? ' · ' + finish : ''));
   }
 
   /* ---------------- DIAGNÓSTICO ---------------- */
@@ -408,4 +459,27 @@ export function b64ToBlob(b64, fallbackMime) {
   const arr = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
   return new Blob([arr], { type: mime });
+}
+
+export function digB64(obj) {
+  if (!obj) return null;
+  if (typeof obj === 'string') {
+    const s = obj.replace(/^data:[^,]+,/, '').trim();
+    if (s.length >= 40 && /^[A-Za-z0-9+/=\s]+$/.test(s)) return s;
+    return null;
+  }
+  if (Array.isArray(obj)) { for (const o of obj) { const r = digB64(o); if (r) return r; } return null; }
+  if (typeof obj === 'object') {
+    for (const k of ['base64', 'b64_json', 'b64', 'image_b64']) { const r = digB64(obj[k]); if (r) return r; }
+    for (const k of ['artifacts', 'data', 'output', 'image', 'images', 'result', 'results']) { const r = digB64(obj[k]); if (r) return r; }
+  }
+  return null;
+}
+
+export function digURL(obj) {
+  if (!obj) return null;
+  if (typeof obj === 'string') return /^https?:\/\//.test(obj) ? obj : null;
+  if (Array.isArray(obj)) { for (const o of obj) { const r = digURL(o); if (r) return r; } return null; }
+  if (typeof obj === 'object') { for (const v of Object.values(obj)) { const r = digURL(v); if (r) return r; } }
+  return null;
 }

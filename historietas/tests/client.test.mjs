@@ -1,4 +1,4 @@
-/* client.test.mjs — NvidiaClient con fetch simulado: transportes, payloads de
+/* client.test.mjs â€” NvidiaClient con fetch simulado: transportes, payloads de
    TEXTO, reintentos, JSON. v3.0: sin payloads de imagen. */
 
 import test from 'node:test';
@@ -58,19 +58,19 @@ test('reintenta 429 con backoff y acaba funcionando', async () => {
   assert.equal(n, 3);
 });
 
-test('un 429 persistente agota los reintentos y queda registrado en el diagnóstico', async () => {
+test('un 429 persistente agota los reintentos y queda registrado en el diagnÃ³stico', async () => {
   let n = 0;
   const c = mk({ ...CFG, transport: 'direct' }, async () => {
     n++;
     return jsonResponse(429, { error: { message: 'Too Many Requests' } });
   });
   const err = await rejects(c.chat([{ role: 'user', content: 'x' }]));
-  assert.ok(err.message.includes('API de NVIDIA'), 'diagnóstico orientado a la API');
+  assert.ok(err.message.includes('API de NVIDIA'), 'diagnÃ³stico orientado a la API');
   assert.ok(err.message.includes('429'), 'el detalle registra el 429');
-  assert.ok(n >= 4, 'reintentó antes de rendirse (' + n + ' intentos)');
+  assert.ok(n >= 4, 'reintentÃ³ antes de rendirse (' + n + ' intentos)');
 });
 
-test('caída de servicio del modelo principal → respaldo automático con otro modelo', async () => {
+test('caÃ­da de servicio del modelo principal â†’ respaldo automÃ¡tico con otro modelo', async () => {
   const modelos = [];
   const c = mk({ ...CFG, transport: 'direct' }, async (url, opts) => {
     const body = JSON.parse(opts.body);
@@ -80,12 +80,12 @@ test('caída de servicio del modelo principal → respaldo automático con otro 
   });
   const out = await c.chat([{ role: 'user', content: 'x' }]);
   assert.equal(out, 'OK DESDE RESPALDO');
-  assert.ok(modelos.includes('moonshotai/kimi-k3'), 'se probó primero el principal');
-  assert.ok(modelos.includes('nvidia/nemotron-3.5-lightning-30b-a3b'), 'el respaldo tomó el relevo');
+  assert.ok(modelos.includes('moonshotai/kimi-k3'), 'se probÃ³ primero el principal');
+  assert.ok(modelos.includes('z-ai/glm-5.3'), 'el respaldo tomÃ³ el relevo');
   assert.ok(modelos[0] === 'moonshotai/kimi-k3', 'el principal fue primero');
 });
 
-test('errores de clave o créditos NO se disfrazan con otro modelo', async () => {
+test('errores de clave o crÃ©ditos NO se disfrazan con otro modelo', async () => {
   const modelos = [];
   const c = mk({ ...CFG, transport: 'direct' }, async (url, opts) => {
     const body = JSON.parse(opts.body);
@@ -94,7 +94,7 @@ test('errores de clave o créditos NO se disfrazan con otro modelo', async () =>
   });
   const err = await rejects(c.chat([{ role: 'user', content: 'x' }]));
   assert.ok(err.message.includes('401'));
-  assert.equal(modelos.length, 1, 'solo se probó el modelo principal');
+  assert.equal(modelos.length, 1, 'solo se probÃ³ el modelo principal');
 });
 
 test('healthCheck y resolveTextModel eligen un modelo vivo', async () => {
@@ -103,12 +103,12 @@ test('healthCheck y resolveTextModel eligen un modelo vivo', async () => {
     if (body.model === 'moonshotai/kimi-k3') return jsonResponse(502, { detail: 'bad gateway' });
     return jsonResponse(200, { choices: [{ message: { content: 'LISTO' } }] });
   });
-  assert.equal((await c.healthCheck('moonshotai/kimi-k3')).ok, false, 'kimi caído');
-  assert.equal((await c.healthCheck('nvidia/nemotron-3.5-lightning-30b-a3b')).ok, true, 'respaldo vivo');
+  assert.equal((await c.healthCheck('moonshotai/kimi-k3')).ok, false, 'kimi caÃ­do');
+  assert.equal((await c.healthCheck('z-ai/glm-5.3')).ok, true, 'respaldo vivo');
   const r = await c.resolveTextModel('moonshotai/kimi-k3');
-  assert.equal(r.model, 'nvidia/nemotron-3.5-lightning-30b-a3b');
+  assert.equal(r.model, 'z-ai/glm-5.3');
   assert.equal(r.switched, true, 'avisa del cambio');
-  // si el principal está vivo, no se toca
+  // si el principal estÃ¡ vivo, no se toca
   const c2 = mk({ ...CFG, transport: 'direct' }, async () =>
     jsonResponse(200, { choices: [{ message: { content: 'LISTO' } }] }));
   const r2 = await c2.resolveTextModel('moonshotai/kimi-k3');
@@ -116,7 +116,7 @@ test('healthCheck y resolveTextModel eligen un modelo vivo', async () => {
   assert.equal(r2.switched, false);
 });
 
-test('no reintenta 401 (clave inválida) y el mensaje es claro', async () => {
+test('no reintenta 401 (clave invÃ¡lida) y el mensaje es claro', async () => {
   let n = 0;
   const c = mk({ ...CFG, transport: 'direct' }, async () => {
     n++;
@@ -151,7 +151,7 @@ test('chatJSON rescata un JSON truncado sin gastar otra llamada', async () => {
   assert.equal(n, 1, 'el rescate no dispara el reintento correctivo');
 });
 
-test('content vacío con presupuesto alto (kimi pensando) → reintenta acotado y devuelve el texto', async () => {
+test('content vacÃ­o con presupuesto alto (kimi pensando) â†’ reintenta acotado y devuelve el texto', async () => {
   const budgets = [];
   const c = mk({ ...CFG, transport: 'direct' }, async (url, opts) => {
     const body = JSON.parse(opts.body);
@@ -166,7 +166,7 @@ test('content vacío con presupuesto alto (kimi pensando) → reintenta acotado 
   assert.deepEqual(budgets, [8000, 4096]);
 });
 
-test('si solo hay traza de razonamiento, se usa como último recurso y el JSON se rescata de ahí', async () => {
+test('si solo hay traza de razonamiento, se usa como Ãºltimo recurso y el JSON se rescata de ahÃ­', async () => {
   const c = mk({ ...CFG, transport: 'direct' }, async () =>
     jsonResponse(200, { choices: [{ message: { content: '', reasoning_content: 'boceto mental: {"x": 7}' } }] }));
   const parsed = await c.chatJSON([{ role: 'user', content: 'dame json' }]);
@@ -183,7 +183,7 @@ test('rescueJSON cierra lo truncado y no toca lo completo', () => {
   assert.equal(rescueJSON(''), null);
 });
 
-test('chatJSON parsea el primero si ya es válido y no repite', async () => {
+test('chatJSON parsea el primero si ya es vÃ¡lido y no repite', async () => {
   let n = 0;
   const c = mk({ ...CFG, transport: 'direct' }, async () => {
     n++;
@@ -195,20 +195,20 @@ test('chatJSON parsea el primero si ya es válido y no repite', async () => {
 });
 
 test('sin clave lanza antes de llamar', async () => {
-  const c = mk({ ...CFG, nvApiKey: '', transport: 'direct' }, async () => { throw new Error('no debería llamarse'); });
+  const c = mk({ ...CFG, nvApiKey: '', transport: 'direct' }, async () => { throw new Error('no deberÃ­a llamarse'); });
   const err = await rejects(c.chat([{ role: 'user', content: 'x' }]));
   assert.ok(err.message.includes('clave NVIDIA'));
 });
 
-test('fallo total de red → diagnóstico claro, sin prefijos internos', async () => {
+test('fallo total de red â†’ diagnÃ³stico claro, sin prefijos internos', async () => {
   const c = mk({ ...CFG, transport: 'auto' }, async () => { throw new TypeError('Failed to fetch'); });
   const err = await rejects(c.chat([{ role: 'user', content: 'x' }]));
   assert.ok(!err.message.includes('__network__'), 'no debe filtrarse el prefijo interno');
-  assert.ok(err.message.includes('no responde') && err.message.includes('servidor'), 'diagnostica servidor caído');
+  assert.ok(err.message.includes('no responde') && err.message.includes('servidor'), 'diagnostica servidor caÃ­do');
   assert.ok(err.message.includes('historietas/api'), 'detalla los transportes intentados');
 });
 
-test('servidor vivo pero API inalcanzable → diagnóstico orientado a la API', async () => {
+test('servidor vivo pero API inalcanzable â†’ diagnÃ³stico orientado a la API', async () => {
   const c = mk({ ...CFG, transport: 'auto' }, async (url, opts) => {
     if (String(opts?.method || '').toUpperCase() === 'GET') return jsonResponse(401, {});
     throw new TypeError('Failed to fetch');
@@ -218,7 +218,7 @@ test('servidor vivo pero API inalcanzable → diagnóstico orientado a la API', 
   assert.ok(err.message.includes('Detalle:'));
 });
 
-test('un 422 de validación muestra el detalle del campo que falla, no [object Object]', async () => {
+test('un 422 de validaciÃ³n muestra el detalle del campo que falla, no [object Object]', async () => {
   const c = mk({ ...CFG, transport: 'direct' }, async () =>
     jsonResponse(422, { detail: [{ loc: ['body', 'max_tokens'], msg: 'value too large', type: 'value_error' }] }));
   const err = await rejects(c.chat([{ role: 'user', content: 'x' }]));
@@ -232,25 +232,25 @@ test('el transporte personalizado construye la URL del proxy al estilo server.js
   const c = mk({ ...CFG, transport: 'custom', customProxyBase: 'http://localhost:9130/proxy' }, async (url) => {
     urls.push(String(url));
     if (String(url).includes('chat/completions')) return jsonResponse(200, { choices: [{ message: { content: 'X' } }] });
-    throw new Error('no debería pedir imágenes: v3.0 es solo texto');
+    throw new Error('no deberÃ­a pedir imÃ¡genes: v3.0 es solo texto');
   });
   await c.chat([{ role: 'user', content: 'x' }]);
   assert.ok(urls[0].startsWith('http://localhost:9130/proxy/integrate.api.nvidia.com/v1/'));
   assert.equal(urls.length, 1, 'solo transporte de texto');
 });
 
-test('el diagnóstico test() valida el servicio de escritura (sin imágenes)', async () => {
+test('el diagnÃ³stico test() valida el servicio de escritura (sin imÃ¡genes)', async () => {
   let n = 0;
   const c = mk({ ...CFG, transport: 'direct' }, async () => {
     n++;
     return jsonResponse(200, { choices: [{ message: { content: 'LISTO' } }] });
   });
   const res = await c.test();
-  assert.deepEqual(Object.keys(res), ['text'], 'v3.0: diagnóstico solo de texto');
+  assert.deepEqual(Object.keys(res), ['text'], 'v3.0: diagnÃ³stico solo de texto');
   assert.equal(res.text.ok, true);
   assert.equal(n, 1, 'una sola llamada de texto');
 });
 
-test('extractJSON como parte del contrato público', () => {
+test('extractJSON como parte del contrato pÃºblico', () => {
   assert.deepEqual(extractJSON('```json\n{"x": 1}\n```'), { x: 1 });
 });

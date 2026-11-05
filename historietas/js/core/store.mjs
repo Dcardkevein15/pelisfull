@@ -2,11 +2,16 @@
 
 export const DEFAULT_SETTINGS = {
   nvApiKey: '',
-  textModel: 'moonshotai/kimi-k3',
-  transport: 'auto',            // auto | bridge | proxy | direct | custom
-  customProxyBase: '',           // p. ej. http://localhost:9130/proxy
-  parrafosPorCapitulo: 10,       // 6..14
-  paseImpacto: true,            // segunda pasada en capítulos clave
+  textModel: 'nvidia/nemotron-3.5-lightning-30b-a3b',
+  imageModel: 'black-forest-labs/flux.2-klein-4b',
+  transport: 'auto',
+  customProxyBase: '',
+  imageAspect: '16:9',
+  imageConcurrency: 3,
+  panelQa: true,
+  parrafosPorCapitulo: 10,
+  paseImpacto: true,
+  guionVisual: true,
   idioma: 'es',
 };
 
@@ -27,6 +32,17 @@ export function migrateSettings(data) {
   for (const k of ['imageModel', 'imageAspect', 'imageConcurrency', 'panelQa', 'hojasPersonaje', 'guionVisual', 'brandingAgua']) {
     delete data[k];
   }
+  // NVIDIA eliminó modelos: migrar a los actuales (lección 410 Gone)
+  const deprecados = {
+    'moonshotai/kimi-k3': 'nvidia/nemotron-3.5-lightning-30b-a3b',
+    'moonshotai/kimi-k2.6': 'nvidia/nemotron-3.5-lightning-30b-a3b',
+    'deepseek-ai/deepseek-v4-pro': 'z-ai/glm-5.3',
+    'deepseek-ai/deepseek-v4.1-flash': 'z-ai/glm-5.3',
+    'openai/gpt-oss-120b': 'openai/gpt-oss-20b',
+    'meta/llama-3.3-70b-instruct': 'z-ai/glm-5.3',
+    'nvidia/nemotron-3-super-120b-a12b': 'nvidia/nemotron-3.5-lightning-30b-a3b',
+  };
+  if (deprecados[data.textModel]) data.textModel = deprecados[data.textModel];
   return data;
 }
 

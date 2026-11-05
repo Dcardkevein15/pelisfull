@@ -11,6 +11,7 @@ export const PHASES = [
   { id: 'esquema', nombre: 'Esquema', icono: 'map' },
   { id: 'escritura', nombre: 'Escritura', icono: 'pen' },
   { id: 'impacto', nombre: 'Pase de impacto', icono: 'bolt' },
+  { id: 'visual', nombre: 'Paneles visuales', icono: 'palette' },
   { id: 'terminado', nombre: 'Libro terminado', icono: 'book' },
 ];
 
@@ -138,6 +139,7 @@ export function normalizeOutline(raw) {
     paragraphs: [],
     escrito: false,
     impacto: { aplicado: false },
+    visual: { listo: false },
   }));
 }
 
@@ -153,6 +155,10 @@ export function normalizeChapter(raw, chapter, K) {
     personajesPresentes: Array.isArray(p.personajes_presentes) ? p.personajes_presentes.map(String) : [],
     lugar: String(p.lugar || ''),
     momentoDia: String(p.momento_dia || p.momentoDia || ''),
+    accionEn: String(p.accion_en || p.accionEn || ''),
+    escenaEn: String(p.escena_en || p.escenaEn || ''),
+    encuadreSugerido: String(p.encuadre_sugerido || p.encuadreSugerido || ''),
+    panel: { status: 'pendiente', seed: null, imageKey: null, version: 0, camera: null, prompt: null, error: null, model: null, qa: null },
   }));
   const titulo = String(raw?.titulo_capitulo || raw?.titulo || chapter.titulo).slice(0, 120);
   const cliffhanger = String(raw?.cliffhanger || chapter.cliffhanger || '');
@@ -161,17 +167,21 @@ export function normalizeChapter(raw, chapter, K) {
 }
 
 export function computeStats(book) {
-  let paragraphs = 0, words = 0;
+  let paragraphs = 0, words = 0, panels = 0, panelsOk = 0, panelsFail = 0;
   for (const ch of book.chapters || []) {
     for (const p of ch.paragraphs || []) {
       paragraphs++;
       words += wordCount(p.texto);
+      if (p.panel) {
+        panels++;
+        if (p.panel.status === 'ok') panelsOk++;
+        else if (p.panel.status === 'error') panelsFail++;
+      }
     }
   }
   book.stats = {
     chapters: (book.chapters || []).length,
-    paragraphs,
-    words,
+    paragraphs, words, panels, panelsOk, panelsFail,
   };
   return book.stats;
 }

@@ -256,11 +256,20 @@ try {
   await test('badge de notificaciones: like → badge 1 → abrir campana → badge 0', async () => {
     const likeBtn = B.locator(`#socFeed article[data-pid="${pidA}"] .lk`).first();
     await likeBtn.click();
-    await forceRefresh(A);
-    await A.waitForFunction(() => {
-      const b = document.getElementById('socBellCount');
-      return b && !b.hidden && b.textContent === '1';
-    }, null, { timeout: 20000 });
+    /* el like puede ganar retries CAS en el servidor — reintentar el refresco
+       un par de veces en vez de apostar a una sola carrera                */
+    let done = false;
+    for (let i = 0; i < 4 && !done; i++) {
+      await forceRefresh(A);
+      try {
+        await A.waitForFunction(() => {
+          const b = document.getElementById('socBellCount');
+          return b && !b.hidden && b.textContent === '1';
+        }, null, { timeout: 7000 });
+        done = true;
+      } catch (e) { await A.waitForTimeout(900); }
+    }
+    ok(done, 'el badge de notificaciones nunca llegó a 1');
     await A.click('#socBell');
     await A.waitForTimeout(600);
     const hidden = await A.locator('#socBellCount').evaluate ? await A.evaluate(() => document.getElementById('socBellCount').hidden) : true;
@@ -442,6 +451,62 @@ try {
     ok(hasPerson >= 1, 'la búsqueda no encontró a B por su nombre');
   });
 
+  /* ═══ 🧵 FORO — forobeta: boards → hilos → posts ═══ */
+  const FORO_TITLE = 'Mejor arco de todos los tiempos ' + Date.now();
+  await test('foro: crear un tema en el board anime y verlo al instante', async () => {
+    await dismissSheets(A);
+    await A.click('#socDockTabs button[data-t="foro"]');
+    await A.waitForSelector('#foroHome .foro-board-row', { timeout: 15000 });
+    await A.locator('.foro-board-row[data-b="anime"]').click();          /* HOME → BOARD anime */
+    await A.waitForSelector('#foroBoard', { timeout: 8000 });
+    await A.click('#foroNew');
+    await A.waitForSelector('#fnTitle', { timeout: 10000 });
+    await A.fill('#fnTitle', FORO_TITLE);
+    await A.fill('#fnBody', 'Voten: Marineford o Enies Lobby. Enlaces: https://x.yapido.click/b/demo1');
+    await A.click('#fnGo');
+    await A.waitForSelector('.foro-thread-title', { timeout: 15000 });   /* publica → vista HILO */
+    const tt = await A.locator('.foro-thread-title').textContent();
+    ok(tt.includes(FORO_TITLE), 'el hilo abierto no muestra el título creado');
+    const badge = await A.locator('.foro-post.op .foro-badge').first().getAttribute('title');
+    ok(badge === 'Usuario' || badge === 'Administrador', 'el rango del autor debe viajar con el hilo');
+  });
+
+  await test('foro: responder y dar ❤ al hilo (posts inline)', async () => {
+    await A.fill('#fReplyText', 'Marineford, sin duda.');
+    await A.click('#fReplyBtn');
+    await A.waitForFunction(() => document.querySelectorAll('#foroThread .foro-post:not(.op)').length >= 1, null, { timeout: 15000 });
+    await A.locator('.foro-post.op .foro-act-btn').first().click();       /* ❤ al tema */
+    await A.waitForFunction(() => /❤\s*1/.test(document.querySelector('.foro-post.op .foro-act-btn')?.textContent || ''), null, { timeout: 15000 });
+    ok(true);
+  });
+
+  await test('foro: OTRO dispositivo navega al board y ve el tema', async () => {
+    const ctxF = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    const Fp = await ctxF.newPage();
+    Fp.on('dialog', d => d.accept().catch(() => { }));
+    await wirePage(Fp);
+    try {
+      await Fp.goto(BASE + '/social/');
+      await Fp.waitForSelector('#foroHome .foro-board-row', { timeout: 15000 });
+      await Fp.locator('.foro-board-row[data-b="anime"]').click();
+      await Fp.waitForFunction(t => [...document.querySelectorAll('#foroBoard .foro-th')].some(x => x.textContent.includes(t)), FORO_TITLE, { timeout: 20000 });
+      ok(true);
+    } finally { await ctxF.close(); }
+  });
+
+  await test('foro: el autor borra su respuesta', async () => {
+    await dismissSheets(A);
+    /* volver al board y reabrir el hilo (navegación interna del foro) */
+    await A.click('#foroCrumb button[data-go="board"]');
+    await A.waitForFunction(t => [...document.querySelectorAll('#foroBoard .foro-th')].some(x => x.textContent.includes(t)), FORO_TITLE, { timeout: 10000 });
+    await A.locator('#foroBoard .foro-th', { hasText: FORO_TITLE }).first().click();
+    await A.waitForSelector('#foroThread .foro-post:not(.op)', { timeout: 10000 });
+    const before = await A.locator('#foroThread .foro-post:not(.op)').count();
+    await A.locator('[data-delrid]').first().click();                     /* confirm auto-aceptado */
+    await A.waitForFunction(n => document.querySelectorAll('#foroThread .foro-post:not(.op)').length < n, before, { timeout: 15000 });
+    ok(true);
+  });
+
   await test('móvil: nav inferior con Amigos y Grupos', async () => {
     const ctxM = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true });
     const M = await ctxM.newPage();
@@ -450,9 +515,10 @@ try {
     await M.goto(BASE + '/social/');
     await M.waitForFunction(() => !document.getElementById('socMeName').textContent.includes('Cargando'), null, { timeout: 15000 });
     const navs = await M.locator('#socMob a').count();
-    ok(navs === 7, 'la nav móvil debería tener 7 destinos, tiene ' + navs);
+    ok(navs === 8, 'la nav móvil debería tener 8 destinos (con Foro), tiene ' + navs);
     ok(await M.locator('#socMob a[data-nav="amigos"]').count() === 1, 'falta Amigos en la nav móvil');
     ok(await M.locator('#socMob a[data-nav="grupos"]').count() === 1, 'falta Grupos en la nav móvil');
+    ok(await M.locator('#socMob a[data-nav="foro"]').count() === 1, 'falta el Foro en la nav móvil');
     /* los nuevos destinos navegan de verdad */
     await M.locator('#socMob a[data-nav="amigos"]').click();
     await M.waitForSelector('#socSheet .soc-card-h', { timeout: 8000 });
