@@ -24,6 +24,7 @@ const COINS = (function () {
     adClickExtra: 10,
     adRequireClick: true,
     unlockDays: 7,
+    lockOff: 0,   /* 🔓 1 = candado DESACTIVADO para TODOS los usuarios (control admin) */
   };
   let cfg = { ...DEFAULTS };
   try { const c = JSON.parse(localStorage.getItem(LS_KEY + '-cfg') || 'null'); if (c) cfg = { ...cfg, ...c }; } catch (e) { }
@@ -174,7 +175,7 @@ const COINS = (function () {
       if (!sig) return { ok: false, reason: 'no-key' };
       const full = { ...getConfig(), ...(patch || {}) };
       const params = new URLSearchParams({ op: 'adminCfg' });
-      for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays']) {
+      for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays', 'lockOff']) {
         if (full[k] !== undefined && full[k] !== null) params.set(k, String(full[k]));
       }
       if (full.adRequireClick !== undefined) params.set('adRequireClick', full.adRequireClick ? '1' : '0');
@@ -190,7 +191,7 @@ const COINS = (function () {
   function applyRemoteCfg(remote) {
     if (!remote || typeof remote !== 'object') return false;
     let ch = false;
-    for (const k of ['dailyCoins','priceAnime','priceMovie','adReward','adDuration','adClickExtra','adRequireClick','unlockDays']) {
+    for (const k of ['dailyCoins','priceAnime','priceMovie','adReward','adDuration','adClickExtra','adRequireClick','unlockDays','lockOff']) {
       if (remote[k] !== undefined && cfg[k] !== remote[k]) { cfg[k] = remote[k]; ch = true; }
     }
     if (ch) saveCfg();

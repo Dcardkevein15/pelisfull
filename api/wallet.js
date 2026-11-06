@@ -61,7 +61,7 @@ async function fetchCatalogCfg() {
       const cc = cat && cat.coinsCfg;
       if (cc && typeof cc === 'object' && !Array.isArray(cc)) {
         const merged = { ...DEF_CFG };
-        for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays']) {
+        for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays', 'lockOff']) {
           const n = +cc[k];
           if (!isNaN(n) && n >= 0) merged[k] = n;
         }
@@ -223,11 +223,11 @@ module.exports = async function handler(req, res) {
         return res.status(403).json({ ok: false, error: 'solo el admin puede cambiar la configuración' });
       }
       const next = { ...cfg };
-      for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays']) {
+      for (const k of ['dailyCoins', 'priceAnime', 'priceMovie', 'adReward', 'adDuration', 'adClickExtra', 'unlockDays', 'lockOff']) {
         if (b[k] !== undefined && b[k] !== '') {
           const n = +b[k];
           if (isNaN(n) || n < 0) return res.status(400).json({ ok: false, error: 'valor inválido: ' + k });
-          next[k] = n;
+          next[k] = k === 'lockOff' ? (n > 0 ? 1 : 0) : n;
         }
       }
       if (b.adRequireClick !== undefined && b.adRequireClick !== '') next.adRequireClick = !!+b.adRequireClick;

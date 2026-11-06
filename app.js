@@ -3153,8 +3153,9 @@ function renderEpisodes() {
       const mEp = (m.episodes.find(e => e.url) || m.episodes[0] || {}).n || 1;
       if (typeof COINS !== 'undefined') {
         try { mOpen = COINS.isUnlocked(m.id, mEp) ? COINS.unlockTimeLeft(m.id, mEp) : 0; } catch (e) { }
+        if (mOpen <= 0 && COINS.getConfig().lockOff) mOpen = -1;
       }
-      if (mOpen > 0) cell.classList.add('is-open');
+      if (mOpen !== 0) cell.classList.add('is-open');
       const openChip = mOpen > 0
         ? `<span class="ep-open rel-open" title="Desbloqueada — quedan ${mOpen} día${mOpen === 1 ? '' : 's'}">🔓 ${mOpen}d</span>` : '';
       cell.innerHTML = `
@@ -3309,8 +3310,10 @@ function renderEpisodes() {
     let openLeft = 0;
     if (typeof COINS !== 'undefined' && ep.url) {
       try { openLeft = COINS.isUnlocked(s.id, ep.n) ? COINS.unlockTimeLeft(s.id, ep.n) : 0; } catch (e3) { }
+      /* 🔓 candado global DESACTIVADO por el admin → todo se ve abierto */
+      if (openLeft <= 0 && COINS.getConfig().lockOff) openLeft = -1;
     }
-    if (openLeft > 0) cell.classList.add('is-open');
+    if (openLeft !== 0) cell.classList.add('is-open');
     const openChip = openLeft > 0
       ? `<span class="ep-open" title="Desbloqueado — quedan ${openLeft} día${openLeft === 1 ? '' : 's'}">🔓 ${openLeft}d</span>` : '';
     /* etiqueta de posición: una tarjeta DOBLE ocupa dos números (7–8) */
@@ -3465,7 +3468,9 @@ function pickStartEpisode(s) {
   try { raw = JSON.parse(localStorage.getItem('xstream-unlocked') || '{}'); } catch (e2) { }
   const ms = ((typeof COINS !== 'undefined' ? COINS.getConfig().unlockDays : 7) || 7) * 86400000;
   const isOpen = e => { const at = raw[`${s.id}:${e.n}`]; return !!(at && (Date.now() - at) < ms); };
-  const playable = e => staff || isOpen(e);
+  /* 🔓 candado global desactivado por el admin → todo jugable */
+  const lockOffAll = typeof COINS !== 'undefined' && !!COINS.getConfig().lockOff;
+  const playable = e => staff || lockOffAll || isOpen(e);
   const prog = (state.progress || {})[s.id] || {};
   /* 1. retomar el capítulo con progreso MÁS RECIENTE que se pueda ver */
   let resume = null;
@@ -3652,7 +3657,7 @@ function loadEpisode(epN, autoplayNow = true) {
   /* ── 🪙 PAYWALL: el check usa localStorage directamente (la fuente
      más confiable — el objeto en memoria puede reinicializarse). ── */
   const PAYWALL_ON = true;
-  if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff()) {
+  if (PAYWALL_ON && typeof COINS !== 'undefined' && ep.url && !isStaff() && !COINS.getConfig().lockOff) {
     /* leer DIRECTAMENTE del localStorage — no del objeto en memoria */
     let rawUnlocked = {};
     try { rawUnlocked = JSON.parse(localStorage.getItem('xstream-unlocked') || '{}'); } catch (e) { }
@@ -8664,6 +8669,7 @@ function buildCoinsPanel() {
         { key: 'giftMsg', label: '📝 Mensaje del regalo (opcional)', type: 'text', value: '', maxlength: 120, placeholder: 'Ej: ¡Gracias por ver X·STREAM!' },
         { key: 'grantCoins', label: '🔧 Asignar monedas solo a ESTE dispositivo (modo prueba)', type: 'number', value: 0, min: 0, max: 100000 },
         { key: 'testMode', label: testing ? '🧪 Modo PRUEBA ACTIVADO (ves el candado) — 0=apagar' : '🧪 Modo PRUEBA (ver el candado como usuario) — 1=activar', type: 'number', value: testing ? 0 : 1, min: 0, max: 1 },
+        { key: 'lockOff', label: cfg.lockOff ? '🔓 CANDADO DESACTIVADO PARA TODOS — 0=reactivar' : '🔓 DESACTIVAR EL CANDADO PARA TODOS los videos — 1=desactivar', type: 'number', value: cfg.lockOff ? 0 : 1, min: 0, max: 1 },
       ],
       sub: `<div style="text-align:left;font:600 11px 'JetBrains Mono';color:var(--dim);letter-spacing:.5px;line-height:1.8">
         TU SALDO: <b style="color:var(--acid)">${st.coins} 🪙</b> ·
@@ -8683,6 +8689,7 @@ function buildCoinsPanel() {
       if (vals.adReward !== undefined && vals.adReward !== '') updates.adReward = Math.max(1, +vals.adReward);
       if (vals.adDuration !== undefined && vals.adDuration !== '') updates.adDuration = Math.max(3, +vals.adDuration);
       if (vals.adClickExtra !== undefined && vals.adClickExtra !== '') updates.adClickExtra = Math.max(0, +vals.adClickExtra);
+      if (vals.lockOff !== undefined && vals.lockOff !== '') updates.lockOff = (+vals.lockOff > 0) ? 1 : 0;
       if (Object.keys(updates).length) {
         COINS.setConfig(updates);
         /* 🚀 PUSH INSTANTÁNEO: firma con la clave de admin y publica al
@@ -8700,6 +8707,10 @@ function buildCoinsPanel() {
         toast(`🎁 Regalo de ${vals.giftAll} monedas preparado — PUBLICA el catálogo para que lo reciban todos`);
       }
       if (vals.testMode !== undefined) COINS.setTestMode(!!+vals.testMode);
+      /* 🔓 candado global: repintar listas al instante para ver el efecto */
+      if (updates.lockOff !== undefined) {
+        try { renderSeries(els.searchInput ? els.searchInput.value : ''); if (current.seriesId) renderEpisodes(); } catch (e) { }
+      }
       toast('🪙 Configuración guardada');
     }).catch(() => { });
   });
