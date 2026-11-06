@@ -2,6 +2,20 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<script>
+/* 🧭 ORIGEN CANÓNICO: todo el estado (biblioteca, sesión admin, token GitHub)
+   vive en localStorage por DOMINIO. Entrar por dcardkevein15.github.io/pelisfull
+   y por x.yapido.click son DOS sitios distintos con datos separados — eso
+   hacía parecer que la web «olvidaba» todo. Unificamos: todo va a x.yapido.click. */
+(function () {
+  try {
+    if (location.hostname === 'dcardkevein15.github.io') {
+      var p = location.pathname.replace(/^\/pelisfull/, '') || '/';
+      location.replace('https://x.yapido.click' + p + location.search + location.hash);
+    }
+  } catch (e) { }
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>X·STREAM — Anime y películas en español gratis en HD, online sin registro</title>
 <meta name="description" content="X·STREAM: mira anime y películas completas en español latino y castellano, gratis y en HD. Sin registro, sin anuncios molestos. Temporadas completas, OVAs y estrenos.">
