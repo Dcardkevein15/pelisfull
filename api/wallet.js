@@ -19,9 +19,10 @@ const MAX_ADS_DAY = 30;
 const CFG_TTL_MS = 10 * 60 * 1000;
 const DEF_CFG = { dailyCoins: 500, priceAnime: 100, priceMovie: 200, adReward: 100, adDuration: 15, adClickExtra: 10, adRequireClick: true, unlockDays: 7 };
 const RAW_CATALOG = 'https://raw.githubusercontent.com/Dcardkevein15/pelisfull/main/catalog.json';
-/* la MISMA clave pública pinneada que CONFIG.catalogPubKey (auth.js) */
+/* la MISMA clave pública pinneada que CONFIG.catalogPubKey (auth.js)
+   🔄 ROTADA 2026-11: clave del dispositivo admin actual (coincide con auth.js) */
 const ADMIN_PUB_B64 = process.env.ADMIN_PUB_B64
-  || 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkO2b+Vm4MNlm+97FaZdXilRkF8KCr0XfqjhtQ00wc8SCsUAz6zA60rxYqnHuRIY7fNJCL6rCYDP5W5DOaNnorA==';
+  || 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEQCeikU2LJ3YyoxnSCeIE9j+ZfRiXVRJ3rNcEtwl5S8EQ6B5CzQBFRba+7ymAMtfulqQi1lq8UBeMNEORB8CwIg==';
 
 module.exports.config = { maxDuration: 10 };
 

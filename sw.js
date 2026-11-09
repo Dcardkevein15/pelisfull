@@ -1,7 +1,7 @@
 ﻿/* XÂ·STREAM service worker â cachea el app shell para carga instantÃ¡nea/offline */
 /* â IMPORTANTE: cualquier cambio visible en la app requiere subir esta versiÃ³n
    (v248 â v249â¦) para que los usuarios reciban los archivos nuevos.            */
-const CACHE = 'xstream-v249';
+const CACHE = 'xstream-v250';
 const OFF_CACHE = 'xstream-offline-v1';   /* ð vÃ­deos descargados âSIEMPRE vivosâ: NUNCA se purge */
 const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'auth.js', 'chat.js', 'coins.js', 'icon.svg', 'manifest.json', 'social/index.html', 'social.html', 'fondo/premium.mp4'];
 

@@ -66,7 +66,7 @@ const CAS_ATTEMPTS = 6;
    api/chat.js). Se puede sobreescribir con SOCIAL_ADMIN_PUB sin
    tocar código.                                              */
 const ADMIN_PUB_B64 = process.env.SOCIAL_ADMIN_PUB ||
-  'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkO2b+Vm4MNlm+97FaZdXilRkF8KCr0XfqjhtQ00wc8SCsUAz6zA60rxYqnHuRIY7fNJCL6rCYDP5W5DOaNnorA==';
+  'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEQCeikU2LJ3YyoxnSCeIE9j+ZfRiXVRJ3rNcEtwl5S8EQ6B5CzQBFRba+7ymAMtfulQi1lq8UBeMNEORB8CwIg==';
 
 /* uids que nadie puede reclamar por TOFU */
 const RESERVED_UIDS = ['x-stream-social-team', 'admin', 'administrador', 'xstream', 'equipo', 'staff', 'moderador', 'soporte'];

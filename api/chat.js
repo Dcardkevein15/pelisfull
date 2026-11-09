@@ -49,7 +49,7 @@ const DATA_BRANCH = 'chat-data';
 const SKIP_CI = ' [skip ci]';
 
 /* 🔐 clave pública del admin (la misma que firma catalog.json) */
-const ADMIN_PUB_B64 = 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkO2b+Vm4MNlm+97FaZdXilRkF8KCr0XfqjhtQ00wc8SCsUAz6zA60rxYqnHuRIY7fNJCL6rCYDP5W5DOaNnorA==';
+const ADMIN_PUB_B64 = 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEQCeikU2LJ3YyoxnSCeIE9j+ZfRiXVRJ3rNcEtwl5S8EQ6B5CzQBFRba+7ymAMtfulQi1lq8UBeMNEORB8CwIg==';
 
 const toB64 = s => Buffer.from(s, 'utf8').toString('base64');
 const fromB64 = s => Buffer.from(s, 'base64').toString('utf8');
